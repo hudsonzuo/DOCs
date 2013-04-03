@@ -1,0 +1,212 @@
+NBD的使用
+2009-05-27 17:02
+NBD(Network Block Device)让你可以将一个远程主机的磁盘空间,当作一个块设备来使用.就像一块硬盘一样.
+ 使用它,你可以很方便的将另一台服务器的硬盘空间,增加到本地服务器上. 
+ NBD与NFS有所不同.NFS只是提供一个挂载点供客户端使用,客户端无法改变这个挂载点的分区格式. 
+ 而NBD提供的是一个块设备,客户端可以把这个块设备格式化成各种类型的分区.更便于用户的使用. 
+ NBD是一个内核模块,大部分Linux发行版都已包含它.
+二.NBD安装方法
+
+在Turbolinux的10以上的版本中,NBD已被编译成模块.保存在
+ /lib/modules/$version/kernel/driver/block/下. 
+ 你还需要在服务器端和客户端上安装nbd-server和nbd-client工具. 
+ 你可以从官方网站上下载源码包,并分别在服务器端和客户端服务器上进行安装:
+http://sourceforge.net/projects/nbd
+
+我们这里下载nbd-2.8.8.tar.bz2 
+ 下载后,执行下列步骤进行安装:
+# tar jxf nbd-2.8.8.tar.bz2
+# cd nbd-2.8.8
+# ./configure
+# make
+# make install
+三.NBD使用方法
+1.示例1: 服务器端提供单个映像文件到客户端
+a.服务器端配置方法(IP为192.168.1.1)
+你需要先建立一个磁盘映像文件,作为提供给客户端使用的块设备.我们制作一个300MB的文件当做块设备.
+# cd /var/tmp
+# dd if=/dev/zero of=nbd-disk0 bs=104857600 count=3 
+
+启动nbd-server,监听1234端口,使用nbd-disk0映像文件.
+# nbd-server 1234 /var/tmp/nbd-disk0
+
+查看nbd进程.
+# ps -ef | grep nbd
+root     11292     1  0 15:02 ?        00:00:00 nbd-server 1234 /var/tmp/nbd-disk0
+
+nbd-server用法:
+nbd-server port file [size][kKmM] [-l authorize_file] [-r] [-m] [-c] [-a timeout_sec]
+        port                    nbd-server监听端口.
+        file                    绑定的映像文件.
+        size                    在客户端所见的块设备大小(单位可以是: k,K,m,M).
+ -r|--read-only  只读模式,客户端无法在块设备上进行写操作.
+ -m|--multi-file  多个文件,可以将多个映像文件作为一个块设备提供给客户端.
+ -c|--copy-on-write       所有客户端的写操作被会另存为一个文件,连接断开后,这个文件会被删除. 
+                                       可以保证映像文件内容不会被修改.
+ -l|--authorize-file file  一个允许访问此nbd的主机列表文件.
+ -a|--idle-time  服务器断开与客户端连接前的最大空闲时间.
+b.客户端配置方法(IP为192.168.1.2)
+加载nbd模块.
+# modprobe nbd
+# lsmod | grep nbd
+nbd                    26400  0
+
+查看nbd设备是否建立.
+# ls /dev/nbd* -hl
+brw-r----- 1 root disk 43,  0 Jul 27 06:40 /dev/nbd0
+brw-r----- 1 root disk 43,  1 Jul 27 06:40 /dev/nbd1
+brw-r----- 1 root disk 43,  2 Jul 27 06:40 /dev/nbd2
+brw-r----- 1 root disk 43,  3 Jul 27 06:40 /dev/nbd3
+brw-r----- 1 root disk 43,  4 Jul 27 06:40 /dev/nbd4
+brw-r----- 1 root disk 43,  5 Jul 27 06:40 /dev/nbd5
+brw-r----- 1 root disk 43,  6 Jul 27 06:40 /dev/nbd6
+brw-r----- 1 root disk 43,  7 Jul 27 06:40 /dev/nbd7
+brw-r----- 1 root disk 43,  8 Jul 27 06:40 /dev/nbd8
+brw-r----- 1 root disk 43,  9 Jul 27 06:40 /dev/nbd9
+
+将/dev/nbd0设备与主机连接.
+# nbd-client 192.168.1.1 1234 /dev/nbd0 
+Negotiation: ..size = 307200KB
+bs=1024, sz=307200
+
+nbd-client用法:
+nbd-client [bs=blocksize] host port nbd_device [-swap]
+    bs             用于设置块大小,默认是1024,可以是512,1024.2048,4096
+    host           服务器的主机名或IP
+    port           服务器的监听端口
+    nbd_device     映射到本地的哪个nbd设备(如: /dev/nbd0)
+    -swap          指定nbd设备将用做swap空间
+
+nbd-client -d nbd_device  用于断开连接
+
+连接成功后,可以查看到nbd-client进程.
+# ps -ef | grep nbd
+root      3156     1  0 06:44 pts/0    00:00:00 nbd-client 192.168.1.1 1234 /dev/nbd0
+
+使用前,需要格式化这个块设备.
+# mkfs.ext3 /dev/nbd0 
+mke2fs 1.39 (29-May-2006)
+Filesystem label=
+OS type: Linux
+Block size=1024 (log=0)
+Fragment size=1024 (log=0)
+76912 inodes, 307200 blocks
+15360 blocks (5.00%) reserved for the super user
+First data block=1
+Maximum filesystem blocks=67633152
+38 block groups
+8192 blocks per group, 8192 fragments per group
+2024 inodes per group
+Superblock backups stored on blocks: 
+        8193, 24577, 40961, 57345, 73729, 204801, 221185
+
+Writing inode tables: done                            
+Creating journal (8192 blocks): done
+Writing superblocks and filesystem accounting information: done
+
+This filesystem will be automatically checked every 39 mounts or
+180 days, whichever comes first.  Use tune2fs -c or -i to override.
+
+挂载这个块设备.
+# mkdir /mnt/nbd0
+# mount /dev/nbd0 /mnt/nbd0 
+# cd /mnt/nbd0
+# ls
+lost+found
+
+复制/root目录到这个目录中.
+# cp /root . -rf 
+# ls
+lost+found  root
+
+断开这个块设备.
+# umount /mnt/nbd0/
+
+# nbd-client -d /dev/nbd0 
+Disconnecting: que, disconnect, sock, done
+Kernel call returned: Broken pipeClosing: que, sock, done
+2.示例2: 服务器端提供多个映像文件到客户端
+a.服务器端配置
+# cd /var/tmp
+# dd if=/dev/zero of=nbd-disk1 bs=104857600 count=3 
+记录了 3+0 的读入
+记录了 3+0 的写出
+314572800 字节 (315 MB) 已复制，0.584027 秒，539 MB/秒
+# dd if=/dev/zero of=nbd-disk2 bs=104857600 count=3 
+记录了 3+0 的读入
+记录了 3+0 的写出
+314572800 字节 (315 MB) 已复制，1.5128 秒，208 MB/秒
+
+# nbd-server 1234 /var/tmp/nbd-disk1 
+# nbd-server 1235 /var/tmp/nbd-disk1 
+# nbd-server 1236 /var/tmp/nbd-disk2
+
+# ps -ef | grep nbd
+root     11292     1  0 15:02 ?        00:00:00 nbd-server 1234 /var/tmp/nbd-disk0
+root     11599     1  0 15:14 ?        00:00:00 nbd-server 1235 /var/tmp/nbd-disk1
+root     11606     1  0 15:14 ?        00:00:00 nbd-server 1236 /var/tmp/nbd-disk2
+b.客户端配置
+# lsmod | grep nbd
+nbd           24736  0 
+# ls /dev/nbd*
+/dev/nbd0   /dev/nbd11  /dev/nbd14  /dev/nbd3  /dev/nbd6  /dev/nbd9
+/dev/nbd1   /dev/nbd12  /dev/nbd15  /dev/nbd4  /dev/nbd7
+/dev/nbd10  /dev/nbd13  /dev/nbd2   /dev/nbd5  /dev/nbd8
+
+# nbd-client 192.168.1.1 1234 /dev/nbd0
+Negotiation: ..size = 307200KB
+bs=1024, sz=307200
+
+# nbd-client 192.168.1.1 1235 /dev/nbd1
+Negotiation: ..size = 307200KB
+bs=1024, sz=307200
+
+# nbd-client 192.168.1.1 1236 /dev/nbd2
+Negotiation: ..size = 307200KB
+bs=1024, sz=307200
+
+将nbd1格式化为vfat格式.
+# mkfs.vfat /dev/nbd1 
+mkfs.vfat 2.11 (12 Mar 2005)
+unable to get drive geometry, using default 255/63
+
+将nbd2格式化为ext2格式.
+# mkfs.ext2  /dev/nbd2 
+mke2fs 1.39 (29-May-2006)
+Filesystem label=
+OS type: Linux
+Block size=1024 (log=0)
+Fragment size=1024 (log=0)
+76912 inodes, 307200 blocks
+15360 blocks (5.00%) reserved for the super user
+First data block=1
+Maximum filesystem blocks=67633152
+38 block groups
+8192 blocks per group, 8192 fragments per group
+2024 inodes per group
+Superblock backups stored on blocks: 
+        8193, 24577, 40961, 57345, 73729, 204801, 221185
+
+Writing inode tables: done                            
+Writing superblocks and filesystem accounting information: done
+
+This filesystem will be automatically checked every 21 mounts or
+180 days, whichever comes first.  Use tune2fs -c or -i to override.
+
+挂载这3个块设备
+# cd /mnt
+# mkdir nbd1 nbd2
+# mount /dev/nbd0 nbd0
+# mount /dev/nbd1 nbd1
+# mount /dev/nbd2 nbd2
+
+# df -h 
+Filesystem            Size  Used Avail Use% Mounted on
+/dev/nbd0             291M   11M  265M   4% /mnt/nbd0
+/dev/nbd1             300M     0  300M   0% /mnt/nbd1
+/dev/nbd2             291M  2.1M  274M   1% /mnt/nbd2
+
+# mount
+/dev/nbd0 on /mnt/nbd0 type ext3 (rw)
+/dev/nbd1 on /mnt/nbd1 type vfat (rw)
+/dev/nbd2 on /mnt/nbd2 type ext2 (rw)

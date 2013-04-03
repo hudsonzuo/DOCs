@@ -1,0 +1,558 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+
+    <title>6. Entry &mdash; Python GTK+ 3 Tutorial 1.0 documentation</title>
+<!-- RTD <head> -->
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
+<script type="text/javascript" src="http://media.readthedocs.org/javascript/underscore.js"></script>
+<script type="text/javascript" src="http://media.readthedocs.org/javascript/doctools.js"></script>
+<script type="text/javascript" src="http://media.readthedocs.org/javascript/searchtools.js"></script>
+
+  <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;"/>
+
+  <script type="text/javascript">
+    var doc_version = "latest";
+    var doc_slug = "python-gtk-3-tutorial";
+  </script>
+  <script type="text/javascript" src="http://media.readthedocs.org/javascript/rtd.js"></script>
+<!-- end RTD <head> -->
+
+    
+    <link rel="stylesheet" href="_static/rtd.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <link rel="top" title="Python GTK+ 3 Tutorial 1.0 documentation" href="index.html" />
+    <link rel="next" title="7. Button Widgets" href="button_widgets.html" />
+    <link rel="prev" title="5. Label" href="label.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="button_widgets.html" title="7. Button Widgets"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="label.html" title="5. Label"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Python GTK+ 3 Tutorial 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="entry">
+<h1>6. Entry<a class="headerlink" href="#entry" title="Permalink to this headline">¶</a></h1>
+<p>Entry widgets allow the user to enter text. You can change the contents with the
+<a class="reference internal" href="#Gtk.Entry.set_text" title="Gtk.Entry.set_text"><tt class="xref py py-meth docutils literal"><span class="pre">Gtk.Entry.set_text()</span></tt></a> method, and read the current contents with the
+<a class="reference internal" href="#Gtk.Entry.get_text" title="Gtk.Entry.get_text"><tt class="xref py py-meth docutils literal"><span class="pre">Gtk.Entry.get_text()</span></tt></a> method. You can also limit the number of characters
+the Entry can take by calling <a class="reference internal" href="#Gtk.Entry.set_max_length" title="Gtk.Entry.set_max_length"><tt class="xref py py-meth docutils literal"><span class="pre">Gtk.Entry.set_max_length()</span></tt></a>.</p>
+<p>Occasionally you might want to make an Entry widget read-only. This can be done
+by passing <tt class="docutils literal"><span class="pre">False</span></tt> to the <a class="reference internal" href="#Gtk.Entry.set_editable" title="Gtk.Entry.set_editable"><tt class="xref py py-meth docutils literal"><span class="pre">Gtk.Entry.set_editable()</span></tt></a> method.</p>
+<p>Entry widgets can also be used to retrieve passwords from the user. It is common
+practice to hide the characters typed into the entry to prevent revealing the
+password to a third party. Calling <a class="reference internal" href="#Gtk.Entry.set_visibility" title="Gtk.Entry.set_visibility"><tt class="xref py py-meth docutils literal"><span class="pre">Gtk.Entry.set_visibility()</span></tt></a> with
+<tt class="docutils literal"><span class="pre">False</span></tt> will cause the text to be hidden.</p>
+<p><a class="reference internal" href="#Gtk.Entry" title="Gtk.Entry"><tt class="xref py py-class docutils literal"><span class="pre">Gtk.Entry</span></tt></a> has the ability to display progress or activity information
+behind the text. This is similar to <a class="reference internal" href="progressbar.html#Gtk.ProgressBar" title="Gtk.ProgressBar"><tt class="xref py py-class docutils literal"><span class="pre">Gtk.ProgressBar</span></tt></a> widget and is
+commonly found in web browsers to indicate how much of a page download has been
+completed. To make an entry display such information, use
+<a class="reference internal" href="#Gtk.Entry.set_progress_fraction" title="Gtk.Entry.set_progress_fraction"><tt class="xref py py-meth docutils literal"><span class="pre">Gtk.Entry.set_progress_fraction()</span></tt></a>, <a class="reference internal" href="#Gtk.Entry.set_progress_pulse_step" title="Gtk.Entry.set_progress_pulse_step"><tt class="xref py py-meth docutils literal"><span class="pre">Gtk.Entry.set_progress_pulse_step()</span></tt></a>,
+or <a class="reference internal" href="#Gtk.Entry.progress_pulse" title="Gtk.Entry.progress_pulse"><tt class="xref py py-meth docutils literal"><span class="pre">Gtk.Entry.progress_pulse()</span></tt></a>.</p>
+<p>Additionally, an Entry can show icons at either side of the entry. These icons
+can be activatable by clicking, can be set up as drag source and can have tooltips.
+To add an icon, use <a class="reference internal" href="#Gtk.Entry.set_icon_from_stock" title="Gtk.Entry.set_icon_from_stock"><tt class="xref py py-meth docutils literal"><span class="pre">Gtk.Entry.set_icon_from_stock()</span></tt></a>
+or one of the various other functions that set an icon from an icon name, a pixbuf,
+or icon theme. To set a tooltip on an icon, use
+<a class="reference internal" href="#Gtk.Entry.set_icon_tooltip_text" title="Gtk.Entry.set_icon_tooltip_text"><tt class="xref py py-meth docutils literal"><span class="pre">Gtk.Entry.set_icon_tooltip_text()</span></tt></a> or the corresponding function for markup.</p>
+<div class="section" id="entry-objects">
+<h2>6.1. Entry Objects<a class="headerlink" href="#entry-objects" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="Gtk.Entry">
+<em class="property">class </em><tt class="descclassname">Gtk.</tt><tt class="descname">Entry</tt><a class="headerlink" href="#Gtk.Entry" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="Gtk.Entry.get_text">
+<tt class="descname">get_text</tt><big>(</big><big>)</big><a class="headerlink" href="#Gtk.Entry.get_text" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieves the contents of the entry widget.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Gtk.Entry.set_text">
+<tt class="descname">set_text</tt><big>(</big><em>text</em><big>)</big><a class="headerlink" href="#Gtk.Entry.set_text" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the text in the widget to the given value, replacing the current contents.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Gtk.Entry.set_visibility">
+<tt class="descname">set_visibility</tt><big>(</big><em>visible</em><big>)</big><a class="headerlink" href="#Gtk.Entry.set_visibility" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets whether the contents of the entry are visible or not. When <em>visible</em> is set
+to <tt class="docutils literal"><span class="pre">False</span></tt>, characters are displayed as the invisible char, and will also appear
+that way when the text in the entry widget is copied elsewhere.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Gtk.Entry.set_max_length">
+<tt class="descname">set_max_length</tt><big>(</big><em>max</em><big>)</big><a class="headerlink" href="#Gtk.Entry.set_max_length" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the maximum allowed length of the contents of the widget. If the current
+contents are longer than the given length, then they will be truncated to fit.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Gtk.Entry.set_editable">
+<tt class="descname">set_editable</tt><big>(</big><em>is_editable</em><big>)</big><a class="headerlink" href="#Gtk.Entry.set_editable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Determines if the user can edit the text in the editable widget or not.
+If <em>is_editable</em> is <tt class="docutils literal"><span class="pre">True</span></tt>, the user is allowed to edit the text in the widget.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Gtk.Entry.set_progress_fraction">
+<tt class="descname">set_progress_fraction</tt><big>(</big><em>fraction</em><big>)</big><a class="headerlink" href="#Gtk.Entry.set_progress_fraction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Causes the entry&#8217;s progress indicator to &#8220;fill in&#8221; the given fraction of the bar.
+The fraction should be between 0.0 and 1.0, inclusive.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Gtk.Entry.set_progress_pulse_step">
+<tt class="descname">set_progress_pulse_step</tt><big>(</big><em>fraction</em><big>)</big><a class="headerlink" href="#Gtk.Entry.set_progress_pulse_step" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the fraction of total entry width to move the progress bouncing block for
+each call to <a class="reference internal" href="#Gtk.Entry.progress_pulse" title="Gtk.Entry.progress_pulse"><tt class="xref py py-meth docutils literal"><span class="pre">progress_pulse()</span></tt></a>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Gtk.Entry.progress_pulse">
+<tt class="descname">progress_pulse</tt><big>(</big><big>)</big><a class="headerlink" href="#Gtk.Entry.progress_pulse" title="Permalink to this definition">¶</a></dt>
+<dd><p>Indicates that some progress is made, but you don&#8217;t know how much. Causes the
+entry&#8217;s progress indicator to enter &#8220;activity mode,&#8221; where a block bounces
+back and forth. Each call to <a class="reference internal" href="#Gtk.Entry.progress_pulse" title="Gtk.Entry.progress_pulse"><tt class="xref py py-meth docutils literal"><span class="pre">progress_pulse()</span></tt></a> causes the block to move
+by a little bit (the amount of movement per pulse is determined by
+<a class="reference internal" href="#Gtk.Entry.set_progress_pulse_step" title="Gtk.Entry.set_progress_pulse_step"><tt class="xref py py-meth docutils literal"><span class="pre">set_progress_pulse_step()</span></tt></a>).</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Gtk.Entry.set_icon_from_stock">
+<tt class="descname">set_icon_from_stock</tt><big>(</big><em>icon_pos</em>, <em>stock_id</em><big>)</big><a class="headerlink" href="#Gtk.Entry.set_icon_from_stock" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the icon shown in the entry at the specified position from a
+<a class="reference internal" href="stock.html#stock-items"><em>stock item</em></a>.
+If <em>stock_id</em> is <tt class="docutils literal"><span class="pre">None</span></tt>, no icon will be shown in the specified position.</p>
+<p><em>icon_pos</em> specifies the side of the entry at which an icon is placed and
+can be one of</p>
+<ul class="simple">
+<li><tt class="xref py py-attr docutils literal"><span class="pre">Gtk.EntryIconPosition.PRIMARY</span></tt>:
+At the beginning of the entry (depending on the text direction).</li>
+<li><tt class="xref py py-attr docutils literal"><span class="pre">Gtk.EntryIconPosition.SECONDARY</span></tt>:
+At the end of the entry (depending on the text direction).</li>
+</ul>
+</dd></dl>
+
+<dl class="method">
+<dt id="Gtk.Entry.set_icon_tooltip_text">
+<tt class="descname">set_icon_tooltip_text</tt><big>(</big><em>icon_pos</em>, <em>tooltip</em><big>)</big><a class="headerlink" href="#Gtk.Entry.set_icon_tooltip_text" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets <em>tooltip</em> as the contents of the tooltip for the icon at the
+specified position. If <em>tooltip</em> is <tt class="docutils literal"><span class="pre">None</span></tt>, an existing tooltip is removed.</p>
+<p>For allowed values for <em>icon_pos</em> see <a class="reference internal" href="#Gtk.Entry.set_icon_from_stock" title="Gtk.Entry.set_icon_from_stock"><tt class="xref py py-meth docutils literal"><span class="pre">set_icon_from_stock()</span></tt></a>.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="example">
+<h2>6.2. Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
+<img alt="_images/entry_example.png" src="_images/entry_example.png" />
+<div class="highlight-python"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75</pre></div></td><td class="code"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">gi.repository</span> <span class="kn">import</span> <span class="n">Gtk</span><span class="p">,</span> <span class="n">GObject</span>
+
+<span class="k">class</span> <span class="nc">EntryWindow</span><span class="p">(</span><span class="n">Gtk</span><span class="o">.</span><span class="n">Window</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">Gtk</span><span class="o">.</span><span class="n">Window</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s">&quot;Entry Demo&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_size_request</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">timeout_id</span> <span class="o">=</span> <span class="bp">None</span>
+
+        <span class="n">vbox</span> <span class="o">=</span> <span class="n">Gtk</span><span class="o">.</span><span class="n">Box</span><span class="p">(</span><span class="n">orientation</span><span class="o">=</span><span class="n">Gtk</span><span class="o">.</span><span class="n">Orientation</span><span class="o">.</span><span class="n">VERTICAL</span><span class="p">,</span> <span class="n">spacing</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">vbox</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">entry</span> <span class="o">=</span> <span class="n">Gtk</span><span class="o">.</span><span class="n">Entry</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">entry</span><span class="o">.</span><span class="n">set_text</span><span class="p">(</span><span class="s">&quot;Hello World&quot;</span><span class="p">)</span>
+        <span class="n">vbox</span><span class="o">.</span><span class="n">pack_start</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">entry</span><span class="p">,</span> <span class="bp">True</span><span class="p">,</span> <span class="bp">True</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+        <span class="n">hbox</span> <span class="o">=</span> <span class="n">Gtk</span><span class="o">.</span><span class="n">Box</span><span class="p">(</span><span class="n">spacing</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+        <span class="n">vbox</span><span class="o">.</span><span class="n">pack_start</span><span class="p">(</span><span class="n">hbox</span><span class="p">,</span> <span class="bp">True</span><span class="p">,</span> <span class="bp">True</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">check_editable</span> <span class="o">=</span> <span class="n">Gtk</span><span class="o">.</span><span class="n">CheckButton</span><span class="p">(</span><span class="s">&quot;Editable&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">check_editable</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s">&quot;toggled&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">on_editable_toggled</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">check_editable</span><span class="o">.</span><span class="n">set_active</span><span class="p">(</span><span class="bp">True</span><span class="p">)</span>
+        <span class="n">hbox</span><span class="o">.</span><span class="n">pack_start</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">check_editable</span><span class="p">,</span> <span class="bp">True</span><span class="p">,</span> <span class="bp">True</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">check_visible</span> <span class="o">=</span> <span class="n">Gtk</span><span class="o">.</span><span class="n">CheckButton</span><span class="p">(</span><span class="s">&quot;Visible&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">check_visible</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s">&quot;toggled&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">on_visible_toggled</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">check_visible</span><span class="o">.</span><span class="n">set_active</span><span class="p">(</span><span class="bp">True</span><span class="p">)</span>
+        <span class="n">hbox</span><span class="o">.</span><span class="n">pack_start</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">check_visible</span><span class="p">,</span> <span class="bp">True</span><span class="p">,</span> <span class="bp">True</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">pulse</span> <span class="o">=</span> <span class="n">Gtk</span><span class="o">.</span><span class="n">CheckButton</span><span class="p">(</span><span class="s">&quot;Pulse&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pulse</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s">&quot;toggled&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">on_pulse_toggled</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pulse</span><span class="o">.</span><span class="n">set_active</span><span class="p">(</span><span class="bp">False</span><span class="p">)</span>
+        <span class="n">hbox</span><span class="o">.</span><span class="n">pack_start</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pulse</span><span class="p">,</span> <span class="bp">True</span><span class="p">,</span> <span class="bp">True</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">icon</span> <span class="o">=</span> <span class="n">Gtk</span><span class="o">.</span><span class="n">CheckButton</span><span class="p">(</span><span class="s">&quot;Icon&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">icon</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s">&quot;toggled&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">on_icon_toggled</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">icon</span><span class="o">.</span><span class="n">set_active</span><span class="p">(</span><span class="bp">False</span><span class="p">)</span>
+        <span class="n">hbox</span><span class="o">.</span><span class="n">pack_start</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">icon</span><span class="p">,</span> <span class="bp">True</span><span class="p">,</span> <span class="bp">True</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">on_editable_toggled</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">button</span><span class="p">):</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="n">button</span><span class="o">.</span><span class="n">get_active</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">entry</span><span class="o">.</span><span class="n">set_editable</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">on_visible_toggled</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">button</span><span class="p">):</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="n">button</span><span class="o">.</span><span class="n">get_active</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">entry</span><span class="o">.</span><span class="n">set_visibility</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">on_pulse_toggled</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">button</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">button</span><span class="o">.</span><span class="n">get_active</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">entry</span><span class="o">.</span><span class="n">set_progress_pulse_step</span><span class="p">(</span><span class="mf">0.2</span><span class="p">)</span>
+            <span class="c"># Call self.do_pulse every 100 ms</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">timeout_id</span> <span class="o">=</span> <span class="n">GObject</span><span class="o">.</span><span class="n">timeout_add</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">do_pulse</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c"># Don&#39;t call self.do_pulse anymore</span>
+            <span class="n">GObject</span><span class="o">.</span><span class="n">source_remove</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">timeout_id</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">timeout_id</span> <span class="o">=</span> <span class="bp">None</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">entry</span><span class="o">.</span><span class="n">set_progress_pulse_step</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">do_pulse</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user_data</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">entry</span><span class="o">.</span><span class="n">progress_pulse</span><span class="p">()</span>
+        <span class="k">return</span> <span class="bp">True</span>
+
+    <span class="k">def</span> <span class="nf">on_icon_toggled</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">button</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">button</span><span class="o">.</span><span class="n">get_active</span><span class="p">():</span>
+            <span class="n">stock_id</span> <span class="o">=</span> <span class="n">Gtk</span><span class="o">.</span><span class="n">STOCK_FIND</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">stock_id</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">entry</span><span class="o">.</span><span class="n">set_icon_from_stock</span><span class="p">(</span><span class="n">Gtk</span><span class="o">.</span><span class="n">EntryIconPosition</span><span class="o">.</span><span class="n">PRIMARY</span><span class="p">,</span>
+            <span class="n">stock_id</span><span class="p">)</span>
+
+<span class="n">win</span> <span class="o">=</span> <span class="n">EntryWindow</span><span class="p">()</span>
+<span class="n">win</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s">&quot;delete-event&quot;</span><span class="p">,</span> <span class="n">Gtk</span><span class="o">.</span><span class="n">main_quit</span><span class="p">)</span>
+<span class="n">win</span><span class="o">.</span><span class="n">show_all</span><span class="p">()</span>
+<span class="n">Gtk</span><span class="o">.</span><span class="n">main</span><span class="p">()</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+
+
+
+    <h3>Project Versions</h3>
+    <ul id="sidebar_versions">
+
+  <li><a href="http://readthedocs.org/docs/python-gtk-3-tutorial/en/latest/">latest</a></li>
+
+    </ul>
+<div id="searchbox" style="">
+  <h3>RTD Search</h3>
+    <form class="search" action="http://readthedocs.org/search/project/" method="get">
+      <input type="text" name="q" size="18">
+      <input type="submit" value="Go">
+      <input type="hidden" name="selected_facets" value="project:Python GTK+ 3 Tutorial">
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+        Full-text doc search.
+    </p>
+</div>
+
+
+
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">6. Entry</a><ul>
+<li><a class="reference internal" href="#entry-objects">6.1. Entry Objects</a></li>
+<li><a class="reference internal" href="#example">6.2. Example</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="label.html"
+                        title="previous chapter">5. Label</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="button_widgets.html"
+                        title="next chapter">7. Button Widgets</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/entry.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="button_widgets.html" title="7. Button Widgets"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="label.html" title="5. Label"
+             >previous</a> |</li>
+        <li><a href="index.html">Python GTK+ 3 Tutorial 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+
+    <div class="footer">
+        &copy; Copyright 2011, Sebastian Pölsterl.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.2.
+    </div>
+ <!-- End original user content -->
+
+
+
+<style type="text/css">
+  .badge {
+    position: fixed;
+    display: block;
+    bottom: 5px;
+    height: 40px;
+    text-indent: -9999em;
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2), 0 1px 0 rgba(255, 255, 255, 0.2) inset;
+    -moz-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2), 0 1px 0 rgba(255, 255, 255, 0.2) inset;
+    -webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2), 0 1px 0 rgba(255, 255, 255, 0.2) inset;
+  }
+  #version_menu {
+    position: fixed;
+    display: none;
+    bottom: 11px;
+    right: 166px;
+    list-style-type: none;
+    margin: 0;
+  }
+  .footer_popout:hover #version_menu {
+    display: block;
+  }
+  #version_menu li {
+    display: block;
+    float: right;
+  }
+  #version_menu li a {
+    display: block;
+    padding: 6px 10px 4px 10px;
+    margin: 7px 7px 0 0;
+    font-weight: bold;
+    font-size: 14px;
+    height: 20px;
+    line-height: 17px;
+    text-decoration: none;
+    color: #fff;
+    background: #8ca1af url(../images/gradient-light.png) bottom left repeat-x;
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    box-shadow: 0 1px 1px #465158;
+    -moz-box-shadow: 0 1px 1px #465158;
+    -webkit-box-shadow: 0 1px 1px #465158;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
+  }
+  #version_menu li a:hover {
+    text-decoration: none;
+    background-color: #697983;
+    box-shadow: 0 1px 0px #465158;
+    -moz-box-shadow: 0 1px 0px #465158;
+    -webkit-box-shadow: 0 1px 0px #465158;
+  }
+  .badge.rtd {
+    background: #257597 url(http://media.readthedocs.org/images/badge-rtd.png) top left no-repeat;
+    border: 1px solid #282E32;
+    width: 160px;
+    right: 5px;
+  }
+  .badge.revsys { background: #465158 url(http://media.readthedocs.org/images/badge-revsys.png) top left no-repeat;
+    border: 1px solid #1C5871;
+    width: 290px;
+    right: 173px;
+  }
+  .badge.revsys-inline-sponsored {
+    position: inherit;
+    margin-left: auto;
+    margin-right: 175px;
+    margin-bottom: 5px;
+    background: #465158 url(http://media.readthedocs.org/images/badge-revsys.png) top left no-repeat;
+    border: 1px solid #1C5871;
+    width: 290px;
+    right: 173px;
+  }
+  .badge.revsys-inline {
+    position: inherit;
+    margin-left: auto;
+    margin-right: 175px;
+    margin-bottom: 5px;
+    background: #465158 url(http://media.readthedocs.org/images/badge-revsys-sm.png) top left no-repeat;
+    border: 1px solid #1C5871;
+    width: 205px;
+    right: 173px;
+  }
+
+.rtd_doc_footer { background-color: #465158;}
+
+</style>
+<div class="rtd_doc_footer">
+  <div class="footer_popout">
+    <a href="http://readthedocs.org/projects/python-gtk-3-tutorial/?fromdocs=python-gtk-3-tutorial" class="badge rtd">Brought to you by Read the Docs</a>
+    <ul id="version_menu">
+      
+        <li><a href="http://readthedocs.org/docs/python-gtk-3-tutorial/en/latest/">latest</a></li>
+      
+    </ul>
+  </div>
+</div>
+<!-- RTD Analytics Code -->
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-17997319-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+
+<!-- User Analytics Code -->
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'None']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+
+
+  </body>
+</html>

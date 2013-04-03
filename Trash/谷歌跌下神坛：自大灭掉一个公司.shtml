@@ -1,0 +1,897 @@
+<HTML><HEAD>
+<meta http-equiv="Content-Type" Content="text/html; charset=gb2312">
+<link rel="stylesheet" type="text/css" href="/ssi/css/art.css">
+<link rel="stylesheet" type="text/css" href="/ssi/css/common.css">
+</HEAD>
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" bgcolor=#EEE8D6 align="center">
+<a name="aws_top" id="aws_top"></a>
+
+<table width="100%" height="60" border="0" cellpadding="0" cellspacing="0" bgcolor="#F7F7F7" >
+<tr align="center">
+  <td align="center"><table width="965" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#F7F7F7">
+  <tr>
+    <td align="left" valign="middle" width="160" class="navi"><a href="http://www.zaobao.com/"><img src="/ssi/images1/zblogo.gif" width="150" height="53" border="0" /></a>
+    <td valign="middle">
+	<div class="vsplit2"></div>
+
+<table width="100%" border="0" cellpadding="0" cellspacing="3" align="center" class="navi">
+<tr align="left" valign="middle">
+
+
+<!--共用导航条开始-->
+<td>
+<a href="http://realtime.zaobao.com/realtime.shtml"><font color=#BA0100><b>即时</b></font></a>
+<a href="http://www.zaobao.com/wencui/wencui.shtml">文萃</a>
+<a href="http://www.zaobao.com/sp/sp.shtml">新加坡</a>
+<br>
+<a href="http://www.zaobao.com/zg/zg.shtml"><font color=#BA0100><b>中国</b></font></a>
+<a href="http://www.zaobao.com/gj/gj.shtml">国际</a>
+<a href="http://www.zaobao.com/yx/yx.shtml">东南亚</a>
+<br>
+<a href="http://www.zaobao.com/ty/ty.shtml"><b>体育</b></a>
+<a href="http://www.zaobao.com/fk/fk.shtml">副刊</a>
+<a href="http://newslink.asiaone.com/user/Login.action">全检索</a>
+</td>
+<td width="1" bgcolor="#cccccc"></td>
+<td width="5"></td>
+<td>
+
+<a href="http://www.zaobao.com/yl/yl.shtml"><font color=#BA0100><b>观点</b></font></a>
+<a href="http://www.zaobao.com/special/china/zaodian/zaodian.shtml">早点</a>
+<a href="http://www.zaobao.com/special/forum/forum_zp.shtml">专评</a>
+<a href="http://www.zaobao.com/special/quote/quote.shtml">语录</a>
+<br>
+<a href="http://www.zaobao.com/photoweb/photoweb.shtml"><font color=#BA0100><b>图片</b></font></a>
+<a href="http://www.zaobao.com/pictorial/comics/comics.shtml">漫画</a>
+<a href="http://www.zaobao.com/forum/forum.shtml">来信</a>
+<a href="http://www.zaobao.com/zbpoll/polling.html">投票</a>
+<br>
+<a href="http://www.zaobao.com/special/pages/special.shtml"><font color=#BA0100><b>专题</b></font></a>
+<a href="http://www.zaobao.com/special/face2face/face2face.shtml">人物</a>
+<a href="http://www.zaobao.com/special/feature/feature.shtml">特写</a>
+<a href="http://chineseterms.zaobao.com/chineseterms.html">译名</a>
+</td>
+<td width="1" bgcolor="#cccccc"></td>
+<td width="5"></td>
+<td>
+
+<a href="http://www.zaobao.com/#caijing"><font color=#BA0100><b>财经</b></font></a>
+<a href="http://www.zaobao.com/cz/cz.shtml">中国</a>
+<a href="http://www.zaobao.com/cg/cg.shtml">全球</a>
+<a href="http://www.zaobao.com/cs/cs.shtml">狮城</a>
+<br>
+<a href="http://www.zaobao.com/finance/comment.shtml"><b>综述</b></a>
+<a href="http://www.zaobao.com/finance/people.shtml">人物</a>
+<a href="http://stock.zaobao.com/">股市</a>
+<a href="http://ir.zaobao.com/ir.html">企业</a>
+<br>
+<a href="http://www.zaobao.com/cninvest/cninvest.shtml"><b>投资</b></a>
+<a href="http://chongqing.zaobao.com/">重庆</a>
+<a href="http://chengdu.zaobao.com/">成都</a>
+<a href="http://changzhou.zaobao.com/">常州</a>
+</td>
+<td width="1" bgcolor="#cccccc"></td>
+<td width="5"></td>
+<td>
+
+<a href="http://sports.zaobao.com/sports.shtml"><font color=#BA0100><b>体坛</b></font></a>
+<a href="http://stars.zaobao.com/stars.shtml">星闻</a>
+<a href="http://woman.zaobao.com/woman.shtml">丽人</a>
+<a href="http://www.zaobao.com/edu/edu.shtml">教育</a>
+<br>
+<a href="http://property.zaobao.com/property.shtml"><b>房产</b></a>
+
+
+<a href="http://jiankang.zaobao.com/">健康</a>
+
+
+<a href="http://travel.zaobao.com/travel.shtml">旅游</a>
+<a href="http://cars.zaobao.com/cars.shtml">汽车</a>
+<br>
+<a href="http://www.baotime.com/"><font color=#BA0100><b>时尚</b></font></a>
+<a href="http://it.zaobao.com/it.shtml">科技</a>
+<a href="http://www.zaobao.com/xhd/xhd.shtml">汇点</a>
+<a href="http://books.zaobao.com"><font color=#BA0100>读书</font></a>
+</td>
+<td width="1" bgcolor="#cccccc"></td>
+<td width="5"></td>
+<td>
+
+<a href="http://luntan.zaobao.com/"><font color=#BA0100><b>论坛</b></font></a>
+<a href="http://chuguo.zaobao.com/chuguo.shtml">出国</a>
+<a href="http://t.sina.com.cn/1654134123">微博</a>
+<a href="http://twitter.com/zbcom">Twitter</a>
+<br>
+<a href="http://www.zbcomma.sg/">逗号</a>&nbsp;
+<a href="http://youth.zaobao.com/friday/tu.html">大拇指</a>&nbsp;&nbsp;
+<a href="http://english.zaobao.com">English</a>
+<br>
+<a href="http://www.zaobao.com/special/hotspot/hotspot.shtml" target="_blank">热点关注</a>&nbsp;&nbsp;
+<a href="http://www.newnanyang.com/" target="_blank">新南洋</a>&nbsp;
+<a href="http://www.zaobao.com/rss.shtml" target="_blank"><font color=#BA0100><b>RSS</b></font></a>
+</td>
+<!--共用导航条结束-->
+
+
+</tr>
+</table>
+
+    </td>
+  </tr>
+  </table></td>
+</tr>
+</table>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="100%" bgcolor="#BA0100"><img src="/ssi/img/common/F.gif" width="2" height="2"></td>
+    </tr>
+	<tr><td height="3"></td></tr>
+</table>
+
+
+
+
+<!-- /ssi/slice/topgroup01.shtml -->
+<script type="text/javascript" src="/ssi/js/embedFlash.js"></script>
+<table border="0" cellspacing="0" cellpadding="0" align="center"><tr>
+<td valign="top">
+<!-- 顶部横幅广告（左） -->
+
+
+<!--embed src="/ssi/bizp/mkt/estreet21." wmode="opaque" border=0 width=750 height=100 ></embed-->
+
+
+<script language="JavaScript" type="text/javascript">
+embedFlash('http://www.zaobao.com/ads/banners/own/zp_750x100.swf', '750', '100', '7,0,0,0', 'http', 'myMovie', 'true', 'true', 'false', 'medium', 'noborder', 'right', 'opaque', '#ffffff', '', 'myFlashVar=embedFlash', 'false', '', '');
+</script>
+
+
+
+
+
+</td>
+<td><img src="/ssi/img/common/F.gif" width="6" height="3"></td>
+<td valign="top">
+<!--AdForward Begin:-->
+<!--a href="http://chongqing.zaobao.com/cq_index.htm" target="_blank"><img src="/ssi/bizp/mkt/cq_200x100.jpg" border="0" /></a-->
+<SCRIPT src="http://www.zaobao.com/ssi/js/flipflash.js" type=text/javascript></SCRIPT>
+
+<div id=FP_R style="WIDTH: 100%; TEXT-ALIGN: center"></div>
+<script type=text/javascript>
+
+var fp_pics="",fp_links="";
+
+fp_pics += "§"+"http://www.zaobao.com/ssi/bizp/mkt/cq_200x100.jpg"; //广告图片地址
+fp_links += "§"+escape("http://chongqing.zaobao.com/cq_index.htm"); //广告链接地址
+
+fp_pics += "§"+"http://www.zaobao.com/ssi/bizp/mkt/cd_200x100.jpg"; //广告图片地址
+fp_links += "§"+escape("http://chengdu.zaobao.com/"); //广告链接地址
+
+fp_pics += "§"+"http://www.zaobao.com/ssi/bizp/mkt/cz_200x100.jpg"; //广告图片地址
+fp_links += "§"+escape("http://changzhou.zaobao.com/"); //广告链接地址
+
+
+fp_pics=fp_pics.substring(1);
+fp_links=fp_links.substring(1);
+
+
+//默认图片与链接
+
+var def_pic = "http://ads.zaobao.com/ads/banners/own/adluntan300x150.jpg"; //默认图片地址
+var def_link = escape("http://luntan.zaobao.com/"); //默认图片链接
+
+var FP = new sinaFlash("http://www.zaobao.com/ads/banners/own/flipper.swf", "FP_R_swf", 200, 100, "0", "#FFFFFF", false, "High");
+FP.addParam("allowScriptAccess", "always");
+FP.addParam("menu", "false");
+FP.addParam("wmode", "opaque");
+FP.addVariable("ad_num", "3"); //翻牌数量
+FP.addVariable("pic_width", "190"); //图片宽
+FP.addVariable("pic_height", "95"); //图片高
+FP.addVariable("flip_time", "400"); //翻牌速度
+FP.addVariable("pause_time", "3000"); //间隔时间
+FP.addVariable("wait_time", "2000"); //等待时间
+FP.addVariable("pics", fp_pics); //广告图片地址
+FP.addVariable("urls", fp_links); //广告链接地址
+FP.addVariable("def_pic", def_pic); //默认图片地址
+FP.addVariable("def_link", def_link); //默认链接地址
+FP.write("FP_R");
+
+</script>
+<!--右侧翻牌结束-->
+</td>
+</tr></table>
+<table width="970" border="0" cellspacing="0" cellpadding="0" align="center"><tr><td height="2">
+<!--         virtual="/ssi/home_navigation.txt" -->
+</td></tr></table>
+
+
+<!-- /ssi/art/art_toptable.txt -->
+<script type="text/javascript">
+        function buyarticle(){
+                buyurl = 'http://www.zaobao.com/asianet/enquiry/getnews.pl?url='+encodeURIComponent(location.href);
+                location.href=buyurl;
+        }
+</script>
+
+<table width="968" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr>
+      <td width="3" height="4" valign="top" background="/ssi/img/common/cur_left01_bg.gif" ><img src="/ssi/img/common/cur_left01.gif" width="3" height="4" /></td>
+      <td width="655" valign="top" bgcolor="#FFFFFF"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td bgcolor="#B4B1AA" ><img src="/ssi/img/common/F.gif" width="2" height="1" /></td>
+          </tr>
+      </table></td>
+      <td width="1" valign="top" bgcolor="#FFFFFF" class="sidergtline"><img src="/ssi/img/common/F.gif" width="1" height="2" /></td>
+      <td valign="top" bgcolor="#FFFFFF" ><table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+          <tr>
+            <td bgcolor="#B4B1AA" ><img src="/ssi/img/common/F.gif" width="2" height="1" /></td>
+          </tr>
+      </table></td>
+      <td width="3" valign="top"><img src="/ssi/img/common/cur_rgt_new.gif" width="3" height="4" /></td>
+    </tr>
+</table>
+
+<table width="968" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="3" height="" valign="top" background="/ssi/img/common/cur_left01_bg.gif" ><img src="/ssi/img/common/F.gif" width="3" height="2" /></td>
+    <td width="655" valign="top" bgcolor="#FFFFFF">
+
+
+	<!--display location-->
+		<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+		  <tr>
+		    <td width="" height="26" valign="middle" class="tag"><img src="/ssi/img/common/zao.gif" width="15" height="15" hspace="2" vspace="0">
+			    <a class="tag" href="http://www.zaobao.com/">首页</a>&nbsp;&gt;&gt;
+			    <a class="tag" href="http://www.zaobao.com/#xinwen">新闻</a>&nbsp;&gt;&gt;
+			    <a class="tag" href="http://www.zaobao.com/wencui/wencui.shtml">世界报刊文萃</a>
+		    </td>
+		    <td width="" valign="middle" >&nbsp;</td>
+		  </tr>
+		  <tr>
+		    <td colspan="3" valign="middle" bgcolor="#BA0100"><img src="/ssi/img/common/F.gif" width="2" height="3" /></td>
+		  </tr>
+		</table><br>
+
+<table width=100% border=0 cellspacing=0 cellpadding=9><tr><td width=100% class=text>
+
+<TITLE>谷歌跌下神坛：自大灭掉一个公司
+</TITLE>
+<p class=title align=center>谷歌跌下神坛：自大灭掉一个公司
+</p>
+<p class=cont align=center>
+<!--ccw-->（中国）<a href="http://www.ccw.com.cn/" target="_blank">计世网</a>&nbsp;&nbsp;
+
+(2011-03-28)
+</p>
+<!-- /ssi/slice/imugroup01.shtml -->
+<style type="text/css">
+fieldset {
+  width: 306px;
+  border: 1px solid #990000;
+  align: center;
+}
+legend {
+  font-family: Arial,"宋体";
+  font-size: 12px;
+  font-weight: bold;
+  color: #990000;
+}
+</style>
+
+<table align="left" width=306 border=0 cellpadding=0 cellspacing=0><tr><td>
+<fieldset>
+<legend>早报导读</legend>
+
+<div align="center">
+<!--embed src="/ssi/bizp/mkt/bmw1231." wmode="opaque" border=0 width=300 height=250 ></embed-->
+
+
+
+
+<a href="http://www.zaobao.com/wapzb.shtml" target="_blank"><img width="300" height="250" alt="" border="0" src=http://www.zaobao.com/ssi/bizp/svc/wap300x250.gif target="_blank"></a>
+
+
+
+
+
+<table width="300" border="0" cellpadding="0" cellspacing="0"><tr><td valign="top" class="cont">
+<!-- 请输入完整链接 -->
+
+<a href=http://www.zaobao.com/pictorial/comics/comics.shtml target=_blank><font color=#4682B4>[时事漫画]</font></a>
+<a href=http://www.zaobao.com/pictorial/comics/pages3/comics110328.shtml target=_blank>金正日经常梦见有人向他扔石头</a><br>
+
+<a href=http://www.zaobao.com/special/china/zaodian/zaodian.shtml target=_blank><font color=#4682B4>[中国早点]</font></a>
+<a href=http://www.zaobao.com/special/china/zaodian/pages2/zaodian_jing110328.shtml target=_blank>用转型共识推进改革共识</a><br>
+
+
+<a href=http://www.zaobao.com/ge/ target=_blank><font color=#4682B4>[新加坡大选]</font></a>
+<a href=http://www.zaobao.com/ge/pages/ge110328p.shtml target=_blank>李总理：选民应冷静思考选票意义</a><br>
+
+<a href=http://www.zaobao.com/special/hotspot/jpquake.shtml target=_blank><font color=#4682B4>[日本大地震]</font></a>
+<a href=http://www.zaobao.com/special/hotspot/pages/hotspot110328h.shtml target=_blank>黑龙江测到微量放射性碘</a><br>
+
+
+
+
+<!--
+<a href=http://www.zaobao.com/special/hotspot/libya.shtml target=_blank><font color=#4682B4>[利比亚局势]</font></a>
+<a href=http://www.zaobao.com/special/hotspot/pages/hotspot110327k.shtml target=_blank>利比亚 另一伊拉克？</a><br>
+
+<a href=http://www.zaobao.com/special/china/zaodian/zaodian.shtml target=_blank><font color=#4682B4>[中国早点]</font></a>
+<a href=http://www.zaobao.com/special/china/zaodian/pages2/zaodian_taibei110326.shtml target=_blank>台湾新政治文化起跑？</a><br>
+
+
+<a href=http://www.zaobao.com/pictorial/comics/comics.shtml target=_blank><font color=#4682B4>[时事漫画]</font></a>
+<a href=http://www.zaobao.com.sg/pictorial/comics/pages3/comics110324.shtml target=_blank>中国20年后将是全球最大经济体</a><br>
+
+<a href=http://www.zaobao.com/special/forum/forum_zp.shtml target=_blank><font color=#4682B4>[名家专评]</font></a>
+<a href=http://www.zaobao.com/special/forum/pages8/forum_zp110325a.shtml target=_blank>于时语：奥巴马在利比亚的骑虎之势</a><br>
+-->
+
+<!--recruitment-->
+<TABLE width=300 border=0 cellpadding=1 cellspacing=0><TR><TD bgcolor=#FFE4E1 align="center" class=cont>
+<a href=http://www.zaobao.com/special/services/pages/recruitment_110208a.html target=_blank>
+<font color=#D2691E><b>联合早报网招聘 Freelance网络新闻编辑</b></font></a>
+</TD></TR></TABLE>
+<!--end of recruitment-->
+
+
+
+</td></tr></table>
+
+
+
+</div>
+
+<!--AdForward Begin：art_body_text_imugroup01-->
+
+	<script type='text/javascript' src='http://lhzbafp.allyes.com/main/adfshow?user=lhzbafp|zaobao_artpage|art_body_text_imugroup01&db=lhzbafp&border=0&local=yes&js=ie'></script>
+
+<!--AdForward End-->
+
+</fieldset>
+</td></tr></table>
+
+
+
+
+<p>　　搜索引擎会让位给社交网络，但Google一定会输给Facebook吗？通过换帅，Google试图把握住自己的命运。
+<p>　　3月26日，拉里·佩吉(Larry Page)将迎来38岁生日。而在此一周后，这个Google的创始人之一要接替埃里克·施密特(Eric Schmidt)，坐回Google的CEO之位，领导Google的产品开发和技术战略。
+<p>　　佩吉上一次任Google CEO的时间是十年前。现在，经历了漫长的准备期之后，施密特卸下了“成人监护者”的重担，而佩吉也结束了辅导课，准备应对Google所面临的严酷挑战。
+<p>　　两个月前，施密特在Google发布2010第四季度财报时，宣布了此消息。他的Twitter页面个人简介也改为：4月4日前，Google CEO；之后，前任CEO和执行董事长。
+<p>　　周一伦敦、周二慕尼黑、周三苏黎世、周四达沃斯……接下来的新岗位，对施密特而言也许并不轻松，他在Twitter上数着自己走向新岗位要赶的场。对佩吉而言，压力可能更大，因为互联网已经不是十年前的互联网。
+<p>　　三十年风水轮流转，放在互联网，轮回的时间更短。过去30年，已经有IBM、惠普、网景、微软、英特尔、雅虎、Google、苹果……先后在我们眼前闪耀过。此刻，不少人正掐着分秒计算，Facebook有效访问量全面赶超Google的时间还有多长。
+<p>　　Google神话
+<p>　　1998年，佩吉与他的同学谢尔盖·布林(Sergey Brin)，在一个科技论文的数据库索引管理项目中，利用数据挖掘，开发出一个叫作BackRub的搜索引擎。一开始，他们准备将这项技术卖给网络公司。推销不成，他们自建公司，佩吉任CEO，并将搜索引擎取名为Google。
+<p>　　1999年末，作为引入风险投资公司KPCB和红杉资本各1250万美元的融资的条件之一，Google得寻找一位外部人士担任CEO。他们最初的目标人选是时任苹果CEO的斯蒂芬·乔布斯，最后在2001年找来了施密特。
+<p>　　10年过去，Google员工从200人增加到2.44万人，收入从不足1亿美元上涨到300亿美元。尽管竞争对手不断出现，2011年2月它的市场份额还是占到了65.6%(市场研究公司comScore的数据)，是第二名雅虎的4倍多。搜索关键词、基于内容的展示广告，占到Google收入的 96%左右。
+<p>　　2005年12月的《连线》(Wired)杂志上，凯文·凯勒赫(Kevin Keleher)撰文《谁在害怕Google？每一个人》。他列举了Google已经和将要涉足的领域——视频、分类广告、电信、操作系统、印刷物、电子商务等，几乎要挑衅信息技术产业中的每一家公司。
+<p>　　事实如此，除了搜索和广告，Google还推出了邮箱系统Gmail(2004)、电子地图 Google Map(2005)、收购在线视频网站YouTube(2006)、手机操作系统Android(2007)、浏览器Chrome(2008)、在线免费办公软件Docs(2009)、触摸屏手机Nexus One(2010)。当然，还有一些如Buzz、Wave等半途而废的项目，以及正在进行中的数字图书馆计划和无人驾驶汽车等等。
+<p>　　秉持“不作恶”原则，Google无疑是有史以来互联网企业中最具创新精神的一家，它不仅把搜索和广告做得风生水起，顺便也把原有IT企业的业务做得更好且免费，还有诸如开源的Map帮助人们重新看世界、Android等改变了行业生态，甚至把触角伸到了和互联网相关的通信、能源领域。
+<p>　　2010年第四季度的财报显示，Google以25.4亿美元的净利润创下单季纪录，营业收入达到84.4亿美元，同比增26%，环比增长16%。
+<p>　　不过，这份财报同时还写到——“我们的业务正面临来自各方面的可怕竞争，特别是那些试图用网络信息连接用户并提供相关广告的公司。”这些竞争者中，排在第一位的是雅虎和微软的搜索，第二位是旅游、求职、健康类垂直搜索引擎和电子商务网站，来自Facebook和Twitter等社交网站的竞争被排到了第三位，但也许，它们才是Google最可怕的对手。
+<p>　　可怕的新对手
+<p>　　2004年8月，Google成就了迄今为止世界上最大一单互联网企业IPO，募资19.2亿美元。也是在这年2月，哈佛学生马克·扎克伯格(Mark Zuckerberg) 在宿舍里开启了Facebook注册邀请。没有人能想到，这个出生于1984年的年轻人，6年后就有了5亿注册用户。在2011年的白宫宴会桌上，他和乔布斯一起，分别坐在美国总统奥巴马两旁。
+<p>　　就像当年Google从搜索开始进入互联网，然后取代了微软的位置一样，Facebook从社交网络进入互联网，它甚至都没有去抢Google的核心业务——关键词广告(AdWords) 和面向网站的广告服务(AdSense)，却很有可能不费一兵一卒打败它。
+<p>　　回头看互联网的发展，后来居上者，从来不是通过正面竞争从原先的第一名那里抢到位置，而是另辟蹊径，创造并满足了一种新的用户需求，建立自己的王国。这本不是一场零和游戏，不过由于这场游戏的裁判是用户，而用户的时间和精力有限，他在哪一家停留更多时间，商业利益也会随着用户的转移而迁徙。
+<p>　　此前搜索引擎领先于门户网站，因为门户向所有用户提供同样的信息，而搜索引擎则可以将用户指向他们想要了解的信息。对广告主而言，搜索广告可以把产品信息更精准地推送给客户。
+<p>　　现在，社交网络不仅能提供互联网上的信息，而且是用户熟人圈所关注的信息，将现实中的人际网和互联网结合起来，比搜索引擎更具交互性。而广告主的产品信息，通过圈子的力量、口碑传播得以推广，社交网络盖过搜索引擎也是情理之中。
+<p>　　具体来看，Google搜索是抓取全世界的信息，并通过一套算法帮助人们更便捷地找到有用的信息。Facebook和Twitter则是让用户生产信息，并通过彼此的熟人关系来获取。而且，Facebook不对搜索引擎开放，Twitter只是部分开放，这让搜索引擎好不尴尬。
+<p>　　更让人无奈的是，在增强用户黏性方面，社交网站建立在开放平台之上，背后是难以计数的独立程序人员或者公司，开发出层出不穷的应用，满足用户需求。而Google则主要是靠9508名(截至2010年12月30日)工程师的生产力。
+<p>　　市场调研公司comScore的数据指出，2010年8月，全美互联网用户在Facebook上停留时间为4110万分钟，占到该月用户互联网停留时间的9.9%，而同期人们在Google上停留时间为3980万分钟，其中还包括YouTube。
+<p>　　手忙脚乱的追逐战
+<p>　　施密特在Google官方博客中阐述管理层变动原因称，是为了“简化管理结构、加快实施决策的步伐”。确实，他们在社交网络方面不仅后知后觉，而且手忙脚乱。
+<p>　　Google的三驾马车(施密特、佩吉、布林)都是计算机科学家出身，让Google带有强烈的技术色彩，哪怕是给员工提供优渥工作环境，也是基于事实、数据和分析，得出这样更有利于提高工作效率的结果。社交网络的草根、非技术主义，和他们过往的经验是如此背道而驰，以至于Google一直没有找到互联网和社交网的结合。
+<p>　　2009年5月发布的Google Wave，是Gmail和Gtalk的合体，Google本想让它作为一个开放平台，让开发者提供基于Wave的各种衍生产品，Wave还支持开放通信协议，Google有计划让它开源成为互联网通讯平台。可惜，很多用户不知道该如何使用，反应平平，该产品在2010年底结束服务。
+<p>　　2010年2月推出的Google Buzz，可在Gmail邮件服务中同他人分享各类信息、自动加载好友的活动信息。但Buzz上大部分信息都是由机器自动发布的，而且常用Gmail联系人列表会在本人不知情的情况下被公布在Buzz个人页面，这甚至让Google陷入了一场集体诉讼。
+<p>　　Buzz和Wave的尝试失败，一再表明Google还停留在按照技术派思路去做社交网络的事情。不过，从2010年开始，就有传闻说Google 在开发新的社交媒体Google Me，最新消息是这一产品将在今年5月发布，而且名称改为Google Circles。这个时候再推出类似Facebook的社交媒体，听起来并不现实，在起点上至少就与之有5亿用户的距离。
+<p>　　移动互联网将是社交网络另一个更重要的阵地。Google在4年前就已经布局，Android操作系统占据移动互联网终端，顺势可以带动Gmail、Adsense。虽然这并不是专门针对社交网络而来，但是很有可能为Google融合社交网络开辟一新路。
+<p>　　2009年9月推出的定位服务Google Places，也许是Google目前产品中最容易对接社交服务的。它可以帮助商户建立自己的网页，并在网页上显示它们的位置、所处街道的景象、客户对服务或商品的评价，商家还可以通过自己的Google Places网页打广告。再加上Google Map和Android的庞大用户数，这是定位服务(LBS)不可多得的组合。要知道，Foursquare等定位服务公司眼下正是硅谷红人，甚至被认为是又一个Google或者Facebook的苗子。
+<p>　　而此时，Facebook已经将目光投向了社交网络之外，它要做邮箱，也要做搜索，大有横向发展为又一个Google之势。这就好像过去十年，Google提供互联网服务以取代桌面软件一样。在此期间，Google也许还有时间为搜索加入更多社交内容。
+<p>　　施密特曾在三年前接受《纽约客》采访时表示，“灭掉一个公司的，不是竞争，而是自大。我们掌握着自己的命运”。眼下掌握Google命运的，是二次出任CEO的佩吉。《连线》杂志网站最近摘录了史蒂芬·列维(Steven Levy)即将于4月出版的《谷歌是如何思考、运转，并塑造我们的生活？》一书中部分内容，其中写到——对佩吉而言，唯一真正的失败就是没有去尝试冒险。
+<p>　　列维在书中认为，佩吉“与众不同，他将具有比尔·盖茨、斯蒂芬·乔布斯一样的影响力。没有人能像他那样整合谷歌的野心、道德观和世界观；与此同时，佩吉显得古怪、自大、神秘。在他的领导下，谷歌将更难预测”。
+<p>　　来源：南方周末
+</td></tr></table>
+<!-- start "/ssi/art/art_footer_xx.shtml" -->
+
+<table width="100%" height="25" border="0" cellpadding="0" cellspacing="0"><tr><td height="12" class="topline">
+<div align="center" class="small">
+【<a class="small" href="#aws_top">回页顶 <img src="/ssi/img/common/go_top.gif" border="0"></a>】
+</div></td></tr></table>
+
+
+	<!--底部文字链广告开始 "/ssi/slice/bottom_adstext.html" -->
+
+<!--AdForward Begin:-->
+<script type='text/javascript' src='http://lhzbafp.allyes.com/main/adfshow?user=lhzbafp|zaobao_artpage|bottom_ads02&db=lhzbafp&border=0&local=yes&js=ie' charset='gb2312'></script>
+<!--AdForward End-->
+
+<div align="center" class="small">.....................................................................................................................................................................................................................</div>
+
+<!--AdForward Begin:art_body_text_ bottomads02-->
+<script type='text/javascript' src='http://lhzbafp.allyes.com/main/adfshow?user=lhzbafp|zaobao_artpage|art_body_text_bottomads02&db=lhzbafp&border=0&local=yes&js=ie'></script>
+<!--AdForward End-->
+
+<!-- 文字链广告结束 -->
+
+
+
+
+
+
+
+<script type="text/JavaScript"> 
+alimama_pid="mm_11138078_1065301_4317859"; 
+alimama_titlecolor="0000FF"; 
+alimama_descolor ="000000"; 
+alimama_bgcolor="FFFFFF"; 
+alimama_bordercolor="E6E6E6"; 
+alimama_linkcolor="008000"; 
+alimama_bottomcolor="FFFFFF"; 
+alimama_anglesize="0"; 
+alimama_bgpic="0"; 
+alimama_icon="0"; 
+alimama_sizecode="12"; 
+alimama_width=610; 
+alimama_height=90; 
+alimama_type=2; 
+</script> 
+<script src="http://a.alimama.cn/inf.js" type=text/javascript> 
+</script>
+
+
+
+<!-- 热点新闻 -->
+<table width="640" border="0" align="center" cellpadding="0" cellspacing="0"  class="normalSearch">
+  <tr class="small">
+    <td background="http://www.zaobao.com/img/common/lot_focus_bg.gif"><table width="100%" height="25" border="0" cellpadding="0" cellspacing="0">
+      <tr>
+        <th class="small"><b>全 球 文 萃 </b></th>
+      </tr>
+    </table></td>
+  </tr>
+  <tr>
+    <td bgcolor="#B8B8B8" ><img src="/ssi/img/common/F.gif" width="2" height="1" /></td>
+  </tr>
+  <tr>
+    <td><table width="100%" height="100" border="0" cellpadding="0" cellspacing="0" class="small">
+      <tr>
+        <td width="11" valign="middle" bgcolor="#FFFFFF"></td>
+        <td width="305" valign="middle" bgcolor="#FFFFFF">
+<!--请加入完整链接 -->
+
+<a href=http://www.zaobao.com/wencui/2011/03/taiwan110328h.shtml target=_blank>两岸政策 苏：不能一味“靠过去”</a><br>
+<a href=http://www.zaobao.com/wencui/2011/03/hexun110328a.shtml target=_blank>谢季轲：经济“软着陆”不太现实</a><br>
+<a href=http://www.zaobao.com/wencui/2011/03/hongkong110328c.shtml target=_blank>日媒：菅直人视察核电厂误事</a><br>
+<a href=http://www.zaobao.com/wencui/2011/03/taiwan110328i.shtml target=_blank>台湾打房奏效 央行回头管控物价</a><br>
+<a href=http://www.zaobao.com/wencui/2011/03/taiwan110328e.shtml target=_blank>内忧外患 大陆年中CPI恐达6%</a><br>
+<a href=http://www.zaobao.com/wencui/2011/03/hongkong110328h.shtml target=_blank>日本势沦为净负债国 损毁乃阪神大地震1.6倍</a><br>
+
+
+
+<td width="1" valign="middle" bgcolor="#B8B8B8"><img src="/ssi/img/common/F.gif" width="1" height="2" /></td>
+        <td width="11" valign="middle" bgcolor="#FFFFFF"></td>
+        <td width="305" valign="middle" bgcolor="#FFFFFF">
+
+
+<a href=http://www.zaobao.com/wencui/2011/03/others110328sa.shtml target=_blank>炒作“跪行捐款”被曝光 当事人愿退回所有捐款</a><br>
+<a href=http://www.zaobao.com/wencui/2011/03/taiwan110328k.shtml target=_blank>陆男多女少 性别失衡全球第一</a><br>
+<a href=http://www.zaobao.com/wencui/2011/03/joins110328a.shtml target=_blank>脱北者大学生:天安舰被炸，我们一开始就认朝所为</a><br>
+<a href=http://www.zaobao.com/wencui/2011/03/taiwan110328t.shtml target=_blank>台调查 有孩子形容家：监狱地狱核爆厂</a><br>
+<a href=http://www.zaobao.com/wencui/2011/03/joins110328b.shtml target=_blank>玄彬海军陆战队视频公开"目不转睛，一动不动"［图］</a><br>
+<a href=http://www.zaobao.com/wencui/2011/03/taiwan110328l.shtml target=_blank>台媒：大陆富豪艳羡 哈与台湾女星搞绯闻</a><br>
+
+
+</td>
+    </tr>
+    </table></td>
+  </tr>
+</table>
+
+
+
+
+<!--推荐按钮: /ssi/tag/recommend.txt-->
+<table width="640" border="0" cellspacing="0" cellpadding="3" class="small" align="center">
+  <tr>
+    <td>
+	<table border=0 cellpadding=0 cellspacing=0 width=100% ><TR><TD valign="middle" align=center>
+	<form method="POST" action="http://www.zaobao.com/asianet/recommend/rec_news03.pl" target="_new">
+	<input type="submit" name="send" value="推荐给您的朋友" ></form>
+	</td></tr></table>
+    </td>
+  </tr>
+</table>
+
+
+      </td>
+      <td width="2" valign="top" bgcolor="#FFFFFF" class="linezgrgt"><img src="/ssi/img/common/F.gif" width="2" height="2" /></td>
+      <td width="308" align="center" valign="top" bgcolor="#FFFFFF" class="linezgrgt">
+
+<!--a href="http://www.zaobao.com/ge/" target=_blank><img src="http://www.zaobao.com/ge/img/ge300x250.gif" width="300" height="250" border="0"></a-->
+
+
+
+<embed src="/ssi/bizp/mkt/jiebao0328.swf" wmode="opaque" border=0 width=300 height=250 wmode="opaque"></embed>
+<!--右侧文字链广告 "/ssi/slice/side_ads42.txt" -->
+
+<!--即时报道 "/ssi/slice/side_realtime.shtml" -->
+<table width="300" border="0" cellpadding="0" cellspacing="0"><tr><td><a href="http://realtime.zaobao.com/realtime.shtml" 
+target="_blank"><img src="/ssi/img/b_jishibaodao.gif" border="0"  width="300" height="30"></a></td></tr></table>
+<table width="300" border="0" cellpadding="0" cellspacing="0"><tr>
+<td bgcolor="#959595" width="1"></td>
+<td width="298" class=cont>
+<table border="0" cellpadding="5" cellspacing="0"><tr><td class=cont>
+<a href=http://realtime.zaobao.com/2011/03/110328_23.shtml target=_blank>(1300)[大陆]贵州煤矿煤与瓦斯突出事故8死</a><br>
+<a href=http://realtime.zaobao.com/2011/03/110328_22.shtml target=_blank>(1240)[大陆]2名在日中国技能实习生仍失联</a><br>
+<a href=http://realtime.zaobao.com/2011/03/110328_21.shtml target=_blank>(1225)[大陆]金正恩访中 陆媒:消息来源罕见</a><br>
+<a href=http://realtime.zaobao.com/2011/03/110328_20.shtml target=_blank>(1210)[国际]福岛反应堆2号机组或已现泄露</a><br>
+<a href=http://realtime.zaobao.com/2011/03/110328_19.shtml target=_blank>(1155)[国际]日核电站 去除积水为当务之急</a><br>
+<a href=http://realtime.zaobao.com/2011/03/110328_18.shtml target=_blank>(1145)[两岸]国民党团:奢侈税下周排入议程</a><br>
+<a href=http://realtime.zaobao.com/2011/03/110328_17.shtml target=_blank>(1135)[国际]日本天皇夫妇后天访避难所</a><br>
+
+</td></tr></table>
+</td>
+<td bgcolor="#959595" width="1"></td>
+</tr></table>
+<table width="300" border="0" cellpadding="0" cellspacing="0"><tr><td width="300" bgcolor="#959595" height="1"></td></tr></table>
+<div class="vsplit2"></div>
+
+<!--右侧文字链广告 "/ssi/slice/side_ads43.txt" -->
+
+<!--健康热讯框开始-->
+
+	<script type='text/javascript' src='http://lhzbafp.allyes.com/main/adfshow?user=lhzbafp|zaobao_artpage|art_body_text_jiankang&db=lhzbafp&border=0&local=yes&js=ie'></script>
+
+<!--健康热讯框结束-->
+
+<embed src="/ssi/bizp/mkt/people_300x250.swf" wmode="opaque" border=0 width=300 height=250 wmode="opaque"></embed>
+
+<!--embed src="/ssi/bizp/svc/comics_300x250." wmode="opaque" border=0 width=300 height=250></embed-->
+
+<!--a href="http://www1.ap.dell.com/content/products/productdetails.aspx/laptop_latitude_e6400?c=cn&l=zh&s=lca" target="_blank"><img width="300" height="150" alt="" border="0" src=http://www.zaobao.com/ads/banners/addell0109.gif target="_blank"></a-->
+
+
+<!--体坛框开始 "/ssi/slice/side_titan.html" -->
+<table width="300" border="0" cellpadding="0" cellspacing="0">
+<tr><td width="49%" valign="top">
+
+<table width="100%" border="0" cellpadding="0" cellspacing="1" bgcolor="#cccccc">
+<tr><td width="100%" bgcolor="#ffffff">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr><td align="left" bgcolor="#009933" class="small"><img src="/ssi/img/common/cur_left.gif" width="3" height="6" hspace="2" vspace="3">
+<a href="http://sports.zaobao.com/sports.html" target=_blank><font color="#ffffff"><b>体坛风云</b></font></a></td>
+<td align="right" bgcolor="#009933"><img src="/ssi/img/common/s_tag_sports.gif" width="54" height="22">
+</td></tr></table>
+
+<table width="100%" border="0" cellspacing="2" cellpadding="0">
+<tr><td width="41%" valign="top">
+
+<a href=http://sports.zaobao.com/pages15/soccer110327.shtml target=_blank>
+<img class="biankuang" src=http://sports.zaobao.com.sg/ssi/images4/soccer110327s.jpg border="0" width="50" height="65" hspace="3" vspace="3" border="0" align=left></a></td>
+<td width="59%" valign="top" class="small">
+<a href=http://sports.zaobao.com/pages15/soccer110327.shtml target=_blank>英格兰两球轻取威尔士</a><br>
+
+</td></tr></table>
+</td></tr></table>
+
+</td><td width="2%">
+</td><td width="49%" valign="top">
+
+<table width="100%" border="0" cellpadding="0" cellspacing="1" bgcolor="#cccccc">
+<tr><td width="100%" bgcolor="#ffffff">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr><td align="left" bgcolor="#FF9900" class="small"><img src="/ssi/img/common/cur_left.gif" width="3" height="6" hspace="2" vspace="3">
+<a href="http://stars.zaobao.com/stars.html" target=_blank><font color="#ffffff"><b>环球星闻</b></font></a></td>
+<td align="right" bgcolor="#FF9900"><img src="/ssi/img/common/s_tag_stars.gif" width="54" height="22">
+</td></tr></table>
+
+<table width="100%" border="0" cellspacing="2" cellpadding="0">
+<tr><td width="41%" valign="top">
+
+<a href=http://stars.zaobao.com/pages11/zhangguorong110328.shtml target=_blank>
+<img class="biankuang" src=/ssi/images4/zhangguorong110328s.jpg border="0" width="50" height="65" hspace="3" vspace="3" border="0" align=left></a></td>
+<td width="59%" valign="top" class="small">
+<a href=http://stars.zaobao.com/pages11/zhangguorong110328.shtml target=_blank>张国荣:要死,跳楼最直接</a><br>
+
+
+</td></tr></table>
+</td></tr></table>
+
+</td></tr></table>
+<!--体坛框结束-->
+
+
+
+
+
+
+
+
+	<script type="text/JavaScript"> 
+alimama_pid="mm_11138078_1065301_2347706"; 
+alimama_titlecolor="0000FF"; 
+alimama_descolor ="000000"; 
+alimama_bgcolor="FFFFFF"; 
+alimama_bordercolor="E6E6E6"; 
+alimama_linkcolor="008000"; 
+alimama_bottomcolor="FFFFFF"; 
+alimama_anglesize="0"; 
+alimama_bgpic="0"; 
+alimama_icon="0"; 
+alimama_sizecode="37"; 
+alimama_width=300; 
+alimama_height=250; 
+alimama_type=2; 
+</script> 
+<script src="http://a.alimama.cn/inf.js" type=text/javascript> 
+</script>
+
+
+<!--读书-->
+<IFRAME WIDTH="300" HEIGHT="200" MARGINWIDTH="0" MARGINHEIGHT="0" HSPACE="0" VSPACE="0" FRAMEBORDER="0" SCROLLING="no" BORDERCOLOR="#000000" SRC="http://www.sdl.sg/s/blank/2010/2010-06-28/zbzw.html"></IFRAME>
+
+<!--名家专评框开始 "/ssi/slice/side_mingjia.html" -->
+<table width="300" border="0" cellpadding="2" cellspacing="0"><tr><td width="50%" valign="top" bgcolor="#FFFFFF">
+
+<!--名家专评-->
+<table width="100%" height="76" border="0" cellpadding="0" cellspacing="2" class="normalSearch"><tr><td height="24" class="small">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="65%" bgcolor="#2E2486" class="small"><img src="/ssi/img/common/cur_left.gif" width="3" height="6" hspace="2" vspace="3">
+<a href="http://www.zaobao.com/special/forum/forum_zp.shtml" target="_blank"><font color="#ffffff"><b>名家专评</b></font></a></td>
+<td width="35%"><img src="/ssi/img/common/s_tag_mingjia.gif" width="54" height="22"></td>
+</tr>
+</table>
+</td></tr>
+<tr><td valign="top" bgcolor="#F3F3F3" class="small">
+
+<a href=http://www.zaobao.com/special/forum/pages8/forum_zp110314.shtml target=_blank>中国公共外交真超美国?</a><br>
+<a href=http://www.zaobao.com/special/forum/pages8/forum_zp110315.shtml target=_blank>中国不是阿拉伯世界</a><br>
+<a href=http://www.zaobao.com/special/forum/pages8/forum_zp110315a.shtml target=_blank>灾难中日本的普世性格</a><br>
+
+
+</td></tr></table>
+</td>
+<td width="163" valign="top" bgcolor="#FFFFFF">
+
+<!--读者来论-->
+<table width="100%" height="76" border="0" cellpadding="0" cellspacing="2" class="normalSearch">
+<tr>
+<td height="24" class="small"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="65%" bgcolor="#247E86" class="small"><img src="/ssi/img/common/cur_left.gif" width="3" height="6" hspace="2" vspace="3" /> <a href="http://www.zaobao.com/special/forum/forum.shtml" target="_blank"><font color="#ffffff"><b>读者来论</b></font></a></td>
+<td width="35%"><img src="/ssi/img/common/s_tag_letter.gif" width="54" height="22" /></td>
+</tr>
+</table>
+</td></tr>
+<tr><td valign="top" bgcolor="#F3F3F3" class="small">
+
+<a href=http://www.zaobao.com/forum/pages4/forum_lx110316d.shtml target=_blank>伟人雕像倒地之后</a><br>
+<a href=http://www.zaobao.com/forum/pages4/forum_tw110316a.shtml target=_blank>蔡英文胜算几何?</a><br>
+<a href=http://www.zaobao.com/forum/pages4/forum_jp110316a.shtml target=_blank>日本是中国的朋友吗?</a><br>
+
+
+
+</td></tr></table>
+</td></tr></table>
+
+<!--广告位-->
+
+<!--embed src="/ssi/bizp/mkt/hengxin." wmode="opaque" border=0 width=300 height=250 ></embed-->
+
+
+
+<table width="300" border="0" cellpadding="2" cellspacing="0"><tr><td width="50%" valign="top" bgcolor="#FFFFFF">
+<!--白领丽人-->
+<table width="100%" height="76" border="0" cellpadding="0" cellspacing="2" class="normalSearch"><tr><td>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="65%" bgcolor="#84141C" class="small"><img src="/ssi/img/common/cur_left.gif" width="3" height="6" hspace="2" vspace="3">
+<a href="http://woman.zaobao.com/woman.shtml" target="_blank"><font color="#ffffff"><b>白领丽人</b></font></a></td>
+<td width="35%"><img src="/ssi/img/common/s_tag_liren.gif" width="54" height="22"></td>
+</tr>
+</table>
+</td></tr><tr><td class="small">
+
+<a href=http://woman.zaobao.com/pages8/home110315.shtml target=_blank>有机食品 儿童健康选择</a><br>
+<a href=http://woman.zaobao.com/pages8/love110315.shtml target=_blank>婚姻咨询中心轻松授幸福</a><br>
+<a href=http://woman.zaobao.com/pages8/health110313.shtml target=_blank>孕期齿龈炎可致流产早产</a><br>
+
+
+</td></tr></table>
+</td>
+<td valign="top" bgcolor="#FFFFFF">
+
+<!--养生之道-->
+<table width="100%" height="76" border="0" cellpadding="0" cellspacing="2" class="normalSearch"><tr><td>
+<table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#999900">
+<tr>
+<td height="24" bgcolor="#999900" class="small"><img src="/ssi/img/common/cur_left.gif" width="3" height="6" hspace="2" vspace="3">
+<a href="http://health.zaobao.com/health.shtml" target="_blank"><font color="#ffffff"><b>养生之道</b></font></a></td>
+<td><div align="right"><img src="/ssi/img/common/s_tag_health.gif" width="36" height="22"></div></td>
+</tr>
+</table>
+</td></tr><tr><td class="small">
+
+<a href=http://health.zaobao.com/pages9/newtech110324.shtml target=_blank>人造角膜移植手术引争议</a><br>
+<a href=http://health.zaobao.com/pages9/specialists110324.shtml target=_blank>肾功能随年龄增长走下坡</a><br>
+<a href=http://health.zaobao.com/pages9/newtech110313.shtml target=_blank>本地可能研制出抗癌药物</a><br>
+
+
+
+</td></tr></table>
+</td></tr></table>
+<!--名家专评框结束-->
+
+<!--a href=http://sports.zaobao.com/sports_yog2010.shtml target=_blank><img src=/ssi/bizp/svc/yog_300x250.jpg width="300" height="250" border="0"></a-->
+
+<!--embed src="/ssi/bizp/mkt/yintai1124." wmode="opaque" border=0 width=300 height=250 ></embed-->
+
+<!--embed src="/ssi/bizp/adsike0601." wmode="opaque" border=0 width=300 height=250 ></embed-->
+<!--embed src="http://www.zaobao.com/ads/banners/ads300X250_100331." wmode="opaque" border=0 width=300 height=250 ></embed-->
+
+<!-- 专题报道 -->
+<table width="300" border="0" cellpadding="0" cellspacing="0"><tr><td><a href="/special/pages/special.shtml"
+target="_blank"><img src="/ssi/img/b_zhuantibaodao.gif" border="0"  width="300" height="30"></a></td></tr></table>
+<table width="300" border="0" cellpadding="0" cellspacing="0"><tr>
+<td bgcolor="#959595" width="1"></td>
+<td width="298">
+<table border="0" cellpadding="5" cellspacing="0" class=cont><tr>
+<td width="30%" valign="top">
+<a href=http://www.zaobao.com/special/hotspot/hotspot.shtml target=_blank>热点关注</a><br>
+<a href=http://www.zaobao.com/special/china/taiwan/taiwan.shtml target=_blank>台海局势</a><br>
+<a href=http://www.zaobao.com/special/china/sino_us/sino_us.shtml target=_blank>中美关系</a><br>
+<a href=http://www.zaobao.com/special/china/sino_jp/sino_jp.shtml target=_blank>中日关系</a><br>
+</td><td width="34%" valign="top">
+<a href=http://www.zaobao.com/special/china/cnpol/cnpol.shtml target=_blank>中国政情</a><br>
+<a href=http://www.zaobao.com/special/china/rmb/rmb.shtml target=_blank>人民币汇率</a><br>
+<a href=http://www.zaobao.com/special/korea/korea.shtml target=_blank>朝鲜问题</a><br>
+<a href=http://www.zaobao.com/special/mideast/peacetalk.shtml target=_blank>中东冲突</a><br>
+</td><td width="30%" valign="top">
+<a href=http://www.zaobao.com/ge/ target=_blank>新加坡大选</a><br>
+<a href=http://www.zaobao.com/special/china/huarensd/huarensd.shtml target=_blank>世界华人盛典</a><br>
+<a href=http://www.zaobao.com/special/xh100/xh100.shtml target=_blank>辛亥革命百年</a><br>
+<a href=http://www.zaobao.com/special/us/attack.shtml target=_blank>全球反恐</a><br>
+<!--a href=http://www.zaobao.com/special/singapore/sg_cn.shtml target=_blank>新中关系</a><br-->
+</td></tr></table>
+</td>
+<td bgcolor="#959595" width="1"></td>
+</tr></table>
+<table width="300" border="0" cellpadding="0" cellspacing="0"><tr><td width="300" bgcolor="#959595" height="1"></td></tr></table>
+
+
+
+<!--embed src="http://www.zaobao.com/ads/banners/advancl0225." wmode="opaque" border=0 width=300 height=250 ></embed-->
+<!-- 读者投票 -->
+<script language="JavaScript1.2" type="text/javascript" src="http://www.zaobao.com/scripts/polls.js"></script>
+<table width="300" border="0" cellpadding="0" cellspacing="0"><tr><td><a href="http://www.zaobao.com/zbpoll/polling.shtml"
+target="_blank"><img src="/ssi/img/b_duzhetoupiao.gif" border="0"  width="300" height="30"></a></td></tr></table>
+<table width="300" border="0" cellpadding="0" cellspacing="0"><tr>
+<td bgcolor="#959595" width="1"></td>
+<td width="298" class=cont>
+<table border="0" cellpadding="5" cellspacing="0"><tr><td class=cont>
+
+
+
+
+
+
+<form method="POST" action="http://polls.zaobao.com/cgi-bin/poll/zaobao/zaobaopoll.pl">
+<input type="hidden" name="topic" value="zaobao361">
+<p>你认为中国的歼-20战机能和美国的F-22抗衡吗？
+<br><input type="radio" name="choice" value="0">歼-20性能超越F-22
+<br><input type="radio" name="choice" value="1">不相上下
+<br><input type="radio" name="choice" value="2">F-22比较厉害
+<br><input type="radio" name="choice" value="3">长期发展下去应该可以
+<br><center><input type="button" value="投票" onclick="processPoll(this.form);"></center>
+</form>
+
+
+
+<!--form method="POST" action="http://polls.zaobao.com/cgi-bin/poll/zaobao/zaobaopoll.pl">
+<input type="hidden" name="topic" value="zaobao362">
+<p>盖茨说美军的隐形战机领先15年，你是否同意？
+<br><input type="radio" name="choice" value="0">同意
+<br><input type="radio" name="choice" value="1">不同意
+<br><center><input type="button" value="投票" onclick="processPoll(this.form);"></center>
+</form-->
+
+
+
+<form method="POST" action="http://polls.zaobao.com/cgi-bin/poll/zaobao/zaobaopoll.pl">
+<input type="hidden" name="topic" value="zaobao360">
+<p>朝鲜半岛局势紧张，你认为今年朝韩开战的可能性大吗？
+<br><input type="radio" name="choice" value="0">开战可能性很大
+<br><input type="radio" name="choice" value="1">基本不可能开战
+<br><input type="radio" name="choice" value="2">很难说
+<br><center><input type="button" value="投票" onclick="processPoll(this.form);"></center>
+</form>
+
+
+
+
+
+</td></tr></table>
+</td>
+<td bgcolor="#959595" width="1"></td>
+</tr></table>
+<table width="300" border="0" cellpadding="0" cellspacing="0"><tr><td width="300" bgcolor="#959595" height="1"></td></tr></table>
+<!---->
+
+
+
+
+
+
+     </td>
+   </tr>
+</table>
+
+<!-- 表格底部线条 --><table width="968" border="0" align="center" cellpadding="0" cellspacing="0" ><tr><td valign="top"><img src="/ssi/img/common/cur_bot.gif" width="968" height="11"></td></tr></table>
+
+<table width="" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td align="center" valign="top" class="small">
+    新加坡 (65)6319-1922 文字链 +86 13520850155 中国区：报章/公关 (86)13501169722 图片广告 (86)13911189959<br>
+新加坡报业控股版权所有（公司登记号：198402868E） 提醒：新加坡网络业者若未经许可，擅自引用本网内容将面对法律行动。
+<a class="home" href="http://sph.com.sg/legal/website_tnc.html" target="_blank"><font color="##607B8B">[网络条款]</font></a>
+<a class="home" href="http://sph.com.sg/legal/sph_privacy.html" target="_blank"><font color="##607B8B">[隐私政策]</font></a>
+<br>
+第三方公司可能在早报网站宣传他们的产品或服务。不过您跟第三方公司的任何交易与早报网站无关，早报网将不会对可能引起的任何损失负责。
+
+    </td>
+  </tr>
+</table>
+
+
+
+
+
+<!--易传媒 --><!--AdForward Begin:-->
+<script type='text/javascript' src='http://lhzbafp.allyes.com/main/adfshow?user=lhzbafp|zaobao_artpage|RichMedia&db=lhzbafp&border=0&local=yes&js=ie' charset='gbk'></script>
+<!--AdForward End-->
+
+
+
+
+
+
+</body></html>
+<!-- START Nielsen//NetRatings SiteCensus V5.3 -->
+<script type="text/javascript">
+var _rsCI="sg-sph";
+var _rsCG="ZB-WC";
+var _rsDN="//secure-sg.imrworldwide.com/";
+var _rsDT=1;
+var _rsSE=1;
+var _rsSM=0.1;
+var _rsSS=500;
+var _rsCL=1;
+document.write('<scr'+'ipt type="text/javascript" src="'+_rsDN+'v53.js"></scr'+'ipt>');
+</script>
+<noscript>
+<div>
+<img src="//secure-sg.imrworldwide.com/cgi-bin/m?ci=sg-sph&amp;cg=ZB-WC&amp;cc=1" alt=""/>
+</div>
+</noscript>
+<!-- END Nielsen//NetRatings SiteCensus V5.3 -->
+
+<!-- Begin comScore Tag -->
+<script>
+  var _comscore = _comscore || [];
+  _comscore.push({ c1: "2", c2: "6288331" });
+  (function() {
+    var s = document.createElement("script"), el = document.getElementsByTagName("script")[0]; s.async = true;
+    s.src = (document.location.protocol == "https:" ? "https://sb" : "http://b") + ".scorecardresearch.com/beacon.js";
+    el.parentNode.insertBefore(s, el);
+  })();
+</script>
+<noscript>
+  <img src="http://b.scorecardresearch.com/p?c1=2&c2=6288331&cv=2.0&cj=1" />
+</noscript>
+<!-- End comScore Tag -->
+
+
+

@@ -1,0 +1,387 @@
+\startcomponent c-main-event-loop
+
+\chapter{主事件循环}
+
+GUI 应用程序大都是事件驱动的。事件可以来自于用户输入，比如键盘、鼠标事件，也可以来自于系统内部，比如定时器事件、套接字事件和文件事件等。在没有任何事件的情况下，应用程序处于睡眠状态。因此，GUI 应用程序需要主事件循环 (Main eventl oop) 的支持，主事件循环可以控制 GUI 应用程序什么时候进入睡眠状态，什么时候被唤醒去工作。GLib 便提供了一套这样的主事件循环机制。
+
+\section{GMainLoop、GMainContext 与 GSource}
+
+GLib 提供了 GMainLoop 类型，用于表示主事件循环。GMainLoop 的创建与使用可以参考下面的代码，它可以生成一个长眠不死的程序。
+
+\starttyping[option=c]
+#include <glib.h>
+
+int
+main (void)
+{
+        GMainLoop *main_loop = g_main_loop_new (NULL, TRUE);
+        
+        g_main_loop_run (main_loop);
+        g_main_loop_unref(main_loop);
+
+        return 0;
+}
+\stoptyping
+
+显然，g\_main\_loop\_new 函数用于构建一个 GMainLoop 类型的变量，为其分配内存并进行初始化，而 g\_main\_loop\_run 函数可以根据 GMainLoop 变量中所记录的一些状态信息来控制程序睡眠抑或工作。
+
+g\_main\_loop\_new 函数的第一个参数是主事件循环环境 (GMainContext)，第二个参数用于设置主事件循环的运行状态。这两个参数均与 GMainLoop 类型的数据结构有关。GMainLoop 的数据结构很简单，其主体部分是主事件循环环境，此外是运行状态与引用计数\footnote{g\_main\_loop\_unref 函数便是根据 GMainLoop 的引用计数是否为 0 来决定是否释放 GMainLoop 的存储空间。}，具体如下：
+
+\starttyping[option=c]
+typedef struct _GMainLoop GMainLoop;
+struct _GMainLoop {
+        GMainContext *context;
+        gboolean is_running;
+        gint ref_count;
+};
+\stoptyping
+
+如果 g\_main\_loop\_new 函数第一个参数为 NULL，那么在 g\_main\_loop\_new 函数内部会为 GMainLoop 分配默认的主事件循环环境。主事件循环建立之后，可使用 g\_main\_loop\_get\_context 函数获取主事件循环环境。
+
+主事件循环环境内部包含事件源 (GSource) 列表。GSource 是事件的抽象表示。对于任何事件，只要实现 GSource 定义的接口，便可将其挂至 GMainContext 的事件源列表中，从而可在 g\_main\_loop\_run 函数中响应该事件。
+
+\section{DIY 一个简单的事件源}
+
+自定义的事件源是一个继承 GSource 的结构体，即自定义事件源的结构体的第一个成员是 GSource 结构体，其后便可放置程序所需数据，例如：
+
+\starttyping[option=c]
+typedef struct _MySource MySource;
+struct _MySource {
+        GSource _source;
+        gchar text[256];
+}
+\stoptyping
+
+实现了事件源数据结构的定义之后，还需要实现事件源所规定的接口，主要表现为 prepare, check, dispatch, finalize 等事件处理函数（回调函数），它们包含于 GSourceFuncs 结构体中。
+
+将 GSourceFuncs 结构以及事件源结构的存储空间宽度作为参数传给 g\_source\_new 便可构造一个新的事件源，继而可使用 g\_source\_attach 函数将新的事件源添加到主循环环境中。
+
+下面这个示例可创建一个只会讲“Hello world!”的事件源，并将其添加到主事件循环默认的 GMainContext 中。
+
+\starttyping[option=c]
+#include <glib.h>
+#include <glib/gprintf.h>
+
+typedef struct _MySource MySource;
+struct _MySource {
+        GSource source;
+        gchar text[256];
+};
+
+static gboolean
+prepare (GSource *source, gint *timeout)
+{
+        *timeout = 0;
+        return TRUE;
+}
+
+static gboolean
+check (GSource *source)
+{
+        return TRUE;
+}
+
+static gboolean
+dispatch (GSource *source, GSourceFunc callback, gpointer user_data)
+{
+        MySource *mysource = (MySource *)source;
+        g_print ("%s\n", mysource->text);
+        
+        return TRUE;
+}
+
+int
+main (void)
+{
+        GMainLoop *loop = g_main_loop_new (NULL, TRUE);
+        GMainContext *context = g_main_loop_get_context (loop);
+
+        GSourceFuncs source_funcs = {prepare, check, 
+                                     dispatch, finalize};
+        GSource *source = g_source_new (&source_funcs, 
+                                       sizeof(MySource));
+
+        g_sprintf (((MySource *)source)->text, "Hello world!");
+        g_source_attach (source, context);
+        g_source_unref (source);
+        
+        g_main_loop_run (loop);
+        
+        g_main_context_unref (context);
+        g_main_loop_unref (loop);
+
+        return 0;
+}
+\stoptyping
+
+上述程序的 g\_main\_loop\_run 函数运行时，会迭代访问 GMainContext 的事件源列表，步骤大致如下：
+
+\startitemize[a]
+\item g\_main\_loop\_run 通过调用事件源的 prepare 接口\footnote{实际上是间接调用，即 g\_main\_loop\_run 调用 g\_main\_context\_iteration，后者会逐个调用事件源的 prepare 接口。} 并判断其返回值以确定各事件源是否作好准备。如果各事件源的 prepare 接口的返回值为 TRUE，即表示该事件源已经作好准备，否则表示尚未做好准备。显然，上述程序所定义的事件源是已经作好了准备。
+\item 若某事件源尚未作好准备，那么 g\_main\_loop 会在处理完那些已经准备好的事件后再次询问该事件源是否作好准备，这一过程是通过调用事件源的 check 接口而实现的，如果事件源依然未作好准备，即 check 接口的返回 FALSE，那么 g\_main\_loop\_run 会让主事件循环进入睡眠状态。主事件循环的睡眠时间是步骤 a 中遍历时间源时所统计的最小时间间隔，例如在 prepare 接口中可以像下面这样设置时间间隔。到达一定时间后，g\_main\_loop\_run 会唤醒主事件循环，再次询问。如此周而复始，直至事件源的 prepare 接口返回值为 TRUE。
+
+\starttyping[option=c]
+static gboolean
+prepare (GSource *source, gint *timeout)
+{
+        *timeout = 1000; /* set time interval one second */
+        return TRUE;
+}
+\stoptyping
+
+\item 若事件源 prepare 与 check 函数返回值均为 TRUE，则 g\_main\_loop\_run 会调用事件源的 dispatch 接口，由该接口调用事件源的响应函数。事件源的响应函数是回调函数，可使用 g\_source\_set\_callback 函数进行设定。在上例中，我们没有为自定义的事件源提供响应函数。
+\stopitemize
+
+事实上，GLib 的主循环机制对事件源的处理比上述过程还要复杂，下文将继续进行探索。
+
+\section{事件源的类型}
+
+GLib 的事件源有三种类型：空闲（idle）类型、定时（timeout）类型与文件类型。
+
+上一节我们自定义的事件源 MySource 实际上就是空闲类型。所谓空闲类型的事件源，是指那些只有在主事件循环无其他事件源处理时才会被处理的事件源。GLib 提供了预定义的空闲事件源类型，其用法见下面的示例。
+
+\starttyping[option=c]
+#include <glib.h>
+
+static gboolean
+idle_func (gpointer data)
+{
+        g_print ("%s\n", (gchar *)data);
+        
+        return TRUE;
+}
+
+int
+main (void)
+{
+        GMainLoop *loop = g_main_loop_new (NULL, TRUE);
+        GMainContext *context = g_main_loop_get_context (loop);
+
+        g_idle_add (idle_func, "Hello world!");
+        g_main_loop_run (loop);
+
+        g_main_context_unref (context);
+        g_main_loop_unref (loop);
+        
+        return 0;
+}
+\stoptyping
+
+这个示例与上一节那个示例的运行结果是相同的。上述示例中，idle\_func 是 idle 事件源的响应函数，如果该函数返回值为 TRUE，那么它会在主事件循环空闲时重复被执行；如果 idle\_func 的返回值为 FALSE，那么该函数在执行一次后，便被主事件循环从事件源中移除。
+
+如果在上述示例的 idle\_func 函数中调用 g\_main\_loop\_quit 函数，那么可以使主事件循环在处理了一次 idle 事件源之后便退出。例如：
+
+\starttyping[option=c]
+#include <glib.h>
+
+static gboolean
+idle_func (gpointer data)
+{
+        g_print ("Just once!\n");
+        g_main_loop_quit (data);
+        
+        return TRUE;
+}
+
+int
+main (void)
+{
+        GMainLoop *loop = g_main_loop_new (NULL, TRUE);
+        GMainContext *context = g_main_loop_get_context (loop);
+        
+        g_idle_add (idle_func, loop);
+        g_main_loop_run (loop);
+        
+        g_main_context_unref (context);
+        g_main_loop_unref (loop);
+        
+        return 0;
+}
+\stoptyping
+
+这个程序运行时，它会说一句“Just once!”然后就退出了。
+
+g\_idle\_add 函数内部定义了一个空闲事件源，并将用户定义的回调函数设为空闲事件源的响应函数，然后将该事件源挂到主循环环境。
+
+第二类事件源是定时器。GLib 也提供了预定义的定时器事件源，其用法与 GLib 预定义的空闲事件源类似。例如：
+
+\starttyping[option=c]
+#include <glib.h>
+
+static gboolean
+timeout_func (gpointer data)
+{
+        static guint i = 0;
+        i += 2;
+        g_print ("%d\n", i);
+        
+        return TRUE;
+}
+
+int
+main (void)
+{
+        GMainLoop *loop = g_main_loop_new (NULL, TRUE);
+        GMainContext *context = g_main_loop_get_context (loop);
+        
+        g_timeout_add (2000, timeout_func, loop);
+        g_main_loop_run (loop);
+        
+        g_main_context_unref (context);
+        g_main_loop_unref (loop);
+        
+        return 0;
+}
+\stoptyping
+
+如果要自定义定时器类型的事件源，只需让事件源的 prepare 与 check 接口在时间超过所设定的时间间隔时返回 TRUE，否则返回 FALSE。
+
+文件类型的事件源要稍微难理解一些，因为涉及到了操作系统层面的 poll 机制。所谓 poll 机制，就是操作系统提供的对文件描述符所关联的文件的状态监视功能，例如向文件中写入数据，那么文件的状态可以表示为 POLLOUT，而从文件中读取数据，那么文件的状态就变为 POLLIN。GLib 为 Unix 系统与 Windows 系统的 poll 机制进行了封装，并且可以将文件与主事件循环的事件源建立关联，在主循环的过程中，g\_main\_loop\_run 会轮询各个关联到文件的事件源，并处理相应的事件响应。
+
+文件类型的事件源，其 prepare，check，dispatch 等接口的执行次序如下：
+
+\startitemize
+\item 主事件循环会首先调用 check 接口，询问事件源是否准备好。因为此时，g\_main\_loop\_run 尚未轮询那些与文件相关联的事件源，所以文件类型的事件源，其 check 接口的返回值应该是 FALSE。
+\item 主事件循环调用 g\_main\_context\_iteration 轮询各事件源，探寻是否有文件类型事件源的状态发生变化，并记录变化结果。
+\item 主循环调用 check 接口，询问事件是否准备好。此时，如果文件类型事件源的状态变化符合要求，那么就返回 TRUEE，否则返回 FALSE。
+\item 如果 prepare 与 checｋ　接口的返回值均为 TRUE，那么此时主事件循环会调用 dispatch 接口分发消息。
+\stopitemize
+
+下面的示例展示了一个自定义的文件类型事件源的基本用法。该示例所产生的程序接受用户在终端中输入的字符串，并统计输入的字符数量。
+
+\starttyping[option=c]
+#include <glib.h>
+
+typedef struct _MySource MySource;
+struct _MySource {
+        GSource _source;
+        GIOChannel *channel;
+        GPollFD fd;
+};
+
+static gboolean
+watch (GIOChannel *channel)
+{
+        gsize len = 0;
+        gchar *buffer = NULL;
+        
+        g_io_channel_read_line (channel, &buffer, &len, NULL, NULL);
+        if (len > 0)
+                g_print ("%d\n", len);
+        g_free (buffer);
+
+        return TRUE;
+}
+
+static gboolean
+prepare (GSource *source, gint *timeout)
+{
+        *timeout = -1;
+        return FALSE;
+}
+
+static gboolean
+check (GSource *source)
+{
+        MySource *mysource = (MySource *)source;
+        if (mysource->fd.revents != mysource->fd.events)
+                return FALSE;
+        return TRUE;
+}
+
+static gboolean
+dispatch (GSource *source, GSourceFunc callback, gpointer user_data)
+{
+        MySource *mysource = (MySource *)source;
+        if (callback)
+                callback (mysource->channel);
+
+        return TRUE;
+}
+
+static void
+finalize (GSource *source)
+{
+        MySource *mysource = (MySource *)source;
+        
+        if (mysource->channel)
+                g_io_channel_unref (mysource->channel);
+}
+
+int
+main(int argc, char* argv[])
+{
+        GMainLoop *loop = g_main_loop_new (NULL, FALSE);
+
+        GSourceFuncs funcs = {prepare, check, dispatch, finalize};
+        GSource *source = g_source_new (&funcs, sizeof(MySource));
+        MySource *mysource = (MySource *) source;
+
+        mysource->channel = g_io_channel_new_file ("test", "r", NULL);
+        mysource->fd.fd = g_io_channel_unix_get_fd (mysource->channel);
+        mysource->fd.events = G_IO_IN;
+        g_source_add_poll (source, &mysource->fd);
+        g_source_set_callback (source, (GSourceFunc)watch, NULL, NULL);
+        g_source_set_priority (source, G_PRIORITY_DEFAULT_IDLE);
+        g_source_attach (source, NULL);
+        g_source_unref (source);
+
+        g_main_loop_run(loop);
+    
+        g_main_context_unref (g_main_loop_get_context (loop));
+        g_main_loop_unref(loop);
+        
+        return 0;
+}
+\stoptyping
+
+像空闲类型与计时器类型事件源那样，GLib 也提供了预定义的文件类型事件源，使用它可以将上例简化为：
+
+\starttyping[option=c]
+#include <glib.h>
+
+gboolean
+io_watch (GIOChannel *channel, GIOCondition condition, gpointer data)
+{
+        gsize len = 0;
+        gchar *buffer = NULL;
+        
+        g_io_channel_read_line (channel, &buffer, &len, NULL, NULL);
+        
+        if (len > 0)
+                g_print ("%d\n", len);
+        
+        g_free (buffer);
+
+        return TRUE;
+}
+
+int
+main(int argc, char* argv[])
+{
+        GMainLoop *loop = g_main_loop_new (NULL, FALSE);
+        
+        GIOChannel* channel = g_io_channel_unix_new (1);
+        if (channel){
+                g_io_add_watch(channel, G_IO_IN, io_watch, NULL);
+                g_io_channel_unref(channel);
+        }
+
+        g_main_loop_run(loop);
+    
+        g_main_context_unref (g_main_loop_get_context (loop));
+        g_main_loop_unref(loop);
+        
+        return 0;
+}
+\stoptyping
+
+\section{想知道更多}
+
+建议阅读 GLib Reference 的 “The Main Event Loop” 以及“IO Channels”部分。
+
+\section{补充}
+
+退出主事件循环之后，调用 g\_main\_loop\_unref 只能够释放主事件循环的数据结构所占用的存储空间，主事件循环环境的数据结构所占用的存储空间需要手动释放。我是通过一些小示例的验证才有了这一认识，GLib 文档对此没有什么特别的说明。
+
+\stopcomponent

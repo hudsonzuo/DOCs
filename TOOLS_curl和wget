@@ -1,0 +1,59 @@
+curl和wget的区别和用法介绍
+
+上一篇 / 下一篇  2010-04-16 01:14:15 / 个人分类：Linux
+查看( 151 ) / 评论( 0 ) / 评分( 0 / 0 )
+晚上看了Linux下的curl和wget这两个工具，进行了比较和学习。
+它们的区别，我看到的有如下几点：
+1.curl是libcurl这个库支持的，wget是一个纯粹的命令行命令。
+2.curl支持更多的协议。curl supports FTP, FTPS, HTTP, HTTPS, SCP, SFTP, TFTP, TELNET, DICT, LDAP, LDAPS, FILE, POP3, IMAP, SMTP and RTSP at the time of this writing. Wget supports HTTP, HTTPS and FTP.
+3.curl 默认支持HTTP1.1（也支持1.0），而wget仅仅支持HTTP1.0规范。引用wget的man page中的一段话吧，Please be aware that Wget needs to know the size of the POST data in advance. It's not quite clear how to work around this limitation inherent in HTTP/1.0. Although HTTP/1.1 introduces chunked transfer that doesn't require knowing the request length in advance, a client can't use chunked unless it knows it's talking to an HTTP/1.1 server.  And it can't know that until it receives a response, which in turn requires the request to have been completed -- a chicken-and-egg problem.
+4.curl在指定要下载的链接时能够支持URL的序列或集合，而wget则不能这样;
+5.wget支持递归下载，而curl则没有这个功能。（这是wget的一个主要好处，wget也是有优势的，呵呵）
+
+参考资料：http://daniel.haxx.se/docs/curl-vs-wget.html
+
+看着它们的man page里面对HTTP支持的描述，我又了解到了一点HTTP1.0和HTTP1.1的区别，HTTP1.1中增加的持续性连接(Persist Connection)与块编码(Chunked Encoding)技术。
+块传输编码（Chunked Transfer Coding）
+块编码(chunked encoding)改变消息主体使消息主体(message body，译注：消息主体与实体主体是有区别的，后面章节将会介绍)成块发送。每一个块有它自己的大小(size)指示器，在所有的块之后会紧接着一个可选的包含实体头域的尾部(trailer)。这允许发送端能动态生成内容，并能携带有用的信息，这些信息能让接收者判断消息是否接收完整。
+
+为啥突然想到看这个呢，其实起因是下面所说的。
+今天，看到环境更新脚本中，添加了一段脚本，里面用到了curl这个工具。
+这段shell程序如下：
+curl http://svn.abcde.com/repos/abc/apps/smile/ -u abc:123456 -o dirname
+base_url="http://svn.abcde.com/repos/abc/apps/smile"
+while read LINE
+      do
+         if [ -z "$LINE" ]; then
+              continue
+         fi
+         echo $LINE |grep "dir name"
+         if [ $? -eq 1 ]; then
+             continue
+         fi
+         dir=`echo $LINE |sed -e 's/<dir name="//g'|sed -e 's/".*//g'`
+         svn_url=$base_url$dir/trunk
+         svn co $svn_url $dir
+      done <  dirname
+
+这段代码是为了得到svn上的smile目录上的所有目录名称，并将其拼装成svn_url，然后checkout这些url。
+svn_url如下所示：http://svn.abcde.com/repos/abc/apps/smile/aiscclient/
+下载得到的dirname这个文件内容如下：
+  <!ELEMENT updir EMPTY>
+  <!ELEMENT file  EMPTY>
+  <!ATTLIST file  name    CDATA #REQUIRED
+                  href    CDATA #REQUIRED>
+  <!ELEMENT dir   EMPTY>
+  <!ATTLIST dir   name    CDATA #REQUIRED
+                  href    CDATA #REQUIRED>
+]>
+<svn version="1.6.2 (r37639)"
+     href="http://subversion.tigris.org/">
+  <index rev="267603" path="/apps/smile" base="abc">
+    <updir />
+    <dir name="aiscclient" href="aiscclient/" />
+    <dir name="utm" href="utm/" />
+    <dir name="uusubscribe" href="uusubscribe/" />
+    <dir name="viewcache" href="viewcache/" />
+    <dir name="wholesale" href="wholesale/" />
+  </index>
+</svn> 

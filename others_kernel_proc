@@ -1,0 +1,25 @@
+cat /proc/filesystems 
+nodev   sysfs
+nodev   rootfs
+nodev   bdev
+nodev   proc
+nodev   cgroup
+nodev   cpuset
+nodev   tmpfs
+nodev   devtmpfs
+nodev   debugfs
+nodev   securityfs
+nodev   sockfs
+nodev   usbfs
+nodev   pipefs
+nodev   anon_inodefs
+nodev   inotifyfs
+nodev   devpts
+       reiserfs
+       ext3
+       ext2
+       ext4
+nodev   ramfs
+nodev   hugetlbfs
+nodev   mqueue
+

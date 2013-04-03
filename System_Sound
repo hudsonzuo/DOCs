@@ -1,0 +1,126 @@
+
+/proc/asound/
+
+http://www.kernel.org/doc/Documentation/sound/alsa/
+
+PCI声卡
+在嵌入式中，音频数据传输一般用I2S接口，控制一般用I2c或SPI接口。如下仅以嵌入式声卡为例，其驱动代码一般放在sound/soc下面。
+
+http://www.alsa-project.org/main/index.php/Main_Page
+
+
+
+Here is a quick way to list all detected and working soundcards. Use arecord command line sound recorder and player for ALSA soundcard driver. The -l option List all soundcards and digital audio devices. The -L option list all PCMs defined.
+
+The information obtained from following command can be used to play various media files or digital stream such as radio, tv etc.
+Display all soundcards and digital audio devices
+
+Type the command:
+$ arecord -  或者 aplay -l
+Display all PCMs defined
+
+Type the command:
+$ record -L
+
+
+PCM就是要把声音从模拟转换成数字信号的一种技术
+模拟信号经过PCM得到的文件就是WAV后缀的文件。
+PCM信号的两个重要指标是采样频率和量化精度，目前，CD音频的采样频率通常为44100Hz，量化精度是16bit。通常，播放音乐时，应用程序从存储介质中读取音频数据（MP3、WMA、AAC......），经过解码后，最终送到音频驱动程序中的就是PCM数据，反过来，在录音时，音频驱动不停地把采样所得的PCM数据送回给应用程序，由应用程序完成压缩、存储等任务。所以，音频驱动的两大核心任务就是：
+
+    playback    如何把用户空间的应用程序发过来的PCM数据，转化为人耳可以辨别的模拟音频
+    capture     把mic拾取到得模拟信号，经过采样、量化，转换为PCM信号送回给用户空间的应用程序
+
+
+
+
+
+二.  ALSA设备文件结构
+
+    我们从alsa在linux中的设备文件结构开始我们的alsa之旅. 看看我的电脑中的alsa驱动的设备文件结构:
+
+$ cd /dev/snd
+$ ls -l
+
+crw-rw----+ 1 root audio 116, 8 2011-02-23 21:38 controlC0
+crw-rw----+ 1 root audio 116, 4 2011-02-23 21:38 midiC0D0
+crw-rw----+ 1 root audio 116, 7 2011-02-23 21:39 pcmC0D0c
+crw-rw----+ 1 root audio 116, 6 2011-02-23 21:56 pcmC0D0p
+crw-rw----+ 1 root audio 116, 5 2011-02-23 21:38 pcmC0D1p
+crw-rw----+ 1 root audio 116, 3 2011-02-23 21:38 seq
+crw-rw----+ 1 root audio 116, 2 2011-02-23 21:38 timer
+$
+
+
+    我们可以看到以下设备文件:
+
+    controlC0 -->                 用于声卡的控制，例如通道选择，混音，麦克风的控制等
+    midiC0D0  -->                用于播放midi音频
+    pcmC0D0c --〉               用于录音的pcm设备
+    pcmC0D0p --〉               用于播放的pcm设备
+    seq  --〉                        音序器
+    timer --〉                       定时器
+
+其中，C0D0代表的是声卡0中的设备0，pcmC0D0c最后一个c代表capture，pcmC0D0p最后一个p代表playback，这些都是alsa-driver中的命名规则。从上面的列表可以看出，我的声卡下挂了6个设备，根据声卡的实际能力，驱动实际上可以挂上更多种类的设备，在include/sound/core.h中，定义了以下设备类型：
+
+[c-sharp] view plaincopy
+
+    #define SNDRV_DEV_TOPLEVEL  ((__force snd_device_type_t) 0)  
+    #define SNDRV_DEV_CONTROL   ((__force snd_device_type_t) 1)  
+    #define SNDRV_DEV_LOWLEVEL_PRE  ((__force snd_device_type_t) 2)  
+    #define SNDRV_DEV_LOWLEVEL_NORMAL ((__force snd_device_type_t) 0x1000)  
+    #define SNDRV_DEV_PCM       ((__force snd_device_type_t) 0x1001)  
+    #define SNDRV_DEV_RAWMIDI   ((__force snd_device_type_t) 0x1002)  
+    #define SNDRV_DEV_TIMER     ((__force snd_device_type_t) 0x1003)  
+    #define SNDRV_DEV_SEQUENCER ((__force snd_device_type_t) 0x1004)  
+    #define SNDRV_DEV_HWDEP     ((__force snd_device_type_t) 0x1005)  
+    #define SNDRV_DEV_INFO      ((__force snd_device_type_t) 0x1006)  
+    #define SNDRV_DEV_BUS       ((__force snd_device_type_t) 0x1007)  
+    #define SNDRV_DEV_CODEC     ((__force snd_device_type_t) 0x1008)  
+    #define SNDRV_DEV_JACK          ((__force snd_device_type_t) 0x1009)  
+    #define SNDRV_DEV_LOWLEVEL  ((__force snd_device_type_t) 0x2000)  
+
+ 通常，我们更关心的是pcm和control这两种设备。
+来源： http://blog.csdn.net/droidphone/article/details/6271122
+
+
+
+Control接口主要让用户空间的应用程序（alsa-lib）可以访问和控制音频codec芯片中的多路开关，滑动控件等。对于Mixer（混音）来说，Control接口显得尤为重要，从ALSA 0.9.x版本开始，所有的mixer工作都是通过control接口的API来实现的
+
+
+声卡的硬件标准 : AC97,HD-Audio,SACD
+一个符合AC97规范的音频方案主要包括两个部分：AC97 音频编解码芯片（Audio Codec）和AC97数字控制器（AC97 Digital Controller）
+AC'97今已被HD-Audio和SACD等
+高清晰音效HD-Audio:
+HD Audio把驱动分为两层：总线驱动（Bus Driver）和功能驱动（Function Drivers）,其中“总线驱动”由操作系统厂商开发
+
+
+最大的主板集成声卡芯片供应商Realtek身上
+
+Help To Debug Intel HDA :http://www.alsa-project.org/main/index.php/Help_To_Debug_Intel_HDA
+
+
+
+
+
+
+
+
+DebuggingSoundProblems
+https://wiki.ubuntu.com/DebuggingSoundProblems
+https://help.ubuntu.com/community/HdaIntelSoundHowto
+http://www.kernel.org/doc/Documentation/sound/alsa/HD-Audio.txt
+
+查看当前使用的codec驱动: cat /proc/asound/card0/codec* | grep Codec
+
+One of the most frequent (and obvious) bugs with HD-audio is the
+silent output from either or both of a built-in speaker and a
+headphone jack.  In general, you should try a headphone output at
+first.  A speaker output often requires more additional controls like
+the external amplifier bits.
+
+In anyway, try a different model option if you have such a problem.
+Some other models may match better and give you more matching
+functionality. 
+http://www.realtek.com.tw/downloads/downloadsView.aspx?Langid=1&PNid=24&PFid=24&Level=4&Conn=3&DownTypeID=3&GetDown=false#2
+
+Codec: Realtek ALC270 Codec: Intel PantherPoint HDMI`

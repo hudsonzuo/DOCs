@@ -1,0 +1,472 @@
+%\documentclass[a4paper,11pt]{article}
+\documentclass[a4paper]{article}
+\usepackage{xunicode}
+\usepackage{fontspec}
+\usepackage{xltxtra}
+\usepackage{indentfirst}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{abstract}
+\usepackage{xeCJK}                   % 中英文混排
+\usepackage{bm}
+%\usepackage[superscript]{cite}
+\usepackage[numbers,sort&compress]{natbib}
+\renewcommand{\citet}[1]{\textsuperscript{\cite{#1}}}
+\renewcommand{\citep}[1]{\textsuperscript{\cite{#1}}}
+\addtolength{\bibsep}{-0.5 em} % 缩小参考文献间的垂直间距
+\setlength{\bibhang}{2em}
+%\newcommand{\bibnumfont}[1]{\textit{#1}}
+\renewcommand{\bibfont}{\normalfont}% 不宜使用中文字号，因为中文字号定义中包含了多余的行距
+
+%\renewcommand\bibnumfmt[1]{#1}  %去掉文末文献列表的[]（数字或上标模式）
+%\usepackage{amssymb}
+%\usepackage{color}
+%\usepackage{CJK}
+%\usepackage{fancybox}
+\defaultfontfeatures{Mapping=tex-text}  % 启用tex风格字符
+\setmainfont[BoldFont=文泉驿正黑]{AR PL SungtiL GB}
+%setmonofont[BoldFont=文泉驿正黑]{AR PL SungtiL GB}
+%setsansfont
+
+
+\XeTeXlinebreaklocale ''zh''
+%\XeTeXlinebreakskip = 0pt plus 1pt minus 0.1pt
+\linespread{1.3}
+
+\newtheorem{defination}{定义}[section]
+\newtheorem{theorem}{定理}[section]
+\newtheorem{lemma}[theorem]{引理}
+\newtheorem{corollary}[theorem]{推论}
+\numberwithin{equation}{section}
+%\renewcommand{\abstractname}{\vskip1em}
+\renewcommand{\abstractname}{摘 要}
+%\renewcommand{\proofname}{\CJKfamily{hei}证明}
+
+%\begin{CJK*}{GBK}{kai}
+%\title{质数的余环以及基于石头数的整数分解法}
+\title{基于石头数的整数分解法}
+\author{左洪盛\\ \small 北京市海淀区向阳新村\ 北京 100093\\ \small  E-mail:zuohsh@sohu.com}
+\date{}
+\begin{document}
+\maketitle
+%\begin{abstract}
+%\setlength{\parindent}{0pt} \setlength{\parskip}{1.5ex plus 0.5ex minus 0.2ex} 
+%\noindent
+\begin{quote}
+\textbf{摘要} $九$表示由任意多个字符9组成的形如999的整数,$\overline{九}$表示$九$的长度,
+称与10互质的正整数为普通奇数,对于普通奇数$N$有$10^{\overline{九}} \equiv 1 \pmod{N}$成立.
+余环是通过特定算法,由普通奇数的余数形成的具有固定相邻关系的余数序列.
+首先,证明了质数的所有余环的长度相等并且$p-1=\overline{九} \cdot X $成立;
+研究了质数乘方和多质因子合数的余环长度规律,发现了本征余环和同余余环.
+根据普通奇数的余环长度规律,得到了一种整数的筛法:$\overline{九_{[N]}} \mid (N-1)$,可以得到质数和具有如下性质的合数:
+$\overline{九_{[N]}} \mid (N-1-\varphi(N))$.
+和特定长度的九对应的质数叫做特定长度九的本征质数,石头数能被特定长度$九$的所有本征质数整除,
+它有如下计算公式：
+\begin{displaymath}S=\frac{\displaystyle 九}
+			{\displaystyle
+			\prod_{\substack{m \mid \overline{九} ,m < \overline{九} }}S_{m}
+			}
+\end {displaymath}
+最后,基于$\overline{九}$和石头数的理论与计算方法,形成了一种基于石头数的整数分解法,可以表述为:
+$N$是普通奇数,则以$\overline{九_{[N]}}$的所有因子为九长度,这些$九$对应的所有本征质数的集合包含了$N$的所有质因子.
+
+
+\textbf{关键词} 九,余环,石头数,筛法,整数分解法.
+
+\textbf{MR(2010)主题分类} 11A41,11A51
+
+\textbf{中图分类} O156.1
+\end{quote}
+%end{abstract}
+%\CJKtilde
+\begin{quote}
+\begin{center}
+\Large A Factorization Method  Based On Stone Number
+\end{center}
+\end{quote}
+\begin{quote}
+\textbf{Abstract}  $九$ denotes numbers whose digits are all 9 like 999 and $\overline{九}$ denotes its length. 
+Numbers sharing no common positive factors with 10 are called common-odd.
+For a common-odd N $10^{\overline{九}} \equiv 1 \pmod{N}$.
+Remainder-loop represents those remainders having fixed neighborhood of a commom-odd. 
+First it is proved that all remainder-loops of a prime have the same length and $p-1=\overline{九} \cdot X $.
+$\overline{九}$ of primes power and other composite numbers are studied, and find intrinsic remainder-loop and congruence remainder-loop.
+From rules of  $\overline{九}$  of common-odd, a sieve method is find, by which all primes and composite numbers satisfying $\overline{九_{[N]}} \mid (N-1-\varphi(N))$ remain.
+Every common-odd prime has a corresponding $九$, call the prime is a intrinsic-prime of the $九$. There is a special kind of number called stone-number  which can be exactly divided by all the intrinsic-prime of a $九$. A stone-number can be figured out by:
+\begin{displaymath}S=\frac{\displaystyle 九}
+			{\displaystyle
+			\prod_{\substack{m \mid \overline{九} ,m < \overline{九} }}S_{m}
+			}
+\end {displaymath}
+In the end,theories of the $\overline{九}$ and stone-number bring forth a new factorization method, i.e.
+N is a common-odd, take the factors of $\overline{九_{[N]}}$  as 九's length and form some new $九$, then the intrinsic primes of those $九$ contain all prime-factors of $N$.
+
+\textbf{Keywords} $九$,Remainder-loop, stone-number,sieve method,factorization.
+
+\textbf{MR(2010) Subject Classification} 11A41,11A51
+
+\textbf{Chinese Library Classification} O156.1
+\end{quote}
+
+\section{九和余环}
+
+\subsection{余数相邻关系的唯一性}
+设函数$f(y)=(y\times n)\% N$,$n,N$是正整数,$(n,N)=1$,$y$是$N$的余数,通过该函数可以得到余数序列,其中任意余数$y$的右邻数等于$f(y)$,左邻数等于$f^{-1}(y)$.
+根据\cite{ref1},任意整数和唯一小于N的一个数同余,以及线性同余方程$(n,N)=1$时有唯一解,可知$y$对应的$f(y)$和$f^{-1}(y)$一定存在并且是唯一的,所以$y$的右邻数和左邻数都是唯一的,因此可得余数的相邻关系唯一性.
+
+\subsection{余环}
+设整数$N$,并且$N$和10互质, 即$N$为个位是1,3,7,9的整数；设整数$t\geq1$,
+\begin{center}$y_{1}=t\times10^{0}\%N$,$y_{2}=t\times10^{1}\%N$,\ldots,$y_{n}=t\times10^{n-1}\%N$,\ldots \end{center}
+$y_{1}$,$y_{2}$,\ldots,$y_{n}$都小于$N$,组成一个数目不超过$N-1$有限集合.显然,\begin{center} $y_{2}=y_{1}\times10\%N$, $y_{3}=y_{2}\times10\%N$,\ldots \end{center}
+
+所以$y_{1}$,$y_{2}$,\ldots,$y_{n}$组成余数序列,部分相邻关系为: $y_{1}$-$y_{2}$-\ldots-$y_{n}$, 其中只有$y_{1}$的左邻数和$y_{n}$的右邻数没有确定.根据相邻关系的唯一性,$y_{1}$的左邻数只能是$y_{n}$,$y_{n}$的右邻数只能是$y_{1}$,即这个余数序列是一个封闭的构造,我们称这种构造为余环.
+
+为了表述方便,做如下定义：
+\begin{defination}我们称和10互质的正整数为普通奇数\end{defination}
+
+\subsection{普通奇数的九}
+\label{sec_jiu}
+通过上面的分析可知,$y_{1} \cdot 10^n\equiv y_{1}\pmod{N}$,所以有$10^{n}\equiv1\pmod{N}$.
+定义符号"$九$",表示能被普通奇数$N$整除的长度最短的一串9,即$九=10^{n}-1$,则对于任意普通奇数$N$,存在对应的$九$,使下面的等式成立:
+	\begin{equation} \label{eq_jiu} 九=N\cdot \textcircled{s} \end{equation} 
+	其中\textcircled{s}叫做普通奇数$N$的商数,$九$的长度用符号$\overline{九}$表示,显然,
+	 \begin{equation} \label{eq_jiulen} 10^{\overline{九}} \equiv 1 \pmod{N} \end{equation} 
+关于九的表示方法,作如下约定：$九_{[N]}$表示$N$对应的九,$九_n$表示长度等于n的九(即$\overline{九_n}=n$),如$九_{[13]}=999999$,$九_3=999$.		 
+根据九的定义,显然,有如下定理成立：
+\begin{theorem}对于任意$九_a,九_b$,$九_a \mid 九_b$等价于$\overline{九_a} \mid \overline{九_b}$ \end{theorem}
+
+\subsection{余环长度}
+
+\begin{defination}主余环——称包含余数1的余环为主余环,用(1)表示.\end{defination}
+\begin{defination}偏余环——称不包含余数1的余环为偏余环,表示方法是在括号中放一个余环中的余数.\end{defination}
+比如13有两个余环：
+\begin{displaymath}(1): 1- 10- 9- 12- 3- 4\end{displaymath}
+\begin{displaymath}(2): 2- 7- 5- 11- 6- 8\end{displaymath}
+
+\begin{theorem} \label{theo_yin1} 若余数$y\in(1)$,则$y\cdot (1)= (1)$.\end{theorem} 
+证：$y\in(1)$,则有$y\equiv 10^t\pmod{p}$, 设$y'$是(1)中的任意余数, $y' \equiv 10^{t'}\pmod{p}$,  
+则$y\cdot y' \equiv 10^{t+t'} \pmod{p}$,得证.
+
+\begin{theorem} \label{theo_ynotin1} 若余数$y\notin(1)$,$y\cdot(1)\ne(1)$\end{theorem} 
+	证：设$y'$是(1)中的任意余数,$y'\equiv10^{t'}\pmod{p}$,则$y\cdot y'\equiv y\cdot 10^{t'}\pmod{p}$,
+假如,$y\cdot y'\%{p}\in(1)$成立,则$y\cdot y' \equiv y\cdot 10^{t'} \equiv 10^{t} \pmod{p}$,从而有$y\equiv 10^{t-t'} \pmod{p}$,与$y\notin(1)$矛盾,得证.
+\\ \indent 上面的形如$y\cdot (y')$的余数和余环的乘法,表示余数$y$和余环中的任意余数相乘后对余环对应的质数求余后的结果.另外形如$(y_1)\cdot (y_2)$的余环相乘,表示余环$(y_1)$中的任意余数和余环$(y_2)$中的任意余数相乘后对余环对应的质数求余后的结果.
+
+\subsubsection{质数的余环长度}
+
+\begin{theorem} \label{theo_ringEqual} 质数$p$的所有余环的长度相等,等于$\overline{九}$.\end{theorem} 
+证：根据公式\ref{eq_jiulen}可知,$(1)$的长度等于$\overline{九}$.
+设$y\notin(1)$,由定理\ref{theo_ynotin1}可知$y\cdot(1)$可得到一个不同于(1)的余环$(y)$,表示如下：
+\begin{displaymath} y\cdot(1)=(y) \end{displaymath}
+
+设$y_{1},y_{2} \in (1)$,$y_{1}\not\equiv y_{2}\pmod{p}$,所以,$y\cdot y_{1} \not\equiv y\cdot y_{2} \pmod{p}$.由定理\ref{theo_ynotin1}, $y\cdot y_{1},y\cdot y_{2} \in (y)$,因此$(y)$的$\overline{九}$个余数相互不同余, 所以(y)的长度和(1)的长度相等,等于$\overline{九}$.
+
+\indent 综上,质数$p$共有$p-1$个余数,分布于多个长度相等的余环中,因此,$\overline{九}\mid (p-1)$.设$X$表示$p$的余环个数,则,
+\begin{equation} \label{eq_prime_yuhuan} p-1=\overline{九} \cdot X \end{equation} 
+
+\subsubsection{质数乘方的余环长度}
+
+\begin{theorem} \label{theo_ring_power} 设$p^{t}$对应$九_{[p^t]}$,即$九_{[p^t]}$是能被$p^{t}$整除的长度最短的一串9,
+	$\textcircled{s}=\frac{九_{[p^t]}}{p^t}$,$y=\textcircled{s}\% p$,
+	如果$y=0$,则$\overline{九_{[p^{t＋1}]}}＝\overline{九_{[p^t]}}$,
+	如果$y\ne 0$,则$\overline{九_{[p^{t＋1}]}}＝\overline{九_{[p^t]}} \cdot p$.
+\end{theorem}
+证：当$y=0$时,结论显然成立,当$y\ne 0$时有：\\
+\indent $\{y\cdot 10^{\overline{九_{[p^t]}}}+\textcircled{s}\} \equiv 2y \pmod{p}$,\\
+\indent $\{2y\cdot 10^{\overline{九_{[p^t]}}}+\textcircled{s}\}\equiv 3y \pmod{p}$,  \\
+\indent \ldots,  \\
+\indent $\{(y\cdot (p-1)) \cdot 10^{\overline{九_{[p^t]}}}+\textcircled{s}\} \equiv p\cdot y \pmod{p}$, \\
+得证.
+
+\subsubsection{多质因子合数的余环长度}
+\label{sec_composite}
+设普通奇数$N=p_1^{t_1} \cdot p_2^{t_2} \cdot \ldots \cdot p_n^{t_n}$, $p_1^{t_1},p_2^{t_2},\dots,p_n^{t_n}$
+对应的九的长度分别是$\overline{九_{[p_1^{t_1}]}},\overline{九_{[p_2^{t_2}]}},\ldots,\overline{九_{[p_n^{t_n}}]}$,显然：
+\begin{equation} \overline{九_{[N]}}=[\overline{九_{[p_1^{t_1}]}},\overline{九_{[p_2^{t_2}]}},\ldots,\overline{九_{[p_n^{t_n}]}}] \end{equation} \label{eq_composite_jiu}
+即$N$的主余环长度等于它们的最小公倍数.
+
+\begin{theorem} \label{theo_N}对于任意$y<N$,余环$(y)$中所有余数的最大公约数等于$(N,y)$,余环的长度等于$\overline{九_{[N/(N,y)]}}$ \end{theorem}
+	证：设$m=(N,y)$,以及$y\cdot 10^t \equiv y \pmod{N}$,t是满足表达式的最小值, 则有: $N \mid y \cdot (10^t-1) \Rightarrow  \frac{N}{m} \mid \frac{y}{m} \cdot (10^t-1) \Rightarrow  \frac{N}{m} \mid (10^t-1)$,可以看出$\frac{N}{m}$对应的九的长度等于$t$,所以$y$所在余环的长度和$N/m$的主余环的长度相等,即$\overline{(y)}=\overline{(1)_{[N/m]}}$.另外$(1)_{[N/m]}$的任意余数都有对应的m倍的余数存在于$(y)$中,因此定理成立.
+
+	由定理\ref{theo_N},根据余环对应最大公约数的不同,将余环分为：	
+\begin{defination}余环中余数的公约数大于1,称之为同余余环.\end{defination}
+\begin{defination}余环中余数的公约数等于1,称之为本征余环.\end{defination}
+
+	显然，所有的本征余环包含的余数个数等于$\varphi(N)$,$\varphi$表欧拉函数\citep{ref2}.
+
+\begin{theorem}所有本征余环的长度相等\end{theorem}
+	证明：略(和定理\ref{theo_ringEqual}的证明相同).
+	
+
+\subsection{一种基于九的整数筛法}
+\begin{theorem}$N$是任意普通奇数,$\overline{九_{[N]}}$是N对应的九的长度,如果$\overline{九_{[N]}} \mid (N-1)$,则N是：\\
+\indent 1. 质数 \\
+\indent 2. 具有如下性质的合数：
+\begin{displaymath} \overline{九_{[N]}} \mid (N-1-\varphi(N)) \end{displaymath}
+\end{theorem}
+证：根据公式\ref{eq_prime_yuhuan},显然质数满足条件.
+对于合数,$\varphi(N)$为$N$的本征余环中的所有余数的数量,显然有$\overline{九_{[N]}} \mid \varphi(N)$,所有同余余环共有$(N-1-\varphi(N))$个余数,
+所以$\overline{九_{[N]}} \mid (N-1-\varphi(N))$ 和$\overline{九_{[N]}} \mid (N-1)$等价,得证.
+
+计算时,有两种算法可用,第一种,求出$\overline{九_{[N]}}$,再判断整除性;
+第二种,分解$N-1$,以长度等于因子的$九$试除$N$,如果整除则$\overline{九_{[N]}}$等于该因子,同时满足了整除$N-1$的条件.
+两种算法是等价的.
+
+\indent 下面是利用第二种算法得到的10000以内的结果,其中有20个合数、1226个质数,标有*的是合数.
+\begin{verbatim}
+7,11,13,17,19,23,29,31,37,41,43,47,53,59,61,67,71,73,79,83,89,91*,97,101,103,107,109,113,127,131,137,139,149,151,157,163,167,173,179,181,191,193,197,199,211,223,227,229,233,239,241,251,257,259*,263,269,271,277,281,283,293,307,311,313,317,331,337,347,349,353,359,367,373,379,383,389,397,401,409,419,421,431,433,439,443,449,451*,457,461,463,467,479,481*,487,491,499,503,509,521,523,541,547,557,563,569,571,577,587,593,599,601,607,613,617,619,631,641,643,647,653,659,661,673,677,683,691,701,703*,709,719,727,733,739,743,751,757,761,769,773,787,797,809,811,821,823,827,829,839,853,857,859,863,877,881,883,887,907,911,919,929,937,941,947,953,967,971,977,983,991,997,1009,1013,1019,1021,1031,1033,1039,1049,1051,1061,1063,1069,1087,1091,1093,1097,1103,1109,1117,1123,1129,1151,1153,1163,1171,1181,1187,1193,1201,1213,1217,1223,1229,1231,1237,1249,1259,1277,1279,1283,1289,1291,1297,1301,1303,1307,1319,1321,1327,1361,1367,1373,1381,1399,1409,1423,1427,1429,1433,1439,1447,1451,1453,1459,1471,1481,1483,1487,1489,1493,1499,1511,1523,1531,1543,1549,1553,1559,1567,1571,1579,1583,1597,1601,1607,1609,1613,1619,1621,1627,1637,1657,1663,1667,1669,1693,1697,1699,1709,1721,1723,1729*,1733,1741,1747,1753,1759,1777,1783,1787,1789,1801,1811,1823,1831,1847,1861,1867,1871,1873,1877,1879,1889,1901,1907,1913,1931,1933,1949,1951,1973,1979,1987,1993,1997,1999,2003,2011,2017,2027,2029,2039,2053,2063,2069,2081,2083,2087,2089,2099,2111,2113,2129,2131,2137,2141,2143,2153,2161,2179,2203,2207,2213,2221,2237,2239,2243,2251,2267,2269,2273,2281,2287,2293,2297,2309,2311,2333,2339,2341,2347,2351,2357,2371,2377,2381,2383,2389,2393,2399,2411,2417,2423,2437,2441,2447,2459,2467,2473,2477,2503,2521,2531,2539,2543,2549,2551,2557,2579,2591,2593,2609,2617,2621,2633,2647,2657,2659,2663,2671,2677,2683,2687,2689,2693,2699,2707,2711,2713,2719,2729,2731,2741,2749,2753,2767,2777,2789,2791,2797,2801,2803,2819,2821*,2833,2837,2843,2851,2857,2861,2879,2887,2897,2903,2909,2917,2927,2939,2953,2957,2963,2969,2971,2981*,2999,3001,3011,3019,3023,3037,3041,3049,3061,3067,3079,3083,3089,3109,3119,3121,3137,3163,3167,3169,3181,3187,3191,3203,3209,3217,3221,3229,3251,3253,3257,3259,3271,3299,3301,3307,3313,3319,3323,3329,3331,3343,3347,3359,3361,3367*,3371,3373,3389,3391,3407,3413,3433,3449,3457,3461,3463,3467,3469,3491,3499,3511,3517,3527,3529,3533,3539,3541,3547,3557,3559,3571,3581,3583,3593,3607,3613,3617,3623,3631,3637,3643,3659,3671,3673,3677,3691,3697,3701,3709,3719,3727,3733,3739,3761,3767,3769,3779,3793,3797,3803,3821,3823,3833,3847,3851,3853,3863,3877,3881,3889,3907,3911,3917,3919,3923,3929,3931,3943,3947,3967,3989,4001,4003,4007,4013,4019,4021,4027,4049,4051,4057,4073,4079,4091,4093,4099,4111,4127,4129,4133,4139,4141*,4153,4157,4159,4177,4187*,4201,4211,4217,4219,4229,4231,4241,4243,4253,4259,4261,4271,4273,4283,4289,4297,4327,4337,4339,4349,4357,4363,4373,4391,4397,4409,4421,4423,4441,4447,4451,4457,4463,4481,4483,4493,4507,4513,4517,4519,4523,4547,4549,4561,4567,4583,4591,4597,4603,4621,4637,4639,4643,4649,4651,4657,4663,4673,4679,4691,4703,4721,4723,4729,4733,4751,4759,4783,4787,4789,4793,4799,4801,4813,4817,4831,4861,4871,4877,4889,4903,4909,4919,4931,4933,4937,4943,4951,4957,4967,4969,4973,4987,4993,4999,5003,5009,5011,5021,5023,5039,5051,5059,5077,5081,5087,5099,5101,5107,5113,5119,5147,5153,5167,5171,5179,5189,5197,5209,5227,5231,5233,5237,5261,5273,5279,5281,5297,5303,5309,5323,5333,5347,5351,5381,5387,5393,5399,5407,5413,5417,5419,5431,5437,5441,5443,5449,5461*,5471,5477,5479,5483,5501,5503,5507,5519,5521,5527,5531,5557,5563,5569,5573,5581,5591,5623,5639,5641,5647,5651,5653,5657,5659,5669,5683,5689,5693,5701,5711,5717,5737,5741,5743,5749,5779,5783,5791,5801,5807,5813,5821,5827,5839,5843,5849,5851,5857,5861,5867,5869,5879,5881,5897,5903,5923,5927,5939,5953,5981,5987,6007,6011,6029,6037,6043,6047,6053,6067,6073,6079,6089,6091,6101,6113,6121,6131,6133,6143,6151,6163,6173,6197,6199,6203,6211,6217,6221,6229,6247,6257,6263,6269,6271,6277,6287,6299,6301,6311,6317,6323,6329,6337,6343,6353,6359,6361,6367,6373,6379,6389,6397,6421,6427,6449,6451,6469,6473,6481,6491,6521,6529,6533*,6541*,6547,6551,6553,6563,6569,6571,6577,6581,6599,6601*,6607,6619,6637,6653,6659,6661,6673,6679,6689,6691,6701,6703,6709,6719,6733,6737,6761,6763,6779,6781,6791,6793,6803,6823,6827,6829,6833,6841,6857,6863,6869,6871,6883,6899,6907,6911,6917,6947,6949,6959,6961,6967,6971,6977,6983,6991,6997,7001,7013,7019,7027,7039,7043,7057,7069,7079,7103,7109,7121,7127,7129,7151,7159,7177,7187,7193,7207,7211,7213,7219,7229,7237,7243,7247,7253,7283,7297,7307,7309,7321,7331,7333,7349,7351,7369,7393,7411,7417,7433,7451,7457,7459,7471*,7477,7481,7487,7489,7499,7507,7517,7523,7529,7537,7541,7547,7549,7559,7561,7573,7577,7583,7589,7591,7603,7607,7621,7639,7643,7649,7669,7673,7681,7687,7691,7699,7703,7717,7723,7727,7741,7753,7757,7759,7777*,7789,7793,7817,7823,7829,7841,7853,7867,7873,7877,7879,7883,7901,7907,7919,7927,7933,7937,7949,7951,7963,7993,8009,8011,8017,8039,8053,8059,8069,8081,8087,8089,8093,8101,8111,8117,8123,8147,8149*,8161,8167,8171,8179,8191,8209,8219,8221,8231,8233,8237,8243,8263,8269,8273,8287,8291,8293,8297,8311,8317,8329,8353,8363,8369,8377,8387,8389,8401*,8419,8423,8429,8431,8443,8447,8461,8467,8501,8513,8521,8527,8537,8539,8543,8563,8573,8581,8597,8599,8609,8623,8627,8629,8641,8647,8663,8669,8677,8681,8689,8693,8699,8707,8713,8719,8731,8737,8741,8747,8753,8761,8779,8783,8803,8807,8819,8821,8831,8837,8839,8849,8861,8863,8867,8887,8893,8911*,8923,8929,8933,8941,8951,8963,8969,8971,8999,9001,9007,9011,9013,9029,9041,9043,9049,9059,9067,9091,9103,9109,9127,9133,9137,9151,9157,9161,9173,9181,9187,9199,9203,9209,9221,9227,9239,9241,9257,9277,9281,9283,9293,9311,9319,9323,9337,9341,9343,9349,9371,9377,9391,9397,9403,9413,9419,9421,9431,9433,9437,9439,9461,9463,9467,9473,9479,9491,9497,9511,9521,9533,9539,9547,9551,9587,9601,9613,9619,9623,9629,9631,9643,9649,9661,9677,9679,9689,9697,9719,9721,9733,9739,9743,9749,9767,9769,9781,9787,9791,9803,9811,9817,9829,9833,9839,9851,9857,9859,9871,9883,9887,9901,9907,9923,9929,9931,9941,9949,9967,9973
+\end{verbatim}
+%\begin{theorem}普通奇数$N$有多个质因子时,存在同余余环
+
+
+%\subsection{质数的余环间关系}		
+%
+%\subsubsection{余环的阶}
+%
+%\begin{theorem}设两个余环,$(y_1) \ne (1)$,$(y_2) \ne (1)$,则$(y_1) \cdot (y_2)$是一个余环,并且$(y_1)\cdot (y_2) \ne (y_1) \ne (y_2)$成立.\end{theorem} \label{theo_y_ne}
+%证：任意$y_{11},y_{12} \in (y_1)$,$y_{12} \equiv y_{11}\cdot 10^{t_{1}} \pmod{p}$, $y_{21},y_{22} \in (y_2)$,$y_{22} \equiv y_{21} \cdot 10^{t_{2}} \pmod{p}$, 则:$y_{12} \cdot y_{22} \equiv y_{11} \cdot 10^{t_{1}} \cdot y_{21} \cdot 10^{t_{2}} \equiv y_{11} \cdot y_{22} \cdot 10^{t_{1}+t_{2}} \pmod{p}$,所以$(y_1) \cdot (y_2)$是一个余环.\\
+%任意$y_{1} \in (y_1)$,$y_{2} \in (y_2)$,假设$(y_1)\cdot (y_2) \ne (y_1)$,假设$(y_1) \cdot (y_2) =(y_1)$,则$y_{1}\cdot y_{2} \equiv y_{1} \cdot 10^t \pmod{p}$,即,$y_{2} \equiv 10^t \pmod{p}$成立,和$(y_2) \ne (1)$矛盾,假设不成立,同理$(y_1)\cdot (y_2) \ne (y_2)$, 得证.
+%
+%\begin{theorem}对于质数$p$的任意一个余环(y),必存在整数$t\le X$,使$(y)^t=(1)$成立\end{theorem} \label{theo:yt}
+%证：由定理\ref{theo_y_ne},设$(y) \ne (1)$,则：\\
+%	\indent $(y)^2 \ne (y)$ \\
+%	\indent 若$(y)^2 \ne (1)$,则$(y)^3 \ne (y)^2 \ne (y)$ \\
+%	\indent 若$(y)^3 \ne (1)$,则$(y)^4 \ne (y)^3 \ne (y)^2 \ne (y)$ \\
+%        \indent \ldots \\
+%	因为余环最多有$X$个,所以必有$t\le X$,使$(y)^t = (1)$成立.满足等式的最小$t$称为余环的阶,用符号$\overline{(y)}$表示.
+%
+%\subsubsection{同阶余环的数目}
+%%\subsection{任意正整数的欧拉表示}
+%%$x$表示任意正整数.
+%%\begin{theorem}对于任意正整数$d<x$,存在正整数$a,b$,$a\mid x$,$(a,b)=1$,$b<a<x$,使等式$d=\frac{x}{a} \cdot b $成立.\end{theorem} \label{theo_dab}
+%%	证： 令$m=(d,x)$,$a=\frac{x}{m}$,显然$a$是小于$x$的整数.令$b=\frac{d}{m}$,显然,$b$是小于$d$的整数,且有$b<a$.$d=(d,x) \cdot \frac{d}{(d,x)} = m \cdot b= \frac{x}{a} \cdot b$,得证.
+%
+%%	\begin{theorem}小于$x$,和$x$的最大公约数等于$m$的数共有$\varphi(\frac{x}{m} )$个,$\varphi$为欧拉函数.\end{theorem} \label{theo_m}
+%%	证：设$d_{1},d_{2},\ldots,d_{t}$是所有小于$x$,和$x$的最大公约数等于$m$的数,则：
+%%	$d_{1}=\frac{x}{a} \cdot b_{1}$,$d_{2}=\frac{x}{a} \cdot b_{2}$,\ldots,$d_{t}=\frac{x}{a} \cdot b_{t}$.根据\ref{theo_dab},可知$b_{1},b_{2},\ldots,b_{t}$是和$a$互质的$t$个数,所以$t=\varphi(a)=\varphi(\frac{x}{m})$.
+%
+%%	\begin{defination}同约集合${m}$为：若$d\in{m}$则$(d,x)=m$.由\ref{theo_m},集合的长度等于对应最大公约数的欧拉函数值\end{defination}
+%%		显然,对于任意$d$, $1\le d \le x$,一定属于且只能属于一个${m}$.因此$1$到$x$分属于多个同约集合,可得公式：\begin{equation} x=\sum_{m\mid x} \varphi(m) \end{equation} \label{equ_x_phi}
+%设$(y)$的阶数等于$T$,设$k<T$,并且$(k,T)=1$,$(y)_{k}=(y)^{k}$,易证,$(y)_{k}$的阶数也等于$T$；因此至少有$\varphi(T)$个余环的阶数等于$T$.\\
+%欧拉函数有一个重要的性质：
+%\begin{displaymath} n=\sum_{m\mid n} \varphi(m)  \end{displaymath}
+%因此,如果$m_{1}$阶的余环的个数大于$\varphi(m_{1})$,则必会导致另外一个$m_{2}$阶的余环个数小于$\varphi(m_{2})$.\\
+%\indent 综上得,阶数等于$T$的余环的个数等于$\varphi(T)$.
+%
+%\subsubsection{余环归枝图}
+%余环归枝图是表示余环的乘法运算环境中的余环位置关系的立体图.图中节点代表余环,连线代表一个幂次为X的质因子的幂运算.例如：下图是质数271对应的归枝图\\
+%\setlength{\unitlength}{1mm}
+%\begin{picture}(50,50)(-50,-40)
+%
+%\put(0,0){$(1)$}
+%\put(2,-1){\line(0,-1){9}}
+%\put(0,-13){$(11)$}
+%\put(2,-14){\line(-1,-3){3}}
+%\put(2,-14){\line(1,-3){4}}
+%\put(-5,-26){$(6)$}
+%\put(4,-28){$(14)$}
+%
+%\put(4,0){\line(5,-1){10}}
+%\put(15,-4){$(9)$}
+%\put(16,-5){\line(0,-1){6}}
+%\put(15,-15){$(3)$}
+%\put(16,-16){\line(1,-4){3}}
+%\put(12,-27){$(2)$}
+%\put(16,-16){\line(-1,-5){2}}
+%\put(18,-30){$(17)$}
+%
+%\put(4,0){\line(4,1){25}}
+%\put(28,7){$(7)$}
+%\put(29,6){\line(0,-1){6}}
+%\put(27,-3){$(25)$}
+%\put(29,-4){\line(-1,-5){2}}
+%\put(29,-4){\line(1,-4){3}}
+%\put(25,-16){$(5)$}
+%\put(31,-18){$(18)$}
+%\end{picture}
+%
+%\subsubsection{原根在归枝图中的分布}
+%\begin{theorem}原根所在余环的阶数等于X\end{theorem}
+%证：任意余环$(y)$,其阶数等于$T$,则必有$y \in (y), y^{T \cdot \overline{九}} \equiv 1 \pmod{p}$,
+%所以原根所在余环的阶数等于最大的阶数X.
+%
+%关于原根的分布有如下表达式：
+%\begin{equation} \varphi(p-1)=\varphi(X) \cdot \varphi(\overline{九}) \cdot  \frac{(X,\overline{九})}{\varphi((X,\overline{九}))} \end{equation} \label{equ_yg}
+%$\varphi(X)$：表示底层余环(阶等于$X$)的余环个数
+
+
+\section{基于石头数的整数分解法}
+
+
+\subsection{石头数及其计算}
+\begin{defination}本征质数——根据章节\ref{sec_jiu},任意和10互质的质数$p$都有对应的$九$,称$p$是$九$的本征质数.\end{defination}
+例如7是$九_6$的本征质数.
+\begin{defination}本征积——$九$的所有本征质数的乘积,用符号$R$表示.\end{defination}
+例如$R_6=91=7\times 13$
+\begin{defination}本征幂数——质数的乘方$p^{t}$对应$九_{[p^t]}$,称$p^{t}$是$九_{[p^t]}$的本征幂数.\end{defination}
+例如49是$九_{42}$的本征幂数.
+%\begin{defination}本征幂余——$p^{t}$是$九$的本征幂数,$t'$是使得$九_[p^{t'}] \ne 九_[p^{t}]$的小于$t$的最大整数,则$p^{t-t'}$为$九$的本征幂余,用符号$V$表示.\end{defination}
+\begin{defination}本征幂余——$p^{t}$是$九$的本征幂数,$p^{t-1}$不是$九$的本征幂数,$p^{t'}$不是$九$的本征幂数,但$p^{t'-1}$是$九$的本征幂数,则$p^{t'-t}$为$九$的本征幂余,用符号$V$表示.\end{defination}
+\begin{defination}本征幂余积——九的所有本征幂余的乘积,用$W$表示.\end{defination}
+\indent 对于$九_1=9$, 本征质数等于3,9是它的本征幂数,所以$W_1=3$.
+
+\begin{theorem} \label{theo_V_M} 幂数集合$A=\{p^2,p^3,\ldots ,p^t\}$, 对应的九集合$B=\{九_{[p^2]},九_{[p^3]},\ldots ,九_{[p^t]}\}$,
+	对应的本征幂余集合$C=\{V_{[p^2]},V_{[p^3]},\dots,V_{[p^t]}\}$,则
+	\begin{displaymath}\prod_{i=2}^{t} V_{[p^i]}=p^{t-1}\end{displaymath}
+\end{theorem} 
+证：${\displaystyle \prod_{i=2}^{t} V_{[p^i]}=p^{t-t'_1}\cdot p^{t'_1-t'_2} \ldots  p^{t'_m-1}=p^{t-1}}$,证毕.
+
+\begin{defination}石头数——九的本征积和本征幂余积的乘积,称作九的石头数,用符号$S$表示,$S=R\cdot W$.\end{defination}
+
+	关于表示方法的说明：$R_i,V_i,W_i,S_i$是和$九_i$对应的,$R_{[N]},V_{[N]},W_{[N]},S_{[N]}$是和$九_{[N]}$对应的.
+
+\begin{theorem} \label{theo_M_N} M、N是大于1的普通奇数,如果数$M$整除$N$,则$M$对应的$九$能整除$N$对应的$九$,表示为:
+\begin{displaymath} M\mid N \Rightarrow 九_{[M]} \mid 九_{[N]} 或 \overline{九_{[M]}} \mid  \overline{九_{[N]}} \end {displaymath}
+\end{theorem} 
+证：由题知$M \mid 九_{[M]}$,另外由$M \mid N$得$M \mid  九_{[N]}$,所以必有$\overline{九_{[M]}} \mid  \overline{九_{[N]}}$,证毕.
+
+下面证明石头数的计算公式：
+\begin{equation} \label{eq_S}
+			S=\frac{\displaystyle 九}
+			{\displaystyle
+			\prod_{\substack{m \mid \overline{九} ,m < \overline{九} }}S_{m}
+			}
+\end {equation}
+%		证：\begin{displaymath}$I=\prod_i p_i^{t_i}=\prod_i p_i \cdot \prod_i p_i^{t_i-1}$,前半部分代表$I$的所有质因子的乘积,后半部分表示其余乘积; 根据定理\ref{theo_M_N}, 如果$p_i \mid I$则$I_[p_i] \mid I$, 进而有$R_[p_i] \mid I$,得：$\prod_i p_i=\prod_{m|\overline{九}} R_m$.根据定理\ref{theo_V_M}以及\ref{theo_M_N}可知,$\prod_i p_i^{t_i-1}=\prod_{m|\overline{九}} V_m$.所以,$I=\prod_{m|\overline{九}}(R_m\cdot V_m)=\prod_{m|\overline{九}}S_m$.\end{displaymath}
+证：\begin{displaymath}九=\prod_i p_i^{t_i}=\prod_i p_i \cdot \prod_i p_i^{t_i-1}\end{displaymath} 前半部分代表九的所有质因子的乘积,后半部分表示其余乘积; 
+	根据定理\ref{theo_M_N}, 如果$p_i \mid 九$则$九_{[p_i]} \mid 九$, 进而有$R_{[p_i]} \mid 九$,所以：\begin{displaymath}\prod_i p_i=\prod_{m|\overline{九}} R_m\end{displaymath} 
+根据定理\ref{theo_V_M}以及定理\ref{theo_M_N}可知,\begin{displaymath}\prod_i p_i^{t_i-1}=\prod_{m|\overline{九}} W_m\end{displaymath}    所以,\begin{displaymath}九=\prod_{m|\overline{九}}(R_m\cdot W_m)=\prod_{m|\overline{九}}S_m \end{displaymath}
+由上式变形即得公式\ref{eq_S}.
+
+石头数计算举例：$S_{18}=\frac{\displaystyle 九_{18}}{\displaystyle S_2 \cdot S_9 \cdot S_3 \cdot S_6 \cdot S_1}
+=\frac{\displaystyle 九_{18}}{\displaystyle 11 \cdot 1001001 \cdot 111 \cdot 91 \cdot 9} = 999001$
+\subsection{石头数的分解}
+\label{sec_S}
+\subsubsection{求解本征幂余}
+设$p^t$是$九$的本征幂数,如果$p$不是$九$的本征质数,由定理\ref{theo_ring_power}可知$p \mid \overline{九}$,所以用$\overline{九}$的质因子去试除$S$,因为本征质数大于$\overline{九}$,所以能整除的一定是本征幂余$V$的质因子.然后求质因子的幂数,进而求得$V$.
+
+如果$p$是$九$的本征质数,需要根据下面的方法,先求取本征质数,再求这类本征幂余.
+
+\subsubsection{求取本征质数}
+从石头数中除去用上面的方法取得的本征幂余,得到的可能是本征积$R$,也可能包含了本征积和本征幂数的整数.设得到的整数为$R'$,由定理\ref{eq_prime_yuhuan}易知$\overline{九} \mid (R'-1)$.所以,
+设$n=k\cdot \overline{九} +1, k\ge 1$,用$n$试除$R'$,并滤除本征质数的乘积,就能得到$R'$的所有本征质数.
+
+如果所有本征质数的乘积小于$R'$,则$R' \ne R$,此时$R'$中有本征幂数.
+
+%\indent \textrm{stone\_son.py}是基于此算法的计算机程序, 程序利用了多进程技术,对$n$的无效取值进行了过滤,能够限定$n$的最大值.
+
+\indent 以下是$九_1$至$九_{50}$对应的石头数及其因子情况：\\
+ 1:9=[3]; \\
+ 2:11=[11]; \\
+ 3:111=[3, 37];\\
+ 4:101=[101];\\
+ 5:11111=[41, 271];\\
+ 6:91=[7, 13];\\
+ 7:1111111=[239, 4649];\\
+ 8:10001=[73, 137];\\
+ 9:1001001=[3, 333667];\\
+ 10:9091=[9091];\\
+ 11:11111111111=[21649, 513239];\\
+ 12:9901=[9901];\\
+ 13:1111111111111=[53, 79, 265371653];\\
+ 14:909091=[909091];\\
+ 15:90090991=[31, 2906161];\\
+ 16:100000001=[17, 5882353];\\
+ 17:11111111111111111=[2071723, 5363222357];\\
+ 18:999001=[19, 52579];\\
+ 19:1111111111111111111=[1111111111111111111];\\
+ 20:99009901=[3541, 27961];\\
+ 21:900900990991=[43, 1933, 10838689];\\
+ 22:9090909091=[11, 23, 4093, 8779];\\
+ 23:11111111111111111111111=[11111111111111111111111];\\
+ 24:99990001=[99990001];\\
+ 25:100001000010000100001=[21401, 25601, 182521213001];\\
+ 26:909090909091=[859, 1058313049];\\
+ 27:1000000001000000001=[3, 757, 440334654777631];\\
+ 28:990099009901=[29, 281, 121499449];\\
+ 29:11111111111111111111111111111 \\ 
+ \indent   =[3191, 16763, 43037, 62003, 77843839397];\\
+ 30:109889011=[211, 241, 2161]; \\
+ 31:1111111111111111111111111111111 \\ 
+  \indent      =[2791, 6943319, 57336415063790604359]; \\
+ 32:10000000000000001=[353, 449, 641, 1409, 69857];\\
+ 33:90090090090990990991=[67, 1344628210313298373];\\
+ 34:9090909090909091=[103, 4013, 21993833369];\\
+ 35:900009090090909909099991=[71, 123551, 102598800232111471];\\
+ 36:999999000001=[999999000001];\\
+ 37:1111111111111111111111111111111111111\\
+ \indent      =[2028119, 247629013, 2212394296770203368013];\\
+ 38:909090909090909091=[909090909090909091];\\
+ 39:900900900900990990990991=[900900900900990990990991];\\
+ 40:9999000099990001=[1676321, 5964848081];\\
+ 41:11111111111111111111111111111111111111111\\
+ \indent     =[83, 1231, 538987,201763709900322803748657942361*];\\
+ 42:156985855573=[127, 2689, 459691]; \\
+ 42:1098900989011=[7, 127, 2689, 459691]; \\
+ 43:1111111111111111111111111111111111111111111 \\
+ \indent      =[173, 1527791,4203852214522105994074156592890477*]; \\
+ 44:99009900990099009901=[89, 1052788969, 1056689261];\\
+ 45:999000000999000999999001=[238681, 4185502830133110721]; \\
+ 46:9090909090909090909091=[47, 139, 2531, 549797184491917];\\
+ 47:11111111111111111111111111111111111111111111111\\
+ \indent      =[35121409,316362908763458525001406154038726382279*]; \\
+ 48:9999999900000001=[9999999900000001]; \\
+ 49:1000000100000010000001000000100000010000001\\
+ \indent      =[505885997,1976730144598190963568023014679333*];\\
+ 50:99999000009999900001=[251, 5051, 78875943472201];\\
+ 以上标有*的,是因为限于所用计算机的计算能力,还不知道这个数是质数还是合数. 
+ 如果石头数的分解因子小于对应的$\overline{九}$,比如$7<42$,则这个分解因子是一个本征幂余.
+
+\subsection{基于石头数的整数分解法}
+
+\begin{theorem} \label{theo_factorization} $N$是普通奇数,则以$九_{[N]}$的所有因子为九长度,这些九对应的所有本征质数的集合包含了$N$的所有质因子.\end{theorem}
+	证：根据定理\ref{theo_M_N}可知,如果质数$p \mid N$,则$九_{[p]}\mid 九_{[N]}$,所以设$A$表示$\overline{九_{[N]}}$的因子集合,以A中的数值为九的长度,它们对应的本征质数的集合必然包括了$N$的所有质因子,证毕.
+
+因此,可得普通奇数的分解方法:\\
+1.基于公式\ref{eq_jiu}或者\ref{eq_jiulen},求普通奇数$N$的$\overline{九_{[N]}}$,\\
+2.分解$\overline{九_{[N]}}$,得其因子集合A.\\
+3.以A中数据作为九的长度,利用公式\ref{eq_S}求对应的石头数;得到石头数集合B.\\
+4.对B中所有石头数,根据章节\ref{sec_S}中的方法,求对应的本征质数; 得到本征质数集合C.\\
+\indent 为了分解整数$N$,不需要求大于$\sqrt{N}$的本征质数,在设计算法时,可以加入这个过滤条件.\\
+5.用C中的所有本征质数试除$N$,得到$N$的质因子.\\
+6.用尝试的办法,计算质因子的幂数,最终得N的标准分解式.
+
+下面是N=567的分解举例.\\
+1.求$\overline{九_{[N]}}$,等于18\\
+2.分解18得:{1, 2, 3, 9, 6},\\
+3.求解石头数得：$S_1=9$,$S_2=11$,$S_3=111$,$S_9=1001001$,$S_6=91$,\\
+4.分解石头数得到本征质数集合:{3,11,37,333667,7,13},\\
+5.用3,11,37,333667,7,13试除567得：3,7能整除567,\\
+6.求其质因子的幂数得标准分解式:$567=3^4 \times 7$.
+
+对于不是普通奇数的整数(即个位数字是0,2,5的整数),除去整数中的2和5后得到一个普通奇数,再按照上面的方法继续分解即可.
+
+%\end{CJK*}
+\renewcommand{\refname}{参考文献}
+\begin{thebibliography}{99}
+\bibitem{ref1} Dudley U.,A Guide To Elementary Number Theory,Washington DC:The Mathematical Association of America,2009,13-17.
+\bibitem{ref2} Hua L-K(华罗庚), An Introduction to  Number Theory(数论导引),Beijing:Science Press,1995,24-30.
+\end{thebibliography}
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

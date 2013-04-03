@@ -1,0 +1,190 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Python Language Services &mdash; Python v3.0c1 documentation</title>
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+          URL_ROOT:    '../',
+          VERSION:     '3.0c1',
+          COLLAPSE_MODINDEX: false,
+          FILE_SUFFIX: '.html'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Search within Python v3.0c1 documentation"
+          href="../_static/opensearch.xml"/>
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="copyright" title="Copyright" href="../copyright.html" />
+    <link rel="top" title="Python v3.0c1 documentation" href="../index.html" />
+    <link rel="up" title="The Python Standard Library" href="index.html" />
+    <link rel="next" title="parser &#8212; Access Python parse trees" href="parser.html" />
+    <link rel="prev" title="runpy &#8212; Locating and executing Python modules" href="runpy.html" />
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../modindex.html" title="Global Module Index"
+             accesskey="M">modules</a> |</li>
+        <li class="right" >
+          <a href="parser.html" title="parser &#8212; Access Python parse trees"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="runpy.html" title="runpy &#8212; Locating and executing Python modules"
+             accesskey="P">previous</a> |</li>
+<li><img src="../_static/py.png" alt="" style="vertical-align: middle; margin-top: -1px"/></li>
+
+        <li><a href="../contents.html">Python v3.0c1 documentation</a> &raquo;</li>
+
+          <li><a href="index.html" accesskey="U">The Python Standard Library</a> &raquo;</li>
+      </ul>
+    </div>
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  
+  <div class="section" id="python-language-services">
+<span id="language"></span><h1>Python Language Services<a class="headerlink" href="#python-language-services" title="Permalink to this headline">¶</a></h1>
+<p>Python provides a number of modules to assist in working with the Python
+language.  These modules support tokenizing, parsing, syntax analysis, bytecode
+disassembly, and various other facilities.</p>
+<p>These modules include:</p>
+<ul>
+<li><a class="reference external" href="parser.html"><tt class="docutils literal"><span class="pre">parser</span></tt> &#8212; Access Python parse trees</a><ul>
+<li><a class="reference external" href="parser.html#creating-st-objects">Creating ST Objects</a></li>
+<li><a class="reference external" href="parser.html#converting-st-objects">Converting ST Objects</a></li>
+<li><a class="reference external" href="parser.html#queries-on-st-objects">Queries on ST Objects</a></li>
+<li><a class="reference external" href="parser.html#exceptions-and-error-handling">Exceptions and Error Handling</a></li>
+<li><a class="reference external" href="parser.html#id1">ST Objects</a></li>
+<li><a class="reference external" href="parser.html#examples">Examples</a><ul>
+<li><a class="reference external" href="parser.html#emulation-of-compile">Emulation of <tt class="docutils literal"><span class="pre">compile</span></tt></a></li>
+<li><a class="reference external" href="parser.html#information-discovery">Information Discovery</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><a class="reference external" href="ast.html">Abstract Syntax Trees</a><ul>
+<li><a class="reference external" href="ast.html#node-classes">Node classes</a></li>
+<li><a class="reference external" href="ast.html#id1">Abstract Grammar</a></li>
+<li><a class="reference external" href="ast.html#ast-helpers"><tt class="docutils literal"><span class="pre">ast</span></tt> Helpers</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><a class="reference external" href="symtable.html"><tt class="docutils literal"><span class="pre">symtable</span></tt> &#8212; Access to the compiler&#8217;s symbol tables</a><ul>
+<li><a class="reference external" href="symtable.html#generating-symbol-tables">Generating Symbol Tables</a></li>
+<li><a class="reference external" href="symtable.html#examining-symbol-tables">Examining Symbol Tables</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><a class="reference external" href="symbol.html"><tt class="docutils literal"><span class="pre">symbol</span></tt> &#8212; Constants used with Python parse trees</a></li>
+</ul>
+<ul>
+<li><a class="reference external" href="token.html"><tt class="docutils literal"><span class="pre">token</span></tt> &#8212; Constants used with Python parse trees</a></li>
+</ul>
+<ul>
+<li><a class="reference external" href="keyword.html"><tt class="docutils literal"><span class="pre">keyword</span></tt> &#8212; Testing for Python keywords</a></li>
+</ul>
+<ul>
+<li><a class="reference external" href="tokenize.html"><tt class="docutils literal"><span class="pre">tokenize</span></tt> &#8212; Tokenizer for Python source</a></li>
+</ul>
+<ul>
+<li><a class="reference external" href="tabnanny.html"><tt class="docutils literal"><span class="pre">tabnanny</span></tt> &#8212; Detection of ambiguous indentation</a></li>
+</ul>
+<ul>
+<li><a class="reference external" href="pyclbr.html"><tt class="docutils literal"><span class="pre">pyclbr</span></tt> &#8212; Python class browser support</a><ul>
+<li><a class="reference external" href="pyclbr.html#class-objects">Class Objects</a></li>
+<li><a class="reference external" href="pyclbr.html#function-objects">Function Objects</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><a class="reference external" href="py_compile.html"><tt class="docutils literal"><span class="pre">py_compile</span></tt> &#8212; Compile Python source files</a></li>
+</ul>
+<ul>
+<li><a class="reference external" href="compileall.html"><tt class="docutils literal"><span class="pre">compileall</span></tt> &#8212; Byte-compile Python libraries</a></li>
+</ul>
+<ul>
+<li><a class="reference external" href="dis.html"><tt class="docutils literal"><span class="pre">dis</span></tt> &#8212; Disassembler for Python bytecode</a><ul>
+<li><a class="reference external" href="dis.html#python-bytecode-instructions">Python Bytecode Instructions</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><a class="reference external" href="pickletools.html"><tt class="docutils literal"><span class="pre">pickletools</span></tt> &#8212; Tools for pickle developers.</a></li>
+</ul>
+<ul>
+<li><a class="reference external" href="distutils.html"><tt class="docutils literal"><span class="pre">distutils</span></tt> &#8212; Building and installing Python modules</a></li>
+</ul>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <h4>Previous topic</h4>
+            <p class="topless"><a href="runpy.html" title="previous chapter"><tt class="docutils literal"><span class="pre">runpy</span></tt> &#8212; Locating and executing Python modules</a></p>
+            <h4>Next topic</h4>
+            <p class="topless"><a href="parser.html" title="next chapter"><tt class="docutils literal docutils literal"><span class="pre">parser</span></tt> &#8212; Access Python parse trees</a></p>
+            <h3>This Page</h3>
+            <ul class="this-page-menu">
+              <li><a href="../_sources/library/language.txt">Show Source</a></li>
+            </ul>
+          <h3>Quick search</h3>
+            <form class="search" action="../search.html" method="get">
+              <input type="text" name="q" size="18" /> <input type="submit" value="Go" />
+              <input type="hidden" name="check_keywords" value="yes" />
+              <input type="hidden" name="area" value="default" />
+            </form>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../modindex.html" title="Global Module Index"
+             accesskey="M">modules</a> |</li>
+        <li class="right" >
+          <a href="parser.html" title="parser &#8212; Access Python parse trees"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="runpy.html" title="runpy &#8212; Locating and executing Python modules"
+             accesskey="P">previous</a> |</li>
+<li><img src="../_static/py.png" alt="" style="vertical-align: middle; margin-top: -1px"/></li>
+
+        <li><a href="../contents.html">Python v3.0c1 documentation</a> &raquo;</li>
+
+          <li><a href="index.html" accesskey="U">The Python Standard Library</a> &raquo;</li>
+      </ul>
+    </div>
+    <div class="footer">
+      &copy; <a href="../copyright.html">Copyright</a> 1990-2008, Python Software Foundation.
+      Last updated on Oct 31, 2008.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.5.
+    </div>
+  </body>
+</html>

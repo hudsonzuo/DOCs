@@ -1,0 +1,11 @@
+Crossing File System Boundaries
+
+tar will normally automatically cross file system boundaries in order to archive files which are part of a directory tree. You can change this behavior by running tar and specifying ‘--one-file-system’. This option only affects files that are archived because they are in a directory that is being archived; tar will still archive files explicitly named on the command line or through ‘--files-from’, regardless of where they reside.
+
+‘--one-file-system’
+
+    Prevents tar from crossing file system boundaries when archiving. Use in conjunction with any write operation. 
+
+The ‘--one-file-system’ option causes tar to modify its normal behavior in archiving the contents of directories. If a file in a directory is not on the same file system as the directory itself, then tar will not archive that file. If the file is a directory itself, tar will not archive anything beneath it; in other words, tar will not cross mount points.
+
+This option is useful for making full or incremental archival backups of a file system. If this option is used in conjunction with ‘--verbose’ (‘-v’), files that are excluded are mentioned by name on the standard error. 

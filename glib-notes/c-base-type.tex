@@ -1,0 +1,99 @@
+\startcomponent c-base-type
+\product prd-glib-note
+
+\chapter{基本类型}
+
+出于易用与可移植性等方面的考虑，GLib 定义了一些常用的数据类型。
+
+\section{标准 C 所缺乏的数据类型}
+
+事实上，GLib 所定义的这部分数据类型，多数在 C99 中已有定义，但是它们均非标准 C 的内建类型，通常是在各种 C 标准库的头文件定义（并且不同的 C 标准库所提供的头文件名可能会不相同）。GLib 之所以提供相应的替代类型，主要是将 C 标准库隐匿，向用户提供一组风格较为一致的数据类型。
+
+C 语言没有提供布尔类型，GLib 基于 int 类型定义了 gboolean 类型，并定义了 FALSE 与 TRUE 宏：
+\starttyping[option=c]
+#ifndef FALSE
+#define FALSE (0)
+#endif
+
+#ifndef TRUE
+#define TRUE (!FALSE)
+#endif
+\stoptyping
+
+为了增强 C 程序的可移植性，C 语言标准提供了 size\_t 类型，一种无符号整型变量，适于计量存储空间中可容纳的数据项目个数，在数组下标和内存管理函数之类的地方广泛使用，例如 sizeof 操作符的返回结果即为 size\_t 类型。size\_t 类型的存储宽度是平台依赖的，例如在 32 位环境中，其宽度为 32 位，而在 64 位环境中，其宽度则为 64 位。size\_t 的有符号变体是 ssize\_t。GLib 定义了 gsize 与 gssize 类型，分别等同于 size\_t 与 ssize\_t。GLib 的这种克隆行为显得有点多余，但事实上，size\_t 与 ssize\_t 一般是在 C 标准库的头文件中定义，程序中使用时通常需要：
+
+\starttyping[option=c]
+#include <stdlib.h>
+\stoptyping
+
+\noindent 为此 GLib 不辞劳苦，让我们有了一点小解脱。gsize 与 gssize 的取值范围分别为 [0, G\_MAXSIZE] 与 [G\_MINSSIZE, G\_MAXSSIZE]。
+
+C99 中提供了 off64\_t 类型，是 64 位宽的整型类型，用于表示文件偏移量，主要用于大文件的数据存取。像对待 size\_t 那样，GLib 也提供了 off64\_t 的克隆，即 goffset 类型，并定义了相应取值范围 [G\_MINOFFSET, G\_MAXOFFSET]。
+
+很多情况下，C 程序员会将指针类型的变量强制转换为整型变量进行一些运算（多用于需要精确控制数据在内存中的精确布局）。在 32 位平台上，由于指针类型的宽度和 int 相同，所以指针类型与 int 类型的转换问题通常不受重视，但是在 64 位平台上，由于目前几乎所有的 64 位操作系统均采用 LP64 模型，即 int 的宽度是 32 位，而指针类型的宽度为 64 位，此时指针类型与 int 类型的转换便会存在隐患。为此，C99 中提供了 intptr\_t 数据类型，以保证 C 程序跨平台移植的安全性。intptr\_t 是有符号的整型类型，其无符号变体为 uintptr\_t，GLib 提供的替代类型分别为 gintptr 与 guintptr，并且提供了相应的输入/输出格式 G\_GINTPTR\_MODIFIER 与 G\_GINTPTR\_FORMAT，例如：
+
+\starttyping[option=c]
+#include <glib.h>
+... ...
+gchar *s = "hello world!";
+gintptr p = (gintptr)s;
+g_print ("%#" G_GINTPTR_MODIFIER "x\n", p);
+g_print ("%" G_GINTPTR_FORMAT "\n", p);
+... ...
+\stoptyping
+
+记住，对于使用 GLib 库的程序，gcc 的编译命令为：
+
+\starttyping[numbering=no]
+$ gcc `pkg-config --cflags --libs glit-2.0` foo.c -o foo
+\stoptyping
+
+\section{跨平台等宽整型类型}
+
+这部分数据类型是一组固定宽度的整型类型，有 g[u]int[8, 16, 32, 64]\footnote{我喜欢的简写方式，可解读为：gint8, guint8, gint16, guint16, gint32, guint32, gint64, guint64。}，GLib 所做的工作就是在它支持的所有平台上保证它们的宽度一致。
+
+设 $x \in \{8, 16, 32, 64\}$，gint$x$ 的取值范围为 [G\_MININT$x$, G\_MAXINT$x$]，\crlf
+guint$x$ 的取值范围为 [0, G\_MAXUINT$x$]；g[u]int$x$ 的输入/输出格式为 G\_GINT$x$\_[MODIFIER, FORMAT]。
+
+\section{标准 C 数据类型封装}
+
+这部分数据类型均为标准 C 的内建类型，GLib 采用封装的形式进行了些许简化。
+
+首先，C 的无类型指针 void * 与指向常量数据的无类型指针 const void * 分别被 GLib 定义为 gpointer 与 gconstpointer。
+
+然后，C 的无符号字符、短整型、整型与长整型，即 unsigned [char, short, int, long] 被 GLib 定义为 gu[char, short, int, long]。
+
+\section{还有一些画蛇添足的类型}
+
+为了保持与前三部分数据类型编码风格的一致，GLib 行为艺术般的将标准 C 内建的数据类型 $\{x | x \in$ {char, int, short, long, float, double} 重新取名为 g$x$，并且界定它们的取值范围为 [-G\_MAX$X$, G\_MAX$X$]，$X \in$ {CHAR, INT, SHORT, LONG, FLOAT, DOUBLE}。
+
+\section{数值宏}
+
+GLib 对数学计算中经常用到的几个数值提供了宏定义。有些 C 标准库提供了相关宏定义，但也有未提供的。GLib 能做到的就是它可以保证它会一直提供这些宏。
+
+G\_E 表示自然基底 $e$。
+
+G\_PI, G\_PI\_2, G\_PI\_4 分别表示 $\pi, 2\pi, 4\pi$。
+
+G\_LN2 与 G\_LN10 分别表示 $\ln 2$ 与 $\ln 10$。
+
+G\_LOG\_2\_BASE\_10 表示 \asciimath{log_{10}2} 。
+
+G\_SQRT2 表示 $\sqrt{2}$。
+
+此外，GLib 还提供了 IEEE754 单/双精度浮点数移码的宏定义，并提供便于访问 IEEE754 格式单/双精度浮点数的符号、阶码与尾数的 union 类型，例如：
+
+\starttyping[option=c]
+GFloatIEEE754 a = {3.1415};
+g_print ("%u\n", a.mpn.sign);
+g_print ("%u\n", a.mpn.biased_exponent);
+g_print ("%u\n", a.mpn.mantissa);
+\stoptyping
+
+\section{想知道更多}
+
+GLib 基本类型的详细说明见 GLib 参考手册的“GLib Fundamentals”部分以及 glib/gtypes.h 文件。
+
+GLib 的基本类型的外延部分还提供了整型类型与指针类型的原子操作，由于我的程序环境不涉及多线程编程问题，所以此部分内容被我故意忽略了，若需要了解这部分内容，可查阅 GLib 参考手册的“Atomic Operations”部分。
+
+\stopcomponent

@@ -1,0 +1,80 @@
+eix_tag  
+update-eix-remote update 可以查到未下载的overlay里的东西  
+equery uses XXX    查询XXX包带的USE标志  
+equery hasuse X    查询使用X这个USE标志的包  
+eix -2 -I --only-names 查slot  
+eix -1 -I --only-names   
+eix -U(--use) ithread 查询USE为ithread的包   
+eix -v(--verbose)    详细查询  
+  
+eix -l( --versionlines )  每个版本都以行列出  
+eix -c(--compact) 只列出一些信息  
+  
+eix -d , --dup-packages  只匹配duplicated的包 如果sys-foo/bar同时存在不同  
+的overlay里面(包括官方portage)  
+  
+eix -D, --dup-versions  同时在存不同的版本,类似-d  
+eix -P,--provide i.e "virtual/blackbox"  
+  
+eix --only-names 只列出名字  
+eix -I(--installed) 列出已完装的  
+eix -i(--multi-installed)  
+eix -u(--upgrade, --upgrade+, --upgrade-) 升级  
+eix --stable    至少有一个是稳定版的包  
+eix --system 列出是system的包  
+eix -O, --overlay             到少匹配一个包版本在Overaly里的包  
+eix --in-overlay overlay_name 列出在overlay_name里的包(注：不能加overlay_name不知为何)  
+eix --only-in-overlay overlay_name  
+eix -J(--installed-overlay)  安装了overaly的包  
+eix --installed-from-overlay overlay  
+  
+eix -s, --name 默认以名字查询  
+eix -S, --description 以描述查询  
+eix -C, --category  i.e. "app-portage"  
+eix -A, --category-name  i.e. "app-portage/eix"  
+eix -H, --homepage   i.e "http://xxx"  
+eix -L, --license    i.e "GPL-2"  
+eix --installed-with-use  安装包带use参数的  
+eix --installed-without-use  
+eix -e, --exact  直接查完整包名 如 eix -e gcc 查出只是gcc的包  
+eix -f, --fuzzy 模糊查找  
+eix -p, --pattern   
+eix -r, --regex 正规表达式  
+  
+eix -I -J  列出已安装的overlay的包  
+eix --fetch  列出最后一个版本是需要自己手动下载的包  
+eix --mirror 列出最后一个版本是 !m 的包  
+//-------------------------  
+ x11-themes/thinkeramik  
+     Available versions:  3.2.1!m {debug elibc_FreeBSD xine                                                                   rama}  
+     Homepage:            http://www.kde-look.org/content/s                                                                   how.php?content=10919  
+     De  
+--------------------------------------  
+eix --stable 列出最后一个版本为stable的包  
+eix --upgrade, --upgrade+, --upgrade- 最后一个版本为可升级的或是降级+ - 表示LOCAL_PORTAGE_CONFIG的真和假  
+eix --testing, --testing+,--testing-  
+eix --non-masked, --non-masked+, --non-masked-  
+eix --system, --system+, --system-  
+eix -O, --overlay 只列出包最后一个版本在overlay，无论是否安装，注意跟-J的区别  
+eix -T, --test-obsolete 测试陈旧的包  
+eix -l, --pipe   
+eix -!, --not    
+  
+  
+非常有用的FORMAT  
+   Application:  
+       FORMAT='{downgrade}%{FORMAT_COMPACT}{}' eix -I  
+              This  will  print  all installed packages for which there are downgrade recommendations.  Note that  
+              the compact format is used to output the packages: We  cannot  use  FORMAT='{downgrade}%{FORMAT}{}'  
+              because  this  would be a self-reference.  However, if you want to use the default FORMAT layout to  
+              output the packages, we can use FORMAT_COMPACT to wrap around FORMAT:  
+  
+       FORMAT_COMPACT='{downgrade}%{FORMAT}{}' eix -cI  
+              This is as above, but the matching packages will be printed with the default (non-compact)  format.  
+              The  option  -c  is  needed  so  that eix will use our FORMAT_COMPACT variable as the format string  
+              (which we "misused" as a "wrapper" for FORMAT in this example).  
+
+
+
+
+

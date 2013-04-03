@@ -1,0 +1,90 @@
+ssh tar 命令把远程文件拉回来或推过去
+登录22后tar 压缩/var/log目录输出到标准输入通过管道传到本地22_log.tar.gz文件
+ssh 192.168.0.22 "cd /var ;tar -zcvf - log"|cat >22_log.tar.gz
+ 
+ 
+在提取存档文件时，会在相对位置重新创建文件。可以使用这种方法帮助同步目录。因为 tar 创建目录结构的字节流，可以通过结合使用 tar 和管道把文件从一个位置复制到另一个位置：$ tar cf - ./etc |( cd /backup; tar xf - )。“-” 指定 tar 应该使用标准输出（在写时）或标准输入（在读时）。圆括号让语句在一个子 shell 中执行。看一下管道符前面的代码，它创建文件的字节流并发送到标准输出。在管道符后面，切换到另一个目录，然后从标准输入提取字节流。
+
+    要想保留文件的所有者和权限，可以使用 p 选项保留每个文件和目录的元数据：$ tar cfp - ./etc |( cd /backup; tar xfp - )。
+
+    掌握这种基本结构之后，就可以执行更复杂的操作。例如，可以只复制在特定时间之后修改过的文件：$ tar cf - --newer 20090101 ./etc |(cd /backup; tar xf - )。这个命令创建在 2009 年 1 月 1 日之后修改过的文件的拷贝。
+
+    通过与 rsh 或 ssh 结合使用，还可以把文件同步到远程主机：$ tar cfp - ./etc |(ssh user@host -- tar xfp -)。按照这种方式使用 ssh 和 tar 是在远程主机上创建本地文件备份的好方法。但是，还有更高效的信息同步方法。
+
+1、在A机压缩后，复制到B机器并解压缩
+tar -cf - /opt/dir1 | ssh 192.168.0.116 "cd /opt; tar -xf -"
+
+2、在A机压缩，并将压缩文件复制到B机
+tar -cf - /opt/dir1 | ssh 192.168.0.116 "cd /opt; cat - > dir1.tar"
+
+3、将A机的压缩文件，复制到B机并解压缩
+zcat dir.tar | ssh 192.168.0.116 "cd /opt; tar -xf -"
+
+传输到远程：tar czf - file| ssh server "tar zxf -"
+
+压缩到远程：tar czf - file| ssh server "cat > file.tar.gz"
+
+解压到远程：ssh server "tar zxf -" < file.tar.gz
+
+解压到本地：ssh server "cat file.tar.gz" | tar zxf -
+
+-----------------------------------------------------------------
+
+$target 表示目的机器,指远端机器
+$backup_server 表示备份机器,同样也是指远端机器
+$save 则是指备份目录
+
+要求远端备份并拉回 local
+ssh $target tar -cf - / --exclude /mnt | bzip2 -9 | cat > $target.tar.bz2
+
+解开本地备份并回存到远端去
+bunzip2 -dc $target.tar.bz2 | ssh $target "cd /;tar -pxkf -"
+
+备份 local 资料,丟到远端去压缩并存档
+tar cf - / --exclude xxx | ssh $backup_server "bzip2 -9 > $save/test.tar.bz2"
+
+把远端资料拉回 local,作解压缩动作
+ssh $backup_server "cat $save/test.tar.bz2" | bunzip2 | tar -xpkf -
+
+ 
+
+ 
+
+在本地脚本放在远程执行
+
+cat myscript.sh | ssh kramer /bin/sh 
+hostname
+date
+w
+ifconfig
+ps -ef | grep http | awk '{print $NF}'
+在远程较长的管道命令（这个同样可以用上面的脚本方式执行） 
+
+    #! /bin/sh
+    ssh 172.16 .1 .2 <<EOF
+    sa=`/usr/sbin/alternatives --config java 2>& 1`
+    echo "Result:"
+    echo "$sa"
+    echo
+    echo "Will I find anything when I look in that result for jdk1.6.0_05 ???"
+    echo "$sa" | grep "jdk1.6.0_05"
+    echo "Nope. I thought not! But the reason should be clear now!"
+    EOF
+
+
+ssh技巧
+ 
+
+远程比较文件 
+ssh remote-hosts cat memos/memo.draft | diff memos.new -
+cat memos.new | ssh speedy diff - memos/memo.draft#diff <(ssh -n george cat /etc/passwd) <(ssh -n kramer cat /etc/passwd)
+ 
+ 
+打包文件并直接传递到远程目录解开（不在本地生成文件） 
+tar cf - some_directory | ssh kramer "( cd /path/to/destination; tar xf - )"
+
+ssh 192.168.100.166 tar -cf - /var/www/html/centos/5/repodata |cat > tt.tar
+ssh 192.168.10.145 tar -czf - '--exclude=*.gz' '--exclude=*.tgz' '--exclude=*.tar' /a8root/phpweb/website/images
+直接获取远程文件tar并在本地保留
+ssh 192.168.100.166 "find /var/www/html/centos/5/repodata -depth -print | cpio -oaV" | cat > tt.cpio
+

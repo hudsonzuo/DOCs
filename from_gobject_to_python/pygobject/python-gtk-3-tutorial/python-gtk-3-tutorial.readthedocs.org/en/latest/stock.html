@@ -1,0 +1,942 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+
+    <title>22. Stock Items &mdash; Python GTK+ 3 Tutorial 1.0 documentation</title>
+<!-- RTD <head> -->
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
+<script type="text/javascript" src="//media.readthedocs.org/javascript/underscore.js"></script>
+<script type="text/javascript" src="//media.readthedocs.org/javascript/doctools.js"></script>
+<script type="text/javascript" src="//media.readthedocs.org/javascript/searchtools.js"></script>
+
+  <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;"/>
+
+  <script type="text/javascript">
+    var doc_version = "latest";
+    var doc_slug = "python-gtk-3-tutorial";
+  </script>
+  <script type="text/javascript" src="//media.readthedocs.org/javascript/rtd.js"></script>
+<!-- end RTD <head> -->
+
+    
+    <link rel="stylesheet" href="_static/rtd.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <link rel="top" title="Python GTK+ 3 Tutorial 1.0 documentation" href="index.html" />
+    <link rel="prev" title="21. Objects" href="objects.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="objects.html" title="21. Objects"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Python GTK+ 3 Tutorial 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="stock-items">
+<span id="id1"></span><h1>22. Stock Items<a class="headerlink" href="#stock-items" title="Permalink to this headline">¶</a></h1>
+<p>Stock items represent commonly-used menu or toolbar items such as &#8220;Open&#8221; or
+&#8220;Exit&#8221;. Each stock item is identified by a stock ID; stock IDs are just strings,
+but constants such as <a class="reference internal" href="#Gtk.STOCK_OPEN" title="Gtk.STOCK_OPEN"><tt class="xref py py-attr docutils literal"><span class="pre">Gtk.STOCK_OPEN</span></tt></a> are provided to avoid typing mistakes
+in the strings.</p>
+<dl class="attribute">
+<dt id="Gtk.STOCK_ABOUT">
+<tt class="descclassname">Gtk.</tt><tt class="descname">STOCK_ABOUT</tt><a class="headerlink" href="#Gtk.STOCK_ABOUT" title="Permalink to this definition">¶</a></dt>
+<dd><img alt="_images/help-about.png" src="_images/help-about.png" />
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Gtk.STOCK_ADD">
+<tt class="descclassname">Gtk.</tt><tt class="descname">STOCK_ADD</tt><a class="headerlink" href="#Gtk.STOCK_ADD" title="Permalink to this definition">¶</a></dt>
+<dd><img alt="_images/list-add.png" src="_images/list-add.png" />
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Gtk.STOCK_APPLY">
+<tt class="descclassname">Gtk.</tt><tt class="descname">STOCK_APPLY</tt><a class="headerlink" href="#Gtk.STOCK_APPLY" title="Permalink to this definition">¶</a></dt>
+<dd><img alt="_images/gtk-apply.png" src="_images/gtk-apply.png" />
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Gtk.STOCK_BOLD">
+<tt class="descclassname">Gtk.</tt><tt class="descname">STOCK_BOLD</tt><a class="headerlink" href="#Gtk.STOCK_BOLD" title="Permalink to this definition">¶</a></dt>
+<dd><img alt="_images/format-text-bold.png" src="_images/format-text-bold.png" />
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Gtk.STOCK_CANCEL">
+<tt class="descclassname">Gtk.</tt><tt class="descname">STOCK_CANCEL</tt><a class="headerlink" href="#Gtk.STOCK_CANCEL" title="Permalink to this definition">¶</a></dt>
+<dd><img alt="_images/gtk-cancel.png" src="_images/gtk-cancel.png" />
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Gtk.STOCK_CAPS_LOCK_WARNING">
+<tt class="descclassname">Gtk.</tt><tt class="descname">STOCK_CAPS_LOCK_WARNING</tt><a class="headerlink" href="#Gtk.STOCK_CAPS_LOCK_WARNING" title="Permalink to this definition">¶</a></dt>
+<dd><img alt="_images/gtk-caps-lock-warning.png" src="_images/gtk-caps-lock-warning.png" />
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Gtk.STOCK_CDROM">
+<tt class="descclassname">Gtk.</tt><tt class="descname">STOCK_CDROM</tt><a class="headerlink" href="#Gtk.STOCK_CDROM" title="Permalink to this definition">¶</a></dt>
+<dd><img alt="_images/media-optical.png" src="_images/media-optical.png" />
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Gtk.STOCK_CLEAR">
+<tt class="descclassname">Gtk.</tt><tt class="descname">STOCK_CLEAR</tt><a class="headerlink" href="#Gtk.STOCK_CLEAR" title="Permalink to this definition">¶</a></dt>
+<dd><img alt="_images/edit-clear.png" src="_images/edit-clear.png" />
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Gtk.STOCK_CLOSE">
+<tt class="descclassname">Gtk.</tt><tt class="descname">STOCK_CLOSE</tt><a class="headerlink" href="#Gtk.STOCK_CLOSE" title="Permalink to this definition">¶</a></dt>
+<dd><img alt="_images/window-close.png" src="_images/window-close.png" />
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Gtk.STOCK_COLOR_PICKER">
+<tt class="descclassname">Gtk.</tt><tt class="descname">STOCK_COLOR_PICKER</tt><a class="headerlink" href="#Gtk.STOCK_COLOR_PICKER" title="Permalink to this definition">¶</a></dt>
+<dd><img alt="_images/gtk-color-picker.png" src="_images/gtk-color-picker.png" />
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Gtk.STOCK_CONNECT">
+<tt class="descclassname">Gtk.</tt><tt class="descname">STOCK_CONNECT</tt><a class="headerlink" href="#Gtk.STOCK_CONNECT" title="Permalink to this definition">¶</a></dt>
+<dd><img alt="_images/gtk-connect.png" src="_images/gtk-connect.png" />
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Gtk.STOCK_CONVERT">
+<tt class="descclassname">Gtk.</tt><tt class="descname">STOCK_CONVERT</tt><a class="headerlink" href="#Gtk.STOCK_CONVERT" title="Permalink to this definition">¶</a></dt>
+<dd><img alt="_images/gtk-convert.png" src="_images/gtk-convert.png" />
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Gtk.STOCK_COPY">
+<tt class="descclassname">Gtk.</tt><tt class="descname">STOCK_COPY</tt><a class="headerlink" href="#Gtk.STOCK_COPY" title="Permalink to this definition">¶</a></dt>
+<dd><img alt="_images/edit-copy.png" src="_images/edit-copy.png" />
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Gtk.STOCK_CUT">
+<tt class="descclassname">Gtk.</tt><tt class="descname">STOCK_CUT</tt><a class="headerlink" href="#Gtk.STOCK_CUT" title="Permalink to this definition">¶</a></dt>
+<dd><img alt="_images/edit-cut.png" src="_images/edit-cut.png" />
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Gtk.STOCK_DELETE">
+<tt class="descclassname">Gtk.</tt><tt class="descname">STOCK_DELETE</tt><a class="headerlink" href="#Gtk.STOCK_DELETE" title="Permalink to this definition">¶</a></dt>
+<dd><img alt="_images/edit-delete.png" src="_images/edit-delete.png" />
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Gtk.STOCK_DIALOG_AUTHENTICATION">
+<tt class="descclassname">Gtk.</tt><tt class="descname">STOCK_DIALOG_AUTHENTICATION</tt><a class="headerlink" href="#Gtk.STOCK_DIALOG_AUTHENTICATION" title="Permalink to this definition">¶</a></dt>
+<dd><img alt="_images/dialog-password.png" src="_images/dialog-password.png" />
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Gtk.STOCK_DIALOG_INFO">
+<tt class="descclassname">Gtk.</tt><tt class="descname">STOCK_DIALOG_INFO</tt><a class="headerlink" href="#Gtk.STOCK_DIALOG_INFO" title="Permalink to this definition">¶</a></dt>
+<dd><img alt="_images/dialog-information.png" src="_images/dialog-information.png" />
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Gtk.STOCK_DIALOG_WARNING">
+<tt class="descclassname">Gtk.</tt><tt class="descname">STOCK_DIALOG_WARNING</tt><a class="headerlink" href="#Gtk.STOCK_DIALOG_WARNING" title="Permalink to this definition">¶</a></dt>
+<dd><img alt="_images/dialog-warning.png" src="_images/dialog-warning.png" />
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Gtk.STOCK_DIALOG_ERROR">
+<tt class="descclassname">Gtk.</tt><tt class="descname">STOCK_DIALOG_ERROR</tt><a class="headerlink" href="#Gtk.STOCK_DIALOG_ERROR" title="Permalink to this definition">¶</a></dt>
+<dd><img alt="_images/dialog-error.png" src="_images/dialog-error.png" />
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Gtk.STOCK_DIALOG_QUESTION">
+<tt class="descclassname">Gtk.</tt><tt class="descname">STOCK_DIALOG_QUESTION</tt><a class="headerlink" href="#Gtk.STOCK_DIALOG_QUESTION" title="Permalink to this definition">¶</a></dt>
+<dd><img alt="_images/dialog-question.png" src="_images/dialog-question.png" />
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Gtk.STOCK_DISCARD">
+<tt class="descclassname">Gtk.</tt><tt class="descname">STOCK_DISCARD</tt><a class="headerlink" href="#Gtk.STOCK_DISCARD" title="Permalink to this definition">¶</a></dt>
+<dd><img alt="_images/folder.png" src="_images/folder.png" />
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Gtk.STOCK_DISCONNECT">
+<tt class="descclassname">Gtk.</tt><tt class="descname">STOCK_DISCONNECT</tt><a class="headerlink" href="#Gtk.STOCK_DISCONNECT" title="Permalink to this definition">¶</a></dt>
+<dd><img alt="_images/gtk-disconnect.png" src="_images/gtk-disconnect.png" />
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Gtk.STOCK_DND">
+<tt class="descclassname">Gtk.</tt><tt class="descname">STOCK_DND</tt><a class="headerlink" href="#Gtk.STOCK_DND" title="Permalink to this definition">¶</a></dt>
+<dd><img alt="_images/gtk-dnd.png" src="_images/gtk-dnd.png" />
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Gtk.STOCK_DND_MULTIPLE">
+<tt class="descclassname">Gtk.</tt><tt class="descname">STOCK_DND_MULTIPLE</tt><a class="headerlink" href="#Gtk.STOCK_DND_MULTIPLE" title="Permalink to this definition">¶</a></dt>
+<dd><img alt="_images/gtk-dnd-multiple.png" src="_images/gtk-dnd-multiple.png" />
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Gtk.STOCK_EDIT">
+<tt class="descclassname">Gtk.</tt><tt class="descname">STOCK_EDIT</tt><a class="headerlink" href="#Gtk.STOCK_EDIT" title="Permalink to this definition">¶</a></dt>
+<dd><img alt="_images/gtk-edit.png" src="_images/gtk-edit.png" />
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Gtk.STOCK_EXECUTE">
+<tt class="descclassname">Gtk.</tt><tt class="descname">STOCK_EXECUTE</tt><a class="headerlink" href="#Gtk.STOCK_EXECUTE" title="Permalink to this definition">¶</a></dt>
+<dd><img alt="_images/system-run.png" src="_images/system-run.png" />
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Gtk.STOCK_FILE">
+<tt class="descclassname">Gtk.</tt><tt class="descname">STOCK_FILE</tt><a class="headerlink" href="#Gtk.STOCK_FILE" title="Permalink to this definition">¶</a></dt>
+<dd><img alt="_images/text-x-generic.png" src="_images/text-x-generic.png" />
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Gtk.STOCK_FIND">
+<tt class="descclassname">Gtk.</tt><tt class="descname">STOCK_FIND</tt><a class="headerlink" href="#Gtk.STOCK_FIND" title="Permalink to this definition">¶</a></dt>
+<dd><img alt="_images/edit-find.png" src="_images/edit-find.png" />
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Gtk.STOCK_FIND_AND_REPLACE">
+<tt class="descclassname">Gtk.</tt><tt class="descname">STOCK_FIND_AND_REPLACE</tt><a class="headerlink" href="#Gtk.STOCK_FIND_AND_REPLACE" title="Permalink to this definition">¶</a></dt>
+<dd><img alt="_images/edit-find-replace.png" src="_images/edit-find-replace.png" />
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Gtk.STOCK_FLOPPY">
+<tt class="descclassname">Gtk.</tt><tt class="descname">STOCK_FLOPPY</tt><a class="headerlink" href="#Gtk.STOCK_FLOPPY" title="Permalink to this definition">¶</a></dt>
+<dd><img alt="_images/media-floppy.png" src="_images/media-floppy.png" />
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Gtk.STOCK_FULLSCREEN">
+<tt class="descclassname">Gtk.</tt><tt class="descname">STOCK_FULLSCREEN</tt><a class="headerlink" href="#Gtk.STOCK_FULLSCREEN" title="Permalink to this definition">¶</a></dt>
+<dd><img alt="_images/view-fullscreen.png" src="_images/view-fullscreen.png" />
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Gtk.STOCK_GOTO_BOTTOM">
+<tt class="descclassname">Gtk.</tt><tt class="descname">STOCK_GOTO_BOTTOM</tt><a class="headerlink" href="#Gtk.STOCK_GOTO_BOTTOM" title="Permalink to this definition">¶</a></dt>
+<dd><img alt="_images/go-bottom.png" src="_images/go-bottom.png" />
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Gtk.STOCK_GOTO_FIRST">
+<tt class="descclassname">Gtk.</tt><tt class="descname">STOCK_GOTO_FIRST</tt><a class="headerlink" href="#Gtk.STOCK_GOTO_FIRST" title="Permalink to this definition">¶</a></dt>
+<dd><p>LTR variant:</p>
+<img alt="_images/go-first-ltr.png" src="_images/go-first-ltr.png" />
+<p>RTL variant:</p>
+<img alt="_images/go-first-rtl.png" src="_images/go-first-rtl.png" />
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Gtk.STOCK_GOTO_LAST">
+<tt class="descclassname">Gtk.</tt><tt class="descname">STOCK_GOTO_LAST</tt><a class="headerlink" href="#Gtk.STOCK_GOTO_LAST" title="Permalink to this definition">¶</a></dt>
+<dd><p>LTR variant:</p>
+<img alt="_images/go-last-ltr.png" src="_images/go-last-ltr.png" />
+<p>RTL variant:</p>
+<img alt="_images/go-last-rtl.png" src="_images/go-last-rtl.png" />
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Gtk.STOCK_GOTO_TOP">
+<tt class="descclassname">Gtk.</tt><tt class="descname">STOCK_GOTO_TOP</tt><a class="headerlink" href="#Gtk.STOCK_GOTO_TOP" title="Permalink to this definition">¶</a></dt>
+<dd><img alt="_images/go-top.png" src="_images/go-top.png" />
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Gtk.STOCK_GO_BACK">
+<tt class="descclassname">Gtk.</tt><tt class="descname">STOCK_GO_BACK</tt><a class="headerlink" href="#Gtk.STOCK_GO_BACK" title="Permalink to this definition">¶</a></dt>
+<dd><p>LTR variant:</p>
+<img alt="_images/go-previous-ltr.png" src="_images/go-previous-ltr.png" />
+<p>RTL variant:</p>
+<img alt="_images/go-previous-rtl.png" src="_images/go-previous-rtl.png" />
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Gtk.STOCK_GO_DOWN">
+<tt class="descclassname">Gtk.</tt><tt class="descname">STOCK_GO_DOWN</tt><a class="headerlink" href="#Gtk.STOCK_GO_DOWN" title="Permalink to this definition">¶</a></dt>
+<dd><img alt="_images/go-down.png" src="_images/go-down.png" />
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Gtk.STOCK_GO_FORWARD">
+<tt class="descclassname">Gtk.</tt><tt class="descname">STOCK_GO_FORWARD</tt><a class="headerlink" href="#Gtk.STOCK_GO_FORWARD" title="Permalink to this definition">¶</a></dt>
+<dd><p>LTR variant:</p>
+<img alt="_images/go-next-ltr.png" src="_images/go-next-ltr.png" />
+<p>RTL variant:</p>
+<img alt="_images/go-next-rtl.png" src="_images/go-next-rtl.png" />
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Gtk.STOCK_GO_UP">
+<tt class="descclassname">Gtk.</tt><tt class="descname">STOCK_GO_UP</tt><a class="headerlink" href="#Gtk.STOCK_GO_UP" title="Permalink to this definition">¶</a></dt>
+<dd><img alt="_images/go-up.png" src="_images/go-up.png" />
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Gtk.STOCK_HARDDISK">
+<tt class="descclassname">Gtk.</tt><tt class="descname">STOCK_HARDDISK</tt><a class="headerlink" href="#Gtk.STOCK_HARDDISK" title="Permalink to this definition">¶</a></dt>
+<dd><img alt="_images/drive-harddisk.png" src="_images/drive-harddisk.png" />
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Gtk.STOCK_HELP">
+<tt class="descclassname">Gtk.</tt><tt class="descname">STOCK_HELP</tt><a class="headerlink" href="#Gtk.STOCK_HELP" title="Permalink to this definition">¶</a></dt>
+<dd><img alt="_images/help-contents.png" src="_images/help-contents.png" />
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Gtk.STOCK_HOME">
+<tt class="descclassname">Gtk.</tt><tt class="descname">STOCK_HOME</tt><a class="headerlink" href="#Gtk.STOCK_HOME" title="Permalink to this definition">¶</a></dt>
+<dd><img alt="_images/go-home.png" src="_images/go-home.png" />
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Gtk.STOCK_INDEX">
+<tt class="descclassname">Gtk.</tt><tt class="descname">STOCK_INDEX</tt><a class="headerlink" href="#Gtk.STOCK_INDEX" title="Permalink to this definition">¶</a></dt>
+<dd><img alt="_images/gtk-index.png" src="_images/gtk-index.png" />
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Gtk.STOCK_INDENT">
+<tt class="descclassname">Gtk.</tt><tt class="descname">STOCK_INDENT</tt><a class="headerlink" href="#Gtk.STOCK_INDENT" title="Permalink to this definition">¶</a></dt>
+<dd><p>LTR variant:</p>
+<img alt="_images/format-indent-more-ltr.png" src="_images/format-indent-more-ltr.png" />
+<p>RTL variant:</p>
+<img alt="_images/format-indent-more-rtl.png" src="_images/format-indent-more-rtl.png" />
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Gtk.STOCK_INFO">
+<tt class="descclassname">Gtk.</tt><tt class="descname">STOCK_INFO</tt><a class="headerlink" href="#Gtk.STOCK_INFO" title="Permalink to this definition">¶</a></dt>
+<dd><img alt="_images/dialog-information.png" src="_images/dialog-information.png" />
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Gtk.STOCK_ITALIC">
+<tt class="descclassname">Gtk.</tt><tt class="descname">STOCK_ITALIC</tt><a class="headerlink" href="#Gtk.STOCK_ITALIC" title="Permalink to this definition">¶</a></dt>
+<dd><img alt="_images/format-text-italic.png" src="_images/format-text-italic.png" />
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Gtk.STOCK_JUMP_TO">
+<tt class="descclassname">Gtk.</tt><tt class="descname">STOCK_JUMP_TO</tt><a class="headerlink" href="#Gtk.STOCK_JUMP_TO" title="Permalink to this definition">¶</a></dt>
+<dd><p>LTR variant:</p>
+<img alt="_images/go-jump-ltr.png" src="_images/go-jump-ltr.png" />
+<p>RTL variant:</p>
+<img alt="_images/go-jump-rtl.png" src="_images/go-jump-rtl.png" />
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Gtk.STOCK_JUSTIFY_CENTER">
+<tt class="descclassname">Gtk.</tt><tt class="descname">STOCK_JUSTIFY_CENTER</tt><a class="headerlink" href="#Gtk.STOCK_JUSTIFY_CENTER" title="Permalink to this definition">¶</a></dt>
+<dd><img alt="_images/format-justify-center.png" src="_images/format-justify-center.png" />
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Gtk.STOCK_JUSTIFY_FILL">
+<tt class="descclassname">Gtk.</tt><tt class="descname">STOCK_JUSTIFY_FILL</tt><a class="headerlink" href="#Gtk.STOCK_JUSTIFY_FILL" title="Permalink to this definition">¶</a></dt>
+<dd><img alt="_images/format-justify-fill.png" src="_images/format-justify-fill.png" />
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Gtk.STOCK_JUSTIFY_LEFT">
+<tt class="descclassname">Gtk.</tt><tt class="descname">STOCK_JUSTIFY_LEFT</tt><a class="headerlink" href="#Gtk.STOCK_JUSTIFY_LEFT" title="Permalink to this definition">¶</a></dt>
+<dd><img alt="_images/format-justify-left.png" src="_images/format-justify-left.png" />
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Gtk.STOCK_JUSTIFY_RIGHT">
+<tt class="descclassname">Gtk.</tt><tt class="descname">STOCK_JUSTIFY_RIGHT</tt><a class="headerlink" href="#Gtk.STOCK_JUSTIFY_RIGHT" title="Permalink to this definition">¶</a></dt>
+<dd><img alt="_images/format-justify-right.png" src="_images/format-justify-right.png" />
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Gtk.STOCK_LEAVE_FULLSCREEN">
+<tt class="descclassname">Gtk.</tt><tt class="descname">STOCK_LEAVE_FULLSCREEN</tt><a class="headerlink" href="#Gtk.STOCK_LEAVE_FULLSCREEN" title="Permalink to this definition">¶</a></dt>
+<dd><img alt="_images/view-restore.png" src="_images/view-restore.png" />
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Gtk.STOCK_MISSING_IMAGE">
+<tt class="descclassname">Gtk.</tt><tt class="descname">STOCK_MISSING_IMAGE</tt><a class="headerlink" href="#Gtk.STOCK_MISSING_IMAGE" title="Permalink to this definition">¶</a></dt>
+<dd><img alt="_images/image-missing.png" src="_images/image-missing.png" />
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Gtk.STOCK_MEDIA_FORWARD">
+<tt class="descclassname">Gtk.</tt><tt class="descname">STOCK_MEDIA_FORWARD</tt><a class="headerlink" href="#Gtk.STOCK_MEDIA_FORWARD" title="Permalink to this definition">¶</a></dt>
+<dd><p>LTR variant:</p>
+<img alt="_images/media-seek-forward-ltr.png" src="_images/media-seek-forward-ltr.png" />
+<p>RTL variant:</p>
+<img alt="_images/media-seek-forward-rtl.png" src="_images/media-seek-forward-rtl.png" />
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Gtk.STOCK_MEDIA_NEXT">
+<tt class="descclassname">Gtk.</tt><tt class="descname">STOCK_MEDIA_NEXT</tt><a class="headerlink" href="#Gtk.STOCK_MEDIA_NEXT" title="Permalink to this definition">¶</a></dt>
+<dd><p>LTR variant:</p>
+<img alt="_images/media-skip-forward-ltr.png" src="_images/media-skip-forward-ltr.png" />
+<p>RTL variant:</p>
+<img alt="_images/media-skip-forward-rtl.png" src="_images/media-skip-forward-rtl.png" />
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Gtk.STOCK_MEDIA_PAUSE">
+<tt class="descclassname">Gtk.</tt><tt class="descname">STOCK_MEDIA_PAUSE</tt><a class="headerlink" href="#Gtk.STOCK_MEDIA_PAUSE" title="Permalink to this definition">¶</a></dt>
+<dd><img alt="_images/media-playback-pause.png" src="_images/media-playback-pause.png" />
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Gtk.STOCK_MEDIA_PLAY">
+<tt class="descclassname">Gtk.</tt><tt class="descname">STOCK_MEDIA_PLAY</tt><a class="headerlink" href="#Gtk.STOCK_MEDIA_PLAY" title="Permalink to this definition">¶</a></dt>
+<dd><p>LTR variant:</p>
+<img alt="_images/media-playback-start-ltr.png" src="_images/media-playback-start-ltr.png" />
+<p>RTL variant:</p>
+<img alt="_images/media-playback-start-rtl.png" src="_images/media-playback-start-rtl.png" />
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Gtk.STOCK_MEDIA_PREVIOUS">
+<tt class="descclassname">Gtk.</tt><tt class="descname">STOCK_MEDIA_PREVIOUS</tt><a class="headerlink" href="#Gtk.STOCK_MEDIA_PREVIOUS" title="Permalink to this definition">¶</a></dt>
+<dd><p>LTR variant:</p>
+<img alt="_images/media-skip-backward-ltr.png" src="_images/media-skip-backward-ltr.png" />
+<p>RTL variant:</p>
+<img alt="_images/media-skip-backward-rtl.png" src="_images/media-skip-backward-rtl.png" />
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Gtk.STOCK_MEDIA_RECORD">
+<tt class="descclassname">Gtk.</tt><tt class="descname">STOCK_MEDIA_RECORD</tt><a class="headerlink" href="#Gtk.STOCK_MEDIA_RECORD" title="Permalink to this definition">¶</a></dt>
+<dd><img alt="_images/media-record.png" src="_images/media-record.png" />
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Gtk.STOCK_MEDIA_REWIND">
+<tt class="descclassname">Gtk.</tt><tt class="descname">STOCK_MEDIA_REWIND</tt><a class="headerlink" href="#Gtk.STOCK_MEDIA_REWIND" title="Permalink to this definition">¶</a></dt>
+<dd><p>LTR variant:</p>
+<img alt="_images/media-seek-backward-ltr.png" src="_images/media-seek-backward-ltr.png" />
+<p>RTL variant:</p>
+<img alt="_images/media-seek-backward-rtl.png" src="_images/media-seek-backward-rtl.png" />
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Gtk.STOCK_MEDIA_STOP">
+<tt class="descclassname">Gtk.</tt><tt class="descname">STOCK_MEDIA_STOP</tt><a class="headerlink" href="#Gtk.STOCK_MEDIA_STOP" title="Permalink to this definition">¶</a></dt>
+<dd><img alt="_images/media-playback-stop.png" src="_images/media-playback-stop.png" />
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Gtk.STOCK_NETWORK">
+<tt class="descclassname">Gtk.</tt><tt class="descname">STOCK_NETWORK</tt><a class="headerlink" href="#Gtk.STOCK_NETWORK" title="Permalink to this definition">¶</a></dt>
+<dd><img alt="_images/network-idle.png" src="_images/network-idle.png" />
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Gtk.STOCK_NEW">
+<tt class="descclassname">Gtk.</tt><tt class="descname">STOCK_NEW</tt><a class="headerlink" href="#Gtk.STOCK_NEW" title="Permalink to this definition">¶</a></dt>
+<dd><img alt="_images/document-new.png" src="_images/document-new.png" />
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Gtk.STOCK_NO">
+<tt class="descclassname">Gtk.</tt><tt class="descname">STOCK_NO</tt><a class="headerlink" href="#Gtk.STOCK_NO" title="Permalink to this definition">¶</a></dt>
+<dd><img alt="_images/gtk-no.png" src="_images/gtk-no.png" />
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Gtk.STOCK_OK">
+<tt class="descclassname">Gtk.</tt><tt class="descname">STOCK_OK</tt><a class="headerlink" href="#Gtk.STOCK_OK" title="Permalink to this definition">¶</a></dt>
+<dd><img alt="_images/gtk-ok.png" src="_images/gtk-ok.png" />
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Gtk.STOCK_OPEN">
+<tt class="descclassname">Gtk.</tt><tt class="descname">STOCK_OPEN</tt><a class="headerlink" href="#Gtk.STOCK_OPEN" title="Permalink to this definition">¶</a></dt>
+<dd><img alt="_images/document-open.png" src="_images/document-open.png" />
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Gtk.STOCK_ORIENTATION_PORTRAIT">
+<tt class="descclassname">Gtk.</tt><tt class="descname">STOCK_ORIENTATION_PORTRAIT</tt><a class="headerlink" href="#Gtk.STOCK_ORIENTATION_PORTRAIT" title="Permalink to this definition">¶</a></dt>
+<dd><img alt="_images/gtk-orientation-portrait.png" src="_images/gtk-orientation-portrait.png" />
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Gtk.STOCK_ORIENTATION_LANDSCAPE">
+<tt class="descclassname">Gtk.</tt><tt class="descname">STOCK_ORIENTATION_LANDSCAPE</tt><a class="headerlink" href="#Gtk.STOCK_ORIENTATION_LANDSCAPE" title="Permalink to this definition">¶</a></dt>
+<dd><img alt="_images/gtk-orientation-landscape.png" src="_images/gtk-orientation-landscape.png" />
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Gtk.STOCK_ORIENTATION_REVERSE_LANDSCAPE">
+<tt class="descclassname">Gtk.</tt><tt class="descname">STOCK_ORIENTATION_REVERSE_LANDSCAPE</tt><a class="headerlink" href="#Gtk.STOCK_ORIENTATION_REVERSE_LANDSCAPE" title="Permalink to this definition">¶</a></dt>
+<dd><img alt="_images/gtk-orientation-reverse-landscape.png" src="_images/gtk-orientation-reverse-landscape.png" />
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Gtk.STOCK_ORIENTATION_REVERSE_PORTRAIT">
+<tt class="descclassname">Gtk.</tt><tt class="descname">STOCK_ORIENTATION_REVERSE_PORTRAIT</tt><a class="headerlink" href="#Gtk.STOCK_ORIENTATION_REVERSE_PORTRAIT" title="Permalink to this definition">¶</a></dt>
+<dd><img alt="_images/gtk-orientation-reverse-portrait.png" src="_images/gtk-orientation-reverse-portrait.png" />
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Gtk.STOCK_PAGE_SETUP">
+<tt class="descclassname">Gtk.</tt><tt class="descname">STOCK_PAGE_SETUP</tt><a class="headerlink" href="#Gtk.STOCK_PAGE_SETUP" title="Permalink to this definition">¶</a></dt>
+<dd><img alt="_images/gtk-page-setup.png" src="_images/gtk-page-setup.png" />
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Gtk.STOCK_PASTE">
+<tt class="descclassname">Gtk.</tt><tt class="descname">STOCK_PASTE</tt><a class="headerlink" href="#Gtk.STOCK_PASTE" title="Permalink to this definition">¶</a></dt>
+<dd><img alt="_images/edit-paste.png" src="_images/edit-paste.png" />
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Gtk.STOCK_PREFERENCES">
+<tt class="descclassname">Gtk.</tt><tt class="descname">STOCK_PREFERENCES</tt><a class="headerlink" href="#Gtk.STOCK_PREFERENCES" title="Permalink to this definition">¶</a></dt>
+<dd><img alt="_images/gtk-preferences.png" src="_images/gtk-preferences.png" />
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Gtk.STOCK_PRINT">
+<tt class="descclassname">Gtk.</tt><tt class="descname">STOCK_PRINT</tt><a class="headerlink" href="#Gtk.STOCK_PRINT" title="Permalink to this definition">¶</a></dt>
+<dd><img alt="_images/document-print.png" src="_images/document-print.png" />
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Gtk.STOCK_PRINT_ERROR">
+<tt class="descclassname">Gtk.</tt><tt class="descname">STOCK_PRINT_ERROR</tt><a class="headerlink" href="#Gtk.STOCK_PRINT_ERROR" title="Permalink to this definition">¶</a></dt>
+<dd><img alt="_images/printer-error.png" src="_images/printer-error.png" />
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Gtk.STOCK_PRINT_PAUSED">
+<tt class="descclassname">Gtk.</tt><tt class="descname">STOCK_PRINT_PAUSED</tt><a class="headerlink" href="#Gtk.STOCK_PRINT_PAUSED" title="Permalink to this definition">¶</a></dt>
+<dd><img alt="_images/printer-paused.png" src="_images/printer-paused.png" />
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Gtk.STOCK_PRINT_PREVIEW">
+<tt class="descclassname">Gtk.</tt><tt class="descname">STOCK_PRINT_PREVIEW</tt><a class="headerlink" href="#Gtk.STOCK_PRINT_PREVIEW" title="Permalink to this definition">¶</a></dt>
+<dd><img alt="_images/document-print-preview.png" src="_images/document-print-preview.png" />
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Gtk.STOCK_PRINT_REPORT">
+<tt class="descclassname">Gtk.</tt><tt class="descname">STOCK_PRINT_REPORT</tt><a class="headerlink" href="#Gtk.STOCK_PRINT_REPORT" title="Permalink to this definition">¶</a></dt>
+<dd><img alt="_images/printer-info.png" src="_images/printer-info.png" />
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Gtk.STOCK_PRINT_WARNING">
+<tt class="descclassname">Gtk.</tt><tt class="descname">STOCK_PRINT_WARNING</tt><a class="headerlink" href="#Gtk.STOCK_PRINT_WARNING" title="Permalink to this definition">¶</a></dt>
+<dd><img alt="_images/printer-warning.png" src="_images/printer-warning.png" />
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Gtk.STOCK_PROPERTIES">
+<tt class="descclassname">Gtk.</tt><tt class="descname">STOCK_PROPERTIES</tt><a class="headerlink" href="#Gtk.STOCK_PROPERTIES" title="Permalink to this definition">¶</a></dt>
+<dd><img alt="_images/document-properties.png" src="_images/document-properties.png" />
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Gtk.STOCK_QUIT">
+<tt class="descclassname">Gtk.</tt><tt class="descname">STOCK_QUIT</tt><a class="headerlink" href="#Gtk.STOCK_QUIT" title="Permalink to this definition">¶</a></dt>
+<dd><img alt="_images/application-exit.png" src="_images/application-exit.png" />
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Gtk.STOCK_REDO">
+<tt class="descclassname">Gtk.</tt><tt class="descname">STOCK_REDO</tt><a class="headerlink" href="#Gtk.STOCK_REDO" title="Permalink to this definition">¶</a></dt>
+<dd><p>LTR variant:</p>
+<img alt="_images/edit-redo-ltr.png" src="_images/edit-redo-ltr.png" />
+<p>RTL variant:</p>
+<img alt="_images/edit-redo-rtl.png" src="_images/edit-redo-rtl.png" />
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Gtk.STOCK_REFRESH">
+<tt class="descclassname">Gtk.</tt><tt class="descname">STOCK_REFRESH</tt><a class="headerlink" href="#Gtk.STOCK_REFRESH" title="Permalink to this definition">¶</a></dt>
+<dd><img alt="_images/view-refresh.png" src="_images/view-refresh.png" />
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Gtk.STOCK_REMOVE">
+<tt class="descclassname">Gtk.</tt><tt class="descname">STOCK_REMOVE</tt><a class="headerlink" href="#Gtk.STOCK_REMOVE" title="Permalink to this definition">¶</a></dt>
+<dd><img alt="_images/list-remove.png" src="_images/list-remove.png" />
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Gtk.STOCK_REVERT_TO_SAVED">
+<tt class="descclassname">Gtk.</tt><tt class="descname">STOCK_REVERT_TO_SAVED</tt><a class="headerlink" href="#Gtk.STOCK_REVERT_TO_SAVED" title="Permalink to this definition">¶</a></dt>
+<dd><p>LTR variant:</p>
+<img alt="_images/document-revert-ltr.png" src="_images/document-revert-ltr.png" />
+<p>RTL variant:</p>
+<img alt="_images/document-revert-rtl.png" src="_images/document-revert-rtl.png" />
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Gtk.STOCK_SAVE">
+<tt class="descclassname">Gtk.</tt><tt class="descname">STOCK_SAVE</tt><a class="headerlink" href="#Gtk.STOCK_SAVE" title="Permalink to this definition">¶</a></dt>
+<dd><img alt="_images/document-save.png" src="_images/document-save.png" />
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Gtk.STOCK_SAVE_AS">
+<tt class="descclassname">Gtk.</tt><tt class="descname">STOCK_SAVE_AS</tt><a class="headerlink" href="#Gtk.STOCK_SAVE_AS" title="Permalink to this definition">¶</a></dt>
+<dd><img alt="_images/document-save-as.png" src="_images/document-save-as.png" />
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Gtk.STOCK_SELECT_ALL">
+<tt class="descclassname">Gtk.</tt><tt class="descname">STOCK_SELECT_ALL</tt><a class="headerlink" href="#Gtk.STOCK_SELECT_ALL" title="Permalink to this definition">¶</a></dt>
+<dd><img alt="_images/edit-select-all.png" src="_images/edit-select-all.png" />
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Gtk.STOCK_SELECT_COLOR">
+<tt class="descclassname">Gtk.</tt><tt class="descname">STOCK_SELECT_COLOR</tt><a class="headerlink" href="#Gtk.STOCK_SELECT_COLOR" title="Permalink to this definition">¶</a></dt>
+<dd><img alt="_images/gtk-select-color.png" src="_images/gtk-select-color.png" />
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Gtk.STOCK_SELECT_FONT">
+<tt class="descclassname">Gtk.</tt><tt class="descname">STOCK_SELECT_FONT</tt><a class="headerlink" href="#Gtk.STOCK_SELECT_FONT" title="Permalink to this definition">¶</a></dt>
+<dd><img alt="_images/gtk-font.png" src="_images/gtk-font.png" />
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Gtk.STOCK_SORT_ASCENDING">
+<tt class="descclassname">Gtk.</tt><tt class="descname">STOCK_SORT_ASCENDING</tt><a class="headerlink" href="#Gtk.STOCK_SORT_ASCENDING" title="Permalink to this definition">¶</a></dt>
+<dd><img alt="_images/view-sort-ascending.png" src="_images/view-sort-ascending.png" />
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Gtk.STOCK_SORT_DESCENDING">
+<tt class="descclassname">Gtk.</tt><tt class="descname">STOCK_SORT_DESCENDING</tt><a class="headerlink" href="#Gtk.STOCK_SORT_DESCENDING" title="Permalink to this definition">¶</a></dt>
+<dd><img alt="_images/view-sort-descending.png" src="_images/view-sort-descending.png" />
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Gtk.STOCK_SPELL_CHECK">
+<tt class="descclassname">Gtk.</tt><tt class="descname">STOCK_SPELL_CHECK</tt><a class="headerlink" href="#Gtk.STOCK_SPELL_CHECK" title="Permalink to this definition">¶</a></dt>
+<dd><img alt="_images/tools-check-spelling.png" src="_images/tools-check-spelling.png" />
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Gtk.STOCK_STOP">
+<tt class="descclassname">Gtk.</tt><tt class="descname">STOCK_STOP</tt><a class="headerlink" href="#Gtk.STOCK_STOP" title="Permalink to this definition">¶</a></dt>
+<dd><img alt="_images/process-stop.png" src="_images/process-stop.png" />
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Gtk.STOCK_STRIKETHROUGH">
+<tt class="descclassname">Gtk.</tt><tt class="descname">STOCK_STRIKETHROUGH</tt><a class="headerlink" href="#Gtk.STOCK_STRIKETHROUGH" title="Permalink to this definition">¶</a></dt>
+<dd><img alt="_images/format-text-strikethrough.png" src="_images/format-text-strikethrough.png" />
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Gtk.STOCK_UNDELETE">
+<tt class="descclassname">Gtk.</tt><tt class="descname">STOCK_UNDELETE</tt><a class="headerlink" href="#Gtk.STOCK_UNDELETE" title="Permalink to this definition">¶</a></dt>
+<dd><p>LTR variant:</p>
+<img alt="_images/gtk-undelete-ltr.png" src="_images/gtk-undelete-ltr.png" />
+<p>RTL variant:</p>
+<img alt="_images/gtk-undelete-rtl.png" src="_images/gtk-undelete-rtl.png" />
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Gtk.STOCK_UNDERLINE">
+<tt class="descclassname">Gtk.</tt><tt class="descname">STOCK_UNDERLINE</tt><a class="headerlink" href="#Gtk.STOCK_UNDERLINE" title="Permalink to this definition">¶</a></dt>
+<dd><img alt="_images/format-text-underline.png" src="_images/format-text-underline.png" />
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Gtk.STOCK_UNDO">
+<tt class="descclassname">Gtk.</tt><tt class="descname">STOCK_UNDO</tt><a class="headerlink" href="#Gtk.STOCK_UNDO" title="Permalink to this definition">¶</a></dt>
+<dd><p>LTR variant:</p>
+<img alt="_images/edit-undo-ltr.png" src="_images/edit-undo-ltr.png" />
+<p>RTL variant:</p>
+<img alt="_images/edit-undo-rtl.png" src="_images/edit-undo-rtl.png" />
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Gtk.STOCK_UNINDENT">
+<tt class="descclassname">Gtk.</tt><tt class="descname">STOCK_UNINDENT</tt><a class="headerlink" href="#Gtk.STOCK_UNINDENT" title="Permalink to this definition">¶</a></dt>
+<dd><p>LTR variant:</p>
+<img alt="_images/format-indent-less-ltr.png" src="_images/format-indent-less-ltr.png" />
+<p>RTL variant:</p>
+<img alt="_images/format-indent-less-rtl.png" src="_images/format-indent-less-rtl.png" />
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Gtk.STOCK_YES">
+<tt class="descclassname">Gtk.</tt><tt class="descname">STOCK_YES</tt><a class="headerlink" href="#Gtk.STOCK_YES" title="Permalink to this definition">¶</a></dt>
+<dd><img alt="_images/gtk-yes.png" src="_images/gtk-yes.png" />
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Gtk.STOCK_ZOOM_100">
+<tt class="descclassname">Gtk.</tt><tt class="descname">STOCK_ZOOM_100</tt><a class="headerlink" href="#Gtk.STOCK_ZOOM_100" title="Permalink to this definition">¶</a></dt>
+<dd><img alt="_images/zoom-original.png" src="_images/zoom-original.png" />
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Gtk.STOCK_ZOOM_FIT">
+<tt class="descclassname">Gtk.</tt><tt class="descname">STOCK_ZOOM_FIT</tt><a class="headerlink" href="#Gtk.STOCK_ZOOM_FIT" title="Permalink to this definition">¶</a></dt>
+<dd><img alt="_images/zoom-fit-best.png" src="_images/zoom-fit-best.png" />
+</dd></dl>
+
+<dl class="attribute">
+<dt id="Gtk.STOCK_ZOOM_IN">
+<tt class="descclassname">Gtk.</tt><tt class="descname">STOCK_ZOOM_IN</tt><a class="headerlink" href="#Gtk.STOCK_ZOOM_IN" title="Permalink to this definition">¶</a></dt>
+<dd><img alt="_images/zoom-in.png" src="_images/zoom-in.png" />
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+
+
+
+    <h3>Project Versions</h3>
+    <ul id="sidebar_versions">
+
+  <li><a href="//readthedocs.org/docs/python-gtk-3-tutorial/en/latest/">latest</a></li>
+
+    </ul>
+
+<div id="searchbox" style="">
+  <h3>RTD Search</h3>
+    <form class="search" action="//readthedocs.org/search/project/" method="get">
+      <input type="text" name="q" size="18">
+      <input type="submit" value="Go">
+      <input type="hidden" name="selected_facets" value="project:Python GTK+ 3 Tutorial">
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+        Full-text doc search.
+    </p>
+</div>
+
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="objects.html"
+                        title="previous chapter">21. Objects</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/stock.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="objects.html" title="21. Objects"
+             >previous</a> |</li>
+        <li><a href="index.html">Python GTK+ 3 Tutorial 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+
+    <div class="footer">
+        &copy; Copyright GNU Free Documentation License 1.3.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+ <!-- End original user content -->
+
+
+
+<style type="text/css">
+  .badge {
+    position: fixed;
+    display: block;
+    bottom: 5px;
+    height: 40px;
+    text-indent: -9999em;
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2), 0 1px 0 rgba(255, 255, 255, 0.2) inset;
+    -moz-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2), 0 1px 0 rgba(255, 255, 255, 0.2) inset;
+    -webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2), 0 1px 0 rgba(255, 255, 255, 0.2) inset;
+  }
+  #version_menu {
+    position: fixed;
+    display: none;
+    bottom: 11px;
+    right: 166px;
+    list-style-type: none;
+    margin: 0;
+  }
+  .footer_popout:hover #version_menu {
+    display: block;
+  }
+  #version_menu li {
+    display: block;
+    float: right;
+  }
+  #version_menu li a {
+    display: block;
+    padding: 6px 10px 4px 10px;
+    margin: 7px 7px 0 0;
+    font-weight: bold;
+    font-size: 14px;
+    height: 20px;
+    line-height: 17px;
+    text-decoration: none;
+    color: #fff;
+    background: #8ca1af url(../images/gradient-light.png) bottom left repeat-x;
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    box-shadow: 0 1px 1px #465158;
+    -moz-box-shadow: 0 1px 1px #465158;
+    -webkit-box-shadow: 0 1px 1px #465158;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
+  }
+  #version_menu li a:hover {
+    text-decoration: none;
+    background-color: #697983;
+    box-shadow: 0 1px 0px #465158;
+    -moz-box-shadow: 0 1px 0px #465158;
+    -webkit-box-shadow: 0 1px 0px #465158;
+  }
+  .badge.rtd {
+    background: #257597 url(//media.readthedocs.org/images/badge-rtd.png) top left no-repeat;
+    border: 1px solid #282E32;
+    width: 160px;
+    right: 5px;
+  }
+  .badge.revsys { background: #465158 url(//media.readthedocs.org/images/badge-revsys.png) top left no-repeat;
+    border: 1px solid #1C5871;
+    width: 290px;
+    right: 173px;
+  }
+  .badge.revsys-inline-sponsored {
+    position: inherit;
+    margin-left: auto;
+    margin-right: 175px;
+    margin-bottom: 5px;
+    background: #465158 url(//media.readthedocs.org/images/badge-revsys.png) top left no-repeat;
+    border: 1px solid #1C5871;
+    width: 290px;
+    right: 173px;
+  }
+  .badge.revsys-inline {
+    position: inherit;
+    margin-left: auto;
+    margin-right: 175px;
+    margin-bottom: 5px;
+    background: #465158 url(//media.readthedocs.org/images/badge-revsys-sm.png) top left no-repeat;
+    border: 1px solid #1C5871;
+    width: 205px;
+    right: 173px;
+  }
+
+.rtd_doc_footer { background-color: #465158;}
+
+</style>
+<div class="rtd_doc_footer">
+  <div class="footer_popout">
+    <a href="//readthedocs.org/projects/python-gtk-3-tutorial/?fromdocs=python-gtk-3-tutorial" class="badge rtd"> TEST Brought to you by Read the Docs</a>
+    <ul id="version_menu">
+      
+        <li><a href="//readthedocs.org/docs/python-gtk-3-tutorial/en/latest/">latest</a></li>
+      
+    </ul>
+  </div>
+</div>
+<!-- RTD Analytics Code -->
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-17997319-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+
+<!-- User Analytics Code -->
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'None']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+
+
+  </body>
+</html>

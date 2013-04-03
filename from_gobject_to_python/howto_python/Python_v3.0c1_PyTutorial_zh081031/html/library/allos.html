@@ -1,0 +1,335 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Generic Operating System Services &mdash; Python v3.0c1 documentation</title>
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+          URL_ROOT:    '../',
+          VERSION:     '3.0c1',
+          COLLAPSE_MODINDEX: false,
+          FILE_SUFFIX: '.html'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Search within Python v3.0c1 documentation"
+          href="../_static/opensearch.xml"/>
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="copyright" title="Copyright" href="../copyright.html" />
+    <link rel="top" title="Python v3.0c1 documentation" href="../index.html" />
+    <link rel="up" title="The Python Standard Library" href="index.html" />
+    <link rel="next" title="os &#8212; Miscellaneous operating system interfaces" href="os.html" />
+    <link rel="prev" title="hmac &#8212; Keyed-Hashing for Message Authentication" href="hmac.html" />
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../modindex.html" title="Global Module Index"
+             accesskey="M">modules</a> |</li>
+        <li class="right" >
+          <a href="os.html" title="os &#8212; Miscellaneous operating system interfaces"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="hmac.html" title="hmac &#8212; Keyed-Hashing for Message Authentication"
+             accesskey="P">previous</a> |</li>
+<li><img src="../_static/py.png" alt="" style="vertical-align: middle; margin-top: -1px"/></li>
+
+        <li><a href="../contents.html">Python v3.0c1 documentation</a> &raquo;</li>
+
+          <li><a href="index.html" accesskey="U">The Python Standard Library</a> &raquo;</li>
+      </ul>
+    </div>
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  
+  <div class="section" id="generic-operating-system-services">
+<span id="allos"></span><h1>Generic Operating System Services<a class="headerlink" href="#generic-operating-system-services" title="Permalink to this headline">¶</a></h1>
+<p>The modules described in this chapter provide interfaces to operating system
+features that are available on (almost) all operating systems, such as files and
+a clock.  The interfaces are generally modeled after the Unix or C interfaces,
+but they are available on most other systems as well.  Here&#8217;s an overview:</p>
+<ul>
+<li><a class="reference external" href="os.html"><tt class="docutils literal"><span class="pre">os</span></tt> &#8212; Miscellaneous operating system interfaces</a><ul>
+<li><a class="reference external" href="os.html#process-parameters">Process Parameters</a></li>
+<li><a class="reference external" href="os.html#file-object-creation">File Object Creation</a></li>
+<li><a class="reference external" href="os.html#file-descriptor-operations">File Descriptor Operations</a></li>
+<li><a class="reference external" href="os.html#files-and-directories">Files and Directories</a></li>
+<li><a class="reference external" href="os.html#process-management">Process Management</a></li>
+<li><a class="reference external" href="os.html#miscellaneous-system-information">Miscellaneous System Information</a></li>
+<li><a class="reference external" href="os.html#miscellaneous-functions">Miscellaneous Functions</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><a class="reference external" href="io.html"><tt class="docutils literal"><span class="pre">io</span></tt> &#8212; Core tools for working with streams</a><ul>
+<li><a class="reference external" href="io.html#module-interface">Module Interface</a></li>
+<li><a class="reference external" href="io.html#i-o-base-classes">I/O Base Classes</a></li>
+<li><a class="reference external" href="io.html#raw-file-i-o">Raw File I/O</a></li>
+<li><a class="reference external" href="io.html#buffered-streams">Buffered Streams</a></li>
+<li><a class="reference external" href="io.html#text-i-o">Text I/O</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><a class="reference external" href="time.html"><tt class="docutils literal"><span class="pre">time</span></tt> &#8212; Time access and conversions</a></li>
+</ul>
+<ul>
+<li><a class="reference external" href="optparse.html"><tt class="docutils literal"><span class="pre">optparse</span></tt> &#8212; More powerful command line option parser</a><ul>
+<li><a class="reference external" href="optparse.html#background">Background</a><ul>
+<li><a class="reference external" href="optparse.html#terminology">Terminology</a></li>
+<li><a class="reference external" href="optparse.html#what-are-options-for">What are options for?</a></li>
+<li><a class="reference external" href="optparse.html#what-are-positional-arguments-for">What are positional arguments for?</a></li>
+</ul>
+</li>
+<li><a class="reference external" href="optparse.html#tutorial">Tutorial</a><ul>
+<li><a class="reference external" href="optparse.html#understanding-option-actions">Understanding option actions</a></li>
+<li><a class="reference external" href="optparse.html#the-store-action">The store action</a></li>
+<li><a class="reference external" href="optparse.html#handling-boolean-flag-options">Handling boolean (flag) options</a></li>
+<li><a class="reference external" href="optparse.html#other-actions">Other actions</a></li>
+<li><a class="reference external" href="optparse.html#default-values">Default values</a></li>
+<li><a class="reference external" href="optparse.html#generating-help">Generating help</a></li>
+<li><a class="reference external" href="optparse.html#printing-a-version-string">Printing a version string</a></li>
+<li><a class="reference external" href="optparse.html#how-optparse-handles-errors">How <tt class="docutils literal"><span class="pre">optparse</span></tt> handles errors</a></li>
+<li><a class="reference external" href="optparse.html#putting-it-all-together">Putting it all together</a></li>
+</ul>
+</li>
+<li><a class="reference external" href="optparse.html#reference-guide">Reference Guide</a><ul>
+<li><a class="reference external" href="optparse.html#creating-the-parser">Creating the parser</a></li>
+<li><a class="reference external" href="optparse.html#populating-the-parser">Populating the parser</a></li>
+<li><a class="reference external" href="optparse.html#defining-options">Defining options</a></li>
+<li><a class="reference external" href="optparse.html#standard-option-actions">Standard option actions</a></li>
+<li><a class="reference external" href="optparse.html#option-attributes">Option attributes</a></li>
+<li><a class="reference external" href="optparse.html#standard-option-types">Standard option types</a></li>
+<li><a class="reference external" href="optparse.html#parsing-arguments">Parsing arguments</a></li>
+<li><a class="reference external" href="optparse.html#querying-and-manipulating-your-option-parser">Querying and manipulating your option parser</a></li>
+<li><a class="reference external" href="optparse.html#conflicts-between-options">Conflicts between options</a></li>
+<li><a class="reference external" href="optparse.html#cleanup">Cleanup</a></li>
+<li><a class="reference external" href="optparse.html#other-methods">Other methods</a></li>
+</ul>
+</li>
+<li><a class="reference external" href="optparse.html#option-callbacks">Option Callbacks</a><ul>
+<li><a class="reference external" href="optparse.html#defining-a-callback-option">Defining a callback option</a></li>
+<li><a class="reference external" href="optparse.html#how-callbacks-are-called">How callbacks are called</a></li>
+<li><a class="reference external" href="optparse.html#raising-errors-in-a-callback">Raising errors in a callback</a></li>
+<li><a class="reference external" href="optparse.html#callback-example-1-trivial-callback">Callback example 1: trivial callback</a></li>
+<li><a class="reference external" href="optparse.html#callback-example-2-check-option-order">Callback example 2: check option order</a></li>
+<li><a class="reference external" href="optparse.html#callback-example-3-check-option-order-generalized">Callback example 3: check option order (generalized)</a></li>
+<li><a class="reference external" href="optparse.html#callback-example-4-check-arbitrary-condition">Callback example 4: check arbitrary condition</a></li>
+<li><a class="reference external" href="optparse.html#callback-example-5-fixed-arguments">Callback example 5: fixed arguments</a></li>
+<li><a class="reference external" href="optparse.html#callback-example-6-variable-arguments">Callback example 6: variable arguments</a></li>
+</ul>
+</li>
+<li><a class="reference external" href="optparse.html#extending-optparse">Extending <tt class="docutils literal"><span class="pre">optparse</span></tt></a><ul>
+<li><a class="reference external" href="optparse.html#adding-new-types">Adding new types</a></li>
+<li><a class="reference external" href="optparse.html#adding-new-actions">Adding new actions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><a class="reference external" href="getopt.html"><tt class="docutils literal"><span class="pre">getopt</span></tt> &#8212; Parser for command line options</a></li>
+</ul>
+<ul>
+<li><a class="reference external" href="logging.html"><tt class="docutils literal"><span class="pre">logging</span></tt> &#8212; Logging facility for Python</a><ul>
+<li><a class="reference external" href="logging.html#logging-tutorial">Logging tutorial</a><ul>
+<li><a class="reference external" href="logging.html#simple-examples">Simple examples</a></li>
+<li><a class="reference external" href="logging.html#loggers">Loggers</a></li>
+<li><a class="reference external" href="logging.html#handlers">Handlers</a></li>
+<li><a class="reference external" href="logging.html#formatters">Formatters</a></li>
+<li><a class="reference external" href="logging.html#configuring-logging">Configuring Logging</a></li>
+<li><a class="reference external" href="logging.html#configuring-logging-for-a-library">Configuring Logging for a Library</a></li>
+</ul>
+</li>
+<li><a class="reference external" href="logging.html#logging-levels">Logging Levels</a></li>
+<li><a class="reference external" href="logging.html#logger-objects">Logger Objects</a></li>
+<li><a class="reference external" href="logging.html#basic-example">Basic example</a></li>
+<li><a class="reference external" href="logging.html#logging-to-multiple-destinations">Logging to multiple destinations</a></li>
+<li><a class="reference external" href="logging.html#adding-contextual-information-to-your-logging-output">Adding contextual information to your logging output</a></li>
+<li><a class="reference external" href="logging.html#sending-and-receiving-logging-events-across-a-network">Sending and receiving logging events across a network</a></li>
+<li><a class="reference external" href="logging.html#handler-objects">Handler Objects</a><ul>
+<li><a class="reference external" href="logging.html#streamhandler">StreamHandler</a></li>
+<li><a class="reference external" href="logging.html#filehandler">FileHandler</a></li>
+<li><a class="reference external" href="logging.html#watchedfilehandler">WatchedFileHandler</a></li>
+<li><a class="reference external" href="logging.html#rotatingfilehandler">RotatingFileHandler</a></li>
+<li><a class="reference external" href="logging.html#timedrotatingfilehandler">TimedRotatingFileHandler</a></li>
+<li><a class="reference external" href="logging.html#sockethandler">SocketHandler</a></li>
+<li><a class="reference external" href="logging.html#datagramhandler">DatagramHandler</a></li>
+<li><a class="reference external" href="logging.html#sysloghandler">SysLogHandler</a></li>
+<li><a class="reference external" href="logging.html#nteventloghandler">NTEventLogHandler</a></li>
+<li><a class="reference external" href="logging.html#smtphandler">SMTPHandler</a></li>
+<li><a class="reference external" href="logging.html#memoryhandler">MemoryHandler</a></li>
+<li><a class="reference external" href="logging.html#httphandler">HTTPHandler</a></li>
+</ul>
+</li>
+<li><a class="reference external" href="logging.html#id1">Formatter Objects</a></li>
+<li><a class="reference external" href="logging.html#filter-objects">Filter Objects</a></li>
+<li><a class="reference external" href="logging.html#logrecord-objects">LogRecord Objects</a></li>
+<li><a class="reference external" href="logging.html#loggeradapter-objects">LoggerAdapter Objects</a></li>
+<li><a class="reference external" href="logging.html#thread-safety">Thread Safety</a></li>
+<li><a class="reference external" href="logging.html#configuration">Configuration</a><ul>
+<li><a class="reference external" href="logging.html#configuration-functions">Configuration functions</a></li>
+<li><a class="reference external" href="logging.html#configuration-file-format">Configuration file format</a></li>
+<li><a class="reference external" href="logging.html#configuration-server-example">Configuration server example</a></li>
+</ul>
+</li>
+<li><a class="reference external" href="logging.html#more-examples">More examples</a><ul>
+<li><a class="reference external" href="logging.html#multiple-handlers-and-formatters">Multiple handlers and formatters</a></li>
+<li><a class="reference external" href="logging.html#using-logging-in-multiple-modules">Using logging in multiple modules</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><a class="reference external" href="getpass.html"><tt class="docutils literal"><span class="pre">getpass</span></tt> &#8212; Portable password input</a></li>
+</ul>
+<ul>
+<li><a class="reference external" href="curses.html"><tt class="docutils literal"><span class="pre">curses</span></tt> &#8212; Terminal handling for character-cell displays</a><ul>
+<li><a class="reference external" href="curses.html#functions">Functions</a></li>
+<li><a class="reference external" href="curses.html#window-objects">Window Objects</a></li>
+<li><a class="reference external" href="curses.html#constants">Constants</a></li>
+</ul>
+</li>
+<li><a class="reference external" href="curses.html#module-curses.textpad"><tt class="docutils literal"><span class="pre">curses.textpad</span></tt> &#8212; Text input widget for curses programs</a><ul>
+<li><a class="reference external" href="curses.html#textbox-objects">Textbox objects</a></li>
+</ul>
+</li>
+<li><a class="reference external" href="curses.html#module-curses.wrapper"><tt class="docutils literal"><span class="pre">curses.wrapper</span></tt> &#8212; Terminal handler for curses programs</a></li>
+</ul>
+<ul>
+<li><a class="reference external" href="curses.ascii.html"><tt class="docutils literal"><span class="pre">curses.ascii</span></tt> &#8212; Utilities for ASCII characters</a></li>
+</ul>
+<ul>
+<li><a class="reference external" href="curses.panel.html"><tt class="docutils literal"><span class="pre">curses.panel</span></tt> &#8212; A panel stack extension for curses.</a><ul>
+<li><a class="reference external" href="curses.panel.html#functions">Functions</a></li>
+<li><a class="reference external" href="curses.panel.html#panel-objects">Panel Objects</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><a class="reference external" href="platform.html"><tt class="docutils literal"><span class="pre">platform</span></tt> &#8212;  Access to underlying platform&#8217;s identifying data.</a><ul>
+<li><a class="reference external" href="platform.html#cross-platform">Cross Platform</a></li>
+<li><a class="reference external" href="platform.html#java-platform">Java Platform</a></li>
+<li><a class="reference external" href="platform.html#windows-platform">Windows Platform</a><ul>
+<li><a class="reference external" href="platform.html#win95-98-specific">Win95/98 specific</a></li>
+</ul>
+</li>
+<li><a class="reference external" href="platform.html#mac-os-platform">Mac OS Platform</a></li>
+<li><a class="reference external" href="platform.html#unix-platforms">Unix Platforms</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><a class="reference external" href="errno.html"><tt class="docutils literal"><span class="pre">errno</span></tt> &#8212; Standard errno system symbols</a></li>
+</ul>
+<ul>
+<li><a class="reference external" href="ctypes.html"><tt class="docutils literal"><span class="pre">ctypes</span></tt> &#8212; A foreign function library for Python.</a><ul>
+<li><a class="reference external" href="ctypes.html#ctypes-tutorial">ctypes tutorial</a><ul>
+<li><a class="reference external" href="ctypes.html#loading-dynamic-link-libraries">Loading dynamic link libraries</a></li>
+<li><a class="reference external" href="ctypes.html#accessing-functions-from-loaded-dlls">Accessing functions from loaded dlls</a></li>
+<li><a class="reference external" href="ctypes.html#calling-functions">Calling functions</a></li>
+<li><a class="reference external" href="ctypes.html#fundamental-data-types">Fundamental data types</a></li>
+<li><a class="reference external" href="ctypes.html#calling-functions-continued">Calling functions, continued</a></li>
+<li><a class="reference external" href="ctypes.html#calling-functions-with-your-own-custom-data-types">Calling functions with your own custom data types</a></li>
+<li><a class="reference external" href="ctypes.html#specifying-the-required-argument-types-function-prototypes">Specifying the required argument types (function prototypes)</a></li>
+<li><a class="reference external" href="ctypes.html#return-types">Return types</a></li>
+<li><a class="reference external" href="ctypes.html#passing-pointers-or-passing-parameters-by-reference">Passing pointers (or: passing parameters by reference)</a></li>
+<li><a class="reference external" href="ctypes.html#structures-and-unions">Structures and unions</a></li>
+<li><a class="reference external" href="ctypes.html#structure-union-alignment-and-byte-order">Structure/union alignment and byte order</a></li>
+<li><a class="reference external" href="ctypes.html#bit-fields-in-structures-and-unions">Bit fields in structures and unions</a></li>
+<li><a class="reference external" href="ctypes.html#arrays">Arrays</a></li>
+<li><a class="reference external" href="ctypes.html#pointers">Pointers</a></li>
+<li><a class="reference external" href="ctypes.html#type-conversions">Type conversions</a></li>
+<li><a class="reference external" href="ctypes.html#incomplete-types">Incomplete Types</a></li>
+<li><a class="reference external" href="ctypes.html#callback-functions">Callback functions</a></li>
+<li><a class="reference external" href="ctypes.html#accessing-values-exported-from-dlls">Accessing values exported from dlls</a></li>
+<li><a class="reference external" href="ctypes.html#surprises">Surprises</a></li>
+<li><a class="reference external" href="ctypes.html#variable-sized-data-types">Variable-sized data types</a></li>
+</ul>
+</li>
+<li><a class="reference external" href="ctypes.html#ctypes-reference">ctypes reference</a><ul>
+<li><a class="reference external" href="ctypes.html#finding-shared-libraries">Finding shared libraries</a></li>
+<li><a class="reference external" href="ctypes.html#loading-shared-libraries">Loading shared libraries</a></li>
+<li><a class="reference external" href="ctypes.html#foreign-functions">Foreign functions</a></li>
+<li><a class="reference external" href="ctypes.html#function-prototypes">Function prototypes</a></li>
+<li><a class="reference external" href="ctypes.html#utility-functions">Utility functions</a></li>
+<li><a class="reference external" href="ctypes.html#data-types">Data types</a></li>
+<li><a class="reference external" href="ctypes.html#id1">Fundamental data types</a></li>
+<li><a class="reference external" href="ctypes.html#structured-data-types">Structured data types</a></li>
+<li><a class="reference external" href="ctypes.html#arrays-and-pointers">Arrays and pointers</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <h4>Previous topic</h4>
+            <p class="topless"><a href="hmac.html" title="previous chapter"><tt class="docutils literal"><span class="pre">hmac</span></tt> &#8212; Keyed-Hashing for Message Authentication</a></p>
+            <h4>Next topic</h4>
+            <p class="topless"><a href="os.html" title="next chapter"><tt class="docutils literal"><span class="pre">os</span></tt> &#8212; Miscellaneous operating system interfaces</a></p>
+            <h3>This Page</h3>
+            <ul class="this-page-menu">
+              <li><a href="../_sources/library/allos.txt">Show Source</a></li>
+            </ul>
+          <h3>Quick search</h3>
+            <form class="search" action="../search.html" method="get">
+              <input type="text" name="q" size="18" /> <input type="submit" value="Go" />
+              <input type="hidden" name="check_keywords" value="yes" />
+              <input type="hidden" name="area" value="default" />
+            </form>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../modindex.html" title="Global Module Index"
+             accesskey="M">modules</a> |</li>
+        <li class="right" >
+          <a href="os.html" title="os &#8212; Miscellaneous operating system interfaces"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="hmac.html" title="hmac &#8212; Keyed-Hashing for Message Authentication"
+             accesskey="P">previous</a> |</li>
+<li><img src="../_static/py.png" alt="" style="vertical-align: middle; margin-top: -1px"/></li>
+
+        <li><a href="../contents.html">Python v3.0c1 documentation</a> &raquo;</li>
+
+          <li><a href="index.html" accesskey="U">The Python Standard Library</a> &raquo;</li>
+      </ul>
+    </div>
+    <div class="footer">
+      &copy; <a href="../copyright.html">Copyright</a> 1990-2008, Python Software Foundation.
+      Last updated on Oct 31, 2008.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.5.
+    </div>
+  </body>
+</html>

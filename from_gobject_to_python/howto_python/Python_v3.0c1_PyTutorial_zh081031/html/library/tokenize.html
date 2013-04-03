@@ -1,0 +1,234 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>tokenize &#8212; Tokenizer for Python source &mdash; Python v3.0c1 documentation</title>
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+          URL_ROOT:    '../',
+          VERSION:     '3.0c1',
+          COLLAPSE_MODINDEX: false,
+          FILE_SUFFIX: '.html'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Search within Python v3.0c1 documentation"
+          href="../_static/opensearch.xml"/>
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="copyright" title="Copyright" href="../copyright.html" />
+    <link rel="top" title="Python v3.0c1 documentation" href="../index.html" />
+    <link rel="up" title="Python Language Services" href="language.html" />
+    <link rel="next" title="tabnanny &#8212; Detection of ambiguous indentation" href="tabnanny.html" />
+    <link rel="prev" title="keyword &#8212; Testing for Python keywords" href="keyword.html" />
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../modindex.html" title="Global Module Index"
+             accesskey="M">modules</a> |</li>
+        <li class="right" >
+          <a href="tabnanny.html" title="tabnanny &#8212; Detection of ambiguous indentation"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="keyword.html" title="keyword &#8212; Testing for Python keywords"
+             accesskey="P">previous</a> |</li>
+<li><img src="../_static/py.png" alt="" style="vertical-align: middle; margin-top: -1px"/></li>
+
+        <li><a href="../contents.html">Python v3.0c1 documentation</a> &raquo;</li>
+
+          <li><a href="index.html" accesskey="U">The Python Standard Library</a> &raquo;</li>
+          <li><a href="language.html" accesskey="U">Python Language Services</a> &raquo;</li>
+      </ul>
+    </div>
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  
+  <div class="section" id="module-tokenize">
+<h1><tt class="xref docutils literal"><span class="pre">tokenize</span></tt> &#8212; Tokenizer for Python source<a class="headerlink" href="#module-tokenize" title="Permalink to this headline">¶</a></h1>
+<p>The <tt class="xref docutils literal"><span class="pre">tokenize</span></tt> module provides a lexical scanner for Python source code,
+implemented in Python.  The scanner in this module returns comments as tokens
+as well, making it useful for implementing &#8220;pretty-printers,&#8221; including
+colorizers for on-screen displays.</p>
+<p>The primary entry point is a <a class="reference external" href="../glossary.html#term-generator"><em class="xref">generator</em></a>:</p>
+<dl class="function">
+<dt id="tokenize.tokenize">
+<!--[tokenize.tokenize]--><tt class="descclassname">tokenize.</tt><tt class="descname">tokenize</tt><big>(</big><em>readline</em><big>)</big><a class="headerlink" href="#tokenize.tokenize" title="Permalink to this definition">¶</a></dt>
+<dd><p>The <a title="tokenize.tokenize" class="reference internal" href="#tokenize.tokenize"><tt class="xref docutils literal"><span class="pre">tokenize()</span></tt></a> generator requires one argument, <em>readline</em>, which
+must be a callable object which provides the same interface as the
+<tt class="xref docutils literal"><span class="pre">readline()</span></tt> method of built-in file objects (see section
+<a class="reference external" href="stdtypes.html#bltin-file-objects"><em>File Objects</em></a>).  Each call to the function should return one
+line of input as bytes.</p>
+<p>The generator produces 5-tuples with these members: the token type; the
+token string; a 2-tuple <tt class="docutils literal"><span class="pre">(srow,</span> <span class="pre">scol)</span></tt> of ints specifying the row and
+column where the token begins in the source; a 2-tuple <tt class="docutils literal"><span class="pre">(erow,</span> <span class="pre">ecol)</span></tt> of
+ints specifying the row and column where the token ends in the source; and
+the line on which the token was found. The line passed (the last tuple item)
+is the <em>logical</em> line; continuation lines are included.</p>
+<p><a title="tokenize.tokenize" class="reference internal" href="#tokenize.tokenize"><tt class="xref docutils literal"><span class="pre">tokenize()</span></tt></a> determines the source encoding of the file by looking for a
+UTF-8 BOM or encoding cookie, according to <span class="target" id="index-580"></span><a class="reference external" href="http://www.python.org/dev/peps/pep-0263"><strong>PEP 263</strong></a>.</p>
+</dd></dl>
+
+<p>All constants from the <a title="Constants representing terminal nodes of the parse tree." class="reference external" href="token.html"><tt class="xref docutils literal"><span class="pre">token</span></tt></a> module are also exported from
+<tt class="xref docutils literal"><span class="pre">tokenize</span></tt>, as are three additional token type values:</p>
+<dl class="data">
+<dt id="tokenize.COMMENT">
+<!--[tokenize.COMMENT]--><tt class="descclassname">tokenize.</tt><tt class="descname">COMMENT</tt><a class="headerlink" href="#tokenize.COMMENT" title="Permalink to this definition">¶</a></dt>
+<dd>Token value used to indicate a comment.</dd></dl>
+
+<dl class="data">
+<dt id="tokenize.NL">
+<!--[tokenize.NL]--><tt class="descclassname">tokenize.</tt><tt class="descname">NL</tt><a class="headerlink" href="#tokenize.NL" title="Permalink to this definition">¶</a></dt>
+<dd>Token value used to indicate a non-terminating newline.  The NEWLINE token
+indicates the end of a logical line of Python code; NL tokens are generated
+when a logical line of code is continued over multiple physical lines.</dd></dl>
+
+<dl class="data">
+<dt id="tokenize.ENCODING">
+<!--[tokenize.ENCODING]--><tt class="descclassname">tokenize.</tt><tt class="descname">ENCODING</tt><a class="headerlink" href="#tokenize.ENCODING" title="Permalink to this definition">¶</a></dt>
+<dd>Token value that indicates the encoding used to decode the source bytes
+into text. The first token returned by <a title="tokenize.tokenize" class="reference internal" href="#tokenize.tokenize"><tt class="xref docutils literal"><span class="pre">tokenize()</span></tt></a> will always be an
+ENCODING token.</dd></dl>
+
+<p>Another function is provided to reverse the tokenization process. This is
+useful for creating tools that tokenize a script, modify the token stream, and
+write back the modified script.</p>
+<dl class="function">
+<dt id="tokenize.untokenize">
+<!--[tokenize.untokenize]--><tt class="descclassname">tokenize.</tt><tt class="descname">untokenize</tt><big>(</big><em>iterable</em><big>)</big><a class="headerlink" href="#tokenize.untokenize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts tokens back into Python source code.  The <em>iterable</em> must return
+sequences with at least two elements, the token type and the token string.
+Any additional sequence elements are ignored.</p>
+<p>The reconstructed script is returned as a single string.  The result is
+guaranteed to tokenize back to match the input so that the conversion is
+lossless and round-trips are assured.  The guarantee applies only to the
+token type and token string as the spacing between tokens (column
+positions) may change.</p>
+<p>It returns bytes, encoded using the ENCODING token, which is the first
+token sequence output by <a title="tokenize.tokenize" class="reference internal" href="#tokenize.tokenize"><tt class="xref docutils literal"><span class="pre">tokenize()</span></tt></a>.</p>
+</dd></dl>
+
+<p><a title="tokenize.tokenize" class="reference internal" href="#tokenize.tokenize"><tt class="xref docutils literal"><span class="pre">tokenize()</span></tt></a> needs to detect the encoding of source files it tokenizes. The
+function it uses to do this is available:</p>
+<dl class="function">
+<dt id="tokenize.detect_encoding">
+<!--[tokenize.detect_encoding]--><tt class="descclassname">tokenize.</tt><tt class="descname">detect_encoding</tt><big>(</big><em>readline</em><big>)</big><a class="headerlink" href="#tokenize.detect_encoding" title="Permalink to this definition">¶</a></dt>
+<dd><p>The <a title="tokenize.detect_encoding" class="reference internal" href="#tokenize.detect_encoding"><tt class="xref docutils literal"><span class="pre">detect_encoding()</span></tt></a> function is used to detect the encoding that
+should be used to decode a Python source file. It requires one argment,
+readline, in the same way as the <a title="tokenize.tokenize" class="reference internal" href="#tokenize.tokenize"><tt class="xref docutils literal"><span class="pre">tokenize()</span></tt></a> generator.</p>
+<p>It will call readline a maximum of twice, and return the encoding used
+(as a string) and a list of any lines (not decoded from bytes) it has read
+in.</p>
+<p>It detects the encoding from the presence of a utf-8 bom or an encoding
+cookie as specified in pep-0263. If both a bom and a cookie are present,
+but disagree, a SyntaxError will be raised.</p>
+<p>If no encoding is specified, then the default of &#8216;utf-8&#8217; will be returned.</p>
+</dd></dl>
+
+<p>Example of a script re-writer that transforms float literals into Decimal
+objects:</p>
+<pre>def decistmt(s):
+    """Substitute Decimals for floats in a string of statements.
+
+    &gt;&gt;&gt; from decimal import Decimal
+    &gt;&gt;&gt; s = 'print(+21.3e-5*-.1234/81.7)'
+    &gt;&gt;&gt; decistmt(s)
+    "print (+Decimal ('21.3e-5')*-Decimal ('.1234')/Decimal ('81.7'))"
+
+    The format of the exponent is inherited from the platform C library.
+    Known cases are "e-007" (Windows) and "e-07" (not Windows).  Since
+    we're only showing 12 digits, and the 13th isn't close to 5, the
+    rest of the output should be platform-independent.
+
+    &gt;&gt;&gt; exec(s) #doctest: +ELLIPSIS
+    -3.21716034272e-0...7
+
+    Output from calculations with Decimal should be identical across all
+    platforms.
+
+    &gt;&gt;&gt; exec(decistmt(s))
+    -3.217160342717258261933904529E-7
+    """
+    result = []
+    g = tokenize(BytesIO(s.encode('utf-8')).readline) # tokenize the string
+    for toknum, tokval, _, _, _  in g:
+        if toknum == NUMBER and '.' in tokval:  # replace NUMBER tokens
+            result.extend([
+                (NAME, 'Decimal'),
+                (OP, '('),
+                (STRING, repr(tokval)),
+                (OP, ')')
+            ])
+        else:
+            result.append((toknum, tokval))
+    return untokenize(result).decode('utf-8')</pre>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <h4>Previous topic</h4>
+            <p class="topless"><a href="keyword.html" title="previous chapter"><tt class="docutils literal docutils literal docutils literal"><span class="pre">keyword</span></tt> &#8212; Testing for Python keywords</a></p>
+            <h4>Next topic</h4>
+            <p class="topless"><a href="tabnanny.html" title="next chapter"><tt class="docutils literal docutils literal docutils literal"><span class="pre">tabnanny</span></tt> &#8212; Detection of ambiguous indentation</a></p>
+            <h3>This Page</h3>
+            <ul class="this-page-menu">
+              <li><a href="../_sources/library/tokenize.txt">Show Source</a></li>
+            </ul>
+          <h3>Quick search</h3>
+            <form class="search" action="../search.html" method="get">
+              <input type="text" name="q" size="18" /> <input type="submit" value="Go" />
+              <input type="hidden" name="check_keywords" value="yes" />
+              <input type="hidden" name="area" value="default" />
+            </form>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../modindex.html" title="Global Module Index"
+             accesskey="M">modules</a> |</li>
+        <li class="right" >
+          <a href="tabnanny.html" title="tabnanny &#8212; Detection of ambiguous indentation"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="keyword.html" title="keyword &#8212; Testing for Python keywords"
+             accesskey="P">previous</a> |</li>
+<li><img src="../_static/py.png" alt="" style="vertical-align: middle; margin-top: -1px"/></li>
+
+        <li><a href="../contents.html">Python v3.0c1 documentation</a> &raquo;</li>
+
+          <li><a href="index.html" accesskey="U">The Python Standard Library</a> &raquo;</li>
+          <li><a href="language.html" accesskey="U">Python Language Services</a> &raquo;</li>
+      </ul>
+    </div>
+    <div class="footer">
+      &copy; <a href="../copyright.html">Copyright</a> 1990-2008, Python Software Foundation.
+      Last updated on Oct 31, 2008.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.5.
+    </div>
+  </body>
+</html>

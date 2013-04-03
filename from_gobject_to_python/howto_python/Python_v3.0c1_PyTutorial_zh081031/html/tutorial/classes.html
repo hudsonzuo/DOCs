@@ -1,0 +1,1017 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Classes 类 &mdash; Python v3.0c1 documentation</title>
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+          URL_ROOT:    '../',
+          VERSION:     '3.0c1',
+          COLLAPSE_MODINDEX: false,
+          FILE_SUFFIX: '.html'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Search within Python v3.0c1 documentation"
+          href="../_static/opensearch.xml"/>
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="copyright" title="Copyright" href="../copyright.html" />
+    <link rel="top" title="Python v3.0c1 documentation" href="../index.html" />
+    <link rel="up" title="The Python tutorial Python 入门指南" href="index.html" />
+    <link rel="next" title="Brief Tour of the Standard Library 标准库概览" href="stdlib.html" />
+    <link rel="prev" title="Errors and Exceptions 错误和异常" href="errors.html" />
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../modindex.html" title="Global Module Index"
+             accesskey="M">modules</a> |</li>
+        <li class="right" >
+          <a href="stdlib.html" title="Brief Tour of the Standard Library 标准库概览"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="errors.html" title="Errors and Exceptions 错误和异常"
+             accesskey="P">previous</a> |</li>
+<li><img src="../_static/py.png" alt="" style="vertical-align: middle; margin-top: -1px"/></li>
+
+        <li><a href="../contents.html">Python v3.0c1 documentation</a> &raquo;</li>
+
+          <li><a href="index.html" accesskey="U">The Python tutorial Python 入门指南</a> &raquo;</li>
+      </ul>
+    </div>
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  
+  <div class="section" id="classes">
+<span id="tut-classes"></span><h1>Classes 类<a class="headerlink" href="#classes" title="Permalink to this headline">¶</a></h1>
+<p>Python&#8217;s class mechanism adds classes to the language with a minimum of new
+syntax and semantics.  It is a mixture of the class mechanisms found in C++ and
+Modula-3.  As is true for modules, classes in Python do not put an absolute
+barrier between definition and user, but rather rely on the politeness of the
+user not to &#8220;break into the definition.&#8221;  The most important features of classes
+are retained with full power, however: the class inheritance mechanism allows
+multiple base classes, a derived class can override any methods of its base
+class or classes, and a method can call the method of a base class with the same
+name.  Objects can contain an arbitrary amount of private data.</p>
+<p>Python 在尽可能不增加新的语法和语义的情况下加入了类机制。这种机制是 C++ 和 Modula-3 的混合。
+Python中的类没有在用户和定义之间建立一个绝对的屏障，而是依赖于用户自觉的不去“破坏定义”。然而，
+类机制最重要的功能都完整的保留下来：类继承机制允许多继承，派生类可以覆盖（override）基类中的任
+何方法，方法中可以调用基类中的同名方法。对象可以包含任意数量的私有成员。</p>
+<p>In C++ terminology, normally class members (including the data members) are
+<em>public</em> (except see below <a class="reference internal" href="#tut-private"><em>Private Variables 私有变量</em></a>),
+and all member functions are <em>virtual</em>.  There are no special constructors or
+destructors.  As in Modula-3, there are no shorthands for referencing the
+object&#8217;s members from its methods: the method function is declared with an
+explicit first argument representing the object, which is provided implicitly by
+the call.  As in Smalltalk, classes themselves are objects, albeit in the wider
+sense of the word: in Python, all data types are objects.  This provides
+semantics for importing and renaming.  Unlike  C++ and Modula-3, built-in types
+can be used as base classes for extension by the user.  Also, like in C++ but
+unlike in Modula-3, most built-in operators with special syntax (arithmetic
+operators, subscripting etc.) can be redefined for class instances.</p>
+<p>用 C++ 术语来讲，所有的类成员（包括数据成员）都是*公有*（参见 <a class="reference internal" href="#tut-private"><em>Private Variables 私有变量</em></a> ）的，所有
+的成员函数都是*虚*（ virtual ）的。没有特定的构造和析构函数。像 Modula-3 一样，在成员方法中没
+有什么简便的方式可以引用对象的成员：方法函数在定义时需要以引用的对象做为第一个参数，调用时则会隐式
+引用对象。像 Smalltalk 一样，类本身就是对象，在更为广义的范围上理解： Python 中一切数据类型都
+是对象。这样就形成了语义上的引入和重命名。但是，像 C++ 而非 Modula-3 中那样，大多数带有特殊语
+法的内置操作符（算法运算符、下标等）都可以针对类的需要重新定义。</p>
+<div class="section" id="a-word-about-terminology">
+<span id="tut-terminology"></span><h2>A Word About Terminology 术语漫谈<a class="headerlink" href="#a-word-about-terminology" title="Permalink to this headline">¶</a></h2>
+<p>Lacking universally accepted terminology to talk about classes, I will make
+occasional use of Smalltalk and C++ terms.  (I would use Modula-3 terms, since
+its object-oriented semantics are closer to those of Python than C++, but I
+expect that few readers have heard of it.)</p>
+<p>由于没有什么关于类的通用术语，我从 Smalltalk 和 C++ 中借用一些（我更希望用 Modula-3 的，因
+为它的面向对象机制比 C++更接近Python，不过我想没多少读者听说过它）。</p>
+<p>Objects have individuality, and multiple names (in multiple scopes) can be bound
+to the same object.  This is known as aliasing in other languages.  This is
+usually not appreciated on a first glance at Python, and can be safely ignored
+when dealing with immutable basic types (numbers, strings, tuples).  However,
+aliasing has an (intended!) effect on the semantics of Python code involving
+mutable objects such as lists, dictionaries, and most types representing
+entities outside the program (files, windows, etc.).  This is usually used to
+the benefit of the program, since aliases behave like pointers in some respects.
+For example, passing an object is cheap since only a pointer is passed by the
+implementation; and if a function modifies an object passed as an argument, the
+caller will see the change &#8212; this eliminates the need for two different
+argument passing mechanisms as in Pascal.</p>
+<p>对象是被特化的，多个名字（在多个作用域中）可以绑定同一个对象。这相当于其它语言中的别名。通常对
+Python 的第一印象中会忽略这一点，使用那些不可变的基本类型（数值、字符串、元组）时也可以很放心
+的忽视它。然而，在 Python 代码调用字典、链表之类可变对象，以及大多数涉及程序外部实体（文件、
+窗体等等）的类型时，这一语义就会有影响。这通用有助于优化程序，因为别名的行为在某些方面类似于指
+针。例如，很容易传递一个对象，因为在行为上只是传递了一个指针。如果函数修改了一个通过参数传递的
+对象，调用者可以接收到变化－－在 Pascal 中这需要两个不同的参数传递机制。</p>
+</div>
+<div class="section" id="python-scopes-and-name-spaces">
+<span id="tut-scopes"></span><h2>Python Scopes and Name Spaces 作用域和命名空间<a class="headerlink" href="#python-scopes-and-name-spaces" title="Permalink to this headline">¶</a></h2>
+<p>Before introducing classes, I first have to tell you something about Python&#8217;s
+scope rules.  Class definitions play some neat tricks with namespaces, and you
+need to know how scopes and namespaces work to fully understand what&#8217;s going on.
+Incidentally, knowledge about this subject is useful for any advanced Python
+programmer.</p>
+<p>在介绍类之前，我首先介绍一些有关 Python 作用域的规则：类的定义非常巧妙的运用了命名空间，要
+完全理解接下来的知识，需要先理解作用域和命名空间的工作原理。另外，这一切的知识对于任何高级
+Python 程序员都非常有用。</p>
+<p>Let&#8217;s begin with some definitions.</p>
+<p>我们从一些定义开始。</p>
+<p>A <em>namespace</em> is a mapping from names to objects.  Most namespaces are currently
+implemented as Python dictionaries, but that&#8217;s normally not noticeable in any
+way (except for performance), and it may change in the future.  Examples of
+namespaces are: the set of built-in names (functions such as <a title="abs" class="reference external" href="../library/functions.html#abs"><tt class="xref docutils literal"><span class="pre">abs()</span></tt></a>, and
+built-in exception names); the global names in a module; and the local names in
+a function invocation.  In a sense the set of attributes of an object also form
+a namespace.  The important thing to know about namespaces is that there is
+absolutely no relation between names in different namespaces; for instance, two
+different modules may both define a function &#8220;maximize&#8221; without confusion &#8212;
+users of the modules must prefix it with the module name.</p>
+<p><a href="#id1"><span class="problematic" id="id2">*</span></a>命名空间*是从命名到对象的映射。当前命名空间主要是通过 Python 字典实现的，不过通常不关心具
+体的实现方式（除非出于性能考虑），以后也有可能会改变其实现方式。以下有一些命名空间的例子：内
+置命名（像 <a title="abs" class="reference external" href="../library/functions.html#abs"><tt class="xref docutils literal"><span class="pre">abs()</span></tt></a> 这样的函数，以及内置异常名）集，模块中的全局命名，函数调用中的局部
+命名。某种意义上讲对象的属性集也是一个命名空间。关于命名空间需要了解的一件很重要的事就是不同
+命名空间中的命名没有任何联系，例如两个不同的模块可能都会定义一个名为“maximize”的函数而不
+会发生混淆－－用户必须以模块名为前缀来引用它们。</p>
+<p>By the way, I use the word <em>attribute</em> for any name following a dot &#8212; for
+example, in the expression <tt class="docutils literal"><span class="pre">z.real</span></tt>, <tt class="docutils literal"><span class="pre">real</span></tt> is an attribute of the object
+<tt class="docutils literal"><span class="pre">z</span></tt>.  Strictly speaking, references to names in modules are attribute
+references: in the expression <tt class="docutils literal"><span class="pre">modname.funcname</span></tt>, <tt class="docutils literal"><span class="pre">modname</span></tt> is a module
+object and <tt class="docutils literal"><span class="pre">funcname</span></tt> is an attribute of it.  In this case there happens to be
+a straightforward mapping between the module&#8217;s attributes and the global names
+defined in the module: they share the same namespace!  <a class="footnote-reference" href="#id20" id="id3">[1]</a></p>
+<p>顺便提一句，我习惯称 Python 中任何一个“.”之后的命名为*属性*－－例如，表达式 z.real 中的
+real 是对象 z 的一个属性。严格来讲，从模块中引用命名是引用属性：表达式 <tt class="docutils literal"><span class="pre">modname.funcname</span></tt>
+中， <tt class="docutils literal"><span class="pre">modname</span></tt> 是一个模块对象，``funcname`` 是它的一个属性。因此，模块的属性和模块中的全
+局命名有直接的映射关系：它们共享同一命名空间！[#]_</p>
+<p>Attributes may be read-only or writable.  In the latter case, assignment to
+attributes is possible.  Module attributes are writable: you can write
+<tt class="docutils literal"><span class="pre">modname.the_answer</span> <span class="pre">=</span> <span class="pre">42</span></tt>.  Writable attributes may also be deleted with the
+<a class="reference external" href="../reference/simple_stmts.html#del"><tt class="xref docutils literal"><span class="pre">del</span></tt></a> statement.  For example, <tt class="docutils literal"><span class="pre">del</span> <span class="pre">modname.the_answer</span></tt> will remove
+the attribute <tt class="xref docutils literal"><span class="pre">the_answer</span></tt> from the object named by <tt class="docutils literal"><span class="pre">modname</span></tt>.</p>
+<p>属性可以是只读或可写的。后一种情况下，可以对属性赋值。你可以这样作：``modname.the_answer = 42``。
+可写的属性也可以用 <a class="reference external" href="../reference/simple_stmts.html#del"><tt class="xref docutils literal"><span class="pre">del</span></tt></a> 语句删除。例如：``del modname.the_answer`` 会
+从 <tt class="docutils literal"><span class="pre">modname</span></tt> 对象中删除 <tt class="docutils literal"><span class="pre">the_answer</span></tt> 属性。</p>
+<p>Name spaces are created at different moments and have different lifetimes.  The
+namespace containing the built-in names is created when the Python interpreter
+starts up, and is never deleted.  The global namespace for a module is created
+when the module definition is read in; normally, module namespaces also last
+until the interpreter quits.  The statements executed by the top-level
+invocation of the interpreter, either read from a script file or interactively,
+are considered part of a module called <a title="The environment where the top-level script is run." class="reference external" href="../library/__main__.html"><tt class="xref docutils literal"><span class="pre">__main__</span></tt></a>, so they have their own
+global namespace.  (The built-in names actually also live in a module; this is
+called <a title="The module that provides the built-in namespace." class="reference external" href="../library/builtins.html"><tt class="xref docutils literal"><span class="pre">builtins</span></tt></a>.)</p>
+<p>在不同的时刻创建的命名空间，有不同的生存期。包含内置命名的命名空间在 Python 解释器启动时创建，
+会一直保留，不被删除。模块的全局命名空间在模块定义被读入时创建，通常，模块命名空间也会一直保存
+到解释器退出。由解释器在最高层调用执行的语句，不管它是从脚本文件中读入还是来自交互式输入，都是</p>
+<blockquote>
+<cite>__main__</cite> 模块的一部分，所以它们也拥有自己的命名空间。（内置命名也同样被包含在一个模块中，</blockquote>
+<p>它被称作 <tt class="xref docutils literal"><span class="pre">__builtin__</span></tt> 。）</p>
+<p>The local namespace for a function is created when the function is called, and
+deleted when the function returns or raises an exception that is not handled
+within the function.  (Actually, forgetting would be a better way to describe
+what actually happens.)  Of course, recursive invocations each have their own
+local namespace.</p>
+<p>当函数被调用时创建一个局部命名空间，函数反正返回过抛出一个未在函数内处理的异常时删除。（实际上，
+说是遗忘更为贴切）。当然，每一个递归调用拥有自己的命名空间。</p>
+<p>A <em>scope</em> is a textual region of a Python program where a namespace is directly
+accessible.  &#8220;Directly accessible&#8221; here means that an unqualified reference to a
+name attempts to find the name in the namespace.</p>
+<p><a href="#id4"><span class="problematic" id="id5">*</span></a>作用域*是Python程序中一个命名空间可以直接访问的正文区域。“直接访问”在这里的意思是查找命名时
+无需引用命名前缀。</p>
+<p>Although scopes are determined statically, they are used dynamically. At any
+time during execution, there are at least three nested scopes whose namespaces
+are directly accessible: the innermost scope, which is searched first, contains
+the local names; the namespaces of any enclosing functions, which are searched
+starting with the nearest enclosing scope; the middle scope, searched next,
+contains the current module&#8217;s global names; and the outermost scope (searched
+last) is the namespace containing built-in names.</p>
+<p>尽管作用域是静态定义，在使用时他们都是动态的。每次执行时，至少有三个命名空间可以直接访问的作用域
+嵌套在一起：包含局部命名的使用域在最里面，首先被搜索；其次搜索的是中层的作用域，这里包含了同级的
+函数；最后搜索最外面的作用域，它包含内置命名。</p>
+<p>If a name is declared global, then all references and assignments go directly to
+the middle scope containing the module&#8217;s global names. Otherwise, all variables
+found outside of the innermost scope are read-only (an attempt to write to such
+a variable will simply create a <em>new</em> local variable in the innermost scope,
+leaving the identically named outer variable unchanged).</p>
+<p>如果一个命名声明为全局的，那么所有的赋值和引用都直接针对包含模全局命名的中级作用域。另外，从外部
+访问到的所有内层作用域的变量都是只读的。（试图写这样的变量只会在内部作用域创建一个*新*局部变量，
+外部标示命名的那个变量不会改变）。</p>
+<p>Usually, the local scope references the local names of the (textually) current
+function.  Outside functions, the local scope references the same namespace as
+the global scope: the module&#8217;s namespace. Class definitions place yet another
+namespace in the local scope.</p>
+<p>从字面意义上讲，局部作用域引用当前函数的命名。在函数之外，局部作用域与全局使用域引用同一命名空间
+：模块命名空间。类定义也是局部作用域中的另一个命名空间。</p>
+<p>It is important to realize that scopes are determined textually: the global
+scope of a function defined in a module is that module&#8217;s namespace, no matter
+from where or by what alias the function is called.  On the other hand, the
+actual search for names is done dynamically, at run time &#8212; however, the
+language definition is evolving towards static name resolution, at &#8220;compile&#8221;
+time, so don&#8217;t rely on dynamic name resolution!  (In fact, local variables are
+already determined statically.)</p>
+<p>重要的是作用域决定于源程序的文本：一个定义于某模块中的函数的全局作用域是该模块的命名空间，而不是该
+函数的别名被定义或调用的位置，了解这一点非常重要。另一方面，命名的实际搜索过程是动态的，在运行时确
+定的——然而，Python 语言也在不断发展，以后有可能会成为静态的“编译”时确定，所以不要依赖动态解析！
+（事实上，局部变量已经是静态确定了。）</p>
+<p>A special quirk of Python is that assignments normally go into the innermost
+scope.  Assignments do not copy data &#8212; they just bind names to objects.  The
+same is true for deletions: the statement <tt class="docutils literal"><span class="pre">del</span> <span class="pre">x</span></tt> removes the binding of <tt class="docutils literal"><span class="pre">x</span></tt>
+from the namespace referenced by the local scope.  In fact, all operations that
+introduce new names use the local scope: in particular, import statements and
+function definitions bind the module or function name in the local scope.</p>
+<p>Python 的一个特别之处在于其赋值操作总是在最里层的作用域。赋值不会复制数据——只是将命名绑定到对象。
+删除也是如此：&#8221;del x&#8221; 只是从局部作用域的命名空间中删除命名 x 。事实上，所有引入新命名的操作都作用
+于局部作用域。特别是 import 语句和函数定将模块名或函数绑定于局部作用域。（可以使用 global 语句将
+变量引入到全局作用域。）</p>
+<p>The <a class="reference external" href="../reference/simple_stmts.html#global"><tt class="xref docutils literal"><span class="pre">global</span></tt></a> statement can be used to indicate that particular
+variables live in the global scope and should be rebound there; the
+<a class="reference external" href="../reference/simple_stmts.html#nonlocal"><tt class="xref docutils literal"><span class="pre">nonlocal</span></tt></a> statement indicates that particular variables live in
+an enclosing scope and should be rebound there.</p>
+<p>关键字 <a class="reference external" href="../reference/simple_stmts.html#global"><tt class="xref docutils literal"><span class="pre">global</span></tt></a> 可以用于从全局命名域引入个别变量并重绑定它；:keyword:<cite>nonlocal</cite> 语
+句检索外围的作用域并进行重绑定。</p>
+<div class="section" id="scopes-and-namespaces-example">
+<span id="tut-scopeexample"></span><h3>Scopes and Namespaces Example 作用域和命名空间示例<a class="headerlink" href="#scopes-and-namespaces-example" title="Permalink to this headline">¶</a></h3>
+<p>This is an example demonstrating how to reference the different scopes and
+namespaces, and how <a class="reference external" href="../reference/simple_stmts.html#global"><tt class="xref docutils literal"><span class="pre">global</span></tt></a> and <a class="reference external" href="../reference/simple_stmts.html#nonlocal"><tt class="xref docutils literal"><span class="pre">nonlocal</span></tt></a> affect variable
+binding:</p>
+<p>以下示例演示了如何引用不同的作用域和命名空间，以及如何使用 <a class="reference external" href="../reference/simple_stmts.html#global"><tt class="xref docutils literal"><span class="pre">global</span></tt></a>
+和 <a class="reference external" href="../reference/simple_stmts.html#nonlocal"><tt class="xref docutils literal"><span class="pre">nonlocal</span></tt></a> 影响变量绑定:</p>
+<div class="highlight"><pre><span class="k">def</span> <span class="nf">scope_test</span><span class="p">():</span>
+    <span class="k">def</span> <span class="nf">do_local</span><span class="p">():</span>
+        <span class="n">spam</span> <span class="o">=</span> <span class="s">&quot;local spam&quot;</span>
+    <span class="k">def</span> <span class="nf">do_nonlocal</span><span class="p">():</span>
+        <span class="n">nonlocal</span> <span class="n">spam</span>
+        <span class="n">spam</span> <span class="o">=</span> <span class="s">&quot;nonlocal spam&quot;</span>
+    <span class="k">def</span> <span class="nf">do_global</span><span class="p">():</span>
+        <span class="k">global</span> <span class="n">spam</span>
+        <span class="n">spam</span> <span class="o">=</span> <span class="s">&quot;global spam&quot;</span>
+
+    <span class="n">spam</span> <span class="o">=</span> <span class="s">&quot;test spam&quot;</span>
+    <span class="n">do_local</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s">&quot;After local assignment:&quot;</span><span class="p">,</span> <span class="n">spam</span><span class="p">)</span>
+    <span class="n">do_nonlocal</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s">&quot;After nonlocal assignment:&quot;</span><span class="p">,</span> <span class="n">spam</span><span class="p">)</span>
+    <span class="n">do_global</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s">&quot;After global assignment:&quot;</span><span class="p">,</span> <span class="n">spam</span><span class="p">)</span>
+
+<span class="n">scope_test</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s">&quot;In global scope:&quot;</span><span class="p">,</span> <span class="n">spam</span><span class="p">)</span>
+</pre></div>
+<p>The output of the example code is:</p>
+<p>示例代码输出如下:</p>
+<div class="highlight"><pre><span class="n">After</span> <span class="n">local</span> <span class="n">assignment</span><span class="p">:</span> <span class="n">test</span> <span class="n">spam</span>
+<span class="n">After</span> <span class="n">nonlocal</span> <span class="n">assignment</span><span class="p">:</span> <span class="n">nonlocal</span> <span class="n">spam</span>
+<span class="n">After</span> <span class="k">global</span> <span class="n">assignment</span><span class="p">:</span> <span class="n">nonlocal</span> <span class="n">spam</span>
+<span class="n">In</span> <span class="k">global</span> <span class="n">scope</span><span class="p">:</span> <span class="k">global</span> <span class="n">spam</span>
+</pre></div>
+<p>Note how the <em>local</em> assignment (which is default) didn&#8217;t change <em>scope_test</em>&#8216;s
+binding of <em>spam</em>.  The <a class="reference external" href="../reference/simple_stmts.html#nonlocal"><tt class="xref docutils literal"><span class="pre">nonlocal</span></tt></a> assignment changed <em>scope_test</em>&#8216;s
+binding of <em>spam</em>, and the <a class="reference external" href="../reference/simple_stmts.html#global"><tt class="xref docutils literal"><span class="pre">global</span></tt></a> assignment changed the module-level
+binding.</p>
+<p>注意 <em>局部</em> 赋值（默认的） 不会改变 <em>sope_test</em> 在 <em>spam</em> 上的绑定。 <a class="reference external" href="../reference/simple_stmts.html#nonlocal"><tt class="xref docutils literal"><span class="pre">nonlocal</span></tt></a>
+赋值改变了 <em>scope_test</em> 在 <em>spam</em> 上的绑定， 而 <a class="reference external" href="../reference/simple_stmts.html#global"><tt class="xref docutils literal"><span class="pre">global</span></tt></a> 赋值改变了模块级绑定。</p>
+<p>You can also see that there was no previous binding for <em>spam</em> before the
+<a class="reference external" href="../reference/simple_stmts.html#global"><tt class="xref docutils literal"><span class="pre">global</span></tt></a> assignment.</p>
+<p>你可以观察到没有进行 <a class="reference external" href="../reference/simple_stmts.html#global"><tt class="xref docutils literal"><span class="pre">global</span></tt></a> 赋值之前 <em>spam</em> 上的绑定没有改变。</p>
+</div>
+</div>
+<div class="section" id="a-first-look-at-classes">
+<span id="tut-firstclasses"></span><h2>A First Look at Classes 初识类<a class="headerlink" href="#a-first-look-at-classes" title="Permalink to this headline">¶</a></h2>
+<p>Classes introduce a little bit of new syntax, three new object types, and some
+new semantics.</p>
+<p>类引入了一点新的语法，三种新的对象类型，以及一些新的语义。</p>
+<div class="section" id="class-definition-syntax">
+<span id="tut-classdefinition"></span><h3>Class Definition Syntax 类定义语法<a class="headerlink" href="#class-definition-syntax" title="Permalink to this headline">¶</a></h3>
+<p>The simplest form of class definition looks like this:</p>
+<p>最简单的类定义形式如下:</p>
+<div class="highlight"><pre><span class="k">class</span> <span class="nc">ClassName</span><span class="p">:</span>
+    <span class="o">&lt;</span><span class="n">statement</span><span class="o">-</span><span class="mi">1</span><span class="o">&gt;</span>
+    <span class="o">.</span>
+    <span class="o">.</span>
+    <span class="o">.</span>
+    <span class="o">&lt;</span><span class="n">statement</span><span class="o">-</span><span class="n">N</span><span class="o">&gt;</span>
+</pre></div>
+<p>Class definitions, like function definitions (<a class="reference external" href="../reference/compound_stmts.html#def"><tt class="xref docutils literal"><span class="pre">def</span></tt></a> statements) must be
+executed before they have any effect.  (You could conceivably place a class
+definition in a branch of an <a class="reference external" href="../reference/compound_stmts.html#if"><tt class="xref docutils literal"><span class="pre">if</span></tt></a> statement, or inside a function.)</p>
+<p>类的定义就像函数定义（:keyword:<cite>def</cite> 语句），要先执行才能生效。（你当然可以把它放进
+<a class="reference external" href="../reference/compound_stmts.html#if"><tt class="xref docutils literal"><span class="pre">if</span></tt></a> 语句的某一分支，或者一个函数的内部。）</p>
+<p>In practice, the statements inside a class definition will usually be function
+definitions, but other statements are allowed, and sometimes useful &#8212; we&#8217;ll
+come back to this later.  The function definitions inside a class normally have
+a peculiar form of argument list, dictated by the calling conventions for
+methods &#8212; again, this is explained later.</p>
+<p>习惯上，类定义语句的内容通常是函数定义，不过其它语句也可以，有时会很有用——后面我们再回过头来讨论。
+类中的函数定义通常包括了一个特殊形式的参数列表，用于方法调用约定——同样我们在后面讨论这些。</p>
+<p>When a class definition is entered, a new namespace is created, and used as the
+local scope &#8212; thus, all assignments to local variables go into this new
+namespace.  In particular, function definitions bind the name of the new
+function here.</p>
+<p>进入类定义后，会创建一个新的命名空间，就像使用一个局部使用域－－因此，所有对局部变量的赋值
+都会处于这个新的命名空间。此时函数定义绑定这这里的新函数名上。</p>
+<p>When a class definition is left normally (via the end), a <em>class object</em> is
+created.  This is basically a wrapper around the contents of the namespace
+created by the class definition; we&#8217;ll learn more about class objects in the
+next section.  The original local scope (the one in effect just before the class
+definition was entered) is reinstated, and the class object is bound here to the
+class name given in the class definition header (<tt class="xref docutils literal"><span class="pre">ClassName</span></tt> in the
+example).</p>
+<p>类定义完成时（正常退出），就创建了一个类对象。基本上它是对类定义创建的命名空间进行了一个包装；
+我们在下一节进一步学习类对象的知识。原始的局部作用域（类定义引入之前生效的那个）得到恢复，类
+对象在这里绑定到类定义头部的类名（例子中是 <tt class="xref docutils literal"><span class="pre">ClassName</span></tt> ）。</p>
+</div>
+<div class="section" id="class-objects">
+<span id="tut-classobjects"></span><h3>Class Objects 类对象<a class="headerlink" href="#class-objects" title="Permalink to this headline">¶</a></h3>
+<p>Class objects support two kinds of operations: attribute references and
+instantiation.</p>
+<p>类对象支持两种操作：属性引用和实例化。</p>
+<p><em>Attribute references</em> use the standard syntax used for all attribute references
+in Python: <tt class="docutils literal"><span class="pre">obj.name</span></tt>.  Valid attribute names are all the names that were in
+the class&#8217;s namespace when the class object was created.  So, if the class
+definition looked like this:</p>
+<pre>*属性引用*使用和 Python 中所有的属性引用一样的标准语法： ``obj.name``。类对象创建后，</pre>
+<p>类命名空间中所有的命名都是有效属性名。所以如果类定义是这样:</p>
+<div class="highlight"><pre><span class="k">class</span> <span class="nc">MyClass</span><span class="p">:</span>
+    <span class="s">&quot;A simple example class&quot;</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="mi">12345</span>
+    <span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s">&#39;hello world&#39;</span>
+</pre></div>
+<p>then <tt class="docutils literal"><span class="pre">MyClass.i</span></tt> and <tt class="docutils literal"><span class="pre">MyClass.f</span></tt> are valid attribute references, returning
+an integer and a function object, respectively. Class attributes can also be
+assigned to, so you can change the value of <tt class="docutils literal"><span class="pre">MyClass.i</span></tt> by assignment.
+<tt class="xref docutils literal"><span class="pre">__doc__</span></tt> is also a valid attribute, returning the docstring belonging to
+the class: <tt class="docutils literal"><span class="pre">&quot;A</span> <span class="pre">simple</span> <span class="pre">example</span> <span class="pre">class&quot;</span></tt>.</p>
+<p>那么 <tt class="docutils literal"><span class="pre">MyClass.i</span></tt> 和 <tt class="docutils literal"><span class="pre">MyClass.f</span></tt> 是有效的属性引用，分别返回一个整数和一个方法对象。
+也可以对类属性赋值，你可以通过给 <tt class="docutils literal"><span class="pre">MyClass.i</span></tt> 赋值来修改它。 <tt class="xref docutils literal"><span class="pre">__doc__</span></tt> 也是一
+个有效的属性，返回类的文档字符串： &#8220;A simple example class&#8221;。</p>
+<p>Class <em>instantiation</em> uses function notation.  Just pretend that the class
+object is a parameterless function that returns a new instance of the class.
+For example (assuming the above class):</p>
+<p>类的实例化使用函数符号。只要将类对象看作是一个返回新的类实例的无参数函数即可。例如（假设沿
+用前面的类）：</p>
+<blockquote>
+x = MyClass()</blockquote>
+<p>creates a new <em>instance</em> of the class and assigns this object to the local
+variable <tt class="docutils literal"><span class="pre">x</span></tt>.</p>
+<p>以上创建了一个新的类*实例*并将该对象赋给局部变量 <a href="#id6"><span class="problematic" id="id7">``</span></a>x``。</p>
+<p>The instantiation operation (&#8220;calling&#8221; a class object) creates an empty object.
+Many classes like to create objects with instances customized to a specific
+initial state. Therefore a class may define a special method named
+<a title="object.__init__" class="reference external" href="../reference/datamodel.html#object.__init__"><tt class="xref docutils literal"><span class="pre">__init__()</span></tt></a>, like this:</p>
+<p>这个实例化操作（“调用”一个类对象）来创建一个空的对象。很多类都倾向于将对象创建为有初始状态
+的。因此类可能会定义一个名为 <a title="object.__init__" class="reference external" href="../reference/datamodel.html#object.__init__"><tt class="xref docutils literal"><span class="pre">__init__()</span></tt></a> 的特殊方法，像下面这样：</p>
+<blockquote>
+<dl class="docutils">
+<dt>def __init__(self):</dt>
+<dd>self.data = []</dd>
+</dl>
+</blockquote>
+<p>When a class defines an <a title="object.__init__" class="reference external" href="../reference/datamodel.html#object.__init__"><tt class="xref docutils literal"><span class="pre">__init__()</span></tt></a> method, class instantiation
+automatically invokes <a title="object.__init__" class="reference external" href="../reference/datamodel.html#object.__init__"><tt class="xref docutils literal"><span class="pre">__init__()</span></tt></a> for the newly-created class instance.  So
+in this example, a new, initialized instance can be obtained by:</p>
+<p>类定义了 <a title="object.__init__" class="reference external" href="../reference/datamodel.html#object.__init__"><tt class="xref docutils literal"><span class="pre">__init__()</span></tt></a> 方法的话，类的实例化操作会自动为新创建的类实例调用
+<a title="object.__init__" class="reference external" href="../reference/datamodel.html#object.__init__"><tt class="xref docutils literal"><span class="pre">__init__()</span></tt></a> 方法。所以在下例中，可以这样创建一个新的实例：</p>
+<blockquote>
+x = MyClass()</blockquote>
+<p>Of course, the <a title="object.__init__" class="reference external" href="../reference/datamodel.html#object.__init__"><tt class="xref docutils literal"><span class="pre">__init__()</span></tt></a> method may have arguments for greater
+flexibility.  In that case, arguments given to the class instantiation operator
+are passed on to <a title="object.__init__" class="reference external" href="../reference/datamodel.html#object.__init__"><tt class="xref docutils literal"><span class="pre">__init__()</span></tt></a>.  For example,</p>
+<p>当然，出于灵活的需要， <a title="object.__init__" class="reference external" href="../reference/datamodel.html#object.__init__"><tt class="xref docutils literal"><span class="pre">__init__()</span></tt></a> 方法可以有参数。事实上，参数通过
+<a title="object.__init__" class="reference external" href="../reference/datamodel.html#object.__init__"><tt class="xref docutils literal"><span class="pre">__init__()</span></tt></a> 传递到类的实例化操作上。例如:</p>
+<div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">Complex</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">realpart</span><span class="p">,</span> <span class="n">imagpart</span><span class="p">):</span>
+<span class="gp">... </span>        <span class="bp">self</span><span class="o">.</span><span class="n">r</span> <span class="o">=</span> <span class="n">realpart</span>
+<span class="gp">... </span>        <span class="bp">self</span><span class="o">.</span><span class="n">i</span> <span class="o">=</span> <span class="n">imagpart</span>
+<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">Complex</span><span class="p">(</span><span class="mf">3.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">4.5</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span><span class="o">.</span><span class="n">r</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">i</span>
+<span class="go">(3.0, -4.5)</span>
+</pre></div>
+</div>
+<div class="section" id="instance-objects">
+<span id="tut-instanceobjects"></span><h3>Instance Objects 实例对象<a class="headerlink" href="#instance-objects" title="Permalink to this headline">¶</a></h3>
+<p>Now what can we do with instance objects?  The only operations understood by
+instance objects are attribute references.  There are two kinds of valid
+attribute names, data attributes and methods.</p>
+<p>现在我们可以用实例对象作什么？实例对象唯一可用的操作就是属性引用。有两种有效的属性名。</p>
+<p><em>data attributes</em> correspond to &#8220;instance variables&#8221; in Smalltalk, and to &#8220;data
+members&#8221; in C++.  Data attributes need not be declared; like local variables,
+they spring into existence when they are first assigned to.  For example, if
+<tt class="docutils literal"><span class="pre">x</span></tt> is the instance of <tt class="xref docutils literal"><span class="pre">MyClass</span></tt> created above, the following piece of
+code will print the value <tt class="docutils literal"><span class="pre">16</span></tt>, without leaving a trace:</p>
+<pre>*数据属性*相当于 Smalltalk 中的“实例变量”或 C++ 中的“数据成员”。和局部变量一样，数据属性不需要声明，第一次使用时它们就会生成。例如，如果 x 是前面创建的 :class:`MyClass` 实例，下面这段代码会打印出 ``16`` 而不会有任何多余的残留：</pre>
+<blockquote>
+<p>x.counter = 1
+while x.counter &lt; 10:</p>
+<blockquote>
+x.counter = x.counter * 2</blockquote>
+<p>print(x.counter)
+del x.counter</p>
+</blockquote>
+<p>The other kind of instance attribute reference is a <em>method</em>. A method is a
+function that &#8220;belongs to&#8221; an object.  (In Python, the term method is not unique
+to class instances: other object types can have methods as well.  For example,
+list objects have methods called append, insert, remove, sort, and so on.
+However, in the following discussion, we&#8217;ll use the term method exclusively to
+mean methods of class instance objects, unless explicitly stated otherwise.)</p>
+<p>另一种引用属性是*方法*。方法是“属于”一个对象的函数。（在 Python 中，方法不止是类实例所独有：其它类型的对象也可有方法。例如，链表对象有 append，insert，remove，sort 等等方法。然而，在后面的介绍中，除非特别说明，我们提到的方法特指类方法）</p>
+<p id="index-969">Valid method names of an instance object depend on its class.  By definition,
+all attributes of a class that are function  objects define corresponding
+methods of its instances.  So in our example, <tt class="docutils literal"><span class="pre">x.f</span></tt> is a valid method
+reference, since <tt class="docutils literal"><span class="pre">MyClass.f</span></tt> is a function, but <tt class="docutils literal"><span class="pre">x.i</span></tt> is not, since
+<tt class="docutils literal"><span class="pre">MyClass.i</span></tt> is not.  But <tt class="docutils literal"><span class="pre">x.f</span></tt> is not the same thing as <tt class="docutils literal"><span class="pre">MyClass.f</span></tt> &#8212; it
+is a <em>method object</em>, not a function object.</p>
+<p>实例对象的有效名称依赖于它的类。按照定义，类中所有（用户定义）的函数对象对应它的实例中的方法。所以在我们的例子中，x.f 是一个有效的方法引用，因为 MyClass.f 是一个函数。但 x.i 不是，因为 MyClass.i 是不是函数。不过 x.f 和 MyClass.f 不同－－它是一个方法对象，不是一个函数对象。</p>
+</div>
+<div class="section" id="method-objects">
+<span id="tut-methodobjects"></span><h3>Method Objects 方法对象<a class="headerlink" href="#method-objects" title="Permalink to this headline">¶</a></h3>
+<p>Usually, a method is called right after it is bound:</p>
+<p>通常，方法通过右绑定调用:</p>
+<div class="highlight"><pre><span class="n">x</span><span class="o">.</span><span class="n">f</span><span class="p">()</span>
+</pre></div>
+<p>In the <tt class="xref docutils literal"><span class="pre">MyClass</span></tt> example, this will return the string <tt class="docutils literal"><span class="pre">'hello</span> <span class="pre">world'</span></tt>.
+However, it is not necessary to call a method right away: <tt class="docutils literal"><span class="pre">x.f</span></tt> is a method
+object, and can be stored away and called at a later time.  For example:</p>
+<p>在 <tt class="xref docutils literal"><span class="pre">MyClass</span></tt> 示例中，这会返回字符串 <tt class="docutils literal"><span class="pre">hello</span> <span class="pre">world</span></tt> 。然而，也不是一定要直接调用方法。 <tt class="docutils literal"><span class="pre">x.f</span></tt> 是一个方法对象，它可以存储起来以后调用。例如：</p>
+<blockquote>
+<p>xf = x.f
+while True:</p>
+<blockquote>
+print(xf())</blockquote>
+</blockquote>
+<p>will continue to print <tt class="docutils literal"><span class="pre">hello</span> <span class="pre">world</span></tt> until the end of time.</p>
+<p>会不断的打印 &#8220;hello world&#8221; 。</p>
+<p>What exactly happens when a method is called?  You may have noticed that
+<tt class="docutils literal"><span class="pre">x.f()</span></tt> was called without an argument above, even though the function
+definition for <tt class="xref docutils literal"><span class="pre">f()</span></tt> specified an argument.  What happened to the argument?
+Surely Python raises an exception when a function that requires an argument is
+called without any &#8212; even if the argument isn&#8217;t actually used...</p>
+<p>调用方法时发生了什么？你可能注意到调用 <tt class="docutils literal"><span class="pre">x.f()</span></tt> 时没有引用前面标出的变量，尽管在 <tt class="xref docutils literal"><span class="pre">f()</span></tt> 的函数定义中指明了一个参数。这个参数怎么了？事实上如果函数调用中缺少参数，Python 会抛出异常－－甚至这个参数实际上没什么用……</p>
+<p>Actually, you may have guessed the answer: the special thing about methods is
+that the object is passed as the first argument of the function.  In our
+example, the call <tt class="docutils literal"><span class="pre">x.f()</span></tt> is exactly equivalent to <tt class="docutils literal"><span class="pre">MyClass.f(x)</span></tt>.  In
+general, calling a method with a list of <em>n</em> arguments is equivalent to calling
+the corresponding function with an argument list that is created by inserting
+the method&#8217;s object before the first argument.</p>
+<p>实际上，你可能已经猜到了答案：方法的特别之处在于实例对象作为函数的第一个参数传给了函数。在我们的例子中，调用 <tt class="docutils literal"><span class="pre">x.f</span></tt> 相当于 <tt class="docutils literal"><span class="pre">MyClass.f(x)</span></tt> 。通常，以 <em>n</em> 个参数的列表去调用一个方法就相当于将方法的对象插入到参数列表的最前面后，以这个列表去调用相应的函数。</p>
+<p>If you still don&#8217;t understand how methods work, a look at the implementation can
+perhaps clarify matters.  When an instance attribute is referenced that isn&#8217;t a
+data attribute, its class is searched.  If the name denotes a valid class
+attribute that is a function object, a method object is created by packing
+(pointers to) the instance object and the function object just found together in
+an abstract object: this is the method object.  When the method object is called
+with an argument list, it is unpacked again, a new argument list is constructed
+from the instance object and the original argument list, and the function object
+is called with this new argument list.</p>
+<p>如果你还是不理解方法的工作原理，了解一下它的实现也许有帮助。引用非数据属性的实例属性时，会搜索它的类。如果这个命名确认为一个有效的函数对象类属性，就会将实例对象和函数对象封装进一个抽象对象：这就是方法对象。以一个参数列表调用方法对象时，它被重新拆封，用实例对象和原始的参数列表构造一个新的参数列表，然后函数对象调用这个新的参数列表。</p>
+</div>
+</div>
+<div class="section" id="random-remarks">
+<span id="tut-remarks"></span><h2>Random Remarks 一些说明<a class="headerlink" href="#random-remarks" title="Permalink to this headline">¶</a></h2>
+<p>Data attributes override method attributes with the same name; to avoid
+accidental name conflicts, which may cause hard-to-find bugs in large programs,
+it is wise to use some kind of convention that minimizes the chance of
+conflicts.  Possible conventions include capitalizing method names, prefixing
+data attribute names with a small unique string (perhaps just an underscore), or
+using verbs for methods and nouns for data attributes.</p>
+<p>同名的数据属性会覆盖方法属性，为了避免可能的命名冲突－－这在大型程序中可能会导致难以发现的 bug －－最好以某种命名约定来避免冲突。可选的约定包括方法的首字母大写，数据属性名前缀小写（可能只是一个下划线），或者方法使用动词而数据属性使用名词。</p>
+<p>Data attributes may be referenced by methods as well as by ordinary users
+(&#8220;clients&#8221;) of an object.  In other words, classes are not usable to implement
+pure abstract data types.  In fact, nothing in Python makes it possible to
+enforce data hiding &#8212; it is all based upon convention.  (On the other hand,
+the Python implementation, written in C, can completely hide implementation
+details and control access to an object if necessary; this can be used by
+extensions to Python written in C.)</p>
+<p>数据属性可以由方法引用，也可以由普通用户（客户）调用。换句话说，类不能实现纯的数据类型。事实上 Python 中没有什么办法可以强制隐藏数据－－一切都基本约定的惯例。（另一方法讲，Python 的实现是用 C 写成的，如果有必要，可以用 C 来编写 Python 扩展，完全隐藏实现的细节，控制对象的访问。）</p>
+<p>Clients should use data attributes with care &#8212; clients may mess up invariants
+maintained by the methods by stamping on their data attributes.  Note that
+clients may add data attributes of their own to an instance object without
+affecting the validity of the methods, as long as name conflicts are avoided &#8212;
+again, a naming convention can save a lot of headaches here.</p>
+<p>客户应该小心使用数据属性－－客户可能会因为随意修改数据属性而破坏了本来由方法维护的数据一致性。需要注意的是，客户只要注意避免命名冲突，就可以随意向实例中添加数据属性而不会影响方法的有效性－－再次强调，命名约定可以省去很多麻烦。</p>
+<p>There is no shorthand for referencing data attributes (or other methods!) from
+within methods.  I find that this actually increases the readability of methods:
+there is no chance of confusing local variables and instance variables when
+glancing through a method.</p>
+<p>从方法内部引用数据属性（或者方法！）没有什么快捷的方式。我认为这事实上增加了方法的可读性：即使粗略的浏览一个方法，也不会有混淆局部变量和实例变量的机会。</p>
+<p>Often, the first argument of a method is called <tt class="docutils literal"><span class="pre">self</span></tt>.  This is nothing more
+than a convention: the name <tt class="docutils literal"><span class="pre">self</span></tt> has absolutely no special meaning to
+Python.  (Note, however, that by not following the convention your code may be
+less readable to other Python programmers, and it is also conceivable that a
+<em>class browser</em> program might be written that relies upon such a convention.)</p>
+<p>通常方法的第一个参数命名为 <tt class="docutils literal"><span class="pre">self</span></tt> 。这仅仅是一个约定：对 Python 而言，``self`` 绝对没有任何特殊含义。（然而要注意的是，如果不遵守这个约定，别的 Python 程序员阅读你的代码时会有不便，而且有些*类浏览器*程序也是遵循此约定开发的。）</p>
+<p>Any function object that is a class attribute defines a method for instances of
+that class.  It is not necessary that the function definition is textually
+enclosed in the class definition: assigning a function object to a local
+variable in the class is also ok.  For example:</p>
+<p>类属性中的任何函数对象在类实例中都定义为方法。不是必须要将函数定义代码写进类定义中，也可以将一个函数对象赋给类中的一个变量。例如:</p>
+<div class="highlight"><pre><span class="c"># Function defined outside the class</span>
+<span class="k">def</span> <span class="nf">f1</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">min</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">x</span><span class="o">+</span><span class="n">y</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">C</span><span class="p">:</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="n">f1</span>
+    <span class="k">def</span> <span class="nf">g</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s">&#39;hello world&#39;</span>
+    <span class="n">h</span> <span class="o">=</span> <span class="n">g</span>
+</pre></div>
+<p>Now <tt class="docutils literal"><span class="pre">f</span></tt>, <tt class="docutils literal"><span class="pre">g</span></tt> and <tt class="docutils literal"><span class="pre">h</span></tt> are all attributes of class <tt class="xref docutils literal"><span class="pre">C</span></tt> that refer to
+function objects, and consequently they are all methods of instances of
+<tt class="xref docutils literal"><span class="pre">C</span></tt> &#8212; <tt class="docutils literal"><span class="pre">h</span></tt> being exactly equivalent to <tt class="docutils literal"><span class="pre">g</span></tt>.  Note that this practice
+usually only serves to confuse the reader of a program.</p>
+<p>现在 <tt class="docutils literal"><span class="pre">f</span></tt>, <tt class="docutils literal"><span class="pre">g</span></tt> 和 <tt class="docutils literal"><span class="pre">h</span></tt> 都是类 <tt class="xref docutils literal"><span class="pre">C</span></tt> 的属性，引用的都是函数对象，因此它们都是 <tt class="xref docutils literal"><span class="pre">C`0</span> <span class="pre">实例的方法－－</span> <span class="pre">``h`</span></tt> 严格等于 <a href="#id8"><span class="problematic" id="id9">``</span></a>g``。要注意的是这种习惯通常只会迷惑程序的读者。</p>
+<p>Methods may call other methods by using method attributes of the <tt class="docutils literal"><span class="pre">self</span></tt>
+argument:</p>
+<p>通过 self 参数的方法属性，方法可以调用其它的方法：</p>
+<blockquote>
+<dl class="docutils">
+<dt>class Bag:</dt>
+<dd><dl class="first last docutils">
+<dt>def __init__(self):</dt>
+<dd>self.data = []</dd>
+<dt>def add(self, x):</dt>
+<dd>self.data.append(x)</dd>
+<dt>def addtwice(self, x):</dt>
+<dd>self.add(x)
+self.add(x)</dd>
+</dl>
+</dd>
+</dl>
+</blockquote>
+<p>Methods may reference global names in the same way as ordinary functions.  The
+global scope associated with a method is the module containing the class
+definition.  (The class itself is never used as a global scope!)  While one
+rarely encounters a good reason for using global data in a method, there are
+many legitimate uses of the global scope: for one thing, functions and modules
+imported into the global scope can be used by methods, as well as functions and
+classes defined in it.  Usually, the class containing the method is itself
+defined in this global scope, and in the next section we&#8217;ll find some good
+reasons why a method would want to reference its own class!</p>
+<p>方法可以像引用普通的函数那样引用全局命名。与方法关联的全局作用域是包含类定义的模块。（类本身永远不会做为全局作用域使用！）尽管很少有好的理由在方法中使用全局数据，全局作用域确有很多合法的用途：其一是方法可以调用导入全局作用域的函数和方法，也可以调用定义在其中的类和函数。通常，包含此方法的类也会定义在这个全局作用域，在下一节我们会了解为何一个方法要引用自己的类！</p>
+</div>
+<div class="section" id="inheritance">
+<span id="tut-inheritance"></span><h2>Inheritance 继承<a class="headerlink" href="#inheritance" title="Permalink to this headline">¶</a></h2>
+<p>Of course, a language feature would not be worthy of the name &#8220;class&#8221; without
+supporting inheritance.  The syntax for a derived class definition looks like
+this:</p>
+<p>当然，如果一种语言不支持继承就，“类”就没有什么意义。派生类的定义如下所示:</p>
+<div class="highlight"><pre><span class="k">class</span> <span class="nc">DerivedClassName</span><span class="p">(</span><span class="n">BaseClassName</span><span class="p">):</span>
+    <span class="o">&lt;</span><span class="n">statement</span><span class="o">-</span><span class="mi">1</span><span class="o">&gt;</span>
+    <span class="o">.</span>
+    <span class="o">.</span>
+    <span class="o">.</span>
+    <span class="o">&lt;</span><span class="n">statement</span><span class="o">-</span><span class="n">N</span><span class="o">&gt;</span>
+</pre></div>
+<p>The name <tt class="xref docutils literal"><span class="pre">BaseClassName</span></tt> must be defined in a scope containing the
+derived class definition.  In place of a base class name, other arbitrary
+expressions are also allowed.  This can be useful, for example, when the base
+class is defined in another module:</p>
+<p>命名 :class:<a href="#id10"><span class="problematic" id="id11">`</span></a>BaseClassName`（示例中的基类名）必须与派生类定义在一个作用域内。除了类，还可以用表达式，基类定义在另一个模块中时这一点非常有用:</p>
+<div class="highlight"><pre><span class="k">class</span> <span class="nc">DerivedClassName</span><span class="p">(</span><span class="n">modname</span><span class="o">.</span><span class="n">BaseClassName</span><span class="p">):</span>
+</pre></div>
+<p>Execution of a derived class definition proceeds the same as for a base class.
+When the class object is constructed, the base class is remembered.  This is
+used for resolving attribute references: if a requested attribute is not found
+in the class, the search proceeds to look in the base class.  This rule is
+applied recursively if the base class itself is derived from some other class.</p>
+<p>派生类定义的执行过程和基类是一样的。构造派生类对象时，就记住了基类。这在解析属性引用的时候尤其有用：如果在类中找不到请求调用的属性，就搜索基类。如果基类是由别的类派生而来，这个规则会递归的应用上去。</p>
+<p>There&#8217;s nothing special about instantiation of derived classes:
+<tt class="docutils literal"><span class="pre">DerivedClassName()</span></tt> creates a new instance of the class.  Method references
+are resolved as follows: the corresponding class attribute is searched,
+descending down the chain of base classes if necessary, and the method reference
+is valid if this yields a function object.</p>
+<p>派生类的实例化没有什么特殊之处：``DerivedClassName()`` （示列中的派生类）创建一个新的类实例。方法引用按如下规则解析：搜索对应的类属性，必要时沿基类链逐级搜索，如果找到了函数对象这个方法引用就是合法的</p>
+<p>Derived classes may override methods of their base classes.  Because methods
+have no special privileges when calling other methods of the same object, a
+method of a base class that calls another method defined in the same base class
+may end up calling a method of a derived class that overrides it.  (For C++
+programmers: all methods in Python are effectively <tt class="xref docutils literal"><span class="pre">virtual</span></tt>.)</p>
+<p>派生类可能会覆盖其基类的方法。因为方法调用同一个对象中的其它方法时没有特权，基类的方法调用同一个基类的方法时，可能实际上最终调用了派生类中的覆盖方法。（对于 C++ 程序员来说，Python中的所有方法本质上都是 <tt class="xref docutils literal"><span class="pre">virtual</span></tt> 方法。）</p>
+<p>An overriding method in a derived class may in fact want to extend rather than
+simply replace the base class method of the same name. There is a simple way to
+call the base class method directly: just call <tt class="docutils literal"><span class="pre">BaseClassName.methodname(self,</span>
+<span class="pre">arguments)</span></tt>.  This is occasionally useful to clients as well.  (Note that this
+only works if the base class is defined or imported directly in the global
+scope.)</p>
+<p>派生类中的覆盖方法可能是想要扩充而不是简单的替代基类中的重名方法。有一个简单的方法可以直接调用基类方法，只要调用：``BaseClassName.methodname(self, arguments)``。有时这对于客户也很有用。（要注意的中只有基类在同一全局作用域定义或导入时才能这样用。）</p>
+<div class="section" id="multiple-inheritance">
+<span id="tut-multiple"></span><h3>Multiple Inheritance 多继承<a class="headerlink" href="#multiple-inheritance" title="Permalink to this headline">¶</a></h3>
+<p>Python supports a form of multiple inheritance as well.  A class definition with
+multiple base classes looks like this:</p>
+<p>Python同样有限的支持多继承形式。多继承的类定义形如下例：</p>
+<blockquote>
+<dl class="docutils">
+<dt>class DerivedClassName(Base1, Base2, Base3):</dt>
+<dd>&lt;statement-1&gt;
+.
+.
+.
+&lt;statement-N&gt;</dd>
+</dl>
+</blockquote>
+<p>For most purposes, in the simplest cases, you can think of the search for
+attributes inherited from a parent class as depth-first, left-to-right, not
+searching twice in the same class where there is an overlap in the hierarchy.
+Thus, if an attribute is not found in <tt class="xref docutils literal"><span class="pre">DerivedClassName</span></tt>, it is searched
+for in <tt class="xref docutils literal"><span class="pre">Base1</span></tt>, then (recursively) in the base classes of <tt class="xref docutils literal"><span class="pre">Base1</span></tt>,
+and if it was not found there, it was searched for in <tt class="xref docutils literal"><span class="pre">Base2</span></tt>, and so on.</p>
+<p>对于通常的应用，最简单的场合，你可以认为在父类中搜索继承属性的过程是深度优先，从左向右，交叉点上的同一个类不会被搜索两次。因此，如果 <tt class="xref docutils literal"><span class="pre">DerivedClassName</span></tt> 找不到某个属性，它会搜索 <tt class="xref docutils literal"><span class="pre">Base1</span></tt> ，然后（递归的）是 <tt class="xref docutils literal"><span class="pre">Base1</span></tt> ，如果找不到，它再去搜索 <tt class="xref docutils literal"><span class="pre">Base2</span></tt> 依次类推。</p>
+<p>In fact, it is slightly more complex than that; the method resolution order
+changes dynamically to support cooperative calls to <a title="super" class="reference external" href="../library/functions.html#super"><tt class="xref docutils literal"><span class="pre">super()</span></tt></a>.  This
+approach is known in some other multiple-inheritance languages as
+call-next-method and is more powerful than the super call found in
+single-inheritance languages.</p>
+<p>实际上，这比看上去要复杂的多；解决动态顺序变更，支持协作调用的方法称为 :func:<a href="#id12"><span class="problematic" id="id13">`</span></a>super`。作为 call-next-method，这也适用于已知的其它多继承语言，比单继承语言中的super调用更强大。</p>
+<p>Dynamic ordering is necessary because all cases of multiple inheritance exhibit
+one or more diamond relationships (where at least one of the parent classes
+can be accessed through multiple paths from the bottommost class).  For example,
+all classes inherit from <a title="object" class="reference external" href="../library/functions.html#object"><tt class="xref docutils literal"><span class="pre">object</span></tt></a>, so any case of multiple inheritance
+provides more than one path to reach <a title="object" class="reference external" href="../library/functions.html#object"><tt class="xref docutils literal"><span class="pre">object</span></tt></a>.  To keep the base classes
+from being accessed more than once, the dynamic algorithm linearizes the search
+order in a way that preserves the left-to-right ordering specified in each
+class, that calls each parent only once, and that is monotonic (meaning that a
+class can be subclassed without affecting the precedence order of its parents).
+Taken together, these properties make it possible to design reliable and
+extensible classes with multiple inheritance.  For more detail, see
+<a class="reference external" href="http://www.python.org/download/releases/2.3/mro/">http://www.python.org/download/releases/2.3/mro/</a>.</p>
+<p>动态排序是必要的，因为多继承场景中总会有一到多个菱形继承（从最底部的类向上，至少会有一个祖先类可以通过多条路径访问到）。如所有的类都继承自 :class:<a href="#id14"><span class="problematic" id="id15">`</span></a>object`，所以在多继承应用中总会有超过一条路径可以到达 :class:<a href="#id16"><span class="problematic" id="id17">`</span></a>object`。为了确保基类可以多次访问，动态算法将搜索顺序从左到右线性化，每个祖先只调用一次，这是单调的（意味着一个类型被继承不会影响它的祖先类的优先级）。合起来看，这些东西使得它可以通过多继承设计可靠和可扩展的类型。要了解详细内容，参见 <a class="reference external" href="http://www.python.org/download/releases/2.3/mro">http://www.python.org/download/releases/2.3/mro</a>/。</p>
+</div>
+</div>
+<div class="section" id="private-variables">
+<span id="tut-private"></span><h2>Private Variables 私有变量<a class="headerlink" href="#private-variables" title="Permalink to this headline">¶</a></h2>
+<p>There is limited support for class-private identifiers.  Any identifier of the
+form <tt class="docutils literal"><span class="pre">__spam</span></tt> (at least two leading underscores, at most one trailing
+underscore) is textually replaced with <tt class="docutils literal"><span class="pre">_classname__spam</span></tt>, where <tt class="docutils literal"><span class="pre">classname</span></tt>
+is the current class name with leading underscore(s) stripped.  This mangling is
+done without regard to the syntactic position of the identifier, so it can be
+used to define class-private instance and class variables, methods, variables
+stored in globals, and even variables stored in instances. private to this class
+on instances of <em>other</em> classes.  Truncation may occur when the mangled name
+would be longer than 255 characters. Outside classes, or when the class name
+consists of only underscores, no mangling occurs.</p>
+<p>Python 对类的私有成员提供了有限的支持。任何形如 <tt class="docutils literal"><span class="pre">__spam</span></tt> （以至少双下划线开头，至多单下划线结尾）随即都被替代为 <tt class="docutils literal"><span class="pre">_classname__spam</span></tt> ，去掉前导下划线的 <tt class="docutils literal"><span class="pre">classname</span></tt> 即当前的类名。这种混淆不关心标识符的语法位置，所以可用来定义私有类实例和类变量、方法，以及全局变量，甚至于将*其它*类的实例保存为私有变量。混淆名长度超过255个字符的时候可能会发生截断。在类的外部，或类名只包含下划线时，不会发生截断。</p>
+<p>Name mangling is intended to give classes an easy way to define &#8220;private&#8221;
+instance variables and methods, without having to worry about instance variables
+defined by derived classes, or mucking with instance variables by code outside
+the class.  Note that the mangling rules are designed mostly to avoid accidents;
+it still is possible for a determined soul to access or modify a variable that
+is considered private.  This can even be useful in special circumstances, such
+as in the debugger, and that&#8217;s one reason why this loophole is not closed.
+(Buglet: derivation of a class with the same name as the base class makes use of
+private variables of the base class possible.)</p>
+<p>命名混淆意在给出一个在类中定义“私有”实例变量和方法的简单途径，避免派生类的实例变量定义产生问题，或者与外界代码中的变量搞混。要注意的是混淆规则主要目的在于避免意外错误，被认作为私有的变量仍然有可能被访问或修改。在特定的场合它也是有用的，比如调试的时候，这也是一直没有堵上这个漏洞的原因之一（小漏洞：派生类和基类取相同的名字就可以使用基类的私有变量。）</p>
+<p>Notice that code passed to <tt class="docutils literal"><span class="pre">exec()</span></tt> or <tt class="docutils literal"><span class="pre">eval()</span></tt> does not
+consider the classname of the invoking  class to be the current class; this is
+similar to the effect of the  <tt class="docutils literal"><span class="pre">global</span></tt> statement, the effect of which is
+likewise restricted to  code that is byte-compiled together.  The same
+restriction applies to <tt class="docutils literal"><span class="pre">getattr()</span></tt>, <tt class="docutils literal"><span class="pre">setattr()</span></tt> and <tt class="docutils literal"><span class="pre">delattr()</span></tt>, as well
+as when referencing <tt class="docutils literal"><span class="pre">__dict__</span></tt> directly.</p>
+<p>要注意的是传入 <tt class="docutils literal"><span class="pre">exec()``，``eval()</span></tt> 的代码不会将调用它们的类视作当前类，这与 <tt class="docutils literal"><span class="pre">global</span></tt> 语句的情况类似，``global`` 的作用局限于“同一批”进行字节编译的代码。同样的限制也适用于 <tt class="docutils literal"><span class="pre">getattr()``，``setattr()</span></tt> 和 <tt class="docutils literal"><span class="pre">delattr()</span></tt> ，以及直接引用 <tt class="docutils literal"><span class="pre">__dict__</span></tt> 的时候。</p>
+</div>
+<div class="section" id="odds-and-ends">
+<span id="tut-odds"></span><h2>Odds and Ends  补充<a class="headerlink" href="#odds-and-ends" title="Permalink to this headline">¶</a></h2>
+<p>Sometimes it is useful to have a data type similar to the Pascal &#8220;record&#8221; or C
+&#8220;struct&#8221;, bundling together a few named data items.  An empty class definition
+will do nicely:</p>
+<p>有时类似于Pascal中“记录（record）”或C中“结构（struct）”的数据类型很有用，它将一组已命名的数据项绑定在一起。一个空的类定义可以很好的实现这它:</p>
+<div class="highlight"><pre><span class="k">class</span> <span class="nc">Employee</span><span class="p">:</span>
+    <span class="k">pass</span>
+
+<span class="n">john</span> <span class="o">=</span> <span class="n">Employee</span><span class="p">()</span> <span class="c"># Create an empty employee record</span>
+
+<span class="c"># Fill the fields of the record</span>
+<span class="n">john</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s">&#39;John Doe&#39;</span>
+<span class="n">john</span><span class="o">.</span><span class="n">dept</span> <span class="o">=</span> <span class="s">&#39;computer lab&#39;</span>
+<span class="n">john</span><span class="o">.</span><span class="n">salary</span> <span class="o">=</span> <span class="mi">1000</span>
+</pre></div>
+<p>A piece of Python code that expects a particular abstract data type can often be
+passed a class that emulates the methods of that data type instead.  For
+instance, if you have a function that formats some data from a file object, you
+can define a class with methods <tt class="xref docutils literal"><span class="pre">read()</span></tt> and <tt class="xref docutils literal"><span class="pre">readline()</span></tt> that get the
+data from a string buffer instead, and pass it as an argument.</p>
+<p>某一段 Python 代码需要一个特殊的抽象数据结构的话，通常可以传入一个类，事实上这模仿了该类的方法。例如，如果你有一个用于从文件对象中格式化数据的函数，你可以定义一个带有 <tt class="xref docutils literal"><span class="pre">read()</span></tt> 和 <tt class="xref docutils literal"><span class="pre">readline()</span></tt> 方法的类，以此从字符串缓冲读取数据，然后将该类的对象作为参数传入前述的函数。</p>
+<p>Instance method objects have attributes, too: <tt class="docutils literal"><span class="pre">m.__self__</span></tt> is the instance
+object with the method <tt class="xref docutils literal"><span class="pre">m()</span></tt>, and <tt class="docutils literal"><span class="pre">m.__func__</span></tt> is the function object
+corresponding to the method.</p>
+<p>方法对象实例也有属性，``m.__self__`` 是调用 <tt class="xref docutils literal"><span class="pre">m()</span></tt> 方法的实例对象， <a href="#id18"><span class="problematic" id="id19">``</span></a>m.__func__``是这个方法对应的函数对象。</p>
+</div>
+<div class="section" id="exceptions-are-classes-too">
+<span id="tut-exceptionclasses"></span><h2>Exceptions Are Classes Too 异常也是类<a class="headerlink" href="#exceptions-are-classes-too" title="Permalink to this headline">¶</a></h2>
+<p>User-defined exceptions are identified by classes as well.  Using this mechanism
+it is possible to create extensible hierarchies of exceptions.</p>
+<p>用户自定义异常也可以是类。利用这个机制可以创建可扩展的异常体系。</p>
+<p>There are two valid (semantic) forms for the raise statement:</p>
+<p>以下是两种新的有效（语义上的）异常抛出形式：</p>
+<blockquote>
+<p>raise Class</p>
+<p>raise Instance</p>
+</blockquote>
+<p>In the first form, <tt class="docutils literal"><span class="pre">Class</span></tt> must be an instance of <a title="type" class="reference external" href="../library/functions.html#type"><tt class="xref docutils literal"><span class="pre">type</span></tt></a> or of a
+class derived from it.  The first form is a shorthand for:</p>
+<p>第一种形式中，``Class`` 必须是 <a title="type" class="reference external" href="../library/functions.html#type"><tt class="xref docutils literal"><span class="pre">type</span></tt></a> 或其派生类的一个实例。第一种形式是以下形式的简写：</p>
+<blockquote>
+raise Class()</blockquote>
+<p>A class in an except clause is compatible with an exception if it is the same
+class or a base class thereof (but not the other way around &#8212; an except clause
+listing a derived class is not compatible with a base class).  For example, the
+following code will print B, C, D in that order:</p>
+<p>发生的异常其类型如果是 except 子句中列出的类，或者是其派生类，那么它们就是相符的（但是不能反过来说－－ except 子句列出的类型如果是其子类，不能作为判别依据）。例如，以下代码会按顺序打印B，C，D：</p>
+<blockquote>
+<dl class="docutils">
+<dt>class B:</dt>
+<dd>pass</dd>
+<dt>class C(B):</dt>
+<dd>pass</dd>
+<dt>class D(C):</dt>
+<dd>pass</dd>
+<dt>for c in [B, C, D]:</dt>
+<dd><dl class="first last docutils">
+<dt>try:</dt>
+<dd>raise c()</dd>
+<dt>except D:</dt>
+<dd>print(&#8220;D&#8221;)</dd>
+<dt>except C:</dt>
+<dd>print(&#8220;C&#8221;)</dd>
+<dt>except B:</dt>
+<dd>print(&#8220;B&#8221;)</dd>
+</dl>
+</dd>
+</dl>
+</blockquote>
+<p>Note that if the except clauses were reversed (with <tt class="docutils literal"><span class="pre">except</span> <span class="pre">B</span></tt> first), it
+would have printed B, B, B &#8212; the first matching except clause is triggered.</p>
+<p>要注意的是如果异常子句的顺序颠倒过来（ &#8220;execpt B&#8221; 在最前），它就会打印B，B，B－－第一个匹配的异常被触发。</p>
+<p>When an error message is printed for an unhandled exception, the exception&#8217;s
+class name is printed, then a colon and a space, and finally the instance
+converted to a string using the built-in function <a title="str" class="reference external" href="../library/functions.html#str"><tt class="xref docutils literal"><span class="pre">str()</span></tt></a>.</p>
+<p>打印一个异常类的错误信息时，先打印类名，然后是一个空格、一个冒号，然后是用内置函数 str() 将类转换得到的完整字符串。</p>
+</div>
+<div class="section" id="iterators">
+<span id="tut-iterators"></span><h2>Iterators 迭代器<a class="headerlink" href="#iterators" title="Permalink to this headline">¶</a></h2>
+<p>By now you have probably noticed that most container objects can be looped over
+using a <a class="reference external" href="../reference/compound_stmts.html#for"><tt class="xref docutils literal"><span class="pre">for</span></tt></a> statement:</p>
+<p>现在你可能注意到大多数容器对象都可以用 <a class="reference external" href="../reference/compound_stmts.html#for"><tt class="xref docutils literal"><span class="pre">for</span></tt></a> 遍历:</p>
+<div class="highlight"><pre><span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="p">{</span><span class="s">&#39;one&#39;</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span> <span class="s">&#39;two&#39;</span><span class="p">:</span><span class="mi">2</span><span class="p">}:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">char</span> <span class="ow">in</span> <span class="s">&quot;123&quot;</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">char</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">open</span><span class="p">(</span><span class="s">&quot;myfile.txt&quot;</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+</pre></div>
+<p>This style of access is clear, concise, and convenient.  The use of iterators
+pervades and unifies Python.  Behind the scenes, the <a class="reference external" href="../reference/compound_stmts.html#for"><tt class="xref docutils literal"><span class="pre">for</span></tt></a> statement
+calls <a title="iter" class="reference external" href="../library/functions.html#iter"><tt class="xref docutils literal"><span class="pre">iter()</span></tt></a> on the container object.  The function returns an iterator
+object that defines the method <tt class="xref docutils literal"><span class="pre">__next__()</span></tt> which accesses elements in the
+container one at a time.  When there are no more elements, <tt class="xref docutils literal"><span class="pre">__next__()</span></tt>
+raises a <a title="exceptions.StopIteration" class="reference external" href="../library/exceptions.html#exceptions.StopIteration"><tt class="xref docutils literal"><span class="pre">StopIteration</span></tt></a> exception which tells the <a class="reference external" href="../reference/compound_stmts.html#for"><tt class="xref docutils literal"><span class="pre">for</span></tt></a> loop to
+terminate.  You can call the <tt class="xref docutils literal"><span class="pre">__next__()</span></tt> method using the <a title="next" class="reference external" href="../library/functions.html#next"><tt class="xref docutils literal"><span class="pre">next()</span></tt></a>
+builtin; this example shows how it all works:</p>
+<p>这种形式的访问清晰、简洁、方便。迭代器的用法在 Python 中普遍而且统一。在后台，:keyword:<cite>for</cite> 语句在容器对象中调用 <a title="iter" class="reference external" href="../library/functions.html#iter"><tt class="xref docutils literal"><span class="pre">iter()</span></tt></a> 。 该函数返回一个定义了 <tt class="xref docutils literal"><span class="pre">__next__()</span></tt> 方法的迭代器对象，它在容器中逐一访问元素。没有后续的元素时，:meth:<cite>__next__</cite> 抛出一个 <a title="exceptions.StopIteration" class="reference external" href="../library/exceptions.html#exceptions.StopIteration"><tt class="xref docutils literal"><span class="pre">StopIteration</span></tt></a> 异常通知 <a class="reference external" href="../reference/compound_stmts.html#for"><tt class="xref docutils literal"><span class="pre">for</span></tt></a> 语句循环结束。你可以使用内置函数 <a title="next" class="reference external" href="../library/functions.html#next"><tt class="xref docutils literal"><span class="pre">next()</span></tt></a> 调用 <tt class="xref docutils literal"><span class="pre">__next__()</span></tt> 方法。以下是其工作原理的示例：</p>
+<blockquote>
+<div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="s">&#39;abc&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">it</span> <span class="o">=</span> <span class="nb">iter</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">it</span>
+<span class="go">&lt;iterator object at 0x00A1DB50&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">next</span><span class="p">(</span><span class="n">it</span><span class="p">)</span>
+<span class="go">&#39;a&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">next</span><span class="p">(</span><span class="n">it</span><span class="p">)</span>
+<span class="go">&#39;b&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">next</span><span class="p">(</span><span class="n">it</span><span class="p">)</span>
+<span class="go">&#39;c&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">next</span><span class="p">(</span><span class="n">it</span><span class="p">)</span>
+</pre></div>
+<dl class="docutils">
+<dt>Traceback (most recent call last):</dt>
+<dd><dl class="first last docutils">
+<dt>File &#8220;&lt;stdin&gt;&#8221;, line 1, in ?</dt>
+<dd>next(it)</dd>
+</dl>
+</dd>
+</dl>
+<p>StopIteration</p>
+</blockquote>
+<p>Having seen the mechanics behind the iterator protocol, it is easy to add
+iterator behavior to your classes.  Define a <a title="object.__iter__" class="reference external" href="../reference/datamodel.html#object.__iter__"><tt class="xref docutils literal"><span class="pre">__iter__()</span></tt></a> method which
+returns an object with a <tt class="xref docutils literal"><span class="pre">__next__()</span></tt> method.  If the class defines
+<tt class="xref docutils literal"><span class="pre">__next__()</span></tt>, then <a title="object.__iter__" class="reference external" href="../reference/datamodel.html#object.__iter__"><tt class="xref docutils literal"><span class="pre">__iter__()</span></tt></a> can just return <tt class="docutils literal"><span class="pre">self</span></tt>:</p>
+<p>了解了迭代器协议的后台机制，就可以很容易的给自己的类添加迭代器行为。定义一个 <a title="object.__iter__" class="reference external" href="../reference/datamodel.html#object.__iter__"><tt class="xref docutils literal"><span class="pre">__iter__()</span></tt></a> 方法，使其返回一个带有 <tt class="xref docutils literal"><span class="pre">__next()</span></tt> 方法的对象。如果这个类已经定义了 <tt class="xref docutils literal"><span class="pre">__next__`，那么</span> <span class="pre">:meth:`__iter__()</span></tt> 只需要返回``self``：</p>
+<blockquote>
+<dl class="docutils">
+<dt>class Reverse:</dt>
+<dd><p class="first">&#8220;Iterator for looping over a sequence backwards&#8221;
+def __init__(self, data):</p>
+<blockquote>
+self.data = data
+self.index = len(data)</blockquote>
+<dl class="last docutils">
+<dt>def __iter__(self):</dt>
+<dd>return self</dd>
+<dt>def __next__(self):</dt>
+<dd><dl class="first docutils">
+<dt>if self.index == 0:</dt>
+<dd>raise StopIteration</dd>
+</dl>
+<p class="last">self.index = self.index - 1
+return self.data[self.index]</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">char</span> <span class="ow">in</span> <span class="n">Reverse</span><span class="p">(</span><span class="s">&#39;spam&#39;</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="k">print</span><span class="p">(</span><span class="n">char</span><span class="p">)</span>
+<span class="gp">...</span>
+<span class="go">m</span>
+<span class="go">a</span>
+<span class="go">p</span>
+<span class="go">s</span>
+</pre></div>
+</blockquote>
+</div>
+<div class="section" id="generators">
+<span id="tut-generators"></span><h2>Generators 生成器<a class="headerlink" href="#generators" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="../glossary.html#term-generator"><em class="xref">Generator</em></a>s are a simple and powerful tool for creating iterators.  They
+are written like regular functions but use the <a class="reference external" href="../reference/simple_stmts.html#yield"><tt class="xref docutils literal"><span class="pre">yield</span></tt></a> statement
+whenever they want to return data.  Each time <a title="next" class="reference external" href="../library/functions.html#next"><tt class="xref docutils literal"><span class="pre">next()</span></tt></a> is called on it, the
+generator resumes where it left-off (it remembers all the data values and which
+statement was last executed).  An example shows that generators can be trivially
+easy to create:</p>
+<pre>:term:`生成器`是创建迭代器的简单而强大的工具。它们写起来就像是正则函数，需要返回数据的时候使用 :keyword:`yield` 语句。每次 :func:`next` 被调用时，生成器回复它脱离的位置（它记忆语句最后一次执行的位置和所有的数据值）。以下示例演示了生成器便捷的创建方式：</pre>
+<blockquote>
+<dl class="docutils">
+<dt>def reverse(data):</dt>
+<dd><dl class="first last docutils">
+<dt>for index in range(len(data)-1, -1, -1):</dt>
+<dd>yield data[index]</dd>
+</dl>
+</dd>
+</dl>
+<div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">char</span> <span class="ow">in</span> <span class="n">reverse</span><span class="p">(</span><span class="s">&#39;golf&#39;</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="k">print</span><span class="p">(</span><span class="n">char</span><span class="p">)</span>
+<span class="gp">...</span>
+<span class="go">f</span>
+<span class="go">l</span>
+<span class="go">o</span>
+<span class="go">g</span>
+</pre></div>
+</blockquote>
+<p>Anything that can be done with generators can also be done with class based
+iterators as described in the previous section.  What makes generators so
+compact is that the <a title="object.__iter__" class="reference external" href="../reference/datamodel.html#object.__iter__"><tt class="xref docutils literal"><span class="pre">__iter__()</span></tt></a> and <tt class="xref docutils literal"><span class="pre">__next__()</span></tt> methods are created
+automatically.</p>
+<p>前一节中描述了基于类的迭代器，它能作的每一件事生成器也能作到。因为自动创建了 <a title="object.__iter__" class="reference external" href="../reference/datamodel.html#object.__iter__"><tt class="xref docutils literal"><span class="pre">__iter__()</span></tt></a> 和 <a title="next" class="reference external" href="../library/functions.html#next"><tt class="xref docutils literal"><span class="pre">next()</span></tt></a> 方法，生成器显得如此简洁。</p>
+<p>Another key feature is that the local variables and execution state are
+automatically saved between calls.  This made the function easier to write and
+much more clear than an approach using instance variables like <tt class="docutils literal"><span class="pre">self.index</span></tt>
+and <tt class="docutils literal"><span class="pre">self.data</span></tt>.</p>
+<p>另外一个关键的功能是两次调用之间的局部变量和执行情况都自动保存了下来。这样函数编写起来就比手动调用 <tt class="docutils literal"><span class="pre">self.index</span></tt> 和 <tt class="docutils literal"><span class="pre">self.data</span></tt> 这样的类变量容易的多。</p>
+<p>In addition to automatic method creation and saving program state, when
+generators terminate, they automatically raise <a title="exceptions.StopIteration" class="reference external" href="../library/exceptions.html#exceptions.StopIteration"><tt class="xref docutils literal"><span class="pre">StopIteration</span></tt></a>. In
+combination, these features make it easy to create iterators with no more effort
+than writing a regular function.</p>
+<p>除了创建和保存程序状态的自动方法，当发生器终结时，还会自动抛出 <a title="exceptions.StopIteration" class="reference external" href="../library/exceptions.html#exceptions.StopIteration"><tt class="xref docutils literal"><span class="pre">StopIteration</span></tt></a> 异常。综上所述，这些功能使得编写一个正规函数成为创建迭代器的最简单方法。</p>
+</div>
+<div class="section" id="generator-expressions">
+<span id="tut-genexps"></span><h2>Generator Expressions 生成器表达式<a class="headerlink" href="#generator-expressions" title="Permalink to this headline">¶</a></h2>
+<p>Some simple generators can be coded succinctly as expressions using a syntax
+similar to list comprehensions but with parentheses instead of brackets.  These
+expressions are designed for situations where the generator is used right away
+by an enclosing function.  Generator expressions are more compact but less
+versatile than full generator definitions and tend to be more memory friendly
+than equivalent list comprehensions.</p>
+<p>有时简单的生成器可以用简洁的方式调用，就像不带中括号的链表推导式。这些表达式是为函数调用生成器而设计的。生成器表达式比完整的生成器定义更简洁，但是没有那么多变，而且通常比等价的列表推导式更容易记。</p>
+<p>Examples:</p>
+<div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="nb">sum</span><span class="p">(</span><span class="n">i</span><span class="o">*</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mf">10</span><span class="p">))</span>                 <span class="c"># sum of squares</span>
+<span class="go">285</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">xvec</span> <span class="o">=</span> <span class="p">[</span><span class="mf">10</span><span class="p">,</span> <span class="mf">20</span><span class="p">,</span> <span class="mf">30</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">yvec</span> <span class="o">=</span> <span class="p">[</span><span class="mf">7</span><span class="p">,</span> <span class="mf">5</span><span class="p">,</span> <span class="mf">3</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">sum</span><span class="p">(</span><span class="n">x</span><span class="o">*</span><span class="n">y</span> <span class="k">for</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">xvec</span><span class="p">,</span> <span class="n">yvec</span><span class="p">))</span>         <span class="c"># dot product</span>
+<span class="go">260</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">pi</span><span class="p">,</span> <span class="n">sin</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sine_table</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">((</span><span class="n">x</span><span class="p">,</span> <span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="o">*</span><span class="n">pi</span><span class="o">/</span><span class="mf">180</span><span class="p">))</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mf">0</span><span class="p">,</span> <span class="mf">91</span><span class="p">))</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">unique_words</span> <span class="o">=</span> <span class="n">set</span><span class="p">(</span><span class="n">word</span>  <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">page</span>  <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">valedictorian</span> <span class="o">=</span> <span class="nb">max</span><span class="p">((</span><span class="n">student</span><span class="o">.</span><span class="n">gpa</span><span class="p">,</span> <span class="n">student</span><span class="o">.</span><span class="n">name</span><span class="p">)</span> <span class="k">for</span> <span class="n">student</span> <span class="ow">in</span> <span class="n">graduates</span><span class="p">)</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="s">&#39;golf&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">list</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="o">-</span><span class="mf">1</span><span class="p">,</span> <span class="o">-</span><span class="mf">1</span><span class="p">,</span> <span class="o">-</span><span class="mf">1</span><span class="p">))</span>
+<span class="go">[&#39;f&#39;, &#39;l&#39;, &#39;o&#39;, &#39;g&#39;]</span>
+</pre></div>
+<p class="rubric">Footnotes</p>
+<table class="docutils footnote" frame="void" id="id20" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id3">[1]</a></td><td>Except for one thing.  Module objects have a secret read-only attribute called
+<tt class="xref docutils literal"><span class="pre">__dict__</span></tt> which returns the dictionary used to implement the module&#8217;s
+namespace; the name <tt class="xref docutils literal"><span class="pre">__dict__</span></tt> is an attribute but not a global name.
+Obviously, using this violates the abstraction of namespace implementation, and
+should be restricted to things like post-mortem debuggers.
+有个例外。模块对象有一个隐秘的只读属性，叫 <tt class="xref docutils literal"><span class="pre">__dict__`，返回组成模块的命名空间；</span> <span class="pre">:attr:`__dict__</span></tt> 这个名字是一个属性而非全局命名。显然，这违反了命名空间实现概念，应该严格限制于调试之类的场合。</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <h3><a href="../contents.html">Table Of Contents</a></h3>
+            <ul>
+<li><a class="reference external" href="">Classes 类</a><ul>
+<li><a class="reference external" href="#a-word-about-terminology">A Word About Terminology 术语漫谈</a></li>
+<li><a class="reference external" href="#python-scopes-and-name-spaces">Python Scopes and Name Spaces 作用域和命名空间</a><ul>
+<li><a class="reference external" href="#scopes-and-namespaces-example">Scopes and Namespaces Example 作用域和命名空间示例</a></li>
+</ul>
+</li>
+<li><a class="reference external" href="#a-first-look-at-classes">A First Look at Classes 初识类</a><ul>
+<li><a class="reference external" href="#class-definition-syntax">Class Definition Syntax 类定义语法</a></li>
+<li><a class="reference external" href="#class-objects">Class Objects 类对象</a></li>
+<li><a class="reference external" href="#instance-objects">Instance Objects 实例对象</a></li>
+<li><a class="reference external" href="#method-objects">Method Objects 方法对象</a></li>
+</ul>
+</li>
+<li><a class="reference external" href="#random-remarks">Random Remarks 一些说明</a></li>
+<li><a class="reference external" href="#inheritance">Inheritance 继承</a><ul>
+<li><a class="reference external" href="#multiple-inheritance">Multiple Inheritance 多继承</a></li>
+</ul>
+</li>
+<li><a class="reference external" href="#private-variables">Private Variables 私有变量</a></li>
+<li><a class="reference external" href="#odds-and-ends">Odds and Ends  补充</a></li>
+<li><a class="reference external" href="#exceptions-are-classes-too">Exceptions Are Classes Too 异常也是类</a></li>
+<li><a class="reference external" href="#iterators">Iterators 迭代器</a></li>
+<li><a class="reference external" href="#generators">Generators 生成器</a></li>
+<li><a class="reference external" href="#generator-expressions">Generator Expressions 生成器表达式</a></li>
+</ul>
+</li>
+</ul>
+
+            <h4>Previous topic</h4>
+            <p class="topless"><a href="errors.html" title="previous chapter">Errors and Exceptions    错误和异常</a></p>
+            <h4>Next topic</h4>
+            <p class="topless"><a href="stdlib.html" title="next chapter">Brief Tour of the Standard Library 标准库概览</a></p>
+            <h3>This Page</h3>
+            <ul class="this-page-menu">
+              <li><a href="../_sources/tutorial/classes.txt">Show Source</a></li>
+            </ul>
+          <h3>Quick search</h3>
+            <form class="search" action="../search.html" method="get">
+              <input type="text" name="q" size="18" /> <input type="submit" value="Go" />
+              <input type="hidden" name="check_keywords" value="yes" />
+              <input type="hidden" name="area" value="default" />
+            </form>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../modindex.html" title="Global Module Index"
+             accesskey="M">modules</a> |</li>
+        <li class="right" >
+          <a href="stdlib.html" title="Brief Tour of the Standard Library 标准库概览"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="errors.html" title="Errors and Exceptions 错误和异常"
+             accesskey="P">previous</a> |</li>
+<li><img src="../_static/py.png" alt="" style="vertical-align: middle; margin-top: -1px"/></li>
+
+        <li><a href="../contents.html">Python v3.0c1 documentation</a> &raquo;</li>
+
+          <li><a href="index.html" accesskey="U">The Python tutorial Python 入门指南</a> &raquo;</li>
+      </ul>
+    </div>
+    <div class="footer">
+      &copy; <a href="../copyright.html">Copyright</a> 1990-2008, Python Software Foundation.
+      Last updated on Oct 31, 2008.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.5.
+    </div>
+  </body>
+</html>

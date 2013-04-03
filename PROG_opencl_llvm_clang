@@ -1,0 +1,40 @@
+1, opencl
+   并行编程的框架
+
+2, llvm 
+   low level virtual machine, 
+   LLVM 是一种应用广泛的开源编译器架构，该架构采用模块化设计，能够轻松地新增对编程语言和处理器架构的支持
+   The LLVM Project is a collection of modular and reusable compiler and toolchain technologies. Despite its name, LLVM has little to do with traditional virtual machines, though it does provide helpful libraries that can be used to build them. The name "LLVM" itself is not an acronym; it is the full name of the project.
+    LLVM bitcode files 
+     LLVM bitcode files 
+     The llc command compiles LLVM source inputs into assembly language for a specified architecture
+     lli directly executes programs in LLVM bitcode format. It takes a program in LLVM bitcode format and executes it using a just-in-time compiler
+
+     做个实验！helloworld
+      新建一个hello.c文件：
+      #include
+       int main()
+        {
+	 printf("hello,LLVM\n");
+	  return 0;
+	  }
+
+	   直接生成可执行文件:
+	    clang hello.c -o hello -v
+	     使用-v选项能看到，clang负责生成了汇编文件.s,然后/usr/bin/gcc负责将汇编文件转为.o文件，进而生成hello可执行文件。
+	      
+	      生成LLVM中间表示文件.bc:
+	       clang hello.c -c -o hello.bc -emit-llvm -v
+	        用LLVM虚拟机执行
+		 lli hello.bc
+		  看看输出结果是不是一致。。。
+		   
+		   转换为可读模式的LLVM中间表示:
+		    llvm-dis < hello.bc
+		     将LLVM中间表示转换为汇编语言文件:
+		      llc hello.bc -o hello.s
+		       汇编文件就可以直接使用GCC转换为可执行文件了
+		        gcc hello.s -o hello.native
+			 执行一下：
+			  ./hello.native
+			   显示结果。。。 

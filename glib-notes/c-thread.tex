@@ -1,0 +1,552 @@
+\startcomponent c-thread
+
+\chapter{线程}
+
+线程在行为上类似进程，但与进程不同的是，一个进程的所有线程处于同一内存空间之中。这没什么不好，通过共享的内存空间，线程之间的通信会很简单，但是这也会很糟，程序如果设计的不够好，会出现海森堡 bug（嗯，海森堡测不准原理），这样的问题都是拜线程并发性质之所赐。不过，程序员可以通过一些同步原语迫使线程按照一定的次序执行。
+
+GLib 对各个平台的线程进行了封装，努力消除多线程程序的跨平台障碍。GLib 提供了一些互斥锁(Mutex)原语用于保护内存区域的访问，提供了一些条件变量原语用于控制线程同步，提供了线程私有数据原语，可以让线程可以沦落为小资，此外就是提供了线程创建与管理原语，以满足跨平台移植的需求。
+
+\section{简单的示例}
+
+在说更多的废话之前，还是先看代码：
+
+\starttyping[option=c]
+#include <glib.h>
+
+static gpointer
+thread_1 (gpointer data)
+{
+        for (int i = 0; i < 3; i++)
+                g_print ("I'm thread_1\n");
+        
+        return NULL;
+}
+
+static gpointer
+thread_2 (gpointer data)
+{
+        for (int i = 0; i < 3; i++)
+                g_print ("I'm thread_2\n");
+        
+        return NULL;
+}
+
+int
+main (void)
+{
+/* Only run the test, if threads are enabled 
+   and a default thread implementation is available */
+#if defined(G_THREADS_ENABLED) && !defined(G_THREADS_IMPL_NONE)
+        g_thread_init (NULL);
+        
+        g_thread_create (thread_1, NULL, TRUE, NULL);
+        g_thread_create (thread_2, NULL, TRUE, NULL);
+        
+        for (int i = 0; i < 3; i++)
+                g_print ("I'm main thread\n");
+#endif
+        return 0;
+}
+\stoptyping
+
+编译上述代码的命令如下：
+
+\starttyping[numbering=no]
+gcc `pkg-config --cflags --libs glib-2.0 gthread-2.0` \ 
+    -std=c99 test.c -o test
+\stoptyping
+
+程序的运行结果有可能是：
+
+\starttyping[numbering=no]
+I'm thread_2
+I'm main thread
+I'm thread_2
+I'm thread_2
+I'm main thread
+I'm thread_1
+I'm main thread
+I'm thread_1
+
+\stoptyping
+
+之所以说“可能是”，是因为这个程序包含着三个线程，即主线程和两个子线程。这三个线程究竟谁先被执行，这是未知数。这就是线程的并发性质所导致的结果，即便主线程也不例外。
+
+现在，观看上面的线程示例代码。
+
+首先，第 24 与 25 行代码可以完成 GLib 线程环境的初始化工作。虽然在 GLib 程序中，不一定非要在 gthread 线程函数调用之前调用线程初始化函数，但是许多位于 GLib 库之上的库不支持这种随意性，为了让大家都开心，尽量早调用。只有在执行了 g\_thread\_init 函数之后，GLib 才是线程安全的。
+
+第 27 与 28 行代码创建了两个线程，也就是说主线程创建了两个子线程，此时这个进程便有了三个线程。这三个线程等待操作系统的选择，通常是谁先被选中那么就先被执行。如果将主线程中的 for 循环代码删除，那么程序也许会什么信息也不输出便终止了。这是因为主线程可能会比它的两个子线程结束的早，导致进程终止，因此那两个子线程英年早逝。
+
+下面，我们将上例的主线程代码稍微改动一下，让主线程等待它的两个子线程结束后再继续执行，如下：
+
+\starttyping[option=c]
+int
+main (void)
+{
+#if defined(G_THREADS_ENABLED) && !defined(G_THREADS_IMPL_NONE)
+        g_thread_init (NULL);
+        
+        GThread *t1 = g_thread_create (thread_1, NULL, TRUE, NULL);
+        GThread *t2 = g_thread_create (thread_2, NULL, TRUE, NULL);
+
+        g_thread_join (t1);
+        g_thread_join (t2);
+#endif
+        return 0;
+}
+\stoptyping
+
+如果一个线程创建了另一个线程，那么前者可以通过 g\_thread\_join 函数将后者设置为被等待者，而它自身则扮演着等待者的脚色。当然，前提是被等待者要接受这份等待，只需将 g\_thread\_create 函数的第三个参数设为 TRUE 即可。g\_thread\_join 函数的返回值即为被等待者的返回值。
+
+\section{互斥}
+
+多个线程可能会同时访问进程空间中的同一块数据区域，这样会导致有的线程所读去的数据并不是它所期望的，因为它在读取的时候，数据可能会被其它线程篡改。例如：
+
+\starttyping[option=c]
+#include <glib.h>
+
+static gpointer
+thread_1 (gpointer data)
+{
+        gint * p = (gint *)data;
+
+        for (int i = 0; i < 4; i++){
+                (*p)++;
+                g_print ("thread_1 said %d\n", *p);
+        }
+        
+        return NULL;
+}
+
+static gpointer
+thread_2 (gpointer data)
+{
+        gint *p = (gint *)data;
+        
+        for (int i = 0; i < 4; i++){
+                (*p)++;
+                g_print ("thread_2 said %d\n", *p);
+        }
+
+        return NULL;
+}
+
+int
+main (void)
+{
+#if defined(G_THREADS_ENABLED) && !defined(G_THREADS_IMPL_NONE)
+        g_thread_init (NULL);
+
+        gint i = 0;
+        
+        GThread *t1 = g_thread_create (thread_1, &i, TRUE, NULL);
+        GThread *t2 = g_thread_create (thread_2, &i, TRUE, NULL);
+
+        g_thread_join (t1);
+        g_thread_join (t2);
+#endif
+        return 0;
+}
+\stoptyping
+
+上例按理说，其输出结果不管是线程 thread\_1 与 thread\_2 谁先被执行，它们输出的数值应该是依次递增的。事实并非如此，可能的输出如下：
+
+\starttyping[numbering=no]
+thread_1 said 2
+thread_2 said 1
+thread_1 said 3
+thread_2 said 4
+thread_1 said 5
+thread_2 said 6
+thread_1 said 7
+thread_2 said 8
+\stoptyping
+
+之所以会出现上述情况，是因为 thread\_2 将 i 修改为 1 后， 正准备输出其数值，结果 thread\_1 冲上来把 i 的值篡改为 2 并输出，然后 thread\_2 继续输出值 为 1 的 i。
+
+那么，有没有办法可以保证当某个线程在访问数据时而不被其他线程所干扰呢？操作系统为线程提供了“数据锁”，学名叫“互斥”，意思就是可以对进程中的数据空间进行锁定，例如：
+
+\starttyping[option=c]
+#include <glib.h>
+
+struct mutex_int_t {
+        GMutex *mutex;
+        gint i;
+};
+
+static gpointer
+thread_1 (gpointer data)
+{
+        struct mutex_int_t * p = (struct mutex_int_t *)data;
+
+        g_mutex_lock (p->mutex);
+        for (int i = 0; i < 4; i++){
+                p->i++;
+                g_print ("thread_1 said %d\n", p->i);
+        }
+        g_mutex_unlock (p->mutex);
+        
+        return NULL;
+}
+
+static gpointer
+thread_2 (gpointer data)
+{
+        struct mutex_int_t * p = (struct mutex_int_t *)data;
+
+        g_mutex_lock (p->mutex);
+        for (int i = 0; i < 4; i++){
+                p->i++;
+                g_print ("thread_2 said %d\n", p->i);
+        }
+        g_mutex_unlock (p->mutex);
+        
+        return NULL;
+}
+
+int
+main (void)
+{
+#if defined(G_THREADS_ENABLED) && !defined(G_THREADS_IMPL_NONE)
+        g_thread_init (NULL);
+
+        struct mutex_int_t i = {g_mutex_new (), 0};
+        
+        GThread *t1 = g_thread_create (thread_1, &i, TRUE, NULL);
+        GThread *t2 = g_thread_create (thread_2, &i, TRUE, NULL);
+
+        g_thread_join (t1);
+        g_thread_join (t2);
+        
+        g_mutex_free (i.mutex);
+#endif
+        return 0;
+}
+\stoptyping
+
+对数据区域加锁之后，那么无论线程 thread\_1 与 thread\_2 谁先被执行，在其修改并输出整型变量 i 的值时不会被另外的线程所干扰，除非它解除锁定。
+
+对于上例，加锁后，多线程的意义就荡然无存了，因其输出结果要么是：
+
+\starttyping[numbering=no]
+thread_2 said 1
+thread_2 said 2
+thread_2 said 3
+thread_2 said 4
+thread_1 said 5
+thread_1 said 6
+thread_1 said 7
+thread_1 said 8
+\stoptyping
+
+\noindent 要么是：
+
+\starttyping[numbering=no]
+thread_1 said 1
+thread_1 said 2
+thread_1 said 3
+thread_1 said 4
+thread_2 said 5
+thread_2 said 6
+thread_2 said 7
+thread_2 said 8
+\stoptyping
+
+\noindent 其效率尚不如单线程程序。
+
+假如上例先被执行的线程是 thread\_2，那么如果去掉 thread\_2 中的 g\_mutex\_unlock 函数，那么程序会挂在 thread\_1 处。这是因为 thread\_2 没有对整型变量 i 数据区域解锁，那么 thread\_1 只能是望眼欲穿的等待。那么，有没有办法可以让 thread\_1 在得知自己没资格访问某数据区域之时能识相的做它该做的事情呢？办法是有的，只需：
+
+\starttyping[option=c]
+static gpointer
+thread_1 (gpointer data)
+{
+        struct mutex_int_t * p = (struct mutex_int_t *)data;
+
+        if (!g_mutex_trylock (p->mutex))
+                g_thread_exit (NULL);
+        
+        for (int i = 0; i < 4; i++){
+                p->i++;
+                g_print ("thread_1 said %d\n", p->i);
+        }
+        g_mutex_unlock (p->mutex);
+        
+        return NULL;
+}
+\stoptyping
+
+\noindent 这样，一旦 thread\_1 发现等不到访问整型变量 i 的机会便识相的退出。当然，这个示例中的 thread\_1 太过于消极，虽然我们不能在一棵树上吊死，但也不能因为一时没有找到树，就自个把自己掐死，阿弥陀佛！
+
+\section[condition]{条件变量}
+
+互斥，是一种较为简单的线程同步方法，如果配合条件变量，那么可以营造生产者/消费者这样一种模式。例如，可以开启一个线程，用于获取标准输入（stdin）文件的数据，然后开启多个线程，对所获数据进行不同目标的处理，详见：
+
+\starttyping[option=c]
+#include <glib.h>
+
+GCond* data_cond = NULL;
+GMutex* data_mutex = NULL;
+gpointer current_data = NULL;
+gchar *buffer = NULL;
+
+static void
+consumer_1 (void)
+{
+        g_mutex_lock (data_mutex);
+        while (!buffer)
+                g_cond_wait (data_cond, data_mutex);
+        g_print ("%ld\n", g_utf8_strlen (buffer, -1) - 1);
+        g_mutex_unlock (data_mutex);
+}
+
+static void
+consumer_2 (void)
+{
+        g_mutex_lock (data_mutex);
+        while (!buffer)
+                g_cond_wait (data_cond, data_mutex);
+        for (int i = g_utf8_strlen (buffer, -1) - 2; i >= 0; i--)
+                g_print ("%c", buffer[i]);
+        g_print ("\n");
+        g_mutex_unlock (data_mutex);
+}
+
+gboolean
+io_watch (GIOChannel *channel, GIOCondition condition, gpointer data)
+{       
+        g_mutex_lock (data_mutex);
+        g_io_channel_read_line (channel, &buffer, NULL, NULL, NULL);
+        g_cond_signal (data_cond);
+        g_mutex_unlock (data_mutex);
+
+        GThread *consumer_thread_1 =
+                g_thread_create ((GThreadFunc)consumer_1, 
+                                 NULL, TRUE, NULL);
+
+        GThread *consumer_thread_2 =
+                g_thread_create ((GThreadFunc)consumer_2, 
+                                 NULL, TRUE, NULL);
+        
+        g_thread_join (consumer_thread_1);
+        g_thread_join (consumer_thread_2);
+        
+        g_free (buffer);
+        buffer = NULL;
+        
+        return TRUE;
+}
+
+int
+main (void)
+{
+#if defined(G_THREADS_ENABLED) && !defined(G_THREADS_IMPL_NONE)
+        g_thread_init (NULL);
+        
+        data_cond = g_cond_new ();
+        data_mutex = g_mutex_new ();
+        
+        GMainLoop *loop = g_main_loop_new (NULL, FALSE);
+        GIOChannel* channel = g_io_channel_unix_new (1);
+        if (channel){
+                g_io_add_watch(channel, G_IO_IN, io_watch, NULL);
+                g_io_channel_unref(channel);
+        }
+        g_main_loop_run(loop);
+        g_main_context_unref (g_main_loop_get_context (loop));
+        g_main_loop_unref(loop);
+        
+        g_mutex_free (data_mutex);
+        g_cond_free (data_cond);
+#endif
+        return 0;
+}
+\stoptyping
+
+上例中，主线程是生产者，它利用 GLib 主事件循环与文件事件源机制实现 stdin 中的数据获取，在文件事件源的处理函数 io_watch 中创建了两个子线程，它们是消费者，即它们使用了主线程所获取的数据。
+
+消费者线程创建之后，它们会被挂住，除非生产者对所“生产”的数据解锁。生产者在完成数据获取任务后，会使用 g_cond_signal 函数向消费者线程发送信号，通知它们数据已经准备好，开始享用吧！这两个消费者，一个会统计 stdin 输入的字符串长度，另一个会将字符串倒序输出至 stdout。
+
+上例代码中，消费者线程均包含以下代码段：
+\starttyping[option=c]
+        g_mutex_lock (data_mutex);
+        while (!buffer)
+                g_cond_wait (data_cond, data_mutex);
+        ... ...
+        g_mutex_unlock (data_mutex);
+\stoptyping
+\noindent 是处理条件变量的标准形式。该段代码首先锁定互斥，然后进入 g_cond_wait 开始等待，g_cond_wait 会将互斥设定为非锁定的，此时那个生产者可能正在准备数据，当生产者调用 g_cond_signal 发送信号时，g_cond_wait 便返回，并将互斥设为锁定状态，然后消费者便开始大肆享用生产者所提供的数据，享毕便解除互斥的锁定。
+
+\section{原子操作}
+
+使用互斥，可以保护数据不会被暴走的多个线程破坏，但是它的效率有时会很低。比方说某个线程一旦长时间霸占了某个变量，也许会导致其他线程要么苦苦等待，要么就无所事事的飘过。我这里不是在背后说互斥的坏话，但是如果仅仅是为了整型变量或指针变量的线程安全问题，那么我们应该选择 GLib 提供的“原子”操作，这样可能会提高一些效率。之所以说可能，是因为 GLib 的原子操作是利用内联汇编来实现的，而对于那些不支持内联汇编的平台（C 编译器），GLib 则提供基于互斥的相应实现。例如，在 GLib 内部实现中被应用较多的一个原子操作是 g_atomic_int_inc，其实现代码如下：
+
+\starttyping[option=c]
+void
+g_atomic_int_add (volatile gint G_GNUC_MAY_ALIAS *atomic, gint val)
+{
+   __asm__ __volatile__ ("lock; addl %1,%0"
+                         : "=m" (*atomic) 
+                         : "ir" (val), "m" (*atomic));
+}
+#define g_atomic_int_inc(atomic) (g_atomic_int_add ((atomic), 1))
+\stoptyping
+
+我承认，很久以前，我曾经看过一段时间的 AT&T 汇编语言，但是上述代码我依然看不大懂。不过，这不妨碍我在程序中使用 g_atomic_int_add 实现线程安全的整数增量为 1 的计算。
+
+\section[thread-pools]{线程池}
+
+有的时候，为了提高效率，一个工作线程可能会需要将一部分任务分给一些线程去完成，并且它不需要与那些线程同步（就是所谓的异步线程）。比如，网络服务器的主线程可以接受许多用户的访问，并为每个访问创建一个线程完成相应的任务，例如向用户发送 HTML 页面。但是，如果用户访问非常频繁，那么线程的创建和销毁会降低服务器程序的运行效率。
+
+线程池技术可以预先创建一定数量的线程，从而避免线程频繁创建和销毁的系统开销。也许在计算机程序设计中，最不容易过时的技术之一是牺牲空间换取时间的技术。下面利用 GLib 的主事件循环配合线程池模拟一个 Web 服务器程序，你可以向它发送 url，然后它会装模作样的给你分配一个线程并沉默 5 秒钟，然后输出一句废话。
+
+\starttyping[option=c]
+#include <glib.h>
+
+#define NUMBER_OF_THREADS 4
+
+typedef struct _MyData MyData;
+struct _MyData {
+        GThreadPool *thread_pool;
+        gchar *buffer;
+};
+
+static void
+send_message (gpointer data, gpointer user_data)
+{
+        g_usleep (5 * G_USEC_PER_SEC);
+        g_print (">>>> OK! I got %s", (gchar *)data);
+        g_free (data);
+}
+
+gboolean
+io_watch (GIOChannel *channel, GIOCondition condition, gpointer data)
+{
+        MyData *mydata = (MyData *)data;
+        
+        g_io_channel_read_line (channel, &(mydata->buffer), NULL, NULL, NULL);
+        g_thread_pool_push (mydata->thread_pool, mydata->buffer, NULL);
+        
+        return TRUE;
+}
+
+int
+main (void)
+{       
+#if defined(G_THREADS_ENABLED) && !defined(G_THREADS_IMPL_NONE)
+        g_thread_init (NULL);
+        
+        MyData mydata = {NULL, NULL};
+        mydata.thread_pool = g_thread_pool_new (send_message,
+                                                NULL,
+                                                NUMBER_OF_THREADS,
+                                                FALSE,
+                                                NULL);
+        
+        GMainLoop *loop = g_main_loop_new (NULL, FALSE);
+        GIOChannel* channel = g_io_channel_unix_new (1);
+        if (channel){
+                g_io_add_watch(channel, G_IO_IN, io_watch, &mydata);
+                g_io_channel_unref(channel);
+        }
+        
+        g_main_loop_run(loop);
+        g_main_context_unref (g_main_loop_get_context (loop));
+        g_main_loop_unref(loop);
+        
+        g_thread_pool_free (mydata.thread_pool, TRUE, TRUE);
+#endif
+        return 0;
+}
+\stoptyping
+
+这个程序的输入与输出类似：
+
+\starttyping[numbering=no]
+$ > ./a.out
+http://www.linuxsir.org/bbs/forum59.html
+http://garfileo.is-programmer.com/
+>>>> OK! I got http://www.linuxsir.org/bbs/forum59.html
+>>>> OK! I got http://garfileo.is-programmer.com/
+http://gentoo-portage.com/newest
+>>>> OK! I got http://gentoo-portage.com/newest
+\stoptyping
+
+我们可以这样想像线程池的处理，当有新的数据要交给线程处理时，主线程就从线程池中找到一个未被使用的线程处理这新来的数据，如果线程池中没有找到可用的空闲线程，就新创建一个线程来处理这个数据，并在处理完后不销毁它而是将这个线程放到线程池中，以备后用。
+
+\section{异步队列}
+
+在 \in[thread-pools] 节提供的示例中，主线程与子线程之间的“通信”是利用共享内存实现的。为了增强线程通讯的安全性，可以使用异步队列。异步队列的概念是这样的：所有的数据组织成队列，供多线程并发访问，而这些并发控制全部在异步队列里面实现，对外面只提供读写接口；当队列中的数据为空时， 如果是读线程访问异步队列，那么这一读线程就等待，直到有数据为止；写线程向队列放数据时，如果有线程在等待数据就唤醒等待线程。例如：
+
+\starttyping[option=c]
+#include <glib.h>
+
+#define NUMBER_OF_THREADS 4
+
+typedef struct _MyData MyData;
+struct _MyData {
+        GThreadPool *thread_pool;
+        GAsyncQueue *queue;
+};
+
+static void
+send_message (gpointer data, gpointer user_data)
+{
+        
+        MyData *p = (MyData *)data;
+        gchar *buffer = (gchar *)g_async_queue_pop (p->queue);
+        g_usleep (5 * G_USEC_PER_SEC);
+        g_print (">>>> OK! I got %s", buffer);
+        g_free (buffer);
+}
+
+gboolean
+io_watch (GIOChannel *channel, GIOCondition condition, gpointer data)
+{
+        MyData *p = (MyData *)data;
+        gchar *buffer;
+
+        g_thread_pool_push (p->thread_pool, data, NULL);
+        
+        g_io_channel_read_line (channel, &buffer, NULL, NULL, NULL);        
+        g_async_queue_push (p->queue, buffer);
+
+        return TRUE;
+}
+
+int
+main (void)
+{       
+#if defined(G_THREADS_ENABLED) && !defined(G_THREADS_IMPL_NONE)
+        g_thread_init (NULL);
+        
+        MyData data;
+        data.thread_pool = g_thread_pool_new (send_message,
+                                                NULL,
+                                                NUMBER_OF_THREADS,
+                                                FALSE,
+                                                NULL);
+        data.queue = g_async_queue_new ();
+        GMainLoop *loop = g_main_loop_new (NULL, FALSE);
+        GIOChannel* channel = g_io_channel_unix_new (1);
+        if (channel){
+                g_io_add_watch(channel, G_IO_IN, io_watch, &data);
+                g_io_channel_unref(channel);
+        }
+        
+        g_main_loop_run(loop);
+        g_main_context_unref (g_main_loop_get_context (loop));
+        g_main_loop_unref(loop);
+        
+        g_thread_pool_free (data.thread_pool, TRUE, TRUE);
+        g_async_queue_unref (data.queue);
+#endif
+        return 0;
+}
+\stoptyping
+
+\section{想知道更多}
+
+阅读 GLib 手册的“Threads”和“Thread Pools”部分是必须的。
+
+\stopcomponent

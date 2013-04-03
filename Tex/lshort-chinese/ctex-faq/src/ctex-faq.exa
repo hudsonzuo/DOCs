@@ -1,0 +1,8 @@
+\documentclass{article}
+...
+\makeatletter % @ is now a normal "letter" for TeX
+\renewcommand\theequation{\thesection.\arabic{equation}}
+\@addtoreset{equation}{section}
+\makeatother % @ is restored as a "non-letter" character for TeX
+\begin{document}
+...

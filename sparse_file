@@ -1,0 +1,70 @@
+
+
+Sparse file
+
+
+From Wikipedia, the free encyclopedia
+
+A sparse file: The empty bytes don't need to be saved, thus they can be represented by metadata.
+
+In computer science, a sparse file is a type of computer file that attempts to use file system space more efficiently when blocks allocated to the file are mostly empty. This is achieved by writing brief information (metadata) representing the empty blocks to disk instead of the actual "empty" space which makes up the block, using less disk space. The full block size is written to disk as the actual size only when the block contains "real" (non-empty) data.
+
+When reading sparse files, the file system transparently converts metadata representing empty blocks into "real" blocks filled with zero bytes at runtime. The application is unaware of this conversion.
+
+Most modern file systems support sparse files, including most Unix variants and NTFS[1], but notably not Apple's HFS+. Sparse files are commonly used for disk images, database snapshots, log files and in scientific applications.
+Contents
+[hide]
+
+    * 1 Advantages
+    * 2 Disadvantages
+    * 3 Sparse Files in Unix
+          o 3.1 Creation
+          o 3.2 Detection
+          o 3.3 Copying
+    * 4 See also
+    * 5 References
+    * 6 External links
+
+[edit] Advantages
+
+The advantage of sparse files is that storage is only allocated when actually needed: disk space is saved, and large files can be created even if there is insufficient free space on the file system.
+[edit] Disadvantages
+
+Disadvantages are that sparse files may become fragmented; file system free space reports may be misleading; filling up file systems containing sparse files can have unexpected effects (such as disk-full or quota-exceeded errors when merely overwriting an existing portion of a file that happened to have been sparse); and copying a sparse file with a program that does not explicitly support them may copy the entire, uncompressed size of the file, including the sparse, mostly zero sections which are not on disk—losing the benefits of the sparse property in the file. Sparse files are also not fully supported by all backup software or applications.
+[edit] Sparse Files in Unix
+
+Sparse files are typically handled transparently to the user. But the differences between a normal file and sparse file become apparent in some situations.
+[edit] Creation
+
+The Unix command:
+
+dd if=/dev/null of=sparse-file bs=1k seek=5120
+
+will create a file of five megabytes in size, but with no data stored on disk (only metadata). (GNU dd has this behavior because it calls ftruncate to set the file size; other implementations may merely create an empty file.)
+
+Similarly the truncate command may be used, if available:
+
+truncate -s 5M <filename>
+
+[edit] Detection
+
+Sparse files have different apparent and actual file sizes. This can be detected by comparing the output of
+
+du -B1 sparse-file
+
+to that of
+
+ls -l sparse-file
+
+(Some systems do not support the -B1 option; du -k, which reports in kibibytes, may be used instead.)
+[edit] Copying
+
+Normally, the GNU version of cp is good at detecting whether a file is sparse, so it suffices to run:
+
+cp sparse-file new-file
+
+and new-file will be sparse. However, GNU cp does have a --sparse=WHEN option[2]. This is especially useful if a sparse-file has somehow become non-sparse (i.e. the empty blocks have been written out to disk in full). Disk space can be recovered by doing:
+
+cp --sparse=always formerly-sparse-file recovered-sparse-file
+
+Most cp implementations do not support the --sparse option and will always expand sparse files, like FreeBSD's cp. A viable alternative on those systems is to use rsync with its own --sparse option[3] instead of cp.

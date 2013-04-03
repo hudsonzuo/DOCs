@@ -1,0 +1,245 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>reprlib &#8212; Alternate repr implementation &mdash; Python v3.0c1 documentation</title>
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+          URL_ROOT:    '../',
+          VERSION:     '3.0c1',
+          COLLAPSE_MODINDEX: false,
+          FILE_SUFFIX: '.html'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Search within Python v3.0c1 documentation"
+          href="../_static/opensearch.xml"/>
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="copyright" title="Copyright" href="../copyright.html" />
+    <link rel="top" title="Python v3.0c1 documentation" href="../index.html" />
+    <link rel="up" title="Data Types" href="datatypes.html" />
+    <link rel="next" title="Numeric and Mathematical Modules" href="numeric.html" />
+    <link rel="prev" title="pprint &#8212; Data pretty printer" href="pprint.html" />
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../modindex.html" title="Global Module Index"
+             accesskey="M">modules</a> |</li>
+        <li class="right" >
+          <a href="numeric.html" title="Numeric and Mathematical Modules"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="pprint.html" title="pprint &#8212; Data pretty printer"
+             accesskey="P">previous</a> |</li>
+<li><img src="../_static/py.png" alt="" style="vertical-align: middle; margin-top: -1px"/></li>
+
+        <li><a href="../contents.html">Python v3.0c1 documentation</a> &raquo;</li>
+
+          <li><a href="index.html" accesskey="U">The Python Standard Library</a> &raquo;</li>
+          <li><a href="datatypes.html" accesskey="U">Data Types</a> &raquo;</li>
+      </ul>
+    </div>
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  
+  <div class="section" id="module-reprlib">
+<h1><tt class="xref docutils literal"><span class="pre">reprlib</span></tt> &#8212; Alternate <a title="repr" class="reference external" href="functions.html#repr"><tt class="xref docutils literal"><span class="pre">repr()</span></tt></a> implementation<a class="headerlink" href="#module-reprlib" title="Permalink to this headline">¶</a></h1>
+<p>The <tt class="xref docutils literal"><span class="pre">reprlib</span></tt> module provides a means for producing object representations
+with limits on the size of the resulting strings. This is used in the Python
+debugger and may be useful in other contexts as well.</p>
+<p>This module provides a class, an instance, and a function:</p>
+<dl class="class">
+<dt id="reprlib.Repr">
+<!--[reprlib.Repr]-->class <tt class="descclassname">reprlib.</tt><tt class="descname">Repr</tt><a class="headerlink" href="#reprlib.Repr" title="Permalink to this definition">¶</a></dt>
+<dd>Class which provides formatting services useful in implementing functions
+similar to the built-in <a title="repr" class="reference external" href="functions.html#repr"><tt class="xref docutils literal"><span class="pre">repr()</span></tt></a>; size limits for  different object types
+are added to avoid the generation of representations which are excessively long.</dd></dl>
+
+<dl class="data">
+<dt id="reprlib.aRepr">
+<!--[reprlib.aRepr]--><tt class="descclassname">reprlib.</tt><tt class="descname">aRepr</tt><a class="headerlink" href="#reprlib.aRepr" title="Permalink to this definition">¶</a></dt>
+<dd>This is an instance of <a title="reprlib.Repr" class="reference internal" href="#reprlib.Repr"><tt class="xref docutils literal"><span class="pre">Repr</span></tt></a> which is used to provide the <a title="repr" class="reference external" href="functions.html#repr"><tt class="xref docutils literal"><span class="pre">repr()</span></tt></a>
+function described below.  Changing the attributes of this object will affect
+the size limits used by <a title="repr" class="reference external" href="functions.html#repr"><tt class="xref docutils literal"><span class="pre">repr()</span></tt></a> and the Python debugger.</dd></dl>
+
+<dl class="function">
+<dt id="reprlib.repr">
+<!--[reprlib.repr]--><tt class="descclassname">reprlib.</tt><tt class="descname">repr</tt><big>(</big><em>obj</em><big>)</big><a class="headerlink" href="#reprlib.repr" title="Permalink to this definition">¶</a></dt>
+<dd>This is the <a title="repr" class="reference external" href="functions.html#repr"><tt class="xref docutils literal"><span class="pre">repr()</span></tt></a> method of <tt class="docutils literal"><span class="pre">aRepr</span></tt>.  It returns a string similar to
+that returned by the built-in function of the same  name, but with limits on
+most sizes.</dd></dl>
+
+<div class="section" id="id1">
+<span id="repr-objects"></span><h2>Repr Objects<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p><a title="reprlib.Repr" class="reference internal" href="#reprlib.Repr"><tt class="xref docutils literal"><span class="pre">Repr</span></tt></a> instances provide several members which can be used to provide
+size limits for the representations of different object types,  and methods
+which format specific object types.</p>
+<dl class="attribute">
+<dt id="reprlib.Repr.maxlevel">
+<!--[reprlib.Repr.maxlevel]--><tt class="descclassname">Repr.</tt><tt class="descname">maxlevel</tt><a class="headerlink" href="#reprlib.Repr.maxlevel" title="Permalink to this definition">¶</a></dt>
+<dd>Depth limit on the creation of recursive representations.  The default is <tt class="docutils literal"><span class="pre">6</span></tt>.</dd></dl>
+
+<dl class="attribute">
+<dt id="reprlib.Repr.maxdict">
+<!--[reprlib.Repr.maxdict]--><tt class="descclassname">Repr.</tt><tt class="descname">maxdict</tt><a class="headerlink" href="#reprlib.Repr.maxdict" title="Permalink to this definition">¶</a></dt>
+<dt id="reprlib.Repr.maxlist">
+<tt class="descclassname">Repr.</tt><tt class="descname">maxlist</tt><a class="headerlink" href="#reprlib.Repr.maxlist" title="Permalink to this definition">¶</a></dt>
+<dt id="reprlib.Repr.maxtuple">
+<tt class="descclassname">Repr.</tt><tt class="descname">maxtuple</tt><a class="headerlink" href="#reprlib.Repr.maxtuple" title="Permalink to this definition">¶</a></dt>
+<dt id="reprlib.Repr.maxset">
+<tt class="descclassname">Repr.</tt><tt class="descname">maxset</tt><a class="headerlink" href="#reprlib.Repr.maxset" title="Permalink to this definition">¶</a></dt>
+<dt id="reprlib.Repr.maxfrozenset">
+<tt class="descclassname">Repr.</tt><tt class="descname">maxfrozenset</tt><a class="headerlink" href="#reprlib.Repr.maxfrozenset" title="Permalink to this definition">¶</a></dt>
+<dt id="reprlib.Repr.maxdeque">
+<tt class="descclassname">Repr.</tt><tt class="descname">maxdeque</tt><a class="headerlink" href="#reprlib.Repr.maxdeque" title="Permalink to this definition">¶</a></dt>
+<dt id="reprlib.Repr.maxarray">
+<tt class="descclassname">Repr.</tt><tt class="descname">maxarray</tt><a class="headerlink" href="#reprlib.Repr.maxarray" title="Permalink to this definition">¶</a></dt>
+<dd>Limits on the number of entries represented for the named object type.  The
+default is <tt class="docutils literal"><span class="pre">4</span></tt> for <a title="reprlib.Repr.maxdict" class="reference internal" href="#reprlib.Repr.maxdict"><tt class="xref docutils literal"><span class="pre">maxdict</span></tt></a>, <tt class="docutils literal"><span class="pre">5</span></tt> for <a title="reprlib.Repr.maxarray" class="reference internal" href="#reprlib.Repr.maxarray"><tt class="xref docutils literal"><span class="pre">maxarray</span></tt></a>, and  <tt class="docutils literal"><span class="pre">6</span></tt> for
+the others.</dd></dl>
+
+<dl class="attribute">
+<dt id="reprlib.Repr.maxlong">
+<!--[reprlib.Repr.maxlong]--><tt class="descclassname">Repr.</tt><tt class="descname">maxlong</tt><a class="headerlink" href="#reprlib.Repr.maxlong" title="Permalink to this definition">¶</a></dt>
+<dd>Maximum number of characters in the representation for a long integer.  Digits
+are dropped from the middle.  The default is <tt class="docutils literal"><span class="pre">40</span></tt>.</dd></dl>
+
+<dl class="attribute">
+<dt id="reprlib.Repr.maxstring">
+<!--[reprlib.Repr.maxstring]--><tt class="descclassname">Repr.</tt><tt class="descname">maxstring</tt><a class="headerlink" href="#reprlib.Repr.maxstring" title="Permalink to this definition">¶</a></dt>
+<dd>Limit on the number of characters in the representation of the string.  Note
+that the &#8220;normal&#8221; representation of the string is used as the character source:
+if escape sequences are needed in the representation, these may be mangled when
+the representation is shortened.  The default is <tt class="docutils literal"><span class="pre">30</span></tt>.</dd></dl>
+
+<dl class="attribute">
+<dt id="reprlib.Repr.maxother">
+<!--[reprlib.Repr.maxother]--><tt class="descclassname">Repr.</tt><tt class="descname">maxother</tt><a class="headerlink" href="#reprlib.Repr.maxother" title="Permalink to this definition">¶</a></dt>
+<dd>This limit is used to control the size of object types for which no specific
+formatting method is available on the <a title="reprlib.Repr" class="reference internal" href="#reprlib.Repr"><tt class="xref docutils literal"><span class="pre">Repr</span></tt></a> object. It is applied in a
+similar manner as <a title="reprlib.Repr.maxstring" class="reference internal" href="#reprlib.Repr.maxstring"><tt class="xref docutils literal"><span class="pre">maxstring</span></tt></a>.  The default is <tt class="docutils literal"><span class="pre">20</span></tt>.</dd></dl>
+
+<dl class="method">
+<dt id="reprlib.Repr.repr">
+<!--[reprlib.Repr.repr]--><tt class="descclassname">Repr.</tt><tt class="descname">repr</tt><big>(</big><em>obj</em><big>)</big><a class="headerlink" href="#reprlib.Repr.repr" title="Permalink to this definition">¶</a></dt>
+<dd>The equivalent to the built-in <a title="repr" class="reference external" href="functions.html#repr"><tt class="xref docutils literal"><span class="pre">repr()</span></tt></a> that uses the formatting imposed by
+the instance.</dd></dl>
+
+<dl class="method">
+<dt id="reprlib.Repr.repr1">
+<!--[reprlib.Repr.repr1]--><tt class="descclassname">Repr.</tt><tt class="descname">repr1</tt><big>(</big><em>obj</em>, <em>level</em><big>)</big><a class="headerlink" href="#reprlib.Repr.repr1" title="Permalink to this definition">¶</a></dt>
+<dd>Recursive implementation used by <a title="repr" class="reference external" href="functions.html#repr"><tt class="xref docutils literal"><span class="pre">repr()</span></tt></a>.  This uses the type of <em>obj</em> to
+determine which formatting method to call, passing it <em>obj</em> and <em>level</em>.  The
+type-specific methods should call <a title="reprlib.Repr.repr1" class="reference internal" href="#reprlib.Repr.repr1"><tt class="xref docutils literal"><span class="pre">repr1()</span></tt></a> to perform recursive formatting,
+with <tt class="docutils literal"><span class="pre">level</span> <span class="pre">-</span> <span class="pre">1</span></tt> for the value of <em>level</em> in the recursive  call.</dd></dl>
+
+<dl class="method">
+<dt>
+<tt class="descclassname">Repr.</tt><tt class="descname">repr_TYPE</tt><big>(</big><em>obj</em>, <em>level</em><big>)</big></dt>
+<dd>Formatting methods for specific types are implemented as methods with a name
+based on the type name.  In the method name, <strong>TYPE</strong> is replaced by
+<tt class="docutils literal"><span class="pre">string.join(string.split(type(obj).__name__,</span> <span class="pre">'_'))</span></tt>. Dispatch to these
+methods is handled by <a title="reprlib.Repr.repr1" class="reference internal" href="#reprlib.Repr.repr1"><tt class="xref docutils literal"><span class="pre">repr1()</span></tt></a>. Type-specific methods which need to
+recursively format a value should call <tt class="docutils literal"><span class="pre">self.repr1(subobj,</span> <span class="pre">level</span> <span class="pre">-</span> <span class="pre">1)</span></tt>.</dd></dl>
+
+</div>
+<div class="section" id="subclassing-repr-objects">
+<span id="subclassing-reprs"></span><h2>Subclassing Repr Objects<a class="headerlink" href="#subclassing-repr-objects" title="Permalink to this headline">¶</a></h2>
+<p>The use of dynamic dispatching by <a title="reprlib.Repr.repr1" class="reference internal" href="#reprlib.Repr.repr1"><tt class="xref docutils literal"><span class="pre">Repr.repr1()</span></tt></a> allows subclasses of
+<a title="reprlib.Repr" class="reference internal" href="#reprlib.Repr"><tt class="xref docutils literal"><span class="pre">Repr</span></tt></a> to add support for additional built-in object types or to modify
+the handling of types already supported. This example shows how special support
+for file objects could be added:</p>
+<pre>import repr
+import sys
+
+class MyRepr(repr.Repr):
+    def repr_file(self, obj, level):
+        if obj.name in ['&lt;stdin&gt;', '&lt;stdout&gt;', '&lt;stderr&gt;']:
+            return obj.name
+        else:
+            return `obj`
+
+aRepr = MyRepr()
+print aRepr.repr(sys.stdin)          # prints '&lt;stdin&gt;'</pre>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <h3><a href="../contents.html">Table Of Contents</a></h3>
+            <ul>
+<li><a class="reference external" href=""><tt class="docutils literal"><span class="pre">reprlib</span></tt> &#8212; Alternate <tt class="docutils literal"><span class="pre">repr</span></tt> implementation</a><ul>
+<li><a class="reference external" href="#id1">Repr Objects</a></li>
+<li><a class="reference external" href="#subclassing-repr-objects">Subclassing Repr Objects</a></li>
+</ul>
+</li>
+</ul>
+
+            <h4>Previous topic</h4>
+            <p class="topless"><a href="pprint.html" title="previous chapter"><tt class="docutils literal docutils literal docutils literal"><span class="pre">pprint</span></tt> &#8212; Data pretty printer</a></p>
+            <h4>Next topic</h4>
+            <p class="topless"><a href="numeric.html" title="next chapter">Numeric and Mathematical Modules</a></p>
+            <h3>This Page</h3>
+            <ul class="this-page-menu">
+              <li><a href="../_sources/library/reprlib.txt">Show Source</a></li>
+            </ul>
+          <h3>Quick search</h3>
+            <form class="search" action="../search.html" method="get">
+              <input type="text" name="q" size="18" /> <input type="submit" value="Go" />
+              <input type="hidden" name="check_keywords" value="yes" />
+              <input type="hidden" name="area" value="default" />
+            </form>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../modindex.html" title="Global Module Index"
+             accesskey="M">modules</a> |</li>
+        <li class="right" >
+          <a href="numeric.html" title="Numeric and Mathematical Modules"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="pprint.html" title="pprint &#8212; Data pretty printer"
+             accesskey="P">previous</a> |</li>
+<li><img src="../_static/py.png" alt="" style="vertical-align: middle; margin-top: -1px"/></li>
+
+        <li><a href="../contents.html">Python v3.0c1 documentation</a> &raquo;</li>
+
+          <li><a href="index.html" accesskey="U">The Python Standard Library</a> &raquo;</li>
+          <li><a href="datatypes.html" accesskey="U">Data Types</a> &raquo;</li>
+      </ul>
+    </div>
+    <div class="footer">
+      &copy; <a href="../copyright.html">Copyright</a> 1990-2008, Python Software Foundation.
+      Last updated on Oct 31, 2008.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.5.
+    </div>
+  </body>
+</html>

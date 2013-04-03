@@ -1,0 +1,526 @@
+cvs常用命令
+
+登陆：cvs -d :pserver:wangchao@192.168.0.11:/home1/cvsroot/it login
+导出项目：cvs checkout -d product proudct_local
+添加文件：cvs add filename
+提交文件：cvs commit filename
+
+删除文件：cvs remove -f filename
+确认删除文件：cvs commit -m "why delete file"
+
+重命名文件：cvs move cvs rename
+确认重命名文件 cvs commit
+
+添加目录cvs add dirname
+确认添加目录：cvs commit
+
+查看修改该历史： cvs log filename
+
+一个项目的首次导入
+cvs import -m "write some comments here" project_name vendor_tag release_tag
+执行后：会将所有源文件及目录导入到/path/to/cvsroot/project_name目录下
+vender_tag: 开发商标记
+release_tag: 版本发布标记
+
+项目导出：将代码从CVS库里导出
+cvs checkout project_name
+cvs 将创建project_name目录，并将最新版本的源代码导出到相应目录中。这个checkout和Virvual SourceSafe中的check out不是一个概念，相对于Virvual SourceSafe的check out是cvs update， check in是cvs commit。
+
+CVS的日常使用
+
+注意：第一次导出以后，就不是通过cvs checkout来同步文件了，而是要进入刚才cvs checkout project_name导出的project_name目录下进行具体文件的版本同步（添加，修改，删除）操作。
+
+将文件同步到最新的版本
+cvs update
+不制定文件名，cvs将同步所有子目录下的文件，也可以制定某个文件名/目录进行同步
+cvs update file_name
+最好每天开始工作前或将自己的工作导入到CVS库里前都要做一次，并养成“先同步 后修改”的习惯，和Virvual SourceSafe不同，CVS里没有文件锁定的概念，所有的冲突是在commit之前解决，如果你修改过程中，有其他人修改并commit到了CVS 库中，CVS会通知你文件冲突，并自动将冲突部分用
+>>>>>>
+content on cvs server
+<<<<<<
+content in your file
+>>>>>>
+标记出来，由你确认冲突内容的取舍。
+版本冲突一般是在多个人修改一个文件造成的，但这种项目管理上的问题不应该指望由CVS来解决。
+
+确认修改写入到CVS库里
+cvs commit -m "write some comments here" file_name
+
+注意：CVS的很多动作都是通过cvs commit进行最后确认并修改的，最好每次只修改一个文件。在确认的前，还需要用户填写修改注释，以帮助其他开发人员了解修改的原因。如果不用写-m "comments"而直接确认`cvs commit file_name` 的话，cvs会自动调用系统缺省的文字编辑器(一般是vi)要求你写入注释。
+注释的质量很重要：所以不仅必须要写，而且必须写一些比较有意义的内容：以方便其他开发人员能够很好的理解
+不好的注释，很难让其他的开发人员快速的理解：比如： -m "bug fixed" 甚至 -m ""
+好的注释，甚至可以用中文: -m "在用户注册过程中加入了Email地址校验"
+
+修改某个版本注释：每次只确认一个文件到CVS库里是一个很好的习惯，但难免有时候忘了指定文件名，把多个文件以同样注释commit到CVS库里了，以下命令可以允许你修改某个文件某个版本的注释：
+cvs admin -m 1.3:"write some comments here" file_name
+
+添加文件
+创建好新文件后，比如：touch new_file
+cvs add new_file
+注意：对于图片，Word文档等非纯文本的项目，需要使用cvs add -kb选项按2进制文件方式导入(k表示扩展选项，b表示binary)，否则有可能出现文件被破坏的情况
+比如：
+cvs add -kb new_file.gif
+cvs add -kb readme.doc
+
+如果关键词替换属性在首次导入时设置错了怎么办？
+cvs admin -kkv new_file.css
+
+然后确认修改并注释
+cvs ci -m "write some comments here"
+
+删除文件
+将某个源文件物理删除后，比如：rm file_name
+cvs rm file_name
+然后确认修改并注释
+cvs ci -m "write some comments here"
+以上面前2步合并的方法为：
+cvs rm -f file_name
+cvs ci -m "why delete file"
+注意：很多cvs命令都有缩写形式：commit=>ci; update=>up; checkout=>co/get; remove=>rm;
+
+添加目录
+cvs add dir_name
+
+查看修改历史
+cvs log file_name
+cvs history file_name
+
+查看当前文件不同版本的区别
+cvs diff -r1.3 -r1.5 file_name
+查看当前文件（可能已经修改了）和库中相应文件的区别
+cvs diff file_name
+cvs的web界面提供了更方便的定位文件修改和比较版本区别的方法，具体安装设置请看后面的cvsweb使用
+
+正确的通过CVS恢复旧版本的方法：
+如果用cvs update -r1.2 file.name
+这个命令是给file.name加一个STICK TAG： "1.2" ，虽然你的本意只是想将它恢复到1.2版本
+正确的恢复版本的方法是：cvs update -p -r1.2 file_name >file_name
+如果不小心已经加成STICK TAG的话：用cvs update -A 解决
+
+移动文件/文件重命名
+cvs里没有cvs move或cvs rename，因为这两个操作是可以由先cvs remove old_file_name，然后cvs add new_file_name实现的。
+
+删除/移动目录
+最方便的方法是让管理员直接移动，删除CVSROOT里相应目录（因为CVS一个项目下的子目录都是独立的，移动到$CVSROOT目录下都可以作为新的独立项目：好比一颗树，其实砍下任意一枝都能独立存活），对目录进行了修改后，要求其开发人员重新导出项目cvs checkout project_name 或者用cvs update -dP同步。
+
+项目发布导出不带CVS目录的源文件
+做开发的时候你可能注意到了，每个开发目录下，CVS都创建了一个CVS/目录。里面有文件用于记录当前目录和CVS库之间的对应信息。但项目发布的时候你一般不希望把文件目录还带着含有CVS信息的CVS目录吧，这个一次性的导出过程使用cvs export命令，不过export只能针对一个TAG或者日期导出，比如：
+cvs export -r release1 project_name
+cvs export -D 20021023 project_name
+cvs export -D now project_name
+CVS Branch：项目多分支同步开发
+确认版本里程碑：多个文件各自版本号不一样，项目到一定阶段，可以给所有文件统一指定一个阶段里程碑版本号，方便以后按照这个阶段里程碑版本号导出项目，同时也是项目的多个分支开发的基础。
+
+cvs tag release_1_0
+
+开始一个新的里程碑：
+cvs commit -r 2 标记所有文件开始进入2.x的开发
+
+注意：CVS里的revsion和软件包的发布版本可以没有直接的关系。但所有文件使用和发布版本一致的版本号比较有助于维护。
+
+版本分支的建立
+在开发项目的2.x版本的时候发现1.x有问题，但2.x又不敢用，则从先前标记的里程碑：release_1_0导出一个分支 release_1_0_patch
+cvs rtag -b -r release_1_0 release_1_0_patch proj_dir
+
+一些人先在另外一个目录下导出release_1_0_patch这个分支：解决1.0中的紧急问题，
+cvs checkout -r release_1_0_patch
+而其他人员仍旧在项目的主干分支2.x上开发
+
+在release_1_0_patch上修正错误后，标记一个1.0的错误修正版本号
+cvs tag release_1_0_patch_1
+
+如果2.0认为这些错误修改在2.0里也需要，也可以在2.0的开发目录下合并release_1_0_patch_1中的修改到当前代码中：
+cvs update -j release_1_0_patch_1
+
+
+
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+发信人: Java (无为而为), 信区: Linux
+标  题: CVS命令行的一般使用
+发信站: 蓝色星空 (2003年02月21日22:47:00 星期五), 站内信件
+
+1.设置初始环境变量(CVSROOT)
+    在使用CVS时,需要指明CVS的代码库(repository).可以在命令中使用 -d 
+<repository> 参数来指定代码库,但一般情况下,大家采用设置环境变量的方法来减少命
+令输入.
+    由于我们的环境搭建是使用pserver的方式连接cvs服务器,所以语句为
+        export CVSROOT=:pserver:<user name>@xxx.xxx.xxx.xxx:<cvs repository>
+    以下内容均假设设置了环境变量.
+
+2.登录服务器(login)
+    命令:
+        cvs login
+
+    说明:
+        如果没有密码,直接回车.如果出现"cvs login: authorization failed: 
+server xxx.xxx.xxx.xxx rejected access to /home/xxx/xxx for user xxx"信息,请
+先检查密码是否正确.还不成功,请通知项目配置管理人员.
+        如果在你的主目录下没有 .cvspass 文件,在登录时会失败,并显示提示信息：
+
+cvs login: warning: failed to open /dev_u/cvs/.cvspass for reading: No such 
+file
+ or directory
+        此时只cvs会自动在主目录下为你创建 .cvspass 文件,你只需要再次登录, 就
+可以成功.
+
+
+3.创建新的项目(import)
+    命令:
+        cvs import -m "message" <projectname> <vendortag> <releasetag>
+    
+    说明:
+        -m 参数是用来指定创建项目的初始记录信息,如果没有写-m参数,cvs会启动由E
+DITOR指定的编辑器,要求你数据初始信息.
+
+4.检出(checkout)
+    命令:
+        cvs checkout <projectname/filename>
+
+    说明:
+        cvs既可以checkout一个项目,也可以checkout一个文件.在checkout文件时,必
+须指明文件的项目名称.
+
+5.更新(update)
+    命令:
+        cvs update [<filename>]
+
+    说明:
+        这里的update和我们在进行数据库操作时的update含义不太一样,这里的update
+指的是用cvs代码库中的最新版本更新当前用户的工作拷贝.
+    建议大家在做修改之前使用一下,这样可以使自己是在最新版本上做的修改,减少冲
+突.
+    如果在使用update命令时出现合并后,应该使用diff命令查看合并的内容.
+
+    cvs update -r <version NO> [<filename>]
+    可以将以前的某个版本取到当前工作目录.
+
+    如果在以前版本的基础上修改以后,要进行提交的话,
+
+    首先应该使用命令
+        cvs update -A [<filename>]
+    取消Sticky Tag标志,并和repository中的最新版本进行合并;
+    
+    然后在使用命令
+        cvs commit [<filename>]
+    进行提交.
+
+6.提交(commit)
+    命令:
+        cvs commit -m "some text" <filename>
+
+    说明:
+        提交一个文件的修改.如果没指定 -m "some text" 指定的编辑器就被启动,要
+求输入注释信息.
+
+7.添加文件或目录(add)
+
+    添加一个目录:
+        cvs add <directory>
+        添加目录时,不会将该目录下的内容添加进repository,
+        还需要使用add来添加进repository.
+
+    添加一个文件:
+        cvs add <filename>
+        cvs commit -m "some message"
+
+8.查看文件的当前状态(status)
+    cvs status <filename>   
+
+9.查看文件的不同(diff)
+    命令:
+        cvs diff [<filename>]
+    
+    说明:
+        在使用了命令cvs update ...之后, 如果出现了合并(merge),就应该使用本命
+令查看程序的变化.在diff后使用-c参数,显示的方式大家会更习惯一些.
+
+10.查看日志(log)
+    命令:
+        cvs log [<filename>]
+    
+    说明:
+        可以查到谁对此[文件]作过修改
+
+11.缺省选项输入
+    在你的主目录中有一个.cvsrc文件,在该文件中可以指定命令的默认选项.例如:
+        diff -c
+        update -p 等.
+
+12.设置标记(tag)
+    命令:
+        cvs tag <release tag>
+    
+    说明:
+        标记名必须以字母,数字,-,_开头,不能使用空格,点号,冒号,逗号等符号.
+
+13.建立分支
+    在 tag 命令中使用 -b 参数,即可以建立分支.
+    
+
+example:
+例如,在projTest目录中有文件a.c和b.c,系统已经配置完成,环境变量已经设置.
+
+第一,新建项目.
+    进入projTest目录,
+    使用命令
+        cvs import -m "some message" projTest vendortag releasetag
+    这时cvs会将当前目录下所有文件都导入cvs的代码库中,一个新的项目就建立起来了
+.为了使用方便,很多时候项目名和目录名是一致的.
+
+第二,检出项目.
+    cvs checkout projTest
+    这条命令,会在当前目录下按项目名新建一个目录,然后将项目中的文件拷贝到目录
+中,
+如果目录已经存在,则会将文件直接拷贝到目录中.
+    这是项目目录下就会有a.c和b.c两个文件,以及CVS目录.在CVS目录中,存放的是该项
+目的配置文件.
+
+第三,修改.
+    在开发过程中,免不了要在项目中新增加一些文件,或删除一些文件.
+    添加文件:
+        cvs add <filename>
+    例如:
+        cvs add t1.c
+    这时候其实还没有将t1.c文件加入到项目中,还需要运行cvs commit命令后,新文件
+才真正加入进去了.
+
+    删除文件的步骤要多一步,在执行cvs命令之前,需要先将文件删除.
+    例如:
+        rm b.c
+        cvs remove b.c
+        cvs commit -m "remove b.c" b.c
+
+第四,提交.
+    例如:t1.c的原有内容为
+
+int main(int argc,char** argv)
+{
+    printf("This is file t1.c\n");
+        return 0;
+}
+    现在可以在第一行加入一条注释,
+    /* 这是t1.c的main函数 */
+
+    在修改完成以后,要将项目提交给repository.
+        cvs commit t1.c
+    如果直接提交,可能会遇到cvs拒绝你的提交.信息如下:
+
+cvs commit: Up-to-date check failed for `t1.c'
+cvs [commit aborted]: correct above errors first!
+
+    这是因为在你提交之前,已经有人提交了新的一个版本,这时候,你应该先执行
+
+    cvs update t1.c
+    这时会出现一些类似下面的信息.
+
+RCS file: /home/cvsroot/proj1/t1,v
+retrieving revision 1.1.1.1
+retrieving revision 1.2
+Merging differences between 1.1.1.1 and 1.2 into t1.c
+rcsmerge: warning: conflicts during merge
+cvs update: conflicts found in t1.c
+C t1.c
+
+    这表明在cvs代码库中的文件和你的工作目录中的文件的内容发生了冲突, 并且cvs
+将冲突合并到了你工作目录的文件中.
+    你可以使用diff命令查看你当前工作目录的版本与cvs代码库的不同.
+
+    cvs diff -c t1.c
+
+    得到结果
+ndex: t1.c
+===================================================================
+RCS file: /billing/lc/cvsroot/t1/t1.c,v
+retrieving revision 1.2
+diff -c -r1.2 t1.c
+*** t1.c        15 May 2002 03:56:48 -0000      1.2
+--- t1.c        15 May 2002 03:58:38 -0000
+***************
+*** 1,4 ****
+--- 1,8 ----
++ <<<<<<< t1.c
++ /* 这是t1.c的main函数 */
++ =======
+  /* This is the main function of t1.c. */
++ >>>>>>> 1.2
+  int main(int argc,char** argv)
+  {
+    printf("This is file t1.c\n");
+
+    现在t1.c文件内容如下:
+
+<<<<<<< t1.c
+/* 这是t1.c的main函数 */
+=======
+/* This is the main function of t1.c. */
+>>>>>>> 1.2
+int main(int argc,char** argv)
+{
+   printf("This is file t1.c\n");
+    return 0;
+}
+    
+    在上面两部分的信息中,<<<<<<<表示的当前文件,>>>>>>> 表示的是cvs代码库中的
+文件,两者中间使用=======间隔.
+    现在只需要将t.c文件内容根据需要进行修改,再进行提交即可. 
+
+第五,分支与归并.
+    通常,我们的项目的开发到某一定的程度时, 需要在另一条开发途径上进行开发,但
+是又不能影响项目的正常开发.这样,我们可以生成一个分支开发,主开发分支也可以继续
+进行,两者并不冲突，将来如果有必要,可以把分支归并到主开发分支中。
+    建立一个CVS分支:
+
+    cvs tag -b <branch tag>
+
+    建立分支后,并不影响当前我们CVS代码库中的文件,对分支进行开发, 需要从CVS代
+码库中重新导出分支：
+
+    cvs co -r <branch tag> <project name>
+
+    在分支上进行开发的同时,主干也在进行开发,当我们需要时, 可以将分支的修改归
+并到主干上.
+
+    cvs update -j <branch tag>
+    cvs commit
+
+    就可以把开发分支归并到主分支中去了,归并时可能会产生冲突,处理方法和前面讲
+的处理冲突的方法一样.如果此时分支还需要继续发展,为了管理的方便, 应该在分支上
+为合并时的版本建一个标识.在下次归并时就应该使用这个标识,而不是最开始的<branch
+ tag>.
+
+
+附:
+    cvs的命令有一些缩写.
+        add     ad new
+        admin       adm rcs
+        annotate    ann
+        checkout    co get
+        commit      ci com
+        diff        di dif
+        export      exp ex
+        history     hi his
+        import      im imp
+        log     lo
+        login       logon lgn
+        rannotate   rann ra
+        rdiff       patch pa
+        release     re rel
+        remove      rm delete
+        rlog        rl
+        rtag        rt rfreeze
+        status      st stat
+        tag     ta freeze
+        update      up upd
+        version     ve ver
+
+
+作者：北京时力永联 廖春 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+以下描述了使用CVS命令行操作进行导入与导出的介绍，如果您以前不熟悉CVS系统，我们建议您仔细阅读以下章节，从而进一步理解CVS的捡出与导入操作。
+
+8.4.1 用命令行方式从将工程导入到CVS中
+	
+
+以下举例说明：
+
+您有一个工程，我们进入工程主目录执行以下操作
+
+floss$ cd myproj 
+
+floss$ ls 
+
+README.txt  a-subdir/   b-subdir/   hello.c 
+
+floss$ 
+
+工程包含了两个文件—README.txt与hello.c,在主目录下有两个子目录-子目录A与子目录B,包含了一些其它文件(在这里例子中没有显示)
+
+一般的导入命令是
+
+floss$ cvs import -m "log msg" projname vendortag releasetag
+
+-m 参数是指一个简单的描述，这将被作为整个工程的第一条日志信息，以后的每次提交操作都会有自己的日志信息。
+
+其后的参数为工程名称，您以后在捡出操作时将用到这个工程名称。您可以任意指定工程名称，但在多数情况下，人们习惯使用与工程主目录相同的工程名。
+
+出版商标记与版本标记主要用于CVS的簿记工作，您完全不必担心它们的命名，它们今后很少用到。现在，我们使用用户名与"start"作为这两个参数。
+
+那么。我们执行导入命令：
+
+floss$ cvs import -m "initial import into CVS" myproj jrandom start
+
+N myproj/hello.c
+
+N myproj/README.txt
+
+cvs import: Importing /usr/local/cvs/myproj/a-subdir
+
+N myproj/a-subdir/whatever.c
+
+cvs import: Importing /usr/local/cvs/myproj/a-subdir/subsubdir
+
+N myproj/a-subdir/subsubdir/fish.c
+
+cvs import: Importing /usr/local/cvs/myproj/b-subdir
+
+N myproj/b-subdir/random.c
+
+这表示，myproj被成功导入。
+
+8.4.2 通过命令行方式从CVS库中捡出工程
+	
+
+使用以下命令
+
+cvs checkout myproj
+
+cvs checkout: Updating myproj
+
+U myproj/README.txt
+
+U myproj/hello.c
+
+cvs checkout: Updating myproj/a-subdir
+
+U myproj/a-subdir/whatever.c
+
+cvs checkout: Updating myproj/a-subdir/subsubdir
+
+U myproj/a-subdir/subsubdir/fish.c
+
+cvs checkout: Updating myproj/b-subdir
+
+U myproj/b-subdir/random.c
+
+floss$ ls
+
+myproj/    
+
+floss$ cd myproj
+
+floss$ ls
+
+CVS/       README.txt a-subdir/   b-subdir/   hello.c
+
+floss$
+
+这是您的第一个工作拷贝，之后，您可以通过Magic C++工程向导创建一个新的Magic C++工程,将工程主目录设置为myproj的主目录，在这里是/home/flose/myproj
+
+在您创建了一个空白工程后，使用Project->Add to Project 菜单项向Magic C++工程添加文件。您就可以在FileView 面板中看到工程中各个文件当前的CVS状态。这时，您可以提交，更新与查看文件历史信息，等等。

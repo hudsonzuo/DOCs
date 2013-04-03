@@ -1,0 +1,15 @@
+
+刚发现了一套阅读代码的好工具，更为欣喜之处是作者北京的，在此推荐与各位，并向作者表达敬意与感谢。这套工具的核心是 srcexpl 和 Trinity，作者博客：http://weibo.com/2404376375/info。
+
+srcexpl 和 Trinity是vim的两个插件,对了，我们今天说的就是如何用vim看代码。除了srcexpl Trinity，还需要插件taglist.
+
+安装说明：
+    下载
+        taglist： http://www.vim.org/scripts/script.php?script_id=273
+        trinity:  http://www.vim.org/scripts/script.php?script_id=2347
+        srcexpl:  http://www.vim.org/scripts/script.php?script_id=2179
+    解压下载的zip文件, 复制XXXX.vim到/usr/share/vim/../plugin/或者.vim/plugin/
+
+使用说明：
+    进入需要阅读的源码，启动vim即可，执行'ctags -R‘
+

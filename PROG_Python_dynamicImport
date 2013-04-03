@@ -1,0 +1,16 @@
+Python 动态加载模块的3种方法
+
+1，使用系统函数__import_()
+
+    stringmodule = __import__('string')
+
+ 2,使用imp 模块
+
+        import imp
+            stringmodule = imp.load_module('string',*imp.find_module('string'))
+
+   3,使用exec
+
+                import_string = "import string as stringmodule"
+                    exec import_string
+

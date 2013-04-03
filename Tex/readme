@@ -1,0 +1,23 @@
+TeX Live Guide Translation (Simplified Chinese)
+===============================================
+
+To compile live.tex, you need: 
+
+1. Xe(La)TeX (and related packages like fontspec) 0.9995+
+(a recent version is bundled with TeX Live).
+
+2. xeCJK macro package.
+
+3. We use the following fonts:
+
+   AR PL UMing
+   AR PL UKai [1]
+   Droid Sans Fallback [2]
+   They can be retrieved here:
+   [1] http://www.freedesktop.org/wiki/Software/CJKUnifonts/Download
+   [2] http://android.git.kernel.org/?p=platform/frameworks/base.git;a=tree;f=data/fonts;hb=HEAD
+4. make
+5. If you have any problems, please contact: 
+     gzjjgod at gmail dot com
+
+

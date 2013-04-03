@@ -1,0 +1,1828 @@
+<!--STATUS OK-->
+
+
+<html><head><meta http-equiv="content-type" content="text/html; charset=gb2312">
+<title>system函数中为什么要阻塞SIGCHLD信号(zt)_搜财网_百度空间      </title>
+
+<style type="text/css">
+    .error{color:#FF0000;font-size:12px}
+    .shareUser,.shareLastEditor{line-height:20px;color:#666666;text-align:left}
+    .shareLastEditor{margin:5px 0 8px;}
+</style>
+
+<script type="text/javascript">
+    var g_pageTimerStart=new Date().getTime();
+</script>
+
+<script type="text/javascript" src="/ui/scripts/global.js"></script>
+<script type="text/javascript" src="/static/common/scripts/libs.js"></script>
+<script type="text/javascript" src="http://img.baidu.com/js/tangram-1.1.0.js"></script>
+
+
+<script type="text/javascript">
+var Session = {
+    isLogin: ! true,
+    isHost: "",
+    userName: "搜财网",   
+    userPortrait:'6dcbcbd1b2c6cdf84a04',
+    spaceURL: "/socai",
+    spBasicURL:"socai",
+    spBasicURLEnc:"socai",
+    visitorName:    "",
+    visitorPortrait:'00000000',
+    isActive: '',   
+    visitorURL: "/index.html",        // 
+    pageURL: "http://hi.baidu.com/socai/blog/item/27430c580ea13588800a188e%2Ehtml",    
+    refer: "http://www.google.com.hk/search?q=EINTR+waitpid&hl=zh-CN&safe=strict&biw=1307&bih=560&prmd=ivns&source=lnt&tbs=lr:lang_1zh-CN%7Clang_1zh-TW&lr=lang_zh-CN%7Clang_zh-TW&sa=X&ei=2yCHTdCnOovevQPv8bXBCA&ved=0CAcQpwUoAQ",
+    spToken: 'b3fe40fdb2b3015ee1cbe5991a118a8a', 
+    spFriendDomain: 'http://frd.baidu.com',
+    spSpaceDomain: 'http://hi.baidu.com',
+    spPortraitDomain: '',
+    spSpaceStaticDomain: 'http://hi.baidu.com' 
+
+    ,isDrag:  false  
+    ,isProfile:  false   
+    };
+</script>
+
+</head>
+
+<body>
+
+<center>
+
+<script type="text/javascript">
+/**/
+</script>
+<link rel="stylesheet" type="text/css" href="/ui/css/mods.css">
+
+<link rel="stylesheet" type="text/css" href="http://hitn.bdimg.com/socai/css/item/75da4016fcfaaf51f3de32a6.css">
+
+<link rel="stylesheet" type="text/css" href="/space.css">
+
+<div class="userbar">
+    <div id="nav">
+        <a class="logo" href="http://hi.baidu.com/index.htm"><img src="http://img.baidu.com/hi/img/ihome/logo.gif" border="0" alt="图片"></a>
+
+        <div class="manage">
+            <form action="https://passport.baidu.com/?login" method="post">
+                用户名:<input type="text" name="username">&nbsp;&nbsp; 
+                密码:<input type="password" name="password"> 
+                <input type="hidden" name="mem_pass" value="on">
+                <input type="submit" value="" style="width:0; height:0;">
+                <a href="#" class="loginlink" onclick="this.parentNode.submit(); return false;">登录</a>  
+            </form> 
+            <a href="/reg/new" class="reglink">注册</a>
+        </div>
+
+    </div>
+</div>
+
+
+
+		
+
+
+
+<div id="main" align="left">
+
+<!--[if IE]>
+<script>
+var objmain = document.getElementById("main");
+function updatesize(){ var bodyw = window.document.body.offsetWidth; if(bodyw <= 790) objmain.style.width="772px"; else if(bodyw >= 1016) objmain.style.width="996px"; else objmain.style.width="100%"; }
+updatesize(); window.onresize = updatesize;
+</script>
+<![endif]-->
+
+	<div id="header">
+
+	<div class="lc"><div class="rc"></div></div>
+<div class="tit"><a href="/socai/home" class="titlink" title="搜财网的空间 http://hi.baidu.com/socai">搜财网</a></div>
+<div class="desc">搜财网提供全面的财经服务。</div>
+<div id="tabline">&nbsp;</div>
+
+	<div id="tab"><a href="/socai/home">主页</a><a href="/socai/blog" class="on">博客</a><a href="/socai/album">相册</a><span>|</span><a href="/socai/profile">个人档案</a>
+
+	<span>|</span><a href="/socai/friends">好友</a>
+
+
+
+
+
+	</div>
+
+</div>
+
+
+
+<div class="stage">
+
+<div class="stagepad">
+
+<div style="width:100%">
+
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="modth">
+
+	<tr><td class="modtl" width="7">&nbsp;</td>
+
+	<td class="modtc" nowrap="nowrap"><div class="modhead"><span class="modtit">查看文章</span></div></td>
+
+	<td class="modtc" nowrap="nowrap" align="right"></td>
+
+	<td class="modtr" width="7">&nbsp;</td>
+
+	</tr></table>
+
+
+
+<div id="m_blog" class="modbox" style="overflow-x:hidden;">
+
+<div class="tit">
+
+system函数中为什么要阻塞SIGCHLD信号(zt)</div>
+
+<div class="date">2009-07-15  17:07</div>
+
+
+
+
+<table style="table-layout:fixed;width:100%"><tr><td><div id="blog_text" class="cnt"><p><strong><font color="#295200" size="5">阻塞SIGCHLD信号</font></strong></p>
+<div align="left"><font size="3">我在看APUE的10.18节&mdash;&mdash;system函数和在分析linux的/sbin/init程序的源代码时遇到了一个相同的、让我迷惑了好一阵的问题，相关的代码如下：</font></div>
+<div align="left"> </div>
+<div align="left"> </div>
+<div align="left"><strong><font size="3">代码1：APUE10.18节的system函数源代码</font></strong><font face="宋体"> </font></div>
+<div align="left"><font size="3">int system(const char *cmdstring) /* with appropriate signal handling */</font></div>
+<div align="left"><font size="3">{</font></div>
+<div align="left"><font size="3">&nbsp;&nbsp;&nbsp;  pid_t&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  pid;</font></div>
+<div align="left"><font size="3">&nbsp;&nbsp;&nbsp;  int&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  status;</font></div>
+<div align="left"><font size="3">&nbsp;&nbsp;&nbsp;  struct sigaction&nbsp;&nbsp;&nbsp;  ignore, saveintr, savequit;</font></div>
+<div align="left"><font size="3">&nbsp;&nbsp;&nbsp;  sigset_t&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  chldmask, savemask;</font></div>
+<div align="left"><font size="3">&nbsp;&nbsp;&nbsp;&nbsp;  ……</font></div>
+<div align="left"><font size="3">&nbsp;&nbsp;&nbsp;  sigemptyset(&amp;chldmask);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  /* now block SIGCHLD */</font></div>
+<div align="left"><font size="3">&nbsp;&nbsp;&nbsp;  sigaddset(&amp;chldmask, SIGCHLD);</font></div>
+<div align="left"><font size="3">&nbsp;&nbsp;&nbsp;  if (sigprocmask(SIG_BLOCK, &amp;chldmask, &amp;savemask) &lt; 0)</font></div>
+<div align="left"><font size="3">&nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;  return(-1);</font></div>
+<div align="left"> </div>
+<div align="left"><font size="3">&nbsp;&nbsp;&nbsp;  if ((pid = fork()) &lt; 0) {</font></div>
+<div align="left"><font size="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  status = -1;&nbsp;&nbsp;&nbsp;  /* probably out of processes */</font></div>
+<div align="left"><font size="3">&nbsp;&nbsp;&nbsp;  } else if (pid == 0) {&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  /* child */</font></div>
+<div align="left"><font size="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  ……</font></div>
+<div align="left"><font size="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  sigprocmask(SIG_SETMASK, &amp;savemask, NULL);</font></div>
+<div align="left"> </div>
+<div align="left"><font size="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  execl(&quot;/bin/sh&quot;, &quot;sh&quot;, &quot;-c&quot;, cmdstring, (char *)0);</font></div>
+<div align="left"><font size="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  _exit(127);&nbsp;&nbsp;&nbsp;&nbsp;  /* exec error */</font></div>
+<div align="left"><font size="3">&nbsp;&nbsp;&nbsp;  } else {&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  /* parent */</font></div>
+<div align="left"><font size="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  while (waitpid(pid, &amp;status, 0) &lt; 0)</font></div>
+<div align="left"><font size="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  if (errno != EINTR) {</font></div>
+<div align="left"><font size="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  status = -1; /* error other than EINTR from waitpid() */</font></div>
+<div align="left"><font size="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  break;</font></div>
+<div align="left"><font size="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  }</font></div>
+<div align="left"><font size="3">&nbsp;&nbsp;&nbsp;  }</font></div>
+<div align="left"><font size="3">&nbsp;&nbsp;  ……</font></div>
+<div align="left"><font size="3">&nbsp;&nbsp;&nbsp;  if (sigprocmask(SIG_SETMASK, &amp;savemask, NULL) &lt; 0)</font></div>
+<div align="left"><font size="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  return(-1);</font></div>
+<div align="left"> </div>
+<div align="left"><font size="3">&nbsp;&nbsp;&nbsp;  return(status);</font></div>
+<pre><font face="宋体">}</font></pre>
+<div align="left"><font size="3">如果该函数的调用者在其SIGCHLD信号处理函数中调用了waitpid函数来获得任意子进程的终止状态，且在fork之前没有阻塞SIGCHLD信号,则子进程结束，父进程执行SIGCHLD信号处理函数且得到了子进程的终止状态。而该函数中的waitpid函数由于没有得到其创建的子进程的终止状态而出错。</font></div>
+<div align="left"> </div>
+<div align="left"> </div>
+<div align="left"><font size="3"><strong>代码2：sysvinit/src/init.c文件中的spawn函数&mdash;创建一个子进程并执行一个新程序</strong></font></div>
+<div align="left"> </div>
+<div align="left"><font size="3">int spawn(CHILD *ch, int *res)</font></div>
+<div align="left"><font size="3">{</font></div>
+<div align="left"><font size="3">pid_t pid, pgrp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  /* child, console process group. */</font></div>
+<div align="left"><font size="3">sigset_t nmask, omask;&nbsp;&nbsp;&nbsp;  /* For blocking SIGCHLD */</font></div>
+<div align="left"><font size="3">&nbsp;&nbsp;  ……</font></div>
+<div align="left"><font size="3">*res = -1;</font></div>
+<div align="left"><font size="3">&nbsp;&nbsp;  ……</font></div>
+<div align="left"><font size="3">while(1) {</font></div>
+<div align="left"><font size="3">&nbsp;&nbsp;&nbsp;  sigemptyset(&amp;nmask);</font></div>
+<div align="left"><font size="3">&nbsp;&nbsp;&nbsp;  sigaddset(&amp;nmask, SIGCHLD);</font></div>
+<div align="left"><font size="3">&nbsp;&nbsp;&nbsp;  sigprocmask(SIG_BLOCK, &amp;nmask, &amp;omask);</font></div>
+<div align="left"> </div>
+<div align="left"><font size="3">&nbsp;&nbsp;&nbsp;  if ((pid = fork()) == 0) {</font></div>
+<div align="left"><font size="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  ……</font></div>
+<div align="left"><font size="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  sigprocmask(SIG_SETMASK, &amp;omask, NULL);</font></div>
+<div align="left"><font size="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  ……</font></div>
+<div align="left"><font size="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  exit(1);</font></div>
+<div align="left"><font size="3">}</font></div>
+<div align="left"><font size="3">&nbsp;&nbsp;&nbsp;  *res = pid;</font></div>
+<div align="left"><font size="3">sigprocmask(SIG_SETMASK, &amp;omask, NULL);</font></div>
+<div align="left"><font size="3">&nbsp;&nbsp;&nbsp;  ……</font></div>
+<div align="left"><font size="3">&nbsp;&nbsp;&nbsp;  return(pid);</font></div>
+<div align="left"><font size="3">}</font></div>
+<div align="left"><font size="3">}</font></div>
+<div align="left"> </div>
+<div align="left"><font size="3">该函数的调用者，即init进程注册的SIGCHLD信号处理函数如下所示：</font></div>
+<div align="left"><font size="3">void chld_handler()</font></div>
+<div align="left"><font size="3">{</font></div>
+<div align="left"><font size="3">&nbsp;&nbsp;&nbsp;  CHILD&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  *ch;</font></div>
+<div align="left"><font size="3">&nbsp;&nbsp;&nbsp;  int&nbsp;&nbsp;&nbsp;&nbsp;  pid, st;</font></div>
+<div align="left"><font size="3">&nbsp;&nbsp;&nbsp;  </font></div>
+<div align="left"><font size="3">&nbsp;&nbsp;&nbsp;  while((pid = waitpid(-1, &amp;st, WNOHANG)) != 0) {</font></div>
+<div align="left"><font size="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  if (errno == ECHILD) break;</font></div>
+<div align="left"><font size="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  for( ch = family; ch; ch = ch-&gt;next )</font></div>
+<div align="left"><font size="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  if (<strong> ch-&gt;pid == pid</strong> &amp;&amp; (ch-&gt;flags &amp; RUNNING) ) {</font></div>
+<div align="left"><font size="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  ……</font></div>
+<div align="left"><font size="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  }</font></div>
+<div align="left"><font size="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  if (ch == NULL)</font></div>
+<div align="left"><font size="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  ……</font></div>
+<div align="left"><font size="3">&nbsp;&nbsp;&nbsp;  }</font></div>
+<div align="left"><font size="3">……</font></div>
+<div align="left"><font size="3">}</font></div>
+<div align="left"> </div>
+<div align="left"><font size="3">对spawn函数的调用方式是：spawn(ch, &amp;(ch-&gt;pid))，ch-&gt;pid参数是个值结果参数，在spawn函数里实际就是*res，而*res=pid是在fork之后进行的，即ch-&gt;pid是在fork之后才被赋值的。如果在fork之前没有阻塞SIGCHLD信号，且在而*res=pid之前子进程结束，父进程执行上面的SIGCHLD信号处理函数chld_handler()，此时ch-&gt;pid没有被赋值，因此ch-&gt;pid!=pid，出现了错误。</font></div>
+<div align="left"> </div>
+<div align="left"> </div>
+<div align="left"><font size="3">由上述两段代码我们可以看到他们的一个共同的特点：</font></div>
+<div align="left"><font size="3">定义了一个函数，函数中fork了一个子进程，并且定义的函数要得到关于子进程的一些信息，例如子进程ID、子进程终止状态等，而该函数的调用者所注册的SIGCHLD信号处理函数会影响定义的这个函数获取这些信息，因此为了避免该函数在获取这些信息之前，由于子进程终止触发SIGCHLD信号处理函数先执行，在fork之前都将SIGCHLD信号阻塞了，在函数获取了相关信息后，才对SIGCHLD信号接触阻塞。</font></div>
+<div align="left"> </div>
+<div align="left"> </div>
+<div align="left"> </div>
+<div align="left"><strong><font size="3">接下来我们以代码1为例完整的解释一下阻塞SIGCHLD信号的原因：</font></strong></div>
+<div align="left"> </div>
+<div align="left"><font size="3">在一个进程终止或停止时，SIGCHLD信号被送给其父进程。按<strong>系统默认，将忽略此信号</strong>。如果父进程希望了解其子进程的这种状态改变，则应捕捉此信号。信号捕捉函数中通常要调用wait函数以取得子进程ID和其终止状态。</font></div>
+<div> </div>
+<div><font size="3">一般的，父进程在生成子进程之后会有两种情况：一是父进程继续去做别的事情；另一是父进程什么都不做，一直在wait子进程退出。</font></div>
+<div> </div>
+<div><font size="3">SIGCHLD信号就是为第一种情况准备的，它让父进程去做别的事情，而只要父进程注册了处理该信号的函数，在子进程退出时就会调用该函数，在函数中wait子进程得到终止状态之后再继续做父进程的事情。</font></div>
+<div> </div>
+<div> </div>
+<div><font size="3">我们先来写一个function_model函数模型，如下所示：</font></div>
+<div> </div>
+<pre><font face="宋体" size="3">int function_model(…) </font></pre>
+<pre><font face="宋体" size="3">{</font></pre>
+<pre><font size="3"><font face="宋体">&nbsp;&nbsp;&nbsp;   pid_t&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   pid;</font></font></pre>
+<pre><font size="3"><font face="宋体">&nbsp;&nbsp;&nbsp;   int&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   status;</font></font></pre>
+<pre><font size="3"><font face="宋体">&nbsp;&nbsp;&nbsp;&nbsp;  ……</font></font></pre>
+<pre><font size="3"><font face="宋体">&nbsp;&nbsp;    if ((pid = fork()) &lt; 0) {</font></font></pre>
+<pre><font size="3"><font face="宋体">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   status = -1;&nbsp;&nbsp;&nbsp;   </font></font></pre>
+<pre><font size="3"><font face="宋体">&nbsp;&nbsp;&nbsp;&nbsp;  } else if (pid == 0) {&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   &nbsp;&nbsp;  /* child */</font></font></pre>
+<pre><font size="3"><font face="宋体">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   ……</font></font></pre>
+<pre><font size="3"><font face="宋体">&nbsp;&nbsp;&nbsp;   } else {&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   /* parent */</font></font></pre>
+<pre><font size="3"><font face="宋体">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   while (waitpid(pid, &amp;status, 0) &lt; 0)</font></font></pre>
+<pre><font size="3"><font face="宋体">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   if (errno != EINTR) {</font></font></pre>
+<pre><font size="3"><font face="宋体">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   status = -1; </font></font></pre>
+<pre><font size="3"><font face="宋体">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  break;</font></font></pre>
+<pre><font size="3"><font face="宋体">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   }</font></font></pre>
+<pre><font size="3"><font face="宋体">&nbsp;&nbsp;&nbsp;   }</font></font></pre>
+<pre><font size="3"><font face="宋体">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   ……</font></font></pre>
+<pre><font size="3"><font face="宋体">&nbsp;&nbsp;&nbsp;   return(status);</font></font></pre>
+<pre><font face="宋体" size="3">}</font></pre>
+<div> </div>
+<div> </div>
+<div><font size="3">当我们定义了一个具有function_model函数模型结构的函数时，应该在fork之前将SIGCHLD信号阻塞，fork之后，父子进程的SIGCHLD信号都是被阻塞的。子进程在进行任何的操作之前，应该将SIGCHLD恢复至原来的设置。父进程则应该在waitpid函数之后，将SIGCHLD恢复至原来的设置。</font></div>
+<div> </div>
+<div> </div>
+<div><font size="3">即这种类型的函数的正确的格式为：</font></div>
+<div> </div>
+<div align="left"><font size="3">int function_model(…) </font></div>
+<div align="left"><font size="3">{</font></div>
+<div align="left"><font size="3">&nbsp;&nbsp;&nbsp;  pid_t&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  pid;</font></div>
+<div align="left"><font size="3">&nbsp;&nbsp;  int&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  status;</font></div>
+<div align="left"><font size="3">&nbsp;&nbsp;&nbsp;  sigset_t&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  chldmask, savemask;</font></div>
+<div align="left"><font size="3">&nbsp;&nbsp;&nbsp;  ……</font></div>
+<div align="left"><font size="3">&nbsp;&nbsp;&nbsp;  sigemptyset(&amp;chldmask);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  /* now block SIGCHLD */</font></div>
+<div align="left"><font size="3">&nbsp;&nbsp;&nbsp;  sigaddset(&amp;chldmask, SIGCHLD);</font></div>
+<div align="left"><font size="3">&nbsp;&nbsp;&nbsp;  if(sigprocmask(SIG_BLOCK, &amp;chldmask, &amp;savemask) &lt; 0)</font></div>
+<div align="left"><font size="3">&nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;  return(-1);</font></div>
+<div align="left"> </div>
+<div align="left"><font size="3">&nbsp;&nbsp;&nbsp;  if ((pid = fork()) &lt; 0) {</font></div>
+<div align="left"><font size="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  status = -1;&nbsp;&nbsp;&nbsp;  </font></div>
+<div align="left"><font size="3">} else if (pid == 0) {&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  /* child */</font></div>
+<div align="left"> </div>
+<div align="left"><font size="3">sigprocmask(SIG_SETMASK, &amp;savemask, NULL);</font></div>
+<div align="left"><font size="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  ……</font></div>
+<div align="left"><font size="3">&nbsp;&nbsp;&nbsp;  } else {&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  /* parent */</font></div>
+<div align="left"><font size="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  while (waitpid(pid, &amp;status, 0) &lt; 0)</font></div>
+<div align="left"><font size="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  if (errno != EINTR) {</font></div>
+<div align="left"><font size="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  status = -1; </font></div>
+<div align="left"><font size="3">&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  break;</font></div>
+<div align="left"><font size="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  }</font></div>
+<div align="left"><font size="3">&nbsp;&nbsp;&nbsp;  }</font></div>
+<div align="left"><font size="3">&nbsp;&nbsp;&nbsp;  ……</font></div>
+<div align="left"><font size="3">if(sigprocmask(SIG_SETMASK, &amp;savemask, NULL) &lt; 0)</font></div>
+<div align="left"><font size="3">&nbsp;&nbsp;&nbsp;  return(-1);</font></div>
+<div align="left"><font size="3">&nbsp;&nbsp;&nbsp;  return(status);</font></div>
+<div align="left"><font size="3">}</font></div>
+<div> </div>
+<div><font size="3">父进程阻塞SIGCHLD信号的原因在于：如果<font face="Times New Roman">function_model</font>函数的调用者<font face="Times New Roman">caller</font>在调用<font face="Times New Roman">function_model</font>之前，注册了<font face="Times New Roman">SIGCHLD</font>信号的处理函数<font face="Times New Roman">sigchld_handler</font>，且<font face="Times New Roman">sigchld_handler</font>函数中调用了<font face="Times New Roman">waitpid</font>函数等待任意子进程结束，如下所示：</font></div>
+<div> </div>
+<div><font size="3">void sigchld_handler(int signo)</font></div>
+<div><font size="3">{</font></div>
+<div><font size="3">&nbsp;&nbsp;&nbsp;  pid_t pid;</font></div>
+<div><font size="3">&nbsp;&nbsp;&nbsp;  int status;</font></div>
+<div><font size="3">&nbsp;&nbsp;&nbsp;  while((pid=waitpid(-1,&amp;status,WNOHANG))&gt;0)</font></div>
+<div><font size="3">&nbsp;&nbsp;&nbsp;  {</font></div>
+<div><font size="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  ……</font></div>
+<div><font size="3">}</font></div>
+<div><font size="3">return ;</font></div>
+<div><font size="3">}</font></div>
+<div> </div>
+<div><font size="3">&nbsp;&nbsp;&nbsp;  若我们没有阻塞SIGCHLD信号，则当function_model函数中fork的子进程结束时，会向父进程发送SIGCHLD信号，则其信号处理函数sigchld_handler被调用，并在sigchld_handler函数中调用了waitpid得到了这个子进程的退出状态，然后释放掉其占用的进程表等其它资源。返回到function_model函数中继续执行，由于其创建的子进程的退出状态已经被获取，内核不再保存其退出状态，所以其中调用的waitpid函数由于无法得到其退出状态而出错，并将status设置为-1。</font></div>
+<div><font size="3">&nbsp;&nbsp;&nbsp;  若我们阻塞了SIGCHLD信号，则当function_model函数中fork的子进程结束时，内核会向父进程发送SIGCHLD信号，但SIGCHLD信号被阻塞而不递送给父进程，即处于未决状态，因此function_model函数中的waitpid就能正确得到这个子进程的退出状态。当解除对SIGCHLD信号的阻塞时，SIGCHLD信号会被递交给父进程，引发父进程调用sigchld_handler函数，由于在function_model函数中以调用waitpid获取了function_model函数创建的子进程的退出状态，内核不再保存其终止信息，所以sigchld_handler中的waitpid也不会的到其退出状态。</font></div>
+<div> </div>
+<div><font size="3">&nbsp;&nbsp;&nbsp;  下面是<strong><em><font face="Times New Roman">Advanced Programming in the UNIX&reg; Environment: Second Edition</font></em></strong><strong>（<font face="Times New Roman">APUE</font></strong><strong>）</strong>中的解释：</font></div>
+<div>
+<p><font face="宋体" size="3">POSIX.1 states that if wait or waitpid returns the status of a child process while SIGCHLD is pending, then SIGCHLD should not be delivered to the process unless the status of another child process is also available. None of the four implementations discussed in this book implements this semantic. Instead, SIGCHLD remains pending after the system function calls waitpid; when the signal is unblocked, it is delivered to the caller. If we called wait in the sig_chld function in </font><a href="mk:@MSITStore:C: Documents%20and%20Settings hackbutter 桌面 LINUX linux linux应用 linux系统编程 英文第二版-Advanced%20Programming%20in%20the%20UNIX%20Environment%20-%202nd%20Edition.chm::/0201433079/ch10lev1sec18.html#ch10fig26#ch10fig26"><font face="宋体" size="3">Figure 10.26</font></a><font size="3"><font face="宋体">, it would return 1 with errno set to ECHILD, since the system function already retrieved the termination status of the child.</font></font></p>
+<p> </p>
+<p> </p>
+<p><font size="3"><font face="宋体">看apue时这个地方确实很迷惑，首先要明确waitpid的返回不是在SIGCHLD发生时产生的，而是可能系统会轮询的检查子进程的中止状态。</font></font></p>
+</div></div></td></tr></table>
+
+<br>
+
+<div class="opt">
+
+<a href="/socai/blog/category/c%26%2347%3Bc%2B%2B" title="查看该分类中所有文章">类别：c&#47;c++</a>
+
+| <a href="#" onclick="addToShare(); return false;" target="_blank"><img src="http://img.baidu.com/hi/apps/share/share_btn.gif" border="0" align="absbottom"></a>
+
+
+
+
+	
+
+	| <a title="将此文章添加到百度搜藏" href="http://cang.baidu.com/do/add" onclick="return addToFavor();" target="_blank">添加到搜藏</a>
+
+	
+    | <a title="将此文章分享到i贴吧" href="#" onclick="addToiTieba(); return false;" target="_blank">分享到i贴吧</a>
+
+	| 浏览(<span id="result"></span>)
+
+	| <a href="#send">评论</a>&nbsp;(0)
+
+
+
+<script language="javascript">
+
+/**/
+
+</script>
+
+
+
+</div>
+
+
+
+<div class="line">&nbsp;</div>
+
+
+
+
+
+
+
+    
+<style type="text/css">
+
+/**/
+
+</style>
+
+<div id="in_related_tmp"></div>
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div id="in_reader">
+    <div class="tit">最近读者：</div>
+
+</div>
+
+
+
+
+
+<div class="line">&nbsp;</div>
+
+
+
+
+
+
+
+
+
+
+<div id="in_comment">
+
+    <a name="comment"></a>
+
+    <div class="tit">网友评论：</div>
+
+    <span id="userCommentList"></span>    
+
+    <div id="page"></div>
+
+</div>
+
+<form action="/socai/commit" id="blogCmtSubmitForm" name="blogCmtSubmitForm" method="post">
+    <input type="hidden" name="bdstoken" value="b3fe40fdb2b3015ee1cbe5991a118a8a">
+    <input type="hidden" name="ct" value="8">
+    <input type="hidden" name="cm" value="2">
+    <input type="hidden" name="spBlogID" value="27430c580ea13588800a188e">
+    <input type="hidden" name="spBlogCmtID" value="">
+    <input type="hidden" name="spRefURL" value="">
+</form>
+
+
+
+
+
+
+<div id="in_send">
+
+<a name="send"></a>
+
+<form name="form1" id="popFormSubmit" action="/socai/commit" method="post" onsubmit="return checkcmtform()">
+
+<input type="hidden" name="bdstoken" value="b3fe40fdb2b3015ee1cbe5991a118a8a">
+
+<input type="hidden" name="ct" value="8">
+
+<input type="hidden" name="cm" value="1">
+
+<input type="hidden" name="spBlogID" value="27430c580ea13588800a188e">
+
+<input type="hidden" name="spRefURL" id="spRefURL">
+
+<script>
+
+    document.getElementById("spRefURL").value = window.location.href;
+
+</script>
+
+<div class="tit">发表评论：</div>
+
+<table width="620" border="0" cellspacing="5" cellpadding="0">
+
+
+
+
+
+<tr id="2_err" style="display:none">
+
+<td>&nbsp;</td>
+
+<td><div class="error" id="2_err_con"></div></td>
+
+</tr>
+
+
+
+<tr>
+
+<td valign="top" class="f14" id="reTitle">内　容：</td>
+
+<td>
+	<textarea name="spBlogCmtText" id="spBlogCmtText" style="width:520px;height:155px" tabindex="3" onfocus="hidErr(3);" onclick="BdUtil.relogin(); return false;"></textarea>
+</td>
+
+</tr>
+
+<tr id="3_err" style="display:none">
+
+<td>&nbsp;</td>
+
+<td><div class="error" id="3_err_con"></div></td>
+
+</tr>
+
+
+
+
+<tr>
+
+<td valign="top" class="f14">&nbsp;</td>
+
+<td valign="top" class="f14"><input id="btn_ok" name="btn_ok" type="submit" autocomplete="off" onclick="BdUtil.relogin(); return false;" value="发表评论" tabindex="5">&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" id="cancleReLink" onclick="canclereply(); return false;" style="display:none; font-size:12px;color:#666;">取消回复</a></td>
+
+</tr>
+
+</table>
+
+</form>
+
+</div>
+
+
+
+
+
+
+
+
+
+<br>
+
+</div>
+
+
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" height="8">
+
+<tr><td class="modbl" width="7">&nbsp;</td>
+
+<td class="modbc">&nbsp;</td>
+
+<td class="modbr" width="7">&nbsp;</td>
+
+</tr></table>
+
+
+
+
+
+
+
+</div>
+
+</div>
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+<br><center><div id="ft">&copy;2011 Baidu</div></center>
+
+
+</center>
+
+<ul id="blogCmtContentList" style="display:none;">
+
+</ul>
+
+<!--inc_getmsgnum.html-->
+
+<iframe id="submitiframe" name="submitiframe" src="/st/blank.html" style="display:none;"></iframe>
+
+
+<script type="text/javascript" src="/ui/scripts/blog/detailpage.js"></script>
+<script type="text/javascript">
+    //*****there is some function。
+    function checkMail(s)
+
+    {
+
+        var pattern=/\w+@\w+\.[a-z]+/;
+
+        if(pattern.test(s))
+
+        {
+
+           return true;
+
+        }
+
+        else
+
+       {
+
+          return false;
+
+       }
+
+    }
+
+
+
+
+
+    function checkeandu(eanduid)
+
+    {
+
+        var eanduvalue=baidu.G(eanduid).value;
+
+        var len=baidu.string.getByteLength(eanduvalue);
+
+        if(len>128)
+
+        {
+
+            showErr(2,"您输入的网址或邮箱太长，请保持在128字节以内。");
+
+            return false;
+
+        }
+
+        else
+
+        {
+
+             return true;
+
+        }
+
+
+
+    }
+
+
+
+
+
+    function checkname(strid)
+
+    {
+
+        var ele=baidu.G(strid);
+
+        var len=baidu.string.getByteLength(ele.value);
+
+        if(len>49)
+
+        {
+
+            showErr(1,"您输入的姓名太长，请保持在49字节以内。");
+
+            return false;
+
+        }
+
+        else
+
+        {
+
+            if(len==0)
+
+            {
+
+                baidu.G(strid).value="匿名网友";
+
+            }
+
+             return true;
+
+        }
+
+
+
+    }
+
+
+
+    function checktext(textid)
+
+    {
+
+            var tempStr='';
+
+            var isLightFont=false;
+
+            if(editor&&textid=="spBlogCmtText"){
+
+                tempStr=editor.getHtml();
+                
+                /*
+                //火星文处理，能不碰它就别碰它
+                tempStr=tempStr.replace(/<span style="filter:glow\(color=#([0-9a-z]{3,6}),strength=2\);height:0px;color:#([0-9a-z]{3,6})">/ig,'');
+
+                tempStr=tempStr.replace(/<\/span>/ig,'');
+                */
+
+                baidu.G("spBlogCmtText").value=tempStr;
+
+                isLightFont=!(tempStr==editor.getHtml());
+
+            }
+
+
+            var str=baidu.string.trim(baidu.G(textid).value);
+            baidu.G(textid).value=str;
+
+            
+
+            len=str.length;
+
+            if(len==0 || ((/^[\s,　]+$/gi).test(str)) )
+
+            {
+
+                showErr(3,"您必须输入评论内容，请检查。");
+
+                return false;
+
+            }
+
+            else
+
+            {
+
+                    var maxLength=isLightFont?916:1000;
+
+                    if(len > maxLength)
+
+                    {
+
+                        showErr(3,"您输入的评论内容太长，请保持在500字以内。");
+
+                        return false;
+
+                    }
+
+                    if(editor&&textid=="spBlogCmtText"){
+
+                        baidu.G("spBlogCmtText").value=editor.getHtml();
+
+                        baidu.G(textid).value=str;
+
+                    }
+
+
+
+                return true;
+
+            }
+
+    }
+
+
+
+    function showErr(index,str)
+
+    {
+
+        baidu.G(index+"_err").style.display="";
+
+        baidu.G(index+"_err_con").innerHTML=str;
+
+    }
+
+    function hidErr(index)
+
+    {
+
+        baidu.G(index+"_err").style.display="none";
+
+        baidu.G(index+"_err_con").innerHTML="";
+
+    }
+
+
+
+    function alertPop(tit,con)
+
+    {
+
+        var pop=new Popup({ contentType:4,isReloadOnClose:false,width:340,height:80});
+
+        pop.setContent("title",tit);
+
+        pop.setContent("alertCon",con);
+
+        pop.build();
+
+        pop.show();
+
+    }
+
+
+
+    function cmtfull()
+
+    {
+
+        var cnum=0;
+
+        if(cnum>=50000)
+
+        {
+
+            alertPop("发表评论","单篇日志评论数最多为50000条.");
+
+            return false;
+
+        }
+
+        else
+
+        {
+
+            return true;
+
+        }
+
+    }
+
+    
+    var ShareBlog = (function(){
+        var isHostReply = false;
+        
+        var asynSubmitForm = (function(){
+            var _seed = 0,
+                _submitBox;
+            return function(url, data){
+                if(_submitBox)
+                    baidu.dom.empty(_submitBox);
+                else{
+                    _submitBox = document.createElement("div");
+                    _submitBox.style.display = "none";
+                    document.body.appendChild(_submitBox);
+                }
+                _seed++;
+                var ifrId = "ifr_frd_"+_seed,
+                    formId = 'form_frd_'+_seed,
+                    html = '<iframe id="'+ifrId+'" name="'+ifrId+'" src="" style="display:none;"></iframe>\
+                            <form id="'+formId+'" name="'+formId+'" method="post" action="'+url+'" target="'+ifrId+'"></form>';
+                var docFrag = document.createDocumentFragment();
+                for(var i in data){
+                    var ipt = document.createElement("input");
+                    ipt.type = "hidden";
+                    ipt.name = i;
+                    ipt.value = data[i];
+                    docFrag.appendChild(ipt);
+                }
+                _submitBox.innerHTML = html;
+                baidu.g(formId).appendChild(docFrag);
+                baidu.g(formId).submit();
+            }
+        })();
+
+        function submitShare(){
+            asynSubmitForm("http://apps.hi.baidu.com/share/cm",{
+                "_method" : "create_share",
+                "auth" : "0",
+                "bdstoken" : "b3fe40fdb2b3015ee1cbe5991a118a8a",
+                "comment_content" : "",
+                "dtype" : "json",
+                "ie" : "utf-8",
+                "shid" : "",
+                "title" : "",
+                "url" : location.href,
+                "vote_opt" : "分享是美德~"
+            });
+        }
+
+        function hostReply(){
+            isHostReply  = true;
+            baidu.g("share_blog").style.display = "none";
+        }
+
+        function cancelReply(){
+            isHostReply  = false;
+            baidu.g("share_blog").style.display = "";
+        }
+
+        return {
+            isHostReply : isHostReply,
+            hostReply : hostReply,
+            cancelReply : cancelReply,
+            submit : submitShare
+        }
+    
+    })();
+    
+    
+
+
+
+    function checkcmtform()
+
+    {
+
+        if(checkname("spBlogCmtor")&&checkeandu("spBlogCmtURL")&&checktext("spBlogCmtText")&&cmtfull())
+
+        {
+            if(baidu.g("shareBlog").checked && !ShareBlog.isHostReply){
+                baidu.g("shareBlogEchoback").value = "shareblog"; 
+                ShareBlog.submit();
+            }else{
+                baidu.g("shareBlogEchoback").value = "";
+            }
+            submitForm();
+
+            return true;
+
+        }
+
+        else
+
+        {
+
+            return false;
+
+        }
+
+    }
+
+
+
+    var g_pop=null;
+
+    function submitForm()
+
+    {
+
+        g_pop=new Popup({ contentType:1,isReloadOnClose:false,width:340,height:80});
+
+        g_pop.setContent("title","添加评论");
+
+        g_pop.setContent("contentUrl","");
+
+        g_pop.setContent("someDisabledBtn","btn_ok");
+
+        g_pop.build();
+
+        G("popFormSubmit").target=g_pop.iframeIdName;
+
+        g_pop.show();
+
+    }
+
+
+
+    function g_close_pop()
+
+    {
+
+        g_pop.close();
+
+    }
+
+
+
+    function formatonlinpic()
+
+    {
+
+        var picobj=document.getElementsByName("onlinepic");
+
+        var picnum=picobj.length;
+
+
+
+        for(var i=0;i<picnum>200)
+
+            {
+
+                picobj[i].width=200;
+
+            }
+
+            if(picobj[i].height>200)
+
+            {
+
+                picobj[i].height=200;
+
+            }
+
+        }
+
+        try{baidu.G("btn_ok").disabled = "";}catch(e){}
+
+    }
+
+
+
+    function addToFavor(){
+
+        var blogTitle='system函数中为什么要阻塞SIGCHLD信号(zt)'.replace(/&#39;/g,'\'');
+
+        window.open('http://cang.baidu.com/do/add?it='+encodeURIComponent(blogTitle+'_百度空间')+'&iu='+encodeURIComponent(location.href)+'&fr=sp#nw=1','_s','scrollbars=no,width=600,height=450,right=75,top=20,status=no,resizable=yes');
+
+        return false;
+
+    }
+
+    function addToiTieba(){
+        var blogTitle='system函数中为什么要阻塞SIGCHLD信号(zt)'.replace(/&#39;/g,'\'');
+        window.open('http://tieba.baidu.com/i/sys/share?link='+encodeURIComponent('http://hi.baidu.com/socai/blog/item/27430c580ea13588800a188e.html')+'&type=text&title='+encodeURIComponent(blogTitle)+'&content=');
+    }
+
+    function addToShare(){
+        window.open('http://apps.hi.baidu.com/share/?url='+encodeURIComponent('http://hi.baidu.com/socai/blog/item/27430c580ea13588800a188e.html'));
+    }
+
+
+    /* some functions for cmt-reply */
+    var g_cmtorInfo = [];
+    function goCmtReply(cmtPorID){
+        //如果是主人的话，回复别人的评论，是不需要显示分享的
+        
+
+        cmtreply(g_cmtorInfo[cmtPorID],cmtPorID);
+    }
+    function cmtreply(cmtName,cmtPorID)
+
+    {
+
+        cmtName=cmtName.replace(/<|>/g,"");
+
+        window.location.hash="#send";
+
+        var cmtForm=document.form1;
+
+        cmtForm.cm.value="3";
+
+        if(!cmtForm.spReferTarget)
+
+        {
+
+            var ipt=document.createElement("input");
+
+            ipt.type="hidden";
+
+            ipt.name="spReferTarget";
+
+            ipt.value=cmtPorID;
+
+            cmtForm.appendChild(ipt);
+
+        }else cmtForm.spReferTarget.value=cmtPorID;
+
+
+
+
+
+         //G("reTitle").innerHTML="回复"+cmtName+"：";
+
+         G("cancleReLink").style.display="";
+
+         cmtForm.btn_ok.value="回复评论";
+
+
+
+
+
+         try{
+
+            editor.window.focus();
+
+            editor.window.document.body.innerHTML="回复"+cmtName+"：";
+
+
+
+            var w = editor.window;
+
+            if(w.getSelection){
+
+                var d = w.document;
+
+                var s = w.getSelection();
+
+                var r = d.createRange();
+
+                r.setStartAfter(d.body.firstChild);
+
+                r.setEndAfter(d.body.lastChild);
+
+                s.removeAllRanges();
+
+                s.addRange(r);
+
+            }
+
+        }catch(e){
+
+                try{
+
+                    cmtForm.getElementsByTagName("textarea")[0].focus();
+
+                    cmtForm.getElementsByTagName("textarea")[0].value="回复"+cmtName+"：";
+
+                }catch(e){}
+
+        }
+
+    }
+
+
+
+    function canclereply()
+
+    {
+        //主人可以分享自己的文章
+        ShareBlog.cancelReply();
+
+        var cmtForm=document.form1;
+
+        cmtForm.cm.value="1";
+
+        try{cmtForm.removeChild(cmtForm.spReferTarget);}catch(e){}
+
+        /*
+
+        try{
+
+                var cmt=cmtForm.getElementsByTagName("textarea")[0]
+
+                cmt.value="";
+
+                cmt.focus();
+
+        }catch(e){}
+
+        */
+
+
+
+        try{
+
+                var ed=editor.window.document.body;
+
+                ed.innerHTML="";
+
+                editor.window.focus();
+
+            }catch(e){
+
+                var cmt=cmtForm.getElementsByTagName("textarea")[0];
+
+                cmt.value="";
+
+                cmt.focus();
+
+        }
+
+
+
+        G("cancleReLink").style.display="none";
+
+        cmtForm.btn_ok.value="发表评论";
+
+    }
+
+
+
+    function gotoreply()
+
+    {//to checking whether reply cmt
+
+        if( window.location.hash.indexOf("&re=1")<0) return;
+
+        var cmtID=window.location.hash.split("&")[0].replace("#","");
+
+        var cmtlinks=document.getElementsByTagName("a");
+
+        for(var i=0,n=cmtlinks.length;i<n><a name="#{cmtid}" rename="#{cmtuser}" repid="#{cmtportrait}"></a>');
+            cmtStrTpl.push('<table width="100%" border="0" cellspacing="0" cellpadding="0" class="item" style="table-layout:fixed;word-wrap:break-word;overflow:hidden;"><tr>');
+            cmtStrTpl.push('<td valign="top" class="index" width="5%">#{cmtindex}</td>');
+            cmtStrTpl.push('<td align="center" valign="top" width="10%">');
+            cmtStrTpl.push('<div class="user" style="overflow:hidden;">#{cmtuserhead}</div>');
+            cmtStrTpl.push('</td><td class="cnt" style="padding-left:20px;">');
+            cmtStrTpl.push('<span class="date">#{cmttime} #{mobileup} #{cmtreplay} #{cmtdel}</span>');
+            cmtStrTpl.push('<div class="desc" style="overflow:hidden;word-break:normal;" name="cmtcontent">#{cmtcontent}</div></td>');
+            cmtStrTpl.push('</tr></table>');
+            cmtStrTpl.push('<div class="line">&nbsp;</div>');
+
+            return cmtStrTpl.join('');
+        }
+
+        function getUserPortrait(type,cmtid,cmtname,cmturl,portraitId){
+            var html1="";
+
+        	if(type==1){
+
+			    html1="<a href=""+cmturl+"" target="_blank" class="ucard" pid="+portraitId+"><img border="0" src="http://tx.bdimg.com/sys/portraitn/item/"+portraitId+".jpg"><br>"+cmtname+"</a>";
+
+            }else{
+
+                if(cmtname=="" || cmtname=="匿名网友"){
+
+                    if(cmturl==""){
+
+                        html1="<a>匿名网友</a>";
+
+                    }else{
+
+                        html1="<a href=""+cmturl+"" target="_blank" class="ucard" pid="+portraitId+">"+cmtname+"</a>";
+
+                    }
+
+                }else{
+
+                    if(cmturl==""){
+
+                        html1="<div class="f14" style="display:inline">网友:<a>"+cmtname+"</a></div>";
+
+                    }else{
+
+                        html1="<div class="f14" style="display:inline">网友:<a href=""+cmturl+"" target="_blank" title=""+cmturl+"">"+cmtname+"</a></div>";
+
+                    }
+
+                }
+
+            }
+
+            return html1;
+        }
+
+        function renderCmt(cmtdata){
+            var tpl = getCmtTpl();
+
+            var mobileup=cmtdata.isMobileUp? '<a href="http://hi.baidu.com/hi/cms/article/help_phone/index.html" target="_blank" style="text-decoration:none;">来自手机<img src="http://img.baidu.com/hi/img/mobile.gif" align="absmiddle" border="0"></a>' : '';
+
+            var cmtreplay =(cmtdata.isCanReply && cmtdata.isCmtAllow)? ( cmtdata.isAnonymity ? ' | <a href="#" onclick="BdUtil.relogin();return false;">回复</a>' : ' | <a href="#" onclick="goCmtReply(\'#{cmtportrait}\');return false;">回复</a>') : '';
+
+            var cmtdel = Session.isHost ? ' | <a href="#" onclick="_Space.commentOperate.deleteCmt(\'#{cmtid}\'); return false;">删除</a> | <a href="#" onclick="userSpam.tipBlogCmt(this, \'#{cmtuser}\' ,\'#{cmtid}\', \'#{blogid}\') ; return false;">举报</a>' : '';
+
+            var cmtuserhead = getUserPortrait(cmtdata.userType,"#{cmtid}","#{cmtuser}","#{cmturl}","#{cmtportrait}");
+
+            mobileup = baidu.string.format(mobileup, cmtdata);
+            cmtreplay = baidu.string.format(cmtreplay, cmtdata);
+            cmtdel = baidu.string.format(cmtdel, cmtdata);
+            cmtuserhead = baidu.string.format(cmtuserhead, cmtdata);
+
+            cmtdata.mobileup = mobileup;
+            cmtdata.cmtreplay = cmtreplay;
+            cmtdata.cmtdel = cmtdel;
+            cmtdata.cmtuserhead = cmtuserhead;
+
+
+            return baidu.string.format(tpl, cmtdata);
+        }
+
+        
+        function deleteCmt(cid){
+            var pop=new Popup({ contentType:3,isReloadOnClose:false,width:340,height:80});
+
+            pop.setContent("title","删除评论");
+
+            pop.setContent("confirmCon","您确定要彻底删除这条评论吗？");
+
+            pop.setContent("callBack", function(){
+            
+                var o_pop=pop;
+                var _F = baidu.G('blogCmtSubmitForm');
+                _F.spBlogCmtID.value=cid;
+                _F.spRefURL.value = window.location.href;
+
+                o_pop.config.contentType=1;
+
+                o_pop.setContent("contentUrl","");
+
+                o_pop.reBuild();
+
+                _F.target=o_pop.iframeIdName;
+
+                _F.submit();
+            });
+
+            pop.build();
+
+            pop.show();
+
+            return false;
+        }
+    
+
+        function showCmtList(){
+            var cmtDataList = getCmtDataList();
+            var cmtList = [];
+
+            baidu.each(cmtDataList, function(item, index){
+                cmtList.push( renderCmt(item) );
+            });
+
+            baidu.G('userCommentList').innerHTML = cmtList.join('');
+
+            filterCmtContent('userCommentList');
+        }
+
+        function getCmtDataList(){
+            var cmtDataList=[];
+
+            
+
+            return cmtDataList;
+        }
+        
+        
+        function filterCmtContent(n){
+
+            if(!baidu.browser.ie){
+
+                var defaultfilter1='<span style="filter:glow(color=#000000,strength=2);height:0px;color:#000000">';
+
+                var defaultfilter2='<span style="height: 0px; color: rgb(0, 0, 0);">';
+
+                var commentDiv=document.getElementById(n);
+
+                var divs=commentDiv.getElementsByTagName('div');
+
+                var d,tmp;
+
+                for( var i=0,len=divs.length;i<len><span style="filter:glow\(color=#([0-9a-z]{3,6}),strength=2\);height:0px;color:#([0-9a-z]{3,6})">/ig,defaultfilter1);
+
+                        tmp=tmp.replace('<span style="height: 0px; color: rgb(255, 255, 255);">',defaultfilter2);
+
+                        d.innerHTML=tmp;
+
+                    }
+
+                }
+
+            }
+
+        }
+
+        return {
+            showCmtList : showCmtList,
+            deleteCmt : deleteCmt
+        }
+        
+    })();
+    
+    /**********分享该文章的用户功能**********/
+    
+
+    
+    /*********相关文章的显示函数********/
+    _Space.RelatedDoc=(function(){
+
+        function HI_MOD_IN_RELATED_DOC_CALLBACK(arg){
+
+            if(arg.length <= 1) return false;
+
+            var hasMore = arg[0];
+
+            var D=function(A,B){A[A.length]=B;}
+
+            if(arg.length % 2 == 0) D(arg, ["","","",""]);
+
+
+
+            var html = ['<div id="in_related_doc"><div class="tit">相关文章：</div>'];
+
+            D(html, '<table cellpadding="0" cellspacing="3" border="0">');
+
+            for(var i = 1, j = arg.length; i < j; i += 2){
+
+                D(html, '<tr>');
+
+                D(html, '<td width="15px"><a style="font-size:25px">&#8226;</a></td><td><a href="http://hi.baidu.com/' + arg[i][3] + '/blog/item/' + arg[i][2] + '.html" target="_blank" title="' + arg[i][0] + '">' + arg[i][1] + '</a>');
+
+                D(html, new Array(10).join('\u3000'));
+
+                D(html, '</td>');
+
+                if(arg[i + 1][0] != "")
+
+                    D(html, '<td width="15px"><a style="font-size:25px">&#8226;</a></td><td><a href="http://hi.baidu.com/' + arg[i + 1][3] + '/blog/item/' + arg[i + 1][2] + '.html" target="_blank" title="' + arg[i + 1][0] + '">' + arg[i + 1][1] + '</a></td>');
+
+                else
+
+                    D(html, '<td>&nbsp;</td><td>&nbsp;</td>');
+
+                D(html, '</tr>');
+
+            }
+
+            if(hasMore) D(html, '<tr><td colspan="4"><a target="_blank" href="/sys/search?pageno=1&type=7&sort=1&word=system%BA%AF%CA%FD%D6%D0%CE%AA%CA%B2%C3%B4%D2%AA%D7%E8%C8%FBSIGCHLD%D0%C5%BA%C5%28zt%29&item=27430c580ea13588800a188e">更多&gt;&gt;</a></td></tr>');
+
+            D(html, '</table></div><div class="line">&nbsp;</div>');
+
+
+
+            var div = document.getElementById('in_related_tmp');
+
+            if(div){
+
+                div.innerHTML = html.join('');
+
+                while(div.firstChild){
+
+                    div.parentNode.insertBefore(div.firstChild, div);
+
+                }
+
+                div.parentNode.removeChild(div);
+
+            }
+
+
+        }
+
+        window.HI_MOD_IN_RELATED_DOC_CALLBACK = HI_MOD_IN_RELATED_DOC_CALLBACK;
+
+        function show(){
+            if( baidu.G('in_related_tmp') )
+            baidu.sio.callByServer("/sys/search?type=8&word=system%BA%AF%CA%FD%D6%D0%CE%AA%CA%B2%C3%B4%D2%AA%D7%E8%C8%FBSIGCHLD%D0%C5%BA%C5%28zt%29&item=27430c580ea13588800a188e");
+        }
+
+        return {
+            show : show
+        }
+
+    })();
+    
+
+    /*********最近读者*********/
+    _Space.latestReader=(function(){
+        var g_read=[
+
+        
+
+        ["%B2%BB%BD%D0%BB%A8%BB%A8%B0%D7","91b3b2bbbdd0bba8bba8b0d7cf03","不叫花花白"],
+
+        
+
+        ["hxr201101","6a41687872323031313031f811","hxr201101"],
+
+        
+
+        ["%D0%FB%CD%FE%CB%B7%C4%AE","b652d0fbcdfecbb7c4ae8e0c","宣威朔漠"],
+
+        
+
+        ["stesen05","5ccb73746573656e3035d005","stesen05"],
+
+        
+
+        ["franco%5Fyin","62c86672616e636f5f79696e0b04","franco_yin"],
+
+        
+
+        ["jesserei","21a14a657373655265698807","JesseRei"],
+
+        
+
+        ["angeltearcrystal","bf046e697a68696368656e1105","nizhichen"],
+
+        
+
+        ["lateblue","770f6c617465626c7565a205","lateblue"],
+
+        
+
+        {}
+
+        ];
+
+        g_read.length=g_read.length-1;
+
+
+
+        var _rh1="";
+
+        var _rh2="";
+
+
+
+        function show(){
+
+            _rh1 += '<table width="100%"><tr>';
+
+            _rh2+='<tr>';
+
+            if(!Session.isLogin){
+
+                _rh1+='<td align="center" width="10%"><img border="0" width="55" height="55" src="http://img.baidu.com/hi/img/portraitn.jpg"></td>';
+
+                _rh2+='<td>&nbsp;</td>';
+
+                if(g_read.length>0){
+
+                    _rh1+='<td align="left" width="12%">';
+
+                }else{
+
+                    _rh1+='<td align="left" width="100%">';
+
+                }
+
+                _rh1+='<a href="https://passport.baidu.com/?login&tpl=sp&tpl_reg=sp&u='+myref+'" target="_self" onclick="BdUtil.relogin(); return false;">登录</a>后，您就出现在这里。</td>';
+
+                _rh2+='<td>&nbsp;</td>'
+
+            }
+
+            if(g_read.length==0){
+
+                if(Session.isLogin){
+
+                    _rh1+='<td align="left" width="100%">最近还没有登录用户看过这篇文章……</td>';
+
+                    _rh2+='<td>&nbsp;</td>';
+
+                }
+
+            }else{
+
+                for(i=0,len=g_read.length;i<len><td align="center" valign="bottom" width="10%" class="user"><a href="/'+g_read[i][0]+'" target="_blank" class="ucard" pid="'+g_read[i][1]+'"><img border="0" src="http://tx.bdimg.com/sys/portraitn/item/'+g_read[i][1]+'.jpg"></a></td>';
+
+                    _rh2+='<td align="center" valign="top" class="user"><a href="/'+g_read[i][0]+'" target="_blank" class="ucard" pid="'+g_read[i][1]+'">'+g_read[i][2]+'</a></td>';
+
+                }
+
+            }
+
+            _rh1+='<td width="100%"></td></tr>';
+
+            _rh2+='<td></td></tr></table>';
+
+
+            baidu.dom.insertHTML("in_reader", "beforeEnd", _rh1+_rh2);
+
+        }
+
+        return {
+            show : show
+        }
+    })();
+    
+
+    /*********页面完成后执行的一些东西，比较乱，小心轻放**********/
+    _Space.pageDone = (function(){
+        
+        function initBlogTextForFCK(){
+            //fck init music
+            if(window.Node){Node.prototype.replaceNode=function(Node){this.parentNode.replaceChild(Node,this);}}
+            var imgBox=document.getElementsByName('musicName');
+            var isAutoPlay=true;
+            for(var i=0,n=imgBox.length;i<n><()'"]+/g,''),1,true,false,tmpAutoPlay,tmpAutoPlay,'FckMusicHelper');
+                    shtml=shtml.replace('width=100%','width=200').replace('width="100%"','width=200 height=45');			img.replaceNode(musicDiv);
+                    musicDiv.innerHTML=shtml;
+                    i--;n--;
+                }
+            }
+                //fck init vote
+            !function(){
+                var vote = document.getElementsByName('FCK_VOTE');
+                for(var i=0,len=vote.length,item,rel=0,cdiv;i<len><imgarray.length>=imgw) {
+                        imgarray[i].width=imgw;
+                    }
+                }
+            }
+        }
+
+        function fixURLCopyBug(){
+        
+            // Fix ff bugs
+
+            var blog_text = document.getElementById('blog_text');
+            /**
+
+            blog_text.innerHTML = blog_text.innerHTML.replace(/href\s*=\s*("|')?(\.\.\/\.\.\/)/gi,"href=$1../$2");
+            */
+            /*modify by poker, to fix the flashalbum's static domain*/
+            var _blog_trans = blog_text.innerHTML.replace(/href\s*=\s*("|')?(\.\.\/\.\.\/)/gi,"href=$1../$2");
+            _blog_trans = _blog_trans.replace(/http:\/\/hi\.baidu\.com\/static\/album\/album\.swf/g,"http://hi.bdimg.com/static/album/album.swf");
+            blog_text.innerHTML = _blog_trans;
+        }
+
+        function getPVData(){
+
+            var hstr="";
+
+            baidu.sio.callByServer("/socai/brwstat?key1=1&key2=b110bfd949128a2c10df9be1_27430c580ea13588800a188e_");   
+        } 
+
+        function setpv(allnum)
+
+        {
+
+            var num = allnum.split('_');
+
+            baidu.G("result").innerHTML=num[0];
+
+        }
+
+        window.setpv = setpv;
+        
+        function initCmtEditor(){ //初始化浏览编辑器
+            var editor=null;
+
+            try{
+
+                editor=new BdEditor("spBlogCmtText",{width:"100%",height:"155px"});
+
+                editor.onfocus = function(){hidErr(3);}
+
+                editor.render();
+
+                //如果用户没有登陆，焦点进入编辑器，弹出登录框
+				
+                var editorCont=editor.window;
+				baidu.Q("ToolbarContainer",baidu.G("in_send"))[0].style.display="none";
+                baidu.on(editorCont,"focus",function(){
+				BdUtil.relogin();
+				return false;
+				});
+				
+
+            }catch(e){
+
+                var spBlogCmtText = document.getElementById("spBlogCmtText");
+                if(!spBlogCmtText ) return false;
+
+                var p = spBlogCmtText.previousSibling;
+
+                while(p && p.nodeType != 1) p = p.previousSibling;
+
+                if(p && /bdeditor_container/.test(p.id)){
+
+                    p.parentNode.removeChild(p);
+
+                }
+
+                spBlogCmtText.style.display = '';
+
+                editor=null;
+
+            }
+
+            
+
+            window.editor = editor;
+        }
+
+        function ok(){
+            getPVData();
+            resizeBlogImg();
+            fixURLCopyBug();
+            initBlogTextForFCK();
+            initCmtEditor();
+
+            gotoreply(); /* external fun*/
+        }
+
+        return {
+            ok : ok
+        }
+    })();
+
+    /********分段加载处理对象，实验性功能*********/
+    _Space.SectionLoad = (function(){
+
+        var loaded = false;
+
+        var sectioinList = [];
+
+        function complete(item){
+            item.isComplete = true;
+        }
+
+        function add(mod, loadCallback){
+
+            var mod = baidu.G(mod);
+            
+            sectioinList.push({"mod": mod, "callback":loadCallback});
+        }
+
+        function startLoad(item){
+            item['callback']();
+            complete(item);
+        }
+
+        function checkStat(){
+            if(sectioinList.length <= 0) return;
+
+            var pageTop2bottom=getPageTop2bottom();
+            
+            baidu.each(sectioinList, function(item, index){
+
+                if(! item.isComplete){
+                    if(getOffsetTop(item.mod)-100 <= pageTop2bottom)
+                        startLoad(item);
+                }
+            });
+        }
+
+        function getOffsetTop(mod){
+            return baidu.dom.getPosition(mod).top;
+        }
+
+        function getPageTop2bottom(){
+            var dsh = baidu.page.getScrollTop();
+            var dch = baidu.page.getViewHeight();
+
+            return dsh + dch;
+        }
+
+        
+        baidu.on(window, 'resize', checkStat);
+        baidu.on(window, 'onload', checkStat);
+        baidu.on(window, 'scroll', checkStat);
+        
+        return {
+            "add" : add
+        } 
+    })();
+
+    /*******Start Working！*******/
+    var _pageEndTime=(new Date().getTime()) - g_pageTimerStart;
+
+    baidu.on(window, 'load', function(){
+        var _pageLoadTime=(new Date().getTime()) - g_pageTimerStart;
+
+        BdUtil.hi_trackerLink('m_20101109_blogloadtime', _pageLoadTime+'|'+_pageEndTime);
+    });
+
+    /**********Step2***********/
+    _Space.pageDone.ok();
+
+    baidu.G('share_user_list') && _Space.SectionLoad.add('share_user_list', _Space.BlogSharedUser.getData);
+    baidu.G('in_related_tmp') && _Space.SectionLoad.add('in_related_tmp', _Space.RelatedDoc.show);
+    baidu.G('in_reader') && _Space.SectionLoad.add('in_reader', _Space.latestReader.show);
+    baidu.G('in_comment') && _Space.SectionLoad.add('in_comment', _Space.commentOperate.showCmtList);
+</script>
+
+
+
+			
+
+
+<script type="text/javascript">
+/**/
+</script>
+
+
+	<script type="text/javascript" src="/ui/scripts/refer/refer.js"></script>
+	
+<link rel="stylesheet" type="text/css" href="/ui/css/userset.css">
+<link rel="stylesheet" type="text/css" href="/ui/css/beautify/widget.css">
+
+<script type="text/javascript" src="http://hi.baidu.com/hi/cms/article/beautifyconfig/default_user_suit.js"></script>
+
+<script type="text/javascript">
+//页面状态变量
+var Session = Session || {
+    spaceURL: "/socai",
+    pageURL: "http://hi.baidu.com/socai/blog/item/27430c580ea13588800a188e%2Ehtml",    //当前访问的url
+    isHost: "",         // 是否是空间主人
+    userName: "搜财网",   // 空间主人用户名
+    userNameEnc:    "%CB%D1%B2%C6%CD%F8", 
+    visitorName:    "",
+    visitorURL: "/index.html",        // 
+    refer: "http://www.google.com.hk/search?q=EINTR+waitpid&hl=zh-CN&safe=strict&biw=1307&bih=560&prmd=ivns&source=lnt&tbs=lr:lang_1zh-CN%7Clang_1zh-TW&lr=lang_zh-CN%7Clang_zh-TW&sa=X&ei=2yCHTdCnOovevQPv8bXBCA&ved=0CAcQpwUoAQ",
+    spBasicURL:"socai",
+    spBasicURLEnc:"socai"
+};
+</script>
+<script src="/ui/scripts/beautify/render.js" type="text/javascript"></script>
+<script type="text/javascript">
+baidu.dom.ready(function(){
+    if(typeof spBeautifyConfigData != 'undefined'){
+        var _installList = spBeautifyConfigData.list;
+    } else {
+        spBeautifyConfigData = {};
+        _installList = [];
+    }
+    spBeautifyConfigData.currentDate  = Math.round((new Date('2011/03/22')).getTime() / 1000);    
+    BeautifyWidget.init({timeStamp: spBeautifyConfigData.currentDate, env: 'sys'});
+    BeautifyWidget.render(_installList);
+	if(Space && Space.ActiveTip){
+		if(baidu.g("active_space")){
+			window.active_tip=new Space.ActiveTip("tary_space_name",function(){
+				active_tip.hidden();
+				//activeSpace("pop_tip");
+				if(BdUtil && BdUtil.ns_trackerLink){
+					BdUtil.ns_trackerLink('nm_20101018_activeBlank',''); 
+				}
+				window.open('http://hi.baidu.com/reg/preihome?pageDomain=pop_tip');
+			//	window.location.href="http://hi.baidu.com/reg/preihome?pageDomain=pop_tip";
+				setTimeout(function(){
+					window.location.reload();
+				},1000);
+				
+			
+			});
+		}
+		window.succTip=function(spaceUrl){
+			active_dia.close();
+			//var tiphtml="<div><div class="setBlackcon">恭喜您，激活成功！欢迎入驻百度空间！</div><div class="setBlackpanel"><div class="blackConfirmbtn" onclick="">确认</div></div></div>";
+			BdDialog.Alert("恭喜您，激活成功！欢迎入驻百度空间！");
+			baidu.g("dialogYES").onclick=function(){
+				window.location.reload();
+			};	
+		};
+	}
+	
+});
+</script>
+
+
+
+<script type="text/javascript" src="http://hi.baidu.com/hi/cms/article/quickjs/auto.js"></script>
+<script>
+try{SCD.init("http://www.google.com.hk/search?q=EINTR+waitpid&hl=zh-CN&safe=strict&biw=1307&bih=560&prmd=ivns&source=lnt&tbs=lr:lang_1zh-CN%7Clang_1zh-TW&lr=lang_zh-CN%7Clang_zh-TW&sa=X&ei=2yCHTdCnOovevQPv8bXBCA&ved=0CAcQpwUoAQ")}catch(e){}
+</script>
+
+
+</body></html>

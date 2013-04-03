@@ -1,0 +1,6 @@
+***********  http://man.lupaworld.com/
+
+***********  http://www.wxwidgets.org/docs/
+wxWidgets is a class library that allows you to compile graphical C++ programs on a range of different platforms. wxWidgets defines a common API across platforms, but uses the native graphical user interface (GUI) on each platform, so your program will take on the native 'look and feel' that users are familiar with.
+Although GUI applications are mostly built programmatically, there are several dialog editors to help build attractive dialogs and panels. wxDesigner Software's wxDesigner and Anthemion Software's DialogBlocks are two commercial examples, but there are others: see the wxCommunity pages.
+You don't have to use C++ to use wxWidgets: there is a Python interface for wxWidgets, and also a Perl interface.

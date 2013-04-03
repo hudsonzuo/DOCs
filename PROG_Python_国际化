@@ -1,0 +1,90 @@
+一、通常的实现方法
+
+什么是i18n，它是国际化的简称(Internationalization，去掉开始的I和最后的N，中间一共18个字符)。对于它的实现，在 Python 的文档关于 gettext 中有详细的描述。同时我在wxPyWiki上找到关于wxPyCookbook上关于国际化实现的教程，我便按文档和教程开始了我的实验。
+
+例子我使用教程上提供的，不过我进行了修改。一是增加了中文，去掉了西班牙语和法语的处理。二是将某些信息放在另一个模块中，测试跨模块的实现。同时在这个模块中将进行国际化处理的内容放在了列表中，如：
+
+    message = [_('English'), _('Chinese')]
+
+下面我描述一个通常的方法。
+
+1. 在主模块中导入gettext模块，它需要放在进行国际化处理的语句、模块导入之前。如：
+
+          gettext.install(‘i18ntest’, ‘./locale’, unicode=True)
+
+三个参数的意思分别为：
+
+    作用域名，用于限定翻译文件的主名
+    路径，存放翻译文件的路径
+    unicode，是否使用unicode(如果你的应用程序是unicode的，则此处应为True)
+
+上述的指令将安装一个缺省的国际化处理类。在我们需要安装某种特定的国际化处理类时，我们可以：
+
+    gettext.translation(‘i18ntest’, ‘./locale’, languages=['en']).install(True)
+
+这样将安装指定的翻译文件。前两个参数同gettext.install，第三个参数指明语言的种类。gettext.translation将返回一个新的对象。执行它的install函数将安装支持指定语言的国际化处理功能。install中的参为是否使用unicode。
+
+2. 在所有需要进行国际化处理的字符串上加上_()，如：English和Chinese需要国际化处理，那么要转化为：_(‘English’)和_(‘Chinese’)。这一步工作可能会比较麻烦。
+
+经过上述的处理，你的程序虽然还没有真正的翻译文件但仍然是可以运行的。
+
+3. 使用pygettext.py进行字符串的抽取。pygettext.py是在python的安装包中自带的一个工具，它位于tools/i18n目录中，同时还有一个叫msgfmt.py的程序，是用来将翻译文件转换成gettext可识别的二进制文件。命令行参数如下：
+
+    Python pygettext.py 文件名
+
+文件名可以同时有多个。执行python pygettext.py –help 可以看它支持哪些选项。如果没有指定输出文件名，则缺省会生成一个名为messages.pot的文件。它就是最原始的用来翻译成其它语言的文件。打开它你会看到可能如下的内容：
+
+    # SOME DESCRIPTIVE TITLE.
+    # Copyright (C) YEAR ORGANIZATION
+    # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+    #
+    msgid “”
+    msgstr “”
+    “Project-Id-Version: PACKAGE VERSION\n”
+    “POT-Creation-Date: Mon Jun 14 13:28:26 2004\n”
+    “PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n”
+    “Last-Translator: FULL NAME <\n”>EMAIL@ADDRESS>\n”
+    “Language-Team: LANGUAGE <\n”>LL@li.org>\n”
+    “MIME-Version: 1.0\n”
+    “Content-Type: text/plain; charset=CHARSET\n”
+    “Content-Transfer-Encoding: ENCODING\n”
+    “Generated-By: pygettext.py 1.5\n”
+
+    #: i18ntest.py:28 i18ntest.py:76
+    msgid “MiniApp”
+    msgstr “”
+
+    #: i18ntest.py:39 i18ntest.py:85
+    msgid “E&xit”
+    msgstr “”
+
+一个messages.pot由以下内容组成：
+
+    ‘#’开始的注释行
+    空行
+    msgid行，表明一个翻译项，可以有多行。如果为多行，则形如：
+    msgid “”
+    “This is a multiline\n”
+    “test”
+    如果msgid内容为空，则表示msgstr是文档的信息
+    msgstr行，表明一个译文，可以为多行，格式同msgid。如果msgid为空，则为文档信息。在文档信息中可以录入关于此译文的一些情况，同时最重要的就是charset域，用于指明此文档的编码信息，也就是保存此文档时所用的编码。建议对中文使用utf-8编码。
+
+那么我们得到这个pot文件后，先将其保存为不同的版本，以便下面的翻译。如：messages_cn.po。翻译时，只考虑msgid不为空的地方，将译文写在msgstr处即可。
+
+4. 使用msgfmt.py将po文件转换为二进制的mo文件。命令行如下：
+
+    python msgfmt.py messages_cn.po
+
+这样将生成一个名为messages_cn.mo的二进制文件。
+
+5. 安装mo文件。其实就是将mo文件放在正确的位置。gettext要求翻译文件组织成如下目录：
+
+  ./locale/en/LC_MESSAGES
+  ./locale/cn/LC_MESSAGES
+
+locale是在gettext.translation中指定的。en, cn是语言分类。LC_MESSAGES是要求的。同时mo文件应改为与作用域名相同，如i18ntest.mo。
+
+经过以上的步骤，一个支持国际化处理的程序可用了。
+
+在wxPyWiki教程中使用了mki18n.py的程序。但我使用了python自带的工具，与教程有所区别。
+

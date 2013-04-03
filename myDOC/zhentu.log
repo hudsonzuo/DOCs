@@ -1,0 +1,77 @@
+PORTAGE(5)
+the heart of gentoo
+
+protage code
+all the odds and ends
+All files in the make.profile directory may  be tweaked via parent profiles when using cascading profiles
+
+SYNOPSIS
+
+
+/etc/portage/make.profile/
+
+package installed but not part of the dependency tree 
+
+==================
+定义portage：1，允许用户做 portage sync; 2, 为zhentu特需的ebuild安排位置；3,如果没有/usr/portage，/usr/local/portage能用吗？
+
+系统升级与清理
+
+
+ Running pre-merge checks for app-emulation/qemu-1.1.2-r3
+ * Determining the location of the kernel source code
+ * Found kernel source directory:
+ *     /usr/src/linux
+ * Found kernel object directory:
+ *     /lib/modules/3.5.4/build
+ * Found sources for kernel version:
+ *     3.5.4
+ * Checking for suitable kernel configuration options...
+ *   You must enable VHOST_NET to have vhost-net support
+ * Please check to make sure these options are set correctly.
+ * Failure to do so may cause unexpected problems.
+
+You must enable VHOST_NET to have vhost-net support
+
+
+>>> Running pre-merge checks for x11-base/xorg-server-1.12.4
+>>> Running pre-merge checks for x11-drivers/xf86-input-synaptics-1.6.2-r1
+ * Determining the location of the kernel source code
+ * Found kernel source directory:
+ *     /usr/src/linux
+ * Found kernel object directory:
+ *     /home/aoe/extend_room/kernel
+ * Found sources for kernel version:
+ *     3.5.4
+
+ * This driver requires event interface support in your kernel
+ *   Device Drivers --->
+ *     Input device support --->
+ *       <*>     Event interface
+
+>>> Running pre-merge checks for www-plugins/adobe-flash-11.2.202.251
+>>> Running pre-merge checks for app-emulation/qemu-1.1.2-r2
+ * Determining the location of the kernel source code
+ * Found kernel source directory:
+ *     /usr/src/linux
+ * Found kernel object directory:
+ *     /home/aoe/extend_room/kernel
+ * Found sources for kernel version:
+ *     3.5.4
+ * Unable to check your kernel for KVM support
+>>> Running pre-merge checks for app-office/libreoffice-bin-3.6.3.2
+>>> Running pre-merge checks for net-misc/networkmanager-0.9.4.0-r6
+ * Determining the location of the kernel source code
+ * Found kernel source directory:
+ *     /usr/src/linux
+ * Found kernel object directory:
+ *     /home/aoe/extend_room/kernel
+ * Found sources for kernel version:
+ *     3.5.4
+ * Was unable to determine your kernel .config
+ * Please note that if CONFIG_SYSFS_DEPRECATED_V2 is set in your kernel .config, NetworkManager will not work correctly.
+
+
+ 在make.conf中去除了ACCEPT_KEYWORDS="~x86"，即zhentu系统以稳定性为基本要求。
+
+

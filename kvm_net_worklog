@@ -1,0 +1,133 @@
+/etc/init.d/kvm
+#!/sbin/runscript
+# Copyright 1999-2008 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+# $Header: $
+
+NUM_OF_DEVICES=1
+USERID="aoe"
+
+depend() {
+        need net
+}
+
+start() {
+        ebegin "Loading the kvm module"
+        /sbin/modprobe kvm
+        eend $? "Failed to load the kvm module"
+        ebegin "Loading the kvm_intel module"
+        /sbin/modprobe kvm_intel
+        eend $? "Failed to load the kvm_intel module"
+        ebegin "Loading the tun module"
+        /sbin/modprobe tun
+        eend $? "Failed to load the tun module"
+        ebegin "Setting up the bridge device (br0)"
+        /sbin/brctl addbr br0
+        /bin/ifconfig br0 172.16.100.9 netmask 255.255.255.0 up
+        eend $? "Failed to create the bridge interface"
+        for ((i=0; i < NUM_OF_DEVICES; i++)); do
+                ebegin "Setting up the tap interface: tap$i"
+                /usr/bin/tunctl -b -u $USERID -t tap$i >/dev/null
+                eend $? "Failed to create the tap interface: tap$i"
+                ebegin "Linking the bridge interface with tap$i"
+                /sbin/brctl addif br0 tap$i
+                eend $? "Failed to link the bridge interface to tap$i"
+                ebegin "Bring tap$i interface up"
+                /bin/ifconfig tap$i up 0.0.0.0 promisc
+                eend $? "Failed to bring tap$i up"
+        done
+        ebegin "Allowing Internet access"
+        echo "1" > /proc/sys/net/ipv4/ip_forward 
+        eend $? "Failed to allow forwarding"
+        iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+        eend $? "Failed to allow masquerade (eth0)"
+        eend 0
+}
+
+stop() {
+        for ((i=0; i < NUM_OF_DEVICES; i++)); do
+                ebegin "Bring tap$i interface down"
+                /bin/ifconfig tap$i down
+                eend $? "Failed to bring tap$i down"
+                ebegin "Unlinking the bridge interface with tap$i"
+                /sbin/brctl delif br0 tap$i
+                eend $? "Failed to unlink the bridge interface to tap$i"
+                ebegin "Removing the tap interface: tap$i"
+                /usr/bin/tunctl -d tap$i >/dev/null
+                eend $? "Failed to remove the tap interface: tap$i"
+        done
+        ebegin "Stopping the bridge device (br0)"
+        /bin/ifconfig br0 down
+        /sbin/brctl delbr br0
+        eend $? "Failed to stop the bridge interface"
+        ebegin "Unloading the tun module"
+        /sbin/modprobe -r tun
+        eend $? "Failed to unload the tun module"
+        ebegin "Unloading the kvm_intel module"
+        /sbin/modprobe -r kvm_intel
+        eend $? "Failed to unload the kvm_intel module"
+        ebegin "Unloading the kvm module"
+        /sbin/modprobe -r kvm
+        eend $? "Failed to unload the kvm module"
+        ebegin "Stopping Internet access"
+        echo "0" > /proc/sys/net/ipv4/ip_forward
+        eend $? "Failed to cancel forwarding"
+        iptables -t nat -D POSTROUTING -o eth0 -j MASQUERADE
+        eend $? "Failed to remove masquerade (eth0)"
+        eend 0
+}
+
+restart() {
+        stop
+        start
+}
+
+
+
+Module                  Size  Used by
+bridge                 54835  0 
+stp                     1096  1 bridge
+llc                     2866  2 stp,bridge
+tun                    11614  2 
+kvm_intel             115185  6 
+kvm                   303014  1 kvm_intel
+nvidia               9822036  31 
+coretemp                4538  0 
+acpi_cpufreq            4909  1 
+e1000e                126746  0 
+mperf                    951  1 acpi_cpufreq
+video                   9483  0 
+thermal                 6171  0 
+fan                     1766  0 
+processor              23422  1 acpi_cpufreq
+iTCO_wdt               10729  0 
+button                  3409  0 
+fuse                   58240  0 
+xfs                   585043  0 
+exportfs                2931  1 xfs
+jfs                   154103  0 
+reiserfs              203634  0 
+zlib_deflate           18038  0 
+dm_snapshot            26356  0 
+scsi_wait_scan           483  0 
+sl811_hcd              12870  0 
+sx8                    11301  0 
+
+
+sys-apps/usermode-utilities
+net-misc/bridge-utils
+net-firewall/iptables
+
+[root@iso-qomo make_qomo_iso_here]# route
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+default         localhost       0.0.0.0         UG    0      0        0 eth0
+172.16.100.0    *               255.255.255.0   U     0      0        0 eth0
+
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
+default         172.16.80.1     0.0.0.0         UG    3      0        0 eth0
+loopback        zhentu.gentoo   255.0.0.0       UG    0      0        0 lo
+localhost       *               255.255.0.0     U     0      0        0 eth0
+localhost       *               255.255.255.0   U     0      0        0 br0
+

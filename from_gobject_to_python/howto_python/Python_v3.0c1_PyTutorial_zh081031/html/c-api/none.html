@@ -1,0 +1,135 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>The None Object &mdash; Python v3.0c1 documentation</title>
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+          URL_ROOT:    '../',
+          VERSION:     '3.0c1',
+          COLLAPSE_MODINDEX: false,
+          FILE_SUFFIX: '.html'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Search within Python v3.0c1 documentation"
+          href="../_static/opensearch.xml"/>
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="copyright" title="Copyright" href="../copyright.html" />
+    <link rel="top" title="Python v3.0c1 documentation" href="../index.html" />
+    <link rel="up" title="Concrete Objects Layer" href="concrete.html" />
+    <link rel="next" title="Integer Objects" href="long.html" />
+    <link rel="prev" title="Type Objects" href="type.html" />
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../modindex.html" title="Global Module Index"
+             accesskey="M">modules</a> |</li>
+        <li class="right" >
+          <a href="long.html" title="Integer Objects"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="type.html" title="Type Objects"
+             accesskey="P">previous</a> |</li>
+<li><img src="../_static/py.png" alt="" style="vertical-align: middle; margin-top: -1px"/></li>
+
+        <li><a href="../contents.html">Python v3.0c1 documentation</a> &raquo;</li>
+
+          <li><a href="index.html" accesskey="U">Python/C API Reference Manual</a> &raquo;</li>
+          <li><a href="concrete.html" accesskey="U">Concrete Objects Layer</a> &raquo;</li>
+      </ul>
+    </div>
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  
+  <div class="section" id="the-none-object">
+<span id="noneobject"></span><h1>The None Object<a class="headerlink" href="#the-none-object" title="Permalink to this headline">¶</a></h1>
+<p id="index-101">Note that the <a title="PyTypeObject" class="reference external" href="type.html#PyTypeObject"><tt class="xref docutils literal"><span class="pre">PyTypeObject</span></tt></a> for <tt class="xref docutils literal"><span class="pre">None</span></tt> is not directly exposed in the
+Python/C API.  Since <tt class="xref docutils literal"><span class="pre">None</span></tt> is a singleton, testing for object identity (using
+<tt class="docutils literal"><span class="pre">==</span></tt> in C) is sufficient. There is no <tt class="xref docutils literal"><span class="pre">PyNone_Check</span></tt> function for the
+same reason.</p>
+<dl class="cvar">
+<dt id="Py_None">
+<!--[Py_None]--><a title="PyObject" class="reference external" href="structures.html#PyObject">PyObject</a>* <tt class="descname">Py_None</tt><a class="headerlink" href="#Py_None" title="Permalink to this definition">¶</a></dt>
+<dd>The Python <tt class="xref docutils literal"><span class="pre">None</span></tt> object, denoting lack of value.  This object has no methods.
+It needs to be treated just like any other object with respect to reference
+counts.</dd></dl>
+
+<dl class="cmacro">
+<dt id="Py_RETURN_NONE">
+<!--[Py_RETURN_NONE]--><tt class="descname">Py_RETURN_NONE</tt><a class="headerlink" href="#Py_RETURN_NONE" title="Permalink to this definition">¶</a></dt>
+<dd>Properly handle returning <a title="Py_None" class="reference internal" href="#Py_None"><tt class="xref docutils literal"><span class="pre">Py_None</span></tt></a> from within a C function (that is,
+increment the reference count of None and return it.)</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <h4>Previous topic</h4>
+            <p class="topless"><a href="type.html" title="previous chapter">Type Objects</a></p>
+            <h4>Next topic</h4>
+            <p class="topless"><a href="long.html" title="next chapter">Integer Objects</a></p>
+            <h3>This Page</h3>
+            <ul class="this-page-menu">
+              <li><a href="../_sources/c-api/none.txt">Show Source</a></li>
+            </ul>
+          <h3>Quick search</h3>
+            <form class="search" action="../search.html" method="get">
+              <input type="text" name="q" size="18" /> <input type="submit" value="Go" />
+              <input type="hidden" name="check_keywords" value="yes" />
+              <input type="hidden" name="area" value="default" />
+            </form>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../modindex.html" title="Global Module Index"
+             accesskey="M">modules</a> |</li>
+        <li class="right" >
+          <a href="long.html" title="Integer Objects"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="type.html" title="Type Objects"
+             accesskey="P">previous</a> |</li>
+<li><img src="../_static/py.png" alt="" style="vertical-align: middle; margin-top: -1px"/></li>
+
+        <li><a href="../contents.html">Python v3.0c1 documentation</a> &raquo;</li>
+
+          <li><a href="index.html" accesskey="U">Python/C API Reference Manual</a> &raquo;</li>
+          <li><a href="concrete.html" accesskey="U">Concrete Objects Layer</a> &raquo;</li>
+      </ul>
+    </div>
+    <div class="footer">
+      &copy; <a href="../copyright.html">Copyright</a> 1990-2008, Python Software Foundation.
+      Last updated on Oct 31, 2008.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.5.
+    </div>
+  </body>
+</html>

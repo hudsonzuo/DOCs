@@ -1,0 +1,219 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Optional Operating System Services &mdash; Python v3.0c1 documentation</title>
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+          URL_ROOT:    '../',
+          VERSION:     '3.0c1',
+          COLLAPSE_MODINDEX: false,
+          FILE_SUFFIX: '.html'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Search within Python v3.0c1 documentation"
+          href="../_static/opensearch.xml"/>
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="copyright" title="Copyright" href="../copyright.html" />
+    <link rel="top" title="Python v3.0c1 documentation" href="../index.html" />
+    <link rel="up" title="The Python Standard Library" href="index.html" />
+    <link rel="next" title="select &#8212; Waiting for I/O completion" href="select.html" />
+    <link rel="prev" title="ctypes &#8212; A foreign function library for Python." href="ctypes.html" />
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../modindex.html" title="Global Module Index"
+             accesskey="M">modules</a> |</li>
+        <li class="right" >
+          <a href="select.html" title="select &#8212; Waiting for I/O completion"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="ctypes.html" title="ctypes &#8212; A foreign function library for Python."
+             accesskey="P">previous</a> |</li>
+<li><img src="../_static/py.png" alt="" style="vertical-align: middle; margin-top: -1px"/></li>
+
+        <li><a href="../contents.html">Python v3.0c1 documentation</a> &raquo;</li>
+
+          <li><a href="index.html" accesskey="U">The Python Standard Library</a> &raquo;</li>
+      </ul>
+    </div>
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  
+  <div class="section" id="optional-operating-system-services">
+<span id="someos"></span><h1>Optional Operating System Services<a class="headerlink" href="#optional-operating-system-services" title="Permalink to this headline">¶</a></h1>
+<p>The modules described in this chapter provide interfaces to operating system
+features that are available on selected operating systems only. The interfaces
+are generally modeled after the Unix or C interfaces but they are available on
+some other systems as well (e.g. Windows or NT).  Here&#8217;s an overview:</p>
+<ul>
+<li><a class="reference external" href="select.html"><tt class="docutils literal"><span class="pre">select</span></tt> &#8212; Waiting for I/O completion</a><ul>
+<li><a class="reference external" href="select.html#edge-and-level-trigger-polling-epoll-objects">Edge and Level Trigger Polling (epoll) Objects</a></li>
+<li><a class="reference external" href="select.html#polling-objects">Polling Objects</a></li>
+<li><a class="reference external" href="select.html#id1">Kqueue Objects</a></li>
+<li><a class="reference external" href="select.html#id2">Kevent Objects</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><a class="reference external" href="threading.html"><tt class="docutils literal"><span class="pre">threading</span></tt> &#8212; Higher-level threading interface</a><ul>
+<li><a class="reference external" href="threading.html#id1">Lock Objects</a></li>
+<li><a class="reference external" href="threading.html#id2">RLock Objects</a></li>
+<li><a class="reference external" href="threading.html#id3">Condition Objects</a></li>
+<li><a class="reference external" href="threading.html#id4">Semaphore Objects</a><ul>
+<li><a class="reference external" href="threading.html#semaphore-example"><tt class="docutils literal"><span class="pre">Semaphore</span></tt> Example</a></li>
+</ul>
+</li>
+<li><a class="reference external" href="threading.html#id5">Event Objects</a></li>
+<li><a class="reference external" href="threading.html#id6">Thread Objects</a></li>
+<li><a class="reference external" href="threading.html#id7">Timer Objects</a></li>
+<li><a class="reference external" href="threading.html#using-locks-conditions-and-semaphores-in-the-with-statement">Using locks, conditions, and semaphores in the <tt class="docutils literal"><span class="pre">with</span></tt> statement</a></li>
+<li><a class="reference external" href="threading.html#importing-in-threaded-code">Importing in threaded code</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><a class="reference external" href="dummy_threading.html"><tt class="docutils literal"><span class="pre">dummy_threading</span></tt> &#8212; Drop-in replacement for the <tt class="docutils literal"><span class="pre">threading</span></tt> module</a></li>
+</ul>
+<ul>
+<li><a class="reference external" href="_thread.html"><tt class="docutils literal"><span class="pre">_thread</span></tt> &#8212; Low-level threading API</a></li>
+</ul>
+<ul>
+<li><a class="reference external" href="_dummy_thread.html"><tt class="docutils literal"><span class="pre">_dummy_thread</span></tt> &#8212; Drop-in replacement for the <tt class="docutils literal"><span class="pre">_thread</span></tt> module</a></li>
+</ul>
+<ul>
+<li><a class="reference external" href="multiprocessing.html"><tt class="docutils literal"><span class="pre">multiprocessing</span></tt> &#8212; Process-based &#8220;threading&#8221; interface</a><ul>
+<li><a class="reference external" href="multiprocessing.html#introduction">Introduction</a><ul>
+<li><a class="reference external" href="multiprocessing.html#the-process-class">The <tt class="docutils literal"><span class="pre">Process</span></tt> class</a></li>
+<li><a class="reference external" href="multiprocessing.html#exchanging-objects-between-processes">Exchanging objects between processes</a></li>
+<li><a class="reference external" href="multiprocessing.html#synchronization-between-processes">Synchronization between processes</a></li>
+<li><a class="reference external" href="multiprocessing.html#sharing-state-between-processes">Sharing state between processes</a></li>
+<li><a class="reference external" href="multiprocessing.html#using-a-pool-of-workers">Using a pool of workers</a></li>
+</ul>
+</li>
+<li><a class="reference external" href="multiprocessing.html#reference">Reference</a><ul>
+<li><a class="reference external" href="multiprocessing.html#process-and-exceptions"><tt class="docutils literal"><span class="pre">Process</span></tt> and exceptions</a></li>
+<li><a class="reference external" href="multiprocessing.html#pipes-and-queues">Pipes and Queues</a></li>
+<li><a class="reference external" href="multiprocessing.html#miscellaneous">Miscellaneous</a></li>
+<li><a class="reference external" href="multiprocessing.html#connection-objects">Connection Objects</a></li>
+<li><a class="reference external" href="multiprocessing.html#synchronization-primitives">Synchronization primitives</a></li>
+<li><a class="reference external" href="multiprocessing.html#shared-ctypes-objects">Shared <tt class="docutils literal"><span class="pre">ctypes</span></tt> Objects</a><ul>
+<li><a class="reference external" href="multiprocessing.html#module-multiprocessing.sharedctypes">The <tt class="docutils literal"><span class="pre">multiprocessing.sharedctypes</span></tt> module</a></li>
+</ul>
+</li>
+<li><a class="reference external" href="multiprocessing.html#module-multiprocessing.managers">Managers</a><ul>
+<li><a class="reference external" href="multiprocessing.html#namespace-objects">Namespace objects</a></li>
+<li><a class="reference external" href="multiprocessing.html#customized-managers">Customized managers</a></li>
+<li><a class="reference external" href="multiprocessing.html#using-a-remote-manager">Using a remote manager</a></li>
+</ul>
+</li>
+<li><a class="reference external" href="multiprocessing.html#proxy-objects">Proxy Objects</a><ul>
+<li><a class="reference external" href="multiprocessing.html#cleanup">Cleanup</a></li>
+</ul>
+</li>
+<li><a class="reference external" href="multiprocessing.html#module-multiprocessing.pool">Process Pools</a></li>
+<li><a class="reference external" href="multiprocessing.html#module-multiprocessing.connection">Listeners and Clients</a><ul>
+<li><a class="reference external" href="multiprocessing.html#address-formats">Address Formats</a></li>
+</ul>
+</li>
+<li><a class="reference external" href="multiprocessing.html#authentication-keys">Authentication keys</a></li>
+<li><a class="reference external" href="multiprocessing.html#logging">Logging</a></li>
+<li><a class="reference external" href="multiprocessing.html#module-multiprocessing.dummy">The <tt class="docutils literal"><span class="pre">multiprocessing.dummy</span></tt> module</a></li>
+</ul>
+</li>
+<li><a class="reference external" href="multiprocessing.html#programming-guidelines">Programming guidelines</a><ul>
+<li><a class="reference external" href="multiprocessing.html#all-platforms">All platforms</a></li>
+<li><a class="reference external" href="multiprocessing.html#windows">Windows</a></li>
+</ul>
+</li>
+<li><a class="reference external" href="multiprocessing.html#examples">Examples</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><a class="reference external" href="mmap.html"><tt class="docutils literal"><span class="pre">mmap</span></tt> &#8212; Memory-mapped file support</a></li>
+</ul>
+<ul>
+<li><a class="reference external" href="readline.html"><tt class="docutils literal"><span class="pre">readline</span></tt> &#8212; GNU readline interface</a><ul>
+<li><a class="reference external" href="readline.html#example">Example</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><a class="reference external" href="rlcompleter.html"><tt class="docutils literal"><span class="pre">rlcompleter</span></tt> &#8212; Completion function for GNU readline</a><ul>
+<li><a class="reference external" href="rlcompleter.html#id1">Completer Objects</a></li>
+</ul>
+</li>
+</ul>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <h4>Previous topic</h4>
+            <p class="topless"><a href="ctypes.html" title="previous chapter"><tt class="docutils literal docutils literal docutils literal"><span class="pre">ctypes</span></tt> &#8212; A foreign function library for Python.</a></p>
+            <h4>Next topic</h4>
+            <p class="topless"><a href="select.html" title="next chapter"><tt class="docutils literal docutils literal"><span class="pre">select</span></tt> &#8212; Waiting for I/O completion</a></p>
+            <h3>This Page</h3>
+            <ul class="this-page-menu">
+              <li><a href="../_sources/library/someos.txt">Show Source</a></li>
+            </ul>
+          <h3>Quick search</h3>
+            <form class="search" action="../search.html" method="get">
+              <input type="text" name="q" size="18" /> <input type="submit" value="Go" />
+              <input type="hidden" name="check_keywords" value="yes" />
+              <input type="hidden" name="area" value="default" />
+            </form>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../modindex.html" title="Global Module Index"
+             accesskey="M">modules</a> |</li>
+        <li class="right" >
+          <a href="select.html" title="select &#8212; Waiting for I/O completion"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="ctypes.html" title="ctypes &#8212; A foreign function library for Python."
+             accesskey="P">previous</a> |</li>
+<li><img src="../_static/py.png" alt="" style="vertical-align: middle; margin-top: -1px"/></li>
+
+        <li><a href="../contents.html">Python v3.0c1 documentation</a> &raquo;</li>
+
+          <li><a href="index.html" accesskey="U">The Python Standard Library</a> &raquo;</li>
+      </ul>
+    </div>
+    <div class="footer">
+      &copy; <a href="../copyright.html">Copyright</a> 1990-2008, Python Software Foundation.
+      Last updated on Oct 31, 2008.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.5.
+    </div>
+  </body>
+</html>

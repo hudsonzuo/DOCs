@@ -1,0 +1,47 @@
+尊敬xxx教授:
+您好!
+    我发现了一种新的分解整数的方法,比如对于整数N=567,运算过程如下:
+1. 经过验算得知567整除999999999999999999999999(18个9), 得到整数18
+2. 分解 18 得:1, 2, 3, 9, 6,
+3. 求解石头数得: S1 = 9,S2 = 11,S3 = 111,S9 = 1001001,S6 = 91.(论文中有石头数的计算公式)
+4. 分解石头数得到本征质数集合:3,11,37,333667,7,13,
+5. 用 3,11,37,333667,7,13 试除 567 得:3,7 能整除 567,
+6. 求其质因子的幂数得标准分解式:567 = 3^4 × 7.
+对于不是普通奇数的整数 (即个位数字是 0,2,5 的整数), 除去整数中的 2和5 后得到一个普通奇数, 再按照上面的方法继续分解即可.
+
+   另外,我发现了一种整数的筛法,可以筛得所有的质数和少量的合数,10000以内的筛选结果是:其中有 20 个合数、 1226 个质数.
+10000到20000共筛得989个数,其中有6个合数.
+
+   需要说明的是上面所讲的分解整数的方法以及整数筛法的发现,都是根据论文前半部分的新的理论体系推导得到的.
+
+   非常期望能得到您的点评!
+   感谢您在百忙之中评阅这篇论文!
+   
+左洪盛
+2012年5月
+
+
+
+
+
+
+
+
+http://faculty.math.tsinghua.edu.cn/~lsyin/, 印林生 教授 清华大学数学科学系 中国北京 100084 电话号码 010-62787469 Email地址: lsyin@math.tsinghua.edu.cn 
+
+
+http://www.math.cts.nthu.edu.tw/people/bio.php?PID=1150, 
+李文卿. E-mail(1)	wli@math.cts.nthu.edu.tw
+        E-mail(2)	wli@math.psu.edu
+
+http://www.mmrc.iss.ac.cn/~wtwu/:
+吴 文 俊           电子邮件 	wtwu@mmrc.iss.ac.cn
+
+
+
+http://www.prime.sdu.edu.cn/researchgroup/JianyaLiu/Address.htm:
+Jianya Liu 
+	School of Mathematics
+	Shandong University
+	Jinan, Shandong 250100
+	Email: jyliu(at)sdu.edu.cn 

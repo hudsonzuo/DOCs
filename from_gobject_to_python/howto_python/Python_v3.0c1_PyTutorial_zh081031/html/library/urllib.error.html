@@ -1,0 +1,160 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>urllib.error &#8212; Exception classes raised by urllib.request &mdash; Python v3.0c1 documentation</title>
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+          URL_ROOT:    '../',
+          VERSION:     '3.0c1',
+          COLLAPSE_MODINDEX: false,
+          FILE_SUFFIX: '.html'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Search within Python v3.0c1 documentation"
+          href="../_static/opensearch.xml"/>
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="copyright" title="Copyright" href="../copyright.html" />
+    <link rel="top" title="Python v3.0c1 documentation" href="../index.html" />
+    <link rel="up" title="Internet Protocols and Support" href="internet.html" />
+    <link rel="next" title="urllib.robotparser &#8212; Parser for robots.txt" href="urllib.robotparser.html" />
+    <link rel="prev" title="urllib.parse &#8212; Parse URLs into components" href="urllib.parse.html" />
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../modindex.html" title="Global Module Index"
+             accesskey="M">modules</a> |</li>
+        <li class="right" >
+          <a href="urllib.robotparser.html" title="urllib.robotparser &#8212; Parser for robots.txt"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="urllib.parse.html" title="urllib.parse &#8212; Parse URLs into components"
+             accesskey="P">previous</a> |</li>
+<li><img src="../_static/py.png" alt="" style="vertical-align: middle; margin-top: -1px"/></li>
+
+        <li><a href="../contents.html">Python v3.0c1 documentation</a> &raquo;</li>
+
+          <li><a href="index.html" accesskey="U">The Python Standard Library</a> &raquo;</li>
+          <li><a href="internet.html" accesskey="U">Internet Protocols and Support</a> &raquo;</li>
+      </ul>
+    </div>
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  
+  <div class="section" id="module-urllib.error">
+<h1><tt class="xref docutils literal"><span class="pre">urllib.error</span></tt> &#8212; Exception classes raised by urllib.request<a class="headerlink" href="#module-urllib.error" title="Permalink to this headline">¶</a></h1>
+<p>The <tt class="xref docutils literal"><span class="pre">urllib.error</span></tt> module defines the exception classes for exceptions
+raised by <a title="Next generation URL opening library." class="reference external" href="urllib.request.html#module-urllib.request"><tt class="xref docutils literal"><span class="pre">urllib.request</span></tt></a>.  The base exception class is <a title="urllib.error.URLError" class="reference internal" href="#urllib.error.URLError"><tt class="xref docutils literal"><span class="pre">URLError</span></tt></a>,
+which inherits from <a title="exceptions.IOError" class="reference external" href="exceptions.html#exceptions.IOError"><tt class="xref docutils literal"><span class="pre">IOError</span></tt></a>.</p>
+<p>The following exceptions are raised by <tt class="xref docutils literal"><span class="pre">urllib.error</span></tt> as appropriate:</p>
+<dl class="exception">
+<dt id="urllib.error.URLError">
+<!--[urllib.error.URLError]-->exception <tt class="descclassname">urllib.error.</tt><tt class="descname">URLError</tt><a class="headerlink" href="#urllib.error.URLError" title="Permalink to this definition">¶</a></dt>
+<dd><p>The handlers raise this exception (or derived exceptions) when they run into
+a problem.  It is a subclass of <a title="exceptions.IOError" class="reference external" href="exceptions.html#exceptions.IOError"><tt class="xref docutils literal"><span class="pre">IOError</span></tt></a>.</p>
+<dl class="attribute">
+<dt id="urllib.error.URLError.reason">
+<!--[urllib.error.URLError.reason]--><tt class="descname">reason</tt><a class="headerlink" href="#urllib.error.URLError.reason" title="Permalink to this definition">¶</a></dt>
+<dd>The reason for this error.  It can be a message string or another
+exception instance (<a title="socket.error" class="reference external" href="socket.html#socket.error"><tt class="xref docutils literal"><span class="pre">socket.error</span></tt></a> for remote URLs, <a title="exceptions.OSError" class="reference external" href="exceptions.html#exceptions.OSError"><tt class="xref docutils literal"><span class="pre">OSError</span></tt></a>
+for local URLs).</dd></dl>
+
+</dd></dl>
+
+<dl class="exception">
+<dt id="urllib.error.HTTPError">
+<!--[urllib.error.HTTPError]-->exception <tt class="descclassname">urllib.error.</tt><tt class="descname">HTTPError</tt><a class="headerlink" href="#urllib.error.HTTPError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Though being an exception (a subclass of <a title="urllib.error.URLError" class="reference internal" href="#urllib.error.URLError"><tt class="xref docutils literal"><span class="pre">URLError</span></tt></a>), an
+<a title="urllib.error.HTTPError" class="reference internal" href="#urllib.error.HTTPError"><tt class="xref docutils literal"><span class="pre">HTTPError</span></tt></a> can also function as a non-exceptional file-like return
+value (the same thing that <tt class="xref docutils literal"><span class="pre">urlopen()</span></tt> returns).  This is useful when
+handling exotic HTTP errors, such as requests for authentication.</p>
+<dl class="attribute">
+<dt id="urllib.error.HTTPError.code">
+<!--[urllib.error.HTTPError.code]--><tt class="descname">code</tt><a class="headerlink" href="#urllib.error.HTTPError.code" title="Permalink to this definition">¶</a></dt>
+<dd>An HTTP status code as defined in <a class="reference external" href="http://www.faqs.org/rfcs/rfc2616.html">RFC 2616</a>.  This numeric value corresponds
+to a value found in the dictionary of codes as found in
+<a title="http.server.BaseHTTPRequestHandler.responses" class="reference external" href="http.server.html#http.server.BaseHTTPRequestHandler.responses"><tt class="xref docutils literal"><span class="pre">http.server.BaseHTTPRequestHandler.responses</span></tt></a>.</dd></dl>
+
+</dd></dl>
+
+<dl class="exception">
+<dt id="urllib.error.ContentTooShortError">
+<!--[urllib.error.ContentTooShortError]-->exception <tt class="descclassname">urllib.error.</tt><tt class="descname">ContentTooShortError</tt><big>(</big><em>msg</em><span class="optional">[</span>, <em>content</em><span class="optional">]</span><big>)</big><a class="headerlink" href="#urllib.error.ContentTooShortError" title="Permalink to this definition">¶</a></dt>
+<dd>This exception is raised when the <tt class="xref docutils literal"><span class="pre">urlretrieve()</span></tt> function detects that
+the amount of the downloaded data is less than the expected amount (given by
+the <em>Content-Length</em> header).  The <tt class="xref docutils literal"><span class="pre">content</span></tt> attribute stores the
+downloaded (and supposedly truncated) data.</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <h4>Previous topic</h4>
+            <p class="topless"><a href="urllib.parse.html" title="previous chapter"><tt class="docutils literal"><span class="pre">urllib.parse</span></tt> &#8212; Parse URLs into components</a></p>
+            <h4>Next topic</h4>
+            <p class="topless"><a href="urllib.robotparser.html" title="next chapter"><tt class="docutils literal docutils literal"><span class="pre">urllib.robotparser</span></tt> &#8212;  Parser for robots.txt</a></p>
+            <h3>This Page</h3>
+            <ul class="this-page-menu">
+              <li><a href="../_sources/library/urllib.error.txt">Show Source</a></li>
+            </ul>
+          <h3>Quick search</h3>
+            <form class="search" action="../search.html" method="get">
+              <input type="text" name="q" size="18" /> <input type="submit" value="Go" />
+              <input type="hidden" name="check_keywords" value="yes" />
+              <input type="hidden" name="area" value="default" />
+            </form>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../modindex.html" title="Global Module Index"
+             accesskey="M">modules</a> |</li>
+        <li class="right" >
+          <a href="urllib.robotparser.html" title="urllib.robotparser &#8212; Parser for robots.txt"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="urllib.parse.html" title="urllib.parse &#8212; Parse URLs into components"
+             accesskey="P">previous</a> |</li>
+<li><img src="../_static/py.png" alt="" style="vertical-align: middle; margin-top: -1px"/></li>
+
+        <li><a href="../contents.html">Python v3.0c1 documentation</a> &raquo;</li>
+
+          <li><a href="index.html" accesskey="U">The Python Standard Library</a> &raquo;</li>
+          <li><a href="internet.html" accesskey="U">Internet Protocols and Support</a> &raquo;</li>
+      </ul>
+    </div>
+    <div class="footer">
+      &copy; <a href="../copyright.html">Copyright</a> 1990-2008, Python Software Foundation.
+      Last updated on Oct 31, 2008.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.5.
+    </div>
+  </body>
+</html>

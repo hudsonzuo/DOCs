@@ -1,0 +1,116 @@
+\contentsline {section}{\numberline {A}关于\hspace {0.25em plus 0.125em minus 0.08em}\ignorespaces FAQ}{5}{section.1}
+\contentsline {question}{\numberline {1}\CTeX {}\hspace {0.25em plus 0.125em minus 0.08em}\ignorespaces 是干什么的？}{5}{question.1}
+\contentsline {question}{\numberline {2}\CTeX {}\hspace {0.25em plus 0.125em minus 0.08em}\ignorespaces 网站包括几个部分？}{5}{question.2}
+\contentsline {question}{\numberline {3}这个\hspace {0.25em plus 0.125em minus 0.08em}\ignorespaces FAQ\hspace {0.25em plus 0.125em minus 0.08em}\ignorespaces 的目的是什么？}{5}{question.3}
+\contentsline {question}{\numberline {4}我可以打印、传播、转载这份文档的内容吗？}{5}{question.4}
+\contentsline {section}{\numberline {B}基本概念}{5}{section.2}
+\contentsline {question}{\numberline {5}什么是\hspace {0.25em plus 0.125em minus 0.08em}\ignorespaces T\kern -.1667em\lower .5ex\hbox {E}\kern -.125emX\spacefactor 1000 {}？}{5}{question.5}
+\contentsline {question}{\numberline {6}\LaTeX {}\hspace {0.25em plus 0.125em minus 0.08em}\ignorespaces 是什么？}{6}{question.6}
+\contentsline {question}{\numberline {7}什么是\hspace {0.25em plus 0.125em minus 0.08em}\ignorespaces $\cal A$\kern -.1667em\lower .5ex\hbox {$\cal M$}\kern -.125em$\cal S$-T\kern -.1667em\lower .5ex\hbox {E}\kern -.125emX\spacefactor 1000 {}/{\OMS /cmsy/m/n/10 A}\kern -.1667em\lower .5ex\hbox {\OMS /cmsy/m/n/10 M}\kern -.125em{\OMS /cmsy/m/n/10 S}-\LaTeX {}？}{6}{question.7}
+\contentsline {question}{\numberline {8}T\kern -.1667em\lower .5ex\hbox {E}\kern -.125emX\spacefactor 1000 {}\hspace {0.25em plus 0.125em minus 0.08em}\ignorespaces 和\hspace {0.25em plus 0.125em minus 0.08em}\ignorespaces \LaTeX {}\hspace {0.25em plus 0.125em minus 0.08em}\ignorespaces 是什么关系？}{6}{question.8}
+\contentsline {question}{\numberline {9}\LaTeX {} 2.09\hspace {0.25em plus 0.125em minus 0.08em}\ignorespaces 和\hspace {0.25em plus 0.125em minus 0.08em}\ignorespaces \LaTeXe {}\hspace {0.25em plus 0.125em minus 0.08em}\ignorespaces 有什么区别？}{6}{question.9}
+\contentsline {question}{\numberline {10}\MiKTeX {}、\hspace {0.25em plus 0.125em minus 0.08em}\ignorespaces \fpTeX {}、\hspace {0.25em plus 0.125em minus 0.08em}\ignorespaces \teTeX {}、\hspace {0.25em plus 0.125em minus 0.08em}\ignorespaces \CTeX {}\hspace {0.25em plus 0.125em minus 0.08em}\ignorespaces 又是什么关系？}{7}{question.10}
+\contentsline {question}{\numberline {11}什么是\hspace {0.25em plus 0.125em minus 0.08em}\ignorespaces CTAN\hspace {0.25em plus 0.125em minus 0.08em}\ignorespaces ？}{7}{question.11}
+\contentsline {section}{\numberline {C}安装升级}{7}{section.3}
+\contentsline {question}{\numberline {12}哪里可以下载\hspace {0.25em plus 0.125em minus 0.08em}\ignorespaces \CTeX {}\hspace {0.25em plus 0.125em minus 0.08em}\ignorespaces 中文套装软件？}{7}{question.12}
+\contentsline {question}{\numberline {13}哪里可以下载\hspace {0.25em plus 0.125em minus 0.08em}\ignorespaces \MiKTeX {}\hspace {0.25em plus 0.125em minus 0.08em}\ignorespaces 的最新版本？}{8}{question.13}
+\contentsline {question}{\numberline {14}哪里能找到我想要的宏包？}{8}{question.14}
+\contentsline {question}{\numberline {15}如何升级现有的\hspace {0.25em plus 0.125em minus 0.08em}\ignorespaces \MiKTeX {}？}{8}{question.15}
+\contentsline {question}{\numberline {16}我下载了一些新的宏包，该如何安装到我的系统中去？}{8}{question.16}
+\contentsline {question}{\numberline {17}\CTeX {}\hspace {0.25em plus 0.125em minus 0.08em}\ignorespaces 中文套装软件的\hspace {0.25em plus 0.125em minus 0.08em}\ignorespaces Basic\hspace {0.25em plus 0.125em minus 0.08em}\ignorespaces 和\hspace {0.25em plus 0.125em minus 0.08em}\ignorespaces Full\hspace {0.25em plus 0.125em minus 0.08em}\ignorespaces 版本都有什么区别？}{9}{question.17}
+\contentsline {question}{\numberline {18}\CTeX {}-Fonts、\hspace {0.25em plus 0.125em minus 0.08em}\ignorespaces \CTeX {}-CS、\hspace {0.25em plus 0.125em minus 0.08em}\ignorespaces \CTeX {}-Ext\hspace {0.25em plus 0.125em minus 0.08em}\ignorespaces 都是干什么的？和\hspace {0.25em plus 0.125em minus 0.08em}\ignorespaces \CTeX {}\hspace {0.25em plus 0.125em minus 0.08em}\ignorespaces 中文套装有什么关系？}{9}{question.18}
+\contentsline {section}{\numberline {D}新手入门}{9}{section.4}
+\contentsline {question}{\numberline {19}我是新手，该如何开始？}{9}{question.19}
+\contentsline {question}{\numberline {20}能否举一个简单的英文排版例子？}{9}{question.20}
+\contentsline {question}{\numberline {21}用什么编辑工具来编辑\hspace {0.25em plus 0.125em minus 0.08em}\ignorespaces \LaTeX {}\hspace {0.25em plus 0.125em minus 0.08em}\ignorespaces 文件？}{10}{question.21}
+\contentsline {question}{\numberline {22}什么是导言区\hspace {0.25em plus 0.125em minus 0.08em}\ignorespaces (preamble)\hspace {0.25em plus 0.125em minus 0.08em}\ignorespaces ？}{10}{question.22}
+\contentsline {question}{\numberline {23}什么是文件名数据库？怎么刷新？}{10}{question.23}
+\contentsline {section}{\numberline {E}中文支持}{11}{section.5}
+\contentsline {question}{\numberline {24}比较一下\hspace {0.25em plus 0.125em minus 0.08em}\ignorespaces CJK\hspace {0.25em plus 0.125em minus 0.08em}\ignorespaces 与\hspace {0.25em plus 0.125em minus 0.08em}\ignorespaces CCT\hspace {0.25em plus 0.125em minus 0.08em}\ignorespaces 的优缺点？}{11}{question.24}
+\contentsline {question}{\numberline {25}能否举一个简单的\hspace {0.25em plus 0.125em minus 0.08em}\ignorespaces CCT\hspace {0.25em plus 0.125em minus 0.08em}\ignorespaces 中文排版例子？}{11}{question.25}
+\contentsline {question}{\numberline {26}能否举一个简单的\hspace {0.25em plus 0.125em minus 0.08em}\ignorespaces CJK\hspace {0.25em plus 0.125em minus 0.08em}\ignorespaces 中文排版例子？}{12}{question.26}
+\contentsline {question}{\numberline {27}在\hspace {0.25em plus 0.125em minus 0.08em}\ignorespaces CJK\hspace {0.25em plus 0.125em minus 0.08em}\ignorespaces 中如何使段首缩进两个中文字符宽度？}{12}{question.27}
+\contentsline {question}{\numberline {28}在\hspace {0.25em plus 0.125em minus 0.08em}\ignorespaces CJK\hspace {0.25em plus 0.125em minus 0.08em}\ignorespaces 中如何调整汉字的间距？}{12}{question.28}
+\contentsline {question}{\numberline {29}\texttt {CJK}\hspace {0.25em plus 0.125em minus 0.08em}\ignorespaces 和\hspace {0.25em plus 0.125em minus 0.08em}\ignorespaces \texttt {CJK*}\hspace {0.25em plus 0.125em minus 0.08em}\ignorespaces 有何不同？}{12}{question.29}
+\contentsline {question}{\numberline {30}中英文混排时为何无法正确分行？}{13}{question.30}
+\contentsline {question}{\numberline {31}什么是点阵字库和矢量字库？}{13}{question.31}
+\contentsline {question}{\numberline {32}在\hspace {0.25em plus 0.125em minus 0.08em}\ignorespaces \textsf {CJK}\hspace {0.25em plus 0.125em minus 0.08em}\ignorespaces 中都可以使用哪些矢量字库？}{14}{question.32}
+\contentsline {question}{\numberline {33}两种类型矢量字库会不会发生冲突？}{14}{question.33}
+\contentsline {question}{\numberline {34}如何生成支持中文拷贝粘贴的\hspace {0.25em plus 0.125em minus 0.08em}\ignorespaces PDF\hspace {0.25em plus 0.125em minus 0.08em}\ignorespaces 文件？}{14}{question.34}
+\contentsline {question}{\numberline {35}如何在\hspace {0.25em plus 0.125em minus 0.08em}\ignorespaces Plain T\kern -.1667em\lower .5ex\hbox {E}\kern -.125emX\spacefactor 1000 {}\hspace {0.25em plus 0.125em minus 0.08em}\ignorespaces 中使用中文？}{14}{question.35}
+\contentsline {section}{\numberline {F}文档排版}{14}{section.6}
+\contentsline {question}{\numberline {36}如何使首段段首也缩进？}{14}{question.36}
+\contentsline {question}{\numberline {37}如何设置双倍或者更大的行间距？}{14}{question.37}
+\contentsline {question}{\numberline {38}如何注释掉一大段内容，不做编译？}{15}{question.38}
+\contentsline {question}{\numberline {39}如何生成分栏的文档？}{15}{question.39}
+\contentsline {question}{\numberline {40}如何使得双栏文档保持底部对齐？}{15}{question.40}
+\contentsline {question}{\numberline {41}如何在双栏文档中使用通栏的摘要？}{16}{question.41}
+\contentsline {question}{\numberline {42}如何产生全部横排的文档？}{17}{question.42}
+\contentsline {question}{\numberline {43}如何使文档中的某一页横排？}{17}{question.43}
+\contentsline {question}{\numberline {44}如何使用\hspace {0.25em plus 0.125em minus 0.08em}\ignorespaces New Time Roman\hspace {0.25em plus 0.125em minus 0.08em}\ignorespaces 字体？}{17}{question.44}
+\contentsline {section}{\numberline {G}数学公式}{18}{section.7}
+\contentsline {subsection}{\numberline {G.1}编号}{18}{subsection.7.1}
+\contentsline {question}{\numberline {45}如何实现定理、定义、推论等的统一编号？}{18}{question.45}
+\contentsline {question}{\numberline {46}如何让公式编号中使用当前章节编号做前缀？}{18}{question.46}
+\contentsline {question}{\numberline {47}如何实现如\hspace {0.25em plus 0.125em minus 0.08em}\ignorespaces (1a) (1b)\hspace {0.25em plus 0.125em minus 0.08em}\ignorespaces 这种公式编号？}{18}{question.47}
+\contentsline {question}{\numberline {48}如何让一个公式编号表示为另一个公式编号的变化形式？}{19}{question.48}
+\contentsline {subsection}{\numberline {G.2}字体}{19}{subsection.7.2}
+\contentsline {question}{\numberline {49}实数域\hspace {0.25em plus 0.125em minus 0.08em}\ignorespaces $\mathbb {R}$\hspace {0.25em plus 0.125em minus 0.08em}\ignorespaces 或复数域\hspace {0.25em plus 0.125em minus 0.08em}\ignorespaces $\mathbb {C}$\hspace {0.25em plus 0.125em minus 0.08em}\ignorespaces 等的字体该用什么命令？}{19}{question.49}
+\contentsline {question}{\numberline {50}书中向量常用斜体加黑体表示，该用什么字体命令排版？}{20}{question.50}
+\contentsline {subsection}{\numberline {G.3}其它}{20}{subsection.7.3}
+\contentsline {question}{\numberline {51}如何使上下限出现在求和、积分符号的上下方而不是右边？}{20}{question.51}
+\contentsline {question}{\numberline {52}如何实现上下方能输入公式文字且可伸长的等号或者箭头符号？}{20}{question.52}
+\contentsline {section}{\numberline {H}图形表格}{21}{section.8}
+\contentsline {subsection}{\numberline {H.1}图形}{21}{subsection.8.1}
+\contentsline {question}{\numberline {53}\LaTeX {}\hspace {0.25em plus 0.125em minus 0.08em}\ignorespaces 如何使用图形？}{21}{question.53}
+\contentsline {question}{\numberline {54}\LaTeX {}\hspace {0.25em plus 0.125em minus 0.08em}\ignorespaces 支持哪些图形格式？}{22}{question.54}
+\contentsline {question}{\numberline {55}DVI\hspace {0.25em plus 0.125em minus 0.08em}\ignorespaces 里不能显示\hspace {0.25em plus 0.125em minus 0.08em}\ignorespaces EPS\hspace {0.25em plus 0.125em minus 0.08em}\ignorespaces 图片？}{23}{question.55}
+\contentsline {subsection}{\numberline {H.2}表格}{23}{subsection.8.2}
+\contentsline {question}{\numberline {56}表格中使用\hspace {0.25em plus 0.125em minus 0.08em}\ignorespaces p\hspace {0.25em plus 0.125em minus 0.08em}\ignorespaces 参数的列如何改变对齐方式？}{23}{question.56}
+\contentsline {question}{\numberline {57}如何生成固定宽度的表格？}{24}{question.57}
+\contentsline {subsection}{\numberline {H.3}浮动对象}{24}{subsection.8.3}
+\contentsline {question}{\numberline {58}浮动对象和上下文之间的距离太大了，怎么办？}{24}{question.58}
+\contentsline {question}{\numberline {59}分栏文档中如何使用单栏或者通栏浮动对象？}{25}{question.59}
+\contentsline {question}{\numberline {60}分栏文档中为何不能设定通栏浮动对象的位置？}{25}{question.60}
+\contentsline {section}{\numberline {I}参考文献}{26}{section.9}
+\contentsline {question}{\numberline {61}如何将文献引用作为上标出现？}{26}{question.61}
+\contentsline {question}{\numberline {62}如何排序并压缩连续的引用，产生如\hspace {0.25em plus 0.125em minus 0.08em}\ignorespaces [2,4--8]\hspace {0.25em plus 0.125em minus 0.08em}\ignorespaces 形式的引用？}{26}{question.62}
+\contentsline {question}{\numberline {63}如何定制自己的参考文献样式？}{26}{question.63}
+\contentsline {question}{\numberline {64}如何才能把参考文献条目放在正文中？}{26}{question.64}
+\contentsline {question}{\numberline {65}能否生成反向引用（从参考文献指向引用的正文）？}{27}{question.65}
+\contentsline {question}{\numberline {66}如何让每章或者每节都有单独的参考文献？}{27}{question.66}
+\contentsline {question}{\numberline {67}如何产生多个参考文献列表？}{27}{question.67}
+\contentsline {question}{\numberline {68}如何将多篇参考文献合并在一个条目中列出？}{28}{question.68}
+\contentsline {section}{\numberline {J}其它专题}{28}{section.10}
+\contentsline {subsection}{\numberline {J.1}脚注}{28}{subsection.10.1}
+\contentsline {question}{\numberline {69}如何在表格中使用脚注？}{28}{question.69}
+\contentsline {question}{\numberline {70}如何在章节标题中使用脚注？}{29}{question.70}
+\contentsline {question}{\numberline {71}如何在图表的标题中使用脚注？}{29}{question.71}
+\contentsline {question}{\numberline {72}如何重复使用相同内容的脚注？}{30}{question.72}
+\contentsline {subsection}{\numberline {J.2}目录}{31}{subsection.10.2}
+\contentsline {question}{\numberline {73}怎样象第几章一样，将参考文献也加到目录？}{31}{question.73}
+\contentsline {question}{\numberline {74}手工加入的目录项页码错误，生成的书签链接也不对，怎么回事？}{31}{question.74}
+\contentsline {subsection}{\numberline {J.3}特殊符号}{31}{subsection.10.3}
+\contentsline {question}{\numberline {75}如何输出\hspace {0.25em plus 0.125em minus 0.08em}\ignorespaces \textasciicircum \hspace {0.25em plus 0.125em minus 0.08em}\ignorespaces 和\hspace {0.25em plus 0.125em minus 0.08em}\ignorespaces \textasciitilde \hspace {0.25em plus 0.125em minus 0.08em}\ignorespaces 符号？}{31}{question.75}
+\contentsline {question}{\numberline {76}如何显示可见的空格符号\hspace {0.25em plus 0.125em minus 0.08em}\ignorespaces \textvisiblespace \hspace {0.25em plus 0.125em minus 0.08em}\ignorespaces ？}{32}{question.76}
+\contentsline {question}{\numberline {77}如何显示带圈的符号？}{32}{question.77}
+\contentsline {question}{\numberline {78}如何显示千分号\hspace {0.25em plus 0.125em minus 0.08em}\ignorespaces \textperthousand \hspace {0.25em plus 0.125em minus 0.08em}\ignorespaces ？}{32}{question.78}
+\contentsline {section}{\numberline {K}高级技术}{32}{section.11}
+\contentsline {question}{\numberline {79}\texttt {\texttt {\char 92\relax }makeatletter}\hspace {0.25em plus 0.125em minus 0.08em}\ignorespaces 和\hspace {0.25em plus 0.125em minus 0.08em}\ignorespaces \texttt {\texttt {\char 92\relax }makeatother}\hspace {0.25em plus 0.125em minus 0.08em}\ignorespaces 是干什么用的？}{32}{question.79}
+\contentsline {question}{\numberline {80}如何查询\hspace {0.25em plus 0.125em minus 0.08em}\ignorespaces \LaTeX {}\hspace {0.25em plus 0.125em minus 0.08em}\ignorespaces 命令和参数的缺省定义？}{33}{question.80}
+\contentsline {section}{\numberline {L}辅助工具}{33}{section.12}
+\contentsline {question}{\numberline {81}WinEdt\hspace {0.25em plus 0.125em minus 0.08em}\ignorespaces 和\hspace {0.25em plus 0.125em minus 0.08em}\ignorespaces GSview\hspace {0.25em plus 0.125em minus 0.08em}\ignorespaces 经常出现过期和注册提示，如何解决？}{33}{question.81}
+\contentsline {question}{\numberline {82}如何去掉\hspace {0.25em plus 0.125em minus 0.08em}\ignorespaces WinEdt\hspace {0.25em plus 0.125em minus 0.08em}\ignorespaces 的自动断行和自动续行？}{33}{question.82}
+\contentsline {question}{\numberline {83}如何让\hspace {0.25em plus 0.125em minus 0.08em}\ignorespaces WinEdt\hspace {0.25em plus 0.125em minus 0.08em}\ignorespaces 显示行号？}{33}{question.83}
+\contentsline {question}{\numberline {84}Yap\hspace {0.25em plus 0.125em minus 0.08em}\ignorespaces 里如何预览带有颜色的\hspace {0.25em plus 0.125em minus 0.08em}\ignorespaces EPS\hspace {0.25em plus 0.125em minus 0.08em}\ignorespaces 图片？}{33}{question.84}
+\contentsline {section}{\numberline {M}错误处理}{33}{section.13}
+\contentsline {question}{\numberline {85}Error: pdflatex (file simsun.ttf): can't find table `maxp'}{33}{question.85}
+\contentsline {section}{\numberline {N}帮助文档}{34}{section.14}
+\contentsline {question}{\numberline {86}能否推荐一些比较好的中文资料？}{34}{question.86}
+\contentsline {question}{\numberline {87}能否推荐一些比较好的英文资料？}{34}{question.87}
+\contentsline {question}{\numberline {88}有没有关于\hspace {0.25em plus 0.125em minus 0.08em}\ignorespaces \LaTeX {}\hspace {0.25em plus 0.125em minus 0.08em}\ignorespaces 宏包的详细说明？}{35}{question.88}
+\contentsline {question}{\numberline {89}我的问题没找到答案，或者有答案但是解决不了我的问题，怎么办？}{35}{question.89}
+\contentsline {section}{References}{35}{section*.2}
+\contentsline {section}{Index}{36}{section*.3}
+\contentsline {section}{Contributors}{40}{section*.4}
+\contentsline {section}{ChangeList of v0.4}{41}{section*.5}

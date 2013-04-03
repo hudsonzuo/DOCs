@@ -1,0 +1,151 @@
+  阅读xfce4-power-manager理解dbus
+
+
+1,
+DBusGConnection *bus;  dbus-glib.h, 
+
+DBusGProxy *proxy;
+
+
+bus = dbus_g_bus_get (DBUS_BUS_SESSION, &error); dbus-shared.h:  DBUS_BUS_SESSION,  
+
+
+xfpm_dbus_name_has_owner (dbus_g_connection_get_connection (bus), "org.freedesktop.PowerManagement")
+
+                             Convert to DBusConnection, bus name:对应application，dbus_bus_name_has_owner判断name是否允许可用。
+org.freedesktop.PowerManagement，org.xfce.PowerManager
+
+
+2,
+XfpmManager *manager;  manager = xfpm_manager_new (bus, client_id);
+
+struct XfpmManagerPrivate
+{
+    DBusGConnection *session_bus;
+
+    XfceSMClient    *client;
+
+    XfpmPower       *power;
+    XfpmButton      *button;
+    XfpmXfconf      *conf;
+    XfpmBacklight   *backlight;
+    XfpmConsoleKit  *console;
+    XfpmDBusMonitor *monitor;
+    XfpmDisks       *disks;
+    XfpmInhibit     *inhibit;
+    EggIdletime     *idle;
+#ifdef HAVE_DPMS
+    XfpmDpms        *dpms;
+#endif
+
+    GTimer      *timer;
+
+    gboolean         inhibited;
+    gboolean         session_managed;
+};
+
+
+dbus_g_object_type_install_info (G_TYPE_FROM_CLASS (klass),&dbus_glib_xfpm_manager_object_info);  XfpmManagerClass *klass, 
+const DBusGObjectInfo dbus_glib_xfpm_manager_object_info = {  1,                                                    
+  dbus_glib_xfpm_manager_methods,
+  4,
+"org.xfce.Power.Manager\0Quit\0S\0\0org.xfce.Power.Manager\0Restart\0S\0\0org.xfce.Power.Manager\0GetConfig\0S\0config\0O\0F\0N\0a{ss}\0\0org.xfce.Power.Manager\0GetInfo\0S\0name\0O\0F\0N\0s\0version\0O\0F\0N\0s\0vendor\0O\0F\0N\0s\0\0\0",
+"\0",
+"\0"
+};  
+static const DBusGMethodInfo dbus_glib_xfpm_manager_methods[] = {                      为远程DBUS文本消息映射到本地调用方法需要用到的反序列化函数。
+  { (GCallback) xfpm_manager_dbus_quit, dbus_glib_marshal_xfpm_manager_BOOLEAN__POINTER, 0 },
+  { (GCallback) xfpm_manager_dbus_restart, dbus_glib_marshal_xfpm_manager_BOOLEAN__POINTER, 31 },
+  { (GCallback) xfpm_manager_dbus_get_config, dbus_glib_marshal_xfpm_manager_BOOLEAN__POINTER_POINTER, 65 },
+  { (GCallback) xfpm_manager_dbus_get_info, dbus_glib_marshal_xfpm_manager_BOOLEAN__POINTER_POINTER_POINTER_POINTER, 120 },
+};
+
+
+
+
+dbus_g_connection_register_g_object (manager->priv->session_bus,       注册object                                         
+                    "/org/xfce/PowerManager",                                                                       
+                    G_OBJECT (manager));
+
+3,
+xfpm_manager_start (manager);
+
+xfpm_manager_reserve_names     为这个connection设置 bus name :（ "org.xfce.PowerManager" 和  "org.freedesktop.PowerManagement"）
+dbus_bus_request_name(connection,
+                  name,
+                  DBUS_NAME_FLAG_DO_NOT_QUEUE,
+                  &error);
+
+
+ manager->priv->power = xfpm_power_get ();
+    manager->priv->button = xfpm_button_new ();
+    manager->priv->conf = xfpm_xfconf_new ();
+    manager->priv->console = xfpm_console_kit_new ();
+    manager->priv->monitor = xfpm_dbus_monitor_new ();
+    manager->priv->disks = xfpm_disks_new ();
+    manager->priv->inhibit = xfpm_inhibit_new ();
+    manager->priv->idle = egg_idletime_new ();
+
+
+
+   g_signal_connect (manager->priv->idle, "alarm-expired",
+              G_CALLBACK (xfpm_manager_alarm_timeout_cb), manager);
+
+    g_signal_connect_swapped (manager->priv->conf, "notify::" ON_AC_INACTIVITY_TIMEOUT,
+                  G_CALLBACK (xfpm_manager_set_idle_alarm_on_ac), manager);
+
+    g_signal_connect_swapped (manager->priv->conf, "notify::" ON_BATTERY_INACTIVITY_TIMEOUT,
+                  G_CALLBACK (xfpm_manager_set_idle_alarm_on_battery), manager);
+
+    xfpm_manager_set_idle_alarm (manager);             
+    
+    g_signal_connect (manager->priv->inhibit, "has-inhibit-changed",                                                
+              G_CALLBACK (xfpm_manager_inhibit_changed_cb), manager); 
+    
+    g_signal_connect (manager->priv->monitor, "system-bus-connection-changed",                                      
+              G_CALLBACK (xfpm_manager_system_bus_connection_changed_cb), manager);
+    
+    manager->priv->backlight = xfpm_backlight_new ();                                                               
+    
+#ifdef HAVE_DPMS
+    manager->priv->dpms = xfpm_dpms_new ();
+#endif
+    
+    g_signal_connect (manager->priv->button, "button_pressed",
+              G_CALLBACK (xfpm_manager_button_pressed_cb), manager);
+    
+    g_signal_connect (manager->priv->power, "lid-changed",
+              G_CALLBACK (xfpm_manager_lid_changed_cb), manager);
+    
+    g_signal_connect (manager->priv->power, "on-battery-changed",
+              G_CALLBACK (xfpm_manager_on_battery_changed_cb), manager);
+    
+    g_signal_connect_swapped (manager->priv->power, "waking-up",
+                  G_CALLBACK (xfpm_manager_reset_sleep_timer), manager);
+    
+    g_signal_connect_swapped (manager->priv->power, "sleeping",                                                     
+                  G_CALLBACK (xfpm_manager_reset_sleep_timer), manager);
+
+    g_signal_connect_swapped (manager->priv->power, "ask-shutdown",
+                  G_CALLBACK (xfpm_manager_ask_shutdown), manager);
+
+    g_signal_connect_swapped (manager->priv->power, "shutdown",
+                                                                                                                          522,4         76%
+
+4， 界面,xfpm-power.c,定义了菜单
+
+
+
+
+
+
+
+
+
+
+
+
+A core concept of the D-BUS implementation is that "libdbus" is
+intended to be a low-level API, similar to Xlib. Most programmers are
+intended to use the bindings to GLib, Qt, Python, Mono, Java, or
+whatever. These bindings have varying levels of completeness.

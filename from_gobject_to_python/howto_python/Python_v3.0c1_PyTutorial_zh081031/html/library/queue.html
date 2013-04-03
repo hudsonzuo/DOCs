@@ -1,0 +1,265 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>queue &#8212; A synchronized queue class &mdash; Python v3.0c1 documentation</title>
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+          URL_ROOT:    '../',
+          VERSION:     '3.0c1',
+          COLLAPSE_MODINDEX: false,
+          FILE_SUFFIX: '.html'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Search within Python v3.0c1 documentation"
+          href="../_static/opensearch.xml"/>
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="copyright" title="Copyright" href="../copyright.html" />
+    <link rel="top" title="Python v3.0c1 documentation" href="../index.html" />
+    <link rel="up" title="Data Types" href="datatypes.html" />
+    <link rel="next" title="weakref &#8212; Weak references" href="weakref.html" />
+    <link rel="prev" title="sched &#8212; Event scheduler" href="sched.html" />
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../modindex.html" title="Global Module Index"
+             accesskey="M">modules</a> |</li>
+        <li class="right" >
+          <a href="weakref.html" title="weakref &#8212; Weak references"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="sched.html" title="sched &#8212; Event scheduler"
+             accesskey="P">previous</a> |</li>
+<li><img src="../_static/py.png" alt="" style="vertical-align: middle; margin-top: -1px"/></li>
+
+        <li><a href="../contents.html">Python v3.0c1 documentation</a> &raquo;</li>
+
+          <li><a href="index.html" accesskey="U">The Python Standard Library</a> &raquo;</li>
+          <li><a href="datatypes.html" accesskey="U">Data Types</a> &raquo;</li>
+      </ul>
+    </div>
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  
+  <div class="section" id="module-queue">
+<h1><tt class="xref docutils literal"><span class="pre">queue</span></tt> &#8212; A synchronized queue class<a class="headerlink" href="#module-queue" title="Permalink to this headline">¶</a></h1>
+<p>The <tt class="xref docutils literal"><span class="pre">queue</span></tt> module implements multi-producer, multi-consumer queues.
+It is especially useful in threaded programming when information must be
+exchanged safely between multiple threads.  The <a title="queue.Queue" class="reference internal" href="#queue.Queue"><tt class="xref docutils literal"><span class="pre">Queue</span></tt></a> class in this
+module implements all the required locking semantics.  It depends on the
+availability of thread support in Python; see the <a title="Higher-level threading interface." class="reference external" href="threading.html"><tt class="xref docutils literal"><span class="pre">threading</span></tt></a>
+module.</p>
+<p>Implements three types of queue whose only difference is the order that
+the entries are retrieved.  In a FIFO queue, the first tasks added are
+the first retrieved. In a LIFO queue, the most recently added entry is
+the first retrieved (operating like a stack).  With a priority queue,
+the entries are kept sorted (using the <a title="Heap queue algorithm (a.k.a. priority queue)." class="reference external" href="heapq.html"><tt class="xref docutils literal"><span class="pre">heapq</span></tt></a> module) and the
+lowest valued entry is retrieved first.</p>
+<p>The <tt class="xref docutils literal"><span class="pre">queue</span></tt> module defines the following classes and exceptions:</p>
+<dl class="class">
+<dt id="queue.Queue">
+<!--[queue.Queue]-->class <tt class="descclassname">queue.</tt><tt class="descname">Queue</tt><big>(</big><em>maxsize</em><big>)</big><a class="headerlink" href="#queue.Queue" title="Permalink to this definition">¶</a></dt>
+<dd>Constructor for a FIFO queue.  <em>maxsize</em> is an integer that sets the upperbound
+limit on the number of items that can be placed in the queue.  Insertion will
+block once this size has been reached, until queue items are consumed.  If
+<em>maxsize</em> is less than or equal to zero, the queue size is infinite.</dd></dl>
+
+<dl class="class">
+<dt id="queue.LifoQueue">
+<!--[queue.LifoQueue]-->class <tt class="descclassname">queue.</tt><tt class="descname">LifoQueue</tt><big>(</big><em>maxsize</em><big>)</big><a class="headerlink" href="#queue.LifoQueue" title="Permalink to this definition">¶</a></dt>
+<dd>Constructor for a LIFO queue.  <em>maxsize</em> is an integer that sets the upperbound
+limit on the number of items that can be placed in the queue.  Insertion will
+block once this size has been reached, until queue items are consumed.  If
+<em>maxsize</em> is less than or equal to zero, the queue size is infinite.</dd></dl>
+
+<dl class="class">
+<dt id="queue.PriorityQueue">
+<!--[queue.PriorityQueue]-->class <tt class="descclassname">queue.</tt><tt class="descname">PriorityQueue</tt><big>(</big><em>maxsize</em><big>)</big><a class="headerlink" href="#queue.PriorityQueue" title="Permalink to this definition">¶</a></dt>
+<dd><p>Constructor for a priority queue.  <em>maxsize</em> is an integer that sets the upperbound
+limit on the number of items that can be placed in the queue.  Insertion will
+block once this size has been reached, until queue items are consumed.  If
+<em>maxsize</em> is less than or equal to zero, the queue size is infinite.</p>
+<p>The lowest valued entries are retrieved first (the lowest valued entry is the
+one returned by <tt class="docutils literal"><span class="pre">sorted(list(entries))[0]</span></tt>).  A typical pattern for entries
+is a tuple in the form: <tt class="docutils literal"><span class="pre">(priority_number,</span> <span class="pre">data)</span></tt>.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="queue.Empty">
+<!--[queue.Empty]-->exception <tt class="descclassname">queue.</tt><tt class="descname">Empty</tt><a class="headerlink" href="#queue.Empty" title="Permalink to this definition">¶</a></dt>
+<dd>Exception raised when non-blocking <tt class="xref docutils literal"><span class="pre">get()</span></tt> (or <tt class="xref docutils literal"><span class="pre">get_nowait()</span></tt>) is called
+on a <a title="queue.Queue" class="reference internal" href="#queue.Queue"><tt class="xref docutils literal"><span class="pre">Queue</span></tt></a> object which is empty.</dd></dl>
+
+<dl class="exception">
+<dt id="queue.Full">
+<!--[queue.Full]-->exception <tt class="descclassname">queue.</tt><tt class="descname">Full</tt><a class="headerlink" href="#queue.Full" title="Permalink to this definition">¶</a></dt>
+<dd>Exception raised when non-blocking <tt class="xref docutils literal"><span class="pre">put()</span></tt> (or <tt class="xref docutils literal"><span class="pre">put_nowait()</span></tt>) is called
+on a <a title="queue.Queue" class="reference internal" href="#queue.Queue"><tt class="xref docutils literal"><span class="pre">Queue</span></tt></a> object which is full.</dd></dl>
+
+<div class="section" id="queue-objects">
+<span id="queueobjects"></span><h2>Queue Objects<a class="headerlink" href="#queue-objects" title="Permalink to this headline">¶</a></h2>
+<p>Queue objects (<a title="queue.Queue" class="reference internal" href="#queue.Queue"><tt class="xref docutils literal"><span class="pre">Queue</span></tt></a>, <a title="queue.LifoQueue" class="reference internal" href="#queue.LifoQueue"><tt class="xref docutils literal"><span class="pre">LifoQueue</span></tt></a>, or <a title="queue.PriorityQueue" class="reference internal" href="#queue.PriorityQueue"><tt class="xref docutils literal"><span class="pre">PriorityQueue</span></tt></a>)
+provide the public methods described below.</p>
+<dl class="method">
+<dt id="queue.Queue.qsize">
+<!--[queue.Queue.qsize]--><tt class="descclassname">Queue.</tt><tt class="descname">qsize</tt><big>(</big><big>)</big><a class="headerlink" href="#queue.Queue.qsize" title="Permalink to this definition">¶</a></dt>
+<dd>Return the approximate size of the queue.  Note, qsize() &gt; 0 doesn&#8217;t
+guarantee that a subsequent get() will not block, nor will qsize() &lt; maxsize
+guarantee that put() will not block.</dd></dl>
+
+<dl class="method">
+<dt id="queue.Queue.put">
+<!--[queue.Queue.put]--><tt class="descclassname">Queue.</tt><tt class="descname">put</tt><big>(</big><em>item</em><span class="optional">[</span>, <em>block</em><span class="optional">[</span>, <em>timeout</em><span class="optional">]</span><span class="optional">]</span><big>)</big><a class="headerlink" href="#queue.Queue.put" title="Permalink to this definition">¶</a></dt>
+<dd>Put <em>item</em> into the queue. If optional args <em>block</em> is true and <em>timeout</em> is
+None (the default), block if necessary until a free slot is available. If
+<em>timeout</em> is a positive number, it blocks at most <em>timeout</em> seconds and raises
+the <a title="queue.Full" class="reference internal" href="#queue.Full"><tt class="xref docutils literal"><span class="pre">Full</span></tt></a> exception if no free slot was available within that time.
+Otherwise (<em>block</em> is false), put an item on the queue if a free slot is
+immediately available, else raise the <a title="queue.Full" class="reference internal" href="#queue.Full"><tt class="xref docutils literal"><span class="pre">Full</span></tt></a> exception (<em>timeout</em> is
+ignored in that case).</dd></dl>
+
+<dl class="method">
+<dt id="queue.Queue.put_nowait">
+<!--[queue.Queue.put_nowait]--><tt class="descclassname">Queue.</tt><tt class="descname">put_nowait</tt><big>(</big><em>item</em><big>)</big><a class="headerlink" href="#queue.Queue.put_nowait" title="Permalink to this definition">¶</a></dt>
+<dd>Equivalent to <tt class="docutils literal"><span class="pre">put(item,</span> <span class="pre">False)</span></tt>.</dd></dl>
+
+<dl class="method">
+<dt id="queue.Queue.get">
+<!--[queue.Queue.get]--><tt class="descclassname">Queue.</tt><tt class="descname">get</tt><big>(</big><span class="optional">[</span><em>block</em><span class="optional">[</span>, <em>timeout</em><span class="optional">]</span><span class="optional">]</span><big>)</big><a class="headerlink" href="#queue.Queue.get" title="Permalink to this definition">¶</a></dt>
+<dd>Remove and return an item from the queue. If optional args <em>block</em> is true and
+<em>timeout</em> is None (the default), block if necessary until an item is available.
+If <em>timeout</em> is a positive number, it blocks at most <em>timeout</em> seconds and
+raises the <a title="queue.Empty" class="reference internal" href="#queue.Empty"><tt class="xref docutils literal"><span class="pre">Empty</span></tt></a> exception if no item was available within that time.
+Otherwise (<em>block</em> is false), return an item if one is immediately available,
+else raise the <a title="queue.Empty" class="reference internal" href="#queue.Empty"><tt class="xref docutils literal"><span class="pre">Empty</span></tt></a> exception (<em>timeout</em> is ignored in that case).</dd></dl>
+
+<dl class="method">
+<dt id="queue.Queue.get_nowait">
+<!--[queue.Queue.get_nowait]--><tt class="descclassname">Queue.</tt><tt class="descname">get_nowait</tt><big>(</big><big>)</big><a class="headerlink" href="#queue.Queue.get_nowait" title="Permalink to this definition">¶</a></dt>
+<dd>Equivalent to <tt class="docutils literal"><span class="pre">get(False)</span></tt>.</dd></dl>
+
+<p>Two methods are offered to support tracking whether enqueued tasks have been
+fully processed by daemon consumer threads.</p>
+<dl class="method">
+<dt id="queue.Queue.task_done">
+<!--[queue.Queue.task_done]--><tt class="descclassname">Queue.</tt><tt class="descname">task_done</tt><big>(</big><big>)</big><a class="headerlink" href="#queue.Queue.task_done" title="Permalink to this definition">¶</a></dt>
+<dd><p>Indicate that a formerly enqueued task is complete.  Used by queue consumer
+threads.  For each <a title="queue.Queue.get" class="reference internal" href="#queue.Queue.get"><tt class="xref docutils literal"><span class="pre">get()</span></tt></a> used to fetch a task, a subsequent call to
+<a title="queue.Queue.task_done" class="reference internal" href="#queue.Queue.task_done"><tt class="xref docutils literal"><span class="pre">task_done()</span></tt></a> tells the queue that the processing on the task is complete.</p>
+<p>If a <a title="queue.Queue.join" class="reference internal" href="#queue.Queue.join"><tt class="xref docutils literal"><span class="pre">join()</span></tt></a> is currently blocking, it will resume when all items have been
+processed (meaning that a <a title="queue.Queue.task_done" class="reference internal" href="#queue.Queue.task_done"><tt class="xref docutils literal"><span class="pre">task_done()</span></tt></a> call was received for every item
+that had been <a title="queue.Queue.put" class="reference internal" href="#queue.Queue.put"><tt class="xref docutils literal"><span class="pre">put()</span></tt></a> into the queue).</p>
+<p>Raises a <a title="exceptions.ValueError" class="reference external" href="exceptions.html#exceptions.ValueError"><tt class="xref docutils literal"><span class="pre">ValueError</span></tt></a> if called more times than there were items placed in
+the queue.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="queue.Queue.join">
+<!--[queue.Queue.join]--><tt class="descclassname">Queue.</tt><tt class="descname">join</tt><big>(</big><big>)</big><a class="headerlink" href="#queue.Queue.join" title="Permalink to this definition">¶</a></dt>
+<dd><p>Blocks until all items in the queue have been gotten and processed.</p>
+<p>The count of unfinished tasks goes up whenever an item is added to the queue.
+The count goes down whenever a consumer thread calls <a title="queue.Queue.task_done" class="reference internal" href="#queue.Queue.task_done"><tt class="xref docutils literal"><span class="pre">task_done()</span></tt></a> to
+indicate that the item was retrieved and all work on it is complete. When the
+count of unfinished tasks drops to zero, join() unblocks.</p>
+</dd></dl>
+
+<p>Example of how to wait for enqueued tasks to be completed:</p>
+<div class="highlight"><pre><span class="k">def</span> <span class="nf">worker</span><span class="p">():</span>
+    <span class="k">while</span> <span class="k">True</span><span class="p">:</span>
+        <span class="n">item</span> <span class="o">=</span> <span class="n">q</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+        <span class="n">do_work</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+        <span class="n">q</span><span class="o">.</span><span class="n">task_done</span><span class="p">()</span>
+
+<span class="n">q</span> <span class="o">=</span> <span class="n">Queue</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_worker_threads</span><span class="p">):</span>
+     <span class="n">t</span> <span class="o">=</span> <span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">worker</span><span class="p">)</span>
+     <span class="n">t</span><span class="o">.</span><span class="n">set_daemon</span><span class="p">(</span><span class="k">True</span><span class="p">)</span>
+     <span class="n">t</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">source</span><span class="p">():</span>
+    <span class="n">q</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+
+<span class="n">q</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>       <span class="c"># block until all tasks are done</span>
+</pre></div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <h3><a href="../contents.html">Table Of Contents</a></h3>
+            <ul>
+<li><a class="reference external" href=""><tt class="docutils literal"><span class="pre">queue</span></tt> &#8212; A synchronized queue class</a><ul>
+<li><a class="reference external" href="#queue-objects">Queue Objects</a></li>
+</ul>
+</li>
+</ul>
+
+            <h4>Previous topic</h4>
+            <p class="topless"><a href="sched.html" title="previous chapter"><tt class="docutils literal docutils literal"><span class="pre">sched</span></tt> &#8212; Event scheduler</a></p>
+            <h4>Next topic</h4>
+            <p class="topless"><a href="weakref.html" title="next chapter"><tt class="docutils literal"><span class="pre">weakref</span></tt> &#8212; Weak references</a></p>
+            <h3>This Page</h3>
+            <ul class="this-page-menu">
+              <li><a href="../_sources/library/queue.txt">Show Source</a></li>
+            </ul>
+          <h3>Quick search</h3>
+            <form class="search" action="../search.html" method="get">
+              <input type="text" name="q" size="18" /> <input type="submit" value="Go" />
+              <input type="hidden" name="check_keywords" value="yes" />
+              <input type="hidden" name="area" value="default" />
+            </form>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../modindex.html" title="Global Module Index"
+             accesskey="M">modules</a> |</li>
+        <li class="right" >
+          <a href="weakref.html" title="weakref &#8212; Weak references"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="sched.html" title="sched &#8212; Event scheduler"
+             accesskey="P">previous</a> |</li>
+<li><img src="../_static/py.png" alt="" style="vertical-align: middle; margin-top: -1px"/></li>
+
+        <li><a href="../contents.html">Python v3.0c1 documentation</a> &raquo;</li>
+
+          <li><a href="index.html" accesskey="U">The Python Standard Library</a> &raquo;</li>
+          <li><a href="datatypes.html" accesskey="U">Data Types</a> &raquo;</li>
+      </ul>
+    </div>
+    <div class="footer">
+      &copy; <a href="../copyright.html">Copyright</a> 1990-2008, Python Software Foundation.
+      Last updated on Oct 31, 2008.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.5.
+    </div>
+  </body>
+</html>

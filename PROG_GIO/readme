@@ -1,0 +1,3 @@
+-lgio-2.0 -lgobject-2.0 -lglib-2.0  
+pkg-config --libs gio-2.0
+pkg-config --cflags gio-2.0

@@ -1,0 +1,1278 @@
+This is XeTeX, Version 3.1415926-2.2-0.9997.4 (TeX Live 2010) (format=xelatex 2012.2.21)  24 MAY 2012 12:13
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**objective_numer.tex
+(./objective_numer.tex
+LaTeX2e <2009/09/24>
+Babel <v3.8l> and hyphenation patterns for english, dumylang, nohyphenation, pi
+nyin, bulgarian, russian, ukrainian, loaded.
+(/usr/share/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
+(/usr/share/texmf-dist/tex/latex/base/size10.clo
+File: size10.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
+)
+\c@part=\count80
+\c@section=\count81
+\c@subsection=\count82
+\c@subsubsection=\count83
+\c@paragraph=\count84
+\c@subparagraph=\count85
+\c@figure=\count86
+\c@table=\count87
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+)
+(/usr/share/texmf-dist/tex/xelatex/xunicode/xunicode.sty
+File: xunicode.sty 2010/05/18 v0.95 provides access to latin accents and many o
+ther characters in Unicode lower plane
+)
+(/usr/share/texmf-dist/tex/latex/fontspec/fontspec.sty
+Package: fontspec 2010/09/29 v2.1b Advanced font selection for XeLaTeX/LuaLaTeX
+
+
+(/usr/share/texmf-dist/tex/latex/expl3/expl3.sty
+(/usr/share/texmf-dist/tex/latex/expl3/l3names.sty
+Package: l3names 2010/09/26 v2048 L3 Experimental Naming Scheme for TeX Primiti
+ves
+)
+Package: expl3 2010/09/16 v2022 L3 Experimental code bundle wrapper
+
+(/usr/share/texmf-dist/tex/latex/etex-pkg/etex.sty
+Package: etex 1998/03/26 v2.0 eTeX basic definition package (PEB)
+\et@xins=\count88
+)
+(/usr/share/texmf-dist/tex/latex/expl3/l3basics.sty
+Package: l3basics 2010/09/20 v2037 L3 Experimental basic definitions
+)
+(/usr/share/texmf-dist/tex/latex/expl3/l3expan.sty
+Package: l3expan 2010/09/20 v2037 L3 Experimental Argument Expansion module
+)
+(/usr/share/texmf-dist/tex/latex/expl3/l3tl.sty
+Package: l3tl 2010/09/21 v2040 L3 Experimental Token Lists
+)
+(/usr/share/texmf-dist/tex/latex/expl3/l3intexpr.sty
+Package: l3intexpr 2010/09/22 v2045 L3 Integer Expressions
+)
+(/usr/share/texmf-dist/tex/latex/expl3/l3quark.sty
+Package: l3quark 2010/09/20 v2036 L3 Experimental Quark Commands
+)
+(/usr/share/texmf-dist/tex/latex/expl3/l3seq.sty
+Package: l3seq 2010/03/29 v1879 L3 Experimental sequences and stacks
+)
+(/usr/share/texmf-dist/tex/latex/expl3/l3toks.sty
+Package: l3toks 2010/09/20 v2037 L3 Experimental Token Registers
+\l_tmpb_toks=\toks14
+\l_tmpc_toks=\toks15
+\g_tmpa_toks=\toks16
+\g_tmpb_toks=\toks17
+\g_tmpc_toks=\toks18
+\c_empty_toks=\toks19
+\l_tl_replace_toks=\toks20
+)
+(/usr/share/texmf-dist/tex/latex/expl3/l3int.sty
+Package: l3int 2010/09/19 v2029 L3 Experimental Integer module
+\l_tmpa_int=\count89
+\l_tmpb_int=\count90
+\l_tmpc_int=\count91
+\g_tmpa_int=\count92
+\g_tmpb_int=\count93
+\c_max_int=\count94
+\g_tl_inline_level_int=\count95
+)
+(/usr/share/texmf-dist/tex/latex/expl3/l3prg.sty
+Package: l3prg 2010/09/22 v2043 L3 Experimental control structures
+\g_prg_inline_level_int=\count96
+)
+(/usr/share/texmf-dist/tex/latex/expl3/l3clist.sty
+Package: l3clist 2010/09/20 v2037 L3 Experimental comma separated lists
+\g_clist_map_inline_int=\count97
+)
+(/usr/share/texmf-dist/tex/latex/expl3/l3token.sty
+Package: l3token 2010/09/19 v2029 L3 Experimental token investigation and manip
+ulation
+)
+(/usr/share/texmf-dist/tex/latex/expl3/l3prop.sty
+Package: l3prop 2010/03/21 v1857 L3 Experimental Property Lists
+\g_prop_inline_level_int=\count98
+)
+(/usr/share/texmf-dist/tex/latex/expl3/l3msg.sty
+Package: l3msg 2010/03/23 v1866 L3 Experimental LaTeX Messages module
+\l_msg_redirect_classes_prop=\toks21
+\l_msg_redirect_names_prop=\toks22
+\l_msg_redirect_fatal_prop=\toks23
+\l_msg_redirect_error_prop=\toks24
+\l_msg_redirect_warning_prop=\toks25
+\l_msg_redirect_info_prop=\toks26
+\l_msg_redirect_log_prop=\toks27
+\l_msg_redirect_trace_prop=\toks28
+\l_msg_redirect_none_prop=\toks29
+)
+(/usr/share/texmf-dist/tex/latex/expl3/l3io.sty
+Package: l3io 2010/05/22 v1923 L3 Experimental i/o module
+\g_iow_streams_prop=\toks30
+\g_ior_streams_prop=\toks31
+\l_iow_stream_int=\count99
+)
+(/usr/share/texmf-dist/tex/latex/expl3/l3skip.sty
+Package: l3skip 2010/09/23 v2047 L3 Experimental skip registers
+\l_tmpa_skip=\skip43
+\l_tmpb_skip=\skip44
+\l_tmpc_skip=\skip45
+\g_tmpa_skip=\skip46
+\g_tmpb_skip=\skip47
+\l_tmpa_dim=\dimen103
+\l_tmpb_dim=\dimen104
+\l_tmpc_dim=\dimen105
+\l_tmpd_dim=\dimen106
+\g_tmpa_dim=\dimen107
+\g_tmpb_dim=\dimen108
+)
+(/usr/share/texmf-dist/tex/latex/expl3/l3box.sty
+Package: l3box 2010/09/26 v2048 L3 Experimental Box module
+\l_tmpb_box=\box26
+)
+(/usr/share/texmf-dist/tex/latex/expl3/l3keyval.sty
+Package: l3keyval 2010/04/11 v1890 L3 Experimental keyval processing
+\l_KV_level_int=\count100
+)
+(/usr/share/texmf-dist/tex/latex/expl3/l3keys.sty
+Package: l3keys 2010/05/24 v1931 L3 Experimental key-value support
+\l_keys_choice_int=\count101
+)
+(/usr/share/texmf-dist/tex/latex/expl3/l3precom.sty
+Package: l3precom 2010/02/09 v1793 L3 Experimental precompilation module
+\g_gen_sym_int=\count102
+\g_ggen_sym_int=\count103
+)
+(/usr/share/texmf-dist/tex/latex/expl3/l3xref.sty
+Package: l3xref 2010/02/09 v1786 L3 Experimental cross referencing
+\g_xref_all_curr_immediate_fields_prop=\toks32
+\g_xref_all_curr_deferred_fields_prop=\toks33
+)
+(/usr/share/texmf-dist/tex/latex/expl3/l3file.sty
+Package: l3file 2010/03/21 v1853 L3 Experimental file loading
+)
+(/usr/share/texmf-dist/tex/latex/expl3/l3fp.sty
+Package: l3fp 2010/09/19 v2029 L3 Experimental floating-point operations
+\c_forty_four=\count104
+\c_one_hundred=\count105
+\c_one_thousand=\count106
+\c_one_million=\count107
+\c_one_hundred_million=\count108
+\c_five_hundred_million=\count109
+\c_one_thousand_million=\count110
+\c_fp_pi_by_four_decimal_int=\count111
+\c_fp_pi_by_four_extended_int=\count112
+\c_fp_pi_decimal_int=\count113
+\c_fp_pi_extended_int=\count114
+\c_fp_two_pi_decimal_int=\count115
+\c_fp_two_pi_extended_int=\count116
+\l_fp_count_int=\count117
+\l_fp_div_offset_int=\count118
+\l_fp_input_a_sign_int=\count119
+\l_fp_input_a_integer_int=\count120
+\l_fp_input_a_decimal_int=\count121
+\l_fp_input_a_exponent_int=\count122
+\l_fp_input_b_sign_int=\count123
+\l_fp_input_b_integer_int=\count124
+\l_fp_input_b_decimal_int=\count125
+\l_fp_input_b_exponent_int=\count126
+\l_fp_input_a_extended_int=\count127
+\l_fp_input_b_extended_int=\count128
+\l_fp_mul_a_i_int=\count129
+\l_fp_mul_a_ii_int=\count130
+\l_fp_mul_a_iii_int=\count131
+\l_fp_mul_a_iv_int=\count132
+\l_fp_mul_a_v_int=\count133
+\l_fp_mul_a_vi_int=\count134
+\l_fp_mul_b_i_int=\count135
+\l_fp_mul_b_ii_int=\count136
+\l_fp_mul_b_iii_int=\count137
+\l_fp_mul_b_iv_int=\count138
+\l_fp_mul_b_v_int=\count139
+\l_fp_mul_b_vi_int=\count140
+\l_fp_mul_output_int=\count141
+\l_fp_output_sign_int=\count142
+\l_fp_output_integer_int=\count143
+\l_fp_output_decimal_int=\count144
+\l_fp_output_exponent_int=\count145
+\l_fp_output_extended_int=\count146
+\l_fp_round_position_int=\count147
+\l_fp_round_target_int=\count148
+\l_fp_split_sign_int=\count149
+\l_fp_tmp_int=\count150
+\l_fp_trig_octant_int=\count151
+\l_fp_trig_sign_int=\count152
+\l_fp_trig_decimal_int=\count153
+\l_fp_trig_extended_int=\count154
+\l_fp_tmp_dim=\dimen109
+\l_fp_tmp_skip=\skip48
+)
+(/usr/share/texmf-dist/tex/latex/expl3/l3luatex.sty
+Package: l3luatex 2010/07/18 v1985 L3 Experimental LuaTeX functions
+\g_cctab_allocate_int=\count155
+\g_cctab_stack_int=\count156
+)
+(/usr/share/texmf-dist/tex/latex/tools/calc.sty
+Package: calc 2007/08/22 v4.3 Infix arithmetic (KKT,FJ)
+\calc@Acount=\count157
+\calc@Bcount=\count158
+\calc@Adimen=\dimen110
+\calc@Bdimen=\dimen111
+\calc@Askip=\skip49
+\calc@Bskip=\skip50
+LaTeX Info: Redefining \setlength on input line 76.
+LaTeX Info: Redefining \addtolength on input line 77.
+\calc@Ccount=\count159
+\calc@Cskip=\skip51
+))
+(/usr/share/texmf-dist/tex/latex/xpackages/xbase/xparse.sty
+Package: xparse 2010/09/20 v2037 Generic document command parser
+\c_xparse_shorthands_prop=\toks34
+\l_xparse_m_args_int=\count160
+\l_xparse_mandatory_args_int=\count161
+\l_xparse_processor_int=\count162
+\l_xparse_total_args_int=\count163
+)
+(/usr/share/texmf-dist/tex/generic/kastrup/binhex.tex)
+\l_fontspec_script_int=\count164
+\l_fontspec_language_int=\count165
+\l_fontspec_strnum_int=\count166
+Variant \tl_gset:cV already defined; not changing it on line 79
+
+(/usr/share/texmf-dist/tex/latex/xkeyval/xkeyval.sty
+Package: xkeyval 2008/08/13 v2.6a package option processing (HA)
+
+(/usr/share/texmf-dist/tex/generic/xkeyval/xkeyval.tex
+\XKV@toks=\toks35
+\XKV@tempa@toks=\toks36
+\XKV@depth=\count167
+File: xkeyval.tex 2008/08/13 v2.6a key=value parser (HA)
+
+(/usr/share/texmf-dist/tex/generic/xkeyval/keyval.tex)))
+(/usr/share/texmf-dist/tex/latex/fontspec/fontspec-patches.sty
+Package: fontspec-patches 2010/09/29 v2.1b Advanced font selection for XeLaTeX/
+LuaLaTeX
+
+(/usr/share/texmf-dist/tex/latex/base/fixltx2e.sty
+Package: fixltx2e 2006/09/13 v1.1m fixes to LaTeX
+LaTeX Info: Redefining \em on input line 420.
+)
+LaTeX Info: Redefining \em on input line 22.
+LaTeX Info: Redefining \emph on input line 29.
+LaTeX Info: Redefining \- on input line 32.
+)
+(/usr/share/texmf-dist/tex/latex/base/fontenc.sty
+Package: fontenc 2005/09/27 v1.99g Standard LaTeX package
+
+(/usr/share/texmf-dist/tex/latex/euenc/eu1enc.def
+File: eu1enc.def 2010/05/27 v0.1h Experimental Unicode font encodings
+)
+LaTeX Font Info:    Try loading font information for EU1+lmr on input line 100.
+
+
+(/usr/share/texmf-dist/tex/latex/euenc/eu1lmr.fd
+File: eu1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
+))
+ LaTeX Info: Defining document command \fontspec
+(LaTeX)  with arg. spec. 'O{}m' on line 315.
+
+ LaTeX Info: Defining document command \setmainfont
+(LaTeX)  with arg. spec. 'O{}m' on line 319.
+
+ LaTeX Info: Defining document command \setsansfont
+(LaTeX)  with arg. spec. 'O{}m' on line 323.
+
+ LaTeX Info: Defining document command \setmonofont
+(LaTeX)  with arg. spec. 'O{}m' on line 327.
+
+ LaTeX Info: Defining document command \setmathrm
+(LaTeX)  with arg. spec. 'O{}m' on line 331.
+
+ LaTeX Info: Defining document command \setboldmathrm
+(LaTeX)  with arg. spec. 'O{}m' on line 334.
+
+ LaTeX Info: Defining document command \setmathsf
+(LaTeX)  with arg. spec. 'O{}m' on line 337.
+
+ LaTeX Info: Defining document command \setmathtt
+(LaTeX)  with arg. spec. 'O{}m' on line 340.
+
+ LaTeX Info: Defining document command \newfontfamily
+(LaTeX)  with arg. spec. 'mO{}m' on line 356.
+
+ LaTeX Info: Defining document command \newfontface
+(LaTeX)  with arg. spec. 'mO{}m' on line 359.
+
+ LaTeX Info: Defining document command \defaultfontfeatures
+(LaTeX)  with arg. spec. 'm' on line 362.
+
+ LaTeX Info: Defining document command \addfontfeatures
+(LaTeX)  with arg. spec. 'm' on line 379.
+
+ LaTeX Info: Defining document command \newfontfeature
+(LaTeX)  with arg. spec. 'mm' on line 386.
+
+ LaTeX Info: Defining document command \newAATfeature
+(LaTeX)  with arg. spec. 'mmmm' on line 395.
+
+ LaTeX Info: Defining document command \newICUfeature
+(LaTeX)  with arg. spec. 'mmm' on line 404.
+
+ LaTeX Info: Defining document command \aliasfontfeature
+(LaTeX)  with arg. spec. 'mm' on line 406.
+
+ LaTeX Info: Defining document command \aliasfontfeatureoption
+(LaTeX)  with arg. spec. 'mmm' on line 409.
+
+ LaTeX Info: Defining document command \newfontscript
+(LaTeX)  with arg. spec. 'mm' on line 414.
+
+ LaTeX Info: Defining document command \newfontlanguage
+(LaTeX)  with arg. spec. 'mm' on line 432.
+
+ LaTeX Info: Defining document command \DeclareFontsExtensions
+(LaTeX)  with arg. spec. 'm' on line 449.
+
+\c@fontspec_tmp_int=\count168
+LaTeX Info: Redefining \itshape on input line 2016.
+LaTeX Info: Redefining \slshape on input line 2020.
+LaTeX Info: Redefining \scshape on input line 2024.
+LaTeX Info: Redefining \upshape on input line 2028.
+
+(/usr/share/texmf-dist/tex/latex/fontspec/fontspec.cfg))
+(/usr/share/texmf-dist/tex/latex/xltxtra/xltxtra.sty
+Package: xltxtra 2010/09/20 v0.5e Improvements for the "XeLaTeX" format
+
+(/usr/share/texmf-dist/tex/generic/oberdiek/ifluatex.sty
+Package: ifluatex 2010/03/01 v1.3 Provides the ifluatex switch (HO)
+Package ifluatex Info: LuaTeX not detected.
+)
+(/usr/share/texmf-dist/tex/generic/ifxetex/ifxetex.sty
+Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
+)
+(/usr/share/texmf-dist/tex/latex/realscripts/realscripts.sty
+Package: realscripts 2010/09/30 v0.3 Access OpenType subscripts and superscript
+s
+ LaTeX Info: Defining document command \fakesubscript
+(LaTeX)  with arg. spec. 'm' on line 19.
+
+ LaTeX Info: Defining document command \fakesuperscript
+(LaTeX)  with arg. spec. 'm' on line 22.
+
+ LaTeX Info: Redefining document command \textsubscript
+(LaTeX)  with arg. spec. 's' on line 25.
+
+ LaTeX Info: Redefining document command \textsuperscript
+(LaTeX)  with arg. spec. 's' on line 28.
+
+ LaTeX Info: Defining document command \realsubscript
+(LaTeX)  with arg. spec. 'm' on line 45.
+
+ LaTeX Info: Defining document command \realsuperscript
+(LaTeX)  with arg. spec. 'm' on line 60.
+
+ LaTeX Info: Defining document command \textsubsuperscript
+(LaTeX)  with arg. spec. 'sO{l}mm' on line 137.
+
+ LaTeX Info: Defining document command \textsupersubscript
+(LaTeX)  with arg. spec. 'sO{l}mm' on line 140.
+
+\subsupersep=\dimen112
+)
+(/usr/share/texmf-dist/tex/latex/metalogo/metalogo.sty
+Package: metalogo 2010/05/29 v0.12 Extended TeX logo macros
+
+(/usr/share/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
+
+(/usr/share/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
+
+(/usr/share/texmf-dist/tex/latex/graphics/trig.sty
+Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
+)
+(/usr/share/texmf-dist/tex/latex/latexconfig/graphics.cfg
+File: graphics.cfg 2010/04/23 v1.9 graphics configuration of TeX Live
+)
+Package graphics Info: Driver file: xetex.def on input line 91.
+
+(/usr/share/texmf-dist/tex/xelatex/xetex-def/xetex.def
+File: xetex.def 2009/11/22 v0.94 LaTeX color/graphics driver for XeTeX (RRM/JK)
+
+))
+\Gin@req@height=\dimen113
+\Gin@req@width=\dimen114
+)
+\xl@everylogo=\toks37
+\xl@@everylogo=\toks38
+LaTeX Info: Redefining \TeX on input line 193.
+LaTeX Info: Redefining \LaTeX on input line 202.
+LaTeX Info: Redefining \LaTeXe on input line 219.
+)
+\xxt@tempbox=\box27
+)
+(/usr/share/texmf-dist/tex/latex/tools/indentfirst.sty
+Package: indentfirst 1995/11/23 v1.03 Indent first paragraph (DPC)
+)
+(/usr/share/texmf-dist/tex/latex/amsfonts/amsfonts.sty
+Package: amsfonts 2009/06/22 v3.00 Basic AMSFonts support
+\@emptytoks=\toks39
+\symAMSa=\mathgroup4
+\symAMSb=\mathgroup5
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 96.
+)
+(/usr/share/texmf-dist/tex/latex/amsmath/amsmath.sty
+Package: amsmath 2000/07/18 v2.13 AMS math features
+\@mathmargin=\skip52
+
+For additional information on amsmath, use the `?' option.
+(/usr/share/texmf-dist/tex/latex/amsmath/amstext.sty
+Package: amstext 2000/06/29 v2.01
+
+(/usr/share/texmf-dist/tex/latex/amsmath/amsgen.sty
+File: amsgen.sty 1999/11/30 v2.0
+\@emptytoks=\toks40
+\ex@=\dimen115
+))
+(/usr/share/texmf-dist/tex/latex/amsmath/amsbsy.sty
+Package: amsbsy 1999/11/29 v1.2d
+\pmbraise@=\dimen116
+)
+(/usr/share/texmf-dist/tex/latex/amsmath/amsopn.sty
+Package: amsopn 1999/12/14 v2.01 operator names
+)
+\inf@bad=\count169
+LaTeX Info: Redefining \frac on input line 211.
+\uproot@=\count170
+\leftroot@=\count171
+LaTeX Info: Redefining \overline on input line 307.
+\classnum@=\count172
+\DOTSCASE@=\count173
+LaTeX Info: Redefining \ldots on input line 379.
+LaTeX Info: Redefining \dots on input line 382.
+LaTeX Info: Redefining \cdots on input line 467.
+\Mathstrutbox@=\box28
+\strutbox@=\box29
+\big@size=\dimen117
+LaTeX Font Info:    Redeclaring font encoding OML on input line 567.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 568.
+\macc@depth=\count174
+\c@MaxMatrixCols=\count175
+\dotsspace@=\muskip10
+\c@parentequation=\count176
+\dspbrk@lvl=\count177
+\tag@help=\toks41
+\row@=\count178
+\column@=\count179
+\maxfields@=\count180
+\andhelp@=\toks42
+\eqnshift@=\dimen118
+\alignsep@=\dimen119
+\tagshift@=\dimen120
+\tagwidth@=\dimen121
+\totwidth@=\dimen122
+\lineht@=\dimen123
+\@envbody=\toks43
+\multlinegap=\skip53
+\multlinetaggap=\skip54
+\mathdisplay@stack=\toks44
+LaTeX Info: Redefining \[ on input line 2666.
+LaTeX Info: Redefining \] on input line 2667.
+)
+(/usr/share/texmf-dist/tex/latex/abstract/abstract.sty
+Package: abstract 2009/06/08 v1.2a configurable abstracts
+\abstitleskip=\skip55
+\absleftindent=\skip56
+\absrightindent=\skip57
+\absparindent=\skip58
+\absparsep=\skip59
+)
+(/usr/share/texmf-dist/tex/xelatex/xecjk/xeCJK.sty
+Package: xeCJK 2010/05/31 2.3.15 package for typesetting CJK scripts with XeLaT
+eX
+\xeCJK@cnta=\count181
+\xeCJK@cntb=\count182
+\xeCJK@cntc=\count183
+\xeCJK@cntd=\count184
+\xeCJK@cnte=\count185
+\xeCJK@dima=\dimen124
+LaTeX Info: Redefining \normalfont on input line 779.
+LaTeX Info: Redefining \rmfamily on input line 788.
+LaTeX Info: Redefining \sffamily on input line 792.
+LaTeX Info: Redefining \ttfamily on input line 796.
+\xeCJK@featureadded=\count186
+)
+(/usr/share/texmf-dist/tex/latex/tools/bm.sty
+Package: bm 2004/02/26 v1.1c Bold Symbol Support (DPC/FMi)
+\symboldoperators=\mathgroup6
+\symboldletters=\mathgroup7
+\symboldsymbols=\mathgroup8
+LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 138.
+LaTeX Info: Redefining \bm on input line 204.
+)
+(/usr/share/texmf-dist/tex/latex/natbib/natbib.sty
+Package: natbib 2009/11/07 8.31a (PWD, AO)
+\bibhang=\skip60
+\bibsep=\skip61
+LaTeX Info: Redefining \cite on input line 694.
+\c@NAT@ctr=\count187
+)
+ fontspec Info: Font AR PL SungtiL GB does not contain any OpenType `Script' in
+formation.
+
+\g_fontspec_family_AR PL SungtiL GB_int=\count188
+ fontspec Info: Defining font family for 'AR PL SungtiL GB' with options [Mappi
+ng=tex-text,BoldFont=文泉驿正黑].
+
+ fontspec Info: Defining shape 'normal' with NFSS specification:
+(fontspec)  <->"AR PL SungtiL GB/ICU:mapping=tex-text;"
+
+ fontspec Info: Defining shape 'bold' with NFSS specification:
+(fontspec)  <->"文泉驿正黑/ICU:mapping=tex-text;"
+
+ fontspec Info: Could not resolve font AR PL SungtiL GB/I (it probably doesn't 
+exist).
+
+ fontspec Info: Could not resolve font 文泉驿正黑/I (it probably doesn't e
+xist).
+
+\c@defination=\count189
+\c@theorem=\count190
+ (./objective_numer.aux)
+\openout1 = `objective_numer.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 48.
+LaTeX Font Info:    ... okay on input line 48.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 48.
+LaTeX Font Info:    ... okay on input line 48.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 48.
+LaTeX Font Info:    ... okay on input line 48.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 48.
+LaTeX Font Info:    ... okay on input line 48.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 48.
+LaTeX Font Info:    ... okay on input line 48.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 48.
+LaTeX Font Info:    ... okay on input line 48.
+LaTeX Font Info:    Checking defaults for EU1/lmr/m/n on input line 48.
+LaTeX Font Info:    ... okay on input line 48.
+ fontspec Info: Adjusting the maths setup (use [no-math] to avoid this).
+
+\symlegacymaths=\mathgroup9
+LaTeX Font Info:    Overwriting symbol font `legacymaths' in version `bold'
+(Font)                  OT1/cmr/m/n --> OT1/cmr/bx/n on input line 48.
+LaTeX Font Info:    Redeclaring math accent \acute on input line 48.
+LaTeX Font Info:    Redeclaring math accent \grave on input line 48.
+LaTeX Font Info:    Redeclaring math accent \ddot on input line 48.
+LaTeX Font Info:    Redeclaring math accent \tilde on input line 48.
+LaTeX Font Info:    Redeclaring math accent \bar on input line 48.
+LaTeX Font Info:    Redeclaring math accent \breve on input line 48.
+LaTeX Font Info:    Redeclaring math accent \check on input line 48.
+LaTeX Font Info:    Redeclaring math accent \hat on input line 48.
+LaTeX Font Info:    Redeclaring math accent \dot on input line 48.
+LaTeX Font Info:    Redeclaring math accent \mathring on input line 48.
+LaTeX Font Info:    Redeclaring math symbol \Gamma on input line 48.
+LaTeX Font Info:    Redeclaring math symbol \Delta on input line 48.
+LaTeX Font Info:    Redeclaring math symbol \Theta on input line 48.
+LaTeX Font Info:    Redeclaring math symbol \Lambda on input line 48.
+LaTeX Font Info:    Redeclaring math symbol \Xi on input line 48.
+LaTeX Font Info:    Redeclaring math symbol \Pi on input line 48.
+LaTeX Font Info:    Redeclaring math symbol \Sigma on input line 48.
+LaTeX Font Info:    Redeclaring math symbol \Upsilon on input line 48.
+LaTeX Font Info:    Redeclaring math symbol \Phi on input line 48.
+LaTeX Font Info:    Redeclaring math symbol \Psi on input line 48.
+LaTeX Font Info:    Redeclaring math symbol \Omega on input line 48.
+LaTeX Font Info:    Redeclaring math symbol \mathdollar on input line 48.
+LaTeX Font Info:    Redeclaring symbol font `operators' on input line 48.
+LaTeX Font Info:    Encoding `OT1' has changed to `EU1' for symbol font
+(Font)              `operators' in the math version `normal' on input line 48.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
+(Font)                  OT1/cmr/m/n --> EU1/ARPLSungtiLGB(0)/m/n on input line 
+48.
+LaTeX Font Info:    Encoding `OT1' has changed to `EU1' for symbol font
+(Font)              `operators' in the math version `bold' on input line 48.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
+(Font)                  OT1/cmr/bx/n --> EU1/ARPLSungtiLGB(0)/m/n on input line
+ 48.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
+(Font)                  EU1/ARPLSungtiLGB(0)/m/n --> EU1/ARPLSungtiLGB(0)/m/n o
+n input line 48.
+LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `normal'
+(Font)                  EU1/ARPLSungtiLGB(0)/m/n --> EU1/ARPLSungtiLGB(0)/m/n o
+n input line 48.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
+(Font)                  OT1/cmr/m/it --> EU1/ARPLSungtiLGB(0)/m/it on input lin
+e 48.
+LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
+(Font)                  OT1/cmr/bx/n --> EU1/ARPLSungtiLGB(0)/bx/n on input lin
+e 48.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
+(Font)                  OT1/cmss/m/n --> EU1/lmss/m/n on input line 48.
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
+(Font)                  OT1/cmtt/m/n --> EU1/lmtt/m/n on input line 48.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
+(Font)                  EU1/ARPLSungtiLGB(0)/m/n --> EU1/ARPLSungtiLGB(0)/bx/n 
+on input line 48.
+LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `bold'
+(Font)                  EU1/ARPLSungtiLGB(0)/m/n --> EU1/ARPLSungtiLGB(0)/bx/n 
+on input line 48.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
+(Font)                  OT1/cmr/bx/it --> EU1/ARPLSungtiLGB(0)/bx/it on input l
+ine 48.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
+(Font)                  OT1/cmss/bx/n --> EU1/lmss/bx/n on input line 48.
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
+(Font)                  OT1/cmtt/m/n --> EU1/lmtt/bx/n on input line 48.
+LaTeX Font Info:    Try loading font information for U+msa on input line 49.
+
+(/usr/share/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2009/06/22 v3.00 AMS symbols A
+)
+LaTeX Font Info:    Try loading font information for U+msb on input line 49.
+
+(/usr/share/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2009/06/22 v3.00 AMS symbols B
+) [1
+
+]
+Overfull \hbox (41.8764pt too wide) in paragraph at lines 102--103
+[]\rm/bx/n/10 Keywords $[]$\rm/m/n/10 ,remainder-loop, stone-number,sieve metho
+d,factorization. 
+ []
+
+[2]
+
+LaTeX Font Warning: Font shape `EU1/ARPLSungtiLGB(0)/m/it' undefined
+(Font)              using `EU1/ARPLSungtiLGB(0)/m/n' instead on input line 123.
+
+
+
+LaTeX Warning: Command \textcircled invalid in math mode on input line 130.
+
+LaTeX Font Info:    Try loading font information for OMS+ARPLSungtiLGB(0) on in
+put line 130.
+LaTeX Font Info:    No file OMSARPLSungtiLGB(0).fd. on input line 130.
+
+LaTeX Font Warning: Font shape `OMS/ARPLSungtiLGB(0)/m/it' undefined
+(Font)              using `OMS/cmsy/m/n' instead on input line 130.
+
+
+LaTeX Warning: Command \textcircled invalid in math mode on input line 130.
+
+
+LaTeX Font Warning: Font shape `OMS/ARPLSungtiLGB(0)/m/n' undefined
+(Font)              using `OMS/cmsy/m/n' instead on input line 130.
+
+[3]
+
+LaTeX Warning: Command \textcircled invalid in math mode on input line 170.
+
+
+LaTeX Warning: Command \textcircled invalid in math mode on input line 170.
+
+
+LaTeX Warning: Command \textcircled invalid in math mode on input line 170.
+
+
+LaTeX Warning: Command \textcircled invalid in math mode on input line 170.
+
+
+LaTeX Warning: Command \textcircled invalid in math mode on input line 174.
+
+
+LaTeX Warning: Command \textcircled invalid in math mode on input line 174.
+
+
+LaTeX Warning: Command \textcircled invalid in math mode on input line 177.
+
+
+LaTeX Warning: Command \textcircled invalid in math mode on input line 177.
+
+
+LaTeX Warning: Command \textcircled invalid in math mode on input line 178.
+
+
+LaTeX Warning: Command \textcircled invalid in math mode on input line 178.
+
+
+LaTeX Warning: Command \textcircled invalid in math mode on input line 180.
+
+
+LaTeX Warning: Command \textcircled invalid in math mode on input line 180.
+
+[4] [5]
+
+Package xeCJK Warning: Unknown CJK family `tt' is ignored.
+Use \setCJKfamilyfont to define a CJK family. on input line 219.
+
+LaTeX Font Info:    Try loading font information for EU1+lmtt on input line 219
+.
+(/usr/share/texmf-dist/tex/latex/euenc/eu1lmtt.fd
+File: eu1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
+Underfull \hbox (badness 10000) in paragraph at lines 221--221
+[]\EU1/lmtt/m/n/10 7,11,13,17,19,23,29,31,37,41,43,47,53,59,61,67,71,73,79,83,8
+9,
+ []
+
+
+Underfull \hbox (badness 4024) in paragraph at lines 221--221
+\EU1/lmtt/m/n/10 91* ,97,101,103,107,109,113,127,131,137,139,149,151,157,163,16
+7,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 221--221
+\EU1/lmtt/m/n/10 173,179,181,191,193,197,199,211,223,227,229,233,239,241,251,25
+7,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 221--221
+\EU1/lmtt/m/n/10 259* ,263,269,271,277,281,283,293,307,311,313,317,331,337,347,
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 221--221
+\EU1/lmtt/m/n/10 349,353,359,367,373,379,383,389,397,401,409,419,421,431,433,43
+9,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 221--221
+\EU1/lmtt/m/n/10 443,449,451* ,457,461,463,467,479,481* ,487,491,499,503,509,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 221--221
+\EU1/lmtt/m/n/10 521,523,541,547,557,563,569,571,577,587,593,599,601,607,613,61
+7,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 221--221
+\EU1/lmtt/m/n/10 619,631,641,643,647,653,659,661,673,677,683,691,701,703* ,709,
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 221--221
+\EU1/lmtt/m/n/10 719,727,733,739,743,751,757,761,769,773,787,797,809,811,821,82
+3,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 221--221
+\EU1/lmtt/m/n/10 827,829,839,853,857,859,863,877,881,883,887,907,911,919,929,93
+7,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 221--221
+\EU1/lmtt/m/n/10 941,947,953,967,971,977,983,991,997,1009,1013,1019,1021,1031,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 221--221
+\EU1/lmtt/m/n/10 1033,1039,1049,1051,1061,1063,1069,1087,1091,1093,1097,1103,11
+09,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 221--221
+\EU1/lmtt/m/n/10 1117,1123,1129,1151,1153,1163,1171,1181,1187,1193,1201,1213,12
+17,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 221--221
+\EU1/lmtt/m/n/10 1223,1229,1231,1237,1249,1259,1277,1279,1283,1289,1291,1297,13
+01,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 221--221
+\EU1/lmtt/m/n/10 1303,1307,1319,1321,1327,1361,1367,1373,1381,1399,1409,1423,14
+27,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 221--221
+\EU1/lmtt/m/n/10 1429,1433,1439,1447,1451,1453,1459,1471,1481,1483,1487,1489,14
+93,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 221--221
+\EU1/lmtt/m/n/10 1499,1511,1523,1531,1543,1549,1553,1559,1567,1571,1579,1583,15
+97,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 221--221
+\EU1/lmtt/m/n/10 1601,1607,1609,1613,1619,1621,1627,1637,1657,1663,1667,1669,16
+93,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 221--221
+\EU1/lmtt/m/n/10 1697,1699,1709,1721,1723,1729* ,1733,1741,1747,1753,1759,1777,
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 221--221
+\EU1/lmtt/m/n/10 1783,1787,1789,1801,1811,1823,1831,1847,1861,1867,1871,1873,18
+77,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 221--221
+\EU1/lmtt/m/n/10 1879,1889,1901,1907,1913,1931,1933,1949,1951,1973,1979,1987,19
+93,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 221--221
+\EU1/lmtt/m/n/10 1997,1999,2003,2011,2017,2027,2029,2039,2053,2063,2069,2081,20
+83,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 221--221
+\EU1/lmtt/m/n/10 2087,2089,2099,2111,2113,2129,2131,2137,2141,2143,2153,2161,21
+79,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 221--221
+\EU1/lmtt/m/n/10 2203,2207,2213,2221,2237,2239,2243,2251,2267,2269,2273,2281,22
+87,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 221--221
+\EU1/lmtt/m/n/10 2293,2297,2309,2311,2333,2339,2341,2347,2351,2357,2371,2377,23
+81,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 221--221
+\EU1/lmtt/m/n/10 2383,2389,2393,2399,2411,2417,2423,2437,2441,2447,2459,2467,24
+73,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 221--221
+\EU1/lmtt/m/n/10 2477,2503,2521,2531,2539,2543,2549,2551,2557,2579,2591,2593,26
+09,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 221--221
+\EU1/lmtt/m/n/10 2617,2621,2633,2647,2657,2659,2663,2671,2677,2683,2687,2689,26
+93,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 221--221
+\EU1/lmtt/m/n/10 2699,2707,2711,2713,2719,2729,2731,2741,2749,2753,2767,2777,27
+89,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 221--221
+\EU1/lmtt/m/n/10 2791,2797,2801,2803,2819,2821* ,2833,2837,2843,2851,2857,2861,
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 221--221
+\EU1/lmtt/m/n/10 2879,2887,2897,2903,2909,2917,2927,2939,2953,2957,2963,2969,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 221--221
+\EU1/lmtt/m/n/10 2971,2981* ,2999,3001,3011,3019,3023,3037,3041,3049,3061,3067,
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 221--221
+\EU1/lmtt/m/n/10 3079,3083,3089,3109,3119,3121,3137,3163,3167,3169,3181,3187,31
+91,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 221--221
+\EU1/lmtt/m/n/10 3203,3209,3217,3221,3229,3251,3253,3257,3259,3271,3299,3301,33
+07,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 221--221
+\EU1/lmtt/m/n/10 3313,3319,3323,3329,3331,3343,3347,3359,3361,3367* ,3371,3373,
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 221--221
+\EU1/lmtt/m/n/10 3389,3391,3407,3413,3433,3449,3457,3461,3463,3467,3469,3491,34
+99,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 221--221
+\EU1/lmtt/m/n/10 3511,3517,3527,3529,3533,3539,3541,3547,3557,3559,3571,3581,35
+83,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 221--221
+\EU1/lmtt/m/n/10 3593,3607,3613,3617,3623,3631,3637,3643,3659,3671,3673,3677,36
+91,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 221--221
+\EU1/lmtt/m/n/10 3697,3701,3709,3719,3727,3733,3739,3761,3767,3769,3779,3793,37
+97,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 221--221
+\EU1/lmtt/m/n/10 3803,3821,3823,3833,3847,3851,3853,3863,3877,3881,3889,3907,39
+11,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 221--221
+\EU1/lmtt/m/n/10 3917,3919,3923,3929,3931,3943,3947,3967,3989,4001,4003,4007,40
+13,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 221--221
+\EU1/lmtt/m/n/10 4019,4021,4027,4049,4051,4057,4073,4079,4091,4093,4099,4111,41
+27,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 221--221
+\EU1/lmtt/m/n/10 4219,4229,4231,4241,4243,4253,4259,4261,4271,4273,4283,4289,42
+97,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 221--221
+\EU1/lmtt/m/n/10 4327,4337,4339,4349,4357,4363,4373,4391,4397,4409,4421,4423,44
+41,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 221--221
+\EU1/lmtt/m/n/10 4447,4451,4457,4463,4481,4483,4493,4507,4513,4517,4519,4523,45
+47,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 221--221
+\EU1/lmtt/m/n/10 4549,4561,4567,4583,4591,4597,4603,4621,4637,4639,4643,4649,46
+51,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 221--221
+\EU1/lmtt/m/n/10 4657,4663,4673,4679,4691,4703,4721,4723,4729,4733,4751,4759,47
+83,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 221--221
+\EU1/lmtt/m/n/10 4787,4789,4793,4799,4801,4813,4817,4831,4861,4871,4877,4889,49
+03,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 221--221
+\EU1/lmtt/m/n/10 4909,4919,4931,4933,4937,4943,4951,4957,4967,4969,4973,4987,49
+93,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 221--221
+\EU1/lmtt/m/n/10 4999,5003,5009,5011,5021,5023,5039,5051,5059,5077,5081,5087,50
+99,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 221--221
+\EU1/lmtt/m/n/10 5101,5107,5113,5119,5147,5153,5167,5171,5179,5189,5197,5209,52
+27,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 221--221
+\EU1/lmtt/m/n/10 5231,5233,5237,5261,5273,5279,5281,5297,5303,5309,5323,5333,53
+47,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 221--221
+\EU1/lmtt/m/n/10 5351,5381,5387,5393,5399,5407,5413,5417,5419,5431,5437,5441,54
+43,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 221--221
+\EU1/lmtt/m/n/10 5449,5461* ,5471,5477,5479,5483,5501,5503,5507,5519,5521,5527,
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 221--221
+\EU1/lmtt/m/n/10 5531,5557,5563,5569,5573,5581,5591,5623,5639,5641,5647,5651,56
+53,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 221--221
+\EU1/lmtt/m/n/10 5657,5659,5669,5683,5689,5693,5701,5711,5717,5737,5741,5743,57
+49,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 221--221
+\EU1/lmtt/m/n/10 5779,5783,5791,5801,5807,5813,5821,5827,5839,5843,5849,5851,58
+57,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 221--221
+\EU1/lmtt/m/n/10 5861,5867,5869,5879,5881,5897,5903,5923,5927,5939,5953,5981,59
+87,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 221--221
+\EU1/lmtt/m/n/10 6007,6011,6029,6037,6043,6047,6053,6067,6073,6079,6089,6091,61
+01,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 221--221
+\EU1/lmtt/m/n/10 6113,6121,6131,6133,6143,6151,6163,6173,6197,6199,6203,6211,62
+17,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 221--221
+\EU1/lmtt/m/n/10 6221,6229,6247,6257,6263,6269,6271,6277,6287,6299,6301,6311,63
+17,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 221--221
+\EU1/lmtt/m/n/10 6323,6329,6337,6343,6353,6359,6361,6367,6373,6379,6389,6397,64
+21,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 221--221
+\EU1/lmtt/m/n/10 6551,6553,6563,6569,6571,6577,6581,6599,6601* ,6607,6619,6637,
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 221--221
+\EU1/lmtt/m/n/10 6653,6659,6661,6673,6679,6689,6691,6701,6703,6709,6719,6733,67
+37,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 221--221
+\EU1/lmtt/m/n/10 6761,6763,6779,6781,6791,6793,6803,6823,6827,6829,6833,6841,68
+57,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 221--221
+\EU1/lmtt/m/n/10 6863,6869,6871,6883,6899,6907,6911,6917,6947,6949,6959,6961,69
+67,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 221--221
+\EU1/lmtt/m/n/10 6971,6977,6983,6991,6997,7001,7013,7019,7027,7039,7043,7057,70
+69,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 221--221
+\EU1/lmtt/m/n/10 7079,7103,7109,7121,7127,7129,7151,7159,7177,7187,7193,7207,72
+11,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 221--221
+\EU1/lmtt/m/n/10 7213,7219,7229,7237,7243,7247,7253,7283,7297,7307,7309,7321,73
+31,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 221--221
+\EU1/lmtt/m/n/10 7333,7349,7351,7369,7393,7411,7417,7433,7451,7457,7459,7471* ,
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 221--221
+\EU1/lmtt/m/n/10 7477,7481,7487,7489,7499,7507,7517,7523,7529,7537,7541,7547,75
+49,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 221--221
+\EU1/lmtt/m/n/10 7559,7561,7573,7577,7583,7589,7591,7603,7607,7621,7639,7643,76
+49,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 221--221
+\EU1/lmtt/m/n/10 7669,7673,7681,7687,7691,7699,7703,7717,7723,7727,7741,7753,77
+57,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 221--221
+\EU1/lmtt/m/n/10 7759,7777* ,7789,7793,7817,7823,7829,7841,7853,7867,7873,7877,
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 221--221
+\EU1/lmtt/m/n/10 7879,7883,7901,7907,7919,7927,7933,7937,7949,7951,7963,7993,80
+09,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 221--221
+\EU1/lmtt/m/n/10 8011,8017,8039,8053,8059,8069,8081,8087,8089,8093,8101,8111,81
+17,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 221--221
+\EU1/lmtt/m/n/10 8123,8147,8149* ,8161,8167,8171,8179,8191,8209,8219,8221,8231,
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 221--221
+\EU1/lmtt/m/n/10 8233,8237,8243,8263,8269,8273,8287,8291,8293,8297,8311,8317,83
+29,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 221--221
+\EU1/lmtt/m/n/10 8353,8363,8369,8377,8387,8389,8401* ,8419,8423,8429,8431,8443,
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 221--221
+\EU1/lmtt/m/n/10 8447,8461,8467,8501,8513,8521,8527,8537,8539,8543,8563,8573,85
+81,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 221--221
+\EU1/lmtt/m/n/10 8597,8599,8609,8623,8627,8629,8641,8647,8663,8669,8677,8681,86
+89,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 221--221
+\EU1/lmtt/m/n/10 8693,8699,8707,8713,8719,8731,8737,8741,8747,8753,8761,8779,87
+83,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 221--221
+\EU1/lmtt/m/n/10 8803,8807,8819,8821,8831,8837,8839,8849,8861,8863,8867,8887,88
+93,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 221--221
+\EU1/lmtt/m/n/10 8911* ,8923,8929,8933,8941,8951,8963,8969,8971,8999,9001,9007,
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 221--221
+\EU1/lmtt/m/n/10 9011,9013,9029,9041,9043,9049,9059,9067,9091,9103,9109,9127,91
+33,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 221--221
+\EU1/lmtt/m/n/10 9137,9151,9157,9161,9173,9181,9187,9199,9203,9209,9221,9227,92
+39,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 221--221
+\EU1/lmtt/m/n/10 9241,9257,9277,9281,9283,9293,9311,9319,9323,9337,9341,9343,93
+49,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 221--221
+\EU1/lmtt/m/n/10 9371,9377,9391,9397,9403,9413,9419,9421,9431,9433,9437,9439,94
+61,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 221--221
+\EU1/lmtt/m/n/10 9463,9467,9473,9479,9491,9497,9511,9521,9533,9539,9547,9551,95
+87,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 221--221
+\EU1/lmtt/m/n/10 9601,9613,9619,9623,9629,9631,9643,9649,9661,9677,9679,9689,96
+97,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 221--221
+\EU1/lmtt/m/n/10 9719,9721,9733,9739,9743,9749,9767,9769,9781,9787,9791,9803,98
+11,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 221--221
+\EU1/lmtt/m/n/10 9817,9829,9833,9839,9851,9857,9859,9871,9883,9887,9901,9907,99
+23,
+ []
+
+[6] [7] [8] [9] [10] [11] [12] [13] (./objective_numer.aux)
+
+LaTeX Font Warning: Some font shapes were not available, defaults substituted.
+
+ ) 
+Here is how much of TeX's memory you used:
+ 11914 strings out of 495504
+ 197492 string characters out of 3186264
+ 313341 words of memory out of 3000000
+ 14872 multiletter control sequences out of 15000+200000
+ 15646 words of font info for 75 fonts, out of 3000000 for 9000
+ 198 hyphenation exceptions out of 8191
+ 40i,8n,49p,6097b,269s stack positions out of 5000i,500n,10000p,200000b,50000s
+
+Output written on objective_numer.pdf (13 pages).

@@ -1,0 +1,1247 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Docutils 0.5: http://docutils.sourceforge.net/" />
+<title>HOWTO Create Python GUIs using HTML</title>
+<link rel="stylesheet" href="style.css" type="text/css" />
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-21693881-1']);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+</head>
+<body>
+<div class="document" id="howto-create-python-guis-using-html">
+<h1 class="title">HOWTO Create Python GUIs using HTML</h1>
+
+<p>...now supporting <a class="reference external" href="http://www.pygtk.org/pygtkmozembed/class-gtkmozembed.html">Python GtkMozEmbed</a> and
+<a class="reference external" href="http://code.google.com/p/pywebkitgtk/">PyWebKitGtk</a>!</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Version:</th><td class="field-body">r37 2009-10-25 22:10:39 -0600</td>
+</tr>
+<tr class="field"><th class="field-name">Author:</th><td class="field-body">David Baird</td>
+</tr>
+<tr class="field"><th class="field-name">Contact:</th><td class="field-body"><a class="reference external" href="mailto:dhbaird&#64;gmail.com">dhbaird&#64;gmail.com</a></td>
+</tr>
+</tbody>
+</table>
+<div class="contents topic" id="table-of-contents">
+<p class="topic-title first">Table of Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#history" id="id3">History</a></li>
+<li><a class="reference internal" href="#overview" id="id4">Overview</a></li>
+<li><a class="reference internal" href="#motivation" id="id5">Motivation</a></li>
+<li><a class="reference internal" href="#launching-the-toolkit-in-a-separate-thread" id="id6">Launching the Toolkit in a Separate Thread</a><ul>
+<li><a class="reference internal" href="#launching-gtk" id="id7">Launching GTK</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#message-passing" id="id8">Message Passing</a><ul>
+<li><a class="reference internal" href="#introduction" id="id9">Introduction</a></li>
+<li><a class="reference internal" href="#message-passing-with-gtk" id="id10">Message Passing with GTK</a><ul>
+<li><a class="reference internal" href="#asynchronous-gtk-message" id="id11">Asynchronous GTK Message</a></li>
+<li><a class="reference internal" href="#synchronous-gtk-message" id="id12">Synchronous GTK Message</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#message-passing-with-webkit" id="id13">Message Passing with WebKit</a></li>
+<li><a class="reference internal" href="#message-passing-with-mozilla-gtkmozembed" id="id14">Message Passing with Mozilla (GtkMozEmbed)</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#polishing-things-up" id="id15">Polishing Things Up</a><ul>
+<li><a class="reference internal" href="#the-quit-wrapper" id="id16">The Quit Wrapper</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#a-complete-example" id="id17">A Complete Example</a><ul>
+<li><a class="reference internal" href="#prerequisites" id="id18">Prerequisites</a></li>
+<li><a class="reference internal" href="#javascript-code" id="id19">JavaScript Code</a></li>
+<li><a class="reference internal" href="#html-code" id="id20">HTML Code</a></li>
+<li><a class="reference internal" href="#python-code" id="id21">Python Code</a></li>
+<li><a class="reference internal" href="#screenshot" id="id22">Screenshot</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#resources" id="id23">Resources</a></li>
+</ul>
+</div>
+<!-- TODO: add pictures -->
+<div class="section" id="history">
+<h1>History</h1>
+<p>2009-10-25 22:29:24 UTC  David Baird &lt;<a class="reference external" href="mailto:dhbaird&#64;gmail.com">dhbaird&#64;gmail.com</a>&gt;</p>
+<blockquote>
+Refactoring code to auto-detect for WebKit or GtkMozEmbed and use
+whichever one it finds.  Also, now making use of standard library
+functions <tt class="docutils literal"><span class="pre">os.path.abspath</span></tt> and <tt class="docutils literal"><span class="pre">urllib.pathname2url</span></tt> instead
+of manually trying to generate proper paths and URLs.</blockquote>
+<p>2009-06-21 13:30:57 UTC  David Baird &lt;<a class="reference external" href="mailto:dhbaird&#64;gmail.com">dhbaird&#64;gmail.com</a>&gt;</p>
+<blockquote>
+Fixed &quot;kill_gtk_thread()&quot; and &quot;my_quit_wrapper()&quot; by switching from
+synchronous_gtk_message to asynchronous_gtk_message.  (Thanks Tim
+Kersten for pointing this out).</blockquote>
+<p>2009-05-16 07:36:37 UTC  David Baird &lt;<a class="reference external" href="mailto:dhbaird&#64;gmail.com">dhbaird&#64;gmail.com</a>&gt;</p>
+<blockquote>
+I updated this document to describe GtkMozEmbed.  I rewrote the
+example code to support both GtkMozEmbed and PyWebKitGtk.</blockquote>
+<p>2009-05-16 06:27:53 UTC  David Baird &lt;<a class="reference external" href="mailto:dhbaird&#64;gmail.com">dhbaird&#64;gmail.com</a>&gt;</p>
+<blockquote>
+Fixed some typos (thanks to <a class="reference external" href="http://www.johntantalo.com/">John Tantalo</a> at <a class="reference external" href="http://emend.appspot.com/sites/www.aclevername.com">Emend</a> (<a class="reference external" href="http://twitter.com/emendapp">Twitter</a>) - a great tool for grammar nuts).
+I am also implementing a suggestion (from <a class="reference external" href="http://news.ycombinator.com/item?id=587180">Y Combinator News</a>) to use condition
+variables.  I also renamed the &quot;execute&quot; functions to the superior
+name of &quot;worker&quot;.</blockquote>
+<p>2009-05-16 02:22:09 UTC  David Baird &lt;<a class="reference external" href="mailto:dhbaird&#64;gmail.com">dhbaird&#64;gmail.com</a>&gt;</p>
+<blockquote>
+I'm updating this document by moving the JavaScript &quot;send()&quot; function
+into a separate file named &quot;ipc.js&quot;;  Prior to this, &quot;send()&quot;
+was being injected using WebKit's &quot;.execute_script()&quot; method.
+By refactoring &quot;send()&quot;, it will be easier to use gtkmozembed
+(Mozilla), whose JavaScript injection is slightly different, as an
+alternative to WebKit.</blockquote>
+<p>2009-04-22   David Baird &lt;<a class="reference external" href="mailto:dhbaird&#64;gmail.com">dhbaird&#64;gmail.com</a>&gt;</p>
+<blockquote>
+First release, explains how to embed WebKit and exchange messages
+with Python.</blockquote>
+</div>
+<div class="section" id="overview">
+<h1>Overview</h1>
+<p>In this howto, I explain the following concepts:</p>
+<ol class="arabic simple">
+<li>How to launch a GUI toolkit in a separate thread, and how to
+communicate with this thread.</li>
+<li>How to embed a web browser inside the GUI, and how to
+communicate with this embedded web browser without using sockets.
+By not using sockets, we don't have to worry about socket
+security, and we don't have to worry about allocating a socket.
+(Note: sockets are still available, but you don't have to use
+them unless you want to.)  Absolutely no web server is required
+(unless you specifically want to use one for whatever reason).
+In other words, we will have AJAX-like and <a class="reference external" href="http://en.wikipedia.org/wiki/Comet_(programming)">AJAX-Push/Comet-like</a> functionality
+to communicate with Python but without actually having to use AJAX.</li>
+</ol>
+<p>This howto is about using HTML and associated web technologies
+(JavaScript, CSS, JSON, ...) to create a GUI for a standalone application
+in Python.</p>
+<p>What this howto is not about:</p>
+<ul class="simple">
+<li>This howto is not about running a web server or about how to use a web
+framework.  You do not need to run a web server or even <em>know</em> how to
+run a web server to use this howto.</li>
+</ul>
+</div>
+<div class="section" id="motivation">
+<h1>Motivation</h1>
+<p>Over a period of a few years, I have attempted to create GUIs.  I have
+left disappointed each time.  There are two main discouraging factors
+that I encountered:</p>
+<ol class="arabic">
+<li><p class="first">Toolkit lock-in.  The various toolkits have their own <em>main loops</em>
+and event processing frameworks.  For example, if you want to write
+a GUI that integrates with sockets, it is hard to use the &quot;select&quot;
+function.  Usage of select requires the programmer to write their
+own main loop, and this is at conflict with toolkits that provide a
+prepackaged main loop.</p>
+<blockquote>
+<p>Solution: Spawn two threads.  One thread is for just the GUI toolkit.
+The other thread runs your own personalized main loop.  The two
+threads communicate by sending messages to each other (e.g. by using
+thread-safe FIFOs or queues).</p>
+<p>Note about threads and GUIs: It is important to strictly follow a
+message passing model: you generally CANNOT have multiple threads
+accessing GUI functions lest X11 libraries shall segfault; Thus,
+exactly one thread should be blessed to manage the GUI directly.
+All other threads can manage the GUI indirectly by sending messages
+to this one blessed thread.  I will explain how to do this further
+in this document.</p>
+</blockquote>
+</li>
+<li><p class="first">Expression.  I found it hard to visualize and understand the structures
+which underlie GUI toolkits.  Granted, some toolkits have integrated
+XML support for constructing their GUIs, but I felt this still required
+a lot of additional learning and was missing the flexibility that
+HTML specifically offers.  After working with and enjoying HTML for
+some time, I started thinking: what if I could use HTML to create GUIs?</p>
+<blockquote>
+<p>Solution: Embed a web browser into your GUI.  Thus, you have the
+flexibility of using your toolkit for creating a few basic things
+(such as menus and menu items), but can use the web browser to do
+all the heavy lifting.  This raises an additional problem, which
+will be discussed further in this document: how to transfer messages
+between the web browser and your personalized main loop.</p>
+</blockquote>
+</li>
+</ol>
+<p>I eventually came to these conclusions after working with a variety
+of event processing loops involving sockets, serial ports, audio data,
+MIDI data, and GUIs.  I tinkered with some MVC (Model View Controller)
+approaches to GUI design and felt they helped, but still didn't satisfy
+me.  I finally found something that seemed to make sense when I started
+to work on simple web-based applications.  Web based applications have a
+very strict separation of GUI (running on a remote browser) from your code
+(running on a server).  Thus, your main code does not have to be locked
+into the GUI toolkit, per se.  Or at least, it does not feel as such.</p>
+<p>HTML is a good technology.  It integrates with several other technologies
+including:</p>
+<ul class="simple">
+<li>CSS</li>
+<li>JavaScript (ECMAScript)</li>
+<li>XML DOM</li>
+<li>SVG</li>
+<li>MathML</li>
+<li>HTML5 Canvases</li>
+<li>Several JavaScript extensions, such as jQuery</li>
+<li>...and the list keeps growing...</li>
+</ul>
+<p>HTML is very composable, meaning it is easy to copy-and-paste HTML
+designs together.  I would argue that it is harder to copy-and-paste GUI
+toolkit designs together.  There are also many templates and examples
+online for constructing high quality HTML documents.</p>
+<p>It is possible to tinker with an HTML-based user interface, even if the
+underlying application logic is missing.  This means that the process of
+designing the GUI does not have to be tightly coupled to writing the main
+application logic.</p>
+<p>Another benefit of HTML is that it is open to non-programmers.  There are
+many web designers who can now contribute to the design of application
+user interfaces if those interfaces are based on HTML.</p>
+</div>
+<div class="section" id="launching-the-toolkit-in-a-separate-thread">
+<h1>Launching the Toolkit in a Separate Thread</h1>
+<div class="section" id="launching-gtk">
+<h2>Launching GTK</h2>
+<p>This is probably the simplest part of this article: launching GTK in its
+own thread, thus leaving our main thread available for implementing our
+own personalized main loop:</p>
+<pre class="literal-block">
+import gtk
+import thread
+
+gtk.gdk.threads_init()
+thread.start_new_thread(gtk.main, ())
+
+# Yes, it really is that easy.  GTK is now running in its own thread,
+# waiting for us to send messages to it.
+</pre>
+<p>Continue by reading the &quot;Message Passing&quot; section to see what to do next.</p>
+</div>
+</div>
+<div class="section" id="message-passing">
+<h1>Message Passing</h1>
+<div class="section" id="introduction">
+<h2>Introduction</h2>
+<p>Message passing is the means by which processes communicate.  Much like
+humans communicate by talking to each other or writing notes to each
+other, so do computer programs communicate with each other.  Sockets and
+pipes are prime examples of message passing technologies.  Shared memory
+can also be used for message passing.</p>
+<p>Programming with functions or objects is also a form of message passing.
+In this case, calling a function or method is equivalent to sending a
+message to your program or to an object in your program.  Essentially,
+your program is communicating with itself.  But that's still message
+passing.  Just like how people sometimes like to talk to themselves
+(well, at least I do).</p>
+<p>Some programming language libraries have special queues that
+can be used to pass messages between threads in a multithreaded
+application.  Some languages, like Erlang or <a class="reference external" href="http://code.google.com/p/termite/">Termite Scheme</a>, have message passing so ingrained
+that you'd be crazy not to use those features.</p>
+</div>
+<div class="section" id="message-passing-with-gtk">
+<h2>Message Passing with GTK</h2>
+<p>Here I am going to explain message passing between GTK and your custom
+main loop.  <em>I am not explaining message passing inside GTK</em> (e.g. between
+GTK widgets - you'll have to read the GTK docs for more info about that).</p>
+<p>GTK has a so-called &quot;idle loop.&quot;  This idle loop is how you can interface
+with GTK's main loop.  GTK has a special function called &quot;idle_add&quot;
+which lets us add messages to be processed in the idle loop.  I am going
+to describe two types of messages here:</p>
+<ol class="arabic">
+<li><p class="first">Asynchronous messages</p>
+<blockquote>
+<p>These are messages that you insert into GTK's idle loop, but you
+<em>do not care</em> about getting a response.</p>
+</blockquote>
+</li>
+<li><p class="first">Synchronous messages:</p>
+<blockquote>
+<p>These are messages that you insert into GTK's idle loop, but you
+<em>do care</em> about getting a response.</p>
+</blockquote>
+</li>
+</ol>
+<p>In the Python programming language, functions are first-class citizens
+that can be passed around just like normal data.  Thus, a message really
+is just a function reference (or a functor) that we inject into GTK's
+idle loop.  GTK's idle loop will merely call/execute the function.
+In C, this is similar to putting a function pointer into a queue which
+another loop dequeues and then calls the function associated with that
+function pointer.</p>
+<div class="section" id="asynchronous-gtk-message">
+<h3>Asynchronous GTK Message</h3>
+<p>Here is the magic trick for asynchronous GTK messages in Python.  By the
+way, if this code looks like giberish to you, then read up on <em>variable
+arguments</em> and <em>keyword arguments</em> in Python.  You'll also want to read
+about <em>tuple unpacking</em> in Python.  You might also want to read about
+<em>higher order functions</em> which is a concept from functional programming.
+(Sorry, I know that is a long list of things to read about.):</p>
+<pre class="literal-block">
+import gobject
+
+# This is a function which takes a function as an argument and
+# returns yet another function (this is what higher order functions
+# are all about!).  (Side note: this can be invoked/applied with
+# Python's decorator syntax, '&#64;', if you so desire.):
+def asynchronous_gtk_message(fun):
+
+    def worker((function, args, kwargs)):
+        # Apply is a function that takes a function as its first
+        # argument and calls it with positional argument taken
+        # from &quot;args&quot; and keyword arguments taken from &quot;kwargs&quot;:
+        apply(function, args, kwargs)
+
+    # This is a special type of function known as a &quot;closure&quot;
+    # (although it is not quite as advanced as a closure in Lisp
+    # or Ruby.  Challenge question: do you know why?).  In C++,
+    # a class-based functor which defines operator() (or Boost.Lambda)
+    # is the closest you can get to a closure:
+    def fun2(*args, **kwargs):
+        # &quot;worker&quot; is none other than the function just defined
+        # above (with &quot;def worker&quot;):
+        gobject.idle_add(worker, (fun, args, kwargs))
+
+    # Here, the closure is returned and must be called at some later
+    # point in the program:
+    return fun2
+</pre>
+<p>The code above has a lot of comments, so here is the same code again with
+all the comments stripped out (some people may find this easier to read):</p>
+<pre class="literal-block">
+import gobject
+
+def asynchronous_gtk_message(fun):
+
+    def worker((function, args, kwargs)):
+        apply(function, args, kwargs)
+
+    def fun2(*args, **kwargs):
+        gobject.idle_add(worker, (fun, args, kwargs))
+
+    return fun2
+</pre>
+<p>Despite being a few lines of code, there are some pretty deep programming
+concepts required to understand the code above.  But it is concise and
+expressive and fairly hard to introduce bugs (because it is so simple).</p>
+<p>Here is an example of using &quot;asynchronous_gtk_message&quot; to manipulate a
+web browser widget (specifically, WebKit) running in GTK:</p>
+<pre class="literal-block">
+browser = ... # read about synchronous_gtk_message below to see what goes here
+...
+asynchronous_gtk_message(browser.execute_script)('alert(&quot;oops&quot;)')
+
+# or, alternatively:
+async_execute_script = asynchronous_gtk_message(browser.execute_script)
+async_execute_script('alert(&quot;oops&quot;)')
+</pre>
+<p>Note that &quot;asynchronous_gtk_message&quot; does not actually do anything.
+All it does is return a special function (remember the closure from
+above?).  And it is that special function which we must call whenever we
+want to <em>actually</em> send an asynchronous message.  Notice how we ignore the
+return value from the message?  Well, that is what makes it asynchronous;
+And fast.</p>
+</div>
+<div class="section" id="synchronous-gtk-message">
+<h3>Synchronous GTK Message</h3>
+<p>What if we need a return value?  Then we need a synchronous message.
+Let's say, we want to send a message to GTK saying &quot;please create a new
+GTK window and give me back a reference to that new window so that I can
+embellish it later on.&quot;  This is what synchronous messages are good for.
+They take longer to execute since you have to sit around and wait for
+the return value.  (There are tricks to get around this waiting... but
+that is for another article by another author):</p>
+<pre class="literal-block">
+import time
+import gobject
+
+def synchronous_gtk_message(fun):
+
+    class NoResult: pass
+
+    def worker((R, function, args, kwargs)):
+        R.result = apply(function, args, kwargs)
+
+    # WARNING: I know the busy/sleep polling loop is going to offend
+    #          the sensibilities of some people.  I offer the following
+    #          justifications:
+    #          - Busy/sleep loops are a simple concept: easy to
+    #            implement and they work in situations where you
+    #            may not have condition variables (like checking your
+    #            email with fetchmail).
+    #          - If you do use a synchronous message, it will probably
+    #            complete very rapidly, thus very few CPU cycles will
+    #            by wasted by this busy loop (thanks to the sleep).
+    #          - You probably shouldn't be using synchronous messages
+    #            very often anyhow.  Async is cooler :-)
+    #          - If this code is anything bad, it is probably that the
+    #            sleep() adds a bit of undesired latency before the result
+    #            can be returned.
+    #          If this still doesn't appeal to you, then keep reading
+    #          because I do this again with condition variables.
+    def fun2(*args, **kwargs):
+        class R: pass
+        R.result = NoResult
+        gobject.idle_add(callable=worker, user_data=(R, fun, args, kwargs))
+        while R.result is NoResult:
+            time.sleep(0.01)
+        return R.result
+
+    return fun2
+</pre>
+<p>Well, that was slightly more complicated than the asynchronous case;
+The primary difference is the addition of &quot;R.result&quot; and a loop that
+waits for &quot;R.result&quot; to reference anything besides &quot;NoResult&quot;.  Here is
+a more compact form of the above code which some people may prefer:</p>
+<pre class="literal-block">
+import time
+import gobject
+
+# Slightly more compact version of the above code:
+def synchronous_gtk_message(fun):
+
+    class NoResult: pass
+
+    def worker((R, function, args, kwargs)):
+        R.result = apply(function, args, kwargs)
+
+    def fun2(*args, **kwargs):
+        class R: result = NoResult
+        gobject.idle_add(callable=worker, user_data=(R, fun, args, kwargs))
+        while R.result is NoResult: time.sleep(0.01)
+        return R.result
+
+    return fun2
+</pre>
+<p>If you're not keen on the busy/sleep loop above,
+here's another version that uses <a class="reference external" href="http://docs.python.org/library/threading.html#condition-objects">condition variables</a>
+instead:</p>
+<pre class="literal-block">
+# non-busy/sleep version of the above code:
+def synchronous_gtk_message2(fun):
+    import threading
+
+    def worker((R, condition, function, args, kwargs)):
+        R.result = apply(function, args, kwargs)
+        condition.acquire()
+        condition.notify()
+        condition.release()
+
+    def fun2(*args, **kwargs):
+        condition = threading.Condition()
+        condition.acquire()
+        class R: pass
+        gobject.idle_add(worker, (R, condition, fun, args, kwargs))
+        condition.wait()
+        condition.release()
+        return R.result
+
+    return fun2
+</pre>
+<p>Here's another option that doesn't work, so don't use it:</p>
+<pre class="literal-block">
+# non-working/broken version of the above code :-P
+def synchronous_gtk_message3(fun):
+
+    # This doesn't work for me.  Can anyone shed some light on this?
+    #
+    # Besides, http://library.gnome.org/devel/gdk/unstable/gdk-Threads.html
+    # gives a warning that this may only work for X11 but not Win32:
+    #
+    #     GTK+ is &quot;thread aware&quot; but not thread safe - it provides a global
+    #     lock controlled by gdk_threads_enter()/gdk_threads_leave() which
+    #     protects all use of GTK+. That is, only one thread can use GTK+
+    #     at any given time.
+    #
+    #     Unfortunately the above holds with the X11 backend only. With the
+    #     Win32 backend, GDK calls should not be attempted from multiple
+    #     threads at all.
+    def fun2(*args, **kwargs):
+        gtk.gdk.threads_enter()
+        try:     x = apply(fun, args, kwargs)
+        finally: gtk.gdk.threads_leave()
+        return x
+
+    return fun2
+</pre>
+<p>Anyways, here is an example of using &quot;synchronous_gtk_message&quot;:</p>
+<pre class="literal-block">
+# Use synchronous messages here:
+window = synchronous_gtk_message(gtk.Window)()
+browser = synchronous_gtk_message(webkit.WebView)()
+
+# Use asynchronous messages here:
+asynchronous_gtk_message(window.set_default_size)(800, 600)
+asynchronous_gtk_message(window.show_all)()
+</pre>
+</div>
+</div>
+<div class="section" id="message-passing-with-webkit">
+<h2>Message Passing with WebKit</h2>
+<p>When communicating with WebKit, there will be two types of messages.
+Unlike with GTK though, these two WebKit messages are both asynchronous:</p>
+<ol class="arabic">
+<li><p class="first">Asynchronous send (web_send / execute_script)</p>
+<blockquote>
+<p>To send a message from Python to WebKit, we use the &quot;execute_script&quot;
+method of a WebKit browser widget.  There is a wrapper function called
+&quot;web_send&quot; which will invoke &quot;execute_script&quot;.</p>
+</blockquote>
+</li>
+<li><p class="first">Asynchronous receive (web_recv / title-changed)</p>
+<blockquote>
+<p>For WebKit to send a message to Python, a hack is required.  The
+WebKit browser features a callback that is triggered whenever the
+&quot;title&quot; of the embedded web page is changed.  We are not using the
+title for anything better, so why not hijack it and use it for message
+passing?  We can connect the &quot;title-changed&quot; event notification of a
+WebKit browser to a function which enqueues the title's value into
+a queue.  Then, the main loop can be woken up to check the queue,
+or it can poll the queue at its own leisure.  There is a wrapper
+function called &quot;web_recv&quot; which interfaces to this queue.</p>
+</blockquote>
+</li>
+</ol>
+<p>Here is code for launching a browser and definining the web_send and
+web_recv functions:</p>
+<pre class="literal-block">
+import Queue
+
+import gtk
+import webkit
+
+def launch_browser(uri, echo=True):
+    # WARNING: You should call this function ONLY inside of GTK
+    #          (i.e. use synchronous_gtk_message)
+
+    window = gtk.Window()
+    box = gtk.VBox(homogeneous=False, spacing=0)
+    browser = webkit.WebView()
+
+    window.set_default_size(800, 600)
+    # Optional (you'll read about this later in the tutorial):
+    window.connect('destroy', Global.set_quit)
+
+    window.add(box)
+    box.pack_start(browser, expand=True, fill=True, padding=0)
+
+    window.show_all()
+
+    # Note: All message passing stuff appears between these curly braces:
+    # {
+    message_queue = Queue.Queue()
+
+    def title_changed(widget, frame, title):
+        if title != 'null': message_queue.put(title)
+
+    browser.connect('title-changed', title_changed)
+
+    def web_recv():
+        if message_queue.empty():
+            return None
+        else:
+            msg = message_queue.get()
+            if echo: print '&gt;&gt;&gt;', msg
+            return msg
+
+    def web_send(msg):
+        if echo: print '&lt;&lt;&lt;', msg
+        asynchronous_gtk_message(browser.execute_script)(msg)
+    # }
+
+
+    browser.open(uri)
+
+    return browser, web_recv, web_send
+
+uri = 'http://www.google.com/'
+browser, web_recv, web_send = synchronous_gtk_message(launch_browser)(uri)
+</pre>
+<p>Next, somewhere in your HTML/JavaScript, you'll need to define the
+&quot;send()&quot; function which sends a message to Python by changing the HTML
+title.  Here's an example which I recommend putting in a file named
+&quot;ipc.js&quot;:</p>
+<pre class="literal-block">
+function send(msg) {
+    document.title = &quot;null&quot;;
+    document.title = msg;
+}
+</pre>
+</div>
+<div class="section" id="message-passing-with-mozilla-gtkmozembed">
+<h2>Message Passing with Mozilla (GtkMozEmbed)</h2>
+<p>The process for GtkMozEmbed is very similar to WebKit, so I recommend
+that you read the WebKit section.  Here, I'm simply going to highlight
+the differences between WebKit and GtkMozEmbed.</p>
+<pre class="literal-block">
+import Queue
+
+import gtk
+#import webkit # &lt;- webkit
+import gtkmozembed # &lt;- gtkmozembed
+import urllib # &lt;- gtkmozembed (for encoding JavaScript strings)
+
+def launch_browser(uri, echo=True):
+    # WARNING: You should call this function ONLY inside of GTK
+    #          (i.e. use synchronous_gtk_message)
+
+    window = gtk.Window()
+    box = gtk.VBox(homogeneous=False, spacing=0)
+    #browser = webkit.WebView() # &lt;- webkit (obviously)
+    browser = gtkmozembed.MozEmbed() # &lt;- gtkmozembed
+
+    # gtkmozembed only (for webkit, we use its .execute_script()):
+    def inject_javascript(script):
+        uri = 'javascript:%s' % urllib.quote(script + '\n;void(0);')
+        browser.load_url(uri)
+
+    window.set_default_size(800, 600)
+    # Optional (you'll read about this later in the tutorial):
+    window.connect('destroy', Global.set_quit)
+
+    window.add(box)
+    box.pack_start(browser, expand=True, fill=True, padding=0)
+
+    window.show_all()
+
+    # Note: All message passing stuff appears between these curly braces:
+    # {
+    message_queue = Queue.Queue()
+
+    # webkit:
+    #def title_changed(widget, frame, title):
+    #    if title != 'null': message_queue.put(title)
+    # gtkmozembed:
+    def title_changed(*args):
+        title = browser.get_title()
+        if title != 'null': message_queue.put(title)
+
+    #browser.connect('title-changed', title_changed) # &lt;- webkit
+    browser.connect('title', title_changed) # &lt;- gtkmozembed
+
+    def web_recv():
+        if message_queue.empty():
+            return None
+        else:
+            msg = message_queue.get()
+            if echo: print '&gt;&gt;&gt;', msg
+            return msg
+
+    def web_send(msg):
+        if echo: print '&lt;&lt;&lt;', msg
+        #asynchronous_gtk_message(browser.execute_script)(msg) # &lt;- webkit
+        asynchronous_gtk_message(inject_javascript)(msg) # &lt;- gtkmozembed
+    # }
+
+    #browser.open(uri) # &lt;- webkit
+    browser.load_url(uri) # &lt;- gtkmozembed
+
+    return browser, web_recv, web_send
+
+uri = 'http://www.google.com/'
+browser, web_recv, web_send = synchronous_gtk_message(launch_browser)(uri)
+</pre>
+<p>...and don't forget about &quot;ipc.js&quot; (described in the WebKit section):</p>
+<pre class="literal-block">
+function send(msg) {
+    document.title = &quot;null&quot;;
+    document.title = msg;
+}
+</pre>
+</div>
+</div>
+<div class="section" id="polishing-things-up">
+<h1>Polishing Things Up</h1>
+<div class="section" id="the-quit-wrapper">
+<h2>The Quit Wrapper</h2>
+<p>When exiting a multithreaded application, you need to be able to instruct
+<em>all</em> threads to terminate.  Additionally, Python has an annoyance
+associated with signals and threads: you can never know which thread a
+signal, such as the Ctrl-C/SIGINT, will be sent to.</p>
+<p>I solve both of these problems by declaring a shared, global &quot;quit&quot;
+variable.  I then install a SIGINT (Ctrl-C) signal handler which sets
+the &quot;quit&quot; variable to True if trigerred.  It won't matter which thread
+actually receives SIGINT, because the same global &quot;quit&quot; variable will
+be set in all cases.</p>
+<p>Any process/thread in the program can instruct the program to terminate by
+setting this global &quot;quit&quot; variable.  For example, if the user clicks the
+File/Quit menu item or pressed Ctrl-Q, the entire program can terminate
+by setting the &quot;quit&quot; variable.</p>
+<p>Without further ado, here's the code:</p>
+<pre class="literal-block">
+import signal
+
+class Global(object):
+    quit = False
+    &#64;classmethod
+    def set_quit(cls, *args, **kwargs):
+        cls.quit = True
+
+def my_quit_wrapper(fun):
+    signal.signal(signal.SIGINT, Global.set_quit)
+    def fun2(*args, **kwargs):
+        try:
+            x = fun(*args, **kwargs) # equivalent to &quot;apply&quot;
+        finally:
+            asynchronous_gtk_message(gtk.main_quit)()
+            Global.set_quit()
+        return x
+    return fun2
+</pre>
+<p>And here's how to use it:</p>
+<pre class="literal-block">
+def main():
+    while not Global.quit:
+        # ... do some stuff ...
+        time.sleep(0.1)
+
+if __name__ == '__main__': # &lt;-- this line is optional
+    my_quit_wrapper(main)()
+</pre>
+</div>
+</div>
+<div class="section" id="a-complete-example">
+<h1>A Complete Example</h1>
+<div class="section" id="prerequisites">
+<h2>Prerequisites</h2>
+<p>You need to install the following packages:</p>
+<ul class="simple">
+<li><a class="reference external" href="http://code.google.com/p/pywebkitgtk/">PyWebKitGtk</a> or
+<a class="reference external" href="http://www.pygtk.org/pygtkmozembed/class-gtkmozembed.html">Python GtkMozEmbed</a></li>
+<li><a class="reference external" href="http://code.google.com/p/simplejson/">Python Simplejson</a></li>
+</ul>
+<p>In Debian/Ubuntu, you can follow these steps to install those packages
+automatically:</p>
+<pre class="literal-block">
+apt-get install python-webkitgtk
+apt-get install python-simplejson
+# ummm... python-gtkmozembed...?
+</pre>
+<p>In Gentoo/Funtoo:</p>
+<pre class="literal-block">
+#emerge -va pywebkitgtk # &lt;-- not yet working with Python 2.6 :-(
+#emerge -va simplejson # &lt;-- installs Python 2.5 :-(
+emerge gtkmozembed-python # yay! finally something that works!
+easy_install simplejson # this is how we bypass emerge
+</pre>
+</div>
+<div class="section" id="javascript-code">
+<h2>JavaScript Code</h2>
+<p>This small JavaScript module will be used to allow sending messages from the
+browser to Python.</p>
+<p>ipc.js:</p>
+<pre class="literal-block">
+function send(msg) {
+    document.title = &quot;null&quot;;
+    document.title = msg;
+}
+</pre>
+</div>
+<div class="section" id="html-code">
+<h2>HTML Code</h2>
+<p>The following code uses standard JavaScript (the only uncertainty I have
+is whether or not &quot;DOMContentLoaded&quot; is a standard, but WebKit certainly
+supports it regardless).  Even though none of the examples here require it,
+I <em>highly recommend</em> that you use <a class="reference external" href="http://jquery.com/">jQuery</a> (unless
+there is some other JavaScript library that you already like).  jQuery
+allows you to navigate XHTML by using CSS Selectors.  jQuery makes it
+very easy to configure event notifications and to modify the structure of
+an XHTML document.  jQuery also has the ability to work with aggregates:
+making a single operation apply simultaneously to several XML elements.</p>
+<p>demo.xhtml:</p>
+<pre class="literal-block">
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;!DOCTYPE html
+      PUBLIC &quot;-//W3C//DTD XHTML 1.0 Strict//EN&quot;
+      &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd&quot;&gt;
+&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;
+      xmlns:svg=&quot;http://www.w3.org/2000/svg&quot;
+      xmlns:xlink=&quot;http://www.w3.org/1999/xlink&quot;&gt;
+
+  &lt;head&gt;
+
+    &lt;title&gt;&lt;/title&gt;
+
+    &lt;script src=&quot;ipc.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+
+    &lt;!--
+    Here are some jQuery plugins that I recommend:
+
+    &lt;script src=&quot;js/jquery-1.2.6.min.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;js/jquery-plugins/json.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;js/jquery-plugins/jquery.hotkeys-0.7.8.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;js/jquery-plugins/jquery.intercept.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+    --&gt;
+
+    &lt;link href=&quot;demo.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot;&gt;&lt;/link&gt;
+
+    &lt;script type=&quot;text/javascript&quot;&gt;
+// &lt;![CDATA[
+
+// NOTE: jQuery would make this all much cleaner!  You need it!
+
+function got_a_click() {
+    // NOTE: send is a JavaScript function that is defined in &quot;ipc.js&quot;.
+    //       This send function is how messages are sent from HTML
+    //       to Python:
+    send('&quot;got-a-click&quot;');
+}
+
+function document_ready() {
+    send('&quot;document-ready&quot;');
+    document.getElementById('messages').addEventListener('click', got_a_click, false);
+}
+
+document.addEventListener('DOMContentLoaded', document_ready, false);
+
+// If you were using jQuery (with the JSON plugin), you'd write the above
+// code like this:
+//
+// Instead of addEventListener('DOMContentLoaded', ...), do this:
+// $(document).ready(function() {
+//     // Instead of getElementById('messages').addEventListener('click',...),
+//     // do this:
+//     // http://docs.jquery.com/Events/bind
+//     $('#messages').bind('click', got_a_click);
+//     // ...or try this shortcut version of bind:
+//     $('#messages').click(got_a_click);
+//     // http://jollytoad.googlepages.com/json.js provides $.toJSON(...):
+//     send($.toJSON('document.ready'));
+// })
+
+// ]]&gt;
+&lt;/script&gt;
+
+
+  &lt;/head&gt;
+
+  &lt;body&gt;
+
+    &lt;h1&gt;Python + Web GUI Demo&lt;/h1&gt;
+
+    &lt;h2&gt;Uptime&lt;/h2&gt;
+
+    &lt;p class=&quot;uptime&quot;&gt;
+      Python uptime:
+      &lt;span id=&quot;uptime-value&quot;&gt;?&lt;/span&gt; seconds.
+    &lt;/p&gt;
+
+    &lt;h2&gt;Messages&lt;/h2&gt;
+
+    &lt;p id=&quot;messages&quot;&gt;
+      Click here (yes, anywhere here)...&lt;br/&gt;
+    &lt;/p&gt;
+
+  &lt;/body&gt;
+
+&lt;/html&gt;
+</pre>
+</div>
+<div class="section" id="python-code">
+<h2>Python Code</h2>
+<p>The code is split up into two modules: webgui.py and demo.py.  These
+are both shown below:</p>
+<p>webgui.py:</p>
+<pre class="literal-block">
+import time
+import Queue
+import thread
+import urllib
+
+import gtk
+import gobject
+
+try:
+    import webkit
+    have_webkit = True
+except:
+    have_webkit = False
+
+try:
+    import gtkmozembed
+    have_gtkmozembed = True
+except:
+    have_gtkmozembed = False
+
+class UseWebKit: pass
+class UseGtkMozEmbed: pass
+
+if False: pass
+elif have_webkit:
+    use = UseWebKit
+elif have_gtkmozembed:
+    use = UseGtkMozEmbed
+else:
+    raise Exception('Failed to load any of webkit and gtkmozembed modules')
+
+#use = UseGtkMozEmbed # &lt;- choose your desired implementation here
+
+class WebKitMethods(object):
+
+    &#64;staticmethod
+    def create_browser():
+        return webkit.WebView()
+
+    &#64;staticmethod
+    def inject_javascript(browser, script):
+        browser.execute_script(script)
+
+    &#64;staticmethod
+    def connect_title_changed(browser, callback):
+        def callback_wrapper(widget, frame, title): callback(title)
+        browser.connect('title-changed', callback_wrapper)
+
+    &#64;staticmethod
+    def open_uri(browser, uri):
+        browser.open(uri)
+
+
+
+
+
+class GtkMozEmbedMethods(object):
+
+    &#64;staticmethod
+    def create_browser():
+        return gtkmozembed.MozEmbed()
+
+    &#64;staticmethod
+    def inject_javascript(browser, script):
+        uri = 'javascript:%s' % urllib.quote(script + '\n;void(0);')
+        browser.load_url(uri)
+
+    &#64;staticmethod
+    def connect_title_changed(browser, callback):
+        # XXX: probably you should cross your fingers and hope browser
+        #      isn't sending title messages too quickly...?
+        def callback_wrapper(*args): callback(browser.get_title())
+        browser.connect('title', callback_wrapper)
+
+    &#64;staticmethod
+    def open_uri(browser, uri):
+        browser.load_url(uri)
+
+
+
+if use is UseWebKit:
+    implementation = WebKitMethods
+
+if use is UseGtkMozEmbed:
+    implementation = GtkMozEmbedMethods
+
+
+
+
+
+
+def asynchronous_gtk_message(fun):
+
+    def worker((function, args, kwargs)):
+        apply(function, args, kwargs)
+
+    def fun2(*args, **kwargs):
+        gobject.idle_add(worker, (fun, args, kwargs))
+
+    return fun2
+
+
+def synchronous_gtk_message(fun):
+
+    class NoResult: pass
+
+    def worker((R, function, args, kwargs)):
+        R.result = apply(function, args, kwargs)
+
+    def fun2(*args, **kwargs):
+        class R: result = NoResult
+        gobject.idle_add(worker, (R, fun, args, kwargs))
+        while R.result is NoResult: time.sleep(0.01)
+        return R.result
+
+    return fun2
+
+def launch_browser(uri, quit_function=None, echo=True):
+
+    window = gtk.Window()
+    browser = implementation.create_browser()
+
+    box = gtk.VBox(homogeneous=False, spacing=0)
+    window.add(box)
+
+    if quit_function is not None:
+        # Obligatory &quot;File: Quit&quot; menu
+        # {
+        file_menu = gtk.Menu()
+        quit_item = gtk.MenuItem('Quit')
+        accel_group = gtk.AccelGroup()
+        quit_item.add_accelerator('activate',
+                                  accel_group,
+                                  ord('Q'),
+                                  gtk.gdk.CONTROL_MASK,
+                                  gtk.ACCEL_VISIBLE)
+        window.add_accel_group(accel_group)
+        file_menu.append(quit_item)
+        quit_item.connect('activate', quit_function)
+        quit_item.show()
+        #
+        menu_bar = gtk.MenuBar()
+        menu_bar.show()
+        file_item = gtk.MenuItem('File')
+        file_item.show()
+        file_item.set_submenu(file_menu)
+        menu_bar.append(file_item)
+        # }
+        box.pack_start(menu_bar, expand=False, fill=True, padding=0)
+
+    if quit_function is not None:
+        window.connect('destroy', quit_function)
+
+    box.pack_start(browser, expand=True, fill=True, padding=0)
+
+    window.set_default_size(800, 600)
+    window.show_all()
+
+    message_queue = Queue.Queue()
+
+    def title_changed(title):
+        if title != 'null': message_queue.put(title)
+
+    implementation.connect_title_changed(browser, title_changed)
+
+    implementation.open_uri(browser, uri)
+
+    def web_recv():
+        if message_queue.empty():
+            return None
+        else:
+            msg = message_queue.get()
+            if echo: print '&gt;&gt;&gt;', msg
+            return msg
+
+    def web_send(msg):
+        if echo: print '&lt;&lt;&lt;', msg
+        asynchronous_gtk_message(implementation.inject_javascript)(browser, msg)
+
+    return browser, web_recv, web_send
+
+
+def start_gtk_thread():
+    # Start GTK in its own thread:
+    gtk.gdk.threads_init()
+    thread.start_new_thread(gtk.main, ())
+
+def kill_gtk_thread():
+    asynchronous_gtk_message(gtk.main_quit)()
+</pre>
+<p>demo.py:</p>
+<pre class="literal-block">
+import signal
+import os
+import time
+import urllib
+
+from simplejson import dumps as to_json
+from simplejson import loads as from_json
+
+from webgui import start_gtk_thread
+from webgui import launch_browser
+from webgui import synchronous_gtk_message
+from webgui import asynchronous_gtk_message
+from webgui import kill_gtk_thread
+
+class Global(object):
+    quit = False
+    &#64;classmethod
+    def set_quit(cls, *args, **kwargs):
+        cls.quit = True
+
+
+def main():
+    start_gtk_thread()
+
+    # Create a proper file:// URL pointing to demo.xhtml:
+    file = os.path.abspath('demo.xhtml')
+    uri = 'file://' + urllib.pathname2url(file)
+    browser, web_recv, web_send = \
+        synchronous_gtk_message(launch_browser)(uri,
+                                                quit_function=Global.set_quit)
+
+    # Finally, here is our personalized main loop, 100% friendly
+    # with &quot;select&quot; (although I am not using select here)!:
+    last_second = time.time()
+    uptime_seconds = 1
+    clicks = 0
+    while not Global.quit:
+
+        current_time = time.time()
+        again = False
+        msg = web_recv()
+        if msg:
+            msg = from_json(msg)
+            again = True
+
+        if msg == &quot;got-a-click&quot;:
+            clicks += 1
+            web_send('document.getElementById(&quot;messages&quot;).innerHTML = %s' %
+                     to_json('%d clicks so far' % clicks))
+            # If you are using jQuery, you can do this instead:
+            # web_send('$(&quot;#messages&quot;).text(%s)' %
+            #          to_json('%d clicks so far' % clicks))
+
+        if current_time - last_second &gt;= 1.0:
+            web_send('document.getElementById(&quot;uptime-value&quot;).innerHTML = %s' %
+                     to_json('%d' % uptime_seconds))
+            # If you are using jQuery, you can do this instead:
+            # web_send('$(&quot;#uptime-value&quot;).text(%s)'
+            #        % to_json('%d' % uptime_seconds))
+            uptime_seconds += 1
+            last_second += 1.0
+
+
+        if again: pass
+        else:     time.sleep(0.1)
+
+
+def my_quit_wrapper(fun):
+    signal.signal(signal.SIGINT, Global.set_quit)
+    def fun2(*args, **kwargs):
+        try:
+            x = fun(*args, **kwargs) # equivalent to &quot;apply&quot;
+        finally:
+            kill_gtk_thread()
+            Global.set_quit()
+        return x
+    return fun2
+
+
+if __name__ == '__main__': # &lt;-- this line is optional
+    my_quit_wrapper(main)()
+</pre>
+</div>
+<div class="section" id="screenshot">
+<h2>Screenshot</h2>
+<div class="figure">
+<img alt="im-edited/demo-screenshot.png" src="im-edited/demo-screenshot.png" />
+</div>
+</div>
+</div>
+<div class="section" id="resources">
+<h1>Resources</h1>
+<ul>
+<li><p class="first">Appcelerator Titanium - this is a tool for creating desktop applications
+using web technology.  It appears to be a nicely integrated environment
+and can support the use of mixed languages, including Python, Ruby,
+and C++ as well as JavaScript:</p>
+<blockquote>
+<ul class="simple">
+<li><a class="reference external" href="http://titaniumapp.com/">http://titaniumapp.com/</a></li>
+<li><a class="reference external" href="http://www.appcelerant.com/">http://www.appcelerant.com/</a></li>
+</ul>
+</blockquote>
+</li>
+<li><p class="first"><a class="reference external" href="http://www.princeofcode.com/awesomium.php">Awesomium</a> &quot;Awesomium
+is a library that makes it easy for developers to embed web-content
+in their applications.&quot;</p>
+</li>
+<li><p class="first">Python and XULRunner (I haven't done this yet, but might be useful):</p>
+<ul class="simple">
+<li><a class="reference external" href="http://pyxpcomext.mozdev.org/no_wrap/tutorials/pyxulrunner/python_xulrunner_about.html">http://pyxpcomext.mozdev.org/no_wrap/tutorials/pyxulrunner/python_xulrunner_about.html</a>
+Creating Python GUI Applications using XULRunner</li>
+<li><a class="reference external" href="http://michaelthornhill.blogspot.com/2005/07/giving-python-legs-with-xulrunner.html">http://michaelthornhill.blogspot.com/2005/07/giving-python-legs-with-xulrunner.html</a>
+Giving Python legs with XULRunner</li>
+</ul>
+</li>
+<li><p class="first"><a class="reference external" href="http://www.w3schools.com/css/">CSS at W3Schools</a></p>
+</li>
+<li><p class="first"><a class="reference external" href="http://www.w3.org/TR/CSS2/selector.html">CSS Selectors</a>
+(and <a class="reference external" href="http://www.w3.org/TR/css3-selectors/">here</a> for CSS3)</p>
+</li>
+<li><p class="first">JavaScript (ECMAScript)</p>
+</li>
+<li><p class="first">XML DOM</p>
+<blockquote>
+<ul class="simple">
+<li><a class="reference external" href="http://www.w3schools.com/dom/default.asp">http://www.w3schools.com/dom/default.asp</a> XML DOM Tutorial</li>
+<li><a class="reference external" href="http://www.w3.org/TR/DOM-Level-2-Core/core.html">http://www.w3.org/TR/DOM-Level-2-Core/core.html</a></li>
+</ul>
+</blockquote>
+</li>
+<li><p class="first">Embedding SVG in XHTML</p>
+<blockquote>
+<ul class="simple">
+<li><a class="reference external" href="http://benjamin.smedbergs.us/blog/2008-12-22/using-svg-on-the-web/">http://benjamin.smedbergs.us/blog/2008-12-22/using-svg-on-the-web/</a></li>
+<li><a class="reference external" href="https://developer.mozilla.org/en/Code_snippets/Embedding_SVG">https://developer.mozilla.org/en/Code_snippets/Embedding_SVG</a></li>
+<li><a class="reference external" href="http://www.w3.org/TR/SVG11/">http://www.w3.org/TR/SVG11/</a></li>
+</ul>
+</blockquote>
+</li>
+<li><p class="first">HTML5 Canvases</p>
+<blockquote>
+<ul class="simple">
+<li><a class="reference external" href="http://www.whatwg.org/specs/web-apps/current-work/multipage/the-canvas-element.html">http://www.whatwg.org/specs/web-apps/current-work/multipage/the-canvas-element.html</a></li>
+<li><a class="reference external" href="https://developer.mozilla.org/En/Canvas_tutorial">https://developer.mozilla.org/En/Canvas_tutorial</a></li>
+</ul>
+</blockquote>
+</li>
+<li><p class="first">MathML</p>
+<blockquote>
+<ul class="simple">
+<li><a class="reference external" href="http://en.wikipedia.org/wiki/MathML">http://en.wikipedia.org/wiki/MathML</a></li>
+<li><a class="reference external" href="http://www.w3.org/TR/REC-MathML/">http://www.w3.org/TR/REC-MathML/</a></li>
+<li>NOTE: To my knowledge, MathML is not supported in WebKit yet.</li>
+</ul>
+</blockquote>
+</li>
+<li><p class="first">jQuery</p>
+<blockquote>
+<ul class="simple">
+<li><a class="reference external" href="http://jquery.com/">http://jquery.com/</a></li>
+<li><a class="reference external" href="http://www.youtube.com/watch?v=8mwKq7_JlS8">http://www.youtube.com/watch?v=8mwKq7_JlS8</a> jQuery at Google
+TechTalks (yes indeed, a 12-year old is giving the talk) (note:
+fast forward about 3 minutes in to get to the core of the talk)</li>
+</ul>
+</blockquote>
+</li>
+<li><p class="first">JSON (a good compromise when XML is too much and S-expressions are
+too little ... assuming you're not obsessed with YAML ;-))</p>
+<blockquote>
+<ul class="simple">
+<li><a class="reference external" href="http://www.json.org/">http://www.json.org/</a></li>
+<li><a class="reference external" href="http://en.wikipedia.org/wiki/JSON">http://en.wikipedia.org/wiki/JSON</a></li>
+</ul>
+</blockquote>
+</li>
+<li><p class="first">Creating quality design with HTML and CSS</p>
+<blockquote>
+<ul class="simple">
+<li><a class="reference external" href="http://www.alistapart.com/">http://www.alistapart.com/</a> One of my favorite design sites</li>
+<li>Jeffrey Zeldman's book &quot;Designing With Web Standards&quot; (this book
+is what motivated me to take time to learn web standards)</li>
+</ul>
+</blockquote>
+</li>
+<li><p class="first">X3D (the XML version of VRML)...?  I'm not really sure how to get this
+working yet.  If you have any thoughts, drop me a line.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="footer">
+<hr class="footer" />
+<a class="reference external" href="index.rst">View document source</a>.
+Generated on: 2009-10-26 04:10 UTC.
+Generated by <a class="reference external" href="http://docutils.sourceforge.net/">Docutils</a> from <a class="reference external" href="http://docutils.sourceforge.net/rst.html">reStructuredText</a> source.
+
+</div>
+</body>
+</html>

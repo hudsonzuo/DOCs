@@ -1,0 +1,13 @@
+$s = new CairoImageSurface(
+CairoFormat::ARGB32, 400, 400);
+$c = new CairoContext($s);
+$c->fill();
+$c->setSourceRGB(1, 0, 0);
+$c->setLineWidth(50);
+$c->arc(200, 200, 100, 0, 2 * M_PI);
+$c->stroke();
+$c->setSourceRGB(0, 0, 0.6);
+$c->rectangle(0, 160, 400, 75);
+$c->fill();
+参考上面的代码可以知道cairo的使用方法：setsource->draw->stroke
+stroke命令把缓存的绘制实现到屏幕上面。

@@ -1,0 +1,527 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link title="new" rel="stylesheet" href="../../../css/main.css" type="text/css">
+<link REL="shortcut icon" HREF="../../../favicon.ico" TYPE="image/x-icon">
+<link rel="search" type="application/opensearchdescription+xml" href="http://www.gentoo.org/search/www-gentoo-org.xml" title="Gentoo Website">
+<link rel="search" type="application/opensearchdescription+xml" href="http://www.gentoo.org/search/forums-gentoo-org.xml" title="Gentoo Forums">
+<link rel="search" type="application/opensearchdescription+xml" href="http://www.gentoo.org/search/bugs-gentoo-org.xml" title="Gentoo Bugzilla">
+<link rel="search" type="application/opensearchdescription+xml" href="http://www.gentoo.org/search/packages-gentoo-org.xml" title="Gentoo Packages">
+<link rel="search" type="application/opensearchdescription+xml" href="http://www.gentoo.org/search/archives-gentoo-org.xml" title="Gentoo List Archives">
+<title>Gentoo Linux Documentation
+--
+  TeX Live 2008 guide</title>
+</head>
+<body style="margin:0px;" bgcolor="#ffffff"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr><td valign="top" height="125" bgcolor="#45347b"><a href="/"><img border="0" src="../../../images/gtop-www.jpg" alt="Gentoo Logo"></a></td></tr>
+<tr><td valign="top" align="right" colspan="1" bgcolor="#ffffff"><table border="0" cellspacing="0" cellpadding="0" width="100%"><tr>
+<td width="99%" class="content" valign="top" align="left">
+<br><h1>TeX Live 2008 guide</h1>
+<form name="contents" action="http://www.gentoo.org">
+<b>Content</b>:
+        <select name="url" size="1" OnChange="location.href=form.url.options[form.url.selectedIndex].value" style="font-family:sans-serif,Arial,Helvetica"><option value="#doc_chap1">1. Clean uninstall</option>
+<option value="#doc_chap2">2. Installing TeX Live 2008</option>
+<option value="#doc_chap3">3. Configuration</option>
+<option value="#doc_chap4">4. Common errors</option></select>
+</form>
+<p class="chaphead"><a name="uninstall"></a><a name="doc_chap1"></a><span class="chapnum">1. 
+            </span>Clean uninstall</p>
+<p class="secthead"><a name="doc_chap1_sect1">Introduction</a></p>
+<p>
+In this section we will assume that you have <span class="code" dir="ltr">&gt;=app-text/tetex-3</span>
+installed. This also applies if you had <span class="code" dir="ltr">app-text/texlive-2005</span>
+installed. In a perfect world it would be as simple as unmerging it,
+but unfortunately it is not.
+</p>
+<p class="secthead"><a name="doc_chap1_sect2">Saving your old configuration</a></p>
+<p>
+If you have modified your configuration of <span class="code" dir="ltr">tetex</span> editing the
+files in <span class="path" dir="ltr">/etc/texmf</span>, you should save them first:
+</p>
+<a name="doc_chap1_pre1"></a><table class="ntable" width="100%" cellspacing="0" cellpadding="0" border="0">
+<tr><td bgcolor="#7a5ada"><p class="codetitle">Code Listing 1.1: Save your old configuration files</p></td></tr>
+<tr><td bgcolor="#eeeeff" align="left" dir="ltr"><pre>
+$ <span class="code-input">cp -rf /etc/texmf ~/tetex-texmf</span>
+</pre></td></tr>
+</table>
+<p class="secthead"><a name="doc_chap1_sect3">Removing tetex</a></p>
+<p>
+Now you can safely unmerge <span class="code" dir="ltr">tetex</span>:
+</p>
+<a name="doc_chap1_pre2"></a><table class="ntable" width="100%" cellspacing="0" cellpadding="0" border="0">
+<tr><td bgcolor="#7a5ada"><p class="codetitle">Code Listing 1.2: Remove tetex</p></td></tr>
+<tr><td bgcolor="#eeeeff" align="left" dir="ltr"><pre>
+# <span class="code-input">emerge -C tetex</span>
+</pre></td></tr>
+</table>
+<p>
+Some weird errors have been reported when stray configuration files
+were left behind in <span class="path" dir="ltr">/etc/texmf</span>. For safety and for a
+clean install of <span class="code" dir="ltr">TeX Live</span> it is recommended to remove the
+<span class="path" dir="ltr">/etc/texmf/texmf.d/00texmf.cnf</span> file:
+</p>
+<a name="doc_chap1_pre3"></a><table class="ntable" width="100%" cellspacing="0" cellpadding="0" border="0">
+<tr><td bgcolor="#7a5ada"><p class="codetitle">Code Listing 1.3: Cleanup /etc/texmf</p></td></tr>
+<tr><td bgcolor="#eeeeff" align="left" dir="ltr"><pre>
+# <span class="code-input">rm /etc/texmf/texmf.d/00texmf.cnf</span>
+</pre></td></tr>
+</table>
+<table class="ncontent" width="100%" border="0" cellspacing="0" cellpadding="0"><tr><td bgcolor="#bbffbb"><p class="note"><b>Note: </b>
+You have not lost anything since you just saved your old configuration files.
+</p></td></tr></table>
+<p>
+Due to <span class="code" dir="ltr">tetex</span> using <span class="code" dir="ltr">texlinks</span> outside of the scope of the
+package manager, simply unmerging it will have left behind some stray
+symlinks:
+</p>
+<a name="doc_chap1_pre4"></a><table class="ntable" width="100%" cellspacing="0" cellpadding="0" border="0">
+<tr><td bgcolor="#7a5ada"><p class="codetitle">Code Listing 1.4: tetex stray symlink</p></td></tr>
+<tr><td bgcolor="#eeeeff" align="left" dir="ltr"><pre>
+$ <span class="code-input">ls -l /usr/bin/pdftex</span>
+lrwxrwxrwx 1 root root 7 2007-07-09 07:34 /usr/bin/pdftex -&gt; pdfetex
+</pre></td></tr>
+</table>
+<p>
+Of course, pdfetex has gone with <span class="code" dir="ltr">tetex</span>'s removal, so the pdftex symlink
+is dead and can be safely removed. The <span class="code" dir="ltr">find</span> command (with a GNU
+extension though) can help us find and remove dead symlinks interactively:
+</p>
+<a name="doc_chap1_pre5"></a><table class="ntable" width="100%" cellspacing="0" cellpadding="0" border="0">
+<tr><td bgcolor="#7a5ada"><p class="codetitle">Code Listing 1.5: Eliminate dead symlinks interactively</p></td></tr>
+<tr><td bgcolor="#eeeeff" align="left" dir="ltr"><pre>
+# <span class="code-input">find /usr/bin -type l ! -xtype f ! -xtype d -ok rm -f {} \;</span>
+
+&lt; rm ... /usr/bin/pdflatex &gt; ? y
+&lt; rm ... /usr/bin/amstex &gt; ? y
+&lt; rm ... /usr/bin/pdftex &gt; ? y
+&lt; rm ... /usr/bin/eplain &gt; ? y
+&lt; rm ... /usr/bin/jadetex &gt; ? y
+&lt; rm ... /usr/bin/lambda &gt; ? y
+&lt; rm ... /usr/bin/pdfamstex &gt; ? y
+&lt; rm ... /usr/bin/elatex &gt; ? y
+&lt; rm ... /usr/bin/lamed &gt; ? y
+&lt; rm ... /usr/bin/pdfjadetex &gt; ? y
+&lt; rm ... /usr/bin/latex &gt; ? y
+</pre></td></tr>
+</table>
+<p>
+These were the files left over by my <span class="code" dir="ltr">tetex</span> installation.
+</p>
+<p>
+<span class="code" dir="ltr">tetex</span> was also using <span class="code" dir="ltr">fmtutil</span> outside of the scope of the package
+manager to generate the format files. With <span class="code" dir="ltr">TeX Live 2008</span> we now
+build most of the format files while compiling the packages; which format
+files will be installed in <span class="path" dir="ltr">/var/lib/texmf</span>. That means you have to
+make sure that there are no stray format files:
+</p>
+<a name="doc_chap1_pre6"></a><table class="ntable" width="100%" cellspacing="0" cellpadding="0" border="0">
+<tr><td bgcolor="#7a5ada"><p class="codetitle">Code Listing 1.6: Remove stray format files</p></td></tr>
+<tr><td bgcolor="#eeeeff" align="left" dir="ltr"><pre>
+# <span class="code-input">rm -rf /var/lib/texmf/web2c</span>
+</pre></td></tr>
+</table>
+<p class="chaphead"><a name="doc_chap2"></a><span class="chapnum">2. 
+            </span>Installing TeX Live 2008</p>
+<p>
+If you have passed through all the above steps, installing <span class="code" dir="ltr">TeX Live
+2008</span> now should be very easy.
+</p>
+<a name="doc_chap2_pre1"></a><table class="ntable" width="100%" cellspacing="0" cellpadding="0" border="0">
+<tr><td bgcolor="#7a5ada"><p class="codetitle">Code Listing 2.1: Install TeX Live 2008</p></td></tr>
+<tr><td bgcolor="#eeeeff" align="left" dir="ltr"><pre>
+# <span class="code-input">emerge texlive</span>
+</pre></td></tr>
+</table>
+<p>
+In theory this should just go smoothly and install everything. You
+might want to tune <span class="code" dir="ltr">app-text/texlive</span> USE flags to install extra
+TeX packages, but you can do it later; <span class="code" dir="ltr">app-text/texlive</span> is just
+a meta-ebuild that pulls the real packages depending on its USE flags.
+</p>
+<p>
+Nevertheless, it is possible to get dependency problems, errors while
+installing a package, etc. In that case, you are advised to file a bug
+on <a href="https://bugs.gentoo.org">https://bugs.gentoo.org</a>. If you file a bug, please
+include at least the output of <span class="code" dir="ltr">texconfig conf</span> (run as the same
+user that failed to install, because some environment variables might
+be important) in addition to the error; this output will most often be
+requested.
+</p>
+<p class="chaphead"><a name="doc_chap3"></a><span class="chapnum">3. 
+            </span>Configuration</p>
+<p class="secthead"><a name="doc_chap3_sect1">Introduction</a></p>
+<p>
+As was the case for <span class="code" dir="ltr">tetex-3</span>, <span class="code" dir="ltr">TeX Live</span> on <span class="code" dir="ltr">Gentoo</span> has its
+three main configuration files separated and handled by <span class="code" dir="ltr">texmf-update</span>.
+These files are, namely, <span class="path" dir="ltr">texmf.cnf</span>, <span class="path" dir="ltr">fmtutil.cnf</span>,
+<span class="path" dir="ltr">updmap.cfg</span>. They lie in <span class="path" dir="ltr">/etc/texmf/web2c</span>; you should
+not modify them directly because the changes will be lost the next time
+<span class="code" dir="ltr">texmf-update</span> is run.
+</p>
+<p class="secthead"><a name="doc_chap3_sect2"> texmf.cnf </a></p>
+<p>
+The <span class="path" dir="ltr">texmf.cnf</span> file is the main TeX installation
+configuration file. It contains variable definitions that will be used
+by a lot of programs.
+</p>
+<p>
+The <span class="path" dir="ltr">texmf.cnf</span> file is the result of concatenating files
+in <span class="path" dir="ltr">/etc/texmf/texmf.d</span>. In order to modify your TeX environment
+configuration, you should modify the files there. At the time of writing,
+<span class="code" dir="ltr">Gentoo TeX Live</span>'s ebuild install six files there:
+</p>
+<a name="doc_chap3_pre1"></a><table class="ntable" width="100%" cellspacing="0" cellpadding="0" border="0">
+<tr><td bgcolor="#7a5ada"><p class="codetitle">Code Listing 3.1: texmf.d installed files</p></td></tr>
+<tr><td bgcolor="#eeeeff" align="left" dir="ltr"><pre>
+00header.cnf
+05searchpaths.cnf
+10standardpaths.cnf
+15options.cnf
+20sizes.cnf
+25misc.cnf
+</pre></td></tr>
+</table>
+<p>
+This is the result of the splitting in their respective sections of a
+(lightly) modified <span class="path" dir="ltr">texmf.cnf</span> file from <span class="code" dir="ltr">TeX Live
+2008</span> DVD.
+</p>
+<p>
+The <span class="path" dir="ltr">00header.cnf</span>, <span class="path" dir="ltr">05searchpaths.cnf</span>,
+<span class="path" dir="ltr">10standardpaths.cnf</span> and <span class="path" dir="ltr">25misc.cnf</span> files
+should not be modified. If the defaults can be improved, please file a
+bug.
+</p>
+<table class="ncontent" width="100%" border="0" cellspacing="0" cellpadding="0"><tr><td bgcolor="#ffbbbb"><p class="note"><b>Warning: </b>
+The <span class="code" dir="ltr">TeX Live</span> ebuilds are not aware of path changes of those
+files, so if you change any path there, make sure you know what you
+are doing.
+</p></td></tr></table>
+<p>
+The <span class="path" dir="ltr">15options.cnf</span> and <span class="path" dir="ltr">20sizes.cnf</span> files can
+be modified with caution. The comments in these files should explain
+what options mean. For example, in <span class="path" dir="ltr">20sizes.cnf</span> you can
+increase TeX memory, in case you are trying to compile a document that
+is too big and runs into <span class="code" dir="ltr">TeX capacity exceeded, sorry</span> errors.
+</p>
+<p>
+If you wish to append additions to the <span class="path" dir="ltr">texmf.cnf</span> file,
+you can also create a new file in <span class="path" dir="ltr">/etc/texmf/texmf.d</span>,
+called for example <span class="path" dir="ltr">99myadditions.cnf</span>. Beware not to give
+it a higher priority than the core configuration files, so it should
+begin with a two digit number greater than <span class="code" dir="ltr">25</span>.
+</p>
+<p>
+Packages that need to append something to the <span class="path" dir="ltr">texmf.cnf</span>
+file get the same treatment, they should install a
+<span class="path" dir="ltr">texmf.d</span> file instead:
+</p>
+<a name="doc_chap3_pre2"></a><table class="ntable" width="100%" cellspacing="0" cellpadding="0" border="0">
+<tr><td bgcolor="#7a5ada"><p class="codetitle">Code Listing 3.2: Sample code for installing a texmf.d file</p></td></tr>
+<tr><td bgcolor="#eeeeff" align="left" dir="ltr"><pre>
+<span class="code-keyword">insinto</span> <span class="code-constant">/etc/texmf/texmf.d</span>
+<span class="code-keyword">doins</span> <span class="code-constant">40mytexmfadditions.cnf</span>
+</pre></td></tr>
+</table>
+<p class="secthead"><a name="doc_chap3_sect3">updmap.cfg</a></p>
+<p>
+The <span class="path" dir="ltr">updmap.cfg</span> file is the configuration file used by
+<span class="code" dir="ltr">updmap</span> (and <span class="code" dir="ltr">updmap-sys</span>), unless otherwise specified. It
+tells it which font maps to update for the various TeX output drivers.
+</p>
+<p>
+The <span class="path" dir="ltr">updmap.cfg</span> file in <span class="path" dir="ltr">/etc/texmf/web2c</span> is
+the result of concatenating the files in
+<span class="path" dir="ltr">/etc/texmf/updmap.d</span>. The initial
+<span class="path" dir="ltr">00updmap.cfg</span> file installed by
+<span class="code" dir="ltr">app-text/texlive-core</span> is the result of running <span class="code" dir="ltr">updmap
+--syncwithtrees</span> on the the installed <span class="code" dir="ltr">texmf</span> tree (in fact,
+it just mimics what <span class="code" dir="ltr">updmap --syncwithtrees</span> would do, but it is
+only a technical detail).
+</p>
+<p>
+Various <span class="code" dir="ltr">TeX Live</span> ebuilds will add files to the
+<span class="path" dir="ltr">/etc/texmf/updmap.d</span> directory when they install
+fonts. While you can edit those files to disable some font maps to be
+updated, it would probably be wiser to remove the relevant package.
+</p>
+<p>
+If a third party package wants to add font maps, it should
+install a file in <span class="path" dir="ltr">/etc/texmf/updmap.d</span> and let
+<span class="code" dir="ltr">texmf-update</span> handle it.
+</p>
+<table class="ncontent" width="100%" border="0" cellspacing="0" cellpadding="0"><tr><td bgcolor="#ffbbbb"><p class="note"><b>Warning: </b>
+Sometimes you can see <span class="code" dir="ltr">updmap-sys --enable Map=mymap.map</span> in some
+ebuilds or some installation instructions of a third party font
+package, while this might work at first, these changes will be
+reverted the next time <span class="code" dir="ltr">texmf-update</span> is run.
+</p></td></tr></table>
+<p>
+A better way of handling this would be to create a file to be
+installed in <span class="path" dir="ltr">/etc/texmf/updmap.d</span> and install it for TeX
+distributions that support the <span class="code" dir="ltr">texmf-update</span> way:
+</p>
+<a name="doc_chap3_pre3"></a><table class="ntable" width="100%" cellspacing="0" cellpadding="0" border="0">
+<tr><td bgcolor="#7a5ada"><p class="codetitle">Code Listing 3.3: How to enable a font map</p></td></tr>
+<tr><td bgcolor="#eeeeff" align="left" dir="ltr"><pre>
+<span class="code-keyword">inherit</span> <span class="code-identifier">latex-package</span>
+...
+<span class="code-statement">src_install()</span> {
+    ...
+    <span class="code-keyword">if</span> <span class="code-statement">latex-package_has_tetex_3</span>; then
+        <span class="code-keyword">insinto</span> /etc/texmf/updmap.d
+        <span class="code-keyword">doins</span> myfontmapconfig.cfg
+    <span class="code-keyword">fi</span>
+    ...
+}
+...
+<span class="code-statement">pkg_postinst()</span> {
+    <span class="code-statement">latex-package_pkg_postinst</span>
+    <span class="code-statement">latex-package_has_tetex_3</span> || updmap-sys --enable Map=mymap.map
+}
+
+<span class="code-statement">pkg_postrm()</span> {
+    <span class="code-statement">latex-package_pkg_postinst</span>
+    <span class="code-statement">latex-package_has_tetex_3</span> || updmap-sys --disable Map=mymap.map
+}
+</pre></td></tr>
+</table>
+<p>
+The files in <span class="path" dir="ltr">/etc/texmf/updmap.d</span> should respect <span class="code" dir="ltr">updmap</span>
+syntax:
+</p>
+<a name="doc_chap3_pre4"></a><table class="ntable" width="100%" cellspacing="0" cellpadding="0" border="0">
+<tr><td bgcolor="#7a5ada"><p class="codetitle">Code Listing 3.4: Snippet of updmap.cfg explaining the syntax</p></td></tr>
+<tr><td bgcolor="#eeeeff" align="left" dir="ltr"><pre>
+There are two possible entries: Map and MixedMap. Both have one additional
+argument: the file name of the map file. MixedMap ("mixed" means that the font
+is available as bitmap and as outline) lines will not be used in the default map
+of dvips if dvipsPreferOutline is false. Inactive Map files should be marked by
+"#! " (without the quotes), not just #.
+</pre></td></tr>
+</table>
+<p class="secthead"><a name="doc_chap3_sect4">fmtutil.cnf</a></p>
+<p>
+The <span class="path" dir="ltr">fmtutil.cnf</span> file contains information on how to
+build and handle a format file.
+</p>
+<p>
+The <span class="path" dir="ltr">fmtutil.cnf</span> file is the result of concatenating the
+files in <span class="path" dir="ltr">/etc/texmf/fmtutil.d</span>. Various <span class="code" dir="ltr">TeX Live</span>
+ebuilds install files there. Those files come with the formats they
+add support for and the symlink to the relevant engine.
+</p>
+<a name="doc_chap3_pre5"></a><table class="ntable" width="100%" cellspacing="0" cellpadding="0" border="0">
+<tr><td bgcolor="#7a5ada"><p class="codetitle">Code Listing 3.5: Snippet of the fmtutil.cnf(5) man page that explains the syntax</p></td></tr>
+<tr><td bgcolor="#eeeeff" align="left" dir="ltr"><pre>
+The fmtutil.cnf file contains the configuration information for fmtutil(8).
+Each line contains the name of the format (e.g., "tex", "latex", "omega"), the
+name of the engine that is used by that format (e.g., "tex", "etex", "omega"),
+the pattern file (e.g., language.dat, language.def), and any arguments (name of
+an .ini file).
+
+Fields are separated by whitespace and complete lines can be commented out with
+"#".  The "pattern file" field cannot be used to define a file that is used
+while building the format. It tells fmtutil which file the format creation
+procedure reads and it has an effect to the options --showhyphen and --byhyphen.
+If the format has no way to customize hyphenation, a "-" can be used to indicate
+this.
+</pre></td></tr>
+</table>
+<p>
+<span class="code" dir="ltr">TeX Live</span> ebuilds that install a <span class="path" dir="ltr">fmtutil.d</span> file,
+install the relevant format files in <span class="path" dir="ltr">/var/lib/texmf/web2c</span>
+and create the symlink from the format to the engine.
+</p>
+<p>
+Note that when a support file for a language gets added,
+<span class="code" dir="ltr">texmf-update</span> takes care of adding it to the
+<span class="path" dir="ltr">language.dat</span> file and regenerates the format files to
+support the newly installed language.
+</p>
+<p class="secthead"><a name="doc_chap3_sect5">Updating your configuration</a></p>
+<p>
+Now that you know how <span class="code" dir="ltr">TeX Live</span> configuration is managed, you
+should be able to port the changes you had made to your older TeX
+distribution configuration to the <span class="code" dir="ltr">TeX Live</span> configuration
+layout.
+</p>
+<p class="chaphead"><a name="doc_chap4"></a><span class="chapnum">4. 
+            </span>Common errors</p>
+<p class="secthead"><a name="doc_chap4_sect1">Introduction</a></p>
+<p>
+In this chapter we will try to give a short summary of the most common
+errors and explain what has gone wrong.
+</p>
+<p class="secthead"><a name="doc_chap4_sect2">Format was written by (pdf)etex</a></p>
+<p>
+Sometimes when installing some packages that requires latex, you'll
+get this error:
+</p>
+<a name="doc_chap4_pre1"></a><table class="ntable" width="100%" cellspacing="0" cellpadding="0" border="0">
+<tr><td bgcolor="#7a5ada"><p class="codetitle">Code Listing 4.1: Format was written by pdfetex</p></td></tr>
+<tr><td bgcolor="#eeeeff" align="left" dir="ltr"><pre>
+---! //var/lib/texmf/web2c/latex.fmt was written by pdfetex
+</pre></td></tr>
+</table>
+<p>
+This is due to old files remaining from an old installation of a <span class="code" dir="ltr">TeX</span>
+distribution based on <span class="code" dir="ltr">etex</span>. This most likely means you did not follow
+entirely this guide, especially the <a href="#uninstall">Clean uninstall
+chapter</a>.
+</p>
+<p>
+Nevertheless, it is still possible to fix it quickly without having to
+reinstall anything, just run as root:
+</p>
+<a name="doc_chap4_pre2"></a><table class="ntable" width="100%" cellspacing="0" cellpadding="0" border="0">
+<tr><td bgcolor="#7a5ada"><p class="codetitle">Code Listing 4.2: Remove old formats</p></td></tr>
+<tr><td bgcolor="#eeeeff" align="left" dir="ltr"><pre>
+# <span class="code-input">rm -rf /var/lib/texmf/web2c</span>
+# <span class="code-input">texmf-update</span>
+</pre></td></tr>
+</table>
+<p class="secthead"><a name="doc_chap4_sect3">Format directory does not exist</a></p>
+<p>
+When installing e.g., <span class="code" dir="ltr">texlive-latex</span>, you might encounter the error:
+</p>
+<a name="doc_chap4_pre3"></a><table class="ntable" width="100%" cellspacing="0" cellpadding="0" border="0">
+<tr><td bgcolor="#7a5ada"><p class="codetitle">Code Listing 4.3: Format directory does not exist</p></td></tr>
+<tr><td bgcolor="#eeeeff" align="left" dir="ltr"><pre>
+fmtutil: format directory
+`/var/tmp/portage/dev-texlive/texlive-latex-2008/work/texmf-var/web2c' does not
+exist.
+</pre></td></tr>
+</table>
+<p>
+This is most likely due to a wrong configuration. Try to run the
+following command and get the same results:
+</p>
+<a name="doc_chap4_pre4"></a><table class="ntable" width="100%" cellspacing="0" cellpadding="0" border="0">
+<tr><td bgcolor="#7a5ada"><p class="codetitle">Code Listing 4.4: TEXMFMAIN definition</p></td></tr>
+<tr><td bgcolor="#eeeeff" align="left" dir="ltr"><pre>
+$ <span class="code-input">kpsewhich --var-value=TEXMFMAIN</span>
+/usr/share/texmf
+</pre></td></tr>
+</table>
+<p>
+This is very important, since <span class="code" dir="ltr">fmtutil</span> looks for <span class="code" dir="ltr">mktexdir</span>
+at this location; if you have a different result then <span class="code" dir="ltr">fmtutil</span>
+will not find <span class="code" dir="ltr">mktexdir</span> and thus will fail to create the
+directory where to temporarily store the compiled formats.
+</p>
+<p>
+There is no magic command to fix this one, you should check that your
+configuration is correct, that there are no stray configuration files
+in <span class="path" dir="ltr">/etc/texmf/texmf.d</span>. This will most likely be due to an
+old <span class="path" dir="ltr">00texmf.cnf</span> being still there and thus setting wrong
+definitions for the <span class="path" dir="ltr">texmf.cnf</span> file. Please refer to the
+<a href="#uninstall">Clean uninstall chapter</a> and remember that when you
+modify or remove a file in <span class="path" dir="ltr">/etc/texmf/*.d</span> you need to run
+<span class="code" dir="ltr">texmf-update</span> to have the changes taken into account.
+</p>
+<p class="secthead"><a name="doc_chap4_sect4">Missing .tex files</a></p>
+<p>
+When installing <span class="code" dir="ltr">texlive-latex</span> (or any other format that has
+babel hyphenation support), you might encounter an error like:
+</p>
+<a name="doc_chap4_pre5"></a><table class="ntable" width="100%" cellspacing="0" cellpadding="0" border="0">
+<tr><td bgcolor="#7a5ada"><p class="codetitle">Code Listing 4.5: missing bghyphen.tex</p></td></tr>
+<tr><td bgcolor="#eeeeff" align="left" dir="ltr"><pre>
+===========================================
+Local configuration file hyphen.cfg used
+===========================================
+
+(/var/tmp/portage/dev-texlive/texlive-latex-2008/work/texmf-dist/tex/generic/ba
+bel/hyphen.cfg (/usr/share/texmf/tex/generic/hyphen/hyphen.tex)
+(/usr/share/texmf/tex/generic/hyphen/ushyphmax.tex)
+(/usr/share/texmf/tex/generic/hyphen/dumyhyph.tex)
+(/usr/share/texmf/tex/generic/hyphen/zerohyph.tex)
+(/usr/share/texmf/tex/generic/hyphen/zerohyph.tex)
+(/usr/share/texmf-dist/tex/generic/xu-hyphen/xu-bahyph.tex
+(/usr/share/texmf/tex/generic/hyphen/bahyph.tex))
+(/usr/share/texmf-dist/tex/generic/xu-hyphen/xu-bghyphen.tex
+! I can't find file `bghyphen.tex'.
+l.10   \input bghyphen.tex
+
+Please type another input file name:
+! Emergency stop.
+l.10   \input bghyphen.tex
+
+No pages of output.
+Transcript written on latex.log.
+Error: `pdftex -ini  -jobname=latex -progname=latex
+-translate-file=cp227.tcx *latex.ini' failed
+</pre></td></tr>
+</table>
+<p>
+In that case, you will have to check which <span class="path" dir="ltr">language.dat</span>
+file is being used:
+</p>
+<a name="doc_chap4_pre6"></a><table class="ntable" width="100%" cellspacing="0" cellpadding="0" border="0">
+<tr><td bgcolor="#7a5ada"><p class="codetitle">Code Listing 4.6: find language.dat</p></td></tr>
+<tr><td bgcolor="#eeeeff" align="left" dir="ltr"><pre>
+$ <span class="code-input">kpsewhich language.dat</span>
+/usr/share/texmf/tex/generic/config/language.dat
+</pre></td></tr>
+</table>
+<p>
+This file is automatically generated by <span class="code" dir="ltr">texmf-update</span> and is the
+result of concatenating <span class="path" dir="ltr">language.*.dat</span> files present in
+the directory with <span class="path" dir="ltr">language.us</span> (for TeX Live 2008, the
+<span class="path" dir="ltr">language.*.dat</span> files are taken from
+<span class="path" dir="ltr">/etc/texmf/language.dat.d/</span>). This directory should be
+<span class="path" dir="ltr">/usr/share/texmf/tex/generic/config/</span>. So you should check
+that there are no other <span class="path" dir="ltr">language.*.dat</span> files in that
+directory other than the ones installed by the various
+<span class="code" dir="ltr">dev-texlive/texlive-lang*</span> ebuilds. A file present in that
+directory means that you want to enable hyphenation support for a
+specific language; if you don't have the hyphenation support files the
+formats that use this extra hyphenation support will fail to build.
+</p>
+<br><p class="copyright">
+	The contents of this document, unless otherwise expressly stated, are licensed under the <a href="http://creativecommons.org/licenses/by-sa/2.5">CC-BY-SA-2.5</a> license. The <a href="/main/en/name-logo.xml"> Gentoo Name and Logo Usage Guidelines </a> apply.
+  </p>
+<!--
+  <rdf:RDF xmlns="http://web.resource.org/cc/"
+      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+  
+  <license rdf:about="http://creativecommons.org/licenses/by-sa/2.5/">
+    
+     <permits rdf:resource="http://web.resource.org/cc/Reproduction" />
+     <permits rdf:resource="http://web.resource.org/cc/Distribution" />
+     <requires rdf:resource="http://web.resource.org/cc/Notice" />
+     <requires rdf:resource="http://web.resource.org/cc/Attribution" />
+     <permits rdf:resource="http://web.resource.org/cc/DerivativeWorks" />
+     <requires rdf:resource="http://web.resource.org/cc/ShareAlike" />
+  </License>
+  </rdf:RDF>
+--><br>
+</td>
+<td width="1%" bgcolor="#dddaec" valign="top"><table border="0" cellspacing="4px" cellpadding="4px">
+<tr><td class="topsep" align="center"><p class="altmenu"><a title="View a printer-friendly version" class="altlink" href="/proj/en/tex/texlive-migration-guide.xml?style=printable">Print</a></p></td></tr>
+<tr><td class="topsep" align="center"><p class="alttext">Page updated April 15, 2009</p></td></tr>
+<tr><td class="topsep" align="left"><p class="alttext"><b>Summary: </b>
+This guide aims to show you how to install TeX Live 2008 on Gentoo,
+more specifically what you need to take care of if you already have a
+TeX distribution installed (like tetex or TeX Live 2005).
+</p></td></tr>
+<tr><td align="left" class="topsep"><p class="alttext">
+  <a href="mailto:aballier@gentoo.org" class="altlink"><b>Alexis Ballier</b></a>
+<br><i>Author</i><br></p></td></tr>
+<tr lang="en"><td align="center" class="topsep">
+<p class="alttext"><b>Donate</b> to support our development efforts.
+        </p>
+<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+<input type="hidden" name="cmd" value="_xclick"><input type="hidden" name="business" value="paypal@gentoo.org"><input type="hidden" name="item_name" value="Gentoo Linux Support"><input type="hidden" name="item_number" value="1000"><input type="hidden" name="image_url" value="/images/paypal.png"><input type="hidden" name="no_shipping" value="1"><input type="hidden" name="return" value="http://www.gentoo.org"><input type="hidden" name="cancel_return" value="http://www.gentoo.org"><input type="image" src="http://images.paypal.com/images/x-click-but21.gif" name="submit" alt="Donate to Gentoo">
+</form>
+</td></tr>
+<tr lang="en"><td align="center"><iframe src="http://sidebar.gentoo.org" scrolling="no" width="125" height="850" frameborder="0" style="border:0px padding:0x" marginwidth="0" marginheight="0"><p>Your browser does not support iframes.</p></iframe></td></tr>
+</table></td>
+</tr></table></td></tr>
+<tr><td colspan="2" align="right" class="infohead">
+Copyright 2001-2012 Gentoo Foundation, Inc. Questions, Comments? <a class="highlight" href="/main/en/contact.xml">Contact us</a>.
+</td></tr>
+</table></body>
+</html>

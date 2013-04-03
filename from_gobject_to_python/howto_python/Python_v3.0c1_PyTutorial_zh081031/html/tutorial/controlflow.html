@@ -1,0 +1,721 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>More Control Flow Tools 深入流程控制 &mdash; Python v3.0c1 documentation</title>
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+          URL_ROOT:    '../',
+          VERSION:     '3.0c1',
+          COLLAPSE_MODINDEX: false,
+          FILE_SUFFIX: '.html'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Search within Python v3.0c1 documentation"
+          href="../_static/opensearch.xml"/>
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="copyright" title="Copyright" href="../copyright.html" />
+    <link rel="top" title="Python v3.0c1 documentation" href="../index.html" />
+    <link rel="up" title="The Python tutorial Python 入门指南" href="index.html" />
+    <link rel="next" title="Data Structures 数据结构" href="datastructures.html" />
+    <link rel="prev" title="An Informal Introduction to Python Python 简介" href="introduction.html" />
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../modindex.html" title="Global Module Index"
+             accesskey="M">modules</a> |</li>
+        <li class="right" >
+          <a href="datastructures.html" title="Data Structures 数据结构"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="introduction.html" title="An Informal Introduction to Python Python 简介"
+             accesskey="P">previous</a> |</li>
+<li><img src="../_static/py.png" alt="" style="vertical-align: middle; margin-top: -1px"/></li>
+
+        <li><a href="../contents.html">Python v3.0c1 documentation</a> &raquo;</li>
+
+          <li><a href="index.html" accesskey="U">The Python tutorial Python 入门指南</a> &raquo;</li>
+      </ul>
+    </div>
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  
+  <div class="section" id="more-control-flow-tools">
+<span id="tut-morecontrol"></span><h1>More Control Flow Tools 深入流程控制<a class="headerlink" href="#more-control-flow-tools" title="Permalink to this headline">¶</a></h1>
+<p>Besides the <a class="reference external" href="../reference/compound_stmts.html#while"><tt class="xref docutils literal"><span class="pre">while</span></tt></a> statement just introduced, Python knows the usual
+control flow statements known from other languages, with some twists.</p>
+<p>除了 <a class="reference external" href="../reference/compound_stmts.html#while"><tt class="xref docutils literal"><span class="pre">while</span></tt></a> 关键字</p>
+<div class="section" id="if-statements">
+<span id="tut-if"></span><h2><a class="reference external" href="../reference/compound_stmts.html#if"><tt class="xref docutils literal"><span class="pre">if</span></tt></a> Statements<a class="headerlink" href="#if-statements" title="Permalink to this headline">¶</a></h2>
+<p>Perhaps the most well-known statement type is the <a class="reference external" href="../reference/compound_stmts.html#if"><tt class="xref docutils literal"><span class="pre">if</span></tt></a> statement.  For
+example:</p>
+<p>可能最有名的语句是 :keyword:<a href="#id1"><span class="problematic" id="id2">`</span></a>if`。例如：</p>
+<div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s">&quot;Please enter an integer: &quot;</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">if</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="mf">0</span><span class="p">:</span>
+<span class="gp">... </span>     <span class="n">x</span> <span class="o">=</span> <span class="mf">0</span>
+<span class="gp">... </span>     <span class="k">print</span><span class="p">(</span><span class="s">&#39;Negative changed to zero&#39;</span><span class="p">)</span>
+<span class="gp">... </span><span class="k">elif</span> <span class="n">x</span> <span class="o">==</span> <span class="mf">0</span><span class="p">:</span>
+<span class="gp">... </span>     <span class="k">print</span><span class="p">(</span><span class="s">&#39;Zero&#39;</span><span class="p">)</span>
+<span class="gp">... </span><span class="k">elif</span> <span class="n">x</span> <span class="o">==</span> <span class="mf">1</span><span class="p">:</span>
+<span class="gp">... </span>     <span class="k">print</span><span class="p">(</span><span class="s">&#39;Single&#39;</span><span class="p">)</span>
+<span class="gp">... </span><span class="k">else</span><span class="p">:</span>
+<span class="gp">... </span>     <span class="k">print</span><span class="p">(</span><span class="s">&#39;More&#39;</span><span class="p">)</span>
+<span class="gp">...</span>
+</pre></div>
+<p>There can be zero or more <a class="reference external" href="../reference/compound_stmts.html#elif"><tt class="xref docutils literal"><span class="pre">elif</span></tt></a> parts, and the <a class="reference external" href="../reference/compound_stmts.html#else"><tt class="xref docutils literal"><span class="pre">else</span></tt></a> part is
+optional.  The keyword &#8216;<a class="reference external" href="../reference/compound_stmts.html#elif"><tt class="xref docutils literal"><span class="pre">elif</span></tt></a>&#8216; is short for &#8216;else if&#8217;, and is useful
+to avoid excessive indentation.  An  <a class="reference external" href="../reference/compound_stmts.html#if"><tt class="xref docutils literal"><span class="pre">if</span></tt></a> ... <a class="reference external" href="../reference/compound_stmts.html#elif"><tt class="xref docutils literal"><span class="pre">elif</span></tt></a> ...
+<a class="reference external" href="../reference/compound_stmts.html#elif"><tt class="xref docutils literal"><span class="pre">elif</span></tt></a> ... sequence is a substitute for the <tt class="xref docutils literal"><span class="pre">switch</span></tt> or
+<tt class="xref docutils literal"><span class="pre">case</span></tt> statements found in other languages.</p>
+<p>这里可以有零到多个 <a class="reference external" href="../reference/compound_stmts.html#elif"><tt class="xref docutils literal"><span class="pre">elif</span></tt></a> 分支和 <a class="reference external" href="../reference/compound_stmts.html#else"><tt class="xref docutils literal"><span class="pre">else</span></tt></a> 分支可选。关键
+字 <a class="reference external" href="../reference/compound_stmts.html#elif"><tt class="xref docutils literal"><span class="pre">elif</span></tt></a> 是 <cite>else if</cite> 的简写，它可以有效避免过度缩进。
+<a class="reference external" href="../reference/compound_stmts.html#if"><tt class="xref docutils literal"><span class="pre">if</span></tt></a> ... <a class="reference external" href="../reference/compound_stmts.html#elif"><tt class="xref docutils literal"><span class="pre">elif</span></tt></a> ... <a class="reference external" href="../reference/compound_stmts.html#elif"><tt class="xref docutils literal"><span class="pre">elif</span></tt></a> ... 序列是其
+它语言中的 :keyword:<a href="#id3"><span class="problematic" id="id4">`</span></a>switch 或 :keyword:case 语法的替代品。</p>
+</div>
+<div class="section" id="for-statements-for">
+<span id="tut-for"></span><h2><a class="reference external" href="../reference/compound_stmts.html#for"><tt class="xref docutils literal"><span class="pre">for</span></tt></a> Statements <a class="reference external" href="../reference/compound_stmts.html#for"><tt class="xref docutils literal"><span class="pre">for</span></tt></a> 语法<a class="headerlink" href="#for-statements-for" title="Permalink to this headline">¶</a></h2>
+<p id="index-970">The <a class="reference external" href="../reference/compound_stmts.html#for"><tt class="xref docutils literal"><span class="pre">for</span></tt></a> statement in Python differs a bit from what you may be used
+to in C or Pascal.  Rather than always iterating over an arithmetic progression
+of numbers (like in Pascal), or giving the user the ability to define both the
+iteration step and halting condition (as C), Python&#8217;s <a class="reference external" href="../reference/compound_stmts.html#for"><tt class="xref docutils literal"><span class="pre">for</span></tt></a> statement
+iterates over the items of any sequence (a list or a string), in the order that
+they appear in the sequence.  For example (no pun intended):</p>
+<p>可能你用过 C 或 Pascal， Python 中的 <a class="reference external" href="../reference/compound_stmts.html#for"><tt class="xref docutils literal"><span class="pre">for</span></tt></a> 语法与之稍有不同。通常的循环可能会
+依据一个等差数值步进过程（如Pascal）或由用户来定义迭代步骤和中止条件（如 C ），Python 的
+for 语句依据任意序列（链表或字符串）中的子项，按它们在序列中的顺序来进行迭代。例如（没有暗指）：</p>
+<div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="c"># Measure some strings:</span>
+<span class="gp">... </span><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;cat&#39;</span><span class="p">,</span> <span class="s">&#39;window&#39;</span><span class="p">,</span> <span class="s">&#39;defenestrate&#39;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">a</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+<span class="gp">...</span>
+<span class="go">cat 3</span>
+<span class="go">window 6</span>
+<span class="go">defenestrate 12</span>
+</pre></div>
+<p>It is not safe to modify the sequence being iterated over in the loop (this can
+only happen for mutable sequence types, such as lists).  If you need to modify
+the list you are iterating over (for example, to duplicate selected items) you
+must iterate over a copy.  The slice notation makes this particularly
+convenient:</p>
+<p>在循环中修改序列被迭代的部分不安全。如果你需要修改被迭代的序列（例如复制选择项），应该迭代它的复本。
+通常使用切割就可以方便的做到：</p>
+<div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">a</span><span class="p">[:]:</span> <span class="c"># make a slice copy of the entire list</span>
+<span class="gp">... </span>   <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mf">6</span><span class="p">:</span> <span class="n">a</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mf">0</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span>
+<span class="go">[&#39;defenestrate&#39;, &#39;cat&#39;, &#39;window&#39;, &#39;defenestrate&#39;]</span>
+</pre></div>
+</div>
+<div class="section" id="the-range-function-range">
+<span id="tut-range"></span><h2>The <a title="range" class="reference external" href="../library/functions.html#range"><tt class="xref docutils literal"><span class="pre">range()</span></tt></a> Function <a title="range" class="reference external" href="../library/functions.html#range"><tt class="xref docutils literal"><span class="pre">range()</span></tt></a> 函数<a class="headerlink" href="#the-range-function-range" title="Permalink to this headline">¶</a></h2>
+<p>If you do need to iterate over a sequence of numbers, the built-in function
+<a title="range" class="reference external" href="../library/functions.html#range"><tt class="xref docutils literal"><span class="pre">range()</span></tt></a> comes in handy.  It generates arithmetic progressions:</p>
+<p>如果你需要一个数值序列，内置函数 <a title="range" class="reference external" href="../library/functions.html#range"><tt class="xref docutils literal"><span class="pre">range()</span></tt></a> 函数可能很有用，它生成一个等差级数序列：</p>
+<div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mf">5</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="k">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+<span class="gp">...</span>
+<span class="go">0</span>
+<span class="go">1</span>
+<span class="go">2</span>
+<span class="go">3</span>
+<span class="go">4</span>
+</pre></div>
+<p>The given end point is never part of the generated list; <tt class="docutils literal"><span class="pre">range(10)</span></tt> generates
+10 values, the legal indices for items of a sequence of length 10.  It
+is possible to let the range start at another number, or to specify a different
+increment (even negative; sometimes this is called the &#8216;step&#8217;):</p>
+<p>给定的终点不在生成的列表中；``range(10)`` 生成了 10 个值，准确的用索引值填充了这个长度为 10 的列表。也可以让 range 操作从另一个数值开始，或者可以指定一个不同的步进值（甚至是负数，有时也称之为`步长`）：</p>
+<blockquote>
+<dl class="docutils">
+<dt>range(5, 10)</dt>
+<dd>5 through 9</dd>
+<dt>range(0, 10, 3)</dt>
+<dd>0, 3, 6, 9</dd>
+<dt>range(-10, -100, -30)</dt>
+<dd>-10, -40, -70</dd>
+</dl>
+</blockquote>
+<p>To iterate over the indices of a sequence, combine <a title="range" class="reference external" href="../library/functions.html#range"><tt class="xref docutils literal"><span class="pre">range()</span></tt></a> and <a title="len" class="reference external" href="../library/functions.html#len"><tt class="xref docutils literal"><span class="pre">len()</span></tt></a>
+as follows:</p>
+<p>要迭代列表索引的话，如下所示结合使用 <a title="range" class="reference external" href="../library/functions.html#range"><tt class="xref docutils literal"><span class="pre">range()</span></tt></a> 和 :func:<a href="#id5"><span class="problematic" id="id6">`</span></a>len`：</p>
+<div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;Mary&#39;</span><span class="p">,</span> <span class="s">&#39;had&#39;</span><span class="p">,</span> <span class="s">&#39;a&#39;</span><span class="p">,</span> <span class="s">&#39;little&#39;</span><span class="p">,</span> <span class="s">&#39;lamb&#39;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">a</span><span class="p">)):</span>
+<span class="gp">... </span>    <span class="k">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+<span class="gp">...</span>
+<span class="go">0 Mary</span>
+<span class="go">1 had</span>
+<span class="go">2 a</span>
+<span class="go">3 little</span>
+<span class="go">4 lamb</span>
+</pre></div>
+<p>A strange thing happens if you just print a range:</p>
+<p>如果你打印一个 range 会发生奇怪的事：</p>
+<div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mf">10</span><span class="p">))</span>
+<span class="go">range(0, 10)</span>
+</pre></div>
+<p>In many ways the object returned by <a title="range" class="reference external" href="../library/functions.html#range"><tt class="xref docutils literal"><span class="pre">range()</span></tt></a> behaves as if it is a list,
+but in fact it isn&#8217;t. It is an object which returns the successive items of
+the desired sequence when you iterate over it, but it doesn&#8217;t really make
+the list, thus saving space.</p>
+<p>从 <a title="range" class="reference external" href="../library/functions.html#range"><tt class="xref docutils literal"><span class="pre">range()</span></tt></a> 中返回的对象在很多方面都表现的像列表，但实际上它不是。如果你迭代它，会得到期望中的序列连续项，但它为了节省空间，并不真正的构造链表。</p>
+<p>We say such an object is <em>iterable</em>, that is, suitable as a target for
+functions and constructs that expect something from which they can
+obtain successive items until the supply is exhausted. We have seen that
+the <a class="reference external" href="../reference/compound_stmts.html#for"><tt class="xref docutils literal"><span class="pre">for</span></tt></a> statement is such an <em>iterator</em>. The function <a title="list" class="reference external" href="../library/functions.html#list"><tt class="xref docutils literal"><span class="pre">list()</span></tt></a>
+is another; it creates lists from iterables:</p>
+<p>某些函数或构造器会期望连续接收元素直至终结，我们称适用它的对象为“可迭代的”。我们前面见过的 <a class="reference external" href="../reference/compound_stmts.html#for"><tt class="xref docutils literal"><span class="pre">for</span></tt></a> 语句就是这样一个 <em>迭代器</em> 。函数 <a title="list" class="reference external" href="../library/functions.html#list"><tt class="xref docutils literal"><span class="pre">list()</span></tt></a> 是另一个；它从可迭代对象中创建列表：</p>
+<div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mf">5</span><span class="p">))</span>
+<span class="go">[0, 1, 2, 3, 4]</span>
+</pre></div>
+<p>Later we will see more functions that return iterables and take iterables as argument.</p>
+<p>后面我们会深入学习返回或使用可迭代对象为参数的函数。</p>
+</div>
+<div class="section" id="break-and-continue-statements-and-else-clauses-on-loops-break-continue-else">
+<span id="tut-break"></span><h2><a class="reference external" href="../reference/simple_stmts.html#break"><tt class="xref docutils literal"><span class="pre">break</span></tt></a> and <a class="reference external" href="../reference/simple_stmts.html#continue"><tt class="xref docutils literal"><span class="pre">continue</span></tt></a> Statements, and <a class="reference external" href="../reference/compound_stmts.html#else"><tt class="xref docutils literal"><span class="pre">else</span></tt></a> Clauses on Loops <a class="reference external" href="../reference/simple_stmts.html#break"><tt class="xref docutils literal"><span class="pre">break</span></tt></a> 和 <a class="reference external" href="../reference/simple_stmts.html#continue"><tt class="xref docutils literal"><span class="pre">continue</span></tt></a> 语句，以及循环中的 <a class="reference external" href="../reference/compound_stmts.html#else"><tt class="xref docutils literal"><span class="pre">else</span></tt></a> 块<a class="headerlink" href="#break-and-continue-statements-and-else-clauses-on-loops-break-continue-else" title="Permalink to this headline">¶</a></h2>
+<p>The <a class="reference external" href="../reference/simple_stmts.html#break"><tt class="xref docutils literal"><span class="pre">break</span></tt></a> statement, like in C, breaks out of the smallest enclosing
+<a class="reference external" href="../reference/compound_stmts.html#for"><tt class="xref docutils literal"><span class="pre">for</span></tt></a> or <a class="reference external" href="../reference/compound_stmts.html#while"><tt class="xref docutils literal"><span class="pre">while</span></tt></a> loop.</p>
+<p>语句 :<a class="reference external" href="../reference/simple_stmts.html#break"><tt class="xref docutils literal"><span class="pre">break</span></tt></a> 类似C语言，用于跳出最近的 <a class="reference external" href="../reference/compound_stmts.html#for"><tt class="xref docutils literal"><span class="pre">for</span></tt></a> 或 <a class="reference external" href="../reference/compound_stmts.html#while"><tt class="xref docutils literal"><span class="pre">while</span></tt></a> 循环。</p>
+<p>The <a class="reference external" href="../reference/simple_stmts.html#continue"><tt class="xref docutils literal"><span class="pre">continue</span></tt></a> statement, also borrowed from C, continues with the next
+iteration of the loop.</p>
+<p>语句 :keyword:<a href="#id7"><span class="problematic" id="id8">``</span></a>continue 来自于 C ，跳转到循环的下一个迭代过程。</p>
+<p>Loop statements may have an <tt class="docutils literal"><span class="pre">else</span></tt> clause; it is executed when the loop
+terminates through exhaustion of the list (with <a class="reference external" href="../reference/compound_stmts.html#for"><tt class="xref docutils literal"><span class="pre">for</span></tt></a>) or when the
+condition becomes false (with <a class="reference external" href="../reference/compound_stmts.html#while"><tt class="xref docutils literal"><span class="pre">while</span></tt></a>), but not when the loop is
+terminated by a <a class="reference external" href="../reference/simple_stmts.html#break"><tt class="xref docutils literal"><span class="pre">break</span></tt></a> statement.  This is exemplified by the
+following loop, which searches for prime numbers:</p>
+<p>循环语句可以有一个 <tt class="docutils literal"><span class="pre">else</span></tt> 分支；当（ <a class="reference external" href="../reference/compound_stmts.html#for"><tt class="xref docutils literal"><span class="pre">for</span></tt></a> ）循环穷尽它循环的列表或者（ <a href="#id9"><span class="problematic" id="id10">`</span></a>:keyword:<a href="#id11"><span class="problematic" id="id12">`</span></a>while ）循环条件变为 False ，而非通过 :keyword:break 语句中止时，它会执行。以下这个搜索素数的循环是一个简单的示例：</p>
+<div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mf">2</span><span class="p">,</span> <span class="mf">10</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mf">2</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+<span class="gp">... </span>        <span class="k">if</span> <span class="n">n</span> <span class="o">%</span> <span class="n">x</span> <span class="o">==</span> <span class="mf">0</span><span class="p">:</span>
+<span class="gp">... </span>            <span class="k">print</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="s">&#39;equals&#39;</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="s">&#39;*&#39;</span><span class="p">,</span> <span class="n">n</span><span class="o">/</span><span class="n">x</span><span class="p">)</span>
+<span class="gp">... </span>            <span class="k">break</span>
+<span class="gp">... </span>    <span class="k">else</span><span class="p">:</span>
+<span class="gp">... </span>        <span class="c"># loop fell through without finding a factor</span>
+<span class="gp">... </span>        <span class="k">print</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="s">&#39;is a prime number&#39;</span><span class="p">)</span>
+<span class="gp">...</span>
+<span class="go">2 is a prime number</span>
+<span class="go">3 is a prime number</span>
+<span class="go">4 equals 2 * 2</span>
+<span class="go">5 is a prime number</span>
+<span class="go">6 equals 2 * 3</span>
+<span class="go">7 is a prime number</span>
+<span class="go">8 equals 2 * 4</span>
+<span class="go">9 equals 3 * 3</span>
+</pre></div>
+</div>
+<div class="section" id="pass-statements-pass">
+<span id="tut-pass"></span><h2><a class="reference external" href="../reference/simple_stmts.html#pass"><tt class="xref docutils literal"><span class="pre">pass</span></tt></a> Statements <a class="reference external" href="../reference/simple_stmts.html#pass"><tt class="xref docutils literal"><span class="pre">pass</span></tt></a> 语句<a class="headerlink" href="#pass-statements-pass" title="Permalink to this headline">¶</a></h2>
+<p>The <a class="reference external" href="../reference/simple_stmts.html#pass"><tt class="xref docutils literal"><span class="pre">pass</span></tt></a> statement does nothing. It can be used when a statement is
+required syntactically but the program requires no action. For example:</p>
+<p>语句 <a class="reference external" href="../reference/simple_stmts.html#pass"><tt class="xref docutils literal"><span class="pre">pass</span></tt></a> 什么也不做。它用于在语法上必须要有占位，但程序不做任何事的场合。例如：</p>
+<div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+<span class="gp">... </span>      <span class="k">pass</span> <span class="c"># Busy-wait for keyboard interrupt</span>
+<span class="gp">...</span>
+</pre></div>
+</div>
+<div class="section" id="defining-functions">
+<span id="tut-functions"></span><h2>Defining Functions 定义函数<a class="headerlink" href="#defining-functions" title="Permalink to this headline">¶</a></h2>
+<p>We can create a function that writes the Fibonacci series to an arbitrary
+boundary:</p>
+<p>我们可以创建一个函数，用于生成指定边界的菲波那契数列：</p>
+<div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">fib</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>    <span class="c"># write Fibonacci series up to n</span>
+<span class="gp">... </span>    <span class="sd">&quot;&quot;&quot;Print a Fibonacci series up to n.&quot;&quot;&quot;</span>
+<span class="gp">... </span>    <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="mf">0</span><span class="p">,</span> <span class="mf">1</span>
+<span class="gp">... </span>    <span class="k">while</span> <span class="n">b</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">:</span>
+<span class="gp">... </span>        <span class="k">print</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s">&#39; &#39;</span><span class="p">)</span>
+<span class="gp">... </span>        <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">b</span><span class="p">,</span> <span class="n">a</span><span class="o">+</span><span class="n">b</span>
+<span class="gp">... </span>    <span class="k">print</span><span class="p">()</span>
+<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c"># Now call the function we just defined:</span>
+<span class="gp">... </span><span class="n">fib</span><span class="p">(</span><span class="mf">2000</span><span class="p">)</span>
+<span class="go">1 1 2 3 5 8 13 21 34 55 89 144 233 377 610 987 1597</span>
+</pre></div>
+<p id="index-971">The keyword <a class="reference external" href="../reference/compound_stmts.html#def"><tt class="xref docutils literal"><span class="pre">def</span></tt></a> introduces a function <em>definition</em>.  It must be
+followed by the function name and the parenthesized list of formal parameters.
+The statements that form the body of the function start at the next line, and
+must be indented.  The first statement of the function body can optionally be a
+string literal; this string literal is the function&#8217;s documentation string, or
+<em>docstring</em>.</p>
+<p>关键字 <a class="reference external" href="../reference/compound_stmts.html#def"><tt class="xref docutils literal"><span class="pre">def</span></tt></a> 指明函数 <em>定义</em> 。其后必须带有函数名和以括号标明的参数列表。函数体的语句从下一行开始，一定要缩进。函数体的第一行可以是一个字符串文本；这个字符串文本是函数的文档字符串，或称为 <em>docstring</em> 。</p>
+<p>There are tools which use docstrings to automatically produce online or printed
+documentation, or to let the user interactively browse through code; it&#8217;s good
+practice to include docstrings in code that you write, so try to make a habit of
+it.</p>
+<p>有些工具使用文档字符串生成自动化的在线或可打印文档，也可以让用户通过代码交互访问。在你的代码中加入文档字符串是件好事，应该使之成为习惯。</p>
+<p>The <em>execution</em> of a function introduces a new symbol table used for the local
+variables of the function.  More precisely, all variable assignments in a
+function store the value in the local symbol table; whereas variable references
+first look in the local symbol table, then in the global symbol table, and then
+in the table of built-in names. Thus,  global variables cannot be directly
+assigned a value within a function (unless named in a <a class="reference external" href="../reference/simple_stmts.html#global"><tt class="xref docutils literal"><span class="pre">global</span></tt></a>
+statement), although they may be referenced.</p>
+<p><em>调用</em> 函数会使函数为局部变量生成一个新的符号表。更准确的说，函数中所有的赋值都存储在局部符号表；而变量引用首先查找局部符号表，然后是全局符号表，然后是内置命名表。因此，全局变量不会在函数内被直接赋值（除非是 <a class="reference external" href="../reference/simple_stmts.html#global"><tt class="xref docutils literal"><span class="pre">global</span></tt></a> 语句中的命名），尽管它们可以被引用。</p>
+<p>The actual parameters (arguments) to a function call are introduced in the local
+symbol table of the called function when it is called; thus, arguments are
+passed using <em>call by value</em> (where the <em>value</em> is always an object <em>reference</em>,
+not the value of the object). <a class="footnote-reference" href="#id34" id="id13">[1]</a> When a function calls another function, a new
+local symbol table is created for that call.</p>
+<p>函数的实际参数在函数被调用时引入局部符号表；因此，参数使用 <em>传值</em> 方式传递（这里的 <em>值</em> 一般是对象*引用* 而不是对象的值）。[#]_  当函数调用其它函数，会为其建立新的局部符号表。</p>
+<p>A function definition introduces the function name in the current symbol table.
+The value of the function name has a type that is recognized by the interpreter
+as a user-defined function.  This value can be assigned to another name which
+can then also be used as a function.  This serves as a general renaming
+mechanism:</p>
+<p>函数定义为当前的符号表引入了函数名。函数名对应的值被解释器认定为自定义函数类型。这个值可以被赋予其它名字，使其作为函数使用。这是一种通用的重命名机制：</p>
+<div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">fib</span>
+<span class="go">&lt;function fib at 10042ed0&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span> <span class="o">=</span> <span class="n">fib</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="p">(</span><span class="mf">100</span><span class="p">)</span>
+<span class="go">1 1 2 3 5 8 13 21 34 55 89</span>
+</pre></div>
+<p>You might object that <tt class="docutils literal"><span class="pre">fib</span></tt> is not a function but a procedure.  In Python,
+like in C, procedures are just functions that don&#8217;t return a value.  In fact,
+technically speaking, procedures do return a value, albeit a rather boring one.
+This value is called <tt class="xref docutils literal"><span class="pre">None</span></tt> (it&#8217;s a built-in name).  Writing the value
+<tt class="xref docutils literal"><span class="pre">None</span></tt> is normally suppressed by the interpreter if it would be the only value
+written.  You can see it if you really want to using <tt class="xref docutils literal"><span class="pre">print</span></tt>:</p>
+<p>你也许会抗议： <tt class="docutils literal"><span class="pre">fib</span></tt> 不是函数，而是方法。在 Python 中，就像 C 一样，方法只是没有返回值的函数。实际上，从技术角度讲，方法返回一个值，尽管是一个很无聊的值。这个值被称为 <tt class="xref docutils literal"><span class="pre">None</span></tt> （这是一个内置命名）。定义 <tt class="xref docutils literal"><span class="pre">None</span></tt> 这个值只是在没得选择的时候用于镇压解释器（译注：好吧，这里我恶搞了一下:P）。如果你明确使用 <tt class="xref docutils literal"><span class="pre">print</span></tt> ：</p>
+<div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">fib</span><span class="p">(</span><span class="mf">0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">fib</span><span class="p">(</span><span class="mf">0</span><span class="p">))</span>
+<span class="go">None</span>
+</pre></div>
+<p>It is simple to write a function that returns a list of the numbers of the
+Fibonacci series, instead of printing it:</p>
+<p>写一个函数返回菲波那契数列的一部分列表，而不是打印它，非常简单：</p>
+<div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">fib2</span><span class="p">(</span><span class="n">n</span><span class="p">):</span> <span class="c"># return Fibonacci series up to n</span>
+<span class="gp">... </span>    <span class="sd">&quot;&quot;&quot;Return a list containing the Fibonacci series up to n.&quot;&quot;&quot;</span>
+<span class="gp">... </span>    <span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="gp">... </span>    <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="mf">0</span><span class="p">,</span> <span class="mf">1</span>
+<span class="gp">... </span>    <span class="k">while</span> <span class="n">b</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">:</span>
+<span class="gp">... </span>        <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>    <span class="c"># see below</span>
+<span class="gp">... </span>        <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">b</span><span class="p">,</span> <span class="n">a</span><span class="o">+</span><span class="n">b</span>
+<span class="gp">... </span>    <span class="k">return</span> <span class="n">result</span>
+<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f100</span> <span class="o">=</span> <span class="n">fib2</span><span class="p">(</span><span class="mf">100</span><span class="p">)</span>    <span class="c"># call it</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f100</span>                <span class="c"># write the result</span>
+<span class="go">[1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89]</span>
+</pre></div>
+<p>This example, as usual, demonstrates some new Python features:</p>
+<p>像往常一样，这里新介绍了一些 Python 的功能。</p>
+<ul>
+<li><p class="first">The <a class="reference external" href="../reference/simple_stmts.html#return"><tt class="xref docutils literal"><span class="pre">return</span></tt></a> statement returns with a value from a function.
+<a class="reference external" href="../reference/simple_stmts.html#return"><tt class="xref docutils literal"><span class="pre">return</span></tt></a> without an expression argument returns <tt class="xref docutils literal"><span class="pre">None</span></tt>. Falling off
+the end of a procedure also returns <tt class="xref docutils literal"><span class="pre">None</span></tt>.</p>
+<p>指令 <cite>return</cite> 从函数中返回一个值。没有表达式参数的 <a class="reference external" href="../reference/simple_stmts.html#return"><tt class="xref docutils literal"><span class="pre">return</span></tt></a> 返回 <a href="#id14"><span class="problematic" id="id15">``</span></a>None``。方法执行完毕后也从末尾返回 <a href="#id16"><span class="problematic" id="id17">``</span></a>None``。</p>
+</li>
+<li><p class="first">The statement <tt class="docutils literal"><span class="pre">result.append(b)</span></tt> calls a <em>method</em> of the list object
+<tt class="docutils literal"><span class="pre">result</span></tt>.  A method is a function that &#8216;belongs&#8217; to an object and is named
+<tt class="docutils literal"><span class="pre">obj.methodname</span></tt>, where <tt class="docutils literal"><span class="pre">obj</span></tt> is some object (this may be an expression),
+and <tt class="docutils literal"><span class="pre">methodname</span></tt> is the name of a method that is defined by the object&#8217;s type.</p>
+<p>指令 <tt class="docutils literal"><span class="pre">result.append(b)</span></tt> 称为列表对象 <tt class="docutils literal"><span class="pre">result</span></tt> 的一个*方法*。方法是&#8217;从属&#8217;于对象的，名为``obj.methodname``的函数，这里``obj``指某对象（可能是个表达式），``methodname``是由对象类型定义的方法的名字。</p>
+<p>Different types define different methods.  Methods of different types may have
+the same name without causing ambiguity.  (It is possible to define your own
+object types and methods, using <em>classes</em>, as discussed later in this tutorial.)
+The method <tt class="xref docutils literal"><span class="pre">append()</span></tt> shown in the example is defined for list objects; it
+adds a new element at the end of the list.  In this example it is equivalent to
+<tt class="docutils literal"><span class="pre">result</span> <span class="pre">=</span> <span class="pre">result</span> <span class="pre">+</span> <span class="pre">[b]</span></tt>, but more efficient.</p>
+</li>
+</ul>
+<p>不同的类型定义了不同的方法。不同类型可能有同名的方法，但不会混淆。（你可以使用本书后面内容介绍的 <em>class</em> 定义的类型。） 本例中的 <tt class="xref docutils literal"><span class="pre">append()</span></tt> 是 list 对象定义的，它将一个新的元素加入到列表最后。本例中它相当于 `` result = result + [b] <a href="#id18"><span class="problematic" id="id19">``</span></a>，但更高效。</p>
+</div>
+<div class="section" id="more-on-defining-functions">
+<span id="tut-defining"></span><h2>More on Defining Functions 深入函数定义<a class="headerlink" href="#more-on-defining-functions" title="Permalink to this headline">¶</a></h2>
+<p>It is also possible to define functions with a variable number of arguments.
+There are three forms, which can be combined.</p>
+<p>定义函数的时候可以带若干个参数，有三种可以组合使用的不同形式。</p>
+<div class="section" id="default-argument-values">
+<span id="tut-defaultargs"></span><h3>Default Argument Values 默认参数值<a class="headerlink" href="#default-argument-values" title="Permalink to this headline">¶</a></h3>
+<p>The most useful form is to specify a default value for one or more arguments.
+This creates a function that can be called with fewer arguments than it is
+defined to allow.  For example:</p>
+<p>最有用的形式是为一个或多个参数指定默认值.这样可以创建一个函数,使其能够使用比定义时少的参数调用,例如:</p>
+<blockquote>
+<dl class="docutils">
+<dt>def ask_ok(prompt, retries=4, complaint=&#8217;Yes or no, please!&#8217;):</dt>
+<dd><dl class="first last docutils">
+<dt>while True:</dt>
+<dd><p class="first">ok = input(prompt)
+if ok in (&#8216;y&#8217;, &#8216;ye&#8217;, &#8216;yes&#8217;): return True
+if ok in (&#8216;n&#8217;, &#8216;no&#8217;, &#8216;nop&#8217;, &#8216;nope&#8217;): return False
+retries = retries - 1
+if retries &lt; 0:</p>
+<blockquote>
+raise IOError(&#8216;refusenik user&#8217;)</blockquote>
+<p class="last">print(complaint)</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</blockquote>
+<p>This function can be called either like this: <tt class="docutils literal"><span class="pre">ask_ok('Do</span> <span class="pre">you</span> <span class="pre">really</span> <span class="pre">want</span> <span class="pre">to</span>
+<span class="pre">quit?')</span></tt> or like this: <tt class="docutils literal"><span class="pre">ask_ok('OK</span> <span class="pre">to</span> <span class="pre">overwrite</span> <span class="pre">the</span> <span class="pre">file?',</span> <span class="pre">2)</span></tt>.</p>
+<p>这个函数既可以这样调用：``ask_ok(&#8216;Do you really want to quit?&#8217;)`` ，也可以像这样调用：``ask_ok(&#8216;OK to overwite the file?&#8217;, 2)。</p>
+<p>This example also introduces the <a class="reference external" href="../reference/expressions.html#in"><tt class="xref docutils literal"><span class="pre">in</span></tt></a> keyword. This tests whether or
+not a sequence contains a certain value.</p>
+<p>这个例子也介绍了 <a class="reference external" href="../reference/expressions.html#in"><tt class="xref docutils literal"><span class="pre">in</span></tt></a> 关键字。它检测序列中是否包含某个确定的值。</p>
+<p>The default values are evaluated at the point of function definition in the
+<em>defining</em> scope, so that</p>
+<p>默认值等于在函数定义域中被定义时的值，例如：</p>
+<blockquote>
+<p>i = 5</p>
+<dl class="docutils">
+<dt>def f(arg=i):</dt>
+<dd>print(arg)</dd>
+</dl>
+<p>i = 6
+f()</p>
+</blockquote>
+<p>will print <tt class="docutils literal"><span class="pre">5</span></tt>.</p>
+<p>会打印 <a href="#id20"><span class="problematic" id="id21">``</span></a>5``。</p>
+<p><strong>Important warning:</strong>  The default value is evaluated only once. This makes a
+difference when the default is a mutable object such as a list, dictionary, or
+instances of most classes.  For example, the following function accumulates the
+arguments passed to it on subsequent calls:</p>
+<pre>**重要警告：** 默认值只绑定一次。这使得默认值是列表、字典或大部分类的实例时会有所变化。例如，下面这个函数在调用过程中积累了多个值：</pre>
+<blockquote>
+<dl class="docutils">
+<dt>def f(a, L=[]):</dt>
+<dd>L.append(a)
+return L</dd>
+</dl>
+<p>print(f(1))
+print(f(2))
+print(f(3))</p>
+</blockquote>
+<p>This will print</p>
+<p>会打印出：</p>
+<blockquote>
+[1]
+[1, 2]
+[1, 2, 3]</blockquote>
+<p>If you don&#8217;t want the default to be shared between subsequent calls, you can
+write the function like this instead:</p>
+<p>如果你不想在后继的调用间共享默认值，可以像下面这样编写函数：</p>
+<blockquote>
+<dl class="docutils">
+<dt>def f(a, L=None):</dt>
+<dd><dl class="first docutils">
+<dt>if L is None:</dt>
+<dd>L = []</dd>
+</dl>
+<p class="last">L.append(a)
+return L</p>
+</dd>
+</dl>
+</blockquote>
+</div>
+<div class="section" id="keyword-arguments">
+<span id="tut-keywordargs"></span><h3>Keyword Arguments 关键字参数<a class="headerlink" href="#keyword-arguments" title="Permalink to this headline">¶</a></h3>
+<p>Functions can also be called using keyword arguments of the form <tt class="docutils literal"><span class="pre">keyword</span> <span class="pre">=</span>
+<span class="pre">value</span></tt>.  For instance, the following function:</p>
+<p>函数可以通过形如 <tt class="docutils literal"><span class="pre">keyword</span> <span class="pre">=</span> <span class="pre">value</span></tt> 的关键字参数调用。例如，以下函数：</p>
+<blockquote>
+<dl class="docutils">
+<dt>def parrot(voltage, state=&#8217;a stiff&#8217;, action=&#8217;voom&#8217;, type=&#8217;Norwegian Blue&#8217;):</dt>
+<dd>print(&#8220;&#8211; This parrot wouldn&#8217;t&#8221;, action, end=&#8217; &#8216;)
+print(&#8220;if you put&#8221;, voltage, &#8220;volts through it.&#8221;)
+print(&#8220;&#8211; Lovely plumage, the&#8221;, type)
+print(&#8220;&#8211; It&#8217;s&#8221;, state, &#8220;!&#8221;)</dd>
+</dl>
+</blockquote>
+<p>could be called in any of the following ways:</p>
+<p>可以可以通过以下的形式调用：</p>
+<blockquote>
+parrot(1000)
+parrot(action = &#8216;VOOOOOM&#8217;, voltage = 1000000)
+parrot(&#8216;a thousand&#8217;, state = &#8216;pushing up the daisies&#8217;)
+parrot(&#8216;a million&#8217;, &#8216;bereft of life&#8217;, &#8216;jump&#8217;)</blockquote>
+<p>but the following calls would all be invalid:</p>
+<p>但是以下调用无效：</p>
+<blockquote>
+parrot()                     # required argument missing 必要的参数缺失
+parrot(voltage=5.0, &#8216;dead&#8217;)  # non-keyword argument following keyword 非关键字参数跟在关键字参数之后
+parrot(110, voltage=220)     # duplicate value for argument 参数重复赋值
+parrot(actor=&#8217;John Cleese&#8217;)  # unknown keyword 未知关键字</blockquote>
+<p>In general, an argument list must have any positional arguments followed by any
+keyword arguments, where the keywords must be chosen from the formal parameter
+names.  It&#8217;s not important whether a formal parameter has a default value or
+not.  No argument may receive a value more than once &#8212; formal parameter names
+corresponding to positional arguments cannot be used as keywords in the same
+calls. Here&#8217;s an example that fails due to this restriction:</p>
+<p>通常，参数列表中的每一个关键字都必须来自于形式参数，每个参数都有对应的关键字。形式参数有没有默认值并不重要。实际参数不能一次赋多个值——形式参数不能在同一次调用中同时使用位置和关键字绑定值。这里有一个例子演示了在这种约束下所出现的失败情况：</p>
+<div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">function</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="k">pass</span>
+<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">function</span><span class="p">(</span><span class="mf">0</span><span class="p">,</span> <span class="n">a</span><span class="o">=</span><span class="mf">0</span><span class="p">)</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n-Identifier">?</span>
+<span class="nc">TypeError</span>: <span class="n-Identifier">function() got multiple values for keyword argument &#39;a&#39;</span>
+</pre></div>
+<p>When a final formal parameter of the form <tt class="docutils literal"><span class="pre">**name</span></tt> is present, it receives a
+dictionary (see <a class="reference external" href="../library/stdtypes.html#typesmapping"><em>Mapping Types &#8212; dict</em></a>) containing all keyword arguments except for
+those corresponding to a formal parameter.  This may be combined with a formal
+parameter of the form <tt class="docutils literal"><span class="pre">*name</span></tt> (described in the next subsection) which
+receives a tuple containing the positional arguments beyond the formal parameter
+list.  (<tt class="docutils literal"><span class="pre">*name</span></tt> must occur before <tt class="docutils literal"><span class="pre">**name</span></tt>.) For example, if we define a
+function like this:</p>
+<p>引入一个形如 <tt class="docutils literal"><span class="pre">**name</span></tt> 的参数时，它接收一个字典（参见 <div class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">/home/march/thrid-party/Python-3.0rc1/Doc/tutorial/controlflow.rst</tt>)</p>
+undefined label: typemappint`），该字典包含了所有未出现在形式参数列表中的关键字参数。这里可能还会组合使用一个形如``*name` &#8211; if you don&#8217;t give a link caption the label must precede a section header.</div>
+ （下一节中会详细介绍）的形式参数，它接收一个元组，包含了所有没有出现在形式参数列表中的参数值。（ <tt class="docutils literal"><span class="pre">*name</span></tt> 必须在 <tt class="docutils literal"><span class="pre">**name</span></tt> 之前出现） 例如，我们这样定义一个函数：</p>
+<blockquote>
+<dl class="docutils">
+<dt>def cheeseshop(kind, <a href="#id22"><span class="problematic" id="id23">*</span></a>arguments, <a href="#id24"><span class="problematic" id="id25">**</span></a>keywords):</dt>
+<dd>print(&#8220;&#8211; Do you have any&#8221;, kind, &#8216;?&#8217;)
+print(&#8220;&#8211; I&#8217;m sorry, we&#8217;re all out of&#8221;, kind)
+for arg in arguments: print arg
+print(&#8216;-&#8216;<a href="#id26"><span class="problematic" id="id27">*</span></a>40)
+keys = sorted(keywords.keys())
+for kw in keys: print(kw, &#8216;:&#8217;, keywords[kw])</dd>
+</dl>
+</blockquote>
+<p>It could be called like this:</p>
+<p>可以这样调用：</p>
+<blockquote>
+<dl class="docutils">
+<dt>cheeseshop(&#8216;Limburger&#8217;, &#8220;It&#8217;s very runny, sir.&#8221;,</dt>
+<dd>&#8220;It&#8217;s really very, VERY runny, sir.&#8221;,
+client=&#8217;John Cleese&#8217;,
+shopkeeper=&#8217;Michael Palin&#8217;,
+sketch=&#8217;Cheese Shop Sketch&#8217;)</dd>
+</dl>
+</blockquote>
+<p>and of course it would print:</p>
+<p>当然它会打印如下内容：</p>
+<blockquote>
+&#8211; Do you have any Limburger ?
+&#8211; I&#8217;m sorry, we&#8217;re all out of Limburger
+It&#8217;s very runny, sir.
+It&#8217;s really very, VERY runny, sir.
+&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;-
+client : John Cleese
+shopkeeper : Michael Palin
+sketch : Cheese Shop Sketch</blockquote>
+<p>Note that the <tt class="xref docutils literal"><span class="pre">sort()</span></tt> method of the list of keyword argument names is
+called before printing the contents of the <tt class="docutils literal"><span class="pre">keywords</span></tt> dictionary; if this is
+not done, the order in which the arguments are printed is undefined.</p>
+<p>应注意在打印 <tt class="docutils literal"><span class="pre">keywords</span></tt> 字典之前调用 :meth:sort 方法，否则打印参数时的顺序未定义。</p>
+</div>
+<div class="section" id="arbitrary-argument-lists">
+<span id="tut-arbitraryargs"></span><h3>Arbitrary Argument Lists 可变参数列<a class="headerlink" href="#arbitrary-argument-lists" title="Permalink to this headline">¶</a></h3>
+<p>Finally, the least frequently used option is to specify that a function can be
+called with an arbitrary number of arguments.  These arguments will be wrapped
+up in a tuple.  Before the variable number of arguments, zero or more normal
+arguments may occur.</p>
+<p>最后，一个最不常用的选择让函数可以调用可变个数的参数。这些参数被包装进一个元组。在这些可变个数的参数之前，可以有零到多个普通的参数：</p>
+<blockquote>
+<dl class="docutils">
+<dt>def fprintf(file, format, <a href="#id28"><span class="problematic" id="id29">*</span></a>args):</dt>
+<dd>file.write(format % args)</dd>
+</dl>
+</blockquote>
+<p>Normally, these <tt class="docutils literal"><span class="pre">variadic</span></tt> arguments will be last in the list of formal
+parameters, because they scoop up all remaining input arguments that are
+passed to the function. Any formal parameters which occur after the <tt class="docutils literal"><span class="pre">*args</span></tt>
+parameter are &#8216;keyword-only&#8217; arguments, meaning that they can only be used as
+keywords rather than positional arguments.</p>
+<p>通常那些 <tt class="docutils literal"><span class="pre">可变</span></tt> 参数会在形式参数之后，因为它们会将剩下所有的输入参数都包揽进来。任何 <a href="#id30"><span class="problematic" id="id31">``</span></a><a href="#id32"><span class="problematic" id="id33">*</span></a>args``之后的参数都是 <cite>keyword-only</cite> 参数，这意味着它们只能通过关键字而非位置使用：</p>
+<div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">concat</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s">&quot;/&quot;</span><span class="p">):</span>
+<span class="gp">... </span>   <span class="k">return</span> <span class="n">sep</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">concat</span><span class="p">(</span><span class="s">&quot;earth&quot;</span><span class="p">,</span> <span class="s">&quot;mars&quot;</span><span class="p">,</span> <span class="s">&quot;venus&quot;</span><span class="p">)</span>
+<span class="go">&#39;earth/mars/venus&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">concat</span><span class="p">(</span><span class="s">&quot;earth&quot;</span><span class="p">,</span> <span class="s">&quot;mars&quot;</span><span class="p">,</span> <span class="s">&quot;venus&quot;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s">&quot;.&quot;</span><span class="p">)</span>
+<span class="go">&#39;earth.mars.venus&#39;</span>
+</pre></div>
+</div>
+<div class="section" id="unpacking-argument-lists">
+<span id="tut-unpacking-arguments"></span><h3>Unpacking Argument Lists 参数列表的分拆<a class="headerlink" href="#unpacking-argument-lists" title="Permalink to this headline">¶</a></h3>
+<p>The reverse situation occurs when the arguments are already in a list or tuple
+but need to be unpacked for a function call requiring separate positional
+arguments.  For instance, the built-in <a title="range" class="reference external" href="../library/functions.html#range"><tt class="xref docutils literal"><span class="pre">range()</span></tt></a> function expects separate
+<em>start</em> and <em>stop</em> arguments.  If they are not available separately, write the
+function call with the  <tt class="docutils literal"><span class="pre">*</span></tt>-operator to unpack the arguments out of a list
+or tuple:</p>
+<p>另有一种相反的情况: 当你要传递的参数已经是一个列表但要调用的函数却接受分开一个个的参数值. 这时候你要把已有的列表拆开来. 例如内建函数 range() 需要要独立的 start, stop 参数. 你可以在调用函数时加一个 <tt class="docutils literal"><span class="pre">*</span></tt>操作符来自动把参数列表拆开:</p>
+<div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mf">3</span><span class="p">,</span> <span class="mf">6</span><span class="p">))</span>            <span class="c"># normal call with separate arguments</span>
+<span class="go">[3, 4, 5]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">args</span> <span class="o">=</span> <span class="p">[</span><span class="mf">3</span><span class="p">,</span> <span class="mf">6</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">))</span>            <span class="c"># call with arguments unpacked from a list</span>
+<span class="go">[3, 4, 5]</span>
+</pre></div>
+<p>In the same fashion, dictionaries can deliver keyword arguments with the <tt class="docutils literal"><span class="pre">**</span></tt>-operator:</p>
+<p>以同样的方式，``**``操作符可以把字典传递给关键字参数：</p>
+<div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">parrot</span><span class="p">(</span><span class="n">voltage</span><span class="p">,</span> <span class="n">state</span><span class="o">=</span><span class="s">&#39;a stiff&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s">&#39;voom&#39;</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="k">print</span><span class="p">(</span><span class="s">&quot;-- This parrot wouldn&#39;t&quot;</span><span class="p">,</span> <span class="n">action</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s">&#39; &#39;</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="k">print</span><span class="p">(</span><span class="s">&quot;if you put&quot;</span><span class="p">,</span> <span class="n">voltage</span><span class="p">,</span> <span class="s">&quot;volts through it.&quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s">&#39; &#39;</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="k">print</span><span class="p">(</span><span class="s">&quot;E&#39;s&quot;</span><span class="p">,</span> <span class="n">state</span><span class="p">,</span> <span class="s">&quot;!&quot;</span><span class="p">)</span>
+<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">d</span> <span class="o">=</span> <span class="p">{</span><span class="s">&quot;voltage&quot;</span><span class="p">:</span> <span class="s">&quot;four million&quot;</span><span class="p">,</span> <span class="s">&quot;state&quot;</span><span class="p">:</span> <span class="s">&quot;bleedin&#39; demised&quot;</span><span class="p">,</span> <span class="s">&quot;action&quot;</span><span class="p">:</span> <span class="s">&quot;VOOM&quot;</span><span class="p">}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">parrot</span><span class="p">(</span><span class="o">**</span><span class="n">d</span><span class="p">)</span>
+<span class="go">-- This parrot wouldn&#39;t VOOM if you put four million volts through it. E&#39;s bleedin&#39; demised !</span>
+</pre></div>
+</div>
+<div class="section" id="lambda-forms-lambda">
+<span id="tut-lambda"></span><h3>Lambda Forms Lambda 形式<a class="headerlink" href="#lambda-forms-lambda" title="Permalink to this headline">¶</a></h3>
+<p>By popular demand, a few features commonly found in functional programming
+languages like Lisp have been added to Python.  With the <a class="reference external" href="../reference/expressions.html#lambda"><tt class="xref docutils literal"><span class="pre">lambda</span></tt></a>
+keyword, small anonymous functions can be created. Here&#8217;s a function that
+returns the sum of its two arguments: <tt class="docutils literal"><span class="pre">lambda</span> <span class="pre">a,</span> <span class="pre">b:</span> <span class="pre">a+b</span></tt>.  Lambda forms can be
+used wherever function objects are required.  They are syntactically restricted
+to a single expression.  Semantically, they are just syntactic sugar for a
+normal function definition.  Like nested function definitions, lambda forms can
+reference variables from the containing scope:</p>
+<p>出于实际需要，有几种通常在函数式语言如 Lisp 中出现的功能加入到了 Python 。通过 <a class="reference external" href="../reference/expressions.html#lambda"><tt class="xref docutils literal"><span class="pre">lambda</span></tt></a> 关键字，可以创建短小的匿名函数。这里有一个函数返回它的两个参数的和：``lambda a, b: a+b``。 Lambda 形式可以用于任何需要的函数对象。出于语法限制，它们只能有一个单独的表达式。语义上讲，它们只是普通函数定义中的一个语法技巧。类似于嵌套函数定义，lambda 形式可以从包含范围内引用变量：</p>
+<div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">make_incrementor</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="k">return</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="o">+</span> <span class="n">n</span>
+<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span> <span class="o">=</span> <span class="n">make_incrementor</span><span class="p">(</span><span class="mf">42</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="p">(</span><span class="mf">0</span><span class="p">)</span>
+<span class="go">42</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="p">(</span><span class="mf">1</span><span class="p">)</span>
+<span class="go">43</span>
+</pre></div>
+</div>
+<div class="section" id="documentation-strings">
+<span id="tut-docstrings"></span><h3>Documentation Strings 文档字符串<a class="headerlink" href="#documentation-strings" title="Permalink to this headline">¶</a></h3>
+<p id="index-972">Here are some conventions about the content and formatting of documentation
+strings.</p>
+<p>这里介绍一些文档字符串内容和格式的概念。</p>
+<p>The first line should always be a short, concise summary of the object&#8217;s
+purpose.  For brevity, it should not explicitly state the object&#8217;s name or type,
+since these are available by other means (except if the name happens to be a
+verb describing a function&#8217;s operation).  This line should begin with a capital
+letter and end with a period.</p>
+<p>第一行应该是关于对象用途的简介。简短起见，不用明确的陈述对象名或类型，因为它们可以从别的途径了解到（除非这个名字碰巧就是描述这个函数操作的动词）。这一行应该以大写字母开头，以句号结尾。</p>
+<p>If there are more lines in the documentation string, the second line should be
+blank, visually separating the summary from the rest of the description.  The
+following lines should be one or more paragraphs describing the object&#8217;s calling
+conventions, its side effects, etc.</p>
+<p>如果文档字符串有多行，第二行应该空出来，与接下来的详细描述明确分隔。接下来的文档应该有一或多段描述对象的调用约定、边界效应等。</p>
+<p>The Python parser does not strip indentation from multi-line string literals in
+Python, so tools that process documentation have to strip indentation if
+desired.  This is done using the following convention. The first non-blank line
+<em>after</em> the first line of the string determines the amount of indentation for
+the entire documentation string.  (We can&#8217;t use the first line since it is
+generally adjacent to the string&#8217;s opening quotes so its indentation is not
+apparent in the string literal.)  Whitespace &#8220;equivalent&#8221; to this indentation is
+then stripped from the start of all lines of the string.  Lines that are
+indented less should not occur, but if they occur all their leading whitespace
+should be stripped.  Equivalence of whitespace should be tested after expansion
+of tabs (to 8 spaces, normally).</p>
+<p>Python的解释器不会从多行的文档字符串中去除缩进，所以必要的时候应当自己清除缩进。这符合通常的习惯。第一行*之后*的第一个非空行决定了整个文档的缩进格式。（我们不用第一行是因为它通常紧靠着起始的引号，缩进格式显示的不清楚。）留白“相当于”是字符串的起始缩进。每一行都不应该有缩进，如果有缩进的话，所有的留白都应该清除掉。留白的长度应当等于扩展制表符的宽度（通常是8个空格）。</p>
+<p>Here is an example of a multi-line docstring:</p>
+<div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">my_function</span><span class="p">():</span>
+<span class="gp">... </span>    <span class="sd">&quot;&quot;&quot;Do nothing, but document it.</span>
+<span class="gp">...</span><span class="sd"></span>
+<span class="gp">... </span><span class="sd">    No, really, it doesn&#39;t do anything.</span>
+<span class="gp">... </span><span class="sd">    &quot;&quot;&quot;</span>
+<span class="gp">... </span>    <span class="k">pass</span>
+<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">my_function</span><span class="o">.</span><span class="n">__doc__</span><span class="p">)</span>
+<span class="go">Do nothing, but document it.</span>
+
+<span class="go">    No, really, it doesn&#39;t do anything.</span>
+</pre></div>
+<p class="rubric">Footnotes</p>
+<table class="docutils footnote" frame="void" id="id34" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id13">[1]</a></td><td>Actually, <em>call by object reference</em> would be a better description, since if a
+mutable object is passed, the caller will see any changes the callee makes to it
+(items inserted into a list).
+实际上，*由对象引用调用*可能是个更好的描述。因为，如果传递一个可变对象，调用者会观察到因调用发生的变化（如元素插入列表）。</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <h3><a href="../contents.html">Table Of Contents</a></h3>
+            <ul>
+<li><a class="reference external" href="">More Control Flow Tools 深入流程控制</a><ul>
+<li><a class="reference external" href="#if-statements"><tt class="docutils literal"><span class="pre">if</span></tt> Statements</a></li>
+<li><a class="reference external" href="#for-statements-for"><tt class="docutils literal"><span class="pre">for</span></tt> Statements <tt class="docutils literal"><span class="pre">for</span></tt> 语法</a></li>
+<li><a class="reference external" href="#the-range-function-range">The <tt class="docutils literal"><span class="pre">range</span></tt> Function <tt class="docutils literal"><span class="pre">range</span></tt> 函数</a></li>
+<li><a class="reference external" href="#break-and-continue-statements-and-else-clauses-on-loops-break-continue-else"><tt class="docutils literal"><span class="pre">break</span></tt> and <tt class="docutils literal"><span class="pre">continue</span></tt> Statements, and <tt class="docutils literal"><span class="pre">else</span></tt> Clauses on Loops <tt class="docutils literal"><span class="pre">break</span></tt> 和 <tt class="docutils literal"><span class="pre">continue</span></tt> 语句，以及循环中的 <tt class="docutils literal"><span class="pre">else</span></tt> 块</a></li>
+<li><a class="reference external" href="#pass-statements-pass"><tt class="docutils literal"><span class="pre">pass</span></tt> Statements <tt class="docutils literal"><span class="pre">pass</span></tt> 语句</a></li>
+<li><a class="reference external" href="#defining-functions">Defining Functions 定义函数</a></li>
+<li><a class="reference external" href="#more-on-defining-functions">More on Defining Functions 深入函数定义</a><ul>
+<li><a class="reference external" href="#default-argument-values">Default Argument Values 默认参数值</a></li>
+<li><a class="reference external" href="#keyword-arguments">Keyword Arguments 关键字参数</a></li>
+<li><a class="reference external" href="#arbitrary-argument-lists">Arbitrary Argument Lists 可变参数列</a></li>
+<li><a class="reference external" href="#unpacking-argument-lists">Unpacking Argument Lists 参数列表的分拆</a></li>
+<li><a class="reference external" href="#lambda-forms-lambda">Lambda Forms Lambda 形式</a></li>
+<li><a class="reference external" href="#documentation-strings">Documentation Strings 文档字符串</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            <h4>Previous topic</h4>
+            <p class="topless"><a href="introduction.html" title="previous chapter">An Informal Introduction to Python Python 简介</a></p>
+            <h4>Next topic</h4>
+            <p class="topless"><a href="datastructures.html" title="next chapter">Data Structures 数据结构</a></p>
+            <h3>This Page</h3>
+            <ul class="this-page-menu">
+              <li><a href="../_sources/tutorial/controlflow.txt">Show Source</a></li>
+            </ul>
+          <h3>Quick search</h3>
+            <form class="search" action="../search.html" method="get">
+              <input type="text" name="q" size="18" /> <input type="submit" value="Go" />
+              <input type="hidden" name="check_keywords" value="yes" />
+              <input type="hidden" name="area" value="default" />
+            </form>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../modindex.html" title="Global Module Index"
+             accesskey="M">modules</a> |</li>
+        <li class="right" >
+          <a href="datastructures.html" title="Data Structures 数据结构"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="introduction.html" title="An Informal Introduction to Python Python 简介"
+             accesskey="P">previous</a> |</li>
+<li><img src="../_static/py.png" alt="" style="vertical-align: middle; margin-top: -1px"/></li>
+
+        <li><a href="../contents.html">Python v3.0c1 documentation</a> &raquo;</li>
+
+          <li><a href="index.html" accesskey="U">The Python tutorial Python 入门指南</a> &raquo;</li>
+      </ul>
+    </div>
+    <div class="footer">
+      &copy; <a href="../copyright.html">Copyright</a> 1990-2008, Python Software Foundation.
+      Last updated on Oct 31, 2008.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.5.
+    </div>
+  </body>
+</html>

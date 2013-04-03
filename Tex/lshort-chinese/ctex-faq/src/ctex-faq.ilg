@@ -1,0 +1,11 @@
+This is makeindex, version 2.15 [TeX Live 2010] (kpathsea + Thai support).
+Scanning input file ctex-faq.idx....
+!! Input index error (file = ctex-faq.idx, line = 528):
+   -- Extra `@' at position 86 of first argument.
+!! Input index error (file = ctex-faq.idx, line = 529):
+   -- Extra `@' at position 12 of first argument.
+done (535 entries accepted, 2 rejected).
+Sorting entries.......done (5090 comparisons).
+Generating output file ctex-faq.ind....done (510 lines written, 0 warnings).
+Output written in ctex-faq.ind.
+Transcript written in ctex-faq.ilg.

@@ -1,0 +1,54 @@
+This is pdfTeX, Version 3.1415926-1.40.11 (TeX Live 2010) (format=latex 2012.2.21)  21 FEB 2012 16:13
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**null.tex
+(./null.tex
+LaTeX2e <2009/09/24>
+Babel <v3.8l> and hyphenation patterns for english, dumylang, nohyphenation, pi
+nyin, bulgarian, russian, ukrainian, loaded.
+(/usr/share/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
+(/usr/share/texmf-dist/tex/latex/base/size10.clo
+File: size10.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
+)
+\c@part=\count79
+\c@section=\count80
+\c@subsection=\count81
+\c@subsubsection=\count82
+\c@paragraph=\count83
+\c@subparagraph=\count84
+\c@figure=\count85
+\c@table=\count86
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+)
+No file null.aux.
+\openout1 = `null.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 2.
+LaTeX Font Info:    ... okay on input line 2.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 2.
+LaTeX Font Info:    ... okay on input line 2.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 2.
+LaTeX Font Info:    ... okay on input line 2.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 2.
+LaTeX Font Info:    ... okay on input line 2.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 2.
+LaTeX Font Info:    ... okay on input line 2.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 2.
+LaTeX Font Info:    ... okay on input line 2.
+[1
+
+] (./null.aux) ) 
+Here is how much of TeX's memory you used:
+ 197 strings out of 49822
+ 2056 string characters out of 428607
+ 47765 words of memory out of 1100000
+ 3472 multiletter control sequences out of 15000+15000
+ 3640 words of font info for 14 fonts, out of 400000 for 9000
+ 198 hyphenation exceptions out of 8191
+ 23i,4n,17p,151b,107s stack positions out of 1500i,500n,1500p,200000b,5000s
+
+Output written on null.dvi (1 page, 224 bytes).

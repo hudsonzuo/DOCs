@@ -1,0 +1,34 @@
+bout ccache
+
+ccache is a fast compiler cache. When you compile a program, it will cache intermediate results so that, whenever you recompile the same program, the compilation time is greatly reduced. The first time you run ccache, it will be much slower than a normal compilation. Subsequent recompiles should be faster. ccache is only helpful if you will be recompiling the same application many times; thus it's mostly only useful for software developers.
+
+If you are interested in the ins and outs of ccache, please visit the ccache homepage.
+
+Warning: ccache is known to cause numerous compilation failures. Sometimes ccache will retain stale code objects or corrupted files, which can lead to packages that cannot be emerged. If this happens (if you receive errors like "File not recognized: File truncated"), try recompiling the application with ccache disabled (FEATURES="-ccache" in /etc/portage/make.conf) before reporting a bug. Unless you are doing development work, do not enable ccache.
+Installing ccache
+
+To install ccache, run emerge ccache:
+
+Code Listing 3.1: Installing ccache
+# emerge ccache
+Activating Portage Support
+
+Open /etc/portage/make.conf and add ccache to the FEATURES variable. Next, add a new variable called CCACHE_SIZE and set it to "2G":
+
+Code Listing 3.2: Editing CCACHE_SIZE in /etc/portage/make.conf
+CCACHE_SIZE="2G"
+To check if ccache functions, ask ccache to provide you with its statistics. Because Portage uses a different ccache home directory, you need to set the CCACHE_DIR variable as well:
+
+Code Listing 3.3: Viewing ccache statistics
+# CCACHE_DIR="/var/tmp/ccache" ccache -s
+The /var/tmp/ccache location is Portage' default ccache home directory; if you want to alter this setting you can set the CCACHE_DIR variable in /etc/portage/make.conf.
+
+However, if you would run ccache, it would use the default location of ${HOME}/.ccache, which is why you needed to set the CCACHE_DIR variable when asking for the (Portage) ccache statistics.
+
+Using ccache for non-Portage C Compiling
+
+If you would like to use ccache for non-Portage compilations, add /usr/lib/ccache/bin to the beginning of your PATH variable (before /usr/bin). This can be accomplished by editing .bash_profile in your user's home directory. Using .bash_profile is one way to define PATH variables.
+
+Code Listing 3.4: Editing .bash_profile
+PATH="/usr/lib/ccache/bin:/opt/bin:${PATH}"
+

@@ -1,0 +1,141 @@
+1,基础和软件源
+  开始采用2012年7月的gentoo源，
+  8月底做了一次sync，计划每个月底做sync
+2，
+  内核3.4.5
+
+  USE="a52 aac acpi alsa bluetooth branding cairo cdda cdr consolekit dbus \
+       dts dvd dvdr emboss encode exif fam firefox flac gdu gif gpm \
+            gtk jpeg lcms ldap libnotify mad mng mp3 mp4 mpeg ogg opengl \
+	         pango pdf png policykit ppds qt3support qt4 sdl spell \
+		      startup-notification svg tiff truetype vorbis udev unicode usb X xcb \
+		           x264 xml xulrunner xv xvid pam session thunar gnutls \
+			        device-mapper sqlite -hal networkmanager python -webkit static-libs"
+  env.d/02locale:  LANG="zh_CN.utf8"
+
+  fbterm是支持中文显示的terminal
+  fbterm-ucimf是输入法框架, ucimf-sunpinyin提供输入法
+  fbterm不支持ssh登陆时使用
+  fbterm使用WenQuanYi Zen Hei Mono时显示效果较好(.fbtermrc: font-names)
+  用户登录时自动启动fbterm：用户需要加入video组，在.bash_profile中加入fbterm启动,
+  注意：用.bashrc有问题, fbterm启动后会再次执行.bashrc
+
+  groups(aoe):adm disk wheel audio video kvm users plugdev
+
+  LABEL=zhentu		/		ext4		noatime		0 1
+  #LABEL=BOOT 		/boot		ext3		noatime		0 1
+  #/var/swap		none		swap		sw		0 0
+  /dev/cdrom		/mnt/cdrom	auto		noauto,ro	0 0
+  #/dev/fd0		/mnt/floppy	auto		noauto		0 0
+  LABEL=usb_data         /mnt/usb2        auto            auto            0 0
+  /mnt/usb2/portage      /usr/portage     auto            bind            0 0
+  /mnt/usb2/src          /usr/src         auto            bind            0 0 
+  # glibc 2.2 and above expects tmpfs to be mounted at /dev/shm for 
+  # POSIX shared memory (shm_open, shm_unlink).
+  # (tmpfs is a dynamically expandable/shrinkable ramdisk, and will
+  #  use almost no memory if not populated with files)
+  shm			/dev/shm	tmpfs		nodev,nosuid,noexec	0 0
+  tmpfs			/var/log        tmpfs		size=256M        0 0 
+  tmpfs			/var/tmp/portage        tmpfs		size=1024M        0 0 
+  #mount -t tmpfs tmpfs /var/tmp/
+  /dev/sda9              /home/aoe/extend_room auto           auto            0 0
+
+  xorg-server ,probeonly patch，1.12.3
+  easyboarding
+  /etc/init.d/easy_boarding
+  crontab -l :  @reboot		yes|sensors-detect
+
+  polkit配置
+
+  udev配置
+  emerge hotplug ;rc-update add hotplug boot
+  关机按钮
+  无线网口被命名为eth1(甚至是eth0),原因是无线网卡的驱动加载比有线网卡的驱动加载早。如何命名为wlan0呢？
+  ralink无线网卡驱动被遗漏
+
+  问题：由于使用本地时钟，如果使用上一个机器的时间比当前机器的时钟早，就会导致rootfs被只读挂载，不能正常使用。
+  /etc/init.d/fsck需要重写，fsck vs e2fsck 
+
+............
+安装zhentu到其它磁盘
+  克隆技术路线：
+    需求定制(提供排除选择界面）:私有数据、支持软件安装、其它挂载的分区、保留用户、驱动优化
+    目标分区选择 
+    复制： shutil
+    用户删除和新建
+    grub安装
+    驱动优化
+
+
+
+
+驱动优化,
+/usr/share/doc/nvidia-drivers-302.17/README.bz2文件列出了详细的pci ID ，程序需要根据lspci -nn 得到的pciID查询（特定驱动所支持的pciID)对应的驱动，并安装驱动。
+
+桌面启动webApp
+
+googleearth ,USE qt-bundled的时候汉字乱码，用系统qt-webkit有233M，非常占空间
+
+
+引入net-wireless/compat-wireless(pentoo layman),3.4.5内核有bug,把cfg80211编译成模块导致系统错误，采用3.5.4解决问题.
+
+------------------------------------------------------------------------------------------------------------------------------------------
+help(Gio.Drive)  ; get help for things in gi.repository
+help(print)
+f.write(str(dir(Gio)))
+
+
+Gio的用法：从VolumeMonitor开始： vo_m=gio.VolumeMonitor()
+如果from gi.repository import Gio,Gio,get_volumes()或者get_mounts,总是导致Segmentation fault(已经查明原因：必须用get()初始化vo_m=gio.VolumeMonitor.get())
+安装pygobject-2.28.6时，可以 import gio，gio.get_volumes()工作正常.
+gio不识别优盘
+最后,决定使用pyparted放弃gio,技术记录在~/DOCs/others_pyparted
+
+需要的数据：盘的数目，每个分区的大小，每个分区的描述信息，关联thunar查看分区内容。
+分区操作：删除、格式化、新建、
+数据操作：备份建议、备份
+
+Gtk做界面，Gdk绘制分区块图(Gtk.DrawingArea)，pyparted读取和改变分区
+
+现在的zhentucloner已经可以做分区操作了（2012-11-02）
+对于格式化的操作需要调用系统命令mkfs，计划利用glib的g_spawn_sync ()功能实现；安装（复制）操作也用g_spawn_sync ()
+只是mkfs的输出信息包含了进度，但mkfs用时很少可以不显示进度；cp命令却没有输出进度信息。
+
+尝试用Gio的GAppinfo打开thunar
+
+突然发现xfce的thumbnail服务叫tumbler，已知没装，怪不得thunar显示图片失败呢
+
+复制用Gio的copy ,GFileProgressCallback是进度回调函数.可以参看thunar-transfer-job.c
+g_file_copy                         (GFile *source,
+                                                         GFile *destination,
+                                                         GFileCopyFlags flags,
+                                                         GCancellable *cancellable,
+                                                         GFileProgressCallback progress_callback,
+                                                         gpointer progress_callback_data,
+不能复制目录                                              GError **error);
+
+
+zhentu cloner包含两个进程：主线程负责界面、还有一个线程负责和分区有关的动作                                                         
+主线程启动，初始化frames等，启动分区线程，主线程开始frame1/分区线程收集分区信息，主线程接收分区线程的分区信息开始frame2，主线程分区操作并通知分区线程执行，
+信息传递好像有问题,模块间不支持信息传递.在frame2选择的安装目标分区需要用管道发送到分区线程保存，frame3从分区线程接收
+
+
+程序的界面装饰美化
+
+删除一个分区并新建一个更小的、起始位置相同的分区，新分区保留了原有的分区类型导致分区错误。
+实验发现parted处理的很好
+给parted.Partition的fs参数设置成None解决问题
+
+权限处理:
+1，使用pkexec提升用户权限，整个程序使用root权限运行
+2，pkexec python后的当前路径变成/root，导致找不到程序的错误
+3，为pkexec做一个封装：
+#!/usr/bin/env /bin/sh 
+cur=$PWD
+prog=$1
+/usr/bin/pkexec /usr/bin/python2 -t  -d  `echo $cur/$prog`
+报错：Gtk couldn't be initialized，Gtk不能加载，其它模块可以
+4, 最后用gksudo
+
+
+使用发现google-chrome播放视频会发生不出图像的情况

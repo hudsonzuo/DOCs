@@ -1,0 +1,508 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Input and Output 输出和输出 &mdash; Python v3.0c1 documentation</title>
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+          URL_ROOT:    '../',
+          VERSION:     '3.0c1',
+          COLLAPSE_MODINDEX: false,
+          FILE_SUFFIX: '.html'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Search within Python v3.0c1 documentation"
+          href="../_static/opensearch.xml"/>
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="copyright" title="Copyright" href="../copyright.html" />
+    <link rel="top" title="Python v3.0c1 documentation" href="../index.html" />
+    <link rel="up" title="The Python tutorial Python 入门指南" href="index.html" />
+    <link rel="next" title="Errors and Exceptions 错误和异常" href="errors.html" />
+    <link rel="prev" title="Modules 模块" href="modules.html" />
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../modindex.html" title="Global Module Index"
+             accesskey="M">modules</a> |</li>
+        <li class="right" >
+          <a href="errors.html" title="Errors and Exceptions 错误和异常"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="modules.html" title="Modules 模块"
+             accesskey="P">previous</a> |</li>
+<li><img src="../_static/py.png" alt="" style="vertical-align: middle; margin-top: -1px"/></li>
+
+        <li><a href="../contents.html">Python v3.0c1 documentation</a> &raquo;</li>
+
+          <li><a href="index.html" accesskey="U">The Python tutorial Python 入门指南</a> &raquo;</li>
+      </ul>
+    </div>
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  
+  <div class="section" id="input-and-output">
+<span id="tut-io"></span><h1>Input and Output 输出和输出<a class="headerlink" href="#input-and-output" title="Permalink to this headline">¶</a></h1>
+<p>There are several ways to present the output of a program; data can be printed
+in a human-readable form, or written to a file for future use. This chapter will
+discuss some of the possibilities.</p>
+<p>有几种方法可以表现程序的输出结果；数据可以用可读的形式打印，也可以写入文件供以后使用。本章将会讨论
+几种可行的做法。</p>
+<div class="section" id="fancier-output-formatting">
+<span id="tut-formatting"></span><h2>Fancier Output Formatting 设计输出格式<a class="headerlink" href="#fancier-output-formatting" title="Permalink to this headline">¶</a></h2>
+<p>So far we&#8217;ve encountered two ways of writing values: <em>expression statements</em> and
+the <a title="print" class="reference external" href="../library/functions.html#print"><tt class="xref docutils literal"><span class="pre">print()</span></tt></a> function.  (A third way is using the <tt class="xref docutils literal"><span class="pre">write()</span></tt> method
+of file objects; the standard output file can be referenced as <tt class="docutils literal"><span class="pre">sys.stdout</span></tt>.
+See the Library Reference for more information on this.)</p>
+<p>我们有两种大相径庭的输出值方法：表达式语句和 print 语句。（第三种方式是使用文件对象的 write()
+方法，标准文件输出可以参考 <a href="#id1"><span class="problematic" id="id2">``</span></a>sys.stdout``。详细内容参见库参考手册。）</p>
+<p id="index-973">Often you&#8217;ll want more control over the formatting of your output than simply
+printing space-separated values.  There are two ways to format your output; the
+first way is to do all the string handling yourself; using string slicing and
+concatenation operations you can create any layout you can imagine.  The
+standard module <a title="Common string operations." class="reference external" href="../library/string.html"><tt class="xref docutils literal"><span class="pre">string</span></tt></a> contains some useful operations for padding
+strings to a given column width; these will be discussed shortly.  The second
+way is to use the <tt class="docutils literal"><span class="pre">%</span></tt> operator with a string as the left argument.  The <tt class="docutils literal"><span class="pre">%</span></tt>
+operator interprets the left argument much like a <tt class="xref docutils literal"><span class="pre">sprintf</span></tt>-style
+format string to be applied to the right argument, and returns the string
+resulting from this formatting operation.</p>
+<p>可能你经常想要对输出格式做一些比简单的打印空格分隔符更为复杂的控制。有两种方法可以格式化输出。
+第一种是由你来控制整个字符串，使用字符切割和联接操作就可以创建出任何你想要的输出形式。标准模
+块 <a title="Common string operations." class="reference external" href="../library/string.html"><tt class="xref docutils literal"><span class="pre">string</span></tt></a> 包括了一些操作，将字符串填充入给定列时，这些操作很有用。随后我们会讨论这
+部分内容。第二种方法是使用 % 操作符，以某个字符串做为其左参数。 <tt class="docutils literal"><span class="pre">%</span></tt> 操作符将左参数解释为
+类似于 <tt class="xref docutils literal"><span class="pre">sprintf</span></tt>风格的格式字符串，并作用于右参数，从该操作中返回格式化的字符串。</p>
+<p>One question remains, of course: how do you convert values to strings? Luckily,
+Python has ways to convert any value to a string: pass it to the <a title="repr" class="reference external" href="../library/functions.html#repr"><tt class="xref docutils literal"><span class="pre">repr()</span></tt></a>
+or <a title="str" class="reference external" href="../library/functions.html#str"><tt class="xref docutils literal"><span class="pre">str()</span></tt></a> functions.  Reverse quotes (<tt class="docutils literal"><span class="pre">``</span></tt>) are equivalent to
+<a title="repr" class="reference external" href="../library/functions.html#repr"><tt class="xref docutils literal"><span class="pre">repr()</span></tt></a>, but they are no longer used in modern Python code and will likely
+not be in future versions of the language.</p>
+<p>当然，还有一个问题，如何将值转化为字符串？很幸运，Python总是把任意值传入 <a title="repr" class="reference external" href="../library/functions.html#repr"><tt class="xref docutils literal"><span class="pre">repr()</span></tt></a>
+或 <a title="str" class="reference external" href="../library/functions.html#str"><tt class="xref docutils literal"><span class="pre">str()</span></tt></a> 函数，转为字符串。反引号 (<tt class="docutils literal"><span class="pre">``</span></tt>)等价于 :func:<a href="#id3"><span class="problematic" id="id4">`</span></a>repr`，未来版本的
+Python中将会去掉它们，这个功能不再用于现代的Python代码。</p>
+<p>The <a title="str" class="reference external" href="../library/functions.html#str"><tt class="xref docutils literal"><span class="pre">str()</span></tt></a> function is meant to return representations of values which are
+fairly human-readable, while <a title="repr" class="reference external" href="../library/functions.html#repr"><tt class="xref docutils literal"><span class="pre">repr()</span></tt></a> is meant to generate representations
+which can be read by the interpreter (or will force a <a title="exceptions.SyntaxError" class="reference external" href="../library/exceptions.html#exceptions.SyntaxError"><tt class="xref docutils literal"><span class="pre">SyntaxError</span></tt></a> if
+there is not equivalent syntax).  For objects which don&#8217;t have a particular
+representation for human consumption, <a title="str" class="reference external" href="../library/functions.html#str"><tt class="xref docutils literal"><span class="pre">str()</span></tt></a> will return the same value as
+<a title="repr" class="reference external" href="../library/functions.html#repr"><tt class="xref docutils literal"><span class="pre">repr()</span></tt></a>.  Many values, such as numbers or structures like lists and
+dictionaries, have the same representation using either function.  Strings and
+floating point numbers, in particular, have two distinct representations.</p>
+<p>函数 <a title="str" class="reference external" href="../library/functions.html#str"><tt class="xref docutils literal"><span class="pre">str()</span></tt></a> 用于将值转化为适于人阅读的形式，而 <a title="repr" class="reference external" href="../library/functions.html#repr"><tt class="xref docutils literal"><span class="pre">repr()</span></tt></a> 转化为供解释器读取的形式
+（如果没有等价的语法，则会发生 <a title="exceptions.SyntaxError" class="reference external" href="../library/exceptions.html#exceptions.SyntaxError"><tt class="xref docutils literal"><span class="pre">SyntaxError</span></tt></a> 异常） 某对象没有适于人阅读的解释形式的话，
+<a title="str" class="reference external" href="../library/functions.html#str"><tt class="xref docutils literal"><span class="pre">str()</span></tt></a> 会返回与 <a title="repr" class="reference external" href="../library/functions.html#repr"><tt class="xref docutils literal"><span class="pre">repr()</span></tt></a> 等同的值。很多类型，诸如数值或链表、字典这样的结构，针对
+各函数都有着统一的解读方式。字符串和浮点数，有不同的解读方式。</p>
+<p>Some examples:</p>
+<p>下面是一些示例：</p>
+<div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="s">&#39;Hello, world.&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">str</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+<span class="go">&#39;Hello, world.&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">repr</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+<span class="go">&quot;&#39;Hello, world.&#39;&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">str</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
+<span class="go">&#39;0.1&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">repr</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
+<span class="go">&#39;0.10000000000000001&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="mf">10</span> <span class="o">*</span> <span class="mf">3.25</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="mf">200</span> <span class="o">*</span> <span class="mf">200</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="s">&#39;The value of x is &#39;</span> <span class="o">+</span> <span class="nb">repr</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="s">&#39;, and y is &#39;</span> <span class="o">+</span> <span class="nb">repr</span><span class="p">(</span><span class="n">y</span><span class="p">)</span> <span class="o">+</span> <span class="s">&#39;...&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+<span class="go">The value of x is 32.5, and y is 40000...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c"># The repr() of a string adds string quotes and backslashes:</span>
+<span class="gp">... </span><span class="n">hello</span> <span class="o">=</span> <span class="s">&#39;hello, world</span><span class="se">\n</span><span class="s">&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">hellos</span> <span class="o">=</span> <span class="nb">repr</span><span class="p">(</span><span class="n">hello</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">hellos</span><span class="p">)</span>
+<span class="go">&#39;hello, world\n&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c"># The argument to repr() may be any Python object:</span>
+<span class="gp">... </span><span class="nb">repr</span><span class="p">((</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="p">(</span><span class="s">&#39;spam&#39;</span><span class="p">,</span> <span class="s">&#39;eggs&#39;</span><span class="p">)))</span>
+<span class="go">&quot;(32.5, 40000, (&#39;spam&#39;, &#39;eggs&#39;))&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c"># reverse quotes are convenient in interactive sessions:</span>
+<span class="gp">... </span><span class="sb">`x, y, (&#39;spam&#39;, &#39;eggs&#39;)`</span>
+<span class="go">&quot;(32.5, 40000, (&#39;spam&#39;, &#39;eggs&#39;))&quot;</span>
+</pre></div>
+<p>Here are two ways to write a table of squares and cubes:</p>
+<p>以下两种方式可以输出平方和立方表：</p>
+<blockquote>
+<div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mf">1</span><span class="p">,</span> <span class="mf">11</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="k">print</span><span class="p">(</span><span class="nb">repr</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">.</span><span class="n">rjust</span><span class="p">(</span><span class="mf">2</span><span class="p">),</span> <span class="nb">repr</span><span class="p">(</span><span class="n">x</span><span class="o">*</span><span class="n">x</span><span class="p">)</span><span class="o">.</span><span class="n">rjust</span><span class="p">(</span><span class="mf">3</span><span class="p">),</span> <span class="n">end</span><span class="o">=</span><span class="s">&#39; &#39;</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="c"># Note use of &#39;end&#39; on previous line</span>
+<span class="gp">... </span>    <span class="k">print</span><span class="p">(</span><span class="nb">repr</span><span class="p">(</span><span class="n">x</span><span class="o">*</span><span class="n">x</span><span class="o">*</span><span class="n">x</span><span class="p">)</span><span class="o">.</span><span class="n">rjust</span><span class="p">(</span><span class="mf">4</span><span class="p">))</span>
+<span class="gp">...</span>
+<span class="go"> 1   1    1</span>
+<span class="go"> 2   4    8</span>
+<span class="go"> 3   9   27</span>
+<span class="go"> 4  16   64</span>
+<span class="go"> 5  25  125</span>
+<span class="go"> 6  36  216</span>
+<span class="go"> 7  49  343</span>
+<span class="go"> 8  64  512</span>
+<span class="go"> 9  81  729</span>
+<span class="go">10 100 1000</span>
+</pre></div>
+<div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mf">1</span><span class="p">,</span> <span class="mf">11</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="k">print</span><span class="p">(</span><span class="s">&#39;</span><span class="si">%2d</span><span class="s"> </span><span class="si">%3d</span><span class="s"> </span><span class="si">%4d</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">x</span><span class="o">*</span><span class="n">x</span><span class="p">,</span> <span class="n">x</span><span class="o">*</span><span class="n">x</span><span class="o">*</span><span class="n">x</span><span class="p">))</span>
+<span class="gp">...</span>
+<span class="go"> 1   1    1</span>
+<span class="go"> 2   4    8</span>
+<span class="go"> 3   9   27</span>
+<span class="go"> 4  16   64</span>
+<span class="go"> 5  25  125</span>
+<span class="go"> 6  36  216</span>
+<span class="go"> 7  49  343</span>
+<span class="go"> 8  64  512</span>
+<span class="go"> 9  81  729</span>
+<span class="go">10 100 1000</span>
+</pre></div>
+</blockquote>
+<p>(Note that in the first example, one space between each column was added by the
+way <a title="print" class="reference external" href="../library/functions.html#print"><tt class="xref docutils literal"><span class="pre">print()</span></tt></a> works: it always adds spaces between its arguments.)</p>
+<p>（需要注意的是使用 print 方法时每两列之间有一个空格：它总是在参数之间加一个空格。）</p>
+<p>This example demonstrates the <tt class="xref docutils literal"><span class="pre">rjust()</span></tt> method of string objects, which
+right-justifies a string in a field of a given width by padding it with spaces
+on the left.  There are similar methods <tt class="xref docutils literal"><span class="pre">ljust()</span></tt> and <tt class="xref docutils literal"><span class="pre">center()</span></tt>.  These
+methods do not write anything, they just return a new string.  If the input
+string is too long, they don&#8217;t truncate it, but return it unchanged; this will
+mess up your column lay-out but that&#8217;s usually better than the alternative,
+which would be lying about a value.  (If you really want truncation you can
+always add a slice operation, as in <tt class="docutils literal"><span class="pre">x.ljust(n)[:n]</span></tt>.)</p>
+<p>以上是一个 <tt class="xref docutils literal"><span class="pre">rjust()</span></tt> 函数的演示，这个函数把字符串输出到一列，并通过向左侧填充
+空格来使其右对齐。类似的函数还有 <tt class="xref docutils literal"><span class="pre">ljust()</span></tt> 和 :meth:<a href="#id5"><span class="problematic" id="id6">`</span></a>center`。这些函数只是
+输出新的字符串，并不改变什么。如果输出的字符串太长，它们也不会截断它，而是原样输出，
+这会使你的输出格式变得混乱，不过总强过另一种选择（截断字符串），因为那样会产生错误的
+输出值。（如果你确实需要截断它，可以使用切割操作，例如：``x.ljust( n)[:n]``。）</p>
+<p>There is another method, <tt class="xref docutils literal"><span class="pre">zfill()</span></tt>, which pads a numeric string on the left
+with zeros.  It understands about plus and minus signs:</p>
+<p>另一个函数 <tt class="xref docutils literal"><span class="pre">zfill()</span></tt> 用于向数值的字符串表达左侧填充零。该函数可以正确理解正负号：</p>
+<div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="s">&#39;12&#39;</span><span class="o">.</span><span class="n">zfill</span><span class="p">(</span><span class="mf">5</span><span class="p">)</span>
+<span class="go">&#39;00012&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="s">&#39;-3.14&#39;</span><span class="o">.</span><span class="n">zfill</span><span class="p">(</span><span class="mf">7</span><span class="p">)</span>
+<span class="go">&#39;-003.14&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="s">&#39;3.14159265359&#39;</span><span class="o">.</span><span class="n">zfill</span><span class="p">(</span><span class="mf">5</span><span class="p">)</span>
+<span class="go">&#39;3.14159265359&#39;</span>
+</pre></div>
+<p>Using the <tt class="docutils literal"><span class="pre">%</span></tt> operator looks like this:</p>
+<p>可以如下这样使用 % 操作符：</p>
+<div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">math</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="s">&#39;The value of PI is approximately </span><span class="si">%5.3f</span><span class="s">.&#39;</span> <span class="o">%</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
+<span class="go">The value of PI is approximately 3.142.</span>
+</pre></div>
+<p>If there is more than one format in the string, you need to pass a tuple as
+right operand, as in this example:</p>
+<p>如果有超过一个的字符串要格式化为一体，就需要将它们传入一个元组作为右值，如下所示：</p>
+<div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">table</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;Sjoerd&#39;</span><span class="p">:</span> <span class="mf">4127</span><span class="p">,</span> <span class="s">&#39;Jack&#39;</span><span class="p">:</span> <span class="mf">4098</span><span class="p">,</span> <span class="s">&#39;Dcab&#39;</span><span class="p">:</span> <span class="mf">7678</span><span class="p">}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">phone</span> <span class="ow">in</span> <span class="n">table</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+<span class="gp">... </span>    <span class="k">print</span><span class="p">(</span><span class="s">&#39;</span><span class="si">%-10s</span><span class="s"> ==&gt; </span><span class="si">%10d</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">phone</span><span class="p">))</span>
+<span class="gp">...</span>
+<span class="go">Jack       ==&gt;       4098</span>
+<span class="go">Dcab       ==&gt;       7678</span>
+<span class="go">Sjoerd     ==&gt;       4127</span>
+</pre></div>
+<p>Most formats work exactly as in C and require that you pass the proper type;
+however, if you don&#8217;t you get an exception, not a core dump. The <tt class="docutils literal"><span class="pre">%s</span></tt> format
+is more relaxed: if the corresponding argument is not a string object, it is
+converted to string using the <a title="str" class="reference external" href="../library/functions.html#str"><tt class="xref docutils literal"><span class="pre">str()</span></tt></a> built-in function.  Using <tt class="docutils literal"><span class="pre">*</span></tt> to
+pass the width or precision in as a separate (integer) argument is supported.
+The C formats <tt class="docutils literal"><span class="pre">%n</span></tt> and <tt class="docutils literal"><span class="pre">%p</span></tt> are not supported.</p>
+<p>大多数类 C 的格式化操作都需要你传入适当的类型，不过如果你没有定义异常，也不会有什么从内核中主
+动的弹出来。（however, if you don&#8217;t you get an exception, not a core dump）使用
+%s 格式会更轻松些：如果对应的参数不是字符串，它会通过内置的 str() 函数转化为字符串。Python
+支持用 <tt class="docutils literal"><span class="pre">*</span></tt> 作为一个分隔（整型的）参数来传递宽度或精度。Python 不支持 C 的 <tt class="docutils literal"><span class="pre">%n</span></tt> 和
+<tt class="docutils literal"><span class="pre">%p</span></tt> 操作符。</p>
+<p>If you have a really long format string that you don&#8217;t want to split up, it
+would be nice if you could reference the variables to be formatted by name
+instead of by position.  This can be done by using form <tt class="docutils literal"><span class="pre">%(name)format</span></tt>, as
+shown here:</p>
+<p>如果你有一个非常长的格式字符串，又不想分割开，按格式中的名字引用变量会是个好主意。这可以通过
+使用form %(name)format 结构实现：</p>
+<div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">table</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;Sjoerd&#39;</span><span class="p">:</span> <span class="mf">4127</span><span class="p">,</span> <span class="s">&#39;Jack&#39;</span><span class="p">:</span> <span class="mf">4098</span><span class="p">,</span> <span class="s">&#39;Dcab&#39;</span><span class="p">:</span> <span class="mf">8637678</span><span class="p">}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="s">&#39;Jack: </span><span class="si">%(Jack)d</span><span class="s">; Sjoerd: </span><span class="si">%(Sjoerd)d</span><span class="s">; Dcab: </span><span class="si">%(Dcab)d</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">table</span><span class="p">)</span>
+<span class="go">Jack: 4098; Sjoerd: 4127; Dcab: 8637678</span>
+</pre></div>
+<p>This is particularly useful in combination with the new built-in <a title="vars" class="reference external" href="../library/functions.html#vars"><tt class="xref docutils literal"><span class="pre">vars()</span></tt></a>
+function, which returns a dictionary containing all local variables.</p>
+<p>这个技巧与新的内置函数 <a title="vars" class="reference external" href="../library/functions.html#vars"><tt class="xref docutils literal"><span class="pre">vars()</span></tt></a> 组合使用时非常有用，该函数返回一个包含所有局部变量的字典。</p>
+<p>The <a title="Common string operations." class="reference external" href="../library/string.html"><tt class="xref docutils literal"><span class="pre">string</span></tt></a> module contains a class Template which offers yet another way
+to substitute values into strings.</p>
+<p>模块 <a title="Common string operations." class="reference external" href="../library/string.html"><tt class="xref docutils literal"><span class="pre">string</span></tt></a> 包含一个模板类型，提供了另一种将变量组合到字符串中的方法。</p>
+</div>
+<div class="section" id="reading-and-writing-files">
+<span id="tut-files"></span><h2>Reading and Writing Files 读写文件<a class="headerlink" href="#reading-and-writing-files" title="Permalink to this headline">¶</a></h2>
+<p id="index-974"><a title="open" class="reference external" href="../library/functions.html#open"><tt class="xref docutils literal"><span class="pre">open()</span></tt></a> returns a file object, and is most commonly used with two
+arguments: <tt class="docutils literal"><span class="pre">open(filename,</span> <span class="pre">mode)</span></tt>.</p>
+<p><a title="open" class="reference external" href="../library/functions.html#open"><tt class="xref docutils literal"><span class="pre">open()</span></tt></a> 返回一个文件，通常的用法需要两个参数： <a href="#id7"><span class="problematic" id="id8">``</span></a>open(filename, mode)``。</p>
+<div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="o">=</span><span class="nb">open</span><span class="p">(</span><span class="s">&#39;/tmp/workfile&#39;</span><span class="p">,</span> <span class="s">&#39;w&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+<span class="go">&lt;open file &#39;/tmp/workfile&#39;, mode &#39;w&#39; at 80a0960&gt;</span>
+</pre></div>
+<p>The first argument is a string containing the filename.  The second argument is
+another string containing a few characters describing the way in which the file
+will be used.  <em>mode</em> can be <tt class="docutils literal"><span class="pre">'r'</span></tt> when the file will only be read, <tt class="docutils literal"><span class="pre">'w'</span></tt>
+for only writing (an existing file with the same name will be erased), and
+<tt class="docutils literal"><span class="pre">'a'</span></tt> opens the file for appending; any data written to the file is
+automatically added to the end.  <tt class="docutils literal"><span class="pre">'r+'</span></tt> opens the file for both reading and
+writing. The <em>mode</em> argument is optional; <tt class="docutils literal"><span class="pre">'r'</span></tt> will be assumed if it&#8217;s
+omitted.</p>
+<p>第一个参数是一个标识文件名的字符串。第二个参数是由有限的字母组成的字符串，描述了文件将会被如何使用。可选的模式 有： <tt class="docutils literal"><span class="pre">'r'</span></tt> ，此选项使文件只读； <tt class="docutils literal"><span class="pre">'w'``，此选项使文件只写（对于同名文件，该操作使原有文件被覆盖）；</span> <span class="pre">``'a'</span></tt> ，此选项以追加方式打开文件； <tt class="docutils literal"><span class="pre">'r+'</span></tt> ，此选项以读写方式打开文件；如果没有指定，默认为 <tt class="docutils literal"><span class="pre">'r'</span></tt> 模式。</p>
+<p><tt class="docutils literal"><span class="pre">'b'</span></tt> appended to the mode opens the file in binary mode, so there are
+also modes like <tt class="docutils literal"><span class="pre">'rb'</span></tt>, <tt class="docutils literal"><span class="pre">'wb'</span></tt>, and <tt class="docutils literal"><span class="pre">'r+b'</span></tt>.  Python distinguishes
+between text and binary files.  Binary files are read and written without
+any data transformation.  In text mode, platform-specific newline
+representations are automatically converted to newlines when read and
+newline characters are automatically converted to the proper
+platform-specific representation when written.  This makes writing portable
+code which reads or writes text files easier.  In addition, when reading
+from or writing to text files, the data are automatically decoded or
+encoding, respectively, using the encoding associated with the file.</p>
+<p>&#8216;b&#8217;模式以二进制方式打开文件，所以可能会有类似于 &#8216;rb&#8217; ，&#8217;wb&#8217; ， &#8216;r+b&#8217; 等等模式组合。
+Python 区分文本文件和二进制文件。二进制文件读写时不做任何数据转换。文本模式下，读的时
+候，自动在行末添加平台相关的换行符在结尾；写的时候，自动将其转换为平台相关的换行描述。
+这使得读写文本文件更方便。另外，从文本文件中读写的时候，使用文件设定的编码自动编解码。</p>
+<p>This behind-the-scenes modification to file data is fine for text files, but
+will corrupt binary data like that in <tt class="docutils literal"><span class="pre">JPEG</span></tt> or <tt class="docutils literal"><span class="pre">EXE</span></tt> files.  Be
+very careful to use binary mode when reading and writing such files.</p>
+<p>这种后台操作方式对文本文件没有什么问题，但是操作 JPEG 或 .EXE这样的二进制文件时就会产
+生破坏。在操作这些文件时一定要记得以二进制模式打开。</p>
+<div class="section" id="methods-of-file-objects">
+<span id="tut-filemethods"></span><h3>Methods of File Objects 文件对象方法<a class="headerlink" href="#methods-of-file-objects" title="Permalink to this headline">¶</a></h3>
+<p>The rest of the examples in this section will assume that a file object called
+<tt class="docutils literal"><span class="pre">f</span></tt> has already been created.</p>
+<p>本节中的示例都假设文件对象 f 已经创建。</p>
+<p>To read a file&#8217;s contents, call <tt class="docutils literal"><span class="pre">f.read(size)</span></tt>, which reads some quantity of
+data and returns it as a string.  <em>size</em> is an optional numeric argument.  When
+<em>size</em> is omitted or negative, the entire contents of the file will be read and
+returned; it&#8217;s your problem if the file is twice as large as your machine&#8217;s
+memory. Otherwise, at most <em>size</em> bytes are read and returned.  If the end of
+the file has been reached, <tt class="docutils literal"><span class="pre">f.read()</span></tt> will return an empty string (<tt class="docutils literal"><span class="pre">&quot;&quot;</span></tt>).</p>
+<p>要读取文件内容，需要调用 <tt class="docutils literal"><span class="pre">f.read(size)``，该方法读取若干数量的数据并以字符串形式返回其内</span>
+<span class="pre">容。*size*</span> <span class="pre">是一个可选的数值参数。如果没有指定</span> <span class="pre">size或者指定为负数，就会读取并返回整个文件。</span>
+<span class="pre">当文件大小为当前机器内存两倍时，就会给你惹麻烦。不过，应该尽可能按比较大的</span> <span class="pre">*size*</span> <span class="pre">读取和返</span>
+<span class="pre">回数据。如果到了文件末尾，``f.read()``会返回一个空字符串（</span></tt>&#8220;&#8221;<a href="#id9"><span class="problematic" id="id10">``</span></a>）。</p>
+<div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<span class="go">&#39;This is the entire file.\n&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<span class="go">&#39;&#39;</span>
+</pre></div>
+<p><tt class="docutils literal"><span class="pre">f.readline()</span></tt> reads a single line from the file; a newline character (<tt class="docutils literal"><span class="pre">\n</span></tt>)
+is left at the end of the string, and is only omitted on the last line of the
+file if the file doesn&#8217;t end in a newline.  This makes the return value
+unambiguous; if <tt class="docutils literal"><span class="pre">f.readline()</span></tt> returns an empty string, the end of the file
+has been reached, while a blank line is represented by <tt class="docutils literal"><span class="pre">'\n'</span></tt>, a string
+containing only a single newline.</p>
+<pre>``f.readline()`` 从文件中读取单独一行，字符串结尾会自动加上一个换行符（``\n``），只有</pre>
+<p>当文件最后一行没有以换行符结尾时，这一操作才会被忽略。这样返回值就不会有什么混淆不清，如果
+如果 <tt class="docutils literal"><span class="pre">f.readline()</span></tt> 返回一个空字符串，那就表示到达了文件末尾，如果是一个空行，就会描
+述为 <tt class="docutils literal"><span class="pre">'\n'</span></tt> ，一个只包含换行符的字符串：</p>
+<div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
+<span class="go">&#39;This is the first line of the file.\n&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
+<span class="go">&#39;Second line of the file\n&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
+<span class="go">&#39;&#39;</span>
+</pre></div>
+<p><tt class="docutils literal"><span class="pre">f.readlines()</span></tt> returns a list containing all the lines of data in the file.
+If given an optional parameter <em>sizehint</em>, it reads that many bytes from the
+file and enough more to complete a line, and returns the lines from that.  This
+is often used to allow efficient reading of a large file by lines, but without
+having to load the entire file in memory.  Only complete lines will be returned.</p>
+<pre>``f.readlines()`` 返回一个列表，其中包含了文件中所有的数据行。如果给定了可选的 *sizehint*</pre>
+<p>参数，就会读入多于一行的比特数，从中返回多行文本。这个功能通常用于高效读取大型行文件，避免了将整
+个文件读入内存。这种操作只返回完整的行。</p>
+<div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+<span class="go">[&#39;This is the first line of the file.\n&#39;, &#39;Second line of the file\n&#39;]</span>
+</pre></div>
+<p>An alternative approach to reading lines is to loop over the file object. This is
+memory efficient, fast, and leads to simpler code:</p>
+<p>有个替代的方法，遍历文件读取文件对象中的行。这是内存操作，效率，快速，代码简单：</p>
+<blockquote>
+<div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>
+<span class="go">        print(line, end=&#39;&#39;)</span>
+</pre></div>
+<p>This is the first line of the file.
+Second line of the file</p>
+</blockquote>
+<p>The alternative approach is simpler but does not provide as fine-grained
+control.  Since the two approaches manage line buffering differently, they
+should not be mixed.</p>
+<p>这个替代方法很简单，但是不提供完整的控制。因为两个方法管理行缓冲的方式不同，它们不能混合。</p>
+<p><tt class="docutils literal"><span class="pre">f.write(string)</span></tt> writes the contents of <em>string</em> to the file, returning
+<tt class="xref docutils literal"><span class="pre">None</span></tt>.</p>
+<pre>``f.wirte(string)`` 将 *string* 的内容写入文件，返回 ``None``。：</pre>
+<div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&#39;This is a test</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">)</span>
+</pre></div>
+<p>To write something other than a string, it needs to be converted to a string
+first:</p>
+<p>如果需要写入字符串以外的数据，就要先把这些数据转换为字符串：</p>
+<div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">value</span> <span class="o">=</span> <span class="p">(</span><span class="s">&#39;the answer&#39;</span><span class="p">,</span> <span class="mf">42</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+</pre></div>
+<p><tt class="docutils literal"><span class="pre">f.tell()</span></tt> returns an integer giving the file object&#8217;s current position in the
+file, measured in bytes from the beginning of the file.  To change the file
+object&#8217;s position, use <tt class="docutils literal"><span class="pre">f.seek(offset,</span> <span class="pre">from_what)</span></tt>.  The position is computed
+from adding <em>offset</em> to a reference point; the reference point is selected by
+the <em>from_what</em> argument.  A <em>from_what</em> value of 0 measures from the beginning
+of the file, 1 uses the current file position, and 2 uses the end of the file as
+the reference point.  <em>from_what</em> can be omitted and defaults to 0, using the
+beginning of the file as the reference point.</p>
+<pre>``f.tell()`` 返回一个整数，代表文件对象在文件中的指针位置，该数值计量了自文件开头到指针处</pre>
+<p>的比特数。需要改变文件对象指针话话，使用 <tt class="docutils literal"><span class="pre">f.seek(offset,from_what)</span></tt> 。指针在该操作
+中从指定的引用位置移动 <em>offset</em> 比特，引用位置由 <em>from_what</em> 参数指定。 <em>from_what</em>
+值为 0 表示自文件起初处开始，1 表示自当前文件指针位置开始，2 表示自文件末尾开始。 <em>from_what</em>
+可以忽略，其默认值为零，此时从文件头开始：</p>
+<div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">&#39;/tmp/workfile&#39;</span><span class="p">,</span> <span class="s">&#39;r+&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&#39;0123456789abcdef&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="mf">5</span><span class="p">)</span>     <span class="c"># Go to the 6th byte in the file</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mf">1</span><span class="p">)</span>
+<span class="go">&#39;5&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="o">-</span><span class="mf">3</span><span class="p">,</span> <span class="mf">2</span><span class="p">)</span> <span class="c"># Go to the 3rd byte before the end</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mf">1</span><span class="p">)</span>
+<span class="go">&#39;d&#39;</span>
+</pre></div>
+<p>When you&#8217;re done with a file, call <tt class="docutils literal"><span class="pre">f.close()</span></tt> to close it and free up any
+system resources taken up by the open file.  After calling <tt class="docutils literal"><span class="pre">f.close()</span></tt>,
+attempts to use the file object will automatically fail.</p>
+<p>文件使用完后，调用 <tt class="docutils literal"><span class="pre">f.close()</span></tt> 可以关闭文件，释放打开文件后占用的系统资源。
+调用 <tt class="docutils literal"><span class="pre">f.close()</span></tt> 之后，再调用文件对象会自动引发错误。</p>
+<div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;&lt;stdin&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n-Identifier">?</span>
+<span class="nc">ValueError</span>: <span class="n-Identifier">I/O operation on closed file</span>
+</pre></div>
+<p>File objects have some additional methods, such as <tt class="xref docutils literal"><span class="pre">isatty()</span></tt> and
+<tt class="xref docutils literal"><span class="pre">truncate()</span></tt> which are less frequently used; consult the Library Reference
+for a complete guide to file objects.</p>
+<p>文件对象还有一些不太常用的附加方法，比如 :meth:<tt class="docutils literal"><span class="pre">isatty</span></tt> 和 <tt class="xref docutils literal"><span class="pre">truncate()</span></tt>
+在库参考手册中有文件对象的完整指南。</p>
+</div>
+<div class="section" id="the-pickle-module-pickle">
+<span id="tut-pickle"></span><h3>The <a title="Convert Python objects to streams of bytes and back." class="reference external" href="../library/pickle.html"><tt class="xref docutils literal"><span class="pre">pickle</span></tt></a> Module <a title="Convert Python objects to streams of bytes and back." class="reference external" href="../library/pickle.html"><tt class="xref docutils literal"><span class="pre">pickle</span></tt></a> 模块<a class="headerlink" href="#the-pickle-module-pickle" title="Permalink to this headline">¶</a></h3>
+<p id="index-975">Strings can easily be written to and read from a file. Numbers take a bit more
+effort, since the <tt class="xref docutils literal"><span class="pre">read()</span></tt> method only returns strings, which will have to
+be passed to a function like <a title="int" class="reference external" href="../library/functions.html#int"><tt class="xref docutils literal"><span class="pre">int()</span></tt></a>, which takes a string like <tt class="docutils literal"><span class="pre">'123'</span></tt>
+and returns its numeric value 123.  However, when you want to save more complex
+data types like lists, dictionaries, or class instances, things get a lot more
+complicated.</p>
+<p>我们可以很容易的读写文件中的字符串。数值就要多费点儿周折，因为 <tt class="xref docutils literal"><span class="pre">read()</span></tt> 方法只会返回
+字符串，应该将其传入 <a href="#id11"><span class="problematic" id="id12">:fun:`int`</span></a> 方法中，就可以将 <tt class="docutils literal"><span class="pre">'123'</span></tt> 这样的字符转为对应的数值123。
+不过，当你需要保存更为复杂的数据类型，例如链表、字典，类的实例，事情就会变得更复杂了。</p>
+<p>Rather than have users be constantly writing and debugging code to save
+complicated data types, Python provides a standard module called <a title="Convert Python objects to streams of bytes and back." class="reference external" href="../library/pickle.html"><tt class="xref docutils literal"><span class="pre">pickle</span></tt></a>.
+This is an amazing module that can take almost any Python object (even some
+forms of Python code!), and convert it to a string representation; this process
+is called <em>pickling</em>.  Reconstructing the object from the string
+representation is called <em>unpickling</em>.  Between pickling and unpickling,
+the string representing the object may have been stored in a file or data, or
+sent over a network connection to some distant machine.</p>
+<p>好在用户不是非得自己编写和调试保存复杂数据类型的代码。 Python提供了一个名为 <a title="Convert Python objects to streams of bytes and back." class="reference external" href="../library/pickle.html"><tt class="xref docutils literal"><span class="pre">pickle</span></tt></a>
+的标准模块。这是一个令人赞叹的模块，几乎可以把任何 Python对象 （甚至是一些 Python 代码段！）
+表达为为字符串，这一过程称之为*封装* （ :dfn:<a href="#id13"><span class="problematic" id="id14">`</span></a>pickling`）。从字符串表达出重新构造对象称之
+为*拆封*（ unpickling）。封装状态中的对象可以存储在文件或对象中，也可以通过网络在远程的机器
+之间传输。</p>
+<p>If you have an object <tt class="docutils literal"><span class="pre">x</span></tt>, and a file object <tt class="docutils literal"><span class="pre">f</span></tt> that&#8217;s been opened for
+writing, the simplest way to pickle the object takes only one line of code:</p>
+<p>如果你有一个对象 <tt class="docutils literal"><span class="pre">x</span></tt> ，一个以写模式打开的文件对象 <a href="#id15"><span class="problematic" id="id16">``</span></a>f``，封装对象的最简单的方法只需要一行代码：</p>
+<blockquote>
+pickle.dump(x, f)</blockquote>
+<p>To unpickle the object again, if <tt class="docutils literal"><span class="pre">f</span></tt> is a file object which has been opened
+for reading:</p>
+<p>如果 <tt class="docutils literal"><span class="pre">f</span></tt> 是一个以读模式打开的文件对象，就可以重装拆封这个对象：</p>
+<blockquote>
+x = pickle.load(f)</blockquote>
+<p>(There are other variants of this, used when pickling many objects or when you
+don&#8217;t want to write the pickled data to a file; consult the complete
+documentation for <a title="Convert Python objects to streams of bytes and back." class="reference external" href="../library/pickle.html"><tt class="xref docutils literal"><span class="pre">pickle</span></tt></a> in the Python Library Reference.)</p>
+<p>（如果不想把封装的数据写入文件，这里还有一些其它的变化可用。完整的 <a title="Convert Python objects to streams of bytes and back." class="reference external" href="../library/pickle.html"><tt class="xref docutils literal"><span class="pre">pickle</span></tt></a> 文档请见Python 库参考手册）。</p>
+<p><a title="Convert Python objects to streams of bytes and back." class="reference external" href="../library/pickle.html"><tt class="xref docutils literal"><span class="pre">pickle</span></tt></a> is the standard way to make Python objects which can be stored and
+reused by other programs or by a future invocation of the same program; the
+technical term for this is a <em>persistent</em> object.  Because <a title="Convert Python objects to streams of bytes and back." class="reference external" href="../library/pickle.html"><tt class="xref docutils literal"><span class="pre">pickle</span></tt></a> is
+so widely used, many authors who write Python extensions take care to ensure
+that new data types such as matrices can be properly pickled and unpickled.</p>
+<p><a title="Convert Python objects to streams of bytes and back." class="reference external" href="../library/pickle.html"><tt class="xref docutils literal"><span class="pre">pickle</span></tt></a> 是存储 Python 对象以供其它程序或其本身以后调用的标准方法。提供这一组技术
+的是一个持久化对象。因为 <a title="Convert Python objects to streams of bytes and back." class="reference external" href="../library/pickle.html"><tt class="xref docutils literal"><span class="pre">pickle</span></tt></a> 的用途很广泛，很多 Python 扩展的作者都非常注意
+类似矩阵这样的新数据类型是否适合封装和拆封。</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <h3><a href="../contents.html">Table Of Contents</a></h3>
+            <ul>
+<li><a class="reference external" href="">Input and Output 输出和输出</a><ul>
+<li><a class="reference external" href="#fancier-output-formatting">Fancier Output Formatting 设计输出格式</a></li>
+<li><a class="reference external" href="#reading-and-writing-files">Reading and Writing Files 读写文件</a><ul>
+<li><a class="reference external" href="#methods-of-file-objects">Methods of File Objects 文件对象方法</a></li>
+<li><a class="reference external" href="#the-pickle-module-pickle">The <tt class="docutils literal"><span class="pre">pickle</span></tt> Module <tt class="docutils literal"><span class="pre">pickle</span></tt> 模块</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            <h4>Previous topic</h4>
+            <p class="topless"><a href="modules.html" title="previous chapter">Modules 模块</a></p>
+            <h4>Next topic</h4>
+            <p class="topless"><a href="errors.html" title="next chapter">Errors and Exceptions    错误和异常</a></p>
+            <h3>This Page</h3>
+            <ul class="this-page-menu">
+              <li><a href="../_sources/tutorial/inputoutput.txt">Show Source</a></li>
+            </ul>
+          <h3>Quick search</h3>
+            <form class="search" action="../search.html" method="get">
+              <input type="text" name="q" size="18" /> <input type="submit" value="Go" />
+              <input type="hidden" name="check_keywords" value="yes" />
+              <input type="hidden" name="area" value="default" />
+            </form>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../modindex.html" title="Global Module Index"
+             accesskey="M">modules</a> |</li>
+        <li class="right" >
+          <a href="errors.html" title="Errors and Exceptions 错误和异常"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="modules.html" title="Modules 模块"
+             accesskey="P">previous</a> |</li>
+<li><img src="../_static/py.png" alt="" style="vertical-align: middle; margin-top: -1px"/></li>
+
+        <li><a href="../contents.html">Python v3.0c1 documentation</a> &raquo;</li>
+
+          <li><a href="index.html" accesskey="U">The Python tutorial Python 入门指南</a> &raquo;</li>
+      </ul>
+    </div>
+    <div class="footer">
+      &copy; <a href="../copyright.html">Copyright</a> 1990-2008, Python Software Foundation.
+      Last updated on Oct 31, 2008.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.5.
+    </div>
+  </body>
+</html>

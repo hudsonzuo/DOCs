@@ -1,0 +1,42 @@
+ Introduction
+
+ This Howto will explain how you can make additional runlevels. Runlevels can be very handy if you (for example) want to make seperate runlevels for a graphical, and text-mode boot.
+ Creating the Run Level
+
+ Creating a new run level is as simple as creating a new directory in /etc/runlevels/. For example, to create a new runlevel "example":
+
+ cd /etc/runlevels
+ mkdir <new-runlevel-name>
+
+ To add services to this new runlevel, you can use rc-update, for example, to add service "example_service" to runlevel "example"
+
+ rc-update add example_service example
+
+ Creating runlevel console
+
+ You could also create runlevel based on another runlevel. In this example we will create old init3 runlevel without graphical login.
+
+ cp -R /etc/runlevels/default /etc/runlevels/console
+ rm /etc/runlevels/console/xdm
+
+ Using the new run level
+ At boot time
+
+ To specify a runlevel other than the default upon boot, append softlevel=your_runlevel_name to your kernel's options.
+ Example grub.conf
+ File: /boot/grub/grub.conf
+
+ title=Gentoo Linux - New Runlevel
+ root (hd0,0)
+ kernel /boot/bzImage-2.6.8-r7 root=/dev/hda3 softlevel=new-runlevel
+
+ After boot
+
+ To switch to runlevel "example":
+
+ rc example
+
+ To return to default runlevel:
+
+ rc default
+

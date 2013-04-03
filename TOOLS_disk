@@ -1,0 +1,4 @@
+hdparm -C /dev/sdX tells you whether a disk is sleeping:
+
+They are part of the file system - flush writes the RAM buffer/cache to disk, and jbd2 deals with the ext4 journal.
+

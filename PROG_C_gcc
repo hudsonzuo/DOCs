@@ -1,0 +1,72 @@
+   
+   1, Compilation can involve up to four stages: 
+                  preprocessing, -E
+                  compilation proper, -S ,get .s 
+                  assembly 
+                  and linking, always in that order.
+   2, 
+   If you only want some of the stages of compilation, you can use -x (or
+   filename suffixes) to tell gcc where to start, and one of the options
+   -c, -S, or -E to say where gcc is to stop.  
+   
+   -c  Compile or assemble the source files
+   
+   
+   3, 帮助
+      gcc --help=joined
+      gcc --help=seprate
+   
+      -std=       Determine the language standard.
+   
+      gcc -Q -O1 --help=optimizer
+   
+      gcc -v hello.c  // 显示gcc工作过程信息 
+   4,
+   objdump, objcopy, nm, strip, readelf
+   
+   ELF文件的结构：
+   
+        1. ELF Header (ELF文件头)说明了文件的类型，大小，运行平台，节区数目等。
+        
+        2. Porgram Headers Table (程序头表，实际上叫段表好一些，用于描述可执行文件和可共享库),可重定位文件不需要这个表
+        
+        3. Section Headers Table(节区头部表，用于链接可重定位文件成可执行文件或共享库)
+        
+        
+       通过 readelf文件的-h，-l和-S参数查看ELF文件头(ELF Header)、程序头部表（Program Headers Table，段表）和节区表(Section Headers Table)。
+   
+   使用objdump,得到特定section内的汇编程序：
+      objdump -x hello.o
+      objdump -d -j .got hello
+           aoe@zhentu /tmp $ cat hello.c 
+           #include <stdio.h>
+           int main(int  argc, char* argv)
+           {
+                 printf("hello");
+                 return(0);
+           }
+
+
+   获取重定位信息：
+      readelf/objdump  -r hello.o
+   
+
+
+   REL(Relocatable file)
+   DYN (Shared object file)
+   EXEC (Executable file)
+   
+   
+   gcc -static hello.c
+   gcc -Wall myprintf.o -shared -Wl,-soname,libmyprintf.so.0 -o libmyprintf.so.0.0
+
+   5, LD_LIBRARY_PATH
+   LD_LIBRARY_PATH有什么用
+   LD_LIBRARY_PATH是一个环境变量，它的作用是让动态链接库加载器(ld.so)在运行时(run-time)有一个额外的选项，即增加一个搜索路径列表。这个环境变量中，可以存储多个路径，用冒号分隔。它的厉害之处在于，搜索LD_LIBRARY_PATH所列路径的顺序，先于嵌入到二进制文件中的运行时搜索路径，也先于系统默认加载路径(如/usr/lib)。
+   出于安全原因，对于已经设置setuid或setgid的可执行文件，LD_LIBRARY_PATH则被完全忽略。从而让LD_LIBRARY_PATH的用处大打折扣
+
+   绝不要设置全局的LD_LIBRARY_PATH
+
+
+  5, gcc  ENVIRONMENT
+

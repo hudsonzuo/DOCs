@@ -1,0 +1,145 @@
+indenting
+
+Some variables you might want to set:
+
+ :set tabstop 8     - tabs are at proper location
+ :set expandtab     - don't use actual tab character (ctrl-v)
+ :set shiftwidth=4  - indenting is 4 spaces
+ :set autoindent    - turns it on
+ :set smartindent   - does the right thing (mostly) in programs
+ :set cindent       - stricter rules for C programs
+
+I like having auto on, but smart does funny things based on keywords.
+
+To indent the current line, or a visual block:
+
+ctrl-t, ctrl-d  - indent current line forward, backwards 
+                  (insert mode)
+visual > or <   - indent block by sw (repeat with . )
+
+To stop indenting when pasting with the mouse, add this to your .vimrc:
+
+:set pastetoggle=<f5>
+
+then try hitting the F5 key while in insert mode (or just :set paste). 
+
+
+====================== Making a list of numbers =========================
+This tip presents different methods showing how to insert a list of increasing numbers.
+Contents
+ [show] 
+ Making a listEdit
+
+ It is easy to insert a list of ascending numbers, for example, this command inserts five lines after the current line:
+
+ :put =range(11,15)
+
+ The five lines are:
+
+ 11
+ 12
+ 13
+ 14
+ 15
+
+ If wanted, the lines can be inserted after a particular line number, for example :123put =range(11,15) inserts them after line number 123, while :0put =range(11,15) inserts the lines at the start of the buffer, and :$put =range(11,15) inserts them after the last line.
+
+ An equivalent command is :call append(123,range(11,15))) to insert the five lines after line number 123, for example.
+
+ The list of numbers can be formatted. For example, the following inserts 150 lines, where each line contains a number displayed in four columns with leading zeros.
+
+ :put =map(range(1,150), 'printf(''%04d'', v:val)')
+
+ The results range from 0001 to 0150. The map() function replaces each value with the result of the expression, which must be given as a string (the double '' presents a single apostrophe when inside an apostrophe-quoted string). In the expression, v:val represents each value from the list in the first argument.
+
+ Here is another example, using a loop rather than map():
+
+ :for i in range(1,10) | put ='192.168.0.'.i | endfor
+
+ Executing this command inserts the following after the current line:
+
+ 192.168.0.1
+ 192.168.0.2
+ 192.168.0.3
+ 192.168.0.4
+ 192.168.0.5
+ 192.168.0.6
+ 192.168.0.7
+ 192.168.0.8
+ 192.168.0.9
+ 192.168.0.10
+
+ Substitute with ascending numbersEdit
+
+ Suppose you want to replace each occurrence of "abc" with "xyz_N" where N is an ascending number (xyz_1, xyz_2, xyz_3, and so on).
+
+ One approach uses the following command:
+
+ :let i=1 | g/abc/s//\='xyz_'.i/ | let i=i+1
+
+ However, this only changes the first abc on each line. Adding the g flag for a global substitute does not help as i is only incremented once per matching line.
+
+ The following trick uses the a register which can be changed with the setreg() function:
+
+ :let @a=1 | %s/abc/\='xyz_'.(@a+setreg('a',@a+1))/g
+
+ As setreg returns 0 rather than a useful value, the replacement expression (\=) calls setreg by adding it to register a.
+ Using a functionEdit
+
+ Put the following script in your vimrc or in a file in your plugin directory.
+
+ " Add argument (can be negative, default 1) to global variable i.
+ " Return value of i before the change.
+ function Inc(...)
+   let result = g:i
+     let g:i += a:0 > 0 ? a:1 : 1
+       return result
+       endfunction
+
+       Suppose you want to replace each occurrence of "abc" with "xyz_N" where N is an ascending number (xyz_1, xyz_2, xyz_3, and so on). To do this, enter the command:
+
+       :let i = 1 | %s/abc/\='xyz_' . Inc()/g
+
+       For another example, the following command replaces each occurrence of "abc" with a number that increases by 5, starting at 100 (the numbers will be 100, 105, 110, and so on):
+
+       :let i=100 | :%s/abc/\=Inc(5)/g
+
+       Incrementing selected numbersEdit
+
+       function! Incr()
+         let a = line('.') - line("'<")
+           let c = virtcol("'<")
+             if a > 0
+                 execute 'normal! '.c.'|'.a."\<C-a>"
+                   endif
+                     normal `<
+                     endfunction
+                     vnoremap <C-a> :call Incr()<CR>
+
+                     You can use this script for increasing number in a column. For example, you want to initialize an array with the value i for the element i. You can type:
+
+                     my_array[0] = 0;
+
+                     then copy and paste that line (type Y6p to copy then paste the line six times). The result will be the first column shown below:
+
+                     my_array[0] = 0;       my_array[0] = 0;
+                     my_array[0] = 0;       my_array[0] = 1;
+                     my_array[0] = 0;       my_array[0] = 2;
+                     my_array[0] = 0;  -->  my_array[0] = 3;
+                     my_array[0] = 0;       my_array[0] = 4;
+                     my_array[0] = 0;       my_array[0] = 5;
+                     my_array[0] = 0;       my_array[0] = 6;
+
+                     Put the cursor on the second 0 in the first line, then start a blockwise select by pressing Ctrl-V (or Ctrl-Q if you use Ctrl-V for pasting). Move the cursor down to select the second column of zeros, then press Ctrl-A. The result (using the above script) will be the column shown on the right of --> above.
+
+                     Repeating these steps for the first column of zeros changes the text:
+
+                     my_array[0] = 0;       my_array[0] = 0;
+                     my_array[0] = 1;       my_array[1] = 1;
+                     my_array[0] = 2;       my_array[2] = 2;
+                     my_array[0] = 3;  -->  my_array[3] = 3;
+                     my_array[0] = 4;       my_array[4] = 4;
+                     my_array[0] = 5;       my_array[5] = 5;
+                     my_array[0] = 6;       my_array[6] = 6
+
+                     See making a list for a simple macro as an alternative to the above. 

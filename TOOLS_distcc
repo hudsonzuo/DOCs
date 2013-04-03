@@ -1,0 +1,26 @@
+Using distcc
+
+distcc is a program to distribute compilations across several, not necessarily identical, machines on a network. The distcc client sends all necessary information to the available distcc servers (running distccd) so they can compile pieces of source code for the client. The net result is a faster compilation time.
+
+You can find more information about distcc (and how to have it work with Gentoo) in our Gentoo Distcc Documentation.
+
+Installing distcc
+
+Distcc ships with a graphical monitor to monitor tasks that your computer is sending away for compilation. If you use Gnome then put 'gnome' in your USE variable. However, if you don't use Gnome and would still like to have the monitor then you should put 'gtk' in your USE variable.
+
+Code Listing 2.1: Installing distcc
+# emerge distcc
+Activating Portage Support
+
+Add distcc to the FEATURES variable inside /etc/portage/make.conf. Next, edit the MAKEOPTS variable to your liking. A known guideline is to fill in "-jX" with X the number of CPUs that run distccd (including the current host) plus one, but you might have better results with other numbers.
+
+Now run distcc-config and enter the list of available distcc servers. For a simple example we assume that the available DistCC servers are 192.168.1.102 (the current host), 192.168.1.103 and 192.168.1.104 (two "remote" hosts):
+
+Code Listing 2.2: Configuring distcc to use three available distcc servers
+# distcc-config --set-hosts "192.168.1.102 192.168.1.103 192.168.1.104"
+Don't forget to run the distccd daemon as well:
+
+Code Listing 2.3: Starting the distccd daemons
+# rc-update add distccd default
+# /etc/init.d/distccd start
+

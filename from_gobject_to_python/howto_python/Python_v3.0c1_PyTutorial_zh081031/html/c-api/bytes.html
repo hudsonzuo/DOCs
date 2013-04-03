@@ -1,0 +1,336 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Bytes Objects &mdash; Python v3.0c1 documentation</title>
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+          URL_ROOT:    '../',
+          VERSION:     '3.0c1',
+          COLLAPSE_MODINDEX: false,
+          FILE_SUFFIX: '.html'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Search within Python v3.0c1 documentation"
+          href="../_static/opensearch.xml"/>
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="copyright" title="Copyright" href="../copyright.html" />
+    <link rel="top" title="Python v3.0c1 documentation" href="../index.html" />
+    <link rel="up" title="Concrete Objects Layer" href="concrete.html" />
+    <link rel="next" title="Byte Array Objects" href="bytearray.html" />
+    <link rel="prev" title="Complex Number Objects" href="complex.html" />
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../modindex.html" title="Global Module Index"
+             accesskey="M">modules</a> |</li>
+        <li class="right" >
+          <a href="bytearray.html" title="Byte Array Objects"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="complex.html" title="Complex Number Objects"
+             accesskey="P">previous</a> |</li>
+<li><img src="../_static/py.png" alt="" style="vertical-align: middle; margin-top: -1px"/></li>
+
+        <li><a href="../contents.html">Python v3.0c1 documentation</a> &raquo;</li>
+
+          <li><a href="index.html" accesskey="U">Python/C API Reference Manual</a> &raquo;</li>
+          <li><a href="concrete.html" accesskey="U">Concrete Objects Layer</a> &raquo;</li>
+      </ul>
+    </div>
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  
+  <div class="section" id="bytes-objects">
+<span id="bytesobjects"></span><h1>Bytes Objects<a class="headerlink" href="#bytes-objects" title="Permalink to this headline">¶</a></h1>
+<p>These functions raise <a title="exceptions.TypeError" class="reference external" href="../library/exceptions.html#exceptions.TypeError"><tt class="xref docutils literal"><span class="pre">TypeError</span></tt></a> when expecting a bytes parameter and are
+called with a non-bytes parameter.</p>
+<span class="target" id="index-3"></span><dl class="ctype">
+<dt id="PyBytesObject">
+<!--[PyBytesObject]--><tt class="descname">PyBytesObject</tt><a class="headerlink" href="#PyBytesObject" title="Permalink to this definition">¶</a></dt>
+<dd>This subtype of <a title="PyObject" class="reference external" href="structures.html#PyObject"><tt class="xref docutils literal"><span class="pre">PyObject</span></tt></a> represents a Python bytes object.</dd></dl>
+
+<dl class="cvar">
+<dt id="PyBytes_Type">
+<!--[PyBytes_Type]--><a title="PyTypeObject" class="reference external" href="type.html#PyTypeObject">PyTypeObject</a> <tt class="descname">PyBytes_Type</tt><a class="headerlink" href="#PyBytes_Type" title="Permalink to this definition">¶</a></dt>
+<dd><p id="index-4">This instance of <a title="PyTypeObject" class="reference external" href="type.html#PyTypeObject"><tt class="xref docutils literal"><span class="pre">PyTypeObject</span></tt></a> represents the Python bytes type; it
+is the same object as <tt class="docutils literal"><span class="pre">bytes</span></tt> in the Python layer. .</p>
+</dd></dl>
+
+<dl class="cfunction">
+<dt id="PyBytes_Check">
+<!--[PyBytes_Check]-->int <tt class="descname">PyBytes_Check</tt><big>(</big><a title="PyObject" class="reference external" href="structures.html#PyObject">PyObject</a><em> *o</em><big>)</big><a class="headerlink" href="#PyBytes_Check" title="Permalink to this definition">¶</a></dt>
+<dd>Return true if the object <em>o</em> is a bytes object or an instance of a subtype
+of the bytes type.</dd></dl>
+
+<dl class="cfunction">
+<dt id="PyBytes_CheckExact">
+<!--[PyBytes_CheckExact]-->int <tt class="descname">PyBytes_CheckExact</tt><big>(</big><a title="PyObject" class="reference external" href="structures.html#PyObject">PyObject</a><em> *o</em><big>)</big><a class="headerlink" href="#PyBytes_CheckExact" title="Permalink to this definition">¶</a></dt>
+<dd>Return true if the object <em>o</em> is a bytes object, but not an instance of a
+subtype of the bytes type.</dd></dl>
+
+<dl class="cfunction">
+<dt id="PyBytes_FromString">
+<!--[PyBytes_FromString]--><a title="PyObject" class="reference external" href="structures.html#PyObject">PyObject</a>* <tt class="descname">PyBytes_FromString</tt><big>(</big>const char<em> *v</em><big>)</big><a class="headerlink" href="#PyBytes_FromString" title="Permalink to this definition">¶</a></dt>
+<dd>Return a new bytes object with a copy of the string <em>v</em> as value on success,
+and <em>NULL</em> on failure.  The parameter <em>v</em> must not be <em>NULL</em>; it will not be
+checked.</dd></dl>
+
+<dl class="cfunction">
+<dt id="PyBytes_FromStringAndSize">
+<!--[PyBytes_FromStringAndSize]--><a title="PyObject" class="reference external" href="structures.html#PyObject">PyObject</a>* <tt class="descname">PyBytes_FromStringAndSize</tt><big>(</big>const char<em> *v</em>, Py_ssize_t<em> len</em><big>)</big><a class="headerlink" href="#PyBytes_FromStringAndSize" title="Permalink to this definition">¶</a></dt>
+<dd>Return a new bytes object with a copy of the string <em>v</em> as value and length
+<em>len</em> on success, and <em>NULL</em> on failure.  If <em>v</em> is <em>NULL</em>, the contents of
+the bytes object are uninitialized.</dd></dl>
+
+<dl class="cfunction">
+<dt id="PyBytes_FromFormat">
+<!--[PyBytes_FromFormat]--><a title="PyObject" class="reference external" href="structures.html#PyObject">PyObject</a>* <tt class="descname">PyBytes_FromFormat</tt><big>(</big>const char<em> *format</em>, ...<big>)</big><a class="headerlink" href="#PyBytes_FromFormat" title="Permalink to this definition">¶</a></dt>
+<dd><p>Take a C <tt class="xref docutils literal"><span class="pre">printf</span></tt>-style <em>format</em> string and a variable number of
+arguments, calculate the size of the resulting Python bytes object and return
+a bytes object with the values formatted into it.  The variable arguments
+must be C types and must correspond exactly to the format characters in the
+<em>format</em> string.  The following format characters are allowed:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="29%" />
+<col width="23%" />
+<col width="48%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">Format Characters</th>
+<th class="head">Type</th>
+<th class="head">Comment</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td><tt class="xref docutils literal"><span class="pre">%%</span></tt></td>
+<td><em>n/a</em></td>
+<td>The literal % character.</td>
+</tr>
+<tr><td><tt class="xref docutils literal"><span class="pre">%c</span></tt></td>
+<td>int</td>
+<td>A single character,
+represented as an C int.</td>
+</tr>
+<tr><td><tt class="xref docutils literal"><span class="pre">%d</span></tt></td>
+<td>int</td>
+<td>Exactly equivalent to
+<tt class="docutils literal"><span class="pre">printf(&quot;%d&quot;)</span></tt>.</td>
+</tr>
+<tr><td><tt class="xref docutils literal"><span class="pre">%u</span></tt></td>
+<td>unsigned int</td>
+<td>Exactly equivalent to
+<tt class="docutils literal"><span class="pre">printf(&quot;%u&quot;)</span></tt>.</td>
+</tr>
+<tr><td><tt class="xref docutils literal"><span class="pre">%ld</span></tt></td>
+<td>long</td>
+<td>Exactly equivalent to
+<tt class="docutils literal"><span class="pre">printf(&quot;%ld&quot;)</span></tt>.</td>
+</tr>
+<tr><td><tt class="xref docutils literal"><span class="pre">%lu</span></tt></td>
+<td>unsigned long</td>
+<td>Exactly equivalent to
+<tt class="docutils literal"><span class="pre">printf(&quot;%lu&quot;)</span></tt>.</td>
+</tr>
+<tr><td><tt class="xref docutils literal"><span class="pre">%zd</span></tt></td>
+<td>Py_ssize_t</td>
+<td>Exactly equivalent to
+<tt class="docutils literal"><span class="pre">printf(&quot;%zd&quot;)</span></tt>.</td>
+</tr>
+<tr><td><tt class="xref docutils literal"><span class="pre">%zu</span></tt></td>
+<td>size_t</td>
+<td>Exactly equivalent to
+<tt class="docutils literal"><span class="pre">printf(&quot;%zu&quot;)</span></tt>.</td>
+</tr>
+<tr><td><tt class="xref docutils literal"><span class="pre">%i</span></tt></td>
+<td>int</td>
+<td>Exactly equivalent to
+<tt class="docutils literal"><span class="pre">printf(&quot;%i&quot;)</span></tt>.</td>
+</tr>
+<tr><td><tt class="xref docutils literal"><span class="pre">%x</span></tt></td>
+<td>int</td>
+<td>Exactly equivalent to
+<tt class="docutils literal"><span class="pre">printf(&quot;%x&quot;)</span></tt>.</td>
+</tr>
+<tr><td><tt class="xref docutils literal"><span class="pre">%s</span></tt></td>
+<td>char*</td>
+<td>A null-terminated C character
+array.</td>
+</tr>
+<tr><td><tt class="xref docutils literal"><span class="pre">%p</span></tt></td>
+<td>void*</td>
+<td>The hex representation of a C
+pointer. Mostly equivalent to
+<tt class="docutils literal"><span class="pre">printf(&quot;%p&quot;)</span></tt> except that
+it is guaranteed to start with
+the literal <tt class="docutils literal"><span class="pre">0x</span></tt> regardless
+of what the platform&#8217;s
+<tt class="docutils literal"><span class="pre">printf</span></tt> yields.</td>
+</tr>
+</tbody>
+</table>
+<p>An unrecognized format character causes all the rest of the format string to be
+copied as-is to the result string, and any extra arguments discarded.</p>
+</dd></dl>
+
+<dl class="cfunction">
+<dt id="PyBytes_FromFormatV">
+<!--[PyBytes_FromFormatV]--><a title="PyObject" class="reference external" href="structures.html#PyObject">PyObject</a>* <tt class="descname">PyBytes_FromFormatV</tt><big>(</big>const char<em> *format</em>, va_list<em> vargs</em><big>)</big><a class="headerlink" href="#PyBytes_FromFormatV" title="Permalink to this definition">¶</a></dt>
+<dd>Identical to <a title="PyBytes_FromFormat" class="reference internal" href="#PyBytes_FromFormat"><tt class="xref docutils literal"><span class="pre">PyBytes_FromFormat()</span></tt></a> except that it takes exactly two
+arguments.</dd></dl>
+
+<dl class="cfunction">
+<dt id="PyBytes_FromObject">
+<!--[PyBytes_FromObject]--><a title="PyObject" class="reference external" href="structures.html#PyObject">PyObject</a>* <tt class="descname">PyBytes_FromObject</tt><big>(</big><a title="PyObject" class="reference external" href="structures.html#PyObject">PyObject</a><em> *o</em><big>)</big><a class="headerlink" href="#PyBytes_FromObject" title="Permalink to this definition">¶</a></dt>
+<dd>Return the bytes representation of object <em>o</em> that implements the buffer
+protocol.</dd></dl>
+
+<dl class="cfunction">
+<dt id="PyBytes_Size">
+<!--[PyBytes_Size]-->Py_ssize_t <tt class="descname">PyBytes_Size</tt><big>(</big><a title="PyObject" class="reference external" href="structures.html#PyObject">PyObject</a><em> *o</em><big>)</big><a class="headerlink" href="#PyBytes_Size" title="Permalink to this definition">¶</a></dt>
+<dd>Return the length of the bytes in bytes object <em>o</em>.</dd></dl>
+
+<dl class="cfunction">
+<dt id="PyBytes_GET_SIZE">
+<!--[PyBytes_GET_SIZE]-->Py_ssize_t <tt class="descname">PyBytes_GET_SIZE</tt><big>(</big><a title="PyObject" class="reference external" href="structures.html#PyObject">PyObject</a><em> *o</em><big>)</big><a class="headerlink" href="#PyBytes_GET_SIZE" title="Permalink to this definition">¶</a></dt>
+<dd>Macro form of <a title="PyBytes_Size" class="reference internal" href="#PyBytes_Size"><tt class="xref docutils literal"><span class="pre">PyBytes_Size</span></tt></a> but without error checking.</dd></dl>
+
+<dl class="cfunction">
+<dt id="PyBytes_AsString">
+<!--[PyBytes_AsString]-->char* <tt class="descname">PyBytes_AsString</tt><big>(</big><a title="PyObject" class="reference external" href="structures.html#PyObject">PyObject</a><em> *o</em><big>)</big><a class="headerlink" href="#PyBytes_AsString" title="Permalink to this definition">¶</a></dt>
+<dd>Return a NUL-terminated representation of the contents of <em>o</em>.  The pointer
+refers to the internal buffer of <em>o</em>, not a copy.  The data must not be
+modified in any way, unless the string was just created using
+<tt class="docutils literal"><span class="pre">PyBytes_FromStringAndSize(NULL,</span> <span class="pre">size)</span></tt>. It must not be deallocated.  If
+<em>o</em> is not a string object at all, <a title="PyBytes_AsString" class="reference internal" href="#PyBytes_AsString"><tt class="xref docutils literal"><span class="pre">PyBytes_AsString</span></tt></a> returns <em>NULL</em>
+and raises <a title="exceptions.TypeError" class="reference external" href="../library/exceptions.html#exceptions.TypeError"><tt class="xref docutils literal"><span class="pre">TypeError</span></tt></a>.</dd></dl>
+
+<dl class="cfunction">
+<dt id="PyBytes_AS_STRING">
+<!--[PyBytes_AS_STRING]-->char* <tt class="descname">PyBytes_AS_STRING</tt><big>(</big><a title="PyObject" class="reference external" href="structures.html#PyObject">PyObject</a><em> *string</em><big>)</big><a class="headerlink" href="#PyBytes_AS_STRING" title="Permalink to this definition">¶</a></dt>
+<dd>Macro form of <a title="PyBytes_AsString" class="reference internal" href="#PyBytes_AsString"><tt class="xref docutils literal"><span class="pre">PyBytes_AsString</span></tt></a> but without error checking.</dd></dl>
+
+<dl class="cfunction">
+<dt id="PyBytes_AsStringAndSize">
+<!--[PyBytes_AsStringAndSize]-->int <tt class="descname">PyBytes_AsStringAndSize</tt><big>(</big><a title="PyObject" class="reference external" href="structures.html#PyObject">PyObject</a><em> *obj</em>, char<em> **buffer</em>, Py_ssize_t<em> *length</em><big>)</big><a class="headerlink" href="#PyBytes_AsStringAndSize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a NUL-terminated representation of the contents of the object <em>obj</em>
+through the output variables <em>buffer</em> and <em>length</em>.</p>
+<p>If <em>length</em> is <em>NULL</em>, the resulting buffer may not contain NUL characters;
+if it does, the function returns <tt class="docutils literal"><span class="pre">-1</span></tt> and a <a title="exceptions.TypeError" class="reference external" href="../library/exceptions.html#exceptions.TypeError"><tt class="xref docutils literal"><span class="pre">TypeError</span></tt></a> is raised.</p>
+<p>The buffer refers to an internal string buffer of <em>obj</em>, not a copy. The data
+must not be modified in any way, unless the string was just created using
+<tt class="docutils literal"><span class="pre">PyBytes_FromStringAndSize(NULL,</span> <span class="pre">size)</span></tt>.  It must not be deallocated.  If
+<em>string</em> is not a string object at all, <a title="PyBytes_AsStringAndSize" class="reference internal" href="#PyBytes_AsStringAndSize"><tt class="xref docutils literal"><span class="pre">PyBytes_AsStringAndSize</span></tt></a>
+returns <tt class="docutils literal"><span class="pre">-1</span></tt> and raises <a title="exceptions.TypeError" class="reference external" href="../library/exceptions.html#exceptions.TypeError"><tt class="xref docutils literal"><span class="pre">TypeError</span></tt></a>.</p>
+</dd></dl>
+
+<dl class="cfunction">
+<dt id="PyBytes_Concat">
+<!--[PyBytes_Concat]-->void <tt class="descname">PyBytes_Concat</tt><big>(</big><a title="PyObject" class="reference external" href="structures.html#PyObject">PyObject</a><em> **bytes</em>, <a title="PyObject" class="reference external" href="structures.html#PyObject">PyObject</a><em> *newpart</em><big>)</big><a class="headerlink" href="#PyBytes_Concat" title="Permalink to this definition">¶</a></dt>
+<dd>Create a new bytes object in <em>*bytes</em> containing the contents of <em>newpart</em>
+appended to <em>bytes</em>; the caller will own the new reference.  The reference to
+the old value of <em>bytes</em> will be stolen.  If the new string cannot be
+created, the old reference to <em>bytes</em> will still be discarded and the value
+of <em>*bytes</em> will be set to <em>NULL</em>; the appropriate exception will be set.</dd></dl>
+
+<dl class="cfunction">
+<dt id="PyBytes_ConcatAndDel">
+<!--[PyBytes_ConcatAndDel]-->void <tt class="descname">PyBytes_ConcatAndDel</tt><big>(</big><a title="PyObject" class="reference external" href="structures.html#PyObject">PyObject</a><em> **bytes</em>, <a title="PyObject" class="reference external" href="structures.html#PyObject">PyObject</a><em> *newpart</em><big>)</big><a class="headerlink" href="#PyBytes_ConcatAndDel" title="Permalink to this definition">¶</a></dt>
+<dd>Create a new string object in <em>*bytes</em> containing the contents of <em>newpart</em>
+appended to <em>bytes</em>.  This version decrements the reference count of
+<em>newpart</em>.</dd></dl>
+
+<dl class="cfunction">
+<dt id="_PyBytes_Resize">
+<!--[_PyBytes_Resize]-->int <tt class="descname">_PyBytes_Resize</tt><big>(</big><a title="PyObject" class="reference external" href="structures.html#PyObject">PyObject</a><em> **bytes</em>, Py_ssize_t<em> newsize</em><big>)</big><a class="headerlink" href="#_PyBytes_Resize" title="Permalink to this definition">¶</a></dt>
+<dd>A way to resize a bytes object even though it is &#8220;immutable&#8221;. Only use this
+to build up a brand new bytes object; don&#8217;t use this if the bytes may already
+be known in other parts of the code.  It is an error to call this function if
+the refcount on the input bytes object is not one. Pass the address of an
+existing bytes object as an lvalue (it may be written into), and the new size
+desired.  On success, <em>*bytes</em> holds the resized bytes object and <tt class="docutils literal"><span class="pre">0</span></tt> is
+returned; the address in <em>*bytes</em> may differ from its input value.  If the
+reallocation fails, the original bytes object at <em>*bytes</em> is deallocated,
+<em>*bytes</em> is set to <em>NULL</em>, a memory exception is set, and <tt class="docutils literal"><span class="pre">-1</span></tt> is
+returned.</dd></dl>
+
+<dl class="cfunction">
+<dt id="PyBytes_Format">
+<!--[PyBytes_Format]--><a title="PyObject" class="reference external" href="structures.html#PyObject">PyObject</a>* <tt class="descname">PyBytes_Format</tt><big>(</big><a title="PyObject" class="reference external" href="structures.html#PyObject">PyObject</a><em> *format</em>, <a title="PyObject" class="reference external" href="structures.html#PyObject">PyObject</a><em> *args</em><big>)</big><a class="headerlink" href="#PyBytes_Format" title="Permalink to this definition">¶</a></dt>
+<dd>Return a new bytes object from <em>format</em> and <em>args</em>. Analogous to <tt class="docutils literal"><span class="pre">format</span> <span class="pre">%</span>
+<span class="pre">args</span></tt>.  The <em>args</em> argument must be a tuple.</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <h4>Previous topic</h4>
+            <p class="topless"><a href="complex.html" title="previous chapter">Complex Number Objects</a></p>
+            <h4>Next topic</h4>
+            <p class="topless"><a href="bytearray.html" title="next chapter">Byte Array Objects</a></p>
+            <h3>This Page</h3>
+            <ul class="this-page-menu">
+              <li><a href="../_sources/c-api/bytes.txt">Show Source</a></li>
+            </ul>
+          <h3>Quick search</h3>
+            <form class="search" action="../search.html" method="get">
+              <input type="text" name="q" size="18" /> <input type="submit" value="Go" />
+              <input type="hidden" name="check_keywords" value="yes" />
+              <input type="hidden" name="area" value="default" />
+            </form>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../modindex.html" title="Global Module Index"
+             accesskey="M">modules</a> |</li>
+        <li class="right" >
+          <a href="bytearray.html" title="Byte Array Objects"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="complex.html" title="Complex Number Objects"
+             accesskey="P">previous</a> |</li>
+<li><img src="../_static/py.png" alt="" style="vertical-align: middle; margin-top: -1px"/></li>
+
+        <li><a href="../contents.html">Python v3.0c1 documentation</a> &raquo;</li>
+
+          <li><a href="index.html" accesskey="U">Python/C API Reference Manual</a> &raquo;</li>
+          <li><a href="concrete.html" accesskey="U">Concrete Objects Layer</a> &raquo;</li>
+      </ul>
+    </div>
+    <div class="footer">
+      &copy; <a href="../copyright.html">Copyright</a> 1990-2008, Python Software Foundation.
+      Last updated on Oct 31, 2008.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.5.
+    </div>
+  </body>
+</html>

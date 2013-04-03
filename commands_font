@@ -1,0 +1,20 @@
+from:http://xfree.org/4.3.0/fonts2.html#sec:set-font-path
+
+You may check the font path of the running server by typing the command
+
+    $ xset q
+
+
+2.2.4.1. Temporary modification of the font path
+
+The `xset' utility may be used to modify the font path for the current session. The font path is set with the command xset fp; a new element is added to the front with xset +fp, and added to the end with xset fp+. For example,
+
+    $ xset +fp /usr/local/fonts/Type1
+        $ xset fp+ /usr/local/fonts/bitmap
+
+	Conversely, an element may be removed from the front of the font path with `xset -fp', and removed from the end with `xset fp-'. You may reset the font path to its default value with `xset fp default'.
+
+	For more information, please consult the xset(1) manual page.
+	2.2.4.2. Permanent modification of the font path
+
+fc-list :LANG=zh_CN

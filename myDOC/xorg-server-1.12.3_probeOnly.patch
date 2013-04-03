@@ -1,0 +1,39 @@
+diff -Naur xorg-server-1.12.3.orig/hw/xfree86/common/xf86Init.c xorg-server-1.12.3/hw/xfree86/common/xf86Init.c
+--- xorg-server-1.12.3.orig/hw/xfree86/common/xf86Init.c	2012-08-09 16:58:29.000000000 +0800
++++ xorg-server-1.12.3/hw/xfree86/common/xf86Init.c	2012-08-09 17:21:47.000000000 +0800
+@@ -109,7 +109,7 @@
+ 
+ static int numFormats = 7;
+ static Bool formatsDone = FALSE;
+-
++Bool xf86ProbeOnly = FALSE;
+ #ifndef OSNAME
+ #define OSNAME " unknown"
+ #endif
+@@ -609,6 +609,13 @@
+                             i, xf86Screens[i]->name);
+             }
+         }
++        if (xf86ProbeOnly)
++	   {
++	     OsCleanup(TRUE);
++	     AbortDDX(1);
++	     fflush(stderr);
++	     exit(0);
++	    }
+ 
+         /* Remove (unload) drivers that are not required */
+         for (i = 0; i < xf86NumDrivers; i++)
+@@ -1161,6 +1168,12 @@
+         xf86ConfigFile = argv[i + 1];
+         return 2;
+     }
++    if (!strcmp(argv[i], "-probeonly"))
++       {
++	 xf86ProbeOnly = TRUE;
++	 return 1;
++       }
++		    
+     if (!strcmp(argv[i], "-configdir")) {
+         CHECK_FOR_REQUIRED_ARGUMENT();
+         if (xf86PrivsElevated() && !xf86PathIsSafe(argv[i + 1])) {

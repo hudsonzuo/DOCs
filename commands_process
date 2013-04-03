@@ -1,0 +1,32 @@
+
+
+nohup命令  可以使用nohup命令使进程在用户退出后仍继续执行。
+　　一般这些进程我们都是让它在后台执行，结果则会写到用户自己的目录下的nohup.out这个文件里（也可以使用输出重定向，让它输出到一个特定的文件）。
+
+　　例: $ nohup sort sales.dat &
+
+　　这条命令告诉sort命令忽略用户已退出系统，它应该一直运行，直到进程完成。利用这种方法，可以启动一个要运行几天甚至几周的进程，而且在它运行时，用户不需要去登录。
+　　nohup命令把一条命令的所有输出和错误信息送到nohup.out文件中。若将输出重定向，则只有错误信息放在nohup.out文件中。
+
+renice命令
+
+　　renice命令允许用户修改一个正在运行进程的优先权。 利用renice命令可以在命令执行时调整其优先权。其格式如下：
+
+　　$ renice -number PID
+
+　　其中，参数number与nice命令的number意义相同。
+　　注：
+　　（1） 用户只能对自己所有的进程使用renice命令。
+　　（2） root用户可以在任何进程上使用renice命令。
+　　（3） 只有root用户才能提高进程的优先权。
+
+
+程序不可捕获、阻塞或忽略的信号有：SIGKILL,SIGSTOP
+不能恢复至默认动作的信号有：SIGILL,SIGTRAP
+默认会导致进程流产的信号有：SIGABRT,SIGBUS,SIGFPE,SIGILL,SIGIOT,SIGQUIT,SIGSEGV,SIGTRAP,SIGXCPU,SIGXFSZ
+默认会导致进程退出的信号有：SIGALRM,SIGHUP,SIGINT,SIGKILL,SIGPIPE,SIGPOLL,SIGPROF,SIGSYS,SIGTERM,SIGUSR1,SIGUSR2,SIGVTALRM
+默认会导致进程停止的信号有：SIGSTOP,SIGTSTP,SIGTTIN,SIGTTOU
+默认进程忽略的信号有：SIGCHLD,SIGPWR,SIGURG,SIGWINCH
+此外，SIGIO在SVR4是退出，在4.3BSD中是忽略；SIGCONT在进程挂起时是继续，否则是忽略，不能被阻塞。
+
+

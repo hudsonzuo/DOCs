@@ -1,0 +1,280 @@
+sed n commands_CVS
+sed -n p commands_CVS
+sed p commands_CVS
+
+sed -n /[0,9]*,/p plasma-desktop-appletsrc
+sed "/\[Containments\]\[3\]\[Configuration\]/{n; s/maximumSize=[0-9]*,/maximumSize=$dpy_x,/; n; s/minimumSize=[0-9]*,/minimumSize=$dpy_x,/; }" plasma-desktop-appletsrc
+
+sed -i s/^ *[0-9]*// example_gui_resize
+-------去掉每行前面的空格和编号
+
+奇数/偶数行分离
+sed '1~2d' 1500.txt  >chinese 
+sed '0~2d' 1500.txt  >english
+
+
+% echo "123 abc" | sed 's/[0-9]*/& &/'    Using & as the matched string
+123 123 abc
+
+
+If you wanted to keep the first word of a line, and delete the rest of the line, mark the important part with the parenthesis:
+sed 's/\([a-z]*\).*/\1/'
+sed 's/\([a-z]*\) \([a-z]*\)/\2 \1/'    switch two words around
+echo abcd123 | sed 's/\([a-z]*\).*/\1/'        This will output "abcd" and delete the numbers. 
+sed -n '/\([a-z][a-z]*\) \1/p'    detect duplicated words , will print liens with duplicated words.
+sed 's/\([a-z]*\) \1/\1/'      eliminate duplicated words
+sed 's/\([a-zA-Z]*\) \([a-zA-Z]*\) /\1 /'        keeps the first word on the line but deletes the second 
+
+
+
+
+
+sed 's/[^ ]*/(&)/'  place parentheses around words,  "[^ ]*,"  matches everything except a space.
+sed 's/[^ ][^ ]*/(&)/g'  avoid 
+
+
+sed 's/[a-zA-Z]* /DELETED /2g'  leave the first world alone alone, but change the second, third, etc. to DELETED,
+sed 's/[a-zA-Z]* //2'          delete the second word
+sed 's/[^:]*//2' </etc/passwd >/etc/password.new   remove the encrypted password from the password file
+sed 's/[^:]*:/:/2'  </etc/passwd  
+sed 's/./&:/80' <file >new     add a colon after the 80th character in each line, you could type
+
+
+By default, sed prints every line. If it makes a substitution, the new text is printed instead of the old one. 
+If you use an optional argument to sed, "sed -n," it will not, by default, print any new lines.
+ I'll cover this and other options later. When the "-n" option is used, the "p" flag will cause the modified line to be printed. Here is one way to duplicate the function of grep with sed: 
+sed -n 's/pattern/&/p' <file  i.e. grep
+sed -n 's/^[0-9]*[02468] /&/w even' <file  ;;write all lines that start with an even number, followed by a space, to the file even. note file must be lined
+sed -n 's/a/A/2pw /tmp/file' <old >new 
+
+
+sed -e 's/a/A/' -e 's/b/B/' <old >new
+sed 's/^#.*//'  f1 f2 f3 | grep -v '^$' | wc -l    count the number of lines in three files that don't begin with a "#:" ;The sed substitute command changes every line that starts with a "#" into a blank line. Grep was used to filter out empty lines
+
+
+
+记录 看到 sed -n: no printing 了
+sed  's/PATTERN/&/p' file       acts like the cat program if PATTERN is not in the file: e.g. nothing is changed. If PATTERN is in the file, then each line that has this is printed twice. 
+sed -n 's/PATTERN/&/p' file    acts like grep: Nothing is printed, except those lines with PATTERN included. 
+
+
+
+
+If you have a large number of sed commands, you can put them into a file and use
+sed -f sedscript <old >new
+where sedscript could look like this:
+# sed comment - This script changes lower case vowels to upper case
+s/a/A/g
+s/e/E/g
+s/i/I/g
+s/o/O/g
+s/u/U/g
+
+Quoting multiple sed lines in the Bourne shell
+The Bourne shell makes this easier as a quote can cover several lines:
+#!/bin/sh
+sed '
+s/a/A/g 
+s/e/E/g 
+s/i/I/g 
+s/o/O/g 
+s/u/U/g'  <old >new
+
+A sed interpreter script
+Another way of executing sed is to use an interpreter script. Create a file that contains:
+#!/bin/sed -f
+s/a/A/g
+s/e/E/g
+s/i/I/g
+s/o/O/g
+s/u/U/g
+
+
+Passing arguments into a sed script: $1
+#!/bin/sh             
+sed -n 's/'$1'/&/p'     A simple shell script that uses sed to emulate grep is,However - there is a problem with this script. If you have a space as an argument, the script would cause a syntax error
+#!/bin/sh
+sed -n 's/'"$1"'/&/p'
+
+
+ sed 's/XXX/'"xxx"'/' <<EOF   ; type EOF at the end of input
+
+sed '3 s/[0-9][0-9]*//' <file >new    delete the first number on line 3
+
+sed '/^#/ s/[0-9][0-9]*//'     delete the first number on all lines that start with a "#,
+sed '/\/usr\/local\/bin/ s/\/usr\/local/\/common\/all/'
+sed '/^g/ s_g_s_g'   or sed '/^g/s/g/s/g'            search for all lines that start with a "g," and change each "g" on that line to an "s:" 
+sed -n '/^y/ s/plug/***/gp' 2-listall_qomo2.0        my alternate things from above 
+sed '1,100 s/A/a/'            restrict a substitution to the first 100 lines
+sed '101,$ s/A/a/'            the special character "$," which means the last line in the files
+
+Ranges by patterns
+sed '/start/,/stop/ s/#.*//'    Assuming a "#" starts a comment, you can search for a keyword, remove all comments until you see the second keyword
+sed  -n  '/^x/,/^y/  p ' 2-listall_qomo2.0   my test, print all starting with x
+sed -e '1,/start/ s/#.*//'   remove comments from the beginning of the file until it finds the keyword "start:" 
+sed -e '1,/start/ s/#.*//' -e '/stop/,$ s/#.*//'     remove comments everywhere except the lines between the two keywords
+sed '11,$ d' <file             want to look at the first 10 lines of a files
+sed '1,/^$/ d' <file             chop off the header of a mail message, which is everything up to the first blank lined
+
+#!/bin/sh                       duplicate the function of the tail command
+#print last 10 lines of file
+# First argument is the filename
+lines=`wc -l $1 | awk '{print $1}' `
+start=`expr $lines - 10`
+sed "1,$start d" $1
+
+
+sed -e '/#.*/ d' -e '/^$/ d' <<EOF     my test,same as sed -e 's/#.*//' -e '/^$/ d'
+sed -e 's/#.*//' -e 's/[ ^I]*$//' -e '/^$/ d'     the three commands remove all lines containing only comments, tabs or spaces.  "^I" is a CTRL-I or tab character.
+
+
+
+sed '/^$/ p'     double every empty line,
+sed -n '/match/ !p' </tmp/b    prints all lines that don't contain the pattern,  The "-v" option to grep
+
+Relations between d, p, and !
+  Sed	   Range   Command   Results
+  --------------------------------------------------------
+  sed -n   1,10	   p	     Print first 10 lines
+  sed -n   11,$	   !p	     Print first 10 lines
+  sed	   1,10	   !d	     Print first 10 lines
+  sed	   11,$	   d	     Print first 10 lines
+  --------------------------------------------------------
+  sed -n   1,10	   !p	     Print last 10 lines
+  sed -n   11,$	   p	     Print last 10 lines
+  sed	   1,10	   d	     Print last 10 lines
+  sed	   11,$	   !d	     Print last 10 lines
+  --------------------------------------------------------
+  sed -n   1,10	   d	     Nothing printed
+  sed -n   1,10	   !d	     Nothing printed
+  sed -n   11,$	   d	     Nothing printed
+  sed -n   11,$	   !d	     Nothing printed
+  --------------------------------------------------------
+  sed	   1,10	   p	     Print first 10 lines twice,
+			     Then next 10 lines once
+  sed	   11,$	   !p	     Print first 10 lines twice,
+			     Then last 10 lines once
+  --------------------------------------------------------
+  sed	   1,10	   !p	     Print first 10 lines once,
+			     Then last 10 lines twice
+  sed	   11,$	   p	     Print first 10 lines once,
+			     then last 10 lines twice
+
+
+
+
+sed '11 q'        quits when the eleventh line is reached
+
+
+#!/bin/sh
+# This is a Bourne shell script that removes #-type comments
+# between 'begin' and 'end' words.
+sed -n '
+	/begin/,/end/ {                                                     The curly braces, "{" and "}," are used to group the commands. 
+	     s/#.*//
+	     s/[ ^I]*$//
+	     /^$/ d
+	     p
+	}
+'
+
+#!/bin/sh
+sed '
+	/begin/,/end/ !{                               place a "!" before a set of curly braces to inverts the address. removes things from all lines except those between the two reserved words:
+	     s/#.*//
+	     s/[ ^I]*$//
+	     /^$/ d
+	     p
+	}
+'
+
+
+
+sed '$r end' <in>out            append the file "end" at the end of the filename
+sed '/INCLUDE/ r file' <in >out          insert a file after the line with the word "INCLUDE:"
+
+
+#!/bin/sh
+sed '  /WORD/ a\                                          add a line after every line with "WORD:" 
+                 Add this line after every line with WORD'
+
+
+
+
+#!/bin/sh               my test
+sed '
+/yum/ a\
+Add this line after every line with WORD
+/^z/ d
+/^[a-m]/ d
+' $1
+
+
+
+
+#!/bin/sh  
+sed '
+/WORD/ i\                                              You can insert a new line before the pattern with the "i" command: 
+Add this line before every line with WORD
+'
+
+
+
+
+#!/bin/sh
+sed '
+/WORD/ c\                             You can change the current line with a new line. 
+Replace the current line with the line
+'
+
+
+#!/bin/sh
+sed '
+	a\
+\	This line starts with a tab                        the /usr/bin/sed command retains white space, while the /usr/5bin/sed strips off leading spaces. If you want to keep leading spaces, and not care about which version of sed you are using, put a "\" as the first character of the line:
+'
+
+
+
+#!/bin/sh
+sed '
+/WORD/ a\
+Add this line\
+This line\
+And this line
+'
+
+
+ some commands can take a range of lines, and others cannot. To be precise, the commands "a," "i," "r," and "q" will not take a range like "1,100" or "/begin/,/end/." The documentation states that the read command can take a range, but I get an error when I try this. The "c" or change command allows this, and it will let you change several lines into one: 
+#!/bin/sh
+sed '
+/begin/,/end/ c\           let you change several lines into one
+***DELETED***
+'
+sed '100,$ c "Deleted"' 2-listall_qomo2.0    my test
+
+
+sed -n '/PATTERN/ =' file           The "=" command prints the current line number to standard output
+sed -n '$=' file            
+sed -n '/yum/ {=;p}' 2-listall_qomo2.0   my test, 
+
+
+
+sed 'y/abcdef/ABCDEF/' file              like the tr program. It is called the "y" command. For instance, to change the letters "a" through "f" into their upper case form
+sed '/0x[0-9a-zA-Z]*/ y/abcdef/ABCDEF' file          convert a line that contained a hexadecimal number (e.g. 0x1aff) to upper case (0x1AFF), 
+
+
+
+
+
+
+
+ sed -e :a -e 'N;s/\n/ /;ta'     合并成一行
+
+ 
+
+
+
+
+
+

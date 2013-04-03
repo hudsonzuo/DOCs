@@ -1,0 +1,45 @@
+id 得出当前的用户信息, id -un 得到用户名
+find / -type f  , 列出系统中的所有文件
+iozone 测试磁盘性能
+
+相比ramfs,tmpfs支持swap,默认大小是内存的一半
+mount -t ramfs none /testRAM -o maxsize=20
+mount -t tmpfs tmpfs /mnt
+mount -o remount,size=2G /var/tmp/portage
+
+/etc/rc.conf, rc_logger="YES"
+
+rc-config
+rc-status
+
+lspci
+-k		Show kernel drivers handling each device
+-nn          显示pci ID
+
+iw dev　
+
+find .  -maxdepth 2  -mindepth 2  -type d |wc  ；计算gentoo有多少软件
+
+find /sys -name dev ;查看所有内核发现的设备,网卡没有列出，不知道还有其它没有列出的设备
+
+udevadm test /devices/pci0000:00/0000:00:19.0/net/eth0 ，测试设备相关的规则文件
+
+1,qemu-kvm  -hda /dev/sdb -boot c -m 1024 -cpu coreduo -smp 4 -enable-kvm -net nic,macaddr=00:00:00:00:00:00  -net tap,ifname=tap0,script=no -rtc base=localtime
+2, qemu-kvm  -drive file=/dev/sdb,cache=writethrough  -boot c -m 1024 -cpu coreduo -smp 4 -enable-kvm -net nic,macaddr=00:00:00:00:00:00  -net tap,ifname=tap0,script=no,downscript=no  -rtc base=localtime -balloon virtio
+
+
+file -bi  zhentu_cloner.py ;查看文件编码
+
+modprobe -q rtc-cmos || modprobe -q rtc || modprobe -q genrtc; 技巧：|| 组织的命令替代
+
+iostat -d -h sdc 1 100  查看磁盘的读写状态，一秒查询一次，显示100次
+
+# emerge --metadata
+>>> Updating Portage cache
+
+ 安装指定版本的
+dongwm@localhost ~ $sudo emerge “<anjuta-2.22″
+
+emerge -C media-fonts/*
+
+equery d sys-libs/*

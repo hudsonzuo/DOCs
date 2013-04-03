@@ -1,0 +1,617 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+
+    <title>21. Objects &mdash; Python GTK+ 3 Tutorial 1.0 documentation</title>
+<!-- RTD <head> -->
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
+<script type="text/javascript" src="//media.readthedocs.org/javascript/underscore.js"></script>
+<script type="text/javascript" src="//media.readthedocs.org/javascript/doctools.js"></script>
+<script type="text/javascript" src="//media.readthedocs.org/javascript/searchtools.js"></script>
+
+  <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;"/>
+
+  <script type="text/javascript">
+    var doc_version = "latest";
+    var doc_slug = "python-gtk-3-tutorial";
+  </script>
+  <script type="text/javascript" src="//media.readthedocs.org/javascript/rtd.js"></script>
+<!-- end RTD <head> -->
+
+    
+    <link rel="stylesheet" href="_static/rtd.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <link rel="top" title="Python GTK+ 3 Tutorial 1.0 documentation" href="index.html" />
+    <link rel="next" title="22. Stock Items" href="stock.html" />
+    <link rel="prev" title="20. Glade and Gtk.Builder" href="builder.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="stock.html" title="22. Stock Items"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="builder.html" title="20. Glade and Gtk.Builder"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Python GTK+ 3 Tutorial 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="objects">
+<span id="id1"></span><h1>21. Objects<a class="headerlink" href="#objects" title="Permalink to this headline">¶</a></h1>
+<p>GObject is the fundamental type providing the common attributes and methods
+for all object types in GTK+, Pango and other libraries based on GObject.
+The <a class="reference internal" href="#GObject.GObject" title="GObject.GObject"><tt class="xref py py-class docutils literal"><span class="pre">GObject.GObject</span></tt></a> class provides methods for object construction and destruction,
+property access methods, and signal support.</p>
+<p>This section will introduce some important aspects about the GObject
+implementation in python.</p>
+<div class="section" id="inherit-from-gobject-gobject">
+<h2>21.1. Inherit from GObject.GObject<a class="headerlink" href="#inherit-from-gobject-gobject" title="Permalink to this headline">¶</a></h2>
+<p>A native GObject is accessible via <a class="reference internal" href="#GObject.GObject" title="GObject.GObject"><tt class="xref py py-class docutils literal"><span class="pre">GObject.GObject</span></tt></a>. It is rarely intanciated
+directly, we generally use inherited class. A <a class="reference internal" href="drag_and_drop.html#Gtk.Widget" title="Gtk.Widget"><tt class="xref py py-class docutils literal"><span class="pre">Gtk.Widget</span></tt></a> is an inherited class
+of a <a class="reference internal" href="#GObject.GObject" title="GObject.GObject"><tt class="xref py py-class docutils literal"><span class="pre">GObject.GObject</span></tt></a>. It may be interesting to make an inherited class to create
+a new widget, like a settings dialog.</p>
+<p>To inherit from <a class="reference internal" href="#GObject.GObject" title="GObject.GObject"><tt class="xref py py-class docutils literal"><span class="pre">GObject.GObject</span></tt></a>, you must call <tt class="xref py py-meth docutils literal"><span class="pre">GObject.GObject.__init__()</span></tt>
+in your constructor (if the class inherits from <a class="reference internal" href="button_widgets.html#Gtk.Button" title="Gtk.Button"><tt class="xref py py-class docutils literal"><span class="pre">Gtk.Button</span></tt></a>, it must
+call <tt class="xref py py-func docutils literal"><span class="pre">Gtk.Button.__init__()</span></tt> for instance), like in the example below:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">gi.repository</span> <span class="kn">import</span> <span class="n">GObject</span>
+
+<span class="k">class</span> <span class="nc">MyObject</span><span class="p">(</span><span class="n">GObject</span><span class="o">.</span><span class="n">GObject</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">GObject</span><span class="o">.</span><span class="n">GObject</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="signals">
+<h2>21.2. Signals<a class="headerlink" href="#signals" title="Permalink to this headline">¶</a></h2>
+<p>Signals connect arbitrary application-specific events with any number of listeners.
+For example, in GTK+, every user event (keystroke or mouse move) is received
+from the X server and generates a GTK+ event under the form of a signal emission
+on a given object instance.</p>
+<p>Each signal is registered in the type system together with the type on which it
+can be emitted: users of the type are said to connect to the signal on a given
+type instance when they register a function to be invoked upon the signal
+emission. Users can also emit the signal by themselves or stop the emission of
+the signal from within one of the functions connected to the signal.</p>
+<div class="section" id="receive-signals">
+<h3>21.2.1. Receive signals<a class="headerlink" href="#receive-signals" title="Permalink to this headline">¶</a></h3>
+<p>See <a class="reference internal" href="basics.html#signals"><em>Main loop and Signals</em></a></p>
+</div>
+<div class="section" id="create-new-signals">
+<h3>21.2.2. Create new signals<a class="headerlink" href="#create-new-signals" title="Permalink to this headline">¶</a></h3>
+<p>New signals can be created by adding them to
+<a class="reference internal" href="#GObject.GObject.__gsignals__" title="GObject.GObject.__gsignals__"><tt class="xref py py-attr docutils literal"><span class="pre">GObject.GObject.__gsignals__</span></tt></a>, a dictionary:</p>
+<p>When a new signal is created, a method handler can also be defined, it will be
+called each time the signal is emitted. It is called do_signal_name.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">MyObject</span><span class="p">(</span><span class="n">GObject</span><span class="o">.</span><span class="n">GObject</span><span class="p">):</span>
+    <span class="n">__gsignals__</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s">&#39;my_signal&#39;</span><span class="p">:</span> <span class="p">(</span><span class="n">GObject</span><span class="o">.</span><span class="n">SIGNAL_RUN_FIRST</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span>
+                      <span class="p">(</span><span class="nb">int</span><span class="p">,))</span>
+    <span class="p">}</span>
+
+    <span class="k">def</span> <span class="nf">do_my_signal</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">arg</span><span class="p">):</span>
+        <span class="k">print</span> <span class="s">&quot;class method for `my_signal&#39; called with argument&quot;</span><span class="p">,</span> <span class="n">arg</span>
+</pre></div>
+</div>
+<p><a class="reference internal" href="#GObject.SIGNAL_RUN_FIRST" title="GObject.SIGNAL_RUN_FIRST"><tt class="xref py py-const docutils literal"><span class="pre">GObject.SIGNAL_RUN_FIRST</span></tt></a> indicates ths signal will invoke the object method
+handler (<tt class="xref py py-meth docutils literal"><span class="pre">do_my_signal()</span></tt> here) in the first emission stage. Alternatives are
+<a class="reference internal" href="#GObject.SIGNAL_RUN_LAST" title="GObject.SIGNAL_RUN_LAST"><tt class="xref py py-const docutils literal"><span class="pre">GObject.SIGNAL_RUN_LAST</span></tt></a> (the method handler will be invoked in the third
+emission stage) and <a class="reference internal" href="#GObject.SIGNAL_RUN_CLEANUP" title="GObject.SIGNAL_RUN_CLEANUP"><tt class="xref py py-const docutils literal"><span class="pre">GObject.SIGNAL_RUN_CLEANUP</span></tt></a> (invoke the method handler in the
+last emission stage).</p>
+<p>The second part, <tt class="docutils literal"><span class="pre">None</span></tt>, indicates the return type of the signal,
+usually <tt class="docutils literal"><span class="pre">None</span></tt>.</p>
+<p><tt class="docutils literal"><span class="pre">(int,)</span></tt> indicates the signal arguments, here, the signal will only
+take one argument, whose type is int. This argument type list must end with a
+comma.</p>
+<p>Signals can be emitted using <a class="reference internal" href="#GObject.GObject.emit" title="GObject.GObject.emit"><tt class="xref py py-meth docutils literal"><span class="pre">GObject.GObject.emit()</span></tt></a>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">my_obj</span><span class="o">.</span><span class="n">emit</span><span class="p">(</span><span class="s">&quot;my_signal&quot;</span><span class="p">,</span> <span class="mi">42</span><span class="p">)</span> <span class="c"># emit the signal &quot;my_signal&quot;, with the</span>
+                             <span class="c"># argument 42</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="properties">
+<h2>21.3. Properties<a class="headerlink" href="#properties" title="Permalink to this headline">¶</a></h2>
+<p>One of GObject&#8217;s nice features is its generic get/set mechanism for object
+properties. Each class inherited from <a class="reference internal" href="#GObject.GObject" title="GObject.GObject"><tt class="xref py py-class docutils literal"><span class="pre">GObject.GObject</span></tt></a> can define new
+properties. Each property as a type which never changes (e.g. str, float,
+int...). For instance, they are used for <a class="reference internal" href="button_widgets.html#Gtk.Button" title="Gtk.Button"><tt class="xref py py-class docutils literal"><span class="pre">Gtk.Button</span></tt></a> where there is a
+&#8220;label&#8221; property which contains the text of the button.</p>
+<div class="section" id="use-existing-properties">
+<h3>21.3.1. Use existing properties<a class="headerlink" href="#use-existing-properties" title="Permalink to this headline">¶</a></h3>
+<p>The class <a class="reference internal" href="#GObject.GObject" title="GObject.GObject"><tt class="xref py py-class docutils literal"><span class="pre">GObject.GObject</span></tt></a> provides several useful functions to manage
+existing properties, <a class="reference internal" href="#GObject.GObject.get_property" title="GObject.GObject.get_property"><tt class="xref py py-func docutils literal"><span class="pre">GObject.GObject.get_property()</span></tt></a> and <a class="reference internal" href="#GObject.GObject.set_property" title="GObject.GObject.set_property"><tt class="xref py py-func docutils literal"><span class="pre">GObject.GObject.set_property()</span></tt></a>.</p>
+<p>Some properties also have functions dedicated to them, called getter and setter.
+For the property &#8220;label&#8221; of a button, there are two functions to get and set
+them, <tt class="xref py py-func docutils literal"><span class="pre">Gtk.Button.get_label()</span></tt> and <a class="reference internal" href="button_widgets.html#Gtk.Button.set_label" title="Gtk.Button.set_label"><tt class="xref py py-func docutils literal"><span class="pre">Gtk.Button.set_label()</span></tt></a>.</p>
+</div>
+<div class="section" id="create-new-properties">
+<h3>21.3.2. Create new properties<a class="headerlink" href="#create-new-properties" title="Permalink to this headline">¶</a></h3>
+<p>A property is defined with a name and a type. Even is python itself is
+dynamically typed, you can&#8217;t change the type of a property once it is defined. A
+property can be created using <tt class="xref py py-func docutils literal"><span class="pre">GObject.property()</span></tt>.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">gi.repository</span> <span class="kn">import</span> <span class="n">GObject</span>
+
+<span class="k">class</span> <span class="nc">MyObject</span><span class="p">(</span><span class="n">GObject</span><span class="o">.</span><span class="n">GObject</span><span class="p">):</span>
+
+    <span class="n">foo</span> <span class="o">=</span> <span class="n">GObject</span><span class="o">.</span><span class="n">property</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s">&#39;bar&#39;</span><span class="p">)</span>
+    <span class="n">property_float</span> <span class="o">=</span> <span class="n">GObject</span><span class="o">.</span><span class="n">property</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">GObject</span><span class="o">.</span><span class="n">GObject</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Properties can also be readonly, if you want some properties to be readable but
+not writable. To do so, you can add some flags to the property definition, to control read/write access.
+Flags are <a class="reference internal" href="#GObject.PARAM_READABLE" title="GObject.PARAM_READABLE"><tt class="xref py py-const docutils literal"><span class="pre">GObject.PARAM_READABLE</span></tt></a> (only read access for external code),
+<a class="reference internal" href="#GObject.PARAM_WRITABLE" title="GObject.PARAM_WRITABLE"><tt class="xref py py-const docutils literal"><span class="pre">GObject.PARAM_WRITABLE</span></tt></a> (only write access),
+<a class="reference internal" href="#GObject.PARAM_READWRITE" title="GObject.PARAM_READWRITE"><tt class="xref py py-const docutils literal"><span class="pre">GObject.PARAM_READWRITE</span></tt></a> (public):</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">foo</span> <span class="o">=</span> <span class="n">GObject</span><span class="o">.</span><span class="n">property</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">flags</span> <span class="o">=</span> <span class="n">GObject</span><span class="o">.</span><span class="n">PARAM_READABLE</span><span class="p">)</span> <span class="c"># won&#39;t be writable</span>
+<span class="n">bar</span> <span class="o">=</span> <span class="n">GObject</span><span class="o">.</span><span class="n">property</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">flags</span> <span class="o">=</span> <span class="n">GObject</span><span class="o">.</span><span class="n">PARAM_WRITABLE</span><span class="p">)</span> <span class="c"># won&#39;t be readable</span>
+</pre></div>
+</div>
+<p>You can also define new read-only properties with a new method decorated with
+<tt class="xref py py-func docutils literal"><span class="pre">GObject.property()</span></tt>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">gi.repository</span> <span class="kn">import</span> <span class="n">GObject</span>
+
+<span class="k">class</span> <span class="nc">MyObject</span><span class="p">(</span><span class="n">GObject</span><span class="o">.</span><span class="n">GObject</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">GObject</span><span class="o">.</span><span class="n">GObject</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+    <span class="nd">@GObject.property</span>
+    <span class="k">def</span> <span class="nf">readonly</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s">&#39;This is readonly.&#39;</span>
+</pre></div>
+</div>
+<p>You can get this property using:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">my_object</span> <span class="o">=</span> <span class="n">MyObject</span><span class="p">()</span>
+<span class="k">print</span> <span class="n">my_object</span><span class="o">.</span><span class="n">readonly</span>
+<span class="k">print</span> <span class="n">my_object</span><span class="o">.</span><span class="n">get_property</span><span class="p">(</span><span class="s">&quot;readonly&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>There is also a way to define minimum and maximum values for numbers, using a more verbose form:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">gi.repository</span> <span class="kn">import</span> <span class="n">GObject</span>
+
+<span class="k">class</span> <span class="nc">MyObject</span><span class="p">(</span><span class="n">GObject</span><span class="o">.</span><span class="n">GObject</span><span class="p">):</span>
+
+    <span class="n">__gproperties__</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s">&quot;int-prop&quot;</span><span class="p">:</span> <span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="c"># type</span>
+                     <span class="s">&quot;integer prop&quot;</span><span class="p">,</span> <span class="c"># nick</span>
+                     <span class="s">&quot;A porperty that contains an integer&quot;</span><span class="p">,</span> <span class="c"># blurb</span>
+                     <span class="mi">1</span><span class="p">,</span> <span class="c"># min</span>
+                     <span class="mi">5</span><span class="p">,</span> <span class="c"># max</span>
+                     <span class="mi">2</span><span class="p">,</span> <span class="c"># default</span>
+                     <span class="n">GObject</span><span class="o">.</span><span class="n">PARAM_READWRITE</span> <span class="c"># flags</span>
+                    <span class="p">),</span>
+    <span class="p">}</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">GObject</span><span class="o">.</span><span class="n">GObject</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">int_prop</span> <span class="o">=</span> <span class="mi">2</span>
+
+    <span class="k">def</span> <span class="nf">do_get_property</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prop</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">prop</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s">&#39;int-prop&#39;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">int_prop</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">,</span> <span class="s">&#39;unknown property </span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">prop</span><span class="o">.</span><span class="n">name</span>
+
+    <span class="k">def</span> <span class="nf">do_set_property</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prop</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">prop</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s">&#39;int-prop&#39;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">int_prop</span> <span class="o">=</span> <span class="n">value</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">,</span> <span class="s">&#39;unknown property </span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">prop</span><span class="o">.</span><span class="n">name</span>
+</pre></div>
+</div>
+<p>Properties must be defined in <a class="reference internal" href="#GObject.GObject.__gproperties__" title="GObject.GObject.__gproperties__"><tt class="xref py py-attr docutils literal"><span class="pre">GObject.GObject.__gproperties__</span></tt></a>, a
+dictionary, and handled in do_get_property and do_set_property.</p>
+</div>
+<div class="section" id="watch-properties">
+<h3>21.3.3. Watch properties<a class="headerlink" href="#watch-properties" title="Permalink to this headline">¶</a></h3>
+<p>When a property is modified, a signal is emitted, whose name is
+&#8220;notify::property_name&#8221;:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">my_object</span> <span class="o">=</span> <span class="n">MyObject</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">on_notify_foo</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">gparamstring</span><span class="p">):</span>
+    <span class="k">print</span> <span class="s">&quot;foo changed&quot;</span>
+
+<span class="n">my_object</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s">&quot;notify::foo&quot;</span><span class="p">,</span> <span class="n">on_notify_foo</span><span class="p">)</span>
+
+<span class="n">my_object</span><span class="o">.</span><span class="n">set_property</span><span class="p">(</span><span class="s">&quot;foo&quot;</span><span class="p">,</span> <span class="s">&quot;bar&quot;</span><span class="p">)</span> <span class="c"># on_notify_foo will be called</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="api">
+<h2>21.4. API<a class="headerlink" href="#api" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="GObject.GObject">
+<em class="property">class </em><tt class="descclassname">GObject.</tt><tt class="descname">GObject</tt><a class="headerlink" href="#GObject.GObject" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="GObject.GObject.get_property">
+<tt class="descname">get_property</tt><big>(</big><em>property_name</em><big>)</big><a class="headerlink" href="#GObject.GObject.get_property" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieves a property value.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="GObject.GObject.set_property">
+<tt class="descname">set_property</tt><big>(</big><em>property_name</em>, <em>value</em><big>)</big><a class="headerlink" href="#GObject.GObject.set_property" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set property <em>property_name</em> to <em>value</em>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="GObject.GObject.emit">
+<tt class="descname">emit</tt><big>(</big><em>signal_name</em>, <em>...</em><big>)</big><a class="headerlink" href="#GObject.GObject.emit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Emit signal <em>signal_name</em>. Signal arguments must follow, e.g. if your
+signal is of type <tt class="docutils literal"><span class="pre">(int,)</span></tt>, it must be emitted with:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="bp">self</span><span class="o">.</span><span class="n">emit</span><span class="p">(</span><span class="n">signal_name</span><span class="p">,</span> <span class="mi">42</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="GObject.GObject.freeze_notify">
+<tt class="descname">freeze_notify</tt><big>(</big><big>)</big><a class="headerlink" href="#GObject.GObject.freeze_notify" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method freezes all the &#8220;notify::&#8221; signals (which are
+emitted when any property is changed) until the <a class="reference internal" href="#GObject.GObject.thaw_notify" title="GObject.GObject.thaw_notify"><tt class="xref py py-meth docutils literal"><span class="pre">thaw_notify()</span></tt></a> method is
+called.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="GObject.GObject.thaw_notify">
+<tt class="descname">thaw_notify</tt><big>(</big><big>)</big><a class="headerlink" href="#GObject.GObject.thaw_notify" title="Permalink to this definition">¶</a></dt>
+<dd><p>Thaw all the &#8220;notify::&#8221; signals which were thawed by <a class="reference internal" href="#GObject.GObject.freeze_notify" title="GObject.GObject.freeze_notify"><tt class="xref py py-meth docutils literal"><span class="pre">freeze_notify()</span></tt></a>.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="GObject.GObject.__gsignals__">
+<tt class="descname">__gsignals__</tt><a class="headerlink" href="#GObject.GObject.__gsignals__" title="Permalink to this definition">¶</a></dt>
+<dd><p>A dictionary where inherited class can define new signals.</p>
+<p>Each element in the dictionary is a new signal. The key is the signal
+name. The value is a tuple, with the form:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">(</span><span class="n">GObject</span><span class="o">.</span><span class="n">SIGNAL_RUN_FIRST</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span> <span class="p">(</span><span class="nb">int</span><span class="p">,))</span>
+</pre></div>
+</div>
+<p><a class="reference internal" href="#GObject.SIGNAL_RUN_FIRST" title="GObject.SIGNAL_RUN_FIRST"><tt class="xref py py-const docutils literal"><span class="pre">GObject.SIGNAL_RUN_FIRST</span></tt></a> can be replaced with
+<a class="reference internal" href="#GObject.SIGNAL_RUN_LAST" title="GObject.SIGNAL_RUN_LAST"><tt class="xref py py-const docutils literal"><span class="pre">GObject.SIGNAL_RUN_LAST</span></tt></a> or <a class="reference internal" href="#GObject.SIGNAL_RUN_CLEANUP" title="GObject.SIGNAL_RUN_CLEANUP"><tt class="xref py py-const docutils literal"><span class="pre">GObject.SIGNAL_RUN_CLEANUP</span></tt></a>.
+<tt class="docutils literal"><span class="pre">None</span></tt> is the return type of the signal. <tt class="docutils literal"><span class="pre">(int,)</span></tt> is the list of the
+parameters of the signal, it must end with a comma.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="GObject.GObject.__gproperties__">
+<tt class="descname">__gproperties__</tt><a class="headerlink" href="#GObject.GObject.__gproperties__" title="Permalink to this definition">¶</a></dt>
+<dd><p>The <a class="reference internal" href="#GObject.GObject.__gproperties__" title="GObject.GObject.__gproperties__"><tt class="xref py py-attr docutils literal"><span class="pre">__gproperties__</span></tt></a> dictionary is a class property where you define the
+properties of your object. This is not the recommend way to define new
+properties, the method written above is much less verbose. The benefits
+of this method is that a property can be defined with more settings,
+like the minimum or the maximum for numbers.</p>
+<p>The key is the name of the property</p>
+<p>The value is a tuple which describe the property.
+The number of elements of this tuple depends on its first element but
+the tuple will always contain at least the following items:</p>
+<blockquote>
+<div><p>The first element is the property&#8217;s type (e.g. <tt class="docutils literal"><span class="pre">int</span></tt>, <tt class="docutils literal"><span class="pre">float</span></tt>...).</p>
+<p>The second element is the property&#8217;s nick name, which is a string
+with a short description of the property. This is generally used by
+programs with strong introspection capabilities, like the graphical
+user interface builder <a class="reference external" href="http://glade.gnome.org/">Glade</a>.</p>
+<p>The third one is the property&#8217;s description or blurb, which is
+another string with a longer description of the property. Also used
+by <a class="reference external" href="http://glade.gnome.org/">Glade</a> and similar programs.</p>
+<p>The last one (which is not necessarily the forth one as we will see
+later) is the property&#8217;s flags: <a class="reference internal" href="#GObject.PARAM_READABLE" title="GObject.PARAM_READABLE"><tt class="xref py py-const docutils literal"><span class="pre">GObject.PARAM_READABLE</span></tt></a>,
+<a class="reference internal" href="#GObject.PARAM_WRITABLE" title="GObject.PARAM_WRITABLE"><tt class="xref py py-const docutils literal"><span class="pre">GObject.PARAM_WRITABLE</span></tt></a>, <a class="reference internal" href="#GObject.PARAM_READWRITE" title="GObject.PARAM_READWRITE"><tt class="xref py py-const docutils literal"><span class="pre">GObject.PARAM_READWRITE</span></tt></a>.</p>
+</div></blockquote>
+<p>The absolute length of the tuple depends on the property type (the
+first element of the tuple). Thus we have the following situations:</p>
+<blockquote>
+<div><p>If the type is <tt class="docutils literal"><span class="pre">bool</span></tt> or <tt class="docutils literal"><span class="pre">str</span></tt>, the forth element is the
+default value of the property.</p>
+<p>If the type is <tt class="docutils literal"><span class="pre">int</span></tt> or <tt class="docutils literal"><span class="pre">float</span></tt>, the forth element is the minimum
+accepted value, the fifth element is the maximum accepted value
+and the sixth element is the default value.</p>
+<p>If the type is not one of these, there is no extra element.</p>
+</div></blockquote>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="attribute">
+<dt id="GObject.SIGNAL_RUN_FIRST">
+<tt class="descclassname">GObject.</tt><tt class="descname">SIGNAL_RUN_FIRST</tt><a class="headerlink" href="#GObject.SIGNAL_RUN_FIRST" title="Permalink to this definition">¶</a></dt>
+<dd><p>Invoke the object method handler in the first emission stage.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="GObject.SIGNAL_RUN_LAST">
+<tt class="descclassname">GObject.</tt><tt class="descname">SIGNAL_RUN_LAST</tt><a class="headerlink" href="#GObject.SIGNAL_RUN_LAST" title="Permalink to this definition">¶</a></dt>
+<dd><p>Invoke the object method handler in the third emission stage.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="GObject.SIGNAL_RUN_CLEANUP">
+<tt class="descclassname">GObject.</tt><tt class="descname">SIGNAL_RUN_CLEANUP</tt><a class="headerlink" href="#GObject.SIGNAL_RUN_CLEANUP" title="Permalink to this definition">¶</a></dt>
+<dd><p>Invoke the object method handler in the last emission stage.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="GObject.PARAM_READABLE">
+<tt class="descclassname">GObject.</tt><tt class="descname">PARAM_READABLE</tt><a class="headerlink" href="#GObject.PARAM_READABLE" title="Permalink to this definition">¶</a></dt>
+<dd><p>The property is readable.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="GObject.PARAM_WRITABLE">
+<tt class="descclassname">GObject.</tt><tt class="descname">PARAM_WRITABLE</tt><a class="headerlink" href="#GObject.PARAM_WRITABLE" title="Permalink to this definition">¶</a></dt>
+<dd><p>The property is writable.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="GObject.PARAM_READWRITE">
+<tt class="descclassname">GObject.</tt><tt class="descname">PARAM_READWRITE</tt><a class="headerlink" href="#GObject.PARAM_READWRITE" title="Permalink to this definition">¶</a></dt>
+<dd><p>The property is readable and writable.</p>
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+
+
+
+    <h3>Project Versions</h3>
+    <ul id="sidebar_versions">
+
+  <li><a href="//readthedocs.org/docs/python-gtk-3-tutorial/en/latest/">latest</a></li>
+
+    </ul>
+
+<div id="searchbox" style="">
+  <h3>RTD Search</h3>
+    <form class="search" action="//readthedocs.org/search/project/" method="get">
+      <input type="text" name="q" size="18">
+      <input type="submit" value="Go">
+      <input type="hidden" name="selected_facets" value="project:Python GTK+ 3 Tutorial">
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+        Full-text doc search.
+    </p>
+</div>
+
+
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">21. Objects</a><ul>
+<li><a class="reference internal" href="#inherit-from-gobject-gobject">21.1. Inherit from GObject.GObject</a></li>
+<li><a class="reference internal" href="#signals">21.2. Signals</a><ul>
+<li><a class="reference internal" href="#receive-signals">21.2.1. Receive signals</a></li>
+<li><a class="reference internal" href="#create-new-signals">21.2.2. Create new signals</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#properties">21.3. Properties</a><ul>
+<li><a class="reference internal" href="#use-existing-properties">21.3.1. Use existing properties</a></li>
+<li><a class="reference internal" href="#create-new-properties">21.3.2. Create new properties</a></li>
+<li><a class="reference internal" href="#watch-properties">21.3.3. Watch properties</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#api">21.4. API</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="builder.html"
+                        title="previous chapter">20. Glade and Gtk.Builder</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="stock.html"
+                        title="next chapter">22. Stock Items</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/objects.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="stock.html" title="22. Stock Items"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="builder.html" title="20. Glade and Gtk.Builder"
+             >previous</a> |</li>
+        <li><a href="index.html">Python GTK+ 3 Tutorial 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+
+    <div class="footer">
+        &copy; Copyright GNU Free Documentation License 1.3.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+ <!-- End original user content -->
+
+
+
+<style type="text/css">
+  .badge {
+    position: fixed;
+    display: block;
+    bottom: 5px;
+    height: 40px;
+    text-indent: -9999em;
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2), 0 1px 0 rgba(255, 255, 255, 0.2) inset;
+    -moz-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2), 0 1px 0 rgba(255, 255, 255, 0.2) inset;
+    -webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2), 0 1px 0 rgba(255, 255, 255, 0.2) inset;
+  }
+  #version_menu {
+    position: fixed;
+    display: none;
+    bottom: 11px;
+    right: 166px;
+    list-style-type: none;
+    margin: 0;
+  }
+  .footer_popout:hover #version_menu {
+    display: block;
+  }
+  #version_menu li {
+    display: block;
+    float: right;
+  }
+  #version_menu li a {
+    display: block;
+    padding: 6px 10px 4px 10px;
+    margin: 7px 7px 0 0;
+    font-weight: bold;
+    font-size: 14px;
+    height: 20px;
+    line-height: 17px;
+    text-decoration: none;
+    color: #fff;
+    background: #8ca1af url(../images/gradient-light.png) bottom left repeat-x;
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    box-shadow: 0 1px 1px #465158;
+    -moz-box-shadow: 0 1px 1px #465158;
+    -webkit-box-shadow: 0 1px 1px #465158;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
+  }
+  #version_menu li a:hover {
+    text-decoration: none;
+    background-color: #697983;
+    box-shadow: 0 1px 0px #465158;
+    -moz-box-shadow: 0 1px 0px #465158;
+    -webkit-box-shadow: 0 1px 0px #465158;
+  }
+  .badge.rtd {
+    background: #257597 url(//media.readthedocs.org/images/badge-rtd.png) top left no-repeat;
+    border: 1px solid #282E32;
+    width: 160px;
+    right: 5px;
+  }
+  .badge.revsys { background: #465158 url(//media.readthedocs.org/images/badge-revsys.png) top left no-repeat;
+    border: 1px solid #1C5871;
+    width: 290px;
+    right: 173px;
+  }
+  .badge.revsys-inline-sponsored {
+    position: inherit;
+    margin-left: auto;
+    margin-right: 175px;
+    margin-bottom: 5px;
+    background: #465158 url(//media.readthedocs.org/images/badge-revsys.png) top left no-repeat;
+    border: 1px solid #1C5871;
+    width: 290px;
+    right: 173px;
+  }
+  .badge.revsys-inline {
+    position: inherit;
+    margin-left: auto;
+    margin-right: 175px;
+    margin-bottom: 5px;
+    background: #465158 url(//media.readthedocs.org/images/badge-revsys-sm.png) top left no-repeat;
+    border: 1px solid #1C5871;
+    width: 205px;
+    right: 173px;
+  }
+
+.rtd_doc_footer { background-color: #465158;}
+
+</style>
+<div class="rtd_doc_footer">
+  <div class="footer_popout">
+    <a href="//readthedocs.org/projects/python-gtk-3-tutorial/?fromdocs=python-gtk-3-tutorial" class="badge rtd"> TEST Brought to you by Read the Docs</a>
+    <ul id="version_menu">
+      
+        <li><a href="//readthedocs.org/docs/python-gtk-3-tutorial/en/latest/">latest</a></li>
+      
+    </ul>
+  </div>
+</div>
+<!-- RTD Analytics Code -->
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-17997319-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+
+<!-- User Analytics Code -->
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'None']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+
+
+  </body>
+</html>

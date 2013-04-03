@@ -1,0 +1,15 @@
+GObject Introspection 帶來一些希望
+by thinker
+2 Columns
+關鍵字:
+coding FreeBSD Linux
+
+GObject Introspection/GI 是 GNOME 的子計劃，是一個讓基於 GObject 的 native library 能輕易 porting 到 script language 或高階語言。也就是提供 binding。GI 透過定義一套描述語言，描述 native library 的 API 和 memory 的 owner-ship。並提供一套工具和 library，可以 parse 這些描述，將之轉成 binary 形式，方便 runtime 時使用。而 script language 或高階語言，可以透過這些 API 資訊，知道該 library 提供哪些 function，而其參數為何。因此，可以自動產生對應的 binding，讓 programmer 呼叫。
+
+嚴格說來，GObject Introspection 並沒有什麼新意，它將 API 的資訊編釋成 typelib，也就是 binary 格式，這其實和 Mozilla project 的 XPCOM 一樣。而 GI 的 API 描述語言，會先轉成 XML 格式，其實和 XPCOM、SOAP 或其它技術使用的 IDL 也差不多。比較特別的是，GI 把 owner-ship 帶入了描述語言。這一點，我在做 MadButterfly 的 nodejs plugin 時，用 M4 做了一套描述語言時，也曾試著要加入相同的東西。很高興， GI 已經有將這樣的功能設計進去。透過描述語言的描述， script language 能學會如何使用被描述的 library，進而自動產生 binding。這一點，其實在很多平台已經做過了，例如 mozilla project 的 XPCOM 也有一樣的功能。因此我說沒什麼新意。
+
+但讓人興奮的是，這是 GNOME project 所支持的格式和技術。為什麼我必需興奮呢? 因為 GNOME project 之下，有非常大量的 library，深入 desktop 的各個層面。在 GNOME 的推動之下，各個子 project 都開始使用 GI 描述他們的 API，因此 GI 能提供大量的 library。這意謂者，任何語言只要支援 GI，就馬上有大量的 library 可以使用。
+
+過去使用 Python、Perl、Ruby、Java...... 一堆語言，如果想要使用 opensource 的 native API，往往很難找到 binding，或者是維護的不好。原因是 binding 的撰寫當常很無聊又費時，維護上必需隨著 native API 更新。因此，就算是 Python/Ruby/Java 這些使用人口很多的 script language，也無法提供很好的支援。但， GI 省下撰寫 binding 所要花的時間和煎熬，同時也解決了維護的問題，使各種高階語言可以一夕之間支援大量的 native API。這絕對是一個重要的突破。
+
+GI 的突破，不在於高明或創新的技術。而是一項成熟的技術，在正確的環境下被 enable 並被 key player 所採用。Mozilla 、 Java 還有千千萬萬的 project 可能都有採用過類似的技術，但都有沒有成功。因為他們都不是正確的人。而這一回 GNOME 採用了同樣的技術，而且，看起來，是一個正確的人。我想，這對 desktop 的開發環境，會是一個很重要的突破。這突破可能相當於 PHP 取代傳統用 C 寫的 CGI。現在， GI + script lanaguage 可能再一次重演這個歷史。 

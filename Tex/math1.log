@@ -1,0 +1,190 @@
+This is XeTeX, Version 3.1415926-2.2-0.9997.4 (TeX Live 2010) (format=xelatex 2012.2.21)  23 MAR 2012 22:40
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**math1.tex
+(./math1.tex
+LaTeX2e <2009/09/24>
+Babel <v3.8l> and hyphenation patterns for english, dumylang, nohyphenation, pi
+nyin, bulgarian, russian, ukrainian, loaded.
+! Undefined control sequence.
+l.1 \chapter
+            {数学}
+? 
+
+! LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1 \chapter{数
+                学}
+? 
+Missing character: There is no 数 in font nullfont!
+Missing character: There is no 学 in font nullfont!
+
+Overfull \hbox (20.0pt too wide) in paragraph at lines 1--2
+[] 
+ []
+
+
+! LaTeX Error: Environment quotation undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.3 \begin{quotation}
+                     
+? 
+
+! LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.4 今
+       有上禾三秉，中禾二秉，下禾一秉，实三十九斗；上...
+
+? 
+Missing character: There is no 今 in font nullfont!
+Missing character: There is no 有 in font nullfont!
+Missing character: There is no 上 in font nullfont!
+Missing character: There is no 禾 in font nullfont!
+Missing character: There is no 三 in font nullfont!
+Missing character: There is no 秉 in font nullfont!
+Missing character: There is no ， in font nullfont!
+Missing character: There is no 中 in font nullfont!
+Missing character: There is no 禾 in font nullfont!
+Missing character: There is no 二 in font nullfont!
+Missing character: There is no 秉 in font nullfont!
+Missing character: There is no ， in font nullfont!
+Missing character: There is no 下 in font nullfont!
+Missing character: There is no 禾 in font nullfont!
+Missing character: There is no 一 in font nullfont!
+Missing character: There is no 秉 in font nullfont!
+Missing character: There is no ， in font nullfont!
+Missing character: There is no 实 in font nullfont!
+Missing character: There is no 三 in font nullfont!
+Missing character: There is no 十 in font nullfont!
+Missing character: There is no 九 in font nullfont!
+Missing character: There is no 斗 in font nullfont!
+Missing character: There is no ； in font nullfont!
+Missing character: There is no 上 in font nullfont!
+Missing character: There is no 禾 in font nullfont!
+Missing character: There is no 二 in font nullfont!
+Missing character: There is no 秉 in font nullfont!
+Missing character: There is no ， in font nullfont!
+Missing character: There is no 中 in font nullfont!
+Missing character: There is no 禾 in font nullfont!
+Missing character: There is no 三 in font nullfont!
+Missing character: There is no 秉 in font nullfont!
+Missing character: There is no ， in font nullfont!
+Missing character: There is no 下 in font nullfont!
+Missing character: There is no 禾 in font nullfont!
+Missing character: There is no 一 in font nullfont!
+Missing character: There is no 秉 in font nullfont!
+Missing character: There is no ， in font nullfont!
+Missing character: There is no 实 in font nullfont!
+Missing character: There is no 三 in font nullfont!
+Missing character: There is no 十 in font nullfont!
+Missing character: There is no 四 in font nullfont!
+Missing character: There is no 斗 in font nullfont!
+Missing character: There is no ； in font nullfont!
+Missing character: There is no 上 in font nullfont!
+Missing character: There is no 禾 in font nullfont!
+Missing character: There is no 一 in font nullfont!
+Missing character: There is no 秉 in font nullfont!
+Missing character: There is no ， in font nullfont!
+Missing character: There is no 中 in font nullfont!
+Missing character: There is no 禾 in font nullfont!
+Missing character: There is no 二 in font nullfont!
+Missing character: There is no 秉 in font nullfont!
+Missing character: There is no ， in font nullfont!
+Missing character: There is no 下 in font nullfont!
+Missing character: There is no 禾 in font nullfont!
+Missing character: There is no 三 in font nullfont!
+Missing character: There is no 秉 in font nullfont!
+Missing character: There is no ， in font nullfont!
+Missing character: There is no 实 in font nullfont!
+Missing character: There is no 二 in font nullfont!
+Missing character: There is no 十 in font nullfont!
+Missing character: There is no 六 in font nullfont!
+Missing character: There is no 斗 in font nullfont!
+Missing character: There is no 。 in font nullfont!
+Missing character: There is no 问 in font nullfont!
+Missing character: There is no 上 in font nullfont!
+Missing character: There is no 、 in font nullfont!
+Missing character: There is no 中 in font nullfont!
+Missing character: There is no 、 in font nullfont!
+Missing character: There is no 下 in font nullfont!
+Missing character: There is no 禾 in font nullfont!
+Missing character: There is no 实 in font nullfont!
+Missing character: There is no 一 in font nullfont!
+Missing character: There is no 秉 in font nullfont!
+Missing character: There is no 各 in font nullfont!
+Missing character: There is no 几 in font nullfont!
+Missing character: There is no 何 in font nullfont!
+Missing character: There is no ？ in font nullfont!
+
+! LaTeX Error: Environment gather* undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.5 \begin{gather*}
+                   
+? 
+
+! LaTeX Error: Environment split undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.6 \begin{split}
+                 
+? 
+Missing character: There is no 3 in font nullfont!
+Missing character: There is no x in font nullfont!
+Missing character: There is no + in font nullfont!
+Missing character: There is no 2 in font nullfont!
+Missing character: There is no y in font nullfont!
+Missing character: There is no + in font nullfont!
+Missing character: There is no z in font nullfont!
+! Misplaced alignment tab character &.
+l.7     3x+2y+z &
+                 = 39 \\
+? 
+Missing character: There is no = in font nullfont!
+Missing character: There is no 3 in font nullfont!
+Missing character: There is no 9 in font nullfont!
+Missing character: There is no 2 in font nullfont!
+Missing character: There is no x in font nullfont!
+Missing character: There is no + in font nullfont!
+Missing character: There is no 3 in font nullfont!
+Missing character: There is no y in font nullfont!
+Missing character: There is no + in font nullfont!
+Missing character: There is no z in font nullfont!
+! Misplaced alignment tab character &.
+l.8     2x+3y+z &
+                 = 34 \\
+? 
+! Emergency stop.
+l.8     2x+3y+z &
+                 = 34 \\
+End of file on the terminal!
+
+ 
+Here is how much of TeX's memory you used:
+ 7 strings out of 495504
+ 55 string characters out of 3186264
+ 45496 words of memory out of 3000000
+ 3250 multiletter control sequences out of 15000+200000
+ 3640 words of font info for 14 fonts, out of 3000000 for 9000
+ 198 hyphenation exceptions out of 8191
+ 5i,0n,4p,92b,30s stack positions out of 5000i,500n,10000p,200000b,50000s
+No pages of output.

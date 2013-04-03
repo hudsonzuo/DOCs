@@ -1,0 +1,114 @@
+This is XeTeX, Version 3.1415926-2.2-0.9997.4 (TeX Live 2010) (format=xelatex 2012.2.21)  24 MAR 2012 11:52
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**ctex-faq.tex
+(./ctex-faq.tex
+LaTeX2e <2009/09/24>
+Babel <v3.8l> and hyphenation patterns for english, dumylang, nohyphenation, pi
+nyin, bulgarian, russian, ukrainian, loaded.
+(/usr/share/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
+(/usr/share/texmf-dist/tex/latex/base/size10.clo
+File: size10.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
+)
+\c@part=\count80
+\c@section=\count81
+\c@subsection=\count82
+\c@subsubsection=\count83
+\c@paragraph=\count84
+\c@subparagraph=\count85
+\c@figure=\count86
+\c@table=\count87
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+)
+
+! LaTeX Error: File `ctex-faq.sty' not found.
+
+Type X to quit or <RETURN> to proceed,
+or enter new name. (Default extension: sty)
+
+Enter file name: 
+! Interruption.
+<to be read again> 
+                   }
+l.34 \usepackage{ctex-faq}[2009/05/24]
+                                      ^^M
+? 
+
+LaTeX Warning: You have requested, on input line 34, version
+               `2009/05/24' of package ctex-faq,
+               but only version
+               `'
+               is available.
+
+! Undefined control sequence.
+l.36  \RCS
+           $Revision: 82 $
+? 
+
+! LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.36  \RCS $
+            Revision: 82 $
+? 
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 36.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 36.
+! Undefined control sequence.
+l.37  \RCS
+           $Date: 2007-01-30 17:45:46 +0800 (鏄熸湡浜? 30 涓€鏈?2007) $
+
+? 
+Missing character: There is no 鏄 in font cmr10!
+Missing character: There is no 熸 in font cmr10!
+Missing character: There is no 湡 in font cmr10!
+Missing character: There is no 浜 in font cmr10!
+Missing character: There is no 涓 in font cmr10!
+Missing character: There is no € in font cmr10!
+Missing character: There is no 鏈 in font cmr10!
+\@indexfile=\write3
+\openout3 = `ctex-faq.idx'.
+
+Writing index file ctex-faq.idx
+No file ctex-faq.aux.
+\openout1 = `ctex-faq.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 47.
+LaTeX Font Info:    ... okay on input line 47.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 47.
+LaTeX Font Info:    ... okay on input line 47.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 47.
+LaTeX Font Info:    ... okay on input line 47.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 47.
+LaTeX Font Info:    ... okay on input line 47.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 47.
+LaTeX Font Info:    ... okay on input line 47.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 47.
+LaTeX Font Info:    ... okay on input line 47.
+! Undefined control sequence.
+l.50  \hypersetup
+                 {pdftitle={CTeX\ FAQ},%
+? 
+! Emergency stop.
+l.50  \hypersetup
+                 {pdftitle={CTeX\ FAQ},%
+End of file on the terminal!
+
+ 
+Here is how much of TeX's memory you used:
+ 203 strings out of 495504
+ 2072 string characters out of 3186264
+ 46688 words of memory out of 3000000
+ 3436 multiletter control sequences out of 15000+200000
+ 3640 words of font info for 14 fonts, out of 3000000 for 9000
+ 198 hyphenation exceptions out of 8191
+ 23i,1n,17p,172b,54s stack positions out of 5000i,500n,10000p,200000b,50000s
+No pages of output.

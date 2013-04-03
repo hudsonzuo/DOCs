@@ -1,0 +1,184 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Documenting Python &mdash; Python v3.0c1 documentation</title>
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+          URL_ROOT:    '../',
+          VERSION:     '3.0c1',
+          COLLAPSE_MODINDEX: false,
+          FILE_SUFFIX: '.html'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Search within Python v3.0c1 documentation"
+          href="../_static/opensearch.xml"/>
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="copyright" title="Copyright" href="../copyright.html" />
+    <link rel="top" title="Python v3.0c1 documentation" href="../index.html" />
+    <link rel="next" title="Introduction" href="intro.html" />
+    <link rel="prev" title="Installing Python Modules" href="../install/index.html" />
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../modindex.html" title="Global Module Index"
+             accesskey="M">modules</a> |</li>
+        <li class="right" >
+          <a href="intro.html" title="Introduction"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../install/index.html" title="Installing Python Modules"
+             accesskey="P">previous</a> |</li>
+<li><img src="../_static/py.png" alt="" style="vertical-align: middle; margin-top: -1px"/></li>
+
+        <li><a href="../contents.html">Python v3.0c1 documentation</a> &raquo;</li>
+
+      </ul>
+    </div>
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  
+  <div class="section" id="documenting-python">
+<span id="documenting-index"></span><h1>Documenting Python<a class="headerlink" href="#documenting-python" title="Permalink to this headline">¶</a></h1>
+<p>The Python language has a substantial body of documentation, much of it
+contributed by various authors. The markup used for the Python documentation is
+<a class="reference external" href="http://docutils.sf.net/rst.html">reStructuredText</a>, developed by the <a class="reference external" href="http://docutils.sf.net/">docutils</a> project, amended by custom
+directives and using a toolset named <em>Sphinx</em> to postprocess the HTML output.</p>
+<p>This document describes the style guide for our documentation, the custom
+reStructuredText markup introduced to support Python documentation and how it
+should be used, as well as the Sphinx build system.</p>
+<p>If you&#8217;re interested in contributing to Python&#8217;s documentation, there&#8217;s no need
+to write reStructuredText if you&#8217;re not so inclined; plain text contributions
+are more than welcome as well.</p>
+<ul>
+<li><a class="reference external" href="intro.html">Introduction</a></li>
+</ul>
+<ul>
+<li><a class="reference external" href="style.html">Style Guide</a></li>
+</ul>
+<ul>
+<li><a class="reference external" href="rest.html">reStructuredText Primer</a><ul>
+<li><a class="reference external" href="rest.html#paragraphs">Paragraphs</a></li>
+<li><a class="reference external" href="rest.html#inline-markup">Inline markup</a></li>
+<li><a class="reference external" href="rest.html#lists-and-quotes">Lists and Quotes</a></li>
+<li><a class="reference external" href="rest.html#source-code">Source Code</a></li>
+<li><a class="reference external" href="rest.html#hyperlinks">Hyperlinks</a><ul>
+<li><a class="reference external" href="rest.html#external-links">External links</a></li>
+<li><a class="reference external" href="rest.html#internal-links">Internal links</a></li>
+</ul>
+</li>
+<li><a class="reference external" href="rest.html#sections">Sections</a></li>
+<li><a class="reference external" href="rest.html#explicit-markup">Explicit Markup</a></li>
+<li><a class="reference external" href="rest.html#directives">Directives</a></li>
+<li><a class="reference external" href="rest.html#footnotes">Footnotes</a></li>
+<li><a class="reference external" href="rest.html#comments">Comments</a></li>
+<li><a class="reference external" href="rest.html#source-encoding">Source encoding</a></li>
+<li><a class="reference external" href="rest.html#gotchas">Gotchas</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><a class="reference external" href="markup.html">Additional Markup Constructs</a><ul>
+<li><a class="reference external" href="markup.html#file-wide-metadata">File-wide metadata</a></li>
+<li><a class="reference external" href="markup.html#meta-information-markup">Meta-information markup</a></li>
+<li><a class="reference external" href="markup.html#module-specific-markup">Module-specific markup</a></li>
+<li><a class="reference external" href="markup.html#information-units">Information units</a></li>
+<li><a class="reference external" href="markup.html#showing-code-examples">Showing code examples</a></li>
+<li><a class="reference external" href="markup.html#inline-markup">Inline markup</a></li>
+<li><a class="reference external" href="markup.html#cross-linking-markup">Cross-linking markup</a></li>
+<li><a class="reference external" href="markup.html#paragraph-level-markup">Paragraph-level markup</a></li>
+<li><a class="reference external" href="markup.html#table-of-contents-markup">Table-of-contents markup</a></li>
+<li><a class="reference external" href="markup.html#index-generating-markup">Index-generating markup</a></li>
+<li><a class="reference external" href="markup.html#grammar-production-displays">Grammar production displays</a></li>
+<li><a class="reference external" href="markup.html#substitutions">Substitutions</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><a class="reference external" href="fromlatex.html">Differences to the LaTeX markup</a><ul>
+<li><a class="reference external" href="fromlatex.html#inline-markup">Inline markup</a></li>
+<li><a class="reference external" href="fromlatex.html#information-units">Information units</a></li>
+<li><a class="reference external" href="fromlatex.html#structure">Structure</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><a class="reference external" href="sphinx.html">The Sphinx build system</a><ul>
+<li><a class="reference external" href="sphinx.html#the-build-configuration-file">The build configuration file</a><ul>
+<li><a class="reference external" href="sphinx.html#builder-specific-variables">Builder-specific variables</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <h4>Previous topic</h4>
+            <p class="topless"><a href="../install/index.html" title="previous chapter">Installing Python Modules</a></p>
+            <h4>Next topic</h4>
+            <p class="topless"><a href="intro.html" title="next chapter">Introduction</a></p>
+            <h3>This Page</h3>
+            <ul class="this-page-menu">
+              <li><a href="../_sources/documenting/index.txt">Show Source</a></li>
+            </ul>
+          <h3>Quick search</h3>
+            <form class="search" action="../search.html" method="get">
+              <input type="text" name="q" size="18" /> <input type="submit" value="Go" />
+              <input type="hidden" name="check_keywords" value="yes" />
+              <input type="hidden" name="area" value="default" />
+            </form>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../modindex.html" title="Global Module Index"
+             accesskey="M">modules</a> |</li>
+        <li class="right" >
+          <a href="intro.html" title="Introduction"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../install/index.html" title="Installing Python Modules"
+             accesskey="P">previous</a> |</li>
+<li><img src="../_static/py.png" alt="" style="vertical-align: middle; margin-top: -1px"/></li>
+
+        <li><a href="../contents.html">Python v3.0c1 documentation</a> &raquo;</li>
+
+      </ul>
+    </div>
+    <div class="footer">
+      &copy; <a href="../copyright.html">Copyright</a> 1990-2008, Python Software Foundation.
+      Last updated on Oct 31, 2008.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.5.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,68 @@
+Pyparted notes
+
+Download URL:  https://fedorahosted.org/releases/p/y/pyparted/
+PARTITION TYPES
+
+When creating new partitions, pyparted uses partition type constants to set the partition type of the object being created. Here is a list of the valid partition types. Most of them are self explanatory by just looking at their definitions.
+
+    parted.PARTITION_NORMAL
+    parted.PARTITION_LOGICAL
+    parted.PARTITION_EXTENDED
+    parted.PARTITION_PROTECTED
+    parted.PARTITION_FREESPACE
+    parted.PARTITION_METADAT 
+
+CREATING A NEW PARTITION
+
+There are several steps needed to define a new partition using pyparted.
+
+    Create Device object.
+        Device being manipulated, ie. '/dev/sda' 
+    Create Disk object.
+        Disk object holds the partition information for the defined device object. 
+    Create Constraint object.
+        A Constraint object holds information about the start, end, and size of the partition we want to create 
+    Create Filesystem object.
+        This object holds information about the type of filesytem to create in the new partition, as well as its size. Normally will fill the entire partition. 
+    Create Partition object.
+        Will returnn an object that we can use with the Disk.addPartition method 
+
+
+def add_partition():
+    myDev = parted.Device(path="/dev/sdb")
+    myDisk = parted.freshDisk(myDev, 'msdos')
+    myConstraint = parted.Constraint(device = myDev)
+    
+    myGeometry = parted.Geometry(device=myDev,
+        start=1, end=(myConstraint.maxSize - 1)) # Fill the entire Disk with a single partition
+    myFileSystem = parted.FileSystem(type="ext2", geometry=myGeometry)
+    # Create the partition object using the objects we defined before
+    myPartition = parted.Partition(disk=myDisk, fs=myFileSystem,
+        type=parted.PARTITION_NORMAL, geometry=myGeometry)
+    # Redefine myConstraint to snap to the exact limits
+    myConstraint = parted.Constraint(exactGeom = myGeometry)
+   
+    # Add partition to the disk. Will return True if successful
+    myDisk.addPartition(partition = myPartition, constraint=myConstraint)
+    # Write changes to the disk. Up until this point, no changes have been made to the disk. everything is sitting in memmory
+    myDisk.commit()
+
+
+
+pyparted:  'alignment', 'constraint', 'device', 'disk', 'filesystem', 'geometry', 'partition'
+import parted,
+mydev=parted.Device(path="/dev/sdb")
+mydev.getSize(unit="Gb")
+
+print(parted.diskType)
+
+阅读文件：/usr/lib/python2.7/site-packages/parted/__init__.py
+parted.getLabels()
+li_devS=parted.getAllDevices(); 返回parted.Device列表
+li_devS[2].getSize(unit="Gb")
+_ped::: import _ped dir(_ped), _pedmodule.so,
+disk=parted.Disk(li_devS[0])
+usbb=parted.Disk(li_devS[2])
+usb.getPrimaryPartitions()
+
+

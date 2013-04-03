@@ -1,0 +1,219 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Whetting Your Appetite 开胃菜 &mdash; Python v3.0c1 documentation</title>
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+          URL_ROOT:    '../',
+          VERSION:     '3.0c1',
+          COLLAPSE_MODINDEX: false,
+          FILE_SUFFIX: '.html'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="search" type="application/opensearchdescription+xml"
+          title="Search within Python v3.0c1 documentation"
+          href="../_static/opensearch.xml"/>
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="copyright" title="Copyright" href="../copyright.html" />
+    <link rel="top" title="Python v3.0c1 documentation" href="../index.html" />
+    <link rel="up" title="The Python tutorial Python 入门指南" href="index.html" />
+    <link rel="next" title="Using the Python Interpreter 使用 Python 解释器" href="interpreter.html" />
+    <link rel="prev" title="The Python tutorial Python 入门指南" href="index.html" />
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../modindex.html" title="Global Module Index"
+             accesskey="M">modules</a> |</li>
+        <li class="right" >
+          <a href="interpreter.html" title="Using the Python Interpreter 使用 Python 解释器"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="The Python tutorial Python 入门指南"
+             accesskey="P">previous</a> |</li>
+<li><img src="../_static/py.png" alt="" style="vertical-align: middle; margin-top: -1px"/></li>
+
+        <li><a href="../contents.html">Python v3.0c1 documentation</a> &raquo;</li>
+
+          <li><a href="index.html" accesskey="U">The Python tutorial Python 入门指南</a> &raquo;</li>
+      </ul>
+    </div>
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  
+  <div class="section" id="whetting-your-appetite">
+<span id="tut-intro"></span><h1>Whetting Your Appetite 开胃菜<a class="headerlink" href="#whetting-your-appetite" title="Permalink to this headline">¶</a></h1>
+<p>If you do much work on computers, eventually you find that there&#8217;s some task
+you&#8217;d like to automate.  For example, you may wish to perform a
+search-and-replace over a large number of text files, or rename and rearrange a
+bunch of photo files in a complicated way. Perhaps you&#8217;d like to write a small
+custom database, or a specialized GUI application, or a simple game.</p>
+<p>如果你要用计算机做很多工作，希望可以自动完成其中的一些任务。例如，你可能希望在大量的文本文件中进
+行查找替换操作，也许是以复杂的方式重命名并整理大量图片。可能你想要编写一个小型的定制数据库，或者
+一个特殊的图形界面程序，或者一个小型的游戏。</p>
+<p>If you&#8217;re a professional software developer, you may have to work with several
+C/C++/Java libraries but find the usual write/compile/test/re-compile cycle is
+too slow.  Perhaps you&#8217;re writing a test suite for such a library and find
+writing the testing code a tedious task.  Or maybe you&#8217;ve written a program that
+could use an extension language, and you don&#8217;t want to design and implement a
+whole new language for your application.</p>
+<p>如果你是一个专业的开发者，你可能不得不用到很多的C/C++/Java库工作，而且编写/编译/测试/重编译周
+期太长了，可能你在可能你在给每个库编写对应的测试代码，但发现这是个烦人的活。或者你在编写一个程序，
+需要用到一门扩展语言，但是你又不想重新设计和实现一套。</p>
+<p>Python is just the language for you.</p>
+<p>那么 Python 就是你需要的语言。</p>
+<p>You could write a Unix shell script or Windows batch files for some of these
+tasks, but shell scripts are best at moving around files and changing text data,
+not well-suited for GUI applications or games. You could write a C/C++/Java
+program, but it can take a lot of development time to get even a first-draft
+program.  Python is simpler to use, available on Windows, MacOS X, and Unix
+operating systems, and will help you get the job done more quickly.</p>
+<p>你能够针对一些任务编写 Unix Shell 脚本或者 Windows 批处理文件，但是脚本语言最擅长移动文件
+和修改文本数据，不适合 GUI 程序或游戏。你能写 C/C++/Java 程序，但是这些技本就是开发最简单
+的程序也要用去大量的时间。无论在 Windows 、MacOS 或 Unix 操作系统上， Python 非常易于使
+用，可以帮助你更快的完成任务。</p>
+<p>Python is simple to use, but it is a real programming language, offering much
+more structure and support for large programs than shell scripts or batch files
+can offer.  On the other hand, Python also offers much more error checking than
+C, and, being a <em>very-high-level language</em>, it has high-level data types built
+in, such as flexible arrays and dictionaries.  Because of its more general data
+types Python is applicable to a much larger problem domain than Awk or even
+Perl, yet many things are at least as easy in Python as in those languages.</p>
+<p>Python 很容易上手，但它是一门真正的编程语言，相对于 Shell ，它提供的针对大型程序的支持和结
+构要多的多。另一方面，它提供了比 C 更多的错误检查，并且，作为一门 <em>非常高级的语言</em> ，它拥有
+内置的高级数据结构类型，例如可变数组和字典。因为拥有更多的通用数据类型， Python 适合比 Awk
+甚至 Perl 更广泛的问题领域，在其它的很多领域， Python 至少比别的语言要易用的多。</p>
+<p>Python allows you to split your program into modules that can be reused in other
+Python programs.  It comes with a large collection of standard modules that you
+can use as the basis of your programs &#8212; or as examples to start learning to
+program in Python.  Some of these modules provide things like file I/O, system
+calls, sockets, and even interfaces to graphical user interface toolkits like
+Tk.</p>
+<p>Python 可以让你把自己的程序分隔成不同的模块，以便在其它的 Python 程序中重用。你可以让自己的程
+序基于一个很大的标准模块集－－或者用它们做为开始学习 Python 编程的示例。这些模块中包含诸如文件
+I/O ，系统调用， sockets 甚至类似 TK 这样的图形接口。</p>
+<p>Python is an interpreted language, which can save you considerable time during
+program development because no compilation and linking is necessary.  The
+interpreter can be used interactively, which makes it easy to experiment with
+features of the language, to write throw-away programs, or to test functions
+during bottom-up program development. It is also a handy desk calculator.</p>
+<p>Python 是一门解释型语言，因为不需要编译和链接的时间，它可以帮你省下一些开发时间。解释器可以交
+互式的使用，基于语言给定的功能，你可以写一些实验性质的程序，扔掉也无所谓。或者还可以当它是一个
+随手可得的计算器。</p>
+<p>Python enables programs to be written compactly and readably.  Programs written
+in Python are typically much shorter than equivalent C,  C++, or Java programs,
+for several reasons:</p>
+<p>Python 可以写出很紧凑的，可读性很强的程序。用 Python 写的程序通常比同样的 C , C++ 或 Java
+程序要短得多，这是因为以下几个原因：</p>
+<ul class="simple">
+<li>the high-level data types allow you to express complex operations in a single
+statement;</li>
+<li>高级数据结构使你可以在一个单独的语言中表达中很复杂的操作；</li>
+<li>statement grouping is done by indentation instead of beginning and ending
+brackets;</li>
+<li>语句的组织依赖于缩进而不是 开始/结束（类似 C 族语言的 {} 符号或 Pascal 的begin/end关键字）标记块；</li>
+<li>no variable or argument declarations are necessary.</li>
+<li>参数或变量不需要声明。</li>
+</ul>
+<p>Python is <em>extensible</em>: if you know how to program in C it is easy to add a new
+built-in function or module to the interpreter, either to perform critical
+operations at maximum speed, or to link Python programs to libraries that may
+only be available in binary form (such as a vendor-specific graphics library).
+Once you are really hooked, you can link the Python interpreter into an
+application written in C and use it as an extension or command language for that
+application.</p>
+<p>Python 是可扩展的：如果你会用 C 写程序，就可以很容易的为解释器添加新的 built-in 函数或模块，
+或者优化性能瓶颈，使其达到最大速度，或者使 Python 能够链接到必要的二进制架构（比如某个专用的商
+业图形库）。一旦你真正掌握了它，你可以将 Python 集成进由 C 写成的程序，把 Python 当做是这个
+程序的扩展或命令行语言。</p>
+<p>By the way, the language is named after the BBC show &#8220;Monty Python&#8217;s Flying
+Circus&#8221; and has nothing to do with nasty reptiles.  Making references to Monty
+Python skits in documentation is not only allowed, it is encouraged!</p>
+<p>顺便说一下，这个语言的名字来自于 BBC 的 “Monty Python&#8217;s Flying Circus” 节目，和凶猛的
+爬行类生物没有任何关系。在文档中引用 Monty Python 的典故不仅可行，而且值得鼓励！</p>
+<p>Now that you are all excited about Python, you&#8217;ll want to examine it in some
+more detail.  Since the best way to learn a language is to use it, the tutorial
+invites you to play with the Python interpreter as you read.</p>
+<p>现在我们已经了解了 Python 中所有激动人心的东西，大概你想仔细的试试它了。学习一门语言最好的办法
+就是使用它，如你所读到的，本文会引领你运用 Python 解释器。</p>
+<p>In the next chapter, the mechanics of using the interpreter are explained.  This
+is rather mundane information, but essential for trying out the examples shown
+later.</p>
+<p>下一节中，我们直接说明解释器的用法，这没有什么神秘的内容，不过有助于我们练习后面展示的例子。</p>
+<p>The rest of the tutorial introduces various features of the Python language and
+system through examples, beginning with simple expressions, statements and data
+types, through functions and modules, and finally touching upon advanced
+concepts like exceptions and user-defined classes.</p>
+<p>本指南其它部分通过示例介绍了 Python 语言和系统的各种功能，开始是简单表达式，语法和数据类型，接
+上来是函数和模块，最后是诸如异常和自定义类这样的高级内容。</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <h4>Previous topic</h4>
+            <p class="topless"><a href="index.html" title="previous chapter">The Python tutorial Python 入门指南</a></p>
+            <h4>Next topic</h4>
+            <p class="topless"><a href="interpreter.html" title="next chapter">Using the Python Interpreter 使用 Python 解释器</a></p>
+            <h3>This Page</h3>
+            <ul class="this-page-menu">
+              <li><a href="../_sources/tutorial/appetite.txt">Show Source</a></li>
+            </ul>
+          <h3>Quick search</h3>
+            <form class="search" action="../search.html" method="get">
+              <input type="text" name="q" size="18" /> <input type="submit" value="Go" />
+              <input type="hidden" name="check_keywords" value="yes" />
+              <input type="hidden" name="area" value="default" />
+            </form>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../modindex.html" title="Global Module Index"
+             accesskey="M">modules</a> |</li>
+        <li class="right" >
+          <a href="interpreter.html" title="Using the Python Interpreter 使用 Python 解释器"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="The Python tutorial Python 入门指南"
+             accesskey="P">previous</a> |</li>
+<li><img src="../_static/py.png" alt="" style="vertical-align: middle; margin-top: -1px"/></li>
+
+        <li><a href="../contents.html">Python v3.0c1 documentation</a> &raquo;</li>
+
+          <li><a href="index.html" accesskey="U">The Python tutorial Python 入门指南</a> &raquo;</li>
+      </ul>
+    </div>
+    <div class="footer">
+      &copy; <a href="../copyright.html">Copyright</a> 1990-2008, Python Software Foundation.
+      Last updated on Oct 31, 2008.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 0.5.
+    </div>
+  </body>
+</html>

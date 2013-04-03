@@ -1,0 +1,595 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb18030">
+<meta http-equiv="Content-Language" content="zh_CN">
+<meta name="GENERATOR" content="PHPEclipse 1.2.0">
+<link href="http://www.linuxpk.com/rss.php" title="Linux宝库" type="application/rss+xml" rel="alternate">
+<link rel="icon" type="image/ico" href="include/image/favicon.ico">
+<link rel="stylesheet" type="text/css" href="include/css/base.css">
+<link rel="stylesheet" type="text/css" href="include/css/article.css">
+<link rel="stylesheet" type="text/css" href="include/css/jquery-ui-themeroller.css">
+
+<!--[if IE]>
+<style type="text/css">
+
+@import url("include/css/iefix.css");
+
+</style>
+<![endif]-->
+
+<script type="text/javascript" src="include/js/jquery-1.2.6.js"></script>
+<title>Linux教程 - 正文 - Linux操作系统下内存泄漏的检查方法</title>
+</head>
+
+<body id="article">
+<div class="container">
+    <div class="header">
+        <div class="logos">
+            <ul>
+                <li class="first"><a href="http://www.linuxpk.com" title="Linux宝库" target="_blank"><img src="include/image/logo/logo.gif" alt="Linux宝库"></a></li>
+                <li><ul>
+                <li class="one"><a href="http://team.linuxpk.com/" title="Linux小组" target="_blank">Linux小组</a></li>
+                <li class="two"><a href="http://bbs.linuxpk.com" title="全球最大中文开源论坛" target="_blank">Linux论坛</a></li>
+                <li class="three"><a href="http://sns.linuxpk.com/" title="Linux朋友" target="_blank">Linux朋友</a></li>
+                <li class="four"><a href="http://doc.linuxpk.com" title="全球最大中文开源门户" target="_blank">Linux教程</a></li>
+                <li class="five"><a href="http://meego.linuxpk.com" title="MeeGo" target="_blank">MeeGo</a></li>
+                <li class="six"><a href="http://bbs.linuxpk.com/search-forum-adv-yes.html" title="搜索" target="_blank">搜索</a></li>
+                </ul>
+                </li>
+            </ul>
+        </div>
+        <div class="clear"><span>&nbsp;</span></div>
+    </div>
+<script type="text/javascript">var cpro_id = 'u121541';</script> <script type="text/javascript" src="http://cpro.baidu.com/cpro/ui/c.js"></script>
+<div id="menu">
+
+
+    <ul><li class="menu_top"><a href="index.html" id="top_href">Linux教程</a>
+
+    <ul><li>
+            <a href="channel52.html">Linux</a>
+        <ul><li>
+            <a href="type201.html">Linux编程</a>
+    
+            <ul>
+                                                                    <li class="menu_nochild  menu_current"><a href="type202.html">C/C++编程</a></li>
+                                                                                                        <li class="menu_nochild"><a href="type203.html">Python编程</a></li>
+                                                                                                        <li class="menu_nochild"><a href="type204.html">Perl编程</a></li>
+                                                                                                        <li class="menu_nochild"><a href="type205.html">PHP编程</a></li>
+                                                                                                        <li class="menu_nochild"><a href="type1053.html">shell</a></li>
+                                                                                                        <li class="menu_nochild"><a href="type1063.html">编程技术</a></li>
+                                                                                                        <li class="menu_nochild"><a href="type1065.html">kernel</a></li>
+                                                                                                        <li class="menu_nochild"><a href="type1094.html">html技术</a></li>
+                                                                                                        <li class="menu_nochild"><a href="type1099.html">zope</a></li>
+                                                                                                        <li class="menu_nochild"><a href="type1100.html">java/jsp</a></li>
+                                                                                                        <li class="menu_nochild"><a href="type1115.html">discuz</a></li>
+                                                        </ul>
+    </li></ul>
+</li></ul>
+</li></ul>
+
+
+</div><div class="navs"><ul>
+<li><a href="http://www.linuxpk.com/">Linux宝库</a></li>
+<li><a href="index.php">Linux教程</a></li>
+<li><a href="category.php?cid=52&type=channel">Linux</a></li>
+<li><a href="category.php?cid=201">Linux编程</a></li>
+<li><a href="category.php?cid=202">C/C++编程</a></li>
+<li class="clear"><span>&nbsp;</span></li>
+</ul></div>
+<!--屏幕左边推荐文章和中间文章内容栏start-->
+<div class="article">
+<!--屏幕中间文章内容栏start-->
+<div id="article_detail">
+    <div class="line">
+        <div class="date">
+            <ul>
+                <li class="month">05/09</li>
+                <li class="year">2008</li>
+            </ul>
+        </div>
+        <div class="title">
+            <ul>
+                <li class="type1"><a href="http://www.linuxpk.com/81127.html">Linux操作系统下内存泄漏的检查方法</a></li>
+                <li class="type2">分类：<a href="type202.html" title="C/C++编程">C/C++编程</a> | <a href="channel52.html" title="Linux">Linux</a>&nbsp;&nbsp;作者：Linux宝库&nbsp;&nbsp;来自：<a href="http://www.linuxpk.com/81127.htm">Linux宝库</a>&nbsp;&nbsp;发布时间：2008年05月09日</li>
+            </ul>
+        </div>
+        <div class="hits">您是本文第1156位读者</div>
+    </div>
+
+    <div class="maintext">
+    
+        <div class="content_ad"><script type="text/javascript"> var cpro_id = 'u121514';</script><script type="text/javascript" src="http://cpro.baidu.com/cpro/ui/c.js"></script></div>
+        <div class="from1"><a href="http://doc.linuxpk.com/81127.html">本文来自：Linux宝库 -- http://doc.linuxpk.com/81127.html</a><br><a href="http://bbs.linuxpk.com/forum-102-1.html">如有不明白之处，欢迎参加社区讨论</a></div>
+        <div class="content"><p>1. 在需要内存泄漏检查的代码的开始调用void mtrace(void) (在mcheck.h中? 有声明). mtrace为malloc等函数安装hook, 用于记录内存分配信息.在需要内存泄漏检查的代码的结束调用void muntrace(void).<br>
+<br>
+注意: 一般情况下不要调用muntrace, 而让程序自然结束. 因为可能有些释放内存代码要到muntrace之后才运行.<br>
+<br>
+2. 用debug模式编译被检查代码(-g或-ggdb)<br>
+<br>
+3. 设置环境变量MALLOC_TRACE为一文件名, 这一文件将存有内存分配信息.<br>
+<br>
+4. 运行被检查程序, 直至结束或muntrace被调用.<br>
+<br>
+5. 用mtrace命令解析内存分配Log文件($MALLOC_TRACE)<br>
+<br>
+(mtrace foo $MALLOC_TRACE, where foo is the executible name)<br>
+<br>
+如果有内存泄漏, mtrace会输出分配泄漏<br>
+<br>
+内存的代码位置,以及分配数量.<br>
+<br>
+附加说明<br>
+<br>
+1. 可以将mtrace, muntrace放入信号处理函数(USR1, USR2), 以动态地进行内存泄漏检查控制.<br>
+<br>
+2. mtrace是个perl代码, 如果你对符号地址与代码文本的转换感兴趣, 可以读一下.<br>
+<br>
+3. again, 尽量不要用muntrace()<br>
+<br>
+For C++ Leak:<br>
+<br>
+检查内存泄漏的方法除glibc提供外；还可以试试一些专用的程序。<br>
+<br>
+很奇怪，redhat 9 居然不带mtrace perl脚本，只好下载gcc源码编译了<br>
+<br>
+wget --passive-ftp ftp://rpmfind.net/linux/redhat/9 ... -2.3.2-11.9.src.rpm<br>
+<br>
+rpm -ivh glibc*.src.rpm<br>
+<br>
+cd /usr/src/redhat/SPECS/<br>
+<br>
+rpmbuild -ba glibc-9.spec<br>
+<br>
+cd /var/tmp/glibc-2.3.2-root/usr/bin/<br>
+<br>
+cp mtrace /usr/bin/<br>
+<br>
+调试方法如下:<br>
+<br>
+vi a.c<br>
+<br>
+1 #include<br>
+<br>
+2<br>
+<br>
+3 int main()<br>
+<br>
+4 {<br>
+<br>
+5 mtrace();<br>
+<br>
+6 malloc(10);<br>
+<br>
+7 malloc(16);<br>
+<br>
+8 return 0;<br>
+<br>
+9 }<br>
+<br>
+$gcc -g a.c #记得编译带-g调试选项<br>
+<br>
+$export MALLOC_TRACE=a.log<br>
+<br>
+$./a.out<br>
+<br>
+$unset MALLOC_TRACE #记得执行完后unset变量,否则可能运行其他命令可能覆盖log<br>
+<br>
+$mtrace a.out a.log<br>
+<br>
+Memory not freed:<br>
+<br>
+-----------------<br>
+<br>
+Address Size Caller<br>
+<br>
+0x09b08378 0xa at /XXX/a.c:6<br>
+<br>
+0x09b08388 0x10 at /XXX/a.c:7<br>
+<br>
+可以看到,会显示未释放动态空间的代码具体位置。 </p></div>
+　　    <div class="from2"><a href="http://doc.linuxpk.com/81127.html">本文来自：Linux宝库 -- http://doc.linuxpk.com/81127.html</a><br><a href="http://bbs.linuxpk.com/forum-102-1.html">如有不明白之处，欢迎参加社区讨论</a></div>
+    </div>
+    <div class="prev">
+        <ul>
+            <li><span>上一篇：</span><a href="81126.html" title="Linux ext2/ext3文件系统详解">Linux ext2/ext3文件系统详解</a></li>
+            <li><span>下一篇：</span><a href="81128.html" title="Linux操作系统下C语言编程注意事项">Linux操作系统下C语言编程注意事项</a></li>
+        </ul>
+    </div>
+    <div class="text-align:center;">
+        <br><script type="text/javascript"> var cpro_id = 'u121514';</script><script type="text/javascript" src="http://cpro.baidu.com/cpro/ui/c.js"></script>
+    </div>
+
+</div>
+</div>
+<!--屏幕中间文章内容栏end-->
+
+<!--屏幕左边推荐文章栏start-->
+<div class="side_content">
+    <ul>
+        <li class="ui-tabs-nav-item"><a href="#assocs">相关文档</a></li>
+        <li class="ui-tabs-nav-item"><a href="#favorites">最受欢迎</a></li>
+        <li class="ui-tabs-nav-item"><a href="#newests">最新文档</a></li>
+    </ul>
+    <div id="assocs">
+        <ul>
+                                <li><a href="43091.html" title="解析Linux下的并口编程(英文版)">解析Linux下的并口编程(英文版)</a></li>
+                                <li><a href="53248.html" title="安装交叉编译器arm-linux-gcc ">安装交叉编译器arm-linux-gcc </a></li>
+                                <li><a href="67244.html" title="到底用printf()方法需不需要头文件">到底用printf()方法需不需要头文件</a></li>
+                                <li><a href="67154.html" title="Gdbserver远程调试的具体实现">Gdbserver远程调试的具体实现</a></li>
+                                <li><a href="41408.html" title="ELF可执行文件解读">ELF可执行文件解读</a></li>
+                                <li><a href="52969.html" title="Linux中的.so .a .la文件的含义">Linux中的.so .a .la文件的含义</a></li>
+                                <li><a href="57296.html" title="c语言核心技术一">c语言核心技术一</a></li>
+                                <li><a href="43097.html" title="SMS中用Unicode编码发送中文的办法">SMS中用Unicode编码发送中文的办法</a></li>
+                                <li><a href="43089.html" title="轻松就能让Linux下的C编程从头来">轻松就能让Linux下的C编程从头来</a></li>
+                                <li><a href="54762.html" title="关于heap(堆）和stack(栈）的探讨">关于heap(堆）和stack(栈）的探讨</a></li>
+                                <li><a href="81046.html" title="BSD Socket 简易入门手册">BSD Socket 简易入门手册</a></li>
+                                <li><a href="52970.html" title="LINUX动态链接库高级应用">LINUX动态链接库高级应用</a></li>
+                                <li><a href="81128.html" title="Linux操作系统下C语言编程注意事项">Linux操作系统下C语言编程注意事项</a></li>
+                                <li><a href="43087.html" title="关于C++代码优化的方法总结(一)">关于C++代码优化的方法总结(一)</a></li>
+                                <li><a href="54763.html" title="c语言内存操作函数">c语言内存操作函数</a></li>
+                                <li><a href="57255.html" title="用Valgrind调试GTK程序及其它Tips ">用Valgrind调试GTK程序及其它Tips </a></li>
+                                <li><a href="43092.html" title="在CMP实体BEAN中使用BLOB数据类型">在CMP实体BEAN中使用BLOB数据类型</a></li>
+                                <li><a href="66858.html" title="理解dup和dup2">理解dup和dup2</a></li>
+                                <li><a href="53462.html" title="信号量函数 semget() semop() semctl()">信号量函数 semget() semop() semctl()</a></li>
+                                <li><a href="67181.html" title="Linux下Socket编程之地址结构">Linux下Socket编程之地址结构</a></li>
+                                <li><a href="53374.html" title="GDB调试精粹及使用实例">GDB调试精粹及使用实例</a></li>
+                                <li><a href="54996.html" title="Linux下Makefile文件简单概念">Linux下Makefile文件简单概念</a></li>
+                                <li><a href="53457.html" title="linux中waitpid系统调用">linux中waitpid系统调用</a></li>
+                                <li><a href="53441.html" title="gdb使用详解">gdb使用详解</a></li>
+                                <li><a href="81127.html" title="Linux操作系统下内存泄漏的检查方法">Linux操作系统下内存泄漏的检查方法</a></li>
+                                <li><a href="52689.html" title="深入理解C语言指针的奥秘">深入理解C语言指针的奥秘</a></li>
+                                <li><a href="53464.html" title="获取本机ip和网卡mac等信息的代码">获取本机ip和网卡mac等信息的代码</a></li>
+                                <li><a href="53295.html" title="Linux下的C编程入门（四）――“线程”控制与“线程”通信编程">Linux下的C编程入门（四）――“线程”控制与“线程”通信编程</a></li>
+                                <li><a href="57295.html" title="c语言核心技术二">c语言核心技术二</a></li>
+                                <li><a href="66906.html" title="Linux下c编程开始">Linux下c编程开始</a></li>
+                    </ul>
+    </div>
+    <div id="favorites">
+        <ul>
+                                <li><a href="43084.html" title="linux下命令行下编译c程序">linux下命令行下编译c程序</a></li>
+                                <li><a href="81056.html" title="Code Blocks -- Linux下目前感觉最好的C/C++ IDE">Code Blocks -- Linux下目前感觉最好的C/C++ IDE</a></li>
+                                <li><a href="67220.html" title="彻底告别Linux下没有C/C++好用IDE的时代">彻底告别Linux下没有C/C++好用IDE的时代</a></li>
+                                <li><a href="53457.html" title="linux中waitpid系统调用">linux中waitpid系统调用</a></li>
+                                <li><a href="43096.html" title="Linux下C语言编程--时间概念">Linux下C语言编程--时间概念</a></li>
+                                <li><a href="43082.html" title="网络编程之-原始套接字">网络编程之-原始套接字</a></li>
+                                <li><a href="53248.html" title="安装交叉编译器arm-linux-gcc ">安装交叉编译器arm-linux-gcc </a></li>
+                                <li><a href="43088.html" title="C++常用字符串处理函数及使用示例">C++常用字符串处理函数及使用示例</a></li>
+                                <li><a href="43089.html" title="轻松就能让Linux下的C编程从头来">轻松就能让Linux下的C编程从头来</a></li>
+                                <li><a href="43081.html" title="Linux/Unix环境下的make和makefile详解">Linux/Unix环境下的make和makefile详解</a></li>
+                                <li><a href="43097.html" title="SMS中用Unicode编码发送中文的办法">SMS中用Unicode编码发送中文的办法</a></li>
+                                <li><a href="43099.html" title="SourceInsight3.0：Linux源代码阅读">SourceInsight3.0：Linux源代码阅读</a></li>
+                                <li><a href="43095.html" title="Linux下C++异常处理技巧-实例讲解">Linux下C++异常处理技巧-实例讲解</a></li>
+                                <li><a href="43094.html" title="用C与脚本的混合编程来处理配置文件">用C与脚本的混合编程来处理配置文件</a></li>
+                                <li><a href="67301.html" title="在Linux中添加系统调用一例">在Linux中添加系统调用一例</a></li>
+                                <li><a href="53462.html" title="信号量函数 semget() semop() semctl()">信号量函数 semget() semop() semctl()</a></li>
+                                <li><a href="43091.html" title="解析Linux下的并口编程(英文版)">解析Linux下的并口编程(英文版)</a></li>
+                                <li><a href="66906.html" title="Linux下c编程开始">Linux下c编程开始</a></li>
+                                <li><a href="54765.html" title="linux c常用字符串处理函数">linux c常用字符串处理函数</a></li>
+                                <li><a href="43090.html" title="使用profile来得到程序运行信息">使用profile来得到程序运行信息</a></li>
+                                <li><a href="52969.html" title="Linux中的.so .a .la文件的含义">Linux中的.so .a .la文件的含义</a></li>
+                                <li><a href="43086.html" title="C++中关于指针入门的最好的文章">C++中关于指针入门的最好的文章</a></li>
+                                <li><a href="43100.html" title="在C/C++中如何构造通用的对象链表">在C/C++中如何构造通用的对象链表</a></li>
+                                <li><a href="43087.html" title="关于C++代码优化的方法总结(一)">关于C++代码优化的方法总结(一)</a></li>
+                                <li><a href="52687.html" title="GNU Make 中文手册v3.8 学习 (2/3) ">GNU Make 中文手册v3.8 学习 (2/3) </a></li>
+                                <li><a href="67305.html" title="GCC的源码方式安装">GCC的源码方式安装</a></li>
+                                <li><a href="43085.html" title="新手学习之浅析一下c/c++中的指针">新手学习之浅析一下c/c++中的指针</a></li>
+                                <li><a href="52688.html" title="GNU Make 中文手册v3.8 学习 ( 3/3 ) ">GNU Make 中文手册v3.8 学习 ( 3/3 ) </a></li>
+                                <li><a href="52686.html" title="GNU Make 中文手册v3.8 学习( 1/3 ) ">GNU Make 中文手册v3.8 学习( 1/3 ) </a></li>
+                                <li><a href="43093.html" title="使用TC实现基于linux的流量管理">使用TC实现基于linux的流量管理</a></li>
+                    </ul>
+    </div>
+    <div id="newests">
+        <ul>
+                             <li><a href="58257.html" title="glibc中iconv的心脏 -- gconv-module">glibc中iconv的心脏 -- gconv-module</a></li>
+                             <li><a href="57296.html" title="c语言核心技术一">c语言核心技术一</a></li>
+                             <li><a href="57295.html" title="c语言核心技术二">c语言核心技术二</a></li>
+                             <li><a href="57269.html" title="设置SourceInsight的condition解决代码语法解析错误的问题">设置SourceInsight的condition解决代码语法解析错误的问题</a></li>
+                             <li><a href="57258.html" title="使用GTK-DOC自动生成API文档">使用GTK-DOC自动生成API文档</a></li>
+                             <li><a href="57255.html" title="用Valgrind调试GTK程序及其它Tips ">用Valgrind调试GTK程序及其它Tips </a></li>
+                             <li><a href="57232.html" title="linux下用valgrind做内存检查(内存泄露等)">linux下用valgrind做内存检查(内存泄露等)</a></li>
+                             <li><a href="55284.html" title="assert使用总结">assert使用总结</a></li>
+                             <li><a href="55011.html" title="收集的一些关于编程方面的一些精品文章 ">收集的一些关于编程方面的一些精品文章 </a></li>
+                             <li><a href="54996.html" title="Linux下Makefile文件简单概念">Linux下Makefile文件简单概念</a></li>
+                             <li><a href="54973.html" title="System V共享内存区实例">System V共享内存区实例</a></li>
+                             <li><a href="54765.html" title="linux c常用字符串处理函数">linux c常用字符串处理函数</a></li>
+                             <li><a href="54763.html" title="c语言内存操作函数">c语言内存操作函数</a></li>
+                             <li><a href="54762.html" title="关于heap(堆）和stack(栈）的探讨">关于heap(堆）和stack(栈）的探讨</a></li>
+                             <li><a href="53467.html" title="Linux下Socket编程">Linux下Socket编程</a></li>
+                             <li><a href="53464.html" title="获取本机ip和网卡mac等信息的代码">获取本机ip和网卡mac等信息的代码</a></li>
+                             <li><a href="53462.html" title="信号量函数 semget() semop() semctl()">信号量函数 semget() semop() semctl()</a></li>
+                             <li><a href="53457.html" title="linux中waitpid系统调用">linux中waitpid系统调用</a></li>
+                             <li><a href="53451.html" title="atoi，atol，strtod，strtol，strtoul实现类型转换">atoi，atol，strtod，strtol，strtoul实现类型转换</a></li>
+                             <li><a href="53441.html" title="gdb使用详解">gdb使用详解</a></li>
+                             <li><a href="53433.html" title="gcc使用的方法">gcc使用的方法</a></li>
+                             <li><a href="53406.html" title="使用gdb调试程序">使用gdb调试程序</a></li>
+                             <li><a href="53374.html" title="GDB调试精粹及使用实例">GDB调试精粹及使用实例</a></li>
+                             <li><a href="53336.html" title="gcc的一些重要参数">gcc的一些重要参数</a></li>
+                             <li><a href="53295.html" title="Linux下的C编程入门（四）――“线程”控制与“线程”通信编程">Linux下的C编程入门（四）――“线程”控制与“线程”通信编程</a></li>
+                             <li><a href="53277.html" title="Linux下的C编程入门（三）――进程控制与进程通信编程">Linux下的C编程入门（三）――进程控制与进程通信编程</a></li>
+                             <li><a href="53275.html" title="Linux下的C编程入门（二）――文件系统编程">Linux下的C编程入门（二）――文件系统编程</a></li>
+                             <li><a href="53266.html" title="Linux下的C编程实战（一）――开发平台搭建">Linux下的C编程实战（一）――开发平台搭建</a></li>
+                             <li><a href="53262.html" title="如何在Linux下实现定时器">如何在Linux下实现定时器</a></li>
+                             <li><a href="53255.html" title="utf8探究">utf8探究</a></li>
+                    </ul>
+    </div>
+</div>
+<!--屏幕左边推荐文章栏end-->
+<!--屏幕左边推荐文章和中间文章内容栏end-->
+
+<div class="clear"><span>clearing</span></div>
+
+<!--页脚start-->
+    <div class="footer">
+<!--屏幕底部分类目录start-->
+        <div class="blocks">
+            <div class="outer">
+                <div class="inner">
+                    <div class="expand">
+                        <p id="button" class="unfold"><span>隐藏文档分类快捷跳转菜单</span><span class="ads"><a class="outlink" href="http://sns.linuxpk.com/" title="SNS">SNS</a></span><code class="clear"><!--just a hack--></code></p>
+                    </div>
+                    <div class="blocks_content">
+                        <dl>
+                            <dt><a href="channel01.html">互联网</a></dt>
+                            <dd><a href="type1.html">圈子动态</a></dd>
+                            <dd><a href="type7.html">互联网投资</a></dd>
+                            <dd><a href="type6.html">互联网广告</a></dd>
+                            <dd><a href="type5.html">Web2.0</a></dd>
+                            <dd><a href="type11.html">内幕传闻</a></dd>
+                            <dd><a href="type4.html">IM</a></dd>
+                            <dd><a href="type10.html">电子商务</a></dd>
+                            <dd><a href="type3.html">搜索</a></dd>
+                            <dd><a href="type9.html">门户</a></dd>
+                            <dd><a href="type2.html">博客</a></dd>
+                            <dd><a href="type8.html">网游</a></dd>
+                        </dl>
+                        <dl>
+                            <dt><a href="channel02.html">IT动态</a></dt>
+                            <dd><a href="type14.html">观察分析</a></dd>
+                            <dd><a href="type13.html">IT要闻</a></dd>
+                            <dd><a href="type12.html">IT业界</a></dd>
+                            <dd><a href="type18.html">热门话题</a></dd>
+                            <dd><a href="type17.html">新经济</a></dd>
+                            <dd><a href="type16.html">硬件</a></dd>
+                            <dd><a href="type15.html">软件</a></dd>
+                        </dl>
+                        <dl>
+                            <dt><a href="channel03.html">通信</a></dt>
+                            <dd><a href="type20.html">市场行情</a></dd>
+                            <dd><a href="type26.html">移动</a></dd>
+                            <dd><a href="type19.html">通信动态</a></dd>
+                            <dd><a href="type25.html">VOIP</a></dd>
+                            <dd><a href="type24.html">IPTV</a></dd>
+                            <dd><a href="type23.html">3G</a></dd>
+                            <dd><a href="type22.html">手机世界</a></dd>
+                            <dd><a href="type28.html">解决方案</a></dd>
+                            <dd><a href="type21.html">分析报告</a></dd>
+                            <dd><a href="type27.html">增值</a></dd>
+                        </dl>
+                        <dl>
+                            <dt><a href="channel04.html">服务器</a></dt>
+                            <dd><a href="type33.html">服务器应用</a></dd>
+                            <dd><a href="type32.html">评测</a></dd>
+                            <dd><a href="type31.html">产品导购</a></dd>
+                            <dd><a href="type30.html">新闻</a></dd>
+                            <dd><a href="type29.html">行情</a></dd>
+                            <dd><a href="type34.html">解决方案</a></dd>
+                        </dl>
+                        <dl>
+                            <dt><a href="channel05.html">安全</a></dt>
+                            <dd><a href="type39.html">病毒专区</a></dd>
+                            <dd><a href="type38.html">安全基础</a></dd>
+                            <dd><a href="type37.html">软件产品</a></dd>
+                            <dd><a href="type36.html">硬件产品</a></dd>
+                            <dd><a href="type42.html">安全方案</a></dd>
+                            <dd><a href="type35.html">安全资讯</a></dd>
+                            <dd><a href="type41.html">防火墙</a></dd>
+                            <dd><a href="type40.html">黑客技术</a></dd>
+                        </dl>
+                        <dl>
+                            <dt><a href="channel06.html">游戏开发</a></dt>
+                            <dd><a href="type46.html">算法设计</a></dd>
+                            <dd><a href="type45.html">特效处理</a></dd>
+                            <dd><a href="type44.html">程序设计</a></dd>
+                            <dd><a href="type43.html">游戏策划</a></dd>
+                            <dd><a href="type47.html">图形图像</a></dd>
+                        </dl>
+                        <dl>
+                            <dt><a href="channel07.html">Cisco</a></dt>
+                            <dd><a href="type72.html">路由技术</a></dd>
+                            <dd><a href="type105.html">Cisco教材</a></dd>
+                            <dd><a href="type63.html">综合技术</a></dd>
+                            <dd><a href="type98.html">安全技术</a></dd>
+                            <dd><a href="type59.html">解决方案</a></dd>
+                            <dd><a href="type94.html">无线技术</a></dd>
+                            <dd><a href="type54.html">CISCO产品</a></dd>
+                            <dd><a href="type89.html">网络协议</a></dd>
+                            <dd><a href="type48.html">考试认证</a></dd>
+                            <dd><a href="type82.html">网络管理</a></dd>
+                            <dd><a href="type77.html">交换技术</a></dd>
+                            <dd><a href="type114.html">资讯动态</a></dd>
+                         </dl>
+                        <dl>
+                            <dt><a href="channel101.html">华为</a></dt>
+                            <dd><a href="type120.html">解决方案</a></dd>
+                            <dd><a href="type119.html">应用技术</a></dd>
+                            <dd><a href="type118.html">学习教程</a></dd>
+                            <dd><a href="type117.html">考试心得</a></dd>
+                            <dd><a href="type116.html">考试介绍</a></dd>
+                            <dd><a href="type115.html">认证介绍</a></dd>
+                            <dd><a href="type121.html">产品介绍</a></dd>
+                        </dl>
+                        <dl>
+                            <dt><a href="channel102.html">CIW</a></dt>
+                            <dd><a href="type126.html">应用技术</a></dd>
+                            <dd><a href="type125.html">学习教程</a></dd>
+                            <dd><a href="type124.html">考试心得</a></dd>
+                            <dd><a href="type123.html">考试介绍</a></dd>
+                            <dd><a href="type122.html">认证介绍</a></dd>
+                            <dd><a href="type127.html">解决方案</a></dd>
+                        </dl>
+                        <dl>
+                            <dt><a href="channel51.html">Windows</a></dt>
+                            <dd><a href="type170.html">系统优化</a></dd>
+                            <dd><a href="type165.html">系统技巧</a></dd>
+                            <dd><a href="type159.html">系统故障</a></dd>
+                            <dd><a href="type150.html">系统安全</a></dd>
+                            <dd><a href="type144.html">网络技巧</a></dd>
+                            <dd><a href="type180.html">资讯动态</a></dd>
+                            <dd><a href="type136.html">服务器技术</a></dd>
+                            <dd><a href="type175.html">windows新手入门</a></dd>
+                        </dl>
+                        <dl>
+                            <dt><a href="channel52.html">Linux</a></dt>
+                            <dd><a href="type128.html">其他</a></dd>
+                            <dd><a href="type198.html">Linux数据库</a></dd>
+                            <dd><a href="type129.html">发行版</a></dd>
+                            <dd><a href="type194.html">网络管理</a></dd>
+                            <dd><a href="type188.html">系统管理</a></dd>
+                            <dd><a href="type184.html">linux新手入门</a></dd>
+                            <dd><a href="type1079.html">编辑工具</a></dd>
+                            <dd><a href="type201.html">Linux编程</a></dd>
+                        </dl>
+                        <dl>
+                            <dt><a href="channel53.html">Java</a></dt>
+                            <dd><a href="type225.html">J2EE</a></dd>
+                            <dd><a href="type219.html">高级技术</a></dd>
+                            <dd><a href="type213.html">核心技术</a></dd>
+                            <dd><a href="type249.html">其它技术</a></dd>
+                            <dd><a href="type207.html">java新手入门</a></dd>
+                            <dd><a href="type240.html">开源技术</a></dd>
+                            <dd><a href="type206.html">资讯动态</a></dd>
+                            <dd><a href="type237.html">XML</a></dd>
+                            <dd><a href="type233.html">J2ME</a></dd>
+                        </dl>
+                        <dl>
+                            <dt><a href="channel55.html">Oracle</a></dt>
+                            <dd><a href="type265.html">入门基础</a></dd>
+                            <dd><a href="type258.html">安装配置</a></dd>
+                            <dd><a href="type264.html">考试认证</a></dd>
+                            <dd><a href="type263.html">资讯动态</a></dd>
+                            <dd><a href="type262.html">开发技术</a></dd>
+                            <dd><a href="type261.html">性能调优</a></dd>
+                            <dd><a href="type260.html">备份恢复</a></dd>
+                            <dd><a href="type259.html">PLSQL</a></dd>
+                        </dl>
+                        <dl>
+                            <dt><a href="channel56.html">网页设计</a></dt>
+                            <dd><a href="type285.html">JavaScript</a></dd>
+                            <dd><a href="type284.html">HTML/CSS</a></dd>
+                            <dd><a href="type283.html">FrontPage</a></dd>
+                            <dd><a href="type278.html">Fireworks</a></dd>
+                            <dd><a href="type272.html">Flash</a></dd>
+                            <dd><a href="type268.html">Dreamweaver</a></dd>
+                            <dd><a href="type1116.html">ASP</a></dd>
+                        </dl>
+                        <dl>
+                            <dt><a href="type57.html">平面设计</a></dt>
+                            <dd><a href="type299.html">Freehand</a></dd>
+                            <dd><a href="type298.html">Illustrator</a></dd>
+                            <dd><a href="type297.html">AuotoCAD</a></dd>
+                            <dd><a href="type292.html">CorelDraw</a></dd>
+                            <dd><a href="type286.html">Photoshop</a></dd>
+                        </dl>
+                        <dl>
+                            <dt><a href="type58.html">多媒体</a></dt>
+                            <dd><a href="type300.html">3DMax</a></dd>
+                            <dd><a href="type307.html">Maya</a></dd>
+                            <dd><a href="type306.html">Director</a></dd>
+                            <dd><a href="type305.html">Authorware</a></dd>
+                        </dl>
+                        <dl>
+                            <dt><a href="type59.html">工具软件</a></dt>
+                            <dd><a href="type311.html">eMule</a></dd>
+                            <dd><a href="type317.html">Maxthon</a></dd>
+                            <dd><a href="type310.html">BT</a></dd>
+                            <dd><a href="type316.html">IE</a></dd>
+                            <dd><a href="type309.html">迅雷</a></dd>
+                            <dd><a href="type315.html">Outlook</a></dd>
+                            <dd><a href="type308.html">PP点点通</a></dd>
+                            <dd><a href="type314.html">Ghost</a></dd>
+                            <dd><a href="type313.html">Nero</a></dd>
+                            <dd><a href="type312.html">FlashGet</a></dd>
+                            <dd><a href="type318.html">Office</a></dd>
+                        </dl>
+                        <dl>
+                            <dt><a href="channel60.html">即时通讯</a></dt>
+                            <dd><a href="type328.html">新浪UC</a></dd>
+                            <dd><a href="type327.html">雅虎通</a></dd>
+                            <dd><a href="type326.html">Skype</a></dd>
+                            <dd><a href="type325.html">网易泡泡</a></dd>
+                            <dd><a href="type324.html">MSN</a></dd>
+                            <dd><a href="type323.html">QQ</a></dd>
+                        </dl>
+                        <dl>
+                            <dt><a href="channel54.html">.Net</a></dt>
+                            <dd><a href="type252.html">C#</a></dd>
+                            <dd><a href="type251.html">ASP.NET</a></dd>
+                            <dd><a href="type257.html">.NETFramework</a></dd>
+                            <dd><a href="type250.html">资讯动态</a></dd>
+                            <dd><a href="type256.html">VB.NET</a></dd>
+                            <dd><a href="type255.html">VC.NET</a></dd>
+                            <dd><a href="type254.html">ADO.NET</a></dd>
+                            <dd><a href="type253.html">XML/WebService</a></dd>
+                        </dl>                                                
+                    </div>
+                    <div class="clear"></div>
+                </div>
+            </div>
+        </div>
+<!--屏幕底部分类目录end-->
+
+<!--屏幕底部友情链接start-->
+        <div class="friend_links">
+            <div class="links_img">
+            </div>
+            <div class="links_text">
+                <h6>友情链接</h6>
+                <ul>
+                    <li><a target="_blank" title="红旗Linux" href="http://www.redflag-linux.com">中科红旗</a></li>
+                    <li><a target="_blank" title="CIOAGE" href="http://www.cioage.com/">CIOAge.com</a></li>
+                    <li><a target="_blank" title="Linux联盟" href="http://www.xxlinux.com/">Linux联盟</a></li>
+                    <li><a target="_blank" title="mysql中文网" href="http://imysql.cn/">mysql中文网</a></li>
+                    <li><a target="_blank" title="亚嵌Linux" href="http://www.akaedu.org">亚嵌Linux</a></li>
+                    <li><a target="_blank" title="蓝森林-自由软件" href="http://www.lslnet.com/linux/">蓝森林-自由软件</a></li>
+                    <li><a target="_blank" title="亲亲家园" href="http://www.77my.com/">亲亲家园</a></li>
+                    <li><a target="_blank" title="软件项目交易网" href="http://www.sxsoft.com">软件项目交易网</a></li>
+                    <li><a target="_blank" title="广东Linux" href="http://www.gd-linux.com/">广东Linux</a></li>
+                    <li><a target="_blank" title="喀纳斯Linux" href="http://www.kanasshop.com/">喀纳斯Linux</a></li>
+                    <li><a target="_blank" title="葡萄网" href="http://www.pootao.com/">葡萄网</a></li>
+                </ul>
+            </div>
+        </div>
+<!--屏幕底部友情链接end-->
+
+<!--屏幕底部站点信息start-->
+        <div class="site_info">
+            <div class="infos">
+                <ul>
+                    <li class="first"><a target="_blank" href="http://www.linuxpk.com" title="Linuxpk宝库">Linux宝库</a></li>
+                    <li><a target="_blank" href="http://bbs.linuxpk.com" title="Linux论坛">Linux论坛</a></li>
+                    <li><a target="_blank" href="http://doc.linuxpk.com" title="Linux教程">Linux教程</a></li>
+                    <li><a target="_blank" href="http://sns.linuxpk.com" title="Linux朋友">Linux朋友</a></li>
+                    <li><a target="_blank" href="mailto:linuxmine.gmail.com" title="联系我们">联系我们</a></li>
+                </ul>
+            </div>
+            <p>Copyright &copy;2004 - 2011 <span><a href="http://www.linuxpk.com" target="_blank" title="Linux宝库">Linux宝库</a></span>
+ All Rights Reserved <span><a href="http://www.miibeian.gov.cn/" target="_blank">京ICP备06004652号</a></span> 公安机关备案号：1101140077</p>
+        </div>
+<!--屏幕底部站点信息end-->
+
+    </div>
+<!--页脚end-->
+
+</div>
+<!--全文end-->
+
+<script type="text/javascript" src="include/js/jquery-ui-personalized-1.5.2.min.js"></script>
+<script type="text/javascript" src="include/js/article.js"></script>
+<script type="text/javascript" src="include/js/common.js"></script>
+<script type="text/javascript"> var _gaq = _gaq || []; _gaq.push(['_setAccount', 'UA-437782-6']); _gaq.push(['_setDomainName', '.linuxpk.com']); _gaq.push(['_trackPageview']); (function() { var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true; ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js'; var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s); })(); </script>
+</body>
+</html>

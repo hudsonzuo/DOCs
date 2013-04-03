@@ -1,0 +1,738 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>Linux下的信号编程小结 - 罗索工作室</title>
+<meta name="keywords" content="信号,signals,Linux">
+<meta name="description" content="不可靠信号假如一个进程接收到一个普通信号，而进程的未决信号集（pending signals）中存在相同的信号，则这个新发送的信号丢失。即同一时间进程的未决信号集中只可能有一个普通信号。">
+<link href="/templets/style/dedecms.css" rel="stylesheet" media="screen" type="text/css">
+
+<script src="/js/rs_top.js" type="text/javascript"></script>
+
+<script language="javascript" type="text/javascript" src="/include/dedeajax2.js"></script>
+<script language="javascript" type="text/javascript">
+<!--
+function CheckLogin(){
+	  var taget_obj = document.getElementById('_ajax_feedback');
+	  myajax = new DedeAjax(taget_obj,false,false,'','','');
+	  myajax.SendGet2("/member/ajax_feedback.php");
+	  DedeXHTTP = null;
+}
+function postBadGood(ftype,fid)
+{
+	var taget_obj = document.getElementById(ftype+fid);
+	var saveid = GetCookie('badgoodid');
+	if(saveid != null)
+	{
+		var saveids = saveid.split(',');
+		var hasid = false;
+		saveid = '';
+		j = 1;
+		for(i=saveids.length-1;i>=0;i--)
+		{
+			if(saveids[i]==fid && hasid) continue;
+			else {
+				if(saveids[i]==fid && !hasid) hasid = true;
+				saveid += (saveid=='' ? saveids[i] : ','+saveids[i]);
+				j++;
+				if(j==10 && hasid) break;
+				if(j==9 && !hasid) break;
+			}
+		}
+		if(hasid) { alert('您刚才已表决过了喔！'); return false;}
+		else saveid += ','+fid;
+		SetCookie('badgoodid',saveid,1);
+	}
+	else
+	{
+		SetCookie('badgoodid',fid,1);
+	}
+	myajax = new DedeAjax(taget_obj,false,false,'','','');
+	myajax.SendGet2("/plus/feedback.php?aid="+fid+"&action="+ftype+"&fid="+fid);
+}
+function postDigg(ftype,aid)
+{
+	var taget_obj = document.getElementById('newdigg');
+	var saveid = GetCookie('diggid');
+	if(saveid != null)
+	{
+		var saveids = saveid.split(',');
+		var hasid = false;
+		saveid = '';
+		j = 1;
+		for(i=saveids.length-1;i>=0;i--)
+		{
+			if(saveids[i]==aid && hasid) continue;
+			else {
+				if(saveids[i]==aid && !hasid) hasid = true;
+				saveid += (saveid=='' ? saveids[i] : ','+saveids[i]);
+				j++;
+				if(j==20 && hasid) break;
+				if(j==19 && !hasid) break;
+			}
+		}
+		if(hasid) { alert("您已经顶过该帖，请不要重复顶帖 ！"); return; }
+		else saveid += ','+aid;
+		SetCookie('diggid',saveid,1);
+	}
+	else
+	{
+		SetCookie('diggid',aid,1);
+	}
+	myajax = new DedeAjax(taget_obj,false,false,'','','');
+	var url = "/plus/digg_ajax.php?action="+ftype+"&id="+aid;
+	myajax.SendGet2(url);
+}
+function getDigg(aid)
+{
+	var taget_obj = document.getElementById('newdigg');
+	myajax = new DedeAjax(taget_obj,false,false,'','','');
+	myajax.SendGet2("/plus/digg_ajax.php?id="+aid);
+	DedeXHTTP = null;
+}
+-->
+</script>
+</head>
+<body class="articleview">
+<table width="960" align="center" border="0" cellpadding="0" topmargin="3" cellspacing="0">
+<tr>
+	<td align="right">
+
+ <script src="/js/page_head.js" type="text/javascript" charset="gb2312"></script>
+  
+	</td>
+</tr>
+</table>
+<div class="header">
+	<div class="top w960 center">
+      <div class="title">
+        <h1> <a href="http://www.rosoo.net">罗索工作室</a> </h1>
+      </div>
+      <div class="banner">
+				<script src="/ad/js_ad_728x90_100.js"></script>
+      </div>
+	</div><!-- //top -->
+	<!-- //菜单 -->
+	<div class="module blue mT10 wrapper w963">
+  	<div class="top">
+    	<div class="t_l"></div>
+    	<div class="t_r"></div>
+    	<!-- //如果不使用currentstyle，可以在channel标签加入 cacheid='channeltoplist' 属性提升性能 -->
+    <div id="navMenu">
+    	<ul>
+      	<li><a href="/">主页</a></li>
+      	<li class="hover"><a href="/a/Media/" rel="dropmenu1">流媒体开发</a></li>
+      	<li><a href="/a/embedded/" rel="dropmenu33">嵌入式开发</a></li>
+      	
+      	<li><a href="/a/specials/" rel="dropmenu18">专题技术</a></li>
+      	
+      	<li><a href="/a/product/" rel="dropmenu8">*罗索作品*</a></li>
+      	
+      	<li><a href="/a/SoftEng/" rel="dropmenu7">软件工程</a></li>
+      	
+      	<li><a href="/a/Dev/" rel="dropmenu13">软件开发</a></li>
+      	
+      	<li><a href="/a/DevSpecial/" rel="dropmenu2">专题项目</a></li>
+      	
+      	<li><a href="/a/Management/" rel="dropmenu101">管理学院</a></li>
+      	
+      	<li><a href="/a/Digest/" rel="dropmenu95">吼山文摘</a></li>
+      	
+      	<li><a href="/a/Game/" rel="dropmenu5">游戏区</a></li>
+      	
+    	</ul>
+    </div>	
+    <div class="search">
+      <form action="/plus/search.php" name="formsearch">
+        <div class="form">
+          <h4>搜索</h4>
+           <input type="hidden" name="kwtype" value="0">
+           <input name="keyword" type="text" class="search-keyword" id="search-keyword">
+           <select name="searchtype" class="search-option" id="search-option">
+               <option value="titlekeyword" selected="1">智能模糊搜索</option>
+               <option value="title">仅搜索标题</option>
+           </select>
+          <button type="submit" class="search-submit">搜索</button>
+        </div>
+        </form>
+		<div class="tags">
+          <h4>热门标签</h4>
+          <ul>
+          <li>
+　<a href="/plus/search.php?keyword=H.264+%C2%EB%C1%F7%B7%D6%CE%F6">H.264 码流分析</a> 　<a href="/plus/search.php?keyword=%CA%D3%C6%B5%BC%E0%BF%D8%BC%BC%CA%F5">视频监控技术</a> 　<a href="/plus/search.php?keyword=264">264</a> 　<a href="/plus/search.php?keyword=ffmpeg+ce">ffmpeg ce</a> 　<a href="/plus/search.php?keyword=ffmpeg">ffmpeg</a> 　<a href="/plus/search.php?keyword=rtp">rtp</a> </li>
+          </ul>
+        </div>
+    </div><!-- //search -->
+		</div>
+	</div>
+</div><!-- //header -->
+
+<!-- /header -->
+
+<div class="channel-nav w960 center clear">
+	<div class="sonnav">
+	
+		<span><a href="/a/list_100_1.html">C & CPP</a></span><span><a href="/a/list_49_1.html" class="thisclass">Linux开发</a></span>
+		<span><a href="/a/list_52_1.html">服务器模型</a></span>
+		<span><a href="/a/list_47_1.html">智能视频OpenCV</a></span>
+	</div>
+	<span class="back">
+		<a href="/">返回首页</a>
+	</span>
+</div><!-- /channel-nav -->
+
+<div class="w960 center clear mt1">
+	<div class="pleft">
+		<div class="place">
+			<strong>当前位置:</strong> <a href="http://www.rosoo.net">主页</a>><a href="/a/specials/">专题技术</a>><a href="/a/list_49_1.html">Linux开发</a>>
+		</div><!-- /place -->
+		<div class="viewbox">
+			<div class="title">
+				<h2>Linux下的信号编程小结</h2>
+			</div><!-- /title -->
+			<div class="info">
+				<small>时间:</small>2010-01-26 11:44<small>来源:</small>hi.baidu.com <small>作者:</small>amy_yeni <small>点击:</small><script src="/plus/count.php?view=yes&aid=8392&mid=11927" type="text/javascript" language="javascript"></script>次</div><!-- /info -->
+
+            	<div class="intro">不可靠信号假如一个进程接收到一个普通信号，而进程的未决信号集（pending signals）中存在相同的信号，则这个新发送的信号丢失。即同一时间进程的未决信号集中只可能有一个普通信号。</div>
+			<div class="content">
+<div align="right"><script src="/js/sc/sc.js"></script></div>
+<div><b>TAG: </b> <a href="/tags.php?/Linux/">Linux</a>&nbsp;&nbsp;<a href="/tags.php?/signals/">signals</a>&nbsp;&nbsp;<a href="/tags.php?/%D0%C5%BA%C5/">信号</a>&nbsp;&nbsp;</div>
+			<table width="100%">
+				<tr><td>
+<script type="text/javascript" src="/ad/js_ad_468x15_100.js"></script>
+
+<br>>
+
+<p><a href='</br>a/linux/'><u>Linux</u></a>下的信号编程小结</p>
+<p>1 概念<br>
+1.1 产生条件<br>
+- 用户按下了某些终端键（如Ctrl-c）时<br>
+- 硬件异常产生信号<br>
+- 进程用kill(2)函数给另一个进程或进程组发送信号<br>
+- 用户用kill(1)命令发送信号给进程<br>
+- 某种软件条件发生（如SIGPIPE等信号）<br>
+1.2 动作<br>
+- 忽略此信号<br>
+- 捕获信号<br>
+- 执行系统默认动作<br>
+1.3 信号分类<br>
+-不可靠信号，即普通信号。假如一个进程接收到一个普通信号，而进程的未决信号集（pending signals）中存在相同的信号，则这个新发送的信号丢失。即同一时间进程的未决信号集中只可能有一个普通信号。文档/usr/include/bits/signum.h中定义了任何普通信号。<br>
+-可靠信号，即实时信号。信号值在SIGRTMIN(32)和SIGRTMAX(64)之间的信号。实时信号每次都会被加入到未决信号集中。<br>
+2 signal函数<br>
+2.1 函数原形<br>
+typedef void (*sighandler_t)(int);<br>
+sighandler_t signal(int signum, sighandler_t handler);<br>
+2.2 说明<br>
+handler的值能够是SIG_IGN(忽略信号)，SIG_DFL(默认行为)或是用户自定义的一个信号处理函数。返回的是之前的信号处理函数指针或SIG_ERR。<br>
+3 中断的系统调用<br>
+假如进程执行一个低速系统调用而阻塞期间捕获到一个信号，该系统调用会被中断返回出错，errno设为EINTR。4.2BSD引入了自动再启动的系统调用包括：read、readv、write、writev、ioctl、wait和waitpid。<br>
+4 可再入函数<br>
+不可再入函数一般是指：a)使用了静态数据结构，b)调用了malloc或free或c)标准I/O函数。假如在信号处理函数种调用不可再入函数，则可能会引起错误。<br>
+即使是可载入函数，因为errno每个进程只有一个，也有可能引起错误。因此一般调用使用errno的系统调用之前都要保存errno，在调用后再恢复。<br>
+5 发送等待信号<br>
+5.1 相关函数<br>
+int kill(pid_t pid, int sig);<br>
+int raise(int sig);<br>
+unsigned int alarm(unsigned int seconds);<br>
+int pause(void);<br>
+5.2 说明<br>
+kill能够给人以进程发送信号，raise则给当前进程发送信号。<br>
+alarm则配置一个闹钟值，所配置的时间超过后，产生一个SIGALARM信号，其默认动作时终止该进程。<br>
+pause是当前进程挂起直到接收到一个信号。<br>
+实例：<br>
+- sleep的不完整的实现：signals/sleep1.c<br>
+6 信号集<br>
+6.1 相关函数<br>
+int sigemptyset(sigset_t *set);<br>
+int sigfillset(sigset_t *set);<br>
+int sigaddset(sigset_t *set, int signum);<br>
+int sigdelset(sigset_t *set, int signum);<br>
+int sigismember(const sigset_t *set, int signum);<br>
+6.2 说明<br>
+sigset是表示多个信号的数据类型。sigemptyset函数使信号集set不包含任何信号，sigfillset使set包含任何的信号。sigaddset和sigdelset添加和删除一个信号。sigismember检测信号集是否包含特定的信号。<br>
+7 POSIX信号处理函数<br>
+7.1 相关函数<br>
+int sigaction(int signum, const struct sigaction *act, struct sigaction *oldact);<br>
+int sigprocmask(int how, const sigset_t *set, sigset_t *oldset);<br>
+int sigpending(sigset_t *set);<br>
+int sigsuspend(const sigset_t *mask);<br>
+7.2 说明<br>
+用sigprocmask设定进程信号屏蔽字，参数how有三个可选项：SIG_BLOCK，SIG_UNBLOCK和SIG_SETMASK。<br>
+sigpending返回对于调用进程被阻塞的和当前未决的信号集。<br>
+sigaction取代了早期的signal函数，用于设定和信号相关联的处理动作。参数act的类型为：<br>
+struct sigaction {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; void (*sa_handler)(int);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; void (*sa_sigaction)(int, siginfo_t *, void *);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; sigset_t sa_mask;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int sa_flags;<br>
+}<br>
+因为可能会用union实现，只能给两个信号处理函数指针sa_handler和sa_sigaction中的一个赋值。sa_mask是信号处理函数执行时应该被屏蔽的信号。flag则是一些标识，要使用sa_sigaction则必须设定SA_SIGINFO，这样信号的一些信息及传递的变量才会被配置到sa_sigaction的第二个参数中。关于sa_sigaction第二个参数的使用，参看man文档。<br>
+sigsuspend以参数mask为屏蔽字是进程挂起直到接收到一个信号。相当于以原子操作实现：<br>
+sigprocmask(SIG_SETMASK, &amp;mask, &amp;oldmask);<br>
+pause();<br>
+sigprocmask(SIG_SETMASK, &amp;oldmask, NULL);<br>
+实例：<br>
+- 父子进程同步的实现：lib.rhlin /tellwait.c<br>
+- 用sigsuspend保护临界区：signals/suspend1.c<br>
+- 用sigsuspend等待一个全局变量被配置：signals/suspend2.c<br>
+- abort的实现：signals/abort.c<br>
+- system的POSIX.2实现：signals/system.c<br>
+- 处理SIGTSTP信号(Ctrl-z)：signals/sigtstp.c<br>
+8 非局部跳转<br>
+8.1 相关函数<br>
+int sigsetjmp(sigjmp_buf env, int savesigs);<br>
+void siglongjmp(sigjmp_buf env, int val);<br>
+8.2 说明<br>
+这两个函数和setjmp、longjmp之间的唯一区分是sigsetjmp增加了一个参数。savesigs为非0，则sigsetjmp在env中保存进程的当前屏蔽字。<br>
+实例：<br>
+- 信号屏蔽及siglongjmp的使用：signals/mask.c&nbsp;</p>
+<p>原文：<a href="http://hi.baidu.com/amy_yeni/blog/item/7a385ccc549b28590fb345ba.html">http://hi.baidu.com/amy_yeni/blog/item/7a385ccc549b28590fb345ba.html</a></p>
+
+<br>
+<script type="text/javascript" src="/ad/js_ad_468x15_101.js"></script>
+<p align="right">
+(责任编辑：jacky)
+</p>
+			</td></tr>
+			</table>
+			</div><!-- /content -->
+
+			<div class="dede_pages">
+				<ul class="pagelist">
+          
+				</ul>
+			</div><!-- /pages -->
+
+			<!-- //顶踩 -->
+			<div class="newdigg" id="newdigg">
+				<div class="diggbox digg_good" onmousemove="this.style.backgroundPosition='left bottom';" onmouseout="this.style.backgroundPosition='left top';" onclick="javascript:postDigg('good',8392)">
+					<div class="digg_act">顶一下</div>
+					<div class="digg_num">(0)</div>
+					<div class="digg_percent">
+						<div class="digg_percent_bar"><span style="width:0%"></span></div>
+						<div class="digg_percent_num">0%</div>
+					</div>
+				</div>
+				<div class="diggbox digg_bad" onmousemove="this.style.backgroundPosition='right bottom';" onmouseout="this.style.backgroundPosition='right top';" onclick="javascript:postDigg('bad',8392)">
+					<div class="digg_act">踩一下</div>
+					<div class="digg_num">(0)</div>
+					<div class="digg_percent">
+						<div class="digg_percent_bar"><span style="width:0%"></span></div>
+						<div class="digg_percent_num">0%</div>
+					</div>
+				</div>
+			</div>
+			<script language="javascript" type="text/javascript">getDigg(8392);</script>
+			<!-- //顶踩部份的源码结束 -->
+			
+			<div class="boxoff">
+				<strong>------分隔线----------------------------</strong>
+			</div>
+			<div class="handle">
+				<div class="context">
+					<ul>
+						<li>上一篇：<a href="/a/201001/8389.html">基于Video4Linux 的USB 摄像头图像采集实现</a> </li>
+						<li>下一篇：<a href="/a/201001/8399.html">Linux下检测内存泄露的方法</a> </li>
+					</ul>
+				</div><!-- /context -->
+				<div class="actbox">
+					<ul>
+						<li id="act-fav"><a href="/plus/stow.php?aid=8392" target="_blank">收藏</a></li>
+						<li id="act-err"><a href="/plus/erraddsave.php?aid=8392&title=Linux下的信号编程小结" target="_blank">挑错</a></li>
+						<li id="act-pus"><a href="/plus/recommend.php?aid=8392" target="_blank">推荐</a></li>
+						<li id="act-pnt"><a href="#" onclick="window.print();">打印</a></li>
+					</ul>
+				</div><!-- /actbox -->
+			</div><!-- /handle -->
+			
+<!--related archives-->
+<div class="mt1">
+		<dl class="tbox">
+			<dt>
+				<strong>相关文章</strong>
+			</dt>
+			<dd>
+        <ul class="c1 ico2">
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+	<td width="50%">
+<li><a href="/a/201010/10366.html">Linux 内核配置及编译简介</a></li>
+	</td>
+	<td width="50%">
+<li><a href="/a/201010/10365.html">Linux 系统的单用户模式、修复模式、跨控制台登录在系统修复中的</a></li>
+	</td>
+	</tr>
+<tr>
+	<td width="50%">
+<li><a href="/a/201010/10360.html">漫谈Linux下的音频问题</a></li>
+	</td>
+	<td width="50%">
+<li><a href="/a/201010/10359.html">ALSA  Audio  API 使用指南（译文）</a></li>
+	</td>
+	</tr>
+<tr>
+	<td width="50%">
+<li><a href="/a/201010/10357.html">使用ALSA编写自己的音频程序</a></li>
+	</td>
+	<td width="50%">
+<li><a href="/a/201010/10356.html">Linux音频系列之二：不是那么可悲了</a></li>
+	</td>
+	</tr>
+<tr>
+	<td width="50%">
+<li><a href="/a/201010/10355.html">Linux音频系列之一：ALSA是垃圾，OSS王道！</a></li>
+	</td>
+	<td width="50%">
+<li><a href="/a/201010/10315.html">移植cramfs文件系统和busybox到linux2.6</a></li>
+	</td>
+	</tr>
+<tr>
+	<td width="50%">
+<li><a href="/a/201010/10309.html">linux 2.6的Kernel LOGO 显示调整</a></li>
+	</td>
+	<td width="50%">
+<li><a href="/a/201010/10308.html">Linux2.4内核启动logo定制</a></li>
+	</td>
+	</tr>
+	</table>
+
+        </ul>
+			</dd>
+		</dl>
+</div>
+<!--related archives-->
+
+			
+		</div><!-- /viewbox -->
+
+<!-- //AJAX评论区 -->
+<!-- //主模板必须要引入/include/dedeajax2.js -->
+<a name="postform"></a>
+<div class="mt1">
+		<dl class="tbox">
+			<dt>
+				<strong>发表评论</strong>
+				<span class="more"></span>
+			</dt>
+			<dd>
+				<div class="dede_comment_post">
+          <form action="#" method="post" name="feedback">
+          <input type="hidden" name="dopost" value="send">
+          <input type="hidden" name="comtype" value="comments">
+          <input type="hidden" name="aid" value="8392">
+          <input type="hidden" name="fid" id="feedbackfid" value="0">
+          <div class="dcmp-title">
+						<small>请自觉遵守互联网相关的政策法规，严禁发布色情、暴力、反动的言论。</small>
+					</div><!-- /dcmp-title -->
+					<div class="dcmp-stand">
+						<strong>评价:</strong>
+							<input type="radio" name="feedbacktype" checked="1" value="feedback" id="dcmp-stand-neu"><label for="dcmp-stand-neu"><img src="/templets/images/cmt-neu.gif">中立</label>
+							<input type="radio" name="feedbacktype" value="good" id="dcmp-stand-good"><label for="dcmp-stand-good"><img src="/templets/images/cmt-good.gif">好评</label>
+							<input type="radio" name="feedbacktype" value="bad" id="dcmp-stand-bad"><label for="dcmp-stand-bad"><img src="/templets/images/cmt-bad.gif">差评</label>
+					</div><!-- /dcmp-stand -->
+					<div class="dcmp-content">
+						<textarea cols="60" name="msg" rows="5" class="ipt-txt"></textarea>
+					</div><!-- /dcmp-content -->
+					<div class="dcmp-mood">
+						<strong>表情:</strong>
+						<ul>
+								<li><input type="radio" name="face" value="6" checked="1"><img src="/templets/images/mood/ico-mood-6.gif"></li>
+								<li><input type="radio" name="face" value="4"><img src="/templets/images/mood/ico-mood-4.gif"></li>
+								<li><input type="radio" name="face" value="3"><img src="/templets/images/mood/ico-mood-3.gif"></li>
+								<li><input type="radio" name="face" value="5"><img src="/templets/images/mood/ico-mood-5.gif"></li>
+								<li><input type="radio" name="face" value="2"><img src="/templets/images/mood/ico-mood-2.gif"></li>
+								<li><input type="radio" name="face" value="1"><img src="/templets/images/mood/ico-mood-1.gif"></li>
+								<li><input type="radio" name="face" value="7"><img src="/templets/images/mood/ico-mood-7.gif"></li>
+						</ul>
+					</div><!-- /dcmp-mood -->
+					<div class="dcmp-post"><!--未登陆-->
+							<div class="dcmp-userinfo" id="_ajax_feedback">
+								用户名:<input type="text" name="username" size="16" class="ipt-txt">密码:<input name="pwd" type="password" size="16" class="ipt-txt">
+								验证码:<input type="text" name="validate" size="4" class="ipt-txt"><img src="/include/vdimgck.php" id="validateimg" style="cursor:pointer" onclick="this.src=this.src+'?'" title="点击我更换图片" alt="点击我更换图片">
+                <input type="checkbox" name="notuser" id="dcmp-submit-guest"><label for="dcmp-submit-guest">匿名? </label>
+							</div>
+              <script language="javascript" type="text/javascript">CheckLogin();</script>
+							<div class="dcmp-submit">
+								<button type="button" onclick="PostComment()">发表评论</button>
+							</div>
+						</div>
+        </form>
+				</div>
+			</dd>
+		</dl>
+	</div><!-- //评论表单区结束 -->
+
+<!-- //评论内容区 -->
+	<a name="commettop"></a>
+	<div class="mt1">
+			<dl class="tbox">
+				<dt>
+					<strong>最新评论</strong>
+					<span class="more"><a href="/plus/feedback.php?aid=8392">进入详细评论页&gt;&gt;</a></span>
+				</dt>
+				<!-- //这两个ID的区块必须存在，否则JS会出错 -->
+				<dd id="commetcontentNew"></dd>
+				<dd id="commetcontent"></dd>
+			</dl>
+	</div>
+<!--
+//由于评论载入时使用异步传输，因此必须在最后一步加载（DIGG和评论框须放在评论内容前面）
+//如果一定需要提前的把myajax.SendGet改为myajax.SendGet2，但可能会引起页面阻滞
+-->
+<script language="javascript">
+function LoadCommets(page)
+{
+		var taget_obj = document.getElementById('commetcontent');
+		var waithtml = "<div style="line-height:50px"><img src="/images/loadinglit.gif">评论加载中...</div>";
+		var myajax = new DedeAjax(taget_obj, true, true, '', 'x', waithtml);
+		myajax.SendGet2("/plus/feedback_ajax.php?dopost=getlist&aid=8392&page="+page);
+		DedeXHTTP = null;
+}
+function PostComment()
+{
+		var f = document.feedback;
+		var nface = '6';
+		var nfeedbacktype = 'feedback';
+		var nvalidate = '';
+		var nnotuser = '';
+		var nusername = '';
+		var npwd = '';
+		var taget_obj = $DE('commetcontentNew');
+		var waithtml = "<div style="line-height:30px"><img src="/images/loadinglit.gif">正在发送中...</div>";
+		if(f.msg.value=='')
+		{
+			alert("评论内容不能为空！");
+			return;
+		}
+		if(f.validate)
+		{
+			if(f.validate.value=='') {
+				alert("请填写验证码！");
+				return;
+			}
+			else {
+				nvalidate = f.validate.value;
+			}
+		}
+		if(f.msg.value.length > 2000)
+		{
+			alert("你的评论是不是太长了？请填写2000字以内的评论。");
+			return;
+		}
+		if(f.feedbacktype) {
+			for(var i=0; i < f.feedbacktype.length; i++)
+				if(f.feedbacktype[i].checked) nfeedbacktype = f.feedbacktype[i].value;
+		}
+		if(f.face) {
+			for(var j=0; j < f.face.length; j++)
+				if(f.face[j].checked) nface = f.face[j].value;
+		}
+		if(f.notuser.checked) nnotuser = '1';
+		if(f.username) nusername = f.username.value;
+		if(f.pwd) npwd = f.pwd.value;
+		
+		var myajax = new DedeAjax(taget_obj, false, true, '', '', waithtml);
+		myajax.sendlang = 'gb2312';
+		myajax.AddKeyN('dopost', 'send');
+		myajax.AddKeyN('aid', '8392');
+		myajax.AddKeyN('fid', f.fid.value);
+		myajax.AddKeyN('face', nface);
+		myajax.AddKeyN('feedbacktype', nfeedbacktype);
+		myajax.AddKeyN('validate', nvalidate);
+		myajax.AddKeyN('notuser', nnotuser);
+		myajax.AddKeyN('username', nusername);
+		myajax.AddKeyN('pwd', npwd);
+		myajax.AddKeyN('msg', f.msg.value);
+		myajax.SendPost2('/plus/feedback_ajax.php');
+		f.msg.value = '';
+		f.fid.value = 0;
+		if(f.validate)
+		{
+			if($DE('validateimg')) $DE('validateimg').src = "/include/vdimgck.php?"+f.validate.value;
+			f.validate.value = '';
+		}
+}
+function quoteCommet(fid)
+{
+	document.feedback.fid.value = fid;
+}
+LoadCommets(1);
+</script><!-- //评论内容区结束 -->
+
+
+</div><!-- //左边内容结束 -->
+
+<!-- //右边内容开始 -->
+<div class="pright">
+ 		
+		<div class="commend mt1">
+			<dl class="tbox light">
+				<dt class="light"><strong>推荐内容</strong></dt>
+				<dd class="light">
+					<ul class="d4">
+           <li><a href="/a/201010/10360.html">漫谈Linux下的音频问题</a>
+            	<p>现今的互联网，比较Linux和Windows的战争贴基本都成月经贴了。一群群激进的用户不断轰...</p>
+            </li>
+<li><a href="/a/201009/10232.html">Linux内核配置系统浅析</a>
+            	<p>面对日益庞大的 Linux 内核源代码，开发者在完成自己的内核代码后，都将面临着同样的...</p>
+            </li>
+<li><a href="/a/201009/10118.html">Fedora 11中安装TFTP</a>
+            	<p>TFTP是用来下载远程文件的最简单网络协议，它基于UDP协议而实现。嵌入式linux的tftp开...</p>
+            </li>
+<li><a href="/a/201009/10093.html">C/C++ 编译器和调试器以及静态库、动态库使用</a>
+            	<p>GNU 的调试器称为 gdb，该程序是一个交互式工具，工作在字符模式。在 X Window 系统中...</p>
+            </li>
+<li><a href="/a/201008/10035.html">RPM 的介绍和应用</a>
+            	<p>RPM 是 Red Hat Package Manager 的缩写，原意是Red Hat 软件包管理；本文介绍RPM，并...</p>
+            </li>
+<li><a href="/a/201008/9967.html">深度介绍Linux内核是如何工作的</a>
+            	<p>本文发表于Linux Format magazine杂志，作者从技术深度上解释了Linux Kernel是如何工...</p>
+            </li>
+
+					</ul>
+				</dd>
+			</dl>
+		</div><!-- /commend -->
+
+		<div class="hot mt1">
+<script language="javascript" src="/ad/js_ad_250x250_100.js"></script>
+		</div>
+
+		<div class="hot mt1">
+			<dl class="tbox light">
+				<dt class="light"><strong>热点内容</strong></dt>
+				<dd class="light">
+					<ul class="c1 ico2">
+             <li><a href="/a/200709/6802.html">Linux上配置Unix ODBC连接Oracle</a></li>
+<li><a href="/a/200706/6721.html">SecureCRT 5.0 注册码</a></li>
+<li><a href="/a/200206/1920.html">中国需要LINUX吗？</a></li>
+<li><a href="/a/200710/6840.html">Linux 内存调试工具- Valgrind </a></li>
+<li><a href="/a/200711/6849.html">The GNU Make Manual, for GNU m</a></li>
+<li><a href="/a/200706/6708.html">fedora 6下8168网卡的驱动安装</a></li>
+<li><a href="/a/200706/6720.html">Linux如何生成.a文件</a></li>
+<li><a href="/a/200707/6743.html">在Linux中查看CPU使用效率和内存</a></li>
+<li><a href="/a/200402/1936.html">启动不了xwindow的解决办法</a></li>
+<li><a href="/a/200803/6909.html">Core Dump杂记</a></li>
+
+					</ul>
+				</dd>
+			</dl>
+		</div>
+	</div><!-- /pright -->
+</div>
+
+<!-- //二级子类下拉菜单，考虑SEO原因放置于底部  -->
+<script type="text/javascript" src="/images/js/dropdown.js"></script>
+<ul id="dropmenu1" class="dropMenu">
+    <li><a href="/a/list_44_1.html">业界动态</a></li>
+    <li><a href="/a/list_53_1.html">音视频编解码</a></li>
+    <li><a href="/a/list_45_1.html">音视频播放</a></li>
+    <li><a href="/a/list_51_1.html">流媒体开发</a></li>
+    <li><a href="/a/list_46_1.html">规范及协议</a></li>
+    <li><a href="/a/list_48_1.html">解决方案</a></li>
+    <li><a href="/a/list_50_1.html">大杂烩</a></li>
+  
+</ul><ul id="dropmenu33" class="dropMenu">
+    <li><a href="/a/list_34_1.html">固件驱动开发</a></li>
+    <li><a href="/a/list_35_1.html">Windows Mobile</a></li>
+    <li><a href="/a/list_36_1.html">Symbian OS</a></li>
+    <li><a href="/a/list_37_1.html">Android</a></li>
+    <li><a href="/a/list_97_1.html">Apple平台开发</a></li>
+    <li><a href="/a/list_38_1.html">手机应用综合</a></li>
+  
+</ul><ul id="dropmenu18" class="dropMenu">
+    <li><a href="/a/list_100_1.html">C & CPP</a></li>
+    <li><a href="/a/list_49_1.html">Linux开发</a></li>
+    <li><a href="/a/list_52_1.html">服务器模型</a></li>
+    <li><a href="/a/list_47_1.html">智能视频OpenCV</a></li>
+  
+</ul><ul id="dropmenu8" class="dropMenu">
+    <li><a href="/a/list_21_1.html">MobileVOD</a></li>
+    <li><a href="/a/product/ezguard/">EzGuard</a></li>
+    <li><a href="/a/product/avtool/">AV开发工具</a></li>
+    <li><a href="/a/product/utils/">常用控件</a></li>
+    <li><a href="/a/product/tools/">工具软件</a></li>
+    <li><a href="/a/product/others/">其他杂项</a></li>
+    <li><a href="/a/product/gameediter/">我的修改器</a></li>
+    <li><a href="/a/list_27_1.html">吉他谱</a></li>
+  
+</ul><ul id="dropmenu7" class="dropMenu">
+    <li><a href="/a/list_39_1.html">Soft.Eng</a></li>
+    <li><a href="/a/list_40_1.html">UML,RUP,SCM</a></li>
+    <li><a href="/a/list_42_1.html">安装制作</a></li>
+    <li><a href="/a/list_41_1.html">经典源码</a></li>
+  
+</ul><ul id="dropmenu13" class="dropMenu">
+    <li><a href="/a/list_17_1.html">『VC++』</a></li>
+    <li><a href="/a/list_20_1.html">『JAVA』</a></li>
+    <li><a href="/a/list_19_1.html">『Database』</a></li>
+    <li><a href="/a/list_16_1.html">『Web』</a></li>
+    <li><a href="/a/list_14_1.html">『DotNet』</a></li>
+    <li><a href="/a/list_15_1.html">『PC常识』</a></li>
+  
+</ul><ul id="dropmenu2" class="dropMenu">
+    <li><a href="/a/list_54_1.html">『ERP&CRM』</a></li>
+    <li><a href="/a/list_55_1.html">『数据挖掘』</a></li>
+    <li><a href="/a/list_56_1.html">『CallCenter』</a></li>
+    <li><a href="/a/list_57_1.html">『SMS』</a></li>
+  
+</ul><ul id="dropmenu101" class="dropMenu">
+    <li><a href="/a/list_70_1.html">『经理人手册』</a></li>
+    <li><a href="/a/list_59_1.html">『成功学』</a></li>
+    <li><a href="/a/list_61_1.html">『人力资源』</a></li>
+    <li><a href="/a/list_64_1.html">『产品学』</a></li>
+    <li><a href="/a/list_63_1.html">『市场营销』</a></li>
+    <li><a href="/a/list_58_1.html">『合同合约』</a></li>
+    <li><a href="/a/list_62_1.html">『财务相关』</a></li>
+    <li><a href="/a/list_65_1.html">『规章制度』</a></li>
+  
+</ul><ul id="dropmenu95" class="dropMenu">
+    <li><a href="/a/list_43_1.html">啰里啰嗦</a></li>
+    <li><a href="/a/list_31_1.html">吼山文摘</a></li>
+    <li><a href="/a/list_28_1.html">旧闻摘要</a></li>
+    <li><a href="/a/list_32_1.html">吼山书库</a></li>
+    <li><a href="/a/list_86_1.html">FilmReview</a></li>
+    <li><a href="/a/list_94_1.html">杂七杂八</a></li>
+  
+</ul><ul id="dropmenu5" class="dropMenu">
+    <li><a href="/a/list_89_1.html">『角色扮演』</a></li>
+    <li><a href="/a/list_93_1.html">『策略回合』</a></li>
+    <li><a href="/a/list_92_1.html">『即时战略』</a></li>
+    <li><a href="/a/list_88_1.html">『下载区』</a></li>
+  
+</ul>
+<script type="text/javascript">cssdropdown.startchrome("navMenu")</script>
+
+<!-- //底部模板 -->
+<br>>
+
+
+<!--PAGE BOTTOM START-->
+<div class="footer w960 center mt1 clear">
+<table align='center' width='938' border='1' cellpadding='0' cellspacing='0' bordercolor='#B5CFFF' style='border-collapse:collapse '>
+<tr><td colspan='2'>
+<script language='javascript' src='</br>js/catalog.js'></script>
+</td></tr>
+</table>
+<table align="center" width="938">
+<tr>
+<td align="center">
+<script src="/ad/js_ad_728x90_101.js"></script>
+</td></tr>
+<tr align="center">
+<td><br>>
+<script src='</br>js/some.rights.reserved.js'></script>
+<br>>
+<script type='text</br>javascript' src='/js/stat.php?type=0'></script>
+</td></tr>
+</table>
+<br>>
+<</br>div>
+<!--PAGE BOTTOM END-->
+
+<!-- /footer -->
+
+<script src="/js/rs_bottom.js" type="text/javascript"></script>
+
+</body>
+</html>

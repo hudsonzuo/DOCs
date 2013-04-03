@@ -1,0 +1,562 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+
+    <title>11. ComboBox &mdash; Python GTK+ 3 Tutorial 1.0 documentation</title>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
+<script type="text/javascript" src="http://media.readthedocs.org/javascript/underscore.js"></script>
+<script type="text/javascript" src="http://media.readthedocs.org/javascript/doctools.js"></script>
+<script type="text/javascript" src="http://media.readthedocs.org/javascript/searchtools.js"></script>
+
+  <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;"/>
+
+
+  <script type="text/javascript">
+    var doc_version = "latest";
+    var doc_slug = "python-gtk-3-tutorial";
+  </script>
+  <script type="text/javascript" src="http://media.readthedocs.org/javascript/rtd.js"></script>
+
+    
+    <link rel="stylesheet" href="_static/rtd.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <link rel="top" title="Python GTK+ 3 Tutorial 1.0 documentation" href="index.html" />
+    <link rel="next" title="12. Multiline Text Editor" href="textview.html" />
+    <link rel="prev" title="10. CellRenderers" href="cellrenderers.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="textview.html" title="12. Multiline Text Editor"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="cellrenderers.html" title="10. CellRenderers"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Python GTK+ 3 Tutorial 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="combobox">
+<h1>11. ComboBox<a class="headerlink" href="#combobox" title="Permalink to this headline">¶</a></h1>
+<p>A <a class="reference internal" href="#Gtk.ComboBox" title="Gtk.ComboBox"><tt class="xref py py-class docutils literal"><span class="pre">Gtk.ComboBox</span></tt></a> allows for the selection of an item from a dropdown menu.
+They are preferable to having many radio buttons on screen as they take up less
+room. If appropriate, it can show extra information about each item, such as text,
+a picture, a checkbox, or a progress bar.</p>
+<p><a class="reference internal" href="#Gtk.ComboBox" title="Gtk.ComboBox"><tt class="xref py py-class docutils literal"><span class="pre">Gtk.ComboBox</span></tt></a> is very similar to <a class="reference internal" href="treeview.html#Gtk.TreeView" title="Gtk.TreeView"><tt class="xref py py-class docutils literal"><span class="pre">Gtk.TreeView</span></tt></a>, as both use the
+model-view pattern; the list of valid choices is specified in the form of a tree
+model, and the display of the choices can be adapted to the data in the model by
+using <a class="reference internal" href="cellrenderers.html#cellrenderers"><em>cell renderers</em></a>.
+If the combo box contains a large number of items, it may be better to display
+them in a grid rather than a list. This can be done by calling
+<a class="reference internal" href="#Gtk.ComboBox.set_wrap_width" title="Gtk.ComboBox.set_wrap_width"><tt class="xref py py-meth docutils literal"><span class="pre">Gtk.ComboBox.set_wrap_width()</span></tt></a>.</p>
+<p>The <a class="reference internal" href="#Gtk.ComboBox" title="Gtk.ComboBox"><tt class="xref py py-class docutils literal"><span class="pre">Gtk.ComboBox</span></tt></a> widget usually
+restricts the user to the available choices, but it can optionally have an
+<a class="reference internal" href="entry.html#Gtk.Entry" title="Gtk.Entry"><tt class="xref py py-class docutils literal"><span class="pre">Gtk.Entry</span></tt></a>, allowing the user to enter arbitrary text if none of the
+available choices are suitable. To do this, use one of the static methods
+<a class="reference internal" href="#Gtk.ComboBox.new_with_entry" title="Gtk.ComboBox.new_with_entry"><tt class="xref py py-meth docutils literal"><span class="pre">Gtk.ComboBox.new_with_entry()</span></tt></a> or <a class="reference internal" href="#Gtk.ComboBox.new_with_model_and_entry" title="Gtk.ComboBox.new_with_model_and_entry"><tt class="xref py py-meth docutils literal"><span class="pre">Gtk.ComboBox.new_with_model_and_entry()</span></tt></a>
+to create an <a class="reference internal" href="#Gtk.ComboBox" title="Gtk.ComboBox"><tt class="xref py py-class docutils literal"><span class="pre">Gtk.ComboBox</span></tt></a> instance.</p>
+<p>For a simple list of textual choices, the model-view API of <a class="reference internal" href="#Gtk.ComboBox" title="Gtk.ComboBox"><tt class="xref py py-class docutils literal"><span class="pre">Gtk.ComboBox</span></tt></a>
+can be a bit overwhelming. In this case, <a class="reference internal" href="#Gtk.ComboBoxText" title="Gtk.ComboBoxText"><tt class="xref py py-class docutils literal"><span class="pre">Gtk.ComboBoxText</span></tt></a> offers a simple
+alternative. Both <a class="reference internal" href="#Gtk.ComboBox" title="Gtk.ComboBox"><tt class="xref py py-class docutils literal"><span class="pre">Gtk.ComboBox</span></tt></a> and <a class="reference internal" href="#Gtk.ComboBoxText" title="Gtk.ComboBoxText"><tt class="xref py py-class docutils literal"><span class="pre">Gtk.ComboBoxText</span></tt></a> can contain
+an entry.</p>
+<div class="section" id="combobox-objects">
+<h2>11.1. ComboBox objects<a class="headerlink" href="#combobox-objects" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="Gtk.ComboBox">
+<em class="property">class </em><tt class="descclassname">Gtk.</tt><tt class="descname">ComboBox</tt><a class="headerlink" href="#Gtk.ComboBox" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="staticmethod">
+<dt id="Gtk.ComboBox.new_with_entry">
+<em class="property">static </em><tt class="descname">new_with_entry</tt><big>(</big><big>)</big><a class="headerlink" href="#Gtk.ComboBox.new_with_entry" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a new empty <a class="reference internal" href="#Gtk.ComboBox" title="Gtk.ComboBox"><tt class="xref py py-class docutils literal"><span class="pre">Gtk.ComboBox</span></tt></a> with an entry.</p>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="Gtk.ComboBox.new_with_model">
+<em class="property">static </em><tt class="descname">new_with_model</tt><big>(</big><em>model</em><big>)</big><a class="headerlink" href="#Gtk.ComboBox.new_with_model" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a new <a class="reference internal" href="#Gtk.ComboBox" title="Gtk.ComboBox"><tt class="xref py py-class docutils literal"><span class="pre">Gtk.ComboBox</span></tt></a> with the model initialized to <em>model</em>.</p>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="Gtk.ComboBox.new_with_model_and_entry">
+<em class="property">static </em><tt class="descname">new_with_model_and_entry</tt><big>(</big><em>model</em><big>)</big><a class="headerlink" href="#Gtk.ComboBox.new_with_model_and_entry" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a new <a class="reference internal" href="#Gtk.ComboBox" title="Gtk.ComboBox"><tt class="xref py py-class docutils literal"><span class="pre">Gtk.ComboBox</span></tt></a> with an entry and the model
+initialized to <em>model</em>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Gtk.ComboBox.get_active_iter">
+<tt class="descname">get_active_iter</tt><big>(</big><big>)</big><a class="headerlink" href="#Gtk.ComboBox.get_active_iter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a <tt class="xref py py-class docutils literal"><span class="pre">Gtk.TreeIter</span></tt> pointing to the current active item.
+If no active item exists, <tt class="docutils literal"><span class="pre">None</span></tt> is returned.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Gtk.ComboBox.set_model">
+<tt class="descname">set_model</tt><big>(</big><em>model</em><big>)</big><a class="headerlink" href="#Gtk.ComboBox.set_model" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the model used by this combo box to be <em>model</em>. Will unset a
+previously set model (if applicable). If model is <tt class="docutils literal"><span class="pre">None</span></tt>, then it will
+unset the model. Note that this function does not clear the cell renderers.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Gtk.ComboBox.get_model">
+<tt class="descname">get_model</tt><big>(</big><big>)</big><a class="headerlink" href="#Gtk.ComboBox.get_model" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the <a class="reference internal" href="treeview.html#Gtk.TreeModel" title="Gtk.TreeModel"><tt class="xref py py-class docutils literal"><span class="pre">Gtk.TreeModel</span></tt></a> which is acting as data source for
+this combo box.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Gtk.ComboBox.set_entry_text_column">
+<tt class="descname">set_entry_text_column</tt><big>(</big><em>text_column</em><big>)</big><a class="headerlink" href="#Gtk.ComboBox.set_entry_text_column" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the model column which this combo box should use to get strings from
+to be <em>text_column</em>. The column <em>text_column</em> in the model of this combo
+box must be of type <tt class="docutils literal"><span class="pre">str</span></tt>.</p>
+<p>This is only relevant if this combo box has been created with the
+&#8220;has-entry&#8221; property set to <tt class="docutils literal"><span class="pre">True</span></tt>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Gtk.ComboBox.set_wrap_width">
+<tt class="descname">set_wrap_width</tt><big>(</big><em>width</em><big>)</big><a class="headerlink" href="#Gtk.ComboBox.set_wrap_width" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the wrap width of this combo box to be <em>width</em>. The wrap width is
+basically the preferred number of columns when you want the popup to be
+layed out in a grid.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="comboboxtext-objects">
+<h2>11.2. ComboBoxText objects<a class="headerlink" href="#comboboxtext-objects" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="Gtk.ComboBoxText">
+<em class="property">class </em><tt class="descclassname">Gtk.</tt><tt class="descname">ComboBoxText</tt><a class="headerlink" href="#Gtk.ComboBoxText" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="staticmethod">
+<dt id="Gtk.ComboBoxText.new_with_entry">
+<em class="property">static </em><tt class="descname">new_with_entry</tt><big>(</big><big>)</big><a class="headerlink" href="#Gtk.ComboBoxText.new_with_entry" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a new empty <a class="reference internal" href="#Gtk.ComboBoxText" title="Gtk.ComboBoxText"><tt class="xref py py-class docutils literal"><span class="pre">Gtk.ComboBoxText</span></tt></a> with an entry.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Gtk.ComboBoxText.append_text">
+<tt class="descname">append_text</tt><big>(</big><em>text</em><big>)</big><a class="headerlink" href="#Gtk.ComboBoxText.append_text" title="Permalink to this definition">¶</a></dt>
+<dd><p>Appends <em>text</em> to the list of strings stored in this combo box.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Gtk.ComboBoxText.get_active_text">
+<tt class="descname">get_active_text</tt><big>(</big><big>)</big><a class="headerlink" href="#Gtk.ComboBoxText.get_active_text" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the currently active string in this combo box, or <tt class="docutils literal"><span class="pre">None</span></tt> if
+none is selected. If this combo box contains an entry, this function will
+return its contents (which will not necessarily be an item from the list).</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="example">
+<h2>11.3. Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
+<img alt="_images/combobox_example.png" src="_images/combobox_example.png" />
+<div class="highlight-python"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75</pre></div></td><td class="code"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">gi.repository</span> <span class="kn">import</span> <span class="n">Gtk</span>
+
+<span class="k">class</span> <span class="nc">ComboBoxWindow</span><span class="p">(</span><span class="n">Gtk</span><span class="o">.</span><span class="n">Window</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">Gtk</span><span class="o">.</span><span class="n">Window</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s">&quot;ComboBox Example&quot;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_border_width</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+
+        <span class="n">name_store</span> <span class="o">=</span> <span class="n">Gtk</span><span class="o">.</span><span class="n">ListStore</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span>
+        <span class="n">name_store</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="s">&quot;Billy Bob&quot;</span><span class="p">])</span>
+        <span class="n">name_store</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="mi">11</span><span class="p">,</span> <span class="s">&quot;Billy Bob Junior&quot;</span><span class="p">])</span>
+        <span class="n">name_store</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="mi">12</span><span class="p">,</span> <span class="s">&quot;Sue Bob&quot;</span><span class="p">])</span>
+        <span class="n">name_store</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="s">&quot;Joey Jojo&quot;</span><span class="p">])</span>
+        <span class="n">name_store</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="s">&quot;Rob McRoberts&quot;</span><span class="p">])</span>
+        <span class="n">name_store</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="mi">31</span><span class="p">,</span> <span class="s">&quot;Xavier McRoberts&quot;</span><span class="p">])</span>
+
+        <span class="n">vbox</span> <span class="o">=</span> <span class="n">Gtk</span><span class="o">.</span><span class="n">Box</span><span class="p">(</span><span class="n">orientation</span><span class="o">=</span><span class="n">Gtk</span><span class="o">.</span><span class="n">Orientation</span><span class="o">.</span><span class="n">VERTICAL</span><span class="p">,</span> <span class="n">spacing</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+
+        <span class="n">name_combo</span> <span class="o">=</span> <span class="n">Gtk</span><span class="o">.</span><span class="n">ComboBox</span><span class="o">.</span><span class="n">new_with_model_and_entry</span><span class="p">(</span><span class="n">name_store</span><span class="p">)</span>
+        <span class="n">name_combo</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s">&quot;changed&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">on_name_combo_changed</span><span class="p">)</span>
+        <span class="n">name_combo</span><span class="o">.</span><span class="n">set_entry_text_column</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">vbox</span><span class="o">.</span><span class="n">pack_start</span><span class="p">(</span><span class="n">name_combo</span><span class="p">,</span> <span class="bp">False</span><span class="p">,</span> <span class="bp">False</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+        <span class="n">country_store</span> <span class="o">=</span> <span class="n">Gtk</span><span class="o">.</span><span class="n">ListStore</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+        <span class="n">countries</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;Austria&quot;</span><span class="p">,</span> <span class="s">&quot;Brazil&quot;</span><span class="p">,</span> <span class="s">&quot;Belgium&quot;</span><span class="p">,</span> <span class="s">&quot;France&quot;</span><span class="p">,</span> <span class="s">&quot;Germany&quot;</span><span class="p">,</span>
+            <span class="s">&quot;Switzerland&quot;</span><span class="p">,</span> <span class="s">&quot;United Kingdom&quot;</span><span class="p">,</span> <span class="s">&quot;United States of America&quot;</span><span class="p">,</span> <span class="s">&quot;Uruguay&quot;</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">country</span> <span class="ow">in</span> <span class="n">countries</span><span class="p">:</span>
+            <span class="n">country_store</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">country</span><span class="p">])</span>
+
+        <span class="n">country_combo</span> <span class="o">=</span> <span class="n">Gtk</span><span class="o">.</span><span class="n">ComboBox</span><span class="o">.</span><span class="n">new_with_model</span><span class="p">(</span><span class="n">country_store</span><span class="p">)</span>
+        <span class="n">country_combo</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s">&quot;changed&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">on_country_combo_changed</span><span class="p">)</span>
+        <span class="n">renderer_text</span> <span class="o">=</span> <span class="n">Gtk</span><span class="o">.</span><span class="n">CellRendererText</span><span class="p">()</span>
+        <span class="n">country_combo</span><span class="o">.</span><span class="n">pack_start</span><span class="p">(</span><span class="n">renderer_text</span><span class="p">,</span> <span class="bp">True</span><span class="p">)</span>
+        <span class="n">country_combo</span><span class="o">.</span><span class="n">add_attribute</span><span class="p">(</span><span class="n">renderer_text</span><span class="p">,</span> <span class="s">&quot;text&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="n">vbox</span><span class="o">.</span><span class="n">pack_start</span><span class="p">(</span><span class="n">country_combo</span><span class="p">,</span> <span class="bp">False</span><span class="p">,</span> <span class="bp">False</span><span class="p">,</span> <span class="bp">True</span><span class="p">)</span>
+
+        <span class="n">currencies</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;Euro&quot;</span><span class="p">,</span> <span class="s">&quot;US Dollars&quot;</span><span class="p">,</span> <span class="s">&quot;British Pound&quot;</span><span class="p">,</span> <span class="s">&quot;Japanese Yen&quot;</span><span class="p">,</span>
+            <span class="s">&quot;Russian Ruble&quot;</span><span class="p">,</span> <span class="s">&quot;Mexican peso&quot;</span><span class="p">,</span> <span class="s">&quot;Swiss franc&quot;</span><span class="p">]</span>
+        <span class="n">currency_combo</span> <span class="o">=</span> <span class="n">Gtk</span><span class="o">.</span><span class="n">ComboBoxText</span><span class="p">()</span>
+        <span class="n">currency_combo</span><span class="o">.</span><span class="n">set_entry_text_column</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">currency_combo</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s">&quot;changed&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">on_currency_combo_changed</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">currency</span> <span class="ow">in</span> <span class="n">currencies</span><span class="p">:</span>
+            <span class="n">currency_combo</span><span class="o">.</span><span class="n">append_text</span><span class="p">(</span><span class="n">currency</span><span class="p">)</span>
+
+        <span class="n">vbox</span><span class="o">.</span><span class="n">pack_start</span><span class="p">(</span><span class="n">currency_combo</span><span class="p">,</span> <span class="bp">False</span><span class="p">,</span> <span class="bp">False</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">vbox</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">on_name_combo_changed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">combo</span><span class="p">):</span>
+        <span class="n">tree_iter</span> <span class="o">=</span> <span class="n">combo</span><span class="o">.</span><span class="n">get_active_iter</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">tree_iter</span> <span class="o">!=</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">model</span> <span class="o">=</span> <span class="n">combo</span><span class="o">.</span><span class="n">get_model</span><span class="p">()</span>
+            <span class="n">row_id</span><span class="p">,</span> <span class="n">name</span> <span class="o">=</span> <span class="n">model</span><span class="p">[</span><span class="n">tree_iter</span><span class="p">][:</span><span class="mi">2</span><span class="p">]</span>
+            <span class="k">print</span> <span class="s">&quot;Selected: ID=</span><span class="si">%d</span><span class="s">, name=</span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">row_id</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">entry</span> <span class="o">=</span> <span class="n">combo</span><span class="o">.</span><span class="n">get_child</span><span class="p">()</span>
+            <span class="k">print</span> <span class="s">&quot;Entered: </span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">entry</span><span class="o">.</span><span class="n">get_text</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">on_country_combo_changed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">combo</span><span class="p">):</span>
+        <span class="n">tree_iter</span> <span class="o">=</span> <span class="n">combo</span><span class="o">.</span><span class="n">get_active_iter</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">tree_iter</span> <span class="o">!=</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">model</span> <span class="o">=</span> <span class="n">combo</span><span class="o">.</span><span class="n">get_model</span><span class="p">()</span>
+            <span class="n">country</span> <span class="o">=</span> <span class="n">model</span><span class="p">[</span><span class="n">tree_iter</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+            <span class="k">print</span> <span class="s">&quot;Selected: country=</span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">country</span>
+
+    <span class="k">def</span> <span class="nf">on_currency_combo_changed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">combo</span><span class="p">):</span>
+        <span class="n">text</span> <span class="o">=</span> <span class="n">combo</span><span class="o">.</span><span class="n">get_active_text</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">text</span> <span class="o">!=</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="k">print</span> <span class="s">&quot;Selected: currency=</span><span class="si">%s</span><span class="s">&quot;</span> <span class="o">%</span> <span class="n">text</span>
+
+<span class="n">win</span> <span class="o">=</span> <span class="n">ComboBoxWindow</span><span class="p">()</span>
+<span class="n">win</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s">&quot;delete-event&quot;</span><span class="p">,</span> <span class="n">Gtk</span><span class="o">.</span><span class="n">main_quit</span><span class="p">)</span>
+<span class="n">win</span><span class="o">.</span><span class="n">show_all</span><span class="p">()</span>
+<span class="n">Gtk</span><span class="o">.</span><span class="n">main</span><span class="p">()</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+
+
+
+    <h3>Project Versions</h3>
+    <ul id="sidebar_versions">
+
+  <li><a href="http://readthedocs.org/docs/python-gtk-3-tutorial/en/latest/">latest</a></li>
+
+    </ul>
+<div id="searchbox" style="">
+  <h3>RTD Search</h3>
+    <form class="search" action="http://readthedocs.org/search/project/" method="get">
+      <input type="text" name="q" size="18">
+      <input type="submit" value="Go">
+      <input type="hidden" name="selected_facets" value="project:Python GTK+ 3 Tutorial">
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+        Full-text doc search.
+    </p>
+</div>
+
+
+
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">11. ComboBox</a><ul>
+<li><a class="reference internal" href="#combobox-objects">11.1. ComboBox objects</a></li>
+<li><a class="reference internal" href="#comboboxtext-objects">11.2. ComboBoxText objects</a></li>
+<li><a class="reference internal" href="#example">11.3. Example</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="cellrenderers.html"
+                        title="previous chapter">10. CellRenderers</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="textview.html"
+                        title="next chapter">12. Multiline Text Editor</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/combobox.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="textview.html" title="12. Multiline Text Editor"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="cellrenderers.html" title="10. CellRenderers"
+             >previous</a> |</li>
+        <li><a href="index.html">Python GTK+ 3 Tutorial 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+
+    <div class="footer">
+        &copy; Copyright 2011, Sebastian Pölsterl.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.
+    </div>
+ <!-- End original user content -->
+
+
+
+<style type="text/css">
+  .badge {
+    position: fixed;
+    display: block;
+    bottom: 5px;
+    height: 40px;
+    text-indent: -9999em;
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2), 0 1px 0 rgba(255, 255, 255, 0.2) inset;
+    -moz-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2), 0 1px 0 rgba(255, 255, 255, 0.2) inset;
+    -webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2), 0 1px 0 rgba(255, 255, 255, 0.2) inset;
+  }
+  #version_menu {
+    position: fixed;
+    display: none;
+    bottom: 11px;
+    right: 166px;
+    list-style-type: none;
+    margin: 0;
+  }
+  .footer_popout:hover #version_menu {
+    display: block;
+  }
+  #version_menu li {
+    display: block;
+    float: right;
+  }
+  #version_menu li a {
+    display: block;
+    padding: 6px 10px 4px 10px;
+    margin: 7px 7px 0 0;
+    font-weight: bold;
+    font-size: 14px;
+    height: 20px;
+    line-height: 17px;
+    text-decoration: none;
+    color: #fff;
+    background: #8ca1af url(../images/gradient-light.png) bottom left repeat-x;
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    box-shadow: 0 1px 1px #465158;
+    -moz-box-shadow: 0 1px 1px #465158;
+    -webkit-box-shadow: 0 1px 1px #465158;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
+  }
+  #version_menu li a:hover {
+    text-decoration: none;
+    background-color: #697983;
+    box-shadow: 0 1px 0px #465158;
+    -moz-box-shadow: 0 1px 0px #465158;
+    -webkit-box-shadow: 0 1px 0px #465158;
+  }
+  .badge.rtd {
+    background: #257597 url(http://media.readthedocs.org/images/badge-rtd.png) top left no-repeat;
+    border: 1px solid #282E32;
+    width: 160px;
+    right: 5px;
+  }
+  .badge.revsys { background: #465158 url(http://media.readthedocs.org/images/badge-revsys.png) top left no-repeat;
+    border: 1px solid #1C5871;
+    width: 290px;
+    right: 173px;
+  }
+  .badge.revsys-inline-sponsored {
+    position: inherit;
+    margin-left: auto;
+    margin-right: 175px;
+    margin-bottom: 5px;
+    background: #465158 url(http://media.readthedocs.org/images/badge-revsys.png) top left no-repeat;
+    border: 1px solid #1C5871;
+    width: 290px;
+    right: 173px;
+  }
+  .badge.revsys-inline {
+    position: inherit;
+    margin-left: auto;
+    margin-right: 175px;
+    margin-bottom: 5px;
+    background: #465158 url(http://media.readthedocs.org/images/badge-revsys-sm.png) top left no-repeat;
+    border: 1px solid #1C5871;
+    width: 205px;
+    right: 173px;
+  }
+
+.rtd_doc_footer { background-color: #465158;}
+
+</style>
+<div class="rtd_doc_footer">
+  <div class="footer_popout">
+    <a href="http://readthedocs.org/projects/python-gtk-3-tutorial/?fromdocs=python-gtk-3-tutorial" class="badge rtd">Brought to you by Read the Docs</a>
+    <ul id="version_menu">
+      
+        <li><a href="http://readthedocs.org/docs/python-gtk-3-tutorial/en/latest/">latest</a></li>
+      
+    </ul>
+  </div>
+</div>
+<!-- RTD Analytics Code -->
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-17997319-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+
+<!-- User Analytics Code -->
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'None']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+
+
+  </body>
+</html>
