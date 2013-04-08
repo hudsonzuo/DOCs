@@ -76,5 +76,5 @@ eix -!, --not
 
 
 
-
+eix app-office/ -S LaTex
 
