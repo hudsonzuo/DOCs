@@ -1,0 +1,299 @@
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass article
+\begin_preamble
+\usepackage{fontspec}
+\usepackage{xunicode}
+\usepackage{xltxtra}
+\defaultfontfeatures{Mapping=tex-text}  % 启用tex风格字符
+\setmainfont[BoldFont=文泉驿正黑]{AR PL SungtiL GB}
+\XeTeXlinebreaklocale "zh"
+%\newfontfamily \zhfont="文鼎ＰＬ中楷"
+\usepackage{zhspacing}
+\zhspacing
+\end_preamble
+\use_default_options false
+\maintain_unincluded_children false
+\language english
+\language_package 
+\inputencoding utf8-plain
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize 11
+\spacing single
+\use_hyperref false
+\papersize a4paper
+\use_geometry false
+\use_amsmath 1
+\use_esint 0
+\use_mhchem 0
+\use_mathdots 1
+\cite_engine basic
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\use_refstyle 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 1cm
+\topmargin 1cm
+\rightmargin 1cm
+\bottommargin 1cm
+\headheight 1cm
+\headsep 1cm
+\footskip 1cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+我的Lyx开始文档
+\end_layout
+
+\begin_layout Author
+Hudson Zuo
+\end_layout
+
+\begin_layout Standard
+我已经感觉到lyx将成为我的最重要的工具之一。写这篇东西是为了记住lyx使用的基本方法，遍写边学吧。最后还应该总结梳理一下。
+\end_layout
+
+\begin_layout Standard
+首先，我决定选择xetex，它对中文的支持是最好的，毕竟不可能不写汉字的。
+\end_layout
+
+\begin_layout Standard
+断行控制需要支持中文：
+\backslash
+XeTeXlinebreaklocale "zh"。还没有找到在lyx界面中的配置，暂且放到导言区（preamble）中了。
+\end_layout
+
+\begin_layout Standard
+lyx的重点是“文档->首选项
+\begin_inset Quotes erd
+\end_inset
+
+中的内容，首选项反应的是当前文档的配置（不是所有文档!)。所谓文档配置可以认为是tex文档中
+\backslash
+begin{document}前面的documentclass、usepackage等等。如果喜欢当前文档的配置，可以把当前文档的配置设置成默认配置（所有新建文
+档的默认配置）。
+\end_layout
+
+\begin_layout Standard
+为了支持中文，首先选用xetex:工具->首选项->FileFormats。然后需要在导言区填入需要的设置：
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+
+\backslash
+usepackage{fontspec} 
+\end_layout
+
+\begin_layout Plain Layout
+
+\backslash
+usepackage{xunicode} 
+\end_layout
+
+\begin_layout Plain Layout
+
+\backslash
+usepackage{xltxtra} 
+\end_layout
+
+\begin_layout Plain Layout
+
+\backslash
+newfontfamily 
+\backslash
+cn {文鼎ＰＬ简报宋} 
+\end_layout
+
+\begin_layout Plain Layout
+
+\backslash
+setmainfont[BoldFont=文泉驿正黑]{AR PL SungtiL GB} 
+\end_layout
+
+\begin_layout Plain Layout
+
+\backslash
+XeTeXlinebreaklocale "zh" 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+语言编码也很主要，设置不对会出现pdf文件中的汉字显示不出来的情况。设置位置是
+\begin_inset Quotes erd
+\end_inset
+
+文档首选项->语言->编码
+\begin_inset Quotes erd
+\end_inset
+
+,这篇文档的
+\emph on
+\noun on
+编码设置
+\emph default
+\noun default
+是
+\begin_inset Quotes erd
+\end_inset
+
+unicode(XeTex)(utf8)
+\begin_inset Quotes erd
+\end_inset
+
+。
+\end_layout
+
+\begin_layout Standard
+然后是字体设置：“文档首选项->语言->字体”。其实这里对我们没有用处，保持默认即可（不要勾选)。字体的设定项只能放进导言区；比如上面的
+\backslash
+setmainfont[BoldFont=
+\series bold
+文泉驿正黑
+\series default
+]{AR PL SungtiL GB}。
+\end_layout
+
+\begin_layout Standard
+zhspacing模块可以提高中文排版的质量。由于zhspacing.sty引用了Linux中没有的SimSun和SimHei字体,我们需要修改这个文件，把Sim
+Sun 换成AR PL KaitiM GB，把SimHei换成WenQuanYi Zen Hei。据说在preamble中重新定义zhfont也可以，我没有试验
+。启用zhspacing后，fontspec命令好像是不起作用了。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+fontspec{WenQuanYi Zen Hei}
+\end_layout
+
+\end_inset
+
+:如果需要设置部分文字的字体，需要把这部分文字放进{}中，并在文本前面插入tex命令fontspec,这里用的命令和字体是:
+\begin_inset Box Boxed
+position "t"
+hor_pos "c"
+has_inner_box 0
+inner_pos "s"
+use_parbox 0
+use_makebox 0
+width "1in"
+special "width"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+
+\backslash
+fontspec{文鼎ＰＬ简中楷}
+\end_layout
+
+\end_inset
+
+。
+\end_layout
+
+\begin_layout Standard
+强制换行的方法是插入tex命令
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 1
+width "1in"
+special "width"
+height "1in"
+height_special "totalheight"
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+
+\backslash
+
+\end_layout
+
+\end_inset
+
+。
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset href
+LatexCommand href
+target "http://www.tug.org/texlive/Contents/live/doc.html"
+
+\end_inset
+
+，This document lists links to all HTML and PDF files for packages and guides
+ contained in TeX Live, sorted by package name.
+\end_layout
+
+\begin_layout Standard
+这是中文测 试。中文和English的混排。中 文和$E=mc^2$的混排。
+\end_layout
+
+\end_body
+\end_document

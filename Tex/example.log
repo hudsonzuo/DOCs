@@ -1,68 +1,89 @@
-This is pdfTeX, Version 3.1415926-1.40.11 (TeX Live 2010) (format=latex 2012.2.14)  20 FEB 2012 09:08
+This is XeTeX, Version 3.1415926-2.3-0.9997.5 (TeX Live 2011) (format=xelatex 2013.4.10)  11 APR 2013 16:29
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
 **example.tex
 (./example.tex
 LaTeX2e <2009/09/24>
-Babel <v3.8l> and hyphenation patterns for english, dumylang, nohyphenation, lo
-aded.
+Babel <v3.8l> and hyphenation patterns for english, dumylang, nohyphenation, pi
+nyin, loaded.
 (/usr/share/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
 (/usr/share/texmf-dist/tex/latex/base/size11.clo
 File: size11.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
 )
-\c@part=\count79
-\c@section=\count80
-\c@subsection=\count81
-\c@subsubsection=\count82
-\c@paragraph=\count83
-\c@subparagraph=\count84
-\c@figure=\count85
-\c@table=\count86
+\c@part=\count80
+\c@section=\count81
+\c@subsection=\count82
+\c@subsubsection=\count83
+\c@paragraph=\count84
+\c@subparagraph=\count85
+\c@figure=\count86
+\c@table=\count87
 \abovecaptionskip=\skip41
 \belowcaptionskip=\skip42
 \bibindent=\dimen102
 )
+(/usr/share/texmf-dist/tex/latex/ucs/ucs.sty
+Package: ucs 2004/10/17 UCS: Unicode input support
 
-! LaTeX Error: File `ucs.sty' not found.
-
-Type X to quit or <RETURN> to proceed,
-or enter new name. (Default extension: sty)
-
-Enter file name: 
-! Interruption.
-<to be read again> 
-                   }
-l.3 \usepackage
-               [utf8x]{inputenc}^^M
-? 
+(/usr/share/texmf-dist/tex/latex/ucs/data/uni-global.def
+File: uni-global.def 2004/10/17 UCS: Unicode global data
+)
+\uc@secondtry=\count88
+\uc@combtoks=\toks14
+\uc@combtoksb=\toks15
+\uc@temptokena=\toks16
+)
 (/usr/share/texmf-dist/tex/latex/base/inputenc.sty
 Package: inputenc 2008/03/30 v1.1d Input encoding file
-\inpenc@prehook=\toks14
-\inpenc@posthook=\toks15
+\inpenc@prehook=\toks17
+\inpenc@posthook=\toks18
 
+(/usr/share/texmf-dist/tex/latex/ucs/utf8x.def
+File: utf8x.def 2004/10/17 UCS: Input encoding UTF-8
+)) (./example.aux)
+\openout1 = `example.aux'.
 
-! LaTeX Error: File `utf8x.def' not found.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 4.
+LaTeX Font Info:    ... okay on input line 4.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 4.
+LaTeX Font Info:    ... okay on input line 4.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 4.
+LaTeX Font Info:    ... okay on input line 4.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 4.
+LaTeX Font Info:    ... okay on input line 4.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 4.
+LaTeX Font Info:    ... okay on input line 4.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 4.
+LaTeX Font Info:    ... okay on input line 4.
 
-Type X to quit or <RETURN> to proceed,
-or enter new name. (Default extension: def)
+(/usr/share/texmf-dist/tex/latex/ucs/ucsencs.def
+File: ucsencs.def 2003/11/29 Fixes to fontencodings LGR, T3
+)
+Missing character: There is no ’ in font cmr10!
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <10.95> on input line 6.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 6.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 6.
+Missing character: There is no ’ in font cmr10!
+Missing character: There is no 从 in font cmr10!
+Missing character: There is no 这 in font cmr10!
+Missing character: There is no 里 in font cmr10!
+Missing character: There is no 开 in font cmr10!
+Missing character: There is no 始 in font cmr10!
+ [1
 
-Enter file name: 
-! Emergency stop.
-<read *> 
-         
-l.131 \endinput
-               ^^M
-End of file on the terminal!
-
- 
+] (./example.aux) ) 
 Here is how much of TeX's memory you used:
- 222 strings out of 495075
- 2466 string characters out of 3182947
- 46618 words of memory out of 3000000
- 3485 multiletter control sequences out of 15000+200000
- 3940 words of font info for 15 fonts, out of 3000000 for 9000
+ 482 strings out of 495708
+ 7237 string characters out of 3188687
+ 61770 words of memory out of 3000000
+ 3685 multiletter control sequences out of 15000+200000
+ 6379 words of font info for 23 fonts, out of 3000000 for 9000
  14 hyphenation exceptions out of 8191
- 21i,0n,19p,154b,36s stack positions out of 5000i,500n,10000p,200000b,50000s
-No pages of output.
+ 21i,4n,19p,335b,111s stack positions out of 5000i,500n,10000p,200000b,50000s
+
+Output written on example.pdf (1 page).
