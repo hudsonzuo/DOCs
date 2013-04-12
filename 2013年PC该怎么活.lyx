@@ -1,0 +1,300 @@
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass article
+\begin_preamble
+\usepackage{fontspec}
+\usepackage{xunicode}
+\usepackage{xltxtra}
+\newfontfamily \cn {文鼎ＰＬ简报宋}
+\defaultfontfeatures{Mapping=tex-text}  % 启用tex风格字符
+\setmainfont[BoldFont=文泉驿正黑]{AR PL SungtiL GB}
+\end_preamble
+\use_default_options false
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding utf8-plain
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize 11
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_amsmath 1
+\use_esint 0
+\use_mhchem 0
+\use_mathdots 1
+\cite_engine basic
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\use_refstyle 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation skip
+\defskip medskip
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+英特尔解读：2013年PC该怎么活 
+\end_layout
+
+\begin_layout Author
+来源：腾讯数码作者：李珅2013-4-11 11:02:41行业：域名主机
+\end_layout
+
+\begin_layout Standard
+　　随着智能手机和平板电脑等移动设备的兴起，众多ARM架构处理器厂商从幕后走到了台前，高通、NVIDIA等轮番登场，英特尔一枝独秀的局面一去不复返。而作为英特尔
+力推产品形态，PC也受到了极大的冲击，也一度传出PC将死的说法。对于忠实支持英特尔的一众OEM厂商而言，是没人希望PC死掉的。2013年整个上半年PC领域似乎都
+没有什么新品，PC该怎么活？这是所有人都会问的一个问题，英特尔借着2013年信息技术峰会（IDF）的机会，给出了答案。
+\end_layout
+
+\begin_layout Standard
+　　计算驱动体验创新，英特尔发展空间很大
+\end_layout
+
+\begin_layout Standard
+　　英特尔全球副总裁、中国区总经理杨叙在开场致辞中指出，2012年IDF对业界产生了深远的影响，超极本、
+\series bold
+一体机
+\series default
+形态上都开始发生变化，触控技术越来越多被应用到PC产品上，针对中小企业所推出的通锐技术也进展顺利。中国是全球最大的电脑市场，从英特尔的预测来看，虽然在2012年
+中国市场的PC出货量有所放缓，但是一直到2016年，仍会保持较为稳定的增长。
+\end_layout
+
+\begin_layout Standard
+　　杨叙表示，搭载英特尔处理器的产品越来越多，除了常见的
+\series bold
+一体机
+\series default
+、笔记本、超极本，还有平板、手机以及各种嵌入系统，这些产品的功能在发生着日新月异的变化，越来越多更先进的技术被应用到实际产品中，触控、体感交互、面部识别、虚拟现
+实、语音命令、无线充电乃至超长续航，这一切都要靠计算驱动，英特尔认为计算驱动创新，而英特尔则是计算方面专家及领军者，英特尔会有很大的发展空间。
+\end_layout
+
+\begin_layout Standard
+　　杨叙还指出，中国新一代领导人上台后做了一系列的动作，信息化是其中非常被重视的一点，从国家的持续发展到产业的不断创新再到人们生活的日益智能化。在英特尔看来，计
+算驱动着创新，创新则驱动着未来，这或许也是英特尔依然对未来充满乐观的一个原因。
+\end_layout
+
+\begin_layout Standard
+　　超极本怎么活？主打
+\series bold
+变形
+\series default
+和
+\series bold
+可插拔
+\series default
+，增加触控和语音交互
+\end_layout
+
+\begin_layout Standard
+　　2011年英特尔推出了第一代超极本，在英特尔看来，这是一个全新的产品品类，而实际上当时很多消费者并不这么看，大家或许觉得超极本只是名字叫超极本而已，和普通的
+笔记本并没有本质区别。2012年英特尔推出了第二代超极本，搭载了第三代酷睿处理器，不仅价格开始步入主流，也开始有部分产品开始支持触控操作。而即将推出的第三代超极
+本，则会搭载第四代酷睿处理器（Haswell），并且支持
+\series bold
+变形
+\series default
+或
+\series bold
+可插拔
+\series default
+，可以在平板和笔记本之间自由切换，给消费者带来“二合一”的体验。
+\end_layout
+
+\begin_layout Standard
+　　英特尔PC客户端事业部总经理施浩德表示，英特尔希望在消费者心中超极本并不只是名字叫超极本，据调查数据显示，目前在美国市场，有66%的超极本已经配备了触控屏，
+随着
+\series bold
+变形
+\series default
+和
+\series bold
+可插拔
+\series default
+超极本的增多，触控屏超极本的比例会进一步提升。此外，超极本的价格还有望进一步下降，施浩德表示，2012年说超极本的价格会控制在699美元以内，很多人还觉得不可能
+，但实际上，不少产品已经将价格控制在了599美元以内，比如华硕推出的Vivobook就是这样的产品。
+\end_layout
+
+\begin_layout Standard
+　　施浩德指出，
+\series bold
+变形
+\series default
+和
+\series bold
+可插拔
+\series default
+将成为第三代超极本的主要形态，在英特尔的价值定位中，这类产品既是超极本也是平板电脑。
+\series bold
+变形
+\series default
+和
+\series bold
+可插拔
+\series default
+是第三代超极本的“表”，第四代酷睿处理器Haswell则是第三代超极本的“里”。据介绍，11.6寸及以下的产品会优先采用TDP为7W的新酷睿处理器，13寸及以上的
+产品会优先采用TDP为15W的酷睿处理器，而纯粹的平板产品，则会优先使用TDP低至2W的Atom处理器。
+\end_layout
+
+\begin_layout Standard
+　　第四代酷睿处理器将于2013年第二季度发布，Haswell基于22nm三栅极架构，配备英特尔功耗优化器，功耗只有第二代酷睿处理器的1/20，还采用集成封装的
+PCH，外观上有所变化，此外还集成音频DSP有助于延长电池续航时间并提高音质。而Haswell所集成的显示芯片性能也会大大加强，如支持3D显示、3屏显示、增强4
+K支持、更快的高速视频同步技术等，施浩德表示，新一代核芯显卡将取代80%的独立显卡。
+\end_layout
+
+\begin_layout Standard
+　　
+\series bold
+一体机
+\series default
+怎么活？
+\series bold
+变形
+\series default
++触控，主打全家共享
+\end_layout
+
+\begin_layout Standard
+　　在英特尔看来从塔式台式机到传统
+\series bold
+一体机
+\series default
+再到可变性
+\series bold
+一体机
+\series default
+是有一个逐渐演变、进化的过程，
+\series bold
+变形一体机
+\series default
+在2012年已经初露端倪，先有华硕在2012年台北电脑展上展示了平板
+\series bold
+一体机
+\series default
+二合一的新品P1801，紧接着有联想在2013年CES上展示了27英寸大屏的Horizon“智能桌面”，在2013年，
+\series bold
+变形一体机
+\series default
+则将成为主要的
+\series bold
+一体机
+\series default
+形态。
+\end_layout
+
+\begin_layout Standard
+　　施浩德表示，
+\series bold
+变形一体机
+\series default
+有三种模式，分别是画架模式、平板模式和半便携模式，既可以当作普通
+\series bold
+一体机
+\series default
+来办公娱乐，也可以变为全家娱乐共享的工具，“重温家人欢聚时刻”或许将成为
+\series bold
+变形一体机
+\series default
+的主旋律。
+\end_layout
+
+\begin_layout Standard
+　　和超极本的
+\series bold
+变形
+\series default
+理念一样，
+\series bold
+一体机
+\series default
+在主打
+\series bold
+变形
+\series default
+后也将把触控作为一个必备的功能体验，除此之外，语音交互和自然人机交互也将是新一代PC将考虑加入的功能。语音交互方面英特尔和Dragon和科大讯飞进行合作，前有苹
+果Siri，后有谷歌Google Now，英特尔也终于要进军语音交互领域，虽然现场演示有数次提示失败，但是当演示人员将麦克风拉到嘴边的时候，成功率明显加大了许多
+。而自然人机交互则主要是手势的操作，配备Creative的3D摄像头，用户不仅可以用手势来控制电脑，还可以和游戏中的角色来进行交互，即便是在商用的视频会议领域，
+自然人机交互也可以起到非常积极的促进作用，可以自动去除背景，很自然的让真人来给对方演示文档。
+\end_layout
+
+\begin_layout Standard
+　　如何和电视多屏互动？WiDi无线显示技术将再升级
+\end_layout
+
+\begin_layout Standard
+　　WiDi是Intel Wireless Display的缩写，称为英特尔无线高清视频技术，这一技术将成为英特尔设备和电视进行多屏互动的重要手段。
+\end_layout
+
+\begin_layout Standard
+　　如今WiDi技术已经从1.0发展到了3.5，今年还将推出更新的4.0版本，随着版本的升级，WiDi的操作体验也在不断升级中，无论是超极本、平板还是手机，只要是英特
+尔的设备，就将可以通过无线的方式将内容扩展至大屏幕，而且不受无线网络环境的限制。
+\end_layout
+
+\begin_layout Standard
+　　英特尔的WiDi无线显示生态系统包括贝尔金、联想、网件、D-Link、LG、三星、东芝等诸多厂商在内，为了在中国市场有更好的表现，英特尔还在加强和中国产业链
+的合作，此次IDF上和英特尔一起展示WiDi技术的厂商就包括歌华、快播以及TCL.据介绍，新一代歌华电视机顶盒将直接支持WiDi技术、TCL新推出的V8500、V
+7600、H6600三款3D显示器均内置了WiDi模块，而快播大屏幕则成为了体积最小的WiDi接收端适配器，从中我们不难看出英特尔在推广WiDi上的决心。
+\end_layout
+
+\begin_layout Standard
+　　但是我们也要看到英特尔在WiDi推广上的一些不足，例如合作伙伴偏少，覆盖用户人群有限，而苹果、三星、索尼等各大厂商均有各自的解决方案，壁垒林立攻破难度大，甚
+至在体验上还有诸多需要提升之处，但不论如何，英特尔在无线显示技术行业标准的建立上还是作出了努力，WiDi也有潜质成为是最普及的无线显示技术之一。
+\end_layout
+
+\begin_layout Standard
+　　小结
+\end_layout
+
+\begin_layout Standard
+　　虽然有很多PC将死的言论，但是英特尔依然信心十足，在所有人都在问2013年PC该怎么办的时候，英特尔给出了自己的答案，一是内在靠将推出的第四代酷睿处理器Ha
+swell；二是外在主打
+\series bold
+变形
+\series default
+，无论是超极本还是
+\series bold
+一体机
+\series default
+都将把
+\series bold
+变形
+\series default
+作为主要的产品形态；三是靠WiDi加强和电视等大屏幕的互动；四是靠触摸、语音、手势等交互技术提升用户体验。
+\end_layout
+
+\end_body
+\end_document

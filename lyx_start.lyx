@@ -7,12 +7,14 @@
 \usepackage{fontspec}
 \usepackage{xunicode}
 \usepackage{xltxtra}
-\defaultfontfeatures{Mapping=tex-text}  % 启用tex风格字符
+%\defaultfontfeatures{Mapping=tex-text}  % 启用tex风格字符
 \setmainfont[BoldFont=文泉驿正黑]{AR PL SungtiL GB}
 \XeTeXlinebreaklocale "zh"
 %\newfontfamily \zhfont="文鼎ＰＬ中楷"
 \usepackage{zhspacing}
-\zhspacing
+%\usepackage{zhfont}
+\usepackage{zhmath}
+%\zhspacing
 \end_preamble
 \use_default_options false
 \maintain_unincluded_children false
@@ -35,8 +37,8 @@
 \output_sync 0
 \bibtex_command default
 \index_command default
-\paperfontsize 11
-\spacing single
+\paperfontsize default
+\spacing onehalf
 \use_hyperref false
 \papersize a4paper
 \use_geometry false
@@ -50,6 +52,7 @@
 \paperorientation portrait
 \suppress_date false
 \use_refstyle 0
+\boxbgcolor #55557f
 \index Index
 \shortcut idx
 \color #008000
@@ -87,21 +90,29 @@ Hudson Zuo
 \end_layout
 
 \begin_layout Standard
-我已经感觉到lyx将成为我的最重要的工具之一。写这篇东西是为了记住lyx使用的基本方法，遍写边学吧。最后还应该总结梳理一下。
+我已经感觉到lyx将成为我的最重要的工具之一。写这篇东西是为了记住lyx使用的基本方法，边写边学吧。最后还应该总结梳理一下。
+\end_layout
+
+\begin_layout Section
+开始的开始
+\end_layout
+
+\begin_layout Subsection
+开始使用LyX书写
 \end_layout
 
 \begin_layout Standard
-首先，我决定选择xetex，它对中文的支持是最好的，毕竟不可能不写汉字的。
+首先，我决定选择XeTeX，它对中文的支持是最好的，毕竟不可能不写汉字的。
 \end_layout
 
 \begin_layout Standard
-断行控制需要支持中文：
+需要对中文的断行控制：
 \backslash
-XeTeXlinebreaklocale "zh"。还没有找到在lyx界面中的配置，暂且放到导言区（preamble）中了。
+XeTeXlinebreaklocale "zh"。还没有找到在LyX界面中的配置，暂且放到导言区（preamble）中了。
 \end_layout
 
 \begin_layout Standard
-lyx的重点是“文档->首选项
+LyX的重点是“文档->首选项
 \begin_inset Quotes erd
 \end_inset
 
@@ -112,18 +123,18 @@ begin{document}前面的documentclass、usepackage等等。如果喜欢当前文
 \end_layout
 
 \begin_layout Standard
-为了支持中文，首先选用xetex:工具->首选项->FileFormats。然后需要在导言区填入需要的设置：
+为了支持中文，首先选用XeTeX:工具->首选项->FileFormats。然后需要在导言区填入需要的设置：
 \end_layout
 
 \begin_layout Standard
-\begin_inset Box Frameless
+\begin_inset Box Boxed
 position "t"
 hor_pos "c"
 has_inner_box 1
 inner_pos "t"
 use_parbox 0
 use_makebox 0
-width "100col%"
+width "80line%"
 special "none"
 height "1in"
 height_special "totalheight"
@@ -173,7 +184,7 @@ XeTeXlinebreaklocale "zh"
 \end_layout
 
 \begin_layout Standard
-语言编码也很主要，设置不对会出现pdf文件中的汉字显示不出来的情况。设置位置是
+语言编码也很重要，设置不对会出现pdf文件中的汉字显示不出来的情况。设置位置是
 \begin_inset Quotes erd
 \end_inset
 
@@ -210,8 +221,12 @@ setmainfont[BoldFont=
 
 \begin_layout Standard
 zhspacing模块可以提高中文排版的质量。由于zhspacing.sty引用了Linux中没有的SimSun和SimHei字体,我们需要修改这个文件，把Sim
-Sun 换成AR PL KaitiM GB，把SimHei换成WenQuanYi Zen Hei。据说在preamble中重新定义zhfont也可以，我没有试验
-。启用zhspacing后，fontspec命令好像是不起作用了。
+Sun换成AR PL KaitiM GB，把SimHei换成WenQuanYi Zen Hei（或者其他字体）。据说在preamble中重新定义zhfont也可
+以，我没有试验。zhaspacing的启用必须放进preamble。
+\end_layout
+
+\begin_layout Standard
+启用zhspacing后，fontspec命令好像是不起作用了。如果起作用，下面的文字应该显示为文泉驿正黑。
 \end_layout
 
 \begin_layout Standard
@@ -220,14 +235,14 @@ status open
 
 \begin_layout Plain Layout
 
-
+{
 \backslash
 fontspec{WenQuanYi Zen Hei}
 \end_layout
 
 \end_inset
 
-:如果需要设置部分文字的字体，需要把这部分文字放进{}中，并在文本前面插入tex命令fontspec,这里用的命令和字体是:
+如果需要设置部分文字的字体，需要把这部分文字放进{}中，并在文本前面插入TeX命令fontspec,这里用的命令和字体是:
 \begin_inset Box Boxed
 position "t"
 hor_pos "c"
@@ -249,11 +264,22 @@ fontspec{文鼎ＰＬ简中楷}
 
 \end_inset
 
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
 。
 \end_layout
 
 \begin_layout Standard
-强制换行的方法是插入tex命令
+强制换行的方法是插入TeX命令
 \begin_inset Box Frameless
 position "t"
 hor_pos "c"
@@ -293,6 +319,262 @@ target "http://www.tug.org/texlive/Contents/live/doc.html"
 
 \begin_layout Standard
 这是中文测 试。中文和English的混排。中 文和$E=mc^2$的混排。
+\end_layout
+
+\begin_layout Standard
+section和subsection后面的standard环境中的第一段文本不知道LyX做了什么手脚，总是没有缩进。LyX的帮助也是这样。
+\end_layout
+
+\begin_layout Standard
+到现在为之，我已经可以码一份正常排版的文本了。然后可以看看帮助中的入门教程。
+\end_layout
+
+\begin_layout Subsection
+理解TeX家族
+\end_layout
+
+\begin_layout Standard
+TeX是一个排版系统，读作/'tɛx/,。版本号等于π,Knuth的理念是“roduce the same output now and in
+ the future is more important than introducing new features”，所以TeX已经固定。TeX程序读入te
+x文件输出dvi。Tex包含了很多命令（TeX formatting commands），但是对于普通用户来讲太基础，像是汇编语言。于是出现了类似高级语言的La
+TeX。
+\end_layout
+
+\begin_layout Standard
+LaTeX的是文本标记语言，服务于TeX排版系统的准备系统。LaTeX的基本组成是TeX宏包和处理程序。包含标题、节、段落等文本环境的定义。当前版本是LaTeX
+2e 。LaTeX是自由软件，发行协议是LPPL。下面是来自wiki的LaTeX输入文本例子（为了保持文本原貌，使用了verbatim功能）：
+\end_layout
+
+\begin_layout Standard
+
+\size footnotesize
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{verbatim}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+documentclass[12pt]{article} 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+usepackage{amsmath} 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+title{
+\backslash
+LaTeX} 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+date{} 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{document}   
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+maketitle   
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+LaTeX{} is a document preparation system for the 
+\backslash
+TeX{}   
+\end_layout
+
+\begin_layout Plain Layout
+
+typesetting program.
+ It offers programmable desktop publishing   
+\end_layout
+
+\begin_layout Plain Layout
+
+features and extensive facilities for automating most aspects of   
+\end_layout
+
+\begin_layout Plain Layout
+
+typesetting and desktop publishing, including numbering and   
+\end_layout
+
+\begin_layout Plain Layout
+
+cross-referencing, tables and figures, page layout, bibliographies,   
+\end_layout
+
+\begin_layout Plain Layout
+
+and much more.
+ 
+\backslash
+LaTeX{} was originally written in 1984 by Leslie   
+\end_layout
+
+\begin_layout Plain Layout
+
+Lamport and has become the dominant method for using 
+\backslash
+TeX; few   
+\end_layout
+
+\begin_layout Plain Layout
+
+people write in plain 
+\backslash
+TeX{} anymore.
+ The current version is   
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+LaTeXe.
+     
+\end_layout
+
+\begin_layout Plain Layout
+
+% This is a comment; it will not be shown in the final output.
+   
+\end_layout
+
+\begin_layout Plain Layout
+
+% The following shows a little of the typesetting power of LaTeX:   
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{align}     
+\end_layout
+
+\begin_layout Plain Layout
+
+E &= mc^2                              
+\backslash
+
+\backslash
+     
+\end_layout
+
+\begin_layout Plain Layout
+
+m &= 
+\backslash
+frac{m_0}{
+\backslash
+sqrt{1-
+\backslash
+frac{v^2}{c^2}}}   
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{align} 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{document}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{verbatim}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename /home/aoe/下载/LaTeX_Output.svg.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+一个重要的工具是pdfTeX，它能把LaTeX和TeX生成的dvi文件转换成pdf文件。
+\end_layout
+
+\begin_layout Standard
+unicode已经成为字符编码的工业标准，对它的支持体现在XeTeX中，从而实现了TeX的多语言支持。语言支持离不开字库，XeTeX的一个主要特点是可以直接使用
+系统中的各种字体。LaTeX宏包fontspec为XeTeX使用字体提供了方便。zhspacing宏包弥补了XeTeX在中文断行、中西文字体切换、标点间隔等不足
+，zhmath支持数学公式中的中文显示:
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+$中文 in math 测_试$ 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+usecustommathfonts 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+Large $能量E = mc^2$, $s_总 = {1 
+\backslash
+over 2} at^2$
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \end_body
