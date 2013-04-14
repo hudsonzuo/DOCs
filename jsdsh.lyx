@@ -1,0 +1,424 @@
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass book
+\begin_preamble
+\usepackage{fontspec}
+\usepackage{xunicode}
+\usepackage{xltxtra}
+%\defaultfontfeatures{Mapping=tex-text}  % 启用tex风格字符
+\setmainfont[BoldFont=文泉驿正黑]{AR PL SungtiL GB}
+\XeTeXlinebreaklocale "zh"
+%\newfontfamily \zhfont="文鼎ＰＬ中楷"
+\usepackage{zhspacing}
+%\usepackage{zhfont}
+\usepackage{zhmath}
+%\zhspacing
+\end_preamble
+\use_default_options false
+\maintain_unincluded_children false
+\language english
+\language_package 
+\inputencoding utf8-plain
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing onehalf
+\use_hyperref false
+\papersize a4paper
+\use_geometry false
+\use_amsmath 1
+\use_esint 0
+\use_mhchem 0
+\use_mathdots 1
+\cite_engine basic
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\use_refstyle 0
+\boxbgcolor #55557f
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 1cm
+\topmargin 1cm
+\rightmargin 1cm
+\bottommargin 1cm
+\headheight 1cm
+\headsep 1cm
+\footskip 1cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Chapter
+基本概念
+\end_layout
+
+\begin_layout Section
+集合
+\end_layout
+
+\begin_layout Standard
+一个集都有自己的特性。
+\end_layout
+
+\begin_layout Standard
+属于
+\begin_inset Formula $\in\notin$
+\end_inset
+
+，元数，空集，包含，子集，差集，交集，最大集，并集，最小集，第一层集，第二层集，系。
+\end_layout
+
+\begin_layout Standard
+习题1，A
+\begin_inset Formula $\cup$
+\end_inset
+
+（B
+\begin_inset Formula $\cap C\text{）=（A}$
+\end_inset
+
+
+\begin_inset Formula $\cup$
+\end_inset
+
+B）
+\begin_inset Formula $\cap$
+\end_inset
+
+（A
+\begin_inset Formula $\cap$
+\end_inset
+
+C）。（A
+\begin_inset Formula $\cup$
+\end_inset
+
+B)
+\begin_inset Formula $\supseteq$
+\end_inset
+
+A
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula $\cup$
+\end_inset
+
+(B
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+
+\begin_inset Formula $\cap$
+\end_inset
+
+C),（A
+\begin_inset Formula $\cup$
+\end_inset
+
+C)
+\begin_inset Formula $\supseteq$
+\end_inset
+
+A
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula $\cup$
+\end_inset
+
+(B
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+
+\begin_inset Formula $\cap$
+\end_inset
+
+C)，所以（A
+\begin_inset Formula $\cup$
+\end_inset
+
+B)
+\begin_inset Formula $\cap$
+\end_inset
+
+
+\begin_inset Formula $\text{（}A\cup C)\supseteq$
+\end_inset
+
+A
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula $\cup$
+\end_inset
+
+(B
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+
+\begin_inset Formula $\cap$
+\end_inset
+
+C)。 对于任意a
+\begin_inset Formula $\in$
+\end_inset
+
+(A
+\begin_inset Formula $\cup$
+\end_inset
+
+B)
+\begin_inset Formula $\cap$
+\end_inset
+
+(A
+\begin_inset Formula $\cup$
+\end_inset
+
+C), a
+\begin_inset Formula $\in$
+\end_inset
+
+A或者a
+\begin_inset Formula $\in$
+\end_inset
+
+B
+\begin_inset Formula $\cap$
+\end_inset
+
+C。
+\end_layout
+
+\begin_layout Standard
+习题2，（A-B）
+\begin_inset Formula $\cup$
+\end_inset
+
+（B-A）=（A
+\begin_inset Formula $\cup$
+\end_inset
+
+B）-（A
+\begin_inset Formula $\cap$
+\end_inset
+
+B），a
+\begin_inset Formula $\in$
+\end_inset
+
+(A-B)或者(B-A)则:a
+\begin_inset Formula $\in$
+\end_inset
+
+A, a
+\begin_inset Formula $\notin$
+\end_inset
+
+B 或者 a
+\begin_inset Formula $\in$
+\end_inset
+
+B, a
+\begin_inset Formula $\notin$
+\end_inset
+
+A, 即 a
+\begin_inset Formula $\in$
+\end_inset
+
+A
+\begin_inset Formula $\cup$
+\end_inset
+
+B，a
+\begin_inset Formula $\notin$
+\end_inset
+
+A
+\begin_inset Formula $\cap$
+\end_inset
+
+B。
+\end_layout
+
+\begin_layout Standard
+习题3，A,B,C是三个集，如果它们的乘法规定是：AB=(A
+\begin_inset Formula $\cup$
+\end_inset
+
+B)-(A
+\begin_inset Formula $\cap$
+\end_inset
+
+B),证：(AB)C=A(BC).
+ 
+\end_layout
+
+\begin_layout Section
+映射、分类
+\end_layout
+
+\begin_layout Standard
+像，像源，满射，单射，双射(可逆映射)，
+\end_layout
+
+\begin_layout Standard
+一个集的浓度可以和它的真子集浓度相等，这是无穷集的重要性质。
+\end_layout
+
+\begin_layout Standard
+有一个单射把两个集中的一个射到另一个上，那么这两个集就叫有相等的浓度或者元数。与正整数集或者它的子集浓度相等的集叫可数集。又穷集是可数集，整数集Z也是，有理数集
+是可数集，实数不是。
+\end_layout
+
+\begin_layout Standard
+射到自己的双射叫变换。
+\end_layout
+
+\begin_layout Standard
+映射的积： 
+\begin_inset Formula $\tau\sigma(a)=\tau(\sigma(a))$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+结合法——使集中任意两元a，b对应到唯一的元c。也叫代数运算。一个集，假如它有适合某些法则的结合法（代数运算），就叫代数系。近世代数的目的就是讨论某些基本代数系
+关于结合法的性质，也就是代数性质。
+\end_layout
+
+\begin_layout Standard
+等价关系：满足自反律、对称律、传递律的关系。把集中的满足等价关系的元归到一类。
+\end_layout
+
+\begin_layout Chapter
+群
+\end_layout
+
+\begin_layout Section
+群的概念
+\end_layout
+
+\begin_layout Standard
+定义：非空，满足4个条件，结合法、单位元。乘集，半群。
+\end_layout
+
+\begin_layout Standard
+线性群，由实数组成的n阶满秩矩阵对乘法成群，单位矩阵。
+\end_layout
+
+\begin_layout Standard
+变换群，集合M的所有变换组成的群。如果M是元数为n的有穷群，这个变换群叫n个文字上的对称群或n次对称群，S
+\begin_inset Formula $_{n}$
+\end_inset
+
+，
+\begin_inset Formula $\mid$
+\end_inset
+
+S
+\begin_inset Formula $_{n}$
+\end_inset
+
+
+\begin_inset Formula $\mid$
+\end_inset
+
+=n!。有穷群可以看成是对称群的子群。
+\end_layout
+
+\begin_layout Standard
+
+\end_layout
+
+\end_body
+\end_document
