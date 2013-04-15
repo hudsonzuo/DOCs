@@ -10,15 +10,24 @@
 %\defaultfontfeatures{Mapping=tex-text}  % 启用tex风格字符
 \setmainfont[BoldFont=文泉驿正黑]{AR PL SungtiL GB}
 \XeTeXlinebreaklocale "zh"
+\XeTeXlinebreakskip = 0pt plus 1pt minus 0.1pt
 %\newfontfamily \zhfont="文鼎ＰＬ中楷"
 \usepackage{zhspacing}
 %\usepackage{zhfont}
 \usepackage{zhmath}
 %\zhspacing
+\usepackage{titlesec}
+\titleformat{\chapter}{\centering\huge}{第\thechapter{}章}{1em}{\textbf}
+%\renewcommand{\chaptername}{第{\thechapter}章}
+%\renewcommand{\contentsname}{目~录}
+\usepackage{indentfirst}
 \end_preamble
 \use_default_options false
+\begin_modules
+hanging
+\end_modules
 \maintain_unincluded_children false
-\language english
+\language chinese-simplified
 \language_package 
 \inputencoding utf8-plain
 \fontencoding global
@@ -33,7 +42,7 @@
 \font_tt_scale 100
 
 \graphics default
-\default_output_format default
+\default_output_format pdf4
 \output_sync 0
 \bibtex_command default
 \index_command default
@@ -389,6 +398,7 @@ B),证：(AB)C=A(BC).
 \end_layout
 
 \begin_layout Standard
+\align left
 定义：非空，满足4个条件，结合法、单位元。乘集，半群。
 \end_layout
 
@@ -416,8 +426,8 @@ S
 =n!。有穷群可以看成是对称群的子群。
 \end_layout
 
-\begin_layout Standard
-
+\begin_layout Chapter
+san
 \end_layout
 
 \end_body

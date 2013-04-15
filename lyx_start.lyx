@@ -15,6 +15,7 @@
 %\usepackage{zhfont}
 \usepackage{zhmath}
 %\zhspacing
+\usepackage{indentfirst}
 \end_preamble
 \use_default_options false
 \maintain_unincluded_children false
@@ -565,11 +566,123 @@ usecustommathfonts
 
 \begin_layout Plain Layout
 
+{
+\backslash
+Large$能量E = mc^2$, $s_总 = {1 
+\backslash
+over 2} at^2$}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+技巧罗列
+\end_layout
+
+\begin_layout Subsection
+把chapter 1变成第1章
+\end_layout
+
+\begin_layout Standard
+使用book文档类时，默认的章节标题格式与中文不符合。如果只是需要lyx显示正常，把“文档->首选项->语言”设置为简体中文即可。
+\end_layout
+
+\begin_layout Standard
+如果需要输出的pdf文档也显示为中文格式，需要在导言区加入：
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
 
 \backslash
-Large $能量E = mc^2$, $s_总 = {1 
+begin{verbatim}
+\end_layout
+
+\begin_layout Plain Layout
+
+
 \backslash
-over 2} at^2$
+usepackage{titlesec} 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+titleformat{
+\backslash
+chapter}{
+\backslash
+centering
+\backslash
+huge}{第
+\backslash
+thechapter{}章}{1em}{
+\backslash
+textbf} %定义格式
+\end_layout
+
+\begin_layout Plain Layout
+
+%
+\backslash
+renewcommand{
+\backslash
+chaptername}{第{
+\backslash
+thechapter}章} 
+\end_layout
+
+\begin_layout Plain Layout
+
+%
+\backslash
+renewcommand{
+\backslash
+contentsname}{目~录}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{verbatim}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+首段不缩进的问题
+\end_layout
+
+\begin_layout Standard
+在lyx中的显示还没有找到解决方法。
+\end_layout
+
+\begin_layout Standard
+pdf中的解决方法是：在导言区添加：
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{verbatim}
+\backslash
+usepackage{indentfirst}
+\backslash
+end{verbatim}
 \end_layout
 
 \end_inset
