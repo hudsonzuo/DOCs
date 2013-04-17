@@ -21,6 +21,8 @@
 %\renewcommand{\chaptername}{第{\thechapter}章}
 %\renewcommand{\contentsname}{目~录}
 \usepackage{indentfirst}
+\newtheorem{theo}{定理}[section]
+\newenvironment{thm}{\begin{theo}}{\end{theo}}
 \end_preamble
 \use_default_options false
 \begin_modules
@@ -399,7 +401,11 @@ B),证：(AB)C=A(BC).
 
 \begin_layout Standard
 \align left
-定义：非空，满足4个条件，结合法、单位元。乘集，半群。
+定义：非空，满足4个条件，结合法、结合律，（左）单位元，（左）逆元。乘集，半群。
+\end_layout
+
+\begin_layout Standard
+交换群（阿贝耳群），
 \end_layout
 
 \begin_layout Standard
@@ -423,11 +429,193 @@ S
 \begin_inset Formula $\mid$
 \end_inset
 
-=n!。有穷群可以看成是对称群的子群。
+=n!，当n>2是不是交换群。有穷群可以看成是对称群的子群（$2.4)。当M是有穷集时，她的变换又叫排列，也就是对称群的元，有一种简明的表示法：
+\begin_inset Formula 
+\[
+s=\begin{pmatrix}1 & 2 & \text{\dots} & n\\
+s(1) & s(2) & \dots & s(n)
+\end{pmatrix}
+\]
+
+\end_inset
+
+
 \end_layout
 
-\begin_layout Chapter
-san
+\begin_layout Standard
+对称群在代数中非常重要。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{theo}
+\end_layout
+
+\end_inset
+
+群G中任意n个元a
+\begin_inset Formula $_{1}$
+\end_inset
+
+,a
+\begin_inset Formula $_{2}$
+\end_inset
+
+,
+\begin_inset Formula $\cdots$
+\end_inset
+
+,a
+\begin_inset Formula $_{n}$
+\end_inset
+
+的乘积由它们自身以及它们的顺序唯一决定。
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{theo}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $a^{-1}aa^{-1}=ea^{-1}=a^{-1}$
+\end_inset
+
+,用
+\begin_inset Formula $a^{-1}$
+\end_inset
+
+的（左）逆元左乘就得到
+\begin_inset Formula $eaa^{-1}=e$
+\end_inset
+
+，即
+\begin_inset Formula $aa^{-1}=e$
+\end_inset
+
+,因此左逆元同时也是右逆元。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $ae=aa^{-1}a=ea=a$
+\end_inset
+
+,所以左单位元同时是右单位元。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $e_{1}e_{2}=e_{2}=e_{1}$
+\end_inset
+
+,所以单位元唯一。
+\end_layout
+
+\begin_layout Standard
+假如
+\begin_inset Formula $b,c$
+\end_inset
+
+都是
+\begin_inset Formula $a$
+\end_inset
+
+的逆元，那么
+\begin_inset Formula $ba=e$
+\end_inset
+
+,
+\begin_inset Formula $ca=e$
+\end_inset
+
+,因为
+\begin_inset Formula $ac=e$
+\end_inset
+
+，所以
+\begin_inset Formula $b=bac=ec=c$
+\end_inset
+
+。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $(a^{-1})^{-1}=a$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $(b^{-1}a^{-1})ab=e$
+\end_inset
+
+
+\begin_inset Formula $\Rightarrow$
+\end_inset
+
+
+\begin_inset Formula $(ab)^{-1}=b^{-1}a^{-1}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+假定
+\begin_inset Formula $a,b$
+\end_inset
+
+是群
+\begin_inset Formula $G$
+\end_inset
+
+中的元，那么方程
+\begin_inset Formula $ax=b$
+\end_inset
+
+与
+\begin_inset Formula $ya=b$
+\end_inset
+
+在
+\begin_inset Formula $G$
+\end_inset
+
+中只要唯一的一个解，这是因为：
+\begin_inset Formula $a(a^{-1}b)=(aa^{-1})b=eb=b$
+\end_inset
+
+,
+\begin_inset Formula $(ba^{-1})a=be=b$
+\end_inset
+
+。所以
+\begin_inset Formula $x=a^{-1}b$
+\end_inset
+
+,
+\begin_inset Formula $y=ba^{-1}\text{分别是它们的解，}$
+\end_inset
+
+显然它们是唯一的（应该从定理1证明）。
+\end_layout
+
+\begin_layout Standard
+在群中，乘法是有逆运算
 \end_layout
 
 \end_body
