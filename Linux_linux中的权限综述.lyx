@@ -1,0 +1,2096 @@
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass article
+\begin_preamble
+\usepackage{fontspec}
+\usepackage{xunicode}
+\usepackage{xltxtra}
+%\defaultfontfeatures{Mapping=tex-text}  % 启用tex风格字符
+\setmainfont[BoldFont=文泉驿正黑]{AR PL SungtiL GB}
+\XeTeXlinebreaklocale "zh"
+%\newfontfamily \zhfont="文鼎ＰＬ中楷"
+\usepackage{zhspacing}
+%\usepackage{zhfont}
+\usepackage{zhmath}
+%\zhspacing
+\usepackage{indentfirst}
+\end_preamble
+\use_default_options false
+\maintain_unincluded_children false
+\language english
+\language_package 
+\inputencoding utf8-plain
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing onehalf
+\use_hyperref false
+\papersize a4paper
+\use_geometry false
+\use_amsmath 1
+\use_esint 0
+\use_mhchem 0
+\use_mathdots 1
+\cite_engine basic
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\use_refstyle 0
+\boxbgcolor #55557f
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 1cm
+\topmargin 1cm
+\rightmargin 1cm
+\bottommargin 1cm
+\headheight 1cm
+\headsep 1cm
+\footskip 1cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Linux中的权限
+\end_layout
+
+\begin_layout Standard
+本文将分别阐述文件/文件系统权限和进程权限
+\end_layout
+
+\begin_layout Section
+文件/文件系统权限
+\end_layout
+
+\begin_layout Subsection
+文件权限 
+\end_layout
+
+\begin_layout Subsubsection
+基础权限
+\end_layout
+
+\begin_layout Standard
+要确定一个用户对某个文件或目录是否具有相应的权限，先要明确该用户与文件或目录之间的关系。
+\end_layout
+
+\begin_layout Standard
+在Linux系统中，定义了如下三种关系：
+\end_layout
+
+\begin_layout Standard
+文件所有者(owner) 拥有文件的用户，创建文件时是创建文件的用户（可用whoami命令查看）。 
+\end_layout
+
+\begin_layout Standard
+组(group) 文件所属的组。创建文件时用户的组（可用id命令查看）。 
+\end_layout
+
+\begin_layout Standard
+其他人(other) 既不是文件所有者，也不是文件所属的组的成员的其他用户。 
+\end_layout
+
+\begin_layout Standard
+根据用户对文件或目录操作种类的不同，又定义了三种操作权限，并为每种权限赋予一个简写形式和数值： 
+\end_layout
+
+\begin_layout Standard
+权限 简 值 对普通文件的作用 对文件夹的作用[4] 
+\end_layout
+
+\begin_layout Standard
+读取 r 4 查看文件内容 列出目录中的文件(ls) 
+\end_layout
+
+\begin_layout Standard
+写入 w 2 修改文件内容 在目录中删除、添加或重命名文件(夹) 
+\end_layout
+
+\begin_layout Standard
+执行 x 1 文件可以作为程序执行 访问子目录及文件及shell中cd到此目录
+\end_layout
+
+\begin_layout Standard
+上面的三种关系与三种操作权限的组合，构成了一个含有9个二进制位的权限标识。
+\end_layout
+
+\begin_layout Subsubsection
+特殊权限
+\end_layout
+
+\begin_layout Standard
+还有三种与用户身份无关的三个文件权限属性。即SUID、SGID和Sticky。
+\end_layout
+
+\begin_layout Standard
+setuid: 设置使文件在执行阶段具有文件所有者的权限.
+ 典型的文件是 /usr/bin/passwd.
+ 如果一般用户执行该 文件, 则在执行过程中, 该文件可以获得root权限, 从而可以更改用户的密码.
+ 
+\end_layout
+
+\begin_layout Standard
+setgid: 该权限只对目录有效.
+ 目录被设置该位后, 任何用户在此目录下创建的文件都具有和该目录所属的组 相同的组.
+ 
+\end_layout
+
+\begin_layout Standard
+sticky bit: 该位可以理解为防删除位.
+ 如果希望 用户能够添加文件但同时不能删除文件, 则可以对文件使用sticky bit位.
+ 设置该位后, 就算用户对目录具有写权限, 也不能删除该文件.
+\end_layout
+
+\begin_layout Subsubsection
+权限的表示 
+\end_layout
+
+\begin_layout Itemize
+符号表示
+\end_layout
+
+\begin_layout Standard
+r,w,x,s,S,t,T。共9个位置，每种身份使用3位。
+\end_layout
+
+\begin_layout Standard
+s和S表示setid和setgid，如果出现在第三位就是setuid，第6位是setgid；S表示没有x,s表示同时有x和s。
+\end_layout
+
+\begin_layout Standard
+t或者T出现在第9位，表示sticky bit。
+\end_layout
+
+\begin_layout Itemize
+数值表示
+\end_layout
+
+\begin_layout Standard
+四位八进制数来表示，其中最高位表示特殊权限，随后的三位依次是所有者权限、组权限和其他人权限。
+\end_layout
+
+\begin_layout Standard
+r,w,x=4,2,1，s,s,t=4,2,1，每个八进制数是它们的和。
+\end_layout
+
+\begin_layout Subsubsection
+文件权限操作
+\end_layout
+
+\begin_layout Standard
+chmod:
+\end_layout
+
+\begin_layout Standard
+chmod u+s temp -- 为temp文件加上setuid标志.
+ (setuid 只对文件有效) 
+\end_layout
+
+\begin_layout Standard
+chmod g+s tempdir -- 为tempdir目录加上setgid标志 (setgid 只对目录有效) 
+\end_layout
+
+\begin_layout Standard
+chmod o+t temp -- 为temp文件加上sticky标志 (sticky只对文件有效)
+\end_layout
+
+\begin_layout Standard
+chown :
+\end_layout
+
+\begin_layout Standard
+chgrp :
+\end_layout
+
+\begin_layout Standard
+find / -perm -4000 -o -perm -2000寻找具有setuid或者setgid的文件
+\end_layout
+
+\begin_layout Standard
+例子1： 
+\end_layout
+
+\begin_layout Subsection
+文件系统权限
+\end_layout
+
+\begin_layout Standard
+mount参数中包含了影响权限的参数，这些会覆盖文件本身的权限。
+\end_layout
+
+\begin_layout Standard
+
+\emph on
+exec
+\emph default
+ Permit execution of binaries.
+\end_layout
+
+\begin_layout Standard
+
+\emph on
+noexec
+\emph default
+ Do not allow direct execution of any binaries on the mounted filesystem.
+ (Until recently it was possible to run binaries anyway using a command
+ like /lib/ld*.so /mnt/binary.
+ This trick fails since Linux 2.4.25 / 2.6.0.) 
+\end_layout
+
+\begin_layout Standard
+
+\emph on
+suid
+\emph default
+ Allow set-user-identifier or set-group-identifier bits to take effect.
+\end_layout
+
+\begin_layout Standard
+
+\emph on
+nosuid
+\emph default
+ Do not allow set-user-identifier or set-group-identifier bits to take effect.
+ (This seems safe, but is in fact rather unsafe if you have suidperl(1)
+ installed.) 
+\end_layout
+
+\begin_layout Standard
+ro Mount the filesystem read-only.
+\end_layout
+
+\begin_layout Standard
+rw Mount the filesystem read-write.
+\end_layout
+
+\begin_layout Subsection
+attributes and extended attributes（文件属性）
+\end_layout
+
+\begin_layout Subsubsection
+attributes
+\end_layout
+
+\begin_layout Standard
+The letters `acdeijstuADST' select the new attributes for the files: append
+ only (a), compressed (c), no dump (d), extent format (e), immutable (i),
+ data journalling (j), secure deletion (s), no tail-merging (t), undeletable
+ (u), no atime updates (A), synchronous directory updates (D), synchronous
+ updates (S), and top of directory hierarchy (T).
+\end_layout
+
+\begin_layout Standard
+The following attributes are read-only, and may be listed by lsattr(1) but
+ not modified by chattr: huge file (h), compression error (E), indexed directory
+ (I), compression raw access (X), and compressed dirty file (Z).
+ 
+\end_layout
+
+\begin_layout Standard
+When a file with the 'A' attribute set is accessed, its atime record is
+ not modified.
+ This avoids a certain amount of disk I/O for laptop systems.
+\end_layout
+
+\begin_layout Standard
+A file with the `a' attribute set can 
+\series bold
+only be open in append mode for writing
+\series default
+.
+ Only the superuser or a process possessing the CAP_LINUX_IMMUTABLE capability
+ can set or clear this attribute.
+\end_layout
+
+\begin_layout Standard
+A file with the `c' attribute set is automatically 
+\series bold
+compressed
+\series default
+ on the disk by the kernel.
+ A read from this file returns uncompressed data.
+ A write to this file compresses data before storing them on the disk.
+ Note: please make sure to read the bugs and limitations section at the
+ end of this document.
+\end_layout
+
+\begin_layout Standard
+When a directory with the `D' attribute set is modified, the changes are
+ written synchronously on the disk; this is equivalent to the `dirsync'
+ mount option applied to a subset of the files.
+\end_layout
+
+\begin_layout Standard
+A file with the `d' attribute set is not candidate for backup when the dump(8)
+ program is run.
+\end_layout
+
+\begin_layout Standard
+The 'E' attribute is used by the experimental compression patches to indicate
+ that a compressed file has a compression error.
+ It may not be set or reset using chattr(1), although it can be displayed
+ by lsattr(1).
+\end_layout
+
+\begin_layout Standard
+The 'e' attribute indicates that the file is 
+\emph on
+using extents
+\emph default
+ for mapping the blocks on disk.
+ It may not be removed using chattr(1).
+\end_layout
+
+\begin_layout Standard
+The 'I' attribute is used by the htree code to indicate that a directory
+ is being indexed using hashed trees.
+ It may not be set or reset using chattr(1), although it can be displayed
+ by lsattr(1).
+\end_layout
+
+\begin_layout Standard
+The 'h' attribute indicates the file is storing its blocks in units of the
+ filesystem blocksize instead of in units of sectors, and means that the
+ file is (or at one time was) 
+\series bold
+larger than 2TB
+\series default
+.
+ It may not be set or reset using chattr(1), although it can be displayed
+ by lsattr(1).
+\end_layout
+
+\begin_layout Standard
+A file with the `i' attribute cannot be modified: 
+\series bold
+it cannot be deleted or renamed, no link can be created to this file and
+ no data can be written to the file
+\series default
+.
+ Only the superuser or a process possessing the CAP_LINUX_IMMUTABLE capability
+ can set or clear this attribute.
+\end_layout
+
+\begin_layout Standard
+A file with the `j' attribute has all of its data written to the ext3 journal
+ before being written to the file itself, if the filesys‐ tem is mounted
+ with the "data=ordered" or "data=writeback" options.
+ When the filesystem is mounted with the "data=journal" option all file
+ data is already journalled and this attribute has no effect.
+ Only the superuser or a process possessing the CAP_SYS_RESOURCE capability
+ can set or clear this attribute.
+ 
+\end_layout
+
+\begin_layout Standard
+When a file with the `S' attribute set is modified, the changes are written
+ synchronously on the disk; this is equivalent to the `sync' mount option
+ applied to a subset of the files.
+\end_layout
+
+\begin_layout Standard
+A directory with the 'T' attribute will be deemed to be the top of directory
+ hierarchies for the purposes of the Orlov block allocator.
+ This is a hint to the block allocator used by ext3 and ext4 that the subdirecto
+ries under this directory are not related, and thus should be spread apart
+ for allocation purposes.
+ For example it is a very good idea to set the 'T' attribute on the /home
+ directory, so that /home/john and /home/mary are placed into separate block
+ groups.
+ For directories where this attribute is not set, the Orlov block allocator
+ will try to group subdirectories closer together where possible.
+\end_layout
+
+\begin_layout Standard
+A file with the 't' attribute will 
+\series bold
+not have a partial block fragment 
+\series default
+at the end of the file merged with other files (for those filesys‐ tems
+ which support tail-merging).
+ This is necessary for applications such as LILO which read the filesystem
+ directly, and which don't understand tail-merged files.
+ Note: As of this writing, the ext2 or ext3 filesystems do not (yet, except
+ in very experimental patches) support tail-merging.
+\end_layout
+
+\begin_layout Standard
+When a file with the `u' attribute set
+\series bold
+ is deleted, its contents are saved
+\series default
+.
+ This allows the user to ask for its undeletion.
+ Note: please make sure to read the bugs and limitations section at the
+ end of this document.
+\end_layout
+
+\begin_layout Standard
+The 'X' attribute is used by the experimental compression patches to 
+\series bold
+indicate that a raw contents of a compressed file can be accessed directly
+\series default
+.
+ It currently may not be set or reset using chattr(1), although it can be
+ displayed by lsattr(1).
+\end_layout
+
+\begin_layout Standard
+The 'Z' attribute is used by the experimental compression patches to indicate
+ a compressed file is dirty.
+ It may not be set or reset using chattr(1), although it can be displayed
+ by lsattr(1).
+ 
+\end_layout
+
+\begin_layout Standard
+相关命令
+\series bold
+lsattr, chattr
+\end_layout
+
+\begin_layout Subsubsection
+extended attributes
+\end_layout
+
+\begin_layout Standard
+是以(name,value)形式组织的属性对，用于存储文件本身不能存储的其它信息，各种操作系统都支持。
+\end_layout
+
+\begin_layout Standard
+Linux有四种类型的扩展属性：
+\end_layout
+
+\begin_layout Standard
+trusted : to record properties which should only be accessed by the kernel,
+ 
+\end_layout
+
+\begin_layout Standard
+security : to record security properties of a file, 
+\end_layout
+
+\begin_layout Standard
+system : to record other system related properties on which the file owner
+ has some control, 
+\end_layout
+
+\begin_layout Standard
+user : to record properties defined by applications.
+\end_layout
+
+\begin_layout Standard
+The names of the extended attributes must be prefixed by the name of the
+ category and a dot, hence these categories are generally qualified as name
+ spaces.
+ Examples of extended attribute names are security.selinux, system.posix_acl_acces
+s or user.mime_type.
+ However a high-level language may hide the system prefixing so that, for
+ instance, the user.mime_type attribute name would appear as "mime_type"
+ in a source code.
+\end_layout
+
+\begin_layout Standard
+They can be retrieved and set through system calls (getxattr(2), setxattr(2),
+ removexattr(2)) or shell commands (getfattr(1), setfattr(1)), provided
+ appropriate access conditions are met :
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="5" columns="3">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<column alignment="center" valignment="top" width="0">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+condition for getting 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+condition for setting trusted 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+trusted
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+root 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+root
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+security
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+read access 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+root
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+system
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+read access
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+owner
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+user
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+read access
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+write access
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The extended attributes are enabled through the mount option （user_xattr:
+ Support "user." extended attributes）。
+\end_layout
+
+\begin_layout Standard
+the mapped extended attributes will be copied, for instance by tar with
+ option --xattrs, by cp with option --preserve=xattr, by rsync with option
+ -X, etc.
+\end_layout
+
+\begin_layout Subsection
+ACL(Access Control List)访问控制列表
+\end_layout
+
+\begin_layout Standard
+如果我们现在希望john这个用户也可以对test.txt文件进行读写操作.
+ 我自己大概会想到以下几种办法 (这里假设john不属于admin group) 
+\end_layout
+
+\begin_layout Standard
+1.
+ 给文件的other类别增加read and write permission.
+ 这样由于john会被归为other类别,那么他也将拥有读写的权限 。
+\end_layout
+
+\begin_layout Standard
+2.
+ 将john加入到admin group.
+ 那么john会被归为group类别,那么他将拥有读写的权限 。
+\end_layout
+
+\begin_layout Standard
+3.
+ 设置sudo, 使john能够以leonard的身份对test.txt进行操作,从而获得读写权限 。
+\end_layout
+
+\begin_layout Standard
+第一种做法的问题在于所有用户都将对test.txt拥有读写操作,显然这种做法不可取。第二种做法的问题在于john被赋予了过多的权限.所有属于admin组的文件,jo
+hn都可以拥有其等同的权限了 第三种做法虽然可以达到只限定john用户一人拥有对test.txt文件的读写权限.但是需要对sudoers文件进行严格的格式控制。而且
+当文件数量和用户很多的时候,这种方法就相当地不灵活了。 看来好像都没有一个很好的解决方案.。其实问题就出在Linux file permission里面,对于ot
+her的定义过于广泛,以至于很难把permission限定于一个不属于file owner和group的用户身上。那么Access Control
+ List (ACL)就是用来帮助我们解决这个问题的.
+ 简单地来说ACL就是可以设置特定用户或者用户组对于一个文件的操作权限.
+ 需要掌握的命令也只有三个: getfacl, setfacl, chacl。
+\end_layout
+
+\begin_layout Standard
+下面的内容来自：http://www.ibm.com/developerworks/cn/linux/l-acl/，我做了一些手脚，用于学习ACL时练习。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+准备工作
+\end_layout
+
+\begin_layout Plain Layout
+支持ACL需要内核和文件系统的支持。
+\end_layout
+
+\begin_layout Plain Layout
+用自己工作用的物理分区体验ACL，总是不明智的行为。万一误操作导致分区的损坏，造成数据的丢失，损失就大了。作一个loop设备是个安全的替代方法。这样不需要一个单
+独的分区，也不需要很大的硬盘空间，大约有个几百KB就足够进行我们的体验了。OK，下面我使用Fedora Core 5和Ext3文件开始对Linux的ACL的体验
+。
+\end_layout
+
+\begin_layout Plain Layout
+首先创建一个512KB的空白文件：
+\end_layout
+
+\begin_layout Plain Layout
+[root@FC3-vm opt]# dd if=/dev/zero of=/opt/testptn count=512 512+0 records
+ in 512+0 records out
+\end_layout
+
+\begin_layout Plain Layout
+和一个loop设备联系在一起：
+\end_layout
+
+\begin_layout Plain Layout
+[root@FC3-vm opt]# losetup /dev/loop0 /opt/testptn
+\end_layout
+
+\begin_layout Plain Layout
+创建一个EXT2的文件系统：
+\end_layout
+
+\begin_layout Plain Layout
+[root@FC3-vm opt]# mke2fs /dev/loop0 
+\end_layout
+
+\begin_layout Plain Layout
+挂载新建的文件系统（注意mount选项里的acl标志，我们靠它来通知内核我们需要在这个文件系统中使用ACL）：
+\end_layout
+
+\begin_layout Plain Layout
+[root@FC3-vm opt]# mount -o rw,acl /dev/loop0 /mnt 
+\end_layout
+
+\begin_layout Plain Layout
+[root@FC3-vm opt]# cd /mnt 
+\end_layout
+
+\begin_layout Plain Layout
+现在我已经得到了一个小型的文件系统。而且是支持ACL的。并且即使彻底损坏也不会影响硬盘上其他有价值的数据。可以开始我们的ACL体验之旅了。
+\end_layout
+
+\begin_layout Itemize
+体验1 － ACL的基本操作：添加和修改
+\end_layout
+
+\begin_layout Plain Layout
+我首先新建一个文件作为实施ACL的对象：
+\end_layout
+
+\begin_layout Plain Layout
+[root@FC3-vm mnt]# touch file1 
+\end_layout
+
+\begin_layout Plain Layout
+[root@FC3-vm mnt]# ls -l file1 
+\end_layout
+
+\begin_layout Plain Layout
+-rw-r--r-- 1 root root 7 Dec 11 00:28 file1
+\end_layout
+
+\begin_layout Plain Layout
+然后看一下这个文件缺省的ACL，这时这个文件除了通常的UGO的权限之外，并没有ACL：
+\end_layout
+
+\begin_layout Plain Layout
+[root@FC3-vm mnt]# getfacl file1 
+\end_layout
+
+\begin_layout Plain Layout
+# file: file1 
+\end_layout
+
+\begin_layout Plain Layout
+# owner: root 
+\end_layout
+
+\begin_layout Plain Layout
+# group: root 
+\end_layout
+
+\begin_layout Plain Layout
+user::rw- 
+\end_layout
+
+\begin_layout Plain Layout
+group::r-- 
+\end_layout
+
+\begin_layout Plain Layout
+other::r-
+\end_layout
+
+\begin_layout Plain Layout
+*注意：即使是不支持ACL的情况下，getfacl仍然能返回一个这样的结果。不过setfacl是不能工作的。
+\end_layout
+
+\begin_layout Plain Layout
+下面添加几个用户和组，一会我将使用ACL赋予他们不同的权限：
+\end_layout
+
+\begin_layout Plain Layout
+[root@FC3-vm mnt]# groupadd testg1 
+\end_layout
+
+\begin_layout Plain Layout
+[root@FC3-vm mnt]# useradd testu1 
+\end_layout
+
+\begin_layout Plain Layout
+[root@FC3-vm mnt]# useradd testu2 
+\end_layout
+
+\begin_layout Plain Layout
+[root@FC3-vm mnt]# usermod -G testg1 testu1
+\end_layout
+
+\begin_layout Plain Layout
+现在我们看看testu1能做什么：
+\end_layout
+
+\begin_layout Plain Layout
+[root@FC3-vm mnt]# su testu1 
+\end_layout
+
+\begin_layout Plain Layout
+[testu1@FC3-vm mnt]$ echo "testu1" >> file1 
+\end_layout
+
+\begin_layout Plain Layout
+bash: file1: Permission denied
+\end_layout
+
+\begin_layout Plain Layout
+失败了。因为file1并不允许除了root以外的用户写。我们现在就通过修改file1的ACL赋予testu1足够的权限：
+\end_layout
+
+\begin_layout Plain Layout
+[root@FC3-vm mnt]# 
+\series bold
+setfacl -m u:testu1:rw file1 
+\end_layout
+
+\begin_layout Plain Layout
+[root@FC3-vm mnt]# su testu1 
+\end_layout
+
+\begin_layout Plain Layout
+[testu1@FC3-vm mnt]$ echo "testu1" >> file1 
+\end_layout
+
+\begin_layout Plain Layout
+[testu1@FC3-vm mnt]$ cat file1 testu1
+\end_layout
+
+\begin_layout Plain Layout
+修改成功了，用户testu1可以对file1做读写操作了。我们来看一下file1的ACL：
+\end_layout
+
+\begin_layout Plain Layout
+[testu1@FC3-vm mnt]$ getfacl file1 
+\end_layout
+
+\begin_layout Plain Layout
+# file: file1 
+\end_layout
+
+\begin_layout Plain Layout
+# owner: root 
+\end_layout
+
+\begin_layout Plain Layout
+# group: root 
+\end_layout
+
+\begin_layout Plain Layout
+
+\series bold
+user::rw- 
+\end_layout
+
+\begin_layout Plain Layout
+
+\series bold
+user:testu1:rw-
+\series default
+ 
+\end_layout
+
+\begin_layout Plain Layout
+group::r-- 
+\end_layout
+
+\begin_layout Plain Layout
+mask::rw- 
+\end_layout
+
+\begin_layout Plain Layout
+other::r-
+\end_layout
+
+\begin_layout Plain Layout
+我们ls看一下：
+\end_layout
+
+\begin_layout Plain Layout
+[root@FC3-vm mnt]# ls -l file1 
+\end_layout
+
+\begin_layout Plain Layout
+-rw-rw-r--+ 1 root root 7 Dec 11 00:28 file1
+\end_layout
+
+\begin_layout Plain Layout
+可以看到那个"+"了么？就在通常我们看到的权限位的旁边。
+\series bold
+这个说明file1设置了ACL
+\series default
+， 接下来我们修改一下testu1的权限，同时给testg1这个组以读的权限：
+\end_layout
+
+\begin_layout Plain Layout
+[root@FC3-vm mnt]# setfacl -m u:testu1:rwx,g:testg1:r file1 
+\end_layout
+
+\begin_layout Plain Layout
+[root@FC3-vm mnt]# getfacl file1 
+\end_layout
+
+\begin_layout Plain Layout
+# file: file1 
+\end_layout
+
+\begin_layout Plain Layout
+# owner: root 
+\end_layout
+
+\begin_layout Plain Layout
+# group: root 
+\end_layout
+
+\begin_layout Plain Layout
+user::rw- 
+\end_layout
+
+\begin_layout Plain Layout
+user:testu1:rwx 
+\end_layout
+
+\begin_layout Plain Layout
+group::r-- 
+\end_layout
+
+\begin_layout Plain Layout
+group:testg1:r-- 
+\end_layout
+
+\begin_layout Plain Layout
+mask::rwx 
+\end_layout
+
+\begin_layout Plain Layout
+other::r-
+\end_layout
+
+\begin_layout Plain Layout
+可以看到设置后的权限，testu1已经有了执行的权限，而testg1这个组也获得了读取文件内容的权限。也许有人已经注意到了两个问题：首先，file1的组权限从r
+--变成了rw-。其次，mask是什么？为什么也变化了呢？我们先从mask说起。如果说
+\series bold
+acl的优先级高于UGO
+\series default
+，那么m
+\series bold
+ask就是一个名副其实的最后一道防线。它决定了一个用户/组能够得到的最大的权限
+\series default
+。这样我们在不破坏已有ACL的定义的基础上，可以临时提高或是降低安全级别：
+\end_layout
+
+\begin_layout Plain Layout
+[root@FC3-vm mnt]# setfacl -m mask::r file1 
+\end_layout
+
+\begin_layout Plain Layout
+[root@FC3-vm mnt]# getfacl file1 
+\end_layout
+
+\begin_layout Plain Layout
+# file: file1 
+\end_layout
+
+\begin_layout Plain Layout
+# owner: root 
+\end_layout
+
+\begin_layout Plain Layout
+# group: root 
+\end_layout
+
+\begin_layout Plain Layout
+user::rw- 
+\end_layout
+
+\begin_layout Plain Layout
+user:testu1:rwx #effective:r-- 
+\end_layout
+
+\begin_layout Plain Layout
+group::r-- 
+\end_layout
+
+\begin_layout Plain Layout
+group:testg1:r-- 
+\end_layout
+
+\begin_layout Plain Layout
+mask::r-- 
+\end_layout
+
+\begin_layout Plain Layout
+other::r--
+\end_layout
+
+\begin_layout Plain Layout
+[root@FC3-vm mnt]# ls -l file1 
+\end_layout
+
+\begin_layout Plain Layout
+-rw-r--r--+ 1 root root 7 Dec 11 00:28 file1
+\end_layout
+
+\begin_layout Plain Layout
+在testu1对应的ACL项的后边出现了effective的字样，这是实际testu1得到的权限。
+\series bold
+Mask只对其他用户和组的权限有影响
+\series default
+，对owner和other的权限是没有任何影响的。 执行ls的结果也显示UGO的设置也有了对应的变化。因为在使用了ACL的情况下，group的权限显示的就是当前
+的mask。通常我们把mask设置成rwx，以不阻止任何的单个ACL项。
+\end_layout
+
+\begin_layout Plain Layout
+*
+\series bold
+需要注意的是，每次修改或添加某个用户或组的ACL项的时候，mask都会随之修改以使最新的修改能够真正生效。所以如果需要一个比较严格的mask的话，可能需要每次都
+重新设置一下mask
+\series default
+。
+\end_layout
+
+\begin_layout Itemize
+体验2 － ACL的其他功能：删除和覆盖
+\end_layout
+
+\begin_layout Plain Layout
+我们来看一下其他的ACL操作。首先如何删除已有的ACL项呢？
+\end_layout
+
+\begin_layout Plain Layout
+[root@FC3-vm mnt]# setfacl -x g:testg1 file1 
+\end_layout
+
+\begin_layout Plain Layout
+[root@FC3-vm mnt]# getfacl file1 
+\end_layout
+
+\begin_layout Plain Layout
+# file: file1 
+\end_layout
+
+\begin_layout Plain Layout
+# owner: root 
+\end_layout
+
+\begin_layout Plain Layout
+# group: root 
+\end_layout
+
+\begin_layout Plain Layout
+user::rw- 
+\end_layout
+
+\begin_layout Plain Layout
+user:testu1:rwx 
+\end_layout
+
+\begin_layout Plain Layout
+group::r-- 
+\end_layout
+
+\begin_layout Plain Layout
+mask::rwx 
+\end_layout
+
+\begin_layout Plain Layout
+other::r--
+\end_layout
+
+\begin_layout Plain Layout
+我们看到testg1的权限已经被去掉了。如果需要去掉所有的ACL可以用-b选项。所有的ACL项都会被去掉。
+\end_layout
+
+\begin_layout Plain Layout
+[root@FC3-vm mnt]# setfacl -b file1 
+\end_layout
+
+\begin_layout Plain Layout
+[root@FC3-vm mnt]# getfacl file1 
+\end_layout
+
+\begin_layout Plain Layout
+# file: file1 
+\end_layout
+
+\begin_layout Plain Layout
+# owner: root 
+\end_layout
+
+\begin_layout Plain Layout
+# group: root 
+\end_layout
+
+\begin_layout Plain Layout
+user::rw- 
+\end_layout
+
+\begin_layout Plain Layout
+group::r-- 
+\end_layout
+
+\begin_layout Plain Layout
+other::r--
+\end_layout
+
+\begin_layout Plain Layout
+我们可以用--set 设置一些新的ACL项，并把原有的ACL项全部都覆盖掉。和-m不同，
+\series bold
+-m选项只是修改已有的配置或是新增加一些
+\series default
+。
+\series bold
+--set选项会把原有的ACL项都删除
+\series default
+，用新的替代，需要注意的是一定要包含UGO的设置，不能象-m一样只是添加ACL就可以了。比如下边这一段：
+\end_layout
+
+\begin_layout Plain Layout
+[root@FC3-vm mnt]# setfacl --set u::rw,u:testu1:rw,g::r,o::- file1 
+\end_layout
+
+\begin_layout Plain Layout
+[root@FC3-vm mnt]# getfacl file1 
+\end_layout
+
+\begin_layout Plain Layout
+# file: file1 
+\end_layout
+
+\begin_layout Plain Layout
+# owner: root 
+\end_layout
+
+\begin_layout Plain Layout
+# group: root 
+\end_layout
+
+\begin_layout Plain Layout
+user::rw- 
+\end_layout
+
+\begin_layout Plain Layout
+user:testu1:rw- 
+\end_layout
+
+\begin_layout Plain Layout
+group::r-- 
+\end_layout
+
+\begin_layout Plain Layout
+mask::rw- 
+\end_layout
+
+\begin_layout Plain Layout
+other::---
+\end_layout
+
+\begin_layout Plain Layout
+o::-是另一个需要注意的地方。其实完整的写法是other::---，正如u::rw的完整写法是user::rw-。通常我们可以把"-"省略，但是当权限位只包含
+"-"时，必须至少保留一个。如果写成了o::，就会出现错误。
+\end_layout
+
+\begin_layout Plain Layout
+如果希望对目录下的所有子目录都设置同样的ACL，可以使用-R参数：
+\end_layout
+
+\begin_layout Plain Layout
+[root@FC3-vm mnt]# setfacl --set u::rw,u:testu1:rw,g::r,o::- dir1
+\end_layout
+
+\begin_layout Plain Layout
+如果希望能从一个文件来读入ACL，并修改当前的文件的ACL，可以用-M参数：
+\end_layout
+
+\begin_layout Plain Layout
+[root@FC3-vm mnt]# cat test.acl 
+\end_layout
+
+\begin_layout Plain Layout
+user:testu1:rw- 
+\end_layout
+
+\begin_layout Plain Layout
+user:testu2:rw- 
+\end_layout
+
+\begin_layout Plain Layout
+group:testg1:r-- 
+\end_layout
+
+\begin_layout Plain Layout
+group:testg2:r-- 
+\end_layout
+
+\begin_layout Plain Layout
+mask::rw- 
+\end_layout
+
+\begin_layout Plain Layout
+other::---
+\end_layout
+
+\begin_layout Itemize
+体验3 － 目录的默认ACL
+\end_layout
+
+\begin_layout Plain Layout
+如果我们希望在一个目录中新建的文件和目录都使用同一个预定的ACL，那么我们可以使用默认(Default)ACL。在对一个目录设置了默认的ACL以后，每个在目录中
+创建的文件都会自动继承目录的默认ACL作为自己的ACL。用setfacl的-d选项就可以做到这一点：
+\end_layout
+
+\begin_layout Plain Layout
+[root@FC3-vm mnt]# setfacl -d --set g:testg1:rwx dir1 
+\end_layout
+
+\begin_layout Plain Layout
+[root@FC3-vm mnt]# getfacl dir1 
+\end_layout
+
+\begin_layout Plain Layout
+# file: dir1 
+\end_layout
+
+\begin_layout Plain Layout
+# owner: root 
+\end_layout
+
+\begin_layout Plain Layout
+# group: root 
+\end_layout
+
+\begin_layout Plain Layout
+user::rwx 
+\end_layout
+
+\begin_layout Plain Layout
+group::r-x 
+\end_layout
+
+\begin_layout Plain Layout
+other::r-x 
+\end_layout
+
+\begin_layout Plain Layout
+default:user::rwx 
+\end_layout
+
+\begin_layout Plain Layout
+default:group::r-x 
+\end_layout
+
+\begin_layout Plain Layout
+default:group:testg1:rwx 
+\end_layout
+
+\begin_layout Plain Layout
+default:mask::rwx 
+\end_layout
+
+\begin_layout Plain Layout
+default:other::r-x
+\end_layout
+
+\begin_layout Plain Layout
+可以看到默认ACL已经被设置了。建立一个文件试试：
+\end_layout
+
+\begin_layout Plain Layout
+[root@FC3-vm mnt]# touch dir1/file1 
+\end_layout
+
+\begin_layout Plain Layout
+[root@FC3-vm mnt]# getfacl dir1/file1 
+\end_layout
+
+\begin_layout Plain Layout
+# file: dir1/file1 
+\end_layout
+
+\begin_layout Plain Layout
+# owner: root 
+\end_layout
+
+\begin_layout Plain Layout
+# group: root 
+\end_layout
+
+\begin_layout Plain Layout
+user::rw- 
+\end_layout
+
+\begin_layout Plain Layout
+group::r-x #effective:r-- 
+\end_layout
+
+\begin_layout Plain Layout
+group:testg1:rwx #effective:rw- 
+\end_layout
+
+\begin_layout Plain Layout
+mask::rw- 
+\end_layout
+
+\begin_layout Plain Layout
+other::r--
+\end_layout
+
+\begin_layout Plain Layout
+file1自动继承了dir1对testg1设置的ACL。只是由于mask的存在使得testg1只能获得rw-权限。
+\end_layout
+
+\begin_layout Itemize
+体验4 － 备份和恢复ACL
+\end_layout
+
+\begin_layout Plain Layout
+主要的文件操作命令cp和mv都支持ACL，只是cp命令需要加上-p 参数。但是tar等常见的备份工具是不会保留目录和文件的ACL信息的。 如果希望备份和恢复带有
+ACL的文件和目录，那么可以先把ACL备份到一个文件里。以后用--restore选项来回复这个文件中保存的ACL信息：
+\end_layout
+
+\begin_layout Plain Layout
+[root@FC3-vm mnt]# getfacl -R dir1 > dir1.acl 
+\end_layout
+
+\begin_layout Plain Layout
+[root@FC3-vm mnt]# ls -l dir1.acl 
+\end_layout
+
+\begin_layout Plain Layout
+total 16 -rw-r--r-- 1 root root 310 Dec 12 21:10 dir1.acl
+\end_layout
+
+\begin_layout Plain Layout
+我们用-b选项删除所有的ACL数据，来模拟从备份中回复的文件和目录：
+\end_layout
+
+\begin_layout Plain Layout
+[root@FC3-vm mnt]# setfacl -R -b dir1 
+\end_layout
+
+\begin_layout Plain Layout
+[root@FC3-vm mnt]# getfacl -R dir1 
+\end_layout
+
+\begin_layout Plain Layout
+# file: dir1 
+\end_layout
+
+\begin_layout Plain Layout
+# owner: root 
+\end_layout
+
+\begin_layout Plain Layout
+# group: root 
+\end_layout
+
+\begin_layout Plain Layout
+user::rwx
+\end_layout
+
+\begin_layout Plain Layout
+group::r-x 
+\end_layout
+
+\begin_layout Plain Layout
+other::r-x
+\end_layout
+
+\begin_layout Plain Layout
+# file: dir1/file1 
+\end_layout
+
+\begin_layout Plain Layout
+# owner: root
+\end_layout
+
+\begin_layout Plain Layout
+# group: root 
+\end_layout
+
+\begin_layout Plain Layout
+user::rw- 
+\end_layout
+
+\begin_layout Plain Layout
+group::r-- 
+\end_layout
+
+\begin_layout Plain Layout
+other::r--
+\end_layout
+
+\begin_layout Plain Layout
+现在我们从dir1.acl中恢复被删除的ACL信息：
+\end_layout
+
+\begin_layout Plain Layout
+[root@FC3-vm mnt]# setfacl --restore dir1.acl 
+\end_layout
+
+\begin_layout Plain Layout
+[root@FC3-vm mnt]# getfacl -R dir1 
+\end_layout
+
+\begin_layout Plain Layout
+# file: dir1 
+\end_layout
+
+\begin_layout Plain Layout
+# owner: root 
+\end_layout
+
+\begin_layout Plain Layout
+# group: root 
+\end_layout
+
+\begin_layout Plain Layout
+user::rwx 
+\end_layout
+
+\begin_layout Plain Layout
+group::r-x other::r-x 
+\end_layout
+
+\begin_layout Plain Layout
+default:user::rwx 
+\end_layout
+
+\begin_layout Plain Layout
+default:group::r-x 
+\end_layout
+
+\begin_layout Plain Layout
+default:group:testg1:rwx 
+\end_layout
+
+\begin_layout Plain Layout
+default:mask::rwx 
+\end_layout
+
+\begin_layout Plain Layout
+default:other::r-x
+\end_layout
+
+\begin_layout Plain Layout
+# file: dir1/file1 
+\end_layout
+
+\begin_layout Plain Layout
+# owner: root 
+\end_layout
+
+\begin_layout Plain Layout
+# group: root 
+\end_layout
+
+\begin_layout Plain Layout
+user::rw- group::r-x #effective:r-- 
+\end_layout
+
+\begin_layout Plain Layout
+group:testg1:rwx #effective:rw- 
+\end_layout
+
+\begin_layout Plain Layout
+mask::rw- 
+\end_layout
+
+\begin_layout Plain Layout
+other::r-- 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+列出系统中设置了acl的文件：getfacl -R -s -p /
+\end_layout
+
+\begin_layout Section
+进程权限
+\end_layout
+
+\begin_layout Standard
+.....前言，还不知道是什么....
+\end_layout
+
+\begin_layout Subsection
+Posix Capabilities
+\end_layout
+
+\begin_layout Subsubsection
+介绍
+\end_layout
+
+\begin_layout Standard
+For the purpose of performing permission checks, traditional UNIX implementation
+s distinguish two categories of processes: privileged processes (whose effective
+ user ID is 0, referred to as superuser or root), and unprivileged processes
+ (whose effective UID is nonzero).
+ Privileged processes bypass all kernel permission checks, while unprivileged
+ processes are subject to full permission check‐ ing based on the process's
+ credentials (usually: effective UID, effective GID, and supplementary group
+ list).
+\end_layout
+
+\begin_layout Standard
+Starting with kernel 2.2, Linux divides the privileges traditionally associated
+ with superuser into distinct units, known as capabilities, which can be
+ independently enabled and disabled.
+ Capabilities are a 
+\series bold
+per-thread attribute
+\series default
+.
+ 
+\end_layout
+
+\begin_layout Subsubsection
+能力清单
+\end_layout
+
+\begin_layout Description
+CAP_AUDIT_CONTROL (since Linux 2.6.11) Enable and disable kernel auditing;
+ change auditing filter rules; retrieve auditing status and filtering rules.
+\end_layout
+
+\begin_layout Description
+CAP_AUDIT_WRITE (since Linux 2.6.11) Write records to kernel auditing log.
+\end_layout
+
+\begin_layout Description
+CAP_BLOCK_SUSPEND (since Linux 3.5) Employ features that can block system
+ suspend (epoll(7) EPOLLWAKEUP, /proc/sys/wake_lock).
+\end_layout
+
+\begin_layout Description
+CAP_CHOWN Make arbitrary changes to file UIDs and GIDs (see chown(2)).
+\end_layout
+
+\begin_layout Description
+CAP_DAC_OVERRIDE Bypass file read, write, and execute permission checks.
+ (DAC is an abbreviation of "discretionary access control".)
+\end_layout
+
+\begin_layout Description
+CAP_DAC_READ_SEARCH Bypass file read permission checks and directory read
+ and execute permission checks.
+\end_layout
+
+\begin_layout Description
+CAP_FOWNER 
+\end_layout
+
+\begin_layout Description
+* Bypass permission checks on operations that normally require the file
+ system UID of the process to match the UID of the file (e.g., chmod(2), utime(2))
+, excluding those operations covered by CAP_DAC_OVERRIDE and CAP_DAC_READ_SEARCH
+; 
+\end_layout
+
+\begin_layout Description
+* set extended file attributes (see chattr(1)) on arbitrary files; 
+\end_layout
+
+\begin_layout Description
+* set Access Control Lists (ACLs) on arbitrary files; 
+\end_layout
+
+\begin_layout Description
+* ignore directory sticky bit on file deletion; 
+\end_layout
+
+\begin_layout Description
+* specify O_NOATIME for arbitrary files in open(2) and fcntl(2).
+\end_layout
+
+\begin_layout Description
+CAP_FSETID Don't clear set-user-ID and set-group-ID permission bits when
+ a file is modified; set the set-group-ID bit for a file whose GID does
+ not match the file system or any of the supplementary GIDs of the calling
+ process.
+\end_layout
+
+\begin_layout Description
+CAP_IPC_LOCK Lock memory (mlock(2), mlockall(2), mmap(2), shmctl(2)).
+\end_layout
+
+\begin_layout Description
+CAP_IPC_OWNER Bypass permission checks for operations on System V IPC objects.
+\end_layout
+
+\begin_layout Description
+CAP_KILL Bypass permission checks for sending signals (see kill(2)).
+ This includes use of the ioctl(2) KDSIGACCEPT operation.
+\end_layout
+
+\begin_layout Description
+CAP_LEASE (since Linux 2.4) Establish leases on arbitrary files (see fcntl(2)).
+\end_layout
+
+\begin_layout Description
+CAP_LINUX_IMMUTABLE Set the FS_APPEND_FL and FS_IMMUTABLE_FL i-node flags
+ (see chattr(1)).
+\end_layout
+
+\begin_layout Description
+CAP_MAC_ADMIN (since Linux 2.6.25) Override Mandatory Access Control (MAC).
+ Implemented for the Smack Linux Security Module (LSM).
+\end_layout
+
+\begin_layout Description
+CAP_MAC_OVERRIDE (since Linux 2.6.25) Allow MAC configuration or state changes.
+ Implemented for the Smack LSM.
+\end_layout
+
+\begin_layout Description
+CAP_MKNOD (since Linux 2.4) Create special files using mknod(2).
+\end_layout
+
+\begin_layout Description
+CAP_NET_ADMIN Perform various network-related operations: 
+\end_layout
+
+\begin_layout Description
+* interface configuration; 
+\end_layout
+
+\begin_layout Description
+* administration of IP firewall, masquerading, and accounting 
+\end_layout
+
+\begin_layout Description
+* modify routing tables; 
+\end_layout
+
+\begin_layout Description
+* bind to any address for transparent proxying; 
+\end_layout
+
+\begin_layout Description
+* set type-of-service (TOS) 
+\end_layout
+
+\begin_layout Description
+* clear driver statistics; 
+\end_layout
+
+\begin_layout Description
+* set promiscuous mode; 
+\end_layout
+
+\begin_layout Description
+* enabling multicasting; 
+\end_layout
+
+\begin_layout Description
+* use setsockopt(2) to set the following socket options: SO_DEBUG, SO_MARK,
+ SO_PRIORITY (for a priority outside the range 0 to 6), SO_RCVBUFFORCE,
+ and SO_SNDBUFFORCE.
+\end_layout
+
+\begin_layout Description
+CAP_NET_BIND_SERVICE Bind a socket to Internet domain privileged ports (port
+ numbers less than 1024).
+\end_layout
+
+\begin_layout Description
+CAP_NET_BROADCAST (Unused) Make socket broadcasts, and listen to multicasts.
+\end_layout
+
+\begin_layout Description
+CAP_NET_RAW 
+\end_layout
+
+\begin_layout Description
+* use RAW and PACKET sockets; 
+\end_layout
+
+\begin_layout Description
+* bind to any address for transparent proxying.
+\end_layout
+
+\begin_layout Description
+CAP_SETGID Make arbitrary manipulations of process GIDs and supplementary
+ GID list; forge GID when passing socket credentials via UNIX domain sockets.
+\end_layout
+
+\begin_layout Description
+CAP_SETFCAP (since Linux 2.6.24) Set file capabilities.
+\end_layout
+
+\begin_layout Description
+CAP_SETPCAP If file capabilities are not supported: grant or remove any
+ capability in the caller's permitted capability set to or from any other
+ process.
+ (This property of CAP_SETPCAP is not available when the kernel is configured
+ to support file capabilities, since CAP_SETPCAP has entirely different
+ semantics for such kernels.)。 If file capabilities are supported: add any
+ capability from the calling thread's bounding set to its inheritable set;
+ drop capa‐ bilities from the bounding set (via prctl(2) PR_CAPBSET_DROP);
+ make changes to the securebits flags.
+ 
+\end_layout
+
+\begin_layout Description
+CAP_SETUID Make arbitrary manipulations of process UIDs (setuid(2), setreuid(2),
+ setresuid(2), setfsuid(2)); make forged UID when passing socket credentials
+ via UNIX domain sockets.
+\end_layout
+
+\begin_layout Description
+CAP_SYS_ADMIN 
+\end_layout
+
+\begin_layout Description
+* Perform a range of system administration operations including: quotactl(2),
+ mount(2), umount(2), swapon(2), swapoff(2), sethostname(2), and setdomainname(2
+); 
+\end_layout
+
+\begin_layout Description
+* perform privileged syslog(2) operations (since Linux 2.6.37, CAP_SYSLOG
+ should be used to permit such operations); 
+\end_layout
+
+\begin_layout Description
+* perform VM86_REQUEST_IRQ vm86(2) command; 
+\end_layout
+
+\begin_layout Description
+* perform IPC_SET and IPC_RMID operations on arbitrary System V IPC objects;
+ 
+\end_layout
+
+\begin_layout Description
+* perform operations on trusted and security Extended Attributes (see attr(5));
+\end_layout
+
+\begin_layout Description
+* use lookup_dcookie(2); * use ioprio_set(2) to assign IOPRIO_CLASS_RT and
+ (before Linux 2.6.25) IOPRIO_CLASS_IDLE I/O scheduling classes; 
+\end_layout
+
+\begin_layout Description
+* forge UID when passing socket credentials; 
+\end_layout
+
+\begin_layout Description
+* exceed /proc/sys/fs/file-max, the system-wide limit on the number of open
+ files, in system calls that open files (e.g., accept(2), execve(2), open(2),
+ pipe(2)); 
+\end_layout
+
+\begin_layout Description
+* employ CLONE_* flags that create new namespaces with clone(2) and unshare(2);
+ 
+\end_layout
+
+\begin_layout Description
+* call perf_event_open(2); 
+\end_layout
+
+\begin_layout Description
+* access privileged perf event information; 
+\end_layout
+
+\begin_layout Description
+* call setns(2);
+\end_layout
+
+\begin_layout Description
+* call fanotify_init(2); 
+\end_layout
+
+\begin_layout Description
+* perform KEYCTL_CHOWN and KEYCTL_SETPERM keyctl(2) operations;
+\end_layout
+
+\begin_layout Description
+* perform madvise(2) MADV_HWPOISON operation;
+\end_layout
+
+\begin_layout Description
+* employ the TIOCSTI ioctl(2) to insert characters into the input queue
+ of a terminal other than the caller's controlling termi‐ nal.
+ 
+\end_layout
+
+\begin_layout Description
+* employ the obsolete nfsservctl(2) system call; 
+\end_layout
+
+\begin_layout Description
+* employ the obsolete bdflush(2) system call; 
+\end_layout
+
+\begin_layout Description
+* perform various privileged block-device ioctl(2) operations; 
+\end_layout
+
+\begin_layout Description
+* perform various privileged file-system ioctl(2) operations; 
+\end_layout
+
+\begin_layout Description
+* perform administrative operations on many device drivers.
+ 
+\end_layout
+
+\begin_layout Description
+CAP_SYS_BOOT Use reboot(2) and kexec_load(2).
+\end_layout
+
+\begin_layout Description
+CAP_SYS_CHROOT Use chroot(2).
+\end_layout
+
+\begin_layout Description
+CAP_SYS_MODULE Load and unload kernel modules (see init_module(2) and delete_mod
+ule(2)); in kernels before 2.6.25: drop capabilities from the system-wide
+ capability bounding set.
+\end_layout
+
+\begin_layout Description
+CAP_SYS_NICE 
+\end_layout
+
+\begin_layout Description
+* Raise process nice value (nice(2), setpriority(2)) and change the nice
+ value for arbitrary processes; 
+\end_layout
+
+\begin_layout Description
+* set real-time scheduling policies for calling process, and set scheduling
+ policies and priorities for arbitrary processes (sched_setscheduler(2),
+ sched_setparam(2)); 
+\end_layout
+
+\begin_layout Description
+* set CPU affinity for arbitrary processes (sched_setaffinity(2)); 
+\end_layout
+
+\begin_layout Description
+* set I/O scheduling class and priority for arbitrary processes (ioprio_set(2));
+ 
+\end_layout
+
+\begin_layout Description
+* apply migrate_pages(2) to arbitrary processes and allow processes to be
+ migrated to arbitrary nodes; 
+\end_layout
+
+\begin_layout Description
+* apply move_pages(2) to arbitrary processes; 
+\end_layout
+
+\begin_layout Description
+* use the MPOL_MF_MOVE_ALL flag with mbind(2) and move_pages(2).
+\end_layout
+
+\begin_layout Description
+CAP_SYS_PACCT Use acct(2).
+\end_layout
+
+\begin_layout Description
+CAP_SYS_PTRACE Trace arbitrary processes using ptrace(2); apply get_robust_list(
+2) to arbitrary processes.
+\end_layout
+
+\begin_layout Description
+CAP_SYS_RAWIO Perform I/O port operations (iopl(2) and ioperm(2)); access
+ /proc/kcore; employ the FIBMAP ioctl(2) operation.
+\end_layout
+
+\begin_layout Description
+CAP_SYS_RESOURCE 
+\end_layout
+
+\begin_layout Description
+* Use reserved space on ext2 file systems; 
+\end_layout
+
+\begin_layout Description
+* make ioctl(2) calls controlling ext3 journaling; 
+\end_layout
+
+\begin_layout Description
+* override disk quota limits; 
+\end_layout
+
+\begin_layout Description
+* increase resource limits (see setrlimit(2)); 
+\end_layout
+
+\begin_layout Description
+* override RLIMIT_NPROC resource limit; 
+\end_layout
+
+\begin_layout Description
+* override maximum number of consoles on console allocation;
+\end_layout
+
+\begin_layout Description
+* override maximum number of keymaps; 
+\end_layout
+
+\begin_layout Description
+* allow more than 64hz interrupts from the real-time clock; 
+\end_layout
+
+\begin_layout Description
+* raise msg_qbytes limit for a System V message queue above the limit in
+ /proc/sys/kernel/msgmnb (see msgop(2) and msgctl(2)); 
+\end_layout
+
+\begin_layout Description
+* override the /proc/sys/fs/pipe-size-max limit when setting the capacity
+ of a pipe using the F_SETPIPE_SZ fcntl(2) command.
+ 
+\end_layout
+
+\begin_layout Description
+* use F_SETPIPE_SZ to increase the capacity of a pipe above the limit specified
+ by /proc/sys/fs/pipe-max-size; 
+\end_layout
+
+\begin_layout Description
+* override /proc/sys/fs/mqueue/queues_max limit when creating POSIX message
+ queues (see mq_overview(7)); 
+\end_layout
+
+\begin_layout Description
+* employ prctl(2) PR_SET_MM operation.
+\end_layout
+
+\begin_layout Description
+CAP_SYS_TIME Set system clock (settimeofday(2), stime(2), adjtimex(2));
+ set real-time (hardware) clock.
+\end_layout
+
+\begin_layout Description
+CAP_SYS_TTY_CONFIG Use vhangup(2); employ various privileged ioctl(2) operations
+ on virtual terminals.
+\end_layout
+
+\begin_layout Description
+CAP_SYSLOG (since Linux 2.6.37)
+\end_layout
+
+\begin_layout Description
+* Perform privileged syslog(2) operations.
+ See syslog(2) for information on which operations require privilege.
+\end_layout
+
+\begin_layout Description
+* View kernel addresses exposed via /proc and other interfaces when /proc/sys/ke
+rnel/kptr_restrict has the value 1.
+ (See the discus‐ sion of the kptr_restrict in proc(5).)
+\end_layout
+
+\begin_layout Description
+CAP_WAKE_ALARM (since Linux 3.0) Trigger something that will wake up the
+ system (set CLOCK_REALTIME_ALARM and CLOCK_BOOTTIME_ALARM timers).
+\end_layout
+
+\begin_layout Subsubsection
+posix能力部署条件
+\end_layout
+
+\begin_layout Standard
+A full implementation of capabilities requires that:
+\end_layout
+
+\begin_layout Standard
+1.
+ For all privileged operations, the kernel must check whether the thread
+ has the required capability in its effective set.
+\end_layout
+
+\begin_layout Standard
+2.
+ The kernel must provide system calls allowing a thread's capability sets
+ to be changed and retrieved.
+\end_layout
+
+\begin_layout Standard
+3.
+ The file system must support attaching capabilities to an executable file,
+ so that a process gains those capabilities when the file is executed.
+ 
+\end_layout
+
+\begin_layout Subsubsection
+进程中的posix能力表达
+\end_layout
+
+\end_body
+\end_document
