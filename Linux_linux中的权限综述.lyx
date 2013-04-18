@@ -2092,5 +2092,862 @@ A full implementation of capabilities requires that:
 进程中的posix能力表达
 \end_layout
 
+\begin_layout Standard
+每一个线程thread包含三个能力集合：
+\end_layout
+
+\begin_layout Itemize
+Permitted:
+\end_layout
+
+\begin_layout Standard
+This is a limiting superset for the effective capabilities that the thread
+ may assume.
+ It is also a limiting superset for the
+\end_layout
+
+\begin_layout Standard
+capabilities that may be added to the inheritable set by a thread that does
+ not have the CAP_SETPCAP capability in its effective
+\end_layout
+
+\begin_layout Standard
+set.
+\end_layout
+
+\begin_layout Standard
+If a thread drops a capability from its permitted set, it can never reacquire
+ that capability (unless it execve(2)s either a
+\end_layout
+
+\begin_layout Standard
+set-user-ID-root program, or a program whose associated file capabilities
+ grant that capability).
+\end_layout
+
+\begin_layout Itemize
+Inheritable:
+\end_layout
+
+\begin_layout Standard
+This is a set of capabilities preserved across an execve(2).
+ It provides a mechanism for a process to assign capabilities to
+\end_layout
+
+\begin_layout Standard
+the permitted set of the new program during an execve(2).
+\end_layout
+
+\begin_layout Itemize
+Effective:
+\end_layout
+
+\begin_layout Standard
+This is the set of capabilities used by the kernel to perform permission
+ checks for the thread.
+\end_layout
+
+\begin_layout Standard
+A child created via fork(2) inherits copies of its parent's capability sets.
+ See below for a discussion of the treatment of capabili‐
+\end_layout
+
+\begin_layout Standard
+ties during execve(2).
+\end_layout
+
+\begin_layout Standard
+Using capset(2), a thread may manipulate its own capability sets (see below).
+\end_layout
+
+\begin_layout Subsubsection
+File Capabilities 
+\end_layout
+
+\begin_layout Standard
+Since kernel 2.6.24, the kernel supports 
+\series bold
+associating capability sets with an executable file using setcap
+\series default
+(8).
+ The file capability sets are stored in an extended attribute (see setxattr(2))
+ named 
+\series bold
+security.capability
+\series default
+.
+ Writing to this extended attribute requires the CAP_SETFCAP capability.
+ The file capability sets, in conjunction with the capability sets of the
+ thread, determine the capabilities of a thread after an execve(2).
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+The three file capability sets are:
+\end_layout
+
+\begin_layout Itemize
+Permitted (formerly known as forced): 
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+These capabilities are automatically permitted to the thread, regardless
+ of the thread's inheritable capabilities.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Inheritable (formerly known as allowed): 
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+This set is ANDed with the thread's inheritable set to determine which inheritab
+le capabilities are enabled in the permitted set of the thread after the
+ execve(2).
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Effective: 
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+This is not a set, but rather just 
+\series bold
+a single bit
+\series default
+.
+ If this bit is set, then during an execve(2) all of the new permitted capabilit
+ies for the thread are also raised in the effective set.
+ If this bit is not set, then after an execve(2), none of the new permitted
+ capabilities is in the new effective set.
+\end_layout
+
+\begin_layout Standard
+Enabling the file effective capability bit implies that any file permitted
+ or inheritable capability that causes a thread to acquire the corresponding
+ permitted capability during an execve(2) (see the transformation rules
+ described below) will also acquire that capability in its effective set.
+ Therefore, when assigning capabilities to a file (setcap(8), cap_set_file(3),
+ cap_set_fd(3)), if we specify the effective flag as being enabled for any
+ capability, then the effective flag must also be specified as enabled for
+ all other capabilities for which the corresponding permitted or inheritable
+ flags is enabled.
+ 
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+
+\series bold
+实验：
+\series default
+文件能力和扩展文件属性的联合学习,因为文件能力是作为文件扩展属性存储的。
+\end_layout
+
+\begin_layout Enumerate
+实验用文件是著名的ping二进制程序，它的特点是需要的权限任何普通用户都不能满足。传统做法给ping设置setuid位，这种做法有些粗放——是程序获得了完整的r
+oot权限。有了posix能力，可以实现精准授权：setcap cap_net_raw=ep /bin/ping。 这里我们仅仅把ping需要的CAP_NET_
+RAW给了它。
+\end_layout
+
+\begin_layout Enumerate
+zhentu ~ # getcap /bin/ping 
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+/bin/ping = cap_net_raw+ep
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+zhentu ~ # attr -l /bin/ping 
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+Attribute "capability" has a 20 byte value for /bin/ping 
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+python中的编程举例：
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+>>> import xattr 
+\end_layout
+
+\begin_layout Standard
+>>> help(xattr)
+\end_layout
+
+\begin_layout Standard
+>>> xattr.listxattr("/bin/ping") 
+\end_layout
+
+\begin_layout Standard
+['security.capability'] 
+\end_layout
+
+\begin_layout Standard
+>>> xattr.getxattr("/bin/ping","security.capability") 
+\end_layout
+
+\begin_layout Standard
+'
+\backslash
+x01
+\backslash
+x00
+\backslash
+x00
+\backslash
+x02
+\backslash
+x00 
+\backslash
+x00
+\backslash
+x00
+\backslash
+x00
+\backslash
+x00
+\backslash
+x00
+\backslash
+x00
+\backslash
+x00
+\backslash
+x00
+\backslash
+x00
+\backslash
+x00
+\backslash
+x00
+\backslash
+x00
+\backslash
+x00
+\backslash
+x00' 我理解的，这就是file capabilities
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+sudo setcap -r /bin/ping
+\end_layout
+
+\begin_layout Subsubsection
+Capability bounding set 
+\end_layout
+
+\begin_layout Standard
+The capability bounding set is a security mechanism that can be used to
+ limit the capabilities that can be gained during an execve(2).
+ The bounding set is used in the following ways:
+\end_layout
+
+\begin_layout Standard
+* During an execve(2), the capability bounding set is 
+\series bold
+ANDed with the file permitted capability set
+\series default
+, and the result of this operation is assigned to the thread's permitted
+ capability set.
+ The capability bounding set thus places a limit on the permitted capabilities
+ that may be granted by an executable file.
+\end_layout
+
+\begin_layout Standard
+* (Since Linux 2.6.25) The capability bounding set acts as a limiting superset
+ for the capabilities that a thread can add to its inheritable set using
+ capset(2).
+ This means that if a capability is not in the bounding set, then a thread
+ can't add this capability to its inheritable set, even if it was in its
+ permitted capabilities, and thereby cannot have this capability preserved
+ in its permitted set when it execve(2)s a file that has the capability
+ in its inheritable set.
+\end_layout
+
+\begin_layout Standard
+From Linux 2.6.25, the capability bounding set is 
+\series bold
+a per-thread attribute
+\series default
+.
+ (There is no longer a system-wide capability bounding set.)
+\end_layout
+
+\begin_layout Standard
+The bounding 
+\series bold
+set is inherited at fork(2) from the thread's parent, and is preserved across
+ an execve(2).
+\end_layout
+
+\begin_layout Standard
+A thread may remove capabilities from its capability bounding set using
+ the prctl(2) PR_CAPBSET_DROP operation, provided it has the CAP_SETPCAP
+ capability.
+ Once a capability has been dropped from the bounding set, it cannot be
+ restored to that set.
+ A thread can determine if a capability is in its bounding set using the
+ prctl(2) PR_CAPBSET_READ operation.
+\end_layout
+
+\begin_layout Standard
+Removing capabilities from the bounding set is only supported if file capabiliti
+es are compiled into the kernel.
+ In kernels before Linux 2.6.33, file capabilities were an optional feature
+ configurable via the CONFIG_SECURITY_FILE_CAPABILITIES option.
+ 
+\series bold
+Since Linux 2.6.33, the configuration option has been removed and file capabilitie
+s are always part of the kernel.
+
+\series default
+ When file capabilities are compiled into the kernel, 
+\series bold
+the init process (the ancestor of all processes) begins with a full bounding
+ set
+\series default
+.
+ If file capabilities are not compiled into the kernel, then init begins
+ with a full bounding set minus CAP_SETPCAP, because this capability has
+ a different meaning when there are no file capabilities.
+\end_layout
+
+\begin_layout Standard
+Removing a capability from the bounding set does not remove it from the
+ thread's inherited set.
+ However it does prevent the capability from being added back into the thread's
+ inherited set in the future.
+ 
+\end_layout
+
+\begin_layout Subsubsection
+Transformation of Capabilities During execve() 程序运行前的能力计算
+\end_layout
+
+\begin_layout Standard
+During an execve(2),the kernel calculates the new capabilities of the process
+ using the following algorithm:
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+P'(permitted) = (P(inheritable) & F(inheritable)) | (F(permitted) & cap_bset)
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+P'(effective) = F(effective) ? P'(permitted) : 0
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+P'(inheritable) = P(inheritable) [i.e., unchanged]
+\end_layout
+
+\begin_layout Standard
+where:
+\end_layout
+
+\begin_layout Standard
+P denotes the value of a thread capability set before the execve(2)
+\end_layout
+
+\begin_layout Standard
+P' denotes the value of a capability set after the execve(2)
+\end_layout
+
+\begin_layout Standard
+F denotes a file capability set
+\end_layout
+
+\begin_layout Standard
+cap_bset is the value of the capability bounding set .
+\end_layout
+
+\begin_layout Subsubsection
+Capabilities and execution of programs by root 
+\end_layout
+
+\begin_layout Standard
+In order to provide an all-powerful root using capability sets, during an
+ execve(2):
+\end_layout
+
+\begin_layout Standard
+1.
+ If a set-user-ID-root program is being executed, or the real user ID of
+ the process is 0 (root) then the file inheritable and permitted sets are
+ defined to be all ones (i.e., all capabilities enabled).
+\end_layout
+
+\begin_layout Standard
+2.
+ If a set-user-ID-root program is being executed, then the file effective
+ bit is defined to be one (enabled).
+\end_layout
+
+\begin_layout Standard
+The upshot of the above rules, combined with the capabilities transformations
+ described above, is that when a process execve(2)s a set- user-ID-root
+ program, or when a process with an effective UID of 0 execve(2)s a program,
+ it gains all capabilities in its permitted and effective capability sets,
+ except those masked out by the capability bounding set.
+ This provides semantics that are the same as those provided by traditional
+ UNIX systems.
+ 
+\end_layout
+
+\begin_layout Subsubsection
+Effect of User ID Changes on Capabilities 用户身份切换导致的posix能力变化
+\end_layout
+
+\begin_layout Standard
+To preserve the traditional semantics for transitions between 0 and nonzero
+ user IDs, the kernel makes the following changes to a thread's capability
+ sets on changes to the thread's real, effective, saved set, and file system
+ user IDs (using setuid(2), setre‐ suid(2), or similar):
+\end_layout
+
+\begin_layout Standard
+1.
+ If one or more of the real, effective or saved set user IDs was previously
+ 0, and as a result of the UID changes all of these IDs have a nonzero value,
+ then all capabilities are cleared from the permitted and effective capability
+ sets.如果real、effective、saved中有任意一个本来是0，并且现在他们都不是0，permitted和effective能力都被清除。
+\end_layout
+
+\begin_layout Standard
+2.
+ If the effective user ID is changed from 0 to nonzero, then all capabilities
+ are cleared from the effective set.
+\end_layout
+
+\begin_layout Standard
+3.
+ If the effective user ID is changed from nonzero to 0, then the permitted
+ set is copied to the effective set.
+\end_layout
+
+\begin_layout Standard
+4.
+ If the file system user ID is changed from 0 to nonzero (see setfsuid(2))
+ then the following capabilities are cleared from the effective set: CAP_CHOWN,
+ CAP_DAC_OVERRIDE, CAP_DAC_READ_SEARCH, CAP_FOWNER, CAP_FSETID, CAP_LINUX_IMMUTA
+BLE (since Linux 2.2.30), CAP_MAC_OVERRIDE, and CAP_MKNOD (since Linux 2.2.30).
+ If the file system UID is changed from nonzero to 0, then any of these
+ capabilities that are enabled in the permitted set are enabled in the effective
+ set.
+\end_layout
+
+\begin_layout Standard
+If a thread that has a 0 value for one or more of its user IDs wants to
+ prevent its permitted capability set being cleared when it resets all of
+ its user IDs to nonzero values, it can do so using the prctl(2) PR_SET_KEEPCAPS
+ operation.
+ 
+\end_layout
+
+\begin_layout Subsubsection
+查看进程的能力
+\end_layout
+
+\begin_layout Standard
+实际是进程的主线程的能力。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+zhentu proc # cat /proc/3708/status 程序：udevd
+\end_layout
+
+\begin_layout Plain Layout
+CapInh: 0000000000000000 
+\end_layout
+
+\begin_layout Plain Layout
+CapPrm: ffffffffffffffff 
+\end_layout
+
+\begin_layout Plain Layout
+CapEff: ffffffffffffffff 
+\end_layout
+
+\begin_layout Plain Layout
+CapBnd: ffffffffffffffff 
+\end_layout
+
+\begin_layout Plain Layout
+zhentu proc # cat 5344/status 程序:lyx
+\end_layout
+
+\begin_layout Plain Layout
+CapInh: 0000000000000000 
+\end_layout
+
+\begin_layout Plain Layout
+CapPrm: 0000000000000000 
+\end_layout
+
+\begin_layout Plain Layout
+CapEff: 0000000000000000 
+\end_layout
+
+\begin_layout Plain Layout
+CapBnd: ffffffffffffffff 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+libcap
+\end_layout
+
+\begin_layout Standard
+The libcap package provides a suite of routines for setting and getting
+ capabilities that is more comfortable and less likely to change than the
+ interface provided by capset(2) and capget(2)(内核提供）.
+ This package also provides the setcap(8) and getcap(8) programs.
+ 
+\end_layout
+
+\begin_layout Subsubsection
+HowTo - Detection of needed capabilities - strace 
+\end_layout
+
+\begin_layout Standard
+strace is a diagnostic tool, which intercepts and records called system
+ calls by a process and the signals which are received by this process by
+ giving the name of each system call, its arguments and its return value.
+ The EPERM error signifies that the caller was not privileged to call a
+ certain function or resource.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+$ strace ping localhost 2>&1 | grep EPERM 
+\end_layout
+
+\begin_layout Plain Layout
+socket(PF_INET, SOCK_RAW, IPPROTO_ICMP) = -1 EPERM (Operation not permitted)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The caller ping lacks the privilege to create a socket of type SOCK_RAW.
+ /usr/include/linux/capability.h shows
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+/* Allow use of RAW sockets */ /* Allow use of PACKET sockets */
+\end_layout
+
+\begin_layout Plain Layout
+#define CAP_NET_RAW 13
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+This well chosen example showed us easily the needed PCap.
+ You can expect programs that got denied different stuff with -EPERM, which
+ they actually don't need to do.
+ Here to deduce the needed PCaps will be far more complex.
+ But we have another tool at hand.
+\end_layout
+
+\begin_layout Subsubsection
+HowTo - Detection of needed capabilities - capable_probe module 
+\end_layout
+
+\begin_layout Standard
+Serge E.
+ Hallyn provides in his article 'POSIX file capabilities: Parceling the
+ power of root' the source for the 
+\series bold
+module capable_probe
+\series default
+.
+ This module helps us to see the requested PCaps by replacing any calls
+ to cap_capable() by a call to cr_capable().
+ This function prints out the name of the program together with the requested
+ PCaps.
+ Afterwards it calls the cap_capable() function.
+ Under Tools and Patches you will find a link for the package from this
+ site.
+ The included Makefile is expanded for an install target for the running
+ kernel.
+\end_layout
+
+\begin_layout Standard
+Kprobes allows the insertion of probes.
+ It allows to write small kernel modules to run code at the start of a function
+ (jprobe), the end of a function (kretprobe) or at any address (kprobe).
+ Enabling kprobes and the loading of the module capable_probe will allow
+ us to see the PCaps which are required by the kernel to run the program
+ successful.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+kernel make menuconfig
+\end_layout
+
+\begin_layout Plain Layout
+Instrumentation Support ---> Kprobes
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+capable_probe
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+tar capable_probe.tar.bz2 
+\end_layout
+
+\begin_layout Plain Layout
+cd capable_probe 
+\end_layout
+
+\begin_layout Plain Layout
+make 
+\end_layout
+
+\begin_layout Plain Layout
+sudo make install
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+After inserting the capable_probe module, /var/log/messages will contain
+ the program name with the requested capabilities, when the program is executed.
+ Don't forget to unload the module afterwards.
+ Otherwise your /var/log/messages log file gets flooded.
+ Here we will work with 2 console.
+ The first to observe /var/log/messages and the second to issue the commands.
+\end_layout
+
+\begin_layout Standard
+console1
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+$ tail -f /var/log/messages/ | grep ping
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+console2
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+$ sudo modprobe capable_probe $ ping localhost ping: icmp open socket: Operation
+ not permitted $ sudo modprobe -r capable_probe
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+console1
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+...
+ 
+\end_layout
+
+\begin_layout Plain Layout
+Dec 26 14:57:21 apollo kernel: cr_capable: asking for capability 21 for
+ ping 
+\end_layout
+
+\begin_layout Plain Layout
+Dec 26 14:57:21 apollo kernel: cr_capable: asking for capability 13 for
+ ping 
+\end_layout
+
+\begin_layout Plain Layout
+Dec 26 14:57:21 apollo kernel: cr_capable: asking for capability 7 for ping
+ 
+\end_layout
+
+\begin_layout Plain Layout
+Dec 26 14:57:21 apollo kernel: cr_capable: asking for capability 21 for
+ ping
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Again /usr/include/linux/capability.h clarifies the capabilities 7, 13 and
+ 21.
+ The capability "7: CAP_SETUID" is not what we want ping to do.
+ We need no setuid manipulation.
+ The catch-all capability "21: CAP_SYS_ADMIN" is better never granted to
+ any program.
+ We are talking about hardening a system by following the principle of least
+ privilege and not about punching holes in.
+ Common sens helped us to arrive again at capability "13: CAP_NET_RAW.
+\end_layout
+
+\begin_layout Standard
+
+\end_layout
+
 \end_body
 \end_document

@@ -615,7 +615,125 @@ end{theo}
 \end_layout
 
 \begin_layout Standard
-在群中，乘法是有逆运算
+在群中，乘法是有逆运算除法的，并且是闭合的。
+\end_layout
+
+\begin_layout Standard
+如果
+\begin_inset Formula $ab=ab^{'}$
+\end_inset
+
+则
+\begin_inset Formula $a^{-1}ab=a^{-1}ab^{'}$
+\end_inset
+
+
+\begin_inset Formula $\text{\Rightarrow}$
+\end_inset
+
+
+\begin_inset Formula $b=b^{'}$
+\end_inset
+
+;同理对于
+\begin_inset Formula $ba=b^{'}a$
+\end_inset
+
+，所以群的结合法适合消去律。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{theo}
+\end_layout
+
+\end_inset
+
+群定义中的后两个条件可以用对除法是闭合的（也就是说对于群中任意两元
+\begin_inset Formula $a,b$
+\end_inset
+
+，方程
+\begin_inset Formula $ax=b,ya=b$
+\end_inset
+
+在群中有解）这个条件代替。
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{theo}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+证明：当
+\begin_inset Formula $a=b$
+\end_inset
+
+时，方程
+\begin_inset Formula $ax=a,ya=a$
+\end_inset
+
+有解，解就是单位元。当
+\begin_inset Formula $b=e$
+\end_inset
+
+时，
+\begin_inset Formula $ax=e,ya=e$
+\end_inset
+
+有解，解即是
+\begin_inset Formula $a$
+\end_inset
+
+的逆元。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{theo}
+\end_layout
+
+\end_inset
+
+假如
+\begin_inset Formula $G$
+\end_inset
+
+是有穷群，那么它成群所需要的对除法是闭合这一条件可以用消去律来代替。
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{theo}
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \end_body
