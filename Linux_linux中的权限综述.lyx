@@ -34,12 +34,12 @@
 \font_tt_scale 100
 
 \graphics default
-\default_output_format default
+\default_output_format pdf4
 \output_sync 0
 \bibtex_command default
 \index_command default
-\paperfontsize default
-\spacing onehalf
+\paperfontsize 10
+\spacing double
 \use_hyperref false
 \papersize a4paper
 \use_geometry false
@@ -84,6 +84,10 @@
 
 \begin_layout Title
 Linux中的权限
+\end_layout
+
+\begin_layout Author
+Hudson Zuo
 \end_layout
 
 \begin_layout Standard
@@ -239,7 +243,9 @@ find / -perm -4000 -o -perm -2000寻找具有setuid或者setgid的文件
 \end_layout
 
 \begin_layout Standard
-例子1： 
+find {,/usr}/{,s}bin -user root -perm -4000 -exec ls -l {} 
+\backslash
+;
 \end_layout
 
 \begin_layout Subsection
@@ -738,216 +744,299 @@ her的定义过于广泛,以至于很难把permission限定于一个不属于fil
 下面的内容来自：http://www.ibm.com/developerworks/cn/linux/l-acl/，我做了一些手脚，用于学习ACL时练习。
 \end_layout
 
-\begin_layout Standard
-\begin_inset Box Frameless
-position "t"
-hor_pos "c"
-has_inner_box 1
-inner_pos "t"
-use_parbox 0
-use_makebox 0
-width "100col%"
-special "none"
-height "1in"
-height_special "totalheight"
-status open
-
-\begin_layout Plain Layout
+\begin_layout Itemize
+\paragraph_spacing single
+\noindent
 准备工作
 \end_layout
 
-\begin_layout Plain Layout
+\begin_deeper
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 支持ACL需要内核和文件系统的支持。
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 用自己工作用的物理分区体验ACL，总是不明智的行为。万一误操作导致分区的损坏，造成数据的丢失，损失就大了。作一个loop设备是个安全的替代方法。这样不需要一个单
 独的分区，也不需要很大的硬盘空间，大约有个几百KB就足够进行我们的体验了。OK，下面我使用Fedora Core 5和Ext3文件开始对Linux的ACL的体验
 。
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 首先创建一个512KB的空白文件：
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 [root@FC3-vm opt]# dd if=/dev/zero of=/opt/testptn count=512 512+0 records
  in 512+0 records out
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 和一个loop设备联系在一起：
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 [root@FC3-vm opt]# losetup /dev/loop0 /opt/testptn
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 创建一个EXT2的文件系统：
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 [root@FC3-vm opt]# mke2fs /dev/loop0 
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 挂载新建的文件系统（注意mount选项里的acl标志，我们靠它来通知内核我们需要在这个文件系统中使用ACL）：
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 [root@FC3-vm opt]# mount -o rw,acl /dev/loop0 /mnt 
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 [root@FC3-vm opt]# cd /mnt 
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 现在我已经得到了一个小型的文件系统。而且是支持ACL的。并且即使彻底损坏也不会影响硬盘上其他有价值的数据。可以开始我们的ACL体验之旅了。
 \end_layout
 
 \begin_layout Itemize
+\paragraph_spacing single
+\noindent
 体验1 － ACL的基本操作：添加和修改
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 我首先新建一个文件作为实施ACL的对象：
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 [root@FC3-vm mnt]# touch file1 
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 [root@FC3-vm mnt]# ls -l file1 
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 -rw-r--r-- 1 root root 7 Dec 11 00:28 file1
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 然后看一下这个文件缺省的ACL，这时这个文件除了通常的UGO的权限之外，并没有ACL：
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 [root@FC3-vm mnt]# getfacl file1 
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 # file: file1 
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 # owner: root 
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 # group: root 
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 user::rw- 
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 group::r-- 
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 other::r-
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 *注意：即使是不支持ACL的情况下，getfacl仍然能返回一个这样的结果。不过setfacl是不能工作的。
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 下面添加几个用户和组，一会我将使用ACL赋予他们不同的权限：
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 [root@FC3-vm mnt]# groupadd testg1 
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 [root@FC3-vm mnt]# useradd testu1 
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 [root@FC3-vm mnt]# useradd testu2 
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 [root@FC3-vm mnt]# usermod -G testg1 testu1
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 现在我们看看testu1能做什么：
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 [root@FC3-vm mnt]# su testu1 
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 [testu1@FC3-vm mnt]$ echo "testu1" >> file1 
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 bash: file1: Permission denied
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 失败了。因为file1并不允许除了root以外的用户写。我们现在就通过修改file1的ACL赋予testu1足够的权限：
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 [root@FC3-vm mnt]# 
 \series bold
 setfacl -m u:testu1:rw file1 
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 [root@FC3-vm mnt]# su testu1 
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 [testu1@FC3-vm mnt]$ echo "testu1" >> file1 
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 [testu1@FC3-vm mnt]$ cat file1 testu1
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 修改成功了，用户testu1可以对file1做读写操作了。我们来看一下file1的ACL：
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 [testu1@FC3-vm mnt]$ getfacl file1 
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 # file: file1 
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 # owner: root 
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 # group: root 
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 
 \series bold
 user::rw- 
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 
 \series bold
 user:testu1:rw-
@@ -955,31 +1044,45 @@ user:testu1:rw-
  
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 group::r-- 
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 mask::rw- 
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 other::r-
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 我们ls看一下：
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 [root@FC3-vm mnt]# ls -l file1 
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 -rw-rw-r--+ 1 root root 7 Dec 11 00:28 file1
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 可以看到那个"+"了么？就在通常我们看到的权限位的旁边。
 \series bold
 这个说明file1设置了ACL
@@ -987,51 +1090,75 @@ other::r-
 ， 接下来我们修改一下testu1的权限，同时给testg1这个组以读的权限：
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 [root@FC3-vm mnt]# setfacl -m u:testu1:rwx,g:testg1:r file1 
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 [root@FC3-vm mnt]# getfacl file1 
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 # file: file1 
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 # owner: root 
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 # group: root 
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 user::rw- 
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 user:testu1:rwx 
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 group::r-- 
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 group:testg1:r-- 
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 mask::rwx 
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 other::r-
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 可以看到设置后的权限，testu1已经有了执行的权限，而testg1这个组也获得了读取文件内容的权限。也许有人已经注意到了两个问题：首先，file1的组权限从r
 --变成了rw-。其次，mask是什么？为什么也变化了呢？我们先从mask说起。如果说
 \series bold
@@ -1044,59 +1171,87 @@ ask就是一个名副其实的最后一道防线。它决定了一个用户/组�
 。这样我们在不破坏已有ACL的定义的基础上，可以临时提高或是降低安全级别：
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 [root@FC3-vm mnt]# setfacl -m mask::r file1 
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 [root@FC3-vm mnt]# getfacl file1 
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 # file: file1 
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 # owner: root 
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 # group: root 
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 user::rw- 
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 user:testu1:rwx #effective:r-- 
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 group::r-- 
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 group:testg1:r-- 
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 mask::r-- 
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 other::r--
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 [root@FC3-vm mnt]# ls -l file1 
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 -rw-r--r--+ 1 root root 7 Dec 11 00:28 file1
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 在testu1对应的ACL项的后边出现了effective的字样，这是实际testu1得到的权限。
 \series bold
 Mask只对其他用户和组的权限有影响
@@ -1105,7 +1260,9 @@ Mask只对其他用户和组的权限有影响
 的mask。通常我们把mask设置成rwx，以不阻止任何的单个ACL项。
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 *
 \series bold
 需要注意的是，每次修改或添加某个用户或组的ACL项的时候，mask都会随之修改以使最新的修改能够真正生效。所以如果需要一个比较严格的mask的话，可能需要每次都
@@ -1115,90 +1272,134 @@ Mask只对其他用户和组的权限有影响
 \end_layout
 
 \begin_layout Itemize
+\paragraph_spacing single
+\noindent
 体验2 － ACL的其他功能：删除和覆盖
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 我们来看一下其他的ACL操作。首先如何删除已有的ACL项呢？
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 [root@FC3-vm mnt]# setfacl -x g:testg1 file1 
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 [root@FC3-vm mnt]# getfacl file1 
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 # file: file1 
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 # owner: root 
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 # group: root 
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 user::rw- 
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 user:testu1:rwx 
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 group::r-- 
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 mask::rwx 
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 other::r--
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 我们看到testg1的权限已经被去掉了。如果需要去掉所有的ACL可以用-b选项。所有的ACL项都会被去掉。
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 [root@FC3-vm mnt]# setfacl -b file1 
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 [root@FC3-vm mnt]# getfacl file1 
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 # file: file1 
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 # owner: root 
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 # group: root 
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 user::rw- 
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 group::r-- 
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 other::r--
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 我们可以用--set 设置一些新的ACL项，并把原有的ACL项全部都覆盖掉。和-m不同，
 \series bold
 -m选项只是修改已有的配置或是新增加一些
@@ -1210,366 +1411,462 @@ other::r--
 ，用新的替代，需要注意的是一定要包含UGO的设置，不能象-m一样只是添加ACL就可以了。比如下边这一段：
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 [root@FC3-vm mnt]# setfacl --set u::rw,u:testu1:rw,g::r,o::- file1 
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 [root@FC3-vm mnt]# getfacl file1 
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 # file: file1 
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 # owner: root 
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 # group: root 
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 user::rw- 
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 user:testu1:rw- 
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 group::r-- 
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 mask::rw- 
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 other::---
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 o::-是另一个需要注意的地方。其实完整的写法是other::---，正如u::rw的完整写法是user::rw-。通常我们可以把"-"省略，但是当权限位只包含
 "-"时，必须至少保留一个。如果写成了o::，就会出现错误。
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 如果希望对目录下的所有子目录都设置同样的ACL，可以使用-R参数：
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 [root@FC3-vm mnt]# setfacl --set u::rw,u:testu1:rw,g::r,o::- dir1
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 如果希望能从一个文件来读入ACL，并修改当前的文件的ACL，可以用-M参数：
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 [root@FC3-vm mnt]# cat test.acl 
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 user:testu1:rw- 
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 user:testu2:rw- 
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 group:testg1:r-- 
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 group:testg2:r-- 
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 mask::rw- 
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 other::---
 \end_layout
 
 \begin_layout Itemize
+\paragraph_spacing single
+\noindent
 体验3 － 目录的默认ACL
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 如果我们希望在一个目录中新建的文件和目录都使用同一个预定的ACL，那么我们可以使用默认(Default)ACL。在对一个目录设置了默认的ACL以后，每个在目录中
 创建的文件都会自动继承目录的默认ACL作为自己的ACL。用setfacl的-d选项就可以做到这一点：
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 [root@FC3-vm mnt]# setfacl -d --set g:testg1:rwx dir1 
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 [root@FC3-vm mnt]# getfacl dir1 
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 # file: dir1 
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 # owner: root 
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 # group: root 
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 user::rwx 
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 group::r-x 
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 other::r-x 
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 default:user::rwx 
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 default:group::r-x 
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 default:group:testg1:rwx 
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 default:mask::rwx 
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 default:other::r-x
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 可以看到默认ACL已经被设置了。建立一个文件试试：
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 [root@FC3-vm mnt]# touch dir1/file1 
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 [root@FC3-vm mnt]# getfacl dir1/file1 
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 # file: dir1/file1 
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 # owner: root 
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 # group: root 
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 user::rw- 
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 group::r-x #effective:r-- 
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 group:testg1:rwx #effective:rw- 
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 mask::rw- 
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 other::r--
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 file1自动继承了dir1对testg1设置的ACL。只是由于mask的存在使得testg1只能获得rw-权限。
 \end_layout
 
 \begin_layout Itemize
+\paragraph_spacing single
+\noindent
 体验4 － 备份和恢复ACL
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
+\paragraph_spacing single
+\noindent
 主要的文件操作命令cp和mv都支持ACL，只是cp命令需要加上-p 参数。但是tar等常见的备份工具是不会保留目录和文件的ACL信息的。 如果希望备份和恢复带有
 ACL的文件和目录，那么可以先把ACL备份到一个文件里。以后用--restore选项来回复这个文件中保存的ACL信息：
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
 [root@FC3-vm mnt]# getfacl -R dir1 > dir1.acl 
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
 [root@FC3-vm mnt]# ls -l dir1.acl 
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
 total 16 -rw-r--r-- 1 root root 310 Dec 12 21:10 dir1.acl
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
 我们用-b选项删除所有的ACL数据，来模拟从备份中回复的文件和目录：
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
 [root@FC3-vm mnt]# setfacl -R -b dir1 
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
 [root@FC3-vm mnt]# getfacl -R dir1 
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
 # file: dir1 
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
 # owner: root 
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
 # group: root 
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
 user::rwx
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
 group::r-x 
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
 other::r-x
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
 # file: dir1/file1 
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
 # owner: root
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
 # group: root 
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
 user::rw- 
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
 group::r-- 
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
 other::r--
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
 现在我们从dir1.acl中恢复被删除的ACL信息：
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
 [root@FC3-vm mnt]# setfacl --restore dir1.acl 
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
 [root@FC3-vm mnt]# getfacl -R dir1 
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
 # file: dir1 
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
 # owner: root 
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
 # group: root 
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
 user::rwx 
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
 group::r-x other::r-x 
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
 default:user::rwx 
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
 default:group::r-x 
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
 default:group:testg1:rwx 
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
 default:mask::rwx 
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
 default:other::r-x
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
 # file: dir1/file1 
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
 # owner: root 
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
 # group: root 
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
 user::rw- group::r-x #effective:r-- 
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
 group:testg1:rwx #effective:rw- 
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
 mask::rw- 
 \end_layout
 
-\begin_layout Plain Layout
+\begin_layout Standard
 other::r-- 
 \end_layout
 
-\end_inset
-
-
-\end_layout
-
+\end_deeper
 \begin_layout Standard
 列出系统中设置了acl的文件：getfacl -R -s -p /
 \end_layout
@@ -1580,6 +1877,34 @@ other::r--
 
 \begin_layout Standard
 .....前言，还不知道是什么....
+\end_layout
+
+\begin_layout Subsection
+UID
+\end_layout
+
+\begin_layout Itemize
+实际用户ID，RUID（real user id）,进程的执行者
+\end_layout
+
+\begin_layout Itemize
+有效用户ID，EUID（effective user id），权限的依据，总是等于SUID。
+\end_layout
+
+\begin_layout Itemize
+保存用户ID，SUID（saved set-user-id），没有设置set-uid-bit时，等于SUID；设置了set-uid-bit时，等于文件拥有者用户
+ID。
+\end_layout
+
+\begin_layout Standard
+setuid() sets the effective user ID of the calling process.
+ If the effective UID of the caller is root, the real UID and saved set-user-ID
+ are also set.
+ 
+\end_layout
+
+\begin_layout Standard
+seteuid() sets the effective user ID of the calling process
 \end_layout
 
 \begin_layout Subsection
@@ -2574,7 +2899,7 @@ If a thread that has a 0 value for one or more of its user IDs wants to
 \end_layout
 
 \begin_layout Standard
-\begin_inset Box Frameless
+\begin_inset Box Boxed
 position "t"
 hor_pos "c"
 has_inner_box 1
@@ -2657,7 +2982,7 @@ strace is a diagnostic tool, which intercepts and records called system
 \end_layout
 
 \begin_layout Standard
-\begin_inset Box Frameless
+\begin_inset Box Boxed
 position "t"
 hor_pos "c"
 has_inner_box 1
@@ -2689,7 +3014,7 @@ The caller ping lacks the privilege to create a socket of type SOCK_RAW.
 \end_layout
 
 \begin_layout Standard
-\begin_inset Box Frameless
+\begin_inset Box Boxed
 position "t"
 hor_pos "c"
 has_inner_box 1
@@ -2756,7 +3081,7 @@ Kprobes allows the insertion of probes.
 \end_layout
 
 \begin_layout Standard
-\begin_inset Box Frameless
+\begin_inset Box Boxed
 position "t"
 hor_pos "c"
 has_inner_box 1
@@ -2787,7 +3112,7 @@ capable_probe
 \end_layout
 
 \begin_layout Standard
-\begin_inset Box Frameless
+\begin_inset Box Boxed
 position "t"
 hor_pos "c"
 has_inner_box 1
@@ -2835,7 +3160,7 @@ console1
 \end_layout
 
 \begin_layout Standard
-\begin_inset Box Frameless
+\begin_inset Box Boxed
 position "t"
 hor_pos "c"
 has_inner_box 1
@@ -2862,7 +3187,7 @@ console2
 \end_layout
 
 \begin_layout Standard
-\begin_inset Box Frameless
+\begin_inset Box Boxed
 position "t"
 hor_pos "c"
 has_inner_box 1
@@ -2890,7 +3215,7 @@ console1
 \end_layout
 
 \begin_layout Standard
-\begin_inset Box Frameless
+\begin_inset Box Boxed
 position "t"
 hor_pos "c"
 has_inner_box 1
@@ -2945,8 +3270,427 @@ Again /usr/include/linux/capability.h clarifies the capabilities 7, 13 and
  Common sens helped us to arrive again at capability "13: CAP_NET_RAW.
 \end_layout
 
-\begin_layout Standard
+\begin_layout Subsubsection
+Examples - Server running as a distinct unprivileged user - Cupsd 
+\end_layout
 
+\begin_layout Standard
+Reducing the privilege level of the common unix printing system daemon follows
+ the same principle.
+ We create a special user and group which we will call cupsd.
+ We will adjust the ownership of files and directories.
+ And we will grant the needed privileges as PCaps.
+\end_layout
+
+\begin_layout Standard
+We create the user cupsd and the group cupsd
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Boxed
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+$ 
+\end_layout
+
+\begin_layout Plain Layout
+$ sudo groupadd cupsd 
+\end_layout
+
+\begin_layout Plain Layout
+$ sudo useradd -g cupsd -d / cupsd 
+\end_layout
+
+\begin_layout Plain Layout
+$
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We make sure, that cupsd will stay with his uid and gid.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Boxed
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+$ sudo sed -i -e "{s|^
+\backslash
+(User
+\backslash
+).*|
+\backslash
+1 cupsd|; s|^
+\backslash
+(Group
+\backslash
+) .*|
+\backslash
+1 cupsd|}" /etc/cups/cupsd.conf
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We change the ownership to cupsd:cupsd of various directories and its content
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Boxed
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+$ 
+\end_layout
+
+\begin_layout Plain Layout
+$ sudo chown -R cupsd:cupsd /etc/cups
+\end_layout
+
+\begin_layout Plain Layout
+$ sudo chown -R cupsd:cupsd /var/cache/cups
+\end_layout
+
+\begin_layout Plain Layout
+$ sudo chown -R cupsd:cupsd /var/log/cups 
+\end_layout
+
+\begin_layout Plain Layout
+$ sudo chown -R cupsd:cupsd /var/run/cups 
+\end_layout
+
+\begin_layout Plain Layout
+$ sudo chown -R cupsd:cupsd /var/spool/cups 
+\end_layout
+
+\begin_layout Plain Layout
+$
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+To ensure, that only the file owner bind or root may start the cupsd binary,
+ we change the permissions and ownership
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Boxed
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+$ 
+\end_layout
+
+\begin_layout Plain Layout
+$ ls -l /usr/sbin/cupsd 
+\end_layout
+
+\begin_layout Plain Layout
+-rwxr-xr-x 1 root root 296800 Apr 30 14:37 /usr/sbin/cupsd* 
+\end_layout
+
+\begin_layout Plain Layout
+$ sudo chown cupsd:cupsd /usr/sbin/cupsd 
+\end_layout
+
+\begin_layout Plain Layout
+$ sudo chmod g-x,o-x /usr/sbin/cupsd 
+\end_layout
+
+\begin_layout Plain Layout
+$ ls -l /usr/sbin/cupsd 
+\end_layout
+
+\begin_layout Plain Layout
+-rwxr--r-- 1 cupsd cupsd 296800 Apr 30 14:37 /usr/sbin/cupsd 
+\end_layout
+
+\begin_layout Plain Layout
+$
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+So all cupsd needs is the privilege to open and bind to privileged ports
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Boxed
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+$ sudo setcap cap_net_bind_service=ep /usr/sbin/cupsd
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+To prevent messing up ownership and an excessive privilege level root, shall
+ start the cupsd daemon like
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Boxed
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+$ su -c /usr/sbin/cupsd cupsd
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+If allowed by the sudo configuration, an unprivileged user may start cupsd
+ by
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Boxed
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+$ sudo -u cupsd /usr/sbin/cupsd
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Instead of specifying the user we may also use the suid-bit and the effective
+ user will be cupsd
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Boxed
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+$ sudo chmod u+s /usr/sbin/cupsd
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+To allow unprivileged user the execution of cupsd they might be added to
+ the group cupsd.
+ We adapt the file system configuration of cupsd to ensure, that the effective
+ user will be cupsd.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Boxed
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+$ 
+\end_layout
+
+\begin_layout Plain Layout
+$ ls -l /usr/sbin/cupsd 
+\end_layout
+
+\begin_layout Plain Layout
+-rwsr--r-- 1 cupsd cupsd 296800 Apr 30 14:37 /usr/sbin/cupsd* 
+\end_layout
+
+\begin_layout Plain Layout
+$ /usr/sbin/cupsd 
+\end_layout
+
+\begin_layout Plain Layout
+bash: /usr/sbin/cupsd: Permission denied
+\end_layout
+
+\begin_layout Plain Layout
+$ id uid=1000(chris) gid=100(users) groups=100(users) 
+\end_layout
+
+\begin_layout Plain Layout
+$ 
+\end_layout
+
+\begin_layout Plain Layout
+$ sudo usermod -a -G cupsd chris 
+\end_layout
+
+\begin_layout Plain Layout
+$ sudo chmod g+x /usr/sbin/cupsd 
+\end_layout
+
+\begin_layout Plain Layout
+$ ls -l /usr/sbin/cupsd 
+\end_layout
+
+\begin_layout Plain Layout
+-rwsr-xr-- 1 cupsd cupsd 296800 Apr 30 14:37 /usr/sbin/cupsd* 
+\end_layout
+
+\begin_layout Plain Layout
+$ 
+\end_layout
+
+\begin_layout Plain Layout
+$ sudo su - chris 
+\end_layout
+
+\begin_layout Plain Layout
+$ id 
+\end_layout
+
+\begin_layout Plain Layout
+uid=1000(chris) gid=100(users) groups=64(cupsd),100(users) 
+\end_layout
+
+\begin_layout Plain Layout
+$ /usr/sbin/cupsd 
+\end_layout
+
+\begin_layout Plain Layout
+$ ps -o cmd,pid,ppid,stime,time,euser,ruser -H f -U cupsd -u cupsd 
+\end_layout
+
+\begin_layout Plain Layout
+CMD PID PPID STIME TIME EUSER RUSER 
+\end_layout
+
+\begin_layout Plain Layout
+/usr/sbin/cupsd 14346 1 15:46 00:00:00 cupsd chris 
+\end_layout
+
+\begin_layout Plain Layout
+$
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+I provide the conversion tool pcaps4server to do conversion and reversion
+ for the cupsd daemon to PCaps and back.
+\end_layout
+
+\begin_layout Section
+结束
 \end_layout
 
 \end_body

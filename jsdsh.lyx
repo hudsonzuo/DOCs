@@ -736,5 +736,207 @@ end{theo}
 
 \end_layout
 
+\begin_layout Standard
+证明：设
+\begin_inset Formula $G=\{a_{1},a_{2},\ldots,a_{n}\}$
+\end_inset
+
+,
+\begin_inset Formula $a$
+\end_inset
+
+是
+\begin_inset Formula $G$
+\end_inset
+
+中任意元，那么
+\begin_inset Formula $G^{'}=\{aa_{1},aa_{2},\ldots,aa_{n}\}$
+\end_inset
+
+是
+\begin_inset Formula $G$
+\end_inset
+
+的子集。根据消去律可知
+\begin_inset Formula $G^{'}$
+\end_inset
+
+中的元彼此互异。又
+\begin_inset Formula $G$
+\end_inset
+
+是有穷的，元数等于n，
+\begin_inset Formula $G^{'}$
+\end_inset
+
+也是有穷的，n个元彼此互异，所以元数也是n。所以
+\begin_inset Formula $G^{'}=G$
+\end_inset
+
+。当
+\begin_inset Formula $G^{'}$
+\end_inset
+
+不是有穷群是，元数无法比较。定理不成立。
+\end_layout
+
+\begin_layout Standard
+模——当群是交换群时，我们常把结合法写成加法，积
+\begin_inset Formula $ab$
+\end_inset
+
+就写成
+\begin_inset Formula $a+b$
+\end_inset
+
+,这是
+\begin_inset Formula $G$
+\end_inset
+
+又叫做加群，也叫模。单位元写成
+\begin_inset Formula $0$
+\end_inset
+
+。当元是数时，也叫数模，比如有理数集Q，整数集Z。
+\end_layout
+
+\begin_layout Standard
+习题1，假定M是某集合的所有子集的系，如果其中自己A、B的结合法
+\begin_inset Formula $AB=(A\cup B)-(A\cap B)$
+\end_inset
+
+,试证M成群。
+\end_layout
+
+\begin_layout Standard
+习题2，对称群群表
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $S_{3}:$
+\end_inset
+
+
+\begin_inset Formula $\begin{array}{ccccccc}
+ & \begin{pmatrix}e & a & b\\
+e & a & b
+\end{pmatrix} & \begin{pmatrix}e & a & b\\
+e & b & a
+\end{pmatrix} & \begin{pmatrix}e & a & b\\
+b & a & e
+\end{pmatrix} & \begin{pmatrix}e & a & b\\
+a & e & b
+\end{pmatrix} & \begin{pmatrix}e & a & b\\
+a & b & e
+\end{pmatrix} & \begin{pmatrix}e & a & b\\
+b & e & a
+\end{pmatrix}\\
+\begin{pmatrix}e & a & b\\
+e & a & b
+\end{pmatrix} & \begin{pmatrix}e & a & b\\
+e & a & b
+\end{pmatrix} & \begin{pmatrix}e & a & b\\
+e & b & a
+\end{pmatrix} & \begin{pmatrix}e & a & b\\
+b & a & e
+\end{pmatrix} & \begin{pmatrix}e & a & b\\
+a & e & b
+\end{pmatrix} & \begin{pmatrix}e & a & b\\
+a & b & e
+\end{pmatrix} & \begin{pmatrix}e & a & b\\
+b & e & a
+\end{pmatrix}\\
+\begin{pmatrix}e & a & b\\
+e & b & a
+\end{pmatrix} & \begin{pmatrix}e & a & b\\
+e & b & a
+\end{pmatrix} & \begin{pmatrix}e & a & b\\
+e & a & b
+\end{pmatrix} & \begin{pmatrix}e & a & b\\
+b & e & a
+\end{pmatrix} & \begin{pmatrix}e & a & b\\
+a & b & e
+\end{pmatrix} & \begin{pmatrix}e & a & b\\
+a & e & b
+\end{pmatrix} & \begin{pmatrix}e & a & b\\
+b & a & e
+\end{pmatrix}\\
+\begin{pmatrix}e & a & b\\
+b & a & e
+\end{pmatrix} & \begin{pmatrix}e & a & b\\
+b & a & e
+\end{pmatrix} & \begin{pmatrix}e & a & b\\
+a & b & e
+\end{pmatrix} & \begin{pmatrix}e & a & b\\
+e & a & b
+\end{pmatrix} & \begin{pmatrix}e & a & b\\
+b & e & a
+\end{pmatrix} & \begin{pmatrix}e & a & b\\
+e & b & a
+\end{pmatrix} & \begin{pmatrix}e & a & b\\
+a & e & b
+\end{pmatrix}\\
+\begin{pmatrix}e & a & b\\
+a & e & b
+\end{pmatrix} & \begin{pmatrix}e & a & b\\
+a & e & b
+\end{pmatrix} & \begin{pmatrix}e & a & b\\
+b & e & a
+\end{pmatrix} & \begin{pmatrix}e & a & b\\
+a & b & e
+\end{pmatrix} & \begin{pmatrix}e & a & b\\
+e & a & b
+\end{pmatrix} & \begin{pmatrix}e & a & b\\
+b & a & e
+\end{pmatrix} & \begin{pmatrix}e & a & b\\
+e & b & a
+\end{pmatrix}\\
+\begin{pmatrix}e & a & b\\
+a & b & e
+\end{pmatrix} & \begin{pmatrix}e & a & b\\
+a & b & e
+\end{pmatrix} & \begin{pmatrix}e & a & b\\
+b & a & e
+\end{pmatrix} & \begin{pmatrix}e & a & b\\
+a & e & b
+\end{pmatrix} & \begin{pmatrix}e & a & b\\
+e & b & a
+\end{pmatrix} & \begin{pmatrix}e & a & b\\
+b & e & a
+\end{pmatrix} & \begin{pmatrix}e & a & b\\
+e & a & b
+\end{pmatrix}\\
+\begin{pmatrix}e & a & b\\
+b & e & a
+\end{pmatrix} & \begin{pmatrix}e & a & b\\
+b & e & a
+\end{pmatrix} & \begin{pmatrix}e & a & b\\
+a & e & b
+\end{pmatrix} & \begin{pmatrix}e & a & b\\
+e & b & a
+\end{pmatrix} & \begin{pmatrix}e & a & b\\
+b & a & e
+\end{pmatrix} & \begin{pmatrix}e & a & b\\
+e & a & b
+\end{pmatrix} & \begin{pmatrix}e & a & b\\
+a & b & e
+\end{pmatrix}
+\end{array}$
+\end_inset
+
+
+\begin_inset Formula $\begin{pmatrix} & \sigma_{1} & \sigma_{2} & \sigma_{3} & \sigma_{4} & \sigma_{5} & \sigma_{6}\\
+\sigma_{1}\\
+\sigma_{2} & \sigma_{2} & \sigma_{1} & \sigma_{6} & \sigma_{5} & \sigma_{4} & \sigma_{3}\\
+\sigma_{3} & \sigma_{3} & \sigma_{5} & \sigma_{1} & \sigma_{6} & \sigma_{2} & \sigma_{4}\\
+\sigma_{4}\\
+\sigma_{5}\\
+\sigma_{6}
+\end{pmatrix}$
+\end_inset
+
+
+\end_layout
+
 \end_body
 \end_document
