@@ -938,5 +938,181 @@ a & b & e
 
 \end_layout
 
+\begin_layout Standard
+试题，假如
+\begin_inset Formula $G$
+\end_inset
+
+是群，如果其中任意元的逆元就是它自身，或者说每个元的阶数是2，那么
+\begin_inset Formula $G$
+\end_inset
+
+是交换群。
+\end_layout
+
+\begin_layout Standard
+证：
+\begin_inset Formula $(ab((ab)=e\Longrightarrow abab=e\Rightarrow bab=a\Rightarrow ba=ab$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+子群
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{theo}
+\end_layout
+
+\end_inset
+
+群G的非空子集H成为子群的充要条件是：假如H包含元
+\begin_inset Formula $a\text{，}b$
+\end_inset
+
+那么H包含它们的积
+\begin_inset Formula $ab\text{，假如H包含a，那么它也包含\ensuremath{a^{-1}}}$
+\end_inset
+
+。
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{theo}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{theo}
+\end_layout
+
+\end_inset
+
+群G的非空子集H成为子群的充要条件是假如
+\begin_inset Formula $H$
+\end_inset
+
+包含
+\begin_inset Formula $a\text{，b}\text{，那么\ensuremath{H}也包含\ensuremath{ab^{-1}}}$
+\end_inset
+
+。
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+end[theo}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+当
+\begin_inset Formula $H$
+\end_inset
+
+是有穷集时，它成为子群的充要条件是定理1中的第一个条件。
+\end_layout
+
+\begin_layout Subsection
+交代群
+\end_layout
+
+\begin_layout Standard
+循环排列：
+\begin_inset Formula $(1234)$
+\end_inset
+
+，对换：
+\begin_inset Formula $(23)$
+\end_inset
+
+，规定有一个文字组成的排列叫恒等排列。
+\end_layout
+
+\begin_layout Standard
+任意一个排列可以表示为没有公共文字循环排列的乘积。
+\end_layout
+
+\begin_layout Standard
+任意循环排列可以用对换的乘积表示，但是这种表示不唯一。
+\end_layout
+
+\begin_layout Standard
+例如：
+\begin_inset Formula $(12345)=(12)(23)(34)(45)$
+\end_inset
+
+，
+\begin_inset Formula $(25)=(12)(15)(12)=(12)(15)(12)=(45)(34)(23)(34)(45)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{theo}
+\end_layout
+
+\end_inset
+
+用对换乘积表示排列，那么对换因子的个数是偶数还是奇数是一定的，也就是说是偶数永远是偶数，是奇数永远是奇数。
+\end_layout
+
+\begin_layout Standard
+证明：有待研究
+\end_layout
+
+\begin_layout Standard
+根据对换因子的个数，分为奇排列，偶排列。nnn
+\end_layout
+
+\begin_layout Standard
+两个偶排列的乘积仍然是偶排列，所以对称群
+\begin_inset Formula $S_{n}\text{的所有偶排列成为一个子群，叫n个文字上的交代群，用\ensuremath{A_{N}}}$
+\end_inset
+
+表示。
+\begin_inset Formula $\mid A_{n}\mid=\frac{n}{2}$
+\end_inset
+
+
+\end_layout
+
 \end_body
 \end_document
