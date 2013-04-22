@@ -1079,6 +1079,13 @@ end[theo}
 \end_layout
 
 \begin_layout Standard
+\begin_inset Formula $\text{(ax)(xb)(ax)=(ab)}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 \begin_inset ERT
 status open
 
@@ -1108,10 +1115,357 @@ begin{theo}
 \end_inset
 
 表示。
-\begin_inset Formula $\mid A_{n}\mid=\frac{n}{2}$
+\begin_inset Formula $\mid A_{n}\mid=\frac{n!}{2}$
+\end_inset
+
+。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $S_{3}=\{(1),(12),(13),(23),(123),(132)\}$
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $A_{4}=\{$
+\end_inset
+
+(1),(12)(34),(13)(24),(14)(23),(123),(124),(134),(132),(142),(143),(243)}
+\end_layout
+
+\begin_layout Standard
+关于排列的一个简便算法，在具体计算时非常有用，假如
+\begin_inset Formula $\tau,\sigma$
+\end_inset
+
+是两个排列，如果把
+\begin_inset Formula $\tau$
+\end_inset
+
+写成没有公共元的循环排列的乘积，并且循环排列中的文字用
+\begin_inset Formula $\sigma$
+\end_inset
+
+中所变换的文字代替，那么得到的排列就是
+\begin_inset Formula $\sigma\tau\sigma^{-1}$
+\end_inset
+
+;这是因为
+\begin_inset Formula $\sigma\tau\sigma^{-1}(\sigma(a))=\sigma\tau(a)$
+\end_inset
+
+,即
+\begin_inset Formula $\sigma(a)\rightarrow\sigma\tau(a)$
+\end_inset
+
+,因此，如果
+\begin_inset Formula $\tau=(a_{1}a_{2})(b_{1}b_{2}b_{3})$
+\end_inset
+
+,那么
+\begin_inset Formula $\sigma\tau\sigma^{-1}=(\sigma(a_{1})\sigma(a_{2}))(\sigma(b_{1})\sigma(b_{2})\sigma(b_{3}))$
+\end_inset
+
+。例如，
+\begin_inset Formula $\tau=(314)(25)(67)$
+\end_inset
+
+,
+\begin_inset Formula $\sigma=(123)(567)$
+\end_inset
+
+,那么，
+\begin_inset Formula $\sigma\tau\sigma^{-1}=(124)(36)(75)$
+\end_inset
+
+。
+\end_layout
+
+\begin_layout Subsection
+循环群的子群
+\end_layout
+
+\begin_layout Standard
+循环群是由其中一个元生成的群，生成元
+\begin_inset Formula $(a)$
+\end_inset
+
+。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $A_{3}$
+\end_inset
+
+是元数等于3的循环群，
+\begin_inset Formula $(123),(132)$
+\end_inset
+
+都是它的生成元，
+\begin_inset Formula $A_{3}=((123))=((132))$
+\end_inset
+
+。
+\begin_inset Formula $Z$
+\end_inset
+
+对加法形成的加群是无穷循环群，1，-1都是它的生成元，
+\begin_inset Formula $Z=(1)=(-1)$
+\end_inset
+
+。阶数n:
+\begin_inset Formula $a^{n}=e$
+\end_inset
+
+。
+\end_layout
+
+\begin_layout Standard
+阶数的基本性质：对于无穷群，
+\begin_inset Formula $a^{m}=e$
+\end_inset
+
+时，
+\begin_inset Formula $m=0$
+\end_inset
+
+，
+\begin_inset Formula $a^{r}=a^{s}\Leftrightarrow r=s$
+\end_inset
+
+；对于有穷群，
+\begin_inset Formula $a^{n}=e$
+\end_inset
+
+时，
+\begin_inset Formula $m\equiv0(n)$
+\end_inset
+
+,
+\begin_inset Formula $a^{r}=a^{s}\Leftrightarrow r\equiv s(n)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+对于循环群
+\begin_inset Formula $(a)$
+\end_inset
+
+，如果a的阶数是无穷，那么它是无穷群。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{theo}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+循环群
+\begin_inset Formula $G=(a)$
+\end_inset
+
+的子群的子群
+\begin_inset Formula $H$
+\end_inset
+
+还是循环群，假如
+\begin_inset Formula $H$
+\end_inset
+
+不是单位元群，那么它就是由
+\begin_inset Formula $a$
+\end_inset
+
+的最小正幂
+\begin_inset Formula $a^{m}$
+\end_inset
+
+生成的，也就是说
+\begin_inset Formula $H$
+\end_inset
+
+是
+\begin_inset Formula $G$
+\end_inset
+
+中各元的
+\begin_inset Formula $m$
+\end_inset
+
+乘幂组成的。当
+\begin_inset Formula $G$
+\end_inset
+
+是无穷群时，
+\begin_inset Formula $H$
+\end_inset
+
+也是；当
+\begin_inset Formula $G$
+\end_inset
+
+的元数是n时，
+\begin_inset Formula $H$
+\end_inset
+
+的元数
+\begin_inset Formula $q=\frac{n}{m}$
+\end_inset
+
+,并且
+\begin_inset Formula $H$
+\end_inset
+
+是
+\begin_inset Formula $G$
+\end_inset
+
+中唯一一个
+\begin_inset Formula $q$
+\end_inset
+
+元子群。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{theo}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+对于无穷循环群
+\begin_inset Formula $(a)$
+\end_inset
+
+，
+\begin_inset Formula $(a^{r})=(a^{s})$
+\end_inset
+
+的充要条件是
+\begin_inset Formula $r=\pm s$
+\end_inset
+
+。
+\end_layout
+
+\begin_layout Standard
+对于n阶循环群
+\begin_inset Formula $(a)$
+\end_inset
+
+，
+\begin_inset Formula $(a^{r})=(a^{s})$
+\end_inset
+
+的充要条件是：
+\begin_inset Formula $(r,n)=(s,n)$
+\end_inset
+
+,即最大公因数相等。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $(a)$
+\end_inset
+
+有
+\begin_inset Formula $\varphi(n)$
+\end_inset
+
+个生成元。欧拉函数
+\begin_inset Formula $\varphi(n)$
+\end_inset
+
+表示小于
+\begin_inset Formula $n$
+\end_inset
+
+且与
+\begin_inset Formula $n$
+\end_inset
+
+互质的正整数的个数。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $n$
+\end_inset
+
+次单位根也就是
+\begin_inset Formula $n$
+\end_inset
+
+次多项式
+\begin_inset Formula $x^{n}-1$
+\end_inset
+
+的零点：
+\begin_inset Formula $\xi_{k}=\cos\frac{sk\pi}{n}$
+\end_inset
+
++i
+\begin_inset Formula $\sin\frac{sk\pi}{n}$
+\end_inset
+
+，组成n元循环群，生成元是
+\begin_inset Formula $\xi_{r},(r,n)=1$
+\end_inset
+
+。
+\end_layout
+
+\begin_layout Subsection
+由若干元生成的群
+\end_layout
+
+\begin_layout Standard
+群
+\begin_inset Formula $G$
+\end_inset
+
+的子集
+\begin_inset Formula $M$
+\end_inset
+
+，包含
+\begin_inset Formula $M$
+\end_inset
+
+的最小子群用
+\begin_inset Formula $\left\langle M\right\rangle $
+\end_inset
+
+表示。
+\begin_inset Formula $D_{8}=\left\langle (1234),(12)(34)\right\rangle =\{(1),(13),(24),(12)(34),(13)(24),(14)(23),(1432),(1234)\}$
+\end_inset
+
+.
 \end_layout
 
 \end_body
