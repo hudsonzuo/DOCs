@@ -409,7 +409,15 @@ B),证：(AB)C=A(BC).
 \end_layout
 
 \begin_layout Standard
-线性群，由实数组成的n阶满秩矩阵对乘法成群，单位矩阵。
+线性群，由实数组成的n阶满秩矩阵对乘法成群，叫实数集
+\begin_inset Formula $K$
+\end_inset
+
+上的n阶线性群，简称线性群，用
+\begin_inset Formula $GL(n,K)$
+\end_inset
+
+表示。单位元是对角线上是1其余都是0的单位矩阵。
 \end_layout
 
 \begin_layout Standard
@@ -1026,7 +1034,9 @@ status open
 
 \begin_layout Plain Layout
 
-end[theo}
+
+\backslash
+end{theo}
 \end_layout
 
 \end_inset
@@ -1040,6 +1050,14 @@ end[theo}
 \end_inset
 
 是有穷集时，它成为子群的充要条件是定理1中的第一个条件。
+\end_layout
+
+\begin_layout Standard
+特殊线性群
+\begin_inset Formula $SL(n,K)$
+\end_inset
+
+的行列式等于1。
 \end_layout
 
 \begin_layout Subsection
@@ -1099,6 +1117,19 @@ begin{theo}
 \end_inset
 
 用对换乘积表示排列，那么对换因子的个数是偶数还是奇数是一定的，也就是说是偶数永远是偶数，是奇数永远是奇数。
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{theo}
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -1271,10 +1302,6 @@ begin{theo}
 
 \end_inset
 
-
-\end_layout
-
-\begin_layout Standard
 循环群
 \begin_inset Formula $G=(a)$
 \end_inset
@@ -1340,9 +1367,6 @@ begin{theo}
 \end_inset
 
 元子群。
-\end_layout
-
-\begin_layout Standard
 \begin_inset ERT
 status open
 
@@ -1351,6 +1375,103 @@ status open
 
 \backslash
 end{theo}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+n元循环群的子群的个数等于n中互异正因数的个数。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+群
+\begin_inset Formula $G$
+\end_inset
+
+中所有各元的m乘幂组成的子群，用
+\begin_inset Formula $G^{m}$
+\end_inset
+
+表示。
+\end_layout
+
+\begin_layout Plain Layout
+假如
+\begin_inset Formula $G$
+\end_inset
+
+是非交换群，
+\begin_inset Formula $G^{m}$
+\end_inset
+
+不一定成群，比如，
+\begin_inset Formula $S_{3}^{2}=\{(1),(12),(13),(23)\}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+假如
+\begin_inset Formula $G$
+\end_inset
+
+是交换群，任意
+\begin_inset Formula $G^{m}\text{都是\ensuremath{G}}$
+\end_inset
+
+的子群。
+\end_layout
+
+\begin_layout Plain Layout
+交换群
+\begin_inset Formula $G$
+\end_inset
+
+是循环群的充要条件是它的所有子群都是
+\begin_inset Formula $G^{m}\text{的形状。}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+假如
+\begin_inset Formula $G$
+\end_inset
+
+是非交换群，有可能它的所有子群都是
+\begin_inset Formula $G^{m}$
+\end_inset
+
+的形状，比如四元数群
+\end_layout
+
+\end_inset
+
+
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+交换群和循环群的特殊关系
 \end_layout
 
 \end_inset
@@ -1466,6 +1587,83 @@ end{theo}
 \end_inset
 
 .
+\end_layout
+
+\begin_layout Standard
+二面体群参考：
+\begin_inset CommandInset href
+LatexCommand href
+target "http://zh.wikipedia.org/wiki/%E4%BA%8C%E9%9D%A2%E9%AB%94%E7%BE%A4"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+习题1，试证下列各式：
+\end_layout
+
+\begin_layout Enumerate
+(12)(34)(15)(23)(45)=(153)(24) 我的计算结果是:(135)(24)
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $(1ij)=(12j)^{2}(12i)(12j)$
+\end_inset
+
+, 证明：因为
+\begin_inset Formula $(12j)^{2}=(12j)^{-1}=(1j2)$
+\end_inset
+
+,所以，
+\begin_inset Formula $=($
+\end_inset
+
+j1i)=(1ij)
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $(ac)(bd)=(abd)(acd)$
+\end_inset
+
+,证明：
+\end_layout
+
+\begin_layout Standard
+习题2，试求循环加群
+\begin_inset Formula $Z-(100)$
+\end_inset
+
+的所有子群。
+\begin_inset Formula $\left\langle 0,+\right\rangle ,\left\langle 1,+\right\rangle ,\left\langle 2,+\right\rangle ,\left\langle 4,+\right\rangle ,\left\langle 5,+\right\rangle ,\left\langle 10,+\right\rangle ,\left\langle 20,+\right\rangle ,\left\langle 25,+\right\rangle ,\left\langle 50,+\right\rangle ,$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+习题4，
+\end_layout
+
+\begin_layout Standard
+习题5，假如交换群
+\begin_inset Formula $G$
+\end_inset
+
+中元的最大阶数是
+\begin_inset Formula $m$
+\end_inset
+
+，试证：
+\begin_inset Formula $G$
+\end_inset
+
+中任意元的阶数都是
+\begin_inset Formula $m$
+\end_inset
+
+的因数。
 \end_layout
 
 \end_body
