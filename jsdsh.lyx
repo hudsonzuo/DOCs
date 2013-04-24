@@ -1643,7 +1643,115 @@ j1i)=(1ij)
 \end_layout
 
 \begin_layout Standard
-习题4，
+习题3，元
+\begin_inset Formula $a$
+\end_inset
+
+的阶数是
+\begin_inset Formula $n$
+\end_inset
+
+，试证
+\begin_inset Formula $a^{m}$
+\end_inset
+
+的阶数是
+\begin_inset Formula $\frac{n}{\text{（n,m)}}$
+\end_inset
+
+。
+\end_layout
+
+\begin_layout Standard
+证明：设
+\begin_inset Formula $a^{m}$
+\end_inset
+
+的阶数是
+\begin_inset Formula $k$
+\end_inset
+
+,
+\begin_inset Formula $k$
+\end_inset
+
+是使
+\begin_inset Formula $a^{mk}=e$
+\end_inset
+
+的最小正整数，同时
+\begin_inset Formula $n|mk$
+\end_inset
+
+,所以
+\begin_inset Formula $mk\text{是能被\ensuremath{n}整除的（当然也能被\ensuremath{m}整除）的最小正整数，}$
+\end_inset
+
+即最小公倍数，所以
+\begin_inset Formula $mk=\text{\frac{mn}{(m,n)}}$
+\end_inset
+
+。
+\end_layout
+
+\begin_layout Standard
+习题4，假定
+\begin_inset Formula $a,b$
+\end_inset
+
+是群中元，
+\begin_inset Formula $ab=ba$
+\end_inset
+
+,元
+\begin_inset Formula $a$
+\end_inset
+
+的阶数是
+\begin_inset Formula $m$
+\end_inset
+
+，元
+\begin_inset Formula $b$
+\end_inset
+
+的阶数是
+\begin_inset Formula $n$
+\end_inset
+
+，那么它们的乘积
+\begin_inset Formula $ab$
+\end_inset
+
+的阶数是
+\begin_inset Formula $m,n$
+\end_inset
+
+的最小公倍数
+\begin_inset Formula $q$
+\end_inset
+
+的约数，并且群中含有阶数是
+\begin_inset Formula $q$
+\end_inset
+
+的元，当
+\begin_inset Formula $m,n$
+\end_inset
+
+互质时，
+\begin_inset Formula $ab$
+\end_inset
+
+的阶数是
+\begin_inset Formula $mn$
+\end_inset
+
+。证明：
+\begin_inset Formula $(ab)^{k}=a^{k}b^{k}$
+\end_inset
+
+...
 \end_layout
 
 \begin_layout Standard
@@ -1664,6 +1772,41 @@ j1i)=(1ij)
 \end_inset
 
 的因数。
+\end_layout
+
+\begin_layout Standard
+证明：由习题4，群中所有元的乘积(也是群中元)的阶数是它们的阶数的最小公倍数，得证
+\end_layout
+
+\begin_layout Standard
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+总结：
+\end_layout
+
+\begin_layout Plain Layout
+阶是群中元的基本属性，任意群的元都有阶数
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \end_body
