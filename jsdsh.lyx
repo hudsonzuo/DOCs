@@ -409,7 +409,15 @@ B),证：(AB)C=A(BC).
 \end_layout
 
 \begin_layout Standard
-线性群，由实数组成的n阶满秩矩阵对乘法成群，单位矩阵。
+线性群，由实数组成的n阶满秩矩阵对乘法成群，叫实数集
+\begin_inset Formula $K$
+\end_inset
+
+上的n阶线性群，简称线性群，用
+\begin_inset Formula $GL(n,K)$
+\end_inset
+
+表示。单位元是对角线上是1其余都是0的单位矩阵。
 \end_layout
 
 \begin_layout Standard
@@ -809,7 +817,7 @@ end{theo}
 \end_layout
 
 \begin_layout Standard
-习题2，对称群群表
+习题2，对称群群表，群表表示群中任意两元的结合法
 \end_layout
 
 \begin_layout Standard
@@ -1026,7 +1034,9 @@ status open
 
 \begin_layout Plain Layout
 
-end[theo}
+
+\backslash
+end{theo}
 \end_layout
 
 \end_inset
@@ -1040,6 +1050,14 @@ end[theo}
 \end_inset
 
 是有穷集时，它成为子群的充要条件是定理1中的第一个条件。
+\end_layout
+
+\begin_layout Standard
+特殊线性群
+\begin_inset Formula $SL(n,K)$
+\end_inset
+
+的行列式等于1。
 \end_layout
 
 \begin_layout Subsection
@@ -1068,11 +1086,18 @@ end[theo}
 
 \begin_layout Standard
 例如：
-\begin_inset Formula $(12345)=(12)(23)(34)(45)$
+\begin_inset Formula $(123\ldots n)=(12)(23)(34)\ldots(n-1n)=(1n)(1n-1)\ldots(12)$
 \end_inset
 
 ，
 \begin_inset Formula $(25)=(12)(15)(12)=(12)(15)(12)=(45)(34)(23)(34)(45)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\text{(ax)(xb)(ax)=(ab)}$
 \end_inset
 
 
@@ -1092,6 +1117,19 @@ begin{theo}
 \end_inset
 
 用对换乘积表示排列，那么对换因子的个数是偶数还是奇数是一定的，也就是说是偶数永远是偶数，是奇数永远是奇数。
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{theo}
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -1099,7 +1137,7 @@ begin{theo}
 \end_layout
 
 \begin_layout Standard
-根据对换因子的个数，分为奇排列，偶排列。nnn
+根据对换因子的个数，分为奇排列，偶排列。
 \end_layout
 
 \begin_layout Standard
@@ -1108,7 +1146,3458 @@ begin{theo}
 \end_inset
 
 表示。
-\begin_inset Formula $\mid A_{n}\mid=\frac{n}{2}$
+\begin_inset Formula $\mid A_{n}\mid=\frac{n!}{2}$
+\end_inset
+
+。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $S_{3}=\{(1),(12),(13),(23),(123),(132)\}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $A_{4}=\{(1),(12)(34),(13)(24),(14)(23),(123),(124),(134),(132),(142),(143),(234),(243)\}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+关于排列的一个简便算法，在具体计算时非常有用，假如
+\begin_inset Formula $\tau,\sigma$
+\end_inset
+
+是两个排列，如果把
+\begin_inset Formula $\tau$
+\end_inset
+
+写成没有公共元的循环排列的乘积，并且循环排列中的文字用
+\begin_inset Formula $\sigma$
+\end_inset
+
+中所变换的文字代替，那么得到的排列就是
+\begin_inset Formula $\sigma\tau\sigma^{-1}$
+\end_inset
+
+;这是因为
+\begin_inset Formula $\sigma\tau\sigma^{-1}(\sigma(a))=\sigma\tau(a)$
+\end_inset
+
+,即
+\begin_inset Formula $\sigma(a)\rightarrow\sigma\tau(a)$
+\end_inset
+
+,因此，如果
+\begin_inset Formula $\tau=(a_{1}a_{2})(b_{1}b_{2}b_{3})$
+\end_inset
+
+,那么
+\begin_inset Formula $\sigma\tau\sigma^{-1}=(\sigma(a_{1})\sigma(a_{2}))(\sigma(b_{1})\sigma(b_{2})\sigma(b_{3}))$
+\end_inset
+
+。例如，
+\begin_inset Formula $\tau=(314)(25)(67)$
+\end_inset
+
+,
+\begin_inset Formula $\sigma=(123)(567)$
+\end_inset
+
+,那么，
+\begin_inset Formula $\sigma\tau\sigma^{-1}=(124)(36)(75)$
+\end_inset
+
+。
+\end_layout
+
+\begin_layout Subsection
+循环群的子群
+\end_layout
+
+\begin_layout Standard
+循环群是由其中一个元生成的群，生成元
+\begin_inset Formula $(a)$
+\end_inset
+
+。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $A_{3}$
+\end_inset
+
+是元数等于3的循环群，
+\begin_inset Formula $(123),(132)$
+\end_inset
+
+都是它的生成元，
+\begin_inset Formula $A_{3}=((123))=((132))$
+\end_inset
+
+。
+\begin_inset Formula $Z$
+\end_inset
+
+对加法形成的加群是无穷循环群，1，-1都是它的生成元，
+\begin_inset Formula $Z=(1)=(-1)$
+\end_inset
+
+。阶数n:
+\begin_inset Formula $a^{n}=e$
+\end_inset
+
+。
+\end_layout
+
+\begin_layout Standard
+阶数的基本性质：对于无穷群，
+\begin_inset Formula $a^{m}=e$
+\end_inset
+
+时，
+\begin_inset Formula $m=0$
+\end_inset
+
+，
+\begin_inset Formula $a^{r}=a^{s}\Leftrightarrow r=s$
+\end_inset
+
+；对于有穷群，
+\begin_inset Formula $a^{n}=e$
+\end_inset
+
+时，
+\begin_inset Formula $m\equiv0(n)$
+\end_inset
+
+,
+\begin_inset Formula $a^{r}=a^{s}\Leftrightarrow r\equiv s(n)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+对于循环群
+\begin_inset Formula $(a)$
+\end_inset
+
+，如果a的阶数是无穷，那么它是无穷群。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{theo}
+\end_layout
+
+\end_inset
+
+循环群
+\begin_inset Formula $G=(a)$
+\end_inset
+
+的子群的子群
+\begin_inset Formula $H$
+\end_inset
+
+还是循环群，假如
+\begin_inset Formula $H$
+\end_inset
+
+不是单位元群，那么它就是由
+\begin_inset Formula $a$
+\end_inset
+
+的最小正幂
+\begin_inset Formula $a^{m}$
+\end_inset
+
+生成的，也就是说
+\begin_inset Formula $H$
+\end_inset
+
+是
+\begin_inset Formula $G$
+\end_inset
+
+中各元的
+\begin_inset Formula $m$
+\end_inset
+
+乘幂组成的。当
+\begin_inset Formula $G$
+\end_inset
+
+是无穷群时，
+\begin_inset Formula $H$
+\end_inset
+
+也是；当
+\begin_inset Formula $G$
+\end_inset
+
+的元数是n时，
+\begin_inset Formula $H$
+\end_inset
+
+的元数
+\begin_inset Formula $q=\frac{n}{m}$
+\end_inset
+
+,并且
+\begin_inset Formula $H$
+\end_inset
+
+是
+\begin_inset Formula $G$
+\end_inset
+
+中唯一一个
+\begin_inset Formula $q$
+\end_inset
+
+元子群。
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{theo}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+n元循环群的子群的个数等于n中互异正因数的个数。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+群
+\begin_inset Formula $G$
+\end_inset
+
+中所有各元的m乘幂组成的子群，用
+\begin_inset Formula $G^{m}$
+\end_inset
+
+表示。
+\end_layout
+
+\begin_layout Plain Layout
+假如
+\begin_inset Formula $G$
+\end_inset
+
+是非交换群，
+\begin_inset Formula $G^{m}$
+\end_inset
+
+不一定成群，比如，
+\begin_inset Formula $S_{3}^{2}=\{(1),(12),(13),(23)\}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+假如
+\begin_inset Formula $G$
+\end_inset
+
+是交换群，任意
+\begin_inset Formula $G^{m}\text{都是\ensuremath{G}}$
+\end_inset
+
+的子群。
+\end_layout
+
+\begin_layout Plain Layout
+交换群
+\begin_inset Formula $G$
+\end_inset
+
+是循环群的充要条件是它的所有子群都是
+\begin_inset Formula $G^{m}\text{的形状。}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+假如
+\begin_inset Formula $G$
+\end_inset
+
+是非交换群，有可能它的所有子群都是
+\begin_inset Formula $G^{m}$
+\end_inset
+
+的形状，比如四元数群
+\end_layout
+
+\end_inset
+
+
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+交换群和循环群的特殊关系
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+对于无穷循环群
+\begin_inset Formula $(a)$
+\end_inset
+
+，
+\begin_inset Formula $(a^{r})=(a^{s})$
+\end_inset
+
+的充要条件是
+\begin_inset Formula $r=\pm s$
+\end_inset
+
+。
+\end_layout
+
+\begin_layout Standard
+对于n阶循环群
+\begin_inset Formula $(a)$
+\end_inset
+
+，
+\begin_inset Formula $(a^{r})=(a^{s})$
+\end_inset
+
+的充要条件是：
+\begin_inset Formula $(r,n)=(s,n)$
+\end_inset
+
+,即最大公因数相等。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $(a)$
+\end_inset
+
+有
+\begin_inset Formula $\varphi(n)$
+\end_inset
+
+个生成元。欧拉函数
+\begin_inset Formula $\varphi(n)$
+\end_inset
+
+表示小于
+\begin_inset Formula $n$
+\end_inset
+
+且与
+\begin_inset Formula $n$
+\end_inset
+
+互质的正整数的个数。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $n$
+\end_inset
+
+次单位根也就是
+\begin_inset Formula $n$
+\end_inset
+
+次多项式
+\begin_inset Formula $x^{n}-1$
+\end_inset
+
+的零点：
+\begin_inset Formula $\xi_{k}=\cos\frac{sk\pi}{n}$
+\end_inset
+
++i
+\begin_inset Formula $\sin\frac{sk\pi}{n}$
+\end_inset
+
+，组成n元循环群，生成元是
+\begin_inset Formula $\xi_{r},(r,n)=1$
+\end_inset
+
+。
+\end_layout
+
+\begin_layout Subsection
+由若干元生成的群
+\end_layout
+
+\begin_layout Standard
+群
+\begin_inset Formula $G$
+\end_inset
+
+的子集
+\begin_inset Formula $M$
+\end_inset
+
+，包含
+\begin_inset Formula $M$
+\end_inset
+
+的最小子群用
+\begin_inset Formula $\left\langle M\right\rangle $
+\end_inset
+
+表示。
+\begin_inset Formula $D_{8}=\left\langle (1234),(12)(34)\right\rangle =\{(1),(13),(24),(12)(34),(13)(24),(14)(23),(1432),(1234)\}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+二面体群参考：
+\begin_inset CommandInset href
+LatexCommand href
+target "http://zh.wikipedia.org/wiki/%E4%BA%8C%E9%9D%A2%E9%AB%94%E7%BE%A4"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+习题1，试证下列各式：
+\end_layout
+
+\begin_layout Enumerate
+(12)(34)(15)(23)(45)=(153)(24) 我的计算结果是:(135)(24)
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $(1ij)=(12j)^{2}(12i)(12j)$
+\end_inset
+
+, 证明：因为
+\begin_inset Formula $(12j)^{2}=(12j)^{-1}=(1j2)$
+\end_inset
+
+,所以，
+\begin_inset Formula $=($
+\end_inset
+
+j1i)=(1ij)
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Formula $(ac)(bd)=(abd)(acd)$
+\end_inset
+
+,证明：
+\end_layout
+
+\begin_layout Standard
+习题2，试求循环加群
+\begin_inset Formula $Z-(100)$
+\end_inset
+
+的所有子群。
+\begin_inset Formula $\left\langle 0,+\right\rangle ,\left\langle 1,+\right\rangle ,\left\langle 2,+\right\rangle ,\left\langle 4,+\right\rangle ,\left\langle 5,+\right\rangle ,\left\langle 10,+\right\rangle ,\left\langle 20,+\right\rangle ,\left\langle 25,+\right\rangle ,\left\langle 50,+\right\rangle ,$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+习题3，元
+\begin_inset Formula $a$
+\end_inset
+
+的阶数是
+\begin_inset Formula $n$
+\end_inset
+
+，试证
+\begin_inset Formula $a^{m}$
+\end_inset
+
+的阶数是
+\begin_inset Formula $\frac{n}{\text{（n,m)}}$
+\end_inset
+
+。
+\end_layout
+
+\begin_layout Standard
+证明：设
+\begin_inset Formula $a^{m}$
+\end_inset
+
+的阶数是
+\begin_inset Formula $k$
+\end_inset
+
+,
+\begin_inset Formula $k$
+\end_inset
+
+是使
+\begin_inset Formula $a^{mk}=e$
+\end_inset
+
+的最小正整数，同时
+\begin_inset Formula $n|mk$
+\end_inset
+
+,所以
+\begin_inset Formula $mk\text{是能被\ensuremath{n}整除的（当然也能被\ensuremath{m}整除）的最小正整数，}$
+\end_inset
+
+即最小公倍数，所以
+\begin_inset Formula $mk=\text{\frac{mn}{(m,n)}}$
+\end_inset
+
+。
+\end_layout
+
+\begin_layout Standard
+习题4，假定
+\begin_inset Formula $a,b$
+\end_inset
+
+是群中元，
+\begin_inset Formula $ab=ba$
+\end_inset
+
+,元
+\begin_inset Formula $a$
+\end_inset
+
+的阶数是
+\begin_inset Formula $m$
+\end_inset
+
+，元
+\begin_inset Formula $b$
+\end_inset
+
+的阶数是
+\begin_inset Formula $n$
+\end_inset
+
+，那么它们的乘积
+\begin_inset Formula $ab$
+\end_inset
+
+的阶数是
+\begin_inset Formula $m,n$
+\end_inset
+
+的最小公倍数
+\begin_inset Formula $q$
+\end_inset
+
+的约数，并且群中含有阶数是
+\begin_inset Formula $q$
+\end_inset
+
+的元，当
+\begin_inset Formula $m,n$
+\end_inset
+
+互质时，
+\begin_inset Formula $ab$
+\end_inset
+
+的阶数是
+\begin_inset Formula $mn$
+\end_inset
+
+。证明：
+\begin_inset Formula $(ab)^{k}=a^{k}b^{k}$
+\end_inset
+
+...
+\end_layout
+
+\begin_layout Standard
+习题5，假如交换群
+\begin_inset Formula $G$
+\end_inset
+
+中元的最大阶数是
+\begin_inset Formula $m$
+\end_inset
+
+，试证：
+\begin_inset Formula $G$
+\end_inset
+
+中任意元的阶数都是
+\begin_inset Formula $m$
+\end_inset
+
+的因数。
+\end_layout
+
+\begin_layout Standard
+证明：由习题4，群中所有元的乘积(也是群中元)的阶数是它们的阶数的最小公倍数，得证
+\end_layout
+
+\begin_layout Standard
+习题7，写出四个文字上的交代群
+\begin_inset Formula $A_{4}$
+\end_inset
+
+的群表。
+\begin_inset Formula $A_{4}=\{(1)\text{,}(12)(34),(13)(24),(14)(23),(123),(132),(124),(142),(134),(143),(234),(243)\}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\begin{pmatrix} & (1) & (12)(34) & (13)(24) & (14)(23) & (123) & (132) & (124) & (142) & (134) & (143) & (234) & (243)\\
+(1) & (1)\\
+(12)(34) &  & (1)\\
+(13)(24) &  &  & (1)\\
+(14)(23) &  &  &  & (1)\\
+(123) &  &  &  &  & (132)\\
+(132) &  &  &  &  &  & (123)\\
+(124) &  &  &  &  &  &  & (142)\\
+(142) &  &  &  &  &  &  &  & (124)\\
+(134) &  &  &  &  &  &  &  &  & (143)\\
+(143) &  &  &  &  &  &  &  &  &  & (134)\\
+(234) &  &  &  &  &  &  &  &  &  &  & (243) & (1)\\
+(243) &  &  &  &  &  &  &  &  &  &  & (1) & (234)
+\end{pmatrix}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+习题8，证明
+\begin_inset Formula $S_{n}\text{可以用\ensuremath{n-1}个对换（12),(13),...,(1n)生成。}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+因为任意排列可以写成循环排列的乘积，任意循环排列可以写成对换的乘积，所以
+\begin_inset Formula $S_{n}\text{可以写成对换的乘积；对于任意对换}$
+\end_inset
+
+有
+\begin_inset Formula $(ab)=(1a)(1b)(1a)$
+\end_inset
+
+,所以任意对换都可以用上述对换表示，得证。
+\end_layout
+
+\begin_layout Standard
+习题9，证明
+\begin_inset Formula $A_{n}$
+\end_inset
+
+可以用n-2个三项循环排列(123),(124),.....(12n)生成。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+总结：
+\end_layout
+
+\begin_layout Plain Layout
+阶是群中元的基本属性，任意群的元都有阶数
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+正规子群
+\end_layout
+
+\begin_layout Standard
+一般群如何用它的子群来分类的问题
+\end_layout
+
+\begin_layout Subsection
+子集乘积，
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{theo}
+\end_layout
+
+\end_inset
+
+假定
+\begin_inset Formula $H,K$
+\end_inset
+
+是群
+\begin_inset Formula $G$
+\end_inset
+
+的有穷子群，那么
+\begin_inset Formula $|HK|=\frac{|H|\cdot|K|}{|H\cap K|},$
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{theo}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+证明：假定
+\begin_inset Formula $h_{1}k_{1}=h_{2}k_{2},h_{i}\in H,k_{i}\in K$
+\end_inset
+
+，那么
+\begin_inset Formula $h_{2}^{-1}h_{1}=k_{2}k_{1}^{-1}=d\in H\cap K$
+\end_inset
+
+，因此
+\begin_inset Formula $h_{2}=h_{1}d^{-1},k_{2}=dk_{1}$
+\end_inset
+
+。反过来，对于
+\begin_inset Formula $h_{1},k_{1}$
+\end_inset
+
+,任取
+\begin_inset Formula $H\cap K$
+\end_inset
+
+中元
+\begin_inset Formula $d$
+\end_inset
+
+，设
+\begin_inset Formula $h_{2}=h_{1}d^{-1},k_{2}=dk_{1}$
+\end_inset
+
+,就得到
+\begin_inset Formula $h_{1}k_{1}=h_{2}k_{2}$
+\end_inset
+
+。这就是说，对于任意
+\begin_inset Formula $h_{1},k_{1},$
+\end_inset
+
+在
+\begin_inset Formula $HK$
+\end_inset
+
+中有
+\begin_inset Formula $|H\cap K|$
+\end_inset
+
+个与
+\begin_inset Formula $h_{1}k_{1}$
+\end_inset
+
+相等的元。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{theo}
+\end_layout
+
+\end_inset
+
+群
+\begin_inset Formula $G$
+\end_inset
+
+的子群
+\begin_inset Formula $H\text{,K}$
+\end_inset
+
+的乘积成群的充要条件是
+\begin_inset Formula $H$
+\end_inset
+
+与
+\begin_inset Formula $K$
+\end_inset
+
+能够交换。
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{theo}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+证明：
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $h,k$
+\end_inset
+
+分别是
+\begin_inset Formula $H,K$
+\end_inset
+
+中的元，假如
+\begin_inset Formula $HK$
+\end_inset
+
+成群,则
+\begin_inset Formula $hk\in HK$
+\end_inset
+
+，则
+\begin_inset Formula $hk$
+\end_inset
+
+的逆元
+\begin_inset Formula $k^{-1}h^{-1}\in HK$
+\end_inset
+
+, 所以
+\begin_inset Formula $KH\subseteq HK$
+\end_inset
+
+；又因为
+\begin_inset Formula $(hk)^{-1}\in HK$
+\end_inset
+
+，故可设
+\begin_inset Formula $(hk)^{-1}=h^{'}k^{'}$
+\end_inset
+
+,则
+\begin_inset Formula $hk=k^{'-1}h^{'-1}\in KH$
+\end_inset
+
+，所以有
+\begin_inset Formula $HK\subseteq KH$
+\end_inset
+
+。所以
+\begin_inset Formula $HK=KH$
+\end_inset
+
+。
+\end_layout
+
+\begin_layout Standard
+假如
+\begin_inset Formula $HK=KH$
+\end_inset
+
+，
+\begin_inset Formula $hk\in HK$
+\end_inset
+
+，则
+\begin_inset Formula $\text{其逆元}(hk)^{-1}=k^{-1}h^{-1}\in KH=HK$
+\end_inset
+
+；又因为
+\begin_inset Formula $HKHK=HHKK=HK$
+\end_inset
+
+，即任意两元的乘积也在
+\begin_inset Formula $HK$
+\end_inset
+
+中，所以HK成群。
+\end_layout
+
+\begin_layout Standard
+当
+\begin_inset Formula $G$
+\end_inset
+
+是加群（满足交换律），只要
+\begin_inset Formula $H,K$
+\end_inset
+
+是子群就有
+\begin_inset Formula $\text{（}H,K)=(K,H)$
+\end_inset
+
+，用
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang english
+
+\begin_inset Formula $(H,K)$
+\end_inset
+
+
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang chinese-simplified
+表示和，是因为以后要用
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\lang english
+
+\begin_inset Formula $H+K$
+\end_inset
+
+
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+\lang chinese-simplified
+表示直和。
+\end_layout
+
+\begin_layout Subsection
+陪集
+\end_layout
+
+\begin_layout Standard
+定义1 ，假如
+\begin_inset Formula $H$
+\end_inset
+
+是
+\begin_inset Formula $G$
+\end_inset
+
+的子群，
+\begin_inset Formula $a$
+\end_inset
+
+是
+\begin_inset Formula $G$
+\end_inset
+
+中任意元，那么集合
+\begin_inset Formula $aH$
+\end_inset
+
+（
+\begin_inset Formula $Ha\text{）}$
+\end_inset
+
+叫做
+\begin_inset Formula $H$
+\end_inset
+
+的左（右）陪集。
+\end_layout
+
+\begin_layout Standard
+假如
+\begin_inset Formula $a,b$
+\end_inset
+
+在
+\begin_inset Formula $H$
+\end_inset
+
+的同一个陪集中，则
+\begin_inset Formula $b=ah,h\in H$
+\end_inset
+
+,因此，
+\begin_inset Formula $a^{-1}b=h\in H$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+假如
+\begin_inset Formula $aH$
+\end_inset
+
+成群，则
+\begin_inset Formula $ah=e\Rightarrow a\in H$
+\end_inset
+
+,所以
+\begin_inset Formula $H$
+\end_inset
+
+的陪集只有
+\begin_inset Formula $H$
+\end_inset
+
+成群。
+\end_layout
+
+\begin_layout Standard
+假如
+\begin_inset Formula $aH,bH$
+\end_inset
+
+有公共元
+\begin_inset Formula $ah=bh^{'}$
+\end_inset
+
+,则
+\begin_inset Formula $a^{-1}b=hh^{'}\in H$
+\end_inset
+
+,
+\begin_inset Formula $aH=bH$
+\end_inset
+
+,所以两个陪集或者重合或者没有公共元。
+\end_layout
+
+\begin_layout Standard
+陪集的浓度相等。
+\end_layout
+
+\begin_layout Standard
+如果
+\begin_inset Formula $ah_{1}=ah_{2}$
+\end_inset
+
+,则
+\begin_inset Formula $h_{2}h_{1}^{-1}=a^{-1}a=e\text{\Rightarrow}h_{2}=(h_{1}^{-1})^{-1}=h_{1}$
+\end_inset
+
+，因此 陪集的浓度相等。
+\end_layout
+
+\begin_layout Standard
+群
+\begin_inset Formula $G$
+\end_inset
+
+的任意元
+\begin_inset Formula $a$
+\end_inset
+
+必出现在
+\begin_inset Formula $H$
+\end_inset
+
+的左陪集
+\begin_inset Formula $aH$
+\end_inset
+
+中，同时陪集或者重合或者没有公共元，所以：
+\begin_inset Formula $G=a_{1}H\cup a_{2}H\cup\ldots$
+\end_inset
+
+。同理对于右陪集。
+\end_layout
+
+\begin_layout Standard
+交代群
+\begin_inset Formula $A_{4}$
+\end_inset
+
+ 对于克莱因四元群
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula $B_{4}=\{(1),(12)(34),(13)\text{(}24),(14)(23)$
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+的左右陪集分别是：
+\begin_inset Formula $B_{4}\cup(234)B_{4}\cup(243)B_{4}=B_{4}\cup B_{4}(234)\cup B_{4}(243)$
+\end_inset
+
+,
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula $(234)B_{4}=\{(234),(124),(132),(143)\}$
+\end_inset
+
+,
+\begin_inset Formula $(243)B_{4}=\{(243),(123),(134),(142)\}$
+\end_inset
+
+,
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula $B_{4}(234)=\{(234),(132),(143),(124)\}$
+\end_inset
+
+,
+\begin_inset Formula $B_{4}(243)=\{(243),(142),(123),(134)\}$
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula $A_{4}=\{(1),(12)(34),(13)(24),(14)(23),(123),(124),(134),(132),(142),(143),(234),(243)\}$
+\end_inset
+
+ 
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula $B_{4}(1)=B_{4}$
+\end_inset
+
+,
+\begin_inset Formula $B_{4}(123)=\{(123),(134),(243),(142)\}=B_{4}(243)=B_{4}(134)=B_{4}(142)$
+\end_inset
+
+,
+\begin_inset Formula $B_{4}(124)=\{(124),(143),(132),(234)=B_{4}(143)=B_{4}(132)=B_{4}(234)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+对称群
+\begin_inset Formula $S_{3}$
+\end_inset
+
+对于
+\begin_inset Formula $H=\{(1),(12)\}$
+\end_inset
+
+的两种分解为：
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula $S_{3}=H\cup(13)H\cup(23)H=H\cup H(13)\cup H(23)$
+\end_inset
+
+。
+\begin_inset Formula $(13)H=\{(13),(132)\}\neq H(13)=\{(13),(123)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{theo}
+\end_layout
+
+\end_inset
+
+假设
+\begin_inset Formula $H$
+\end_inset
+
+是
+\begin_inset Formula $G$
+\end_inset
+
+的子群，并且
+\begin_inset Formula $G=a_{1}H\cup a_{2}H\cup\ldots\cup a_{n}H\cup\ldots$
+\end_inset
+
+,那么，
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula 
+\[
+G=Ha_{1}^{-1}\cup Ha_{2}^{-1}\cup\ldots\cup Ha_{n}^{-1}\cup\ldots
+\]
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{theo}
+\end_layout
+
+\end_inset
+
+,
+\end_layout
+
+\begin_layout Standard
+证明： 只需证明式中任意两个右陪集都不相等，并且
+\begin_inset Formula $G$
+\end_inset
+
+中的任意一元
+\begin_inset Formula $\text{g}$
+\end_inset
+
+必属于其中一个陪集即可。
+\begin_inset Newline newline
+\end_inset
+
+ 设
+\begin_inset Formula $g=h_{i}a_{i}^{-1}$
+\end_inset
+
+,如果同时有
+\begin_inset Formula $g=h_{j}a_{j}^{-1}$
+\end_inset
+
+,则
+\begin_inset Formula $h_{i}a_{i}^{-1}=h_{j}a_{j}^{-1}\Rightarrow a_{i}h_{i}^{-1}=a_{j}h_{i}^{-1}$
+\end_inset
+
+，与
+\begin_inset Formula $a_{i}H\ne a_{j}H$
+\end_inset
+
+矛盾，所以陪集互不相等。
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula $g\in a_{i}H\Rightarrow g^{-1}\in Ha_{i}^{-1}$
+\end_inset
+
+,因为
+\begin_inset Formula $g=a_{i}h_{i}\Rightarrow g^{-1}=h_{i}^{-1}a_{i}^{-1}\in Ha_{i}^{-1}$
+\end_inset
+
+,因为
+\begin_inset Formula $g$
+\end_inset
+
+是任意的，所以
+\begin_inset Formula $g^{-1}$
+\end_inset
+
+也是任意的，因此可知任意一元必然属于其中的一个右陪集。
+\end_layout
+
+\begin_layout Subsection
+拉格朗日定理、西洛第一定理、柯西定理
+\end_layout
+
+\begin_layout Standard
+定义2，群
+\begin_inset Formula $G$
+\end_inset
+
+中子群
+\begin_inset Formula $H$
+\end_inset
+
+的相异陪集的个数，叫做
+\begin_inset Formula $H$
+\end_inset
+
+在
+\begin_inset Formula $G$
+\end_inset
+
+的指标，用记号
+\begin_inset Formula $|G:H|$
+\end_inset
+
+表示。
+\end_layout
+
+\begin_layout Standard
+如：
+\begin_inset Formula $|Z:(n)|=n$
+\end_inset
+
+。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $G$
+\end_inset
+
+是有理数对加法组成的群，
+\begin_inset Formula $H$
+\end_inset
+
+ 是所有整数组成的子群，则
+\begin_inset Formula $|G:H|$
+\end_inset
+
+等于无穷，这是因为：
+\begin_inset Formula $1,\frac{1}{2},\ldots,\frac{1}{2^{n}},\ldots$
+\end_inset
+
+,显然在
+\begin_inset Formula $H$
+\end_inset
+
+的不同陪集
+\begin_inset Formula $\text{\frac{1}{2^{i}}+H,i=0,1,\ldots}$
+\end_inset
+
+中。
+\end_layout
+
+\begin_layout Standard
+假如
+\begin_inset Formula $G$
+\end_inset
+
+是有穷群，则
+\begin_inset Formula $|G|=|H|\bullet|G\text{：}H|$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{theo}
+\end_layout
+
+\end_inset
+
+拉格朗日定理：有穷群的子群的元数是这群的元数的因数。
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{theo}
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula $p^{n}$
+\end_inset
+
+元循环群只有
+\begin_inset Formula $n$
+\end_inset
+
+个真子群；1939年密勒尔曾证明含有12个真子群的群只有元数是
+\begin_inset Formula $p^{12}$
+\end_inset
+
+的循环群。
+\begin_inset Newline newline
+\end_inset
+
+元数是质数
+\begin_inset Formula $p$
+\end_inset
+
+的幂的群叫做
+\begin_inset Formula $p-\text{群}$
+\end_inset
+
+。
+\begin_inset Newline newline
+\end_inset
+
+由一个元生成的循环群的元数就是这元的阶数，因此，一个元的阶数就是这群的元数的因数，
+\begin_inset Formula $n$
+\end_inset
+
+元群中任意元
+\begin_inset Formula $a$
+\end_inset
+
+有
+\begin_inset Formula $a^{n}=e$
+\end_inset
+
+。
+\begin_inset Newline newline
+\end_inset
+
+拉格朗日定理的逆对于循环群和交换群成立，但是一般别的不成立。比如交代群
+\begin_inset Formula $A_{4}$
+\end_inset
+
+是12元群，但它没有6元子群。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{theo}
+\end_layout
+
+\end_inset
+
+西洛第一定理：假定有穷群
+\begin_inset Formula $G$
+\end_inset
+
+的元数是
+\begin_inset Formula $n$
+\end_inset
+
+，
+\begin_inset Formula $p$
+\end_inset
+
+是质数，并且
+\begin_inset Formula $p^{r}|n$
+\end_inset
+
+，那么
+\begin_inset Formula $G$
+\end_inset
+
+有
+\begin_inset Formula $p^{r}$
+\end_inset
+
+元子群，当
+\begin_inset Formula $r$
+\end_inset
+
+是最大的幂指数时，这
+\begin_inset Formula $p^{r}$
+\end_inset
+
+元子群叫做
+\begin_inset Formula $G$
+\end_inset
+
+属于
+\begin_inset Formula $p$
+\end_inset
+
+的西洛子群。
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{theo}
+\end_layout
+
+\end_inset
+
+证明在$2.4中。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{theo}
+\end_layout
+
+\end_inset
+
+假设质数
+\begin_inset Formula $p$
+\end_inset
+
+能整除群
+\begin_inset Formula $G$
+\end_inset
+
+的元数，那么
+\begin_inset Formula $G$
+\end_inset
+
+中有阶为
+\begin_inset Formula $p$
+\end_inset
+
+的元。
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{theo}
+\end_layout
+
+\end_inset
+
+
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+疑问：对于任意能整除
+\begin_inset Formula $G$
+\end_inset
+
+的元数的整数m，那么有阶为
+\begin_inset Formula $m$
+\end_inset
+
+的元——成立吗？
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+证明：
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{theo}
+\end_layout
+
+\end_inset
+
+有穷群是
+\begin_inset Formula $p-\text{群}$
+\end_inset
+
+的充要条件是其中任意元的阶数都是
+\begin_inset Formula $p$
+\end_inset
+
+的幂。
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{theo}
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+证明：假如
+\begin_inset Formula $G$
+\end_inset
+
+是
+\begin_inset Formula $p-\text{群}\text{，即}$
+\end_inset
+
+
+\begin_inset Formula $G=p^{m}$
+\end_inset
+
+，由拉格朗日定理可知
+\begin_inset Formula $G$
+\end_inset
+
+中任意元的阶数都是
+\begin_inset Formula $p$
+\end_inset
+
+的幂（
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+疑问：子群的元数和任意元的阶数是什么关系？
+\end_layout
+
+\end_inset
+
+）。反过来，假如
+\begin_inset Formula $n$
+\end_inset
+
+元群
+\begin_inset Formula $G$
+\end_inset
+
+中任意元的阶数都是质数
+\begin_inset Formula $p$
+\end_inset
+
+的幂，那么
+\begin_inset Formula $n$
+\end_inset
+
+也是
+\begin_inset Formula $p$
+\end_inset
+
+的幂（
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+也就是说
+\begin_inset Formula $n$
+\end_inset
+
+元群一定有阶数是
+\begin_inset Formula $n$
+\end_inset
+
+的元了？），
+\end_layout
+
+\end_inset
+
+这是因为假如
+\begin_inset Formula $q|n,(p,q)=1$
+\end_inset
+
+，由定理5，
+\begin_inset Formula $G$
+\end_inset
+
+有
+\begin_inset Formula $q$
+\end_inset
+
+元子群，但其中任意元的阶数都是
+\begin_inset Formula $p$
+\end_inset
+
+的幂，这显然和定理4矛盾。
+\end_layout
+
+\begin_layout Subsection
+正规子群、正规化子
+\end_layout
+
+\begin_layout Standard
+定义3，假如
+\begin_inset Formula $G$
+\end_inset
+
+的子群
+\begin_inset Formula $H$
+\end_inset
+
+的任意左陪集也是
+\begin_inset Formula $H$
+\end_inset
+
+的右陪集，即
+\begin_inset Formula $H$
+\end_inset
+
+能够和
+\begin_inset Formula $G$
+\end_inset
+
+中的任意元交换，那么
+\begin_inset Formula $H$
+\end_inset
+
+叫做
+\begin_inset Formula $G$
+\end_inset
+
+的正规子群，用
+\begin_inset Formula $H\vartriangleleft G$
+\end_inset
+
+表示。
+\begin_inset Newline newline
+\end_inset
+
+譬如，
+\begin_inset Formula $\{(1),(123),(132)\}$
+\end_inset
+
+是
+\begin_inset Formula $S_{3}$
+\end_inset
+
+的正规子群。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $aH=Ha$
+\end_inset
+
+可以用
+\begin_inset Formula $aHa^{-1}\subseteq H,a\in G$
+\end_inset
+
+代替， 这是因为上式对
+\begin_inset Formula $a^{-1}$
+\end_inset
+
+也成立，可得
+\begin_inset Formula $H\subseteq aHa^{-1}$
+\end_inset
+
+，所以
+\begin_inset Formula $aHa^{-1}=H$
+\end_inset
+
+ ,所以它们等价。
+\begin_inset Newline newline
+\end_inset
+
+由此可知：
+\begin_inset Formula $G$
+\end_inset
+
+的子群
+\begin_inset Formula $H$
+\end_inset
+
+如果包含元
+\begin_inset Formula $h$
+\end_inset
+
+，并且包含所有的
+\begin_inset Formula $aha^{-1},a\in G$
+\end_inset
+
+，那么
+\begin_inset Formula $\mbox{H\text{\vartriangleleft G}}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $SL(n,K)\triangleleft GL(n,K)$
+\end_inset
+
+,
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $A_{n}\triangleleft S_{n}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+与
+\begin_inset Formula $G$
+\end_inset
+
+中任意元能够交换的元成为一个正规子群，叫群
+\begin_inset Formula $G$
+\end_inset
+
+的中心，用
+\begin_inset Formula $Z(G)$
+\end_inset
+
+表示，这是群
+\begin_inset Formula $G$
+\end_inset
+
+的重要正规子群。
+\begin_inset Newline newline
+\end_inset
+
+交换群的中心是它自己，如果中心是单位元群，就说它没有中心，如
+\begin_inset Formula $S_{3},A_{4}$
+\end_inset
+
+。
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula $\left\langle (12),(14)(23)\right\rangle =\text{\{(1),(12),(14)(23),(1423),(1324),(12)(34), (34),(13)(24)\}}$
+\end_inset
+
+的中心是
+\begin_inset Formula $\text{\{(1),(12)(34)\}}$
+\end_inset
+
+；
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+(12)(12)=(1) (14)(23)(14)(23)=(1) (12)(14)(23)=(1324) (14)(23)(12)=(1423)
+ (1324)(1324)=(12)(34) (1423)(1423)=(12)(34) (12)(34)(14)(23)=(13)(24)极有可能不完整
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+其子群都是正规子群的非交换群，叫做汉密尔顿群。
+\end_layout
+
+\begin_layout Standard
+假如
+\begin_inset Formula $H\text{，K}$
+\end_inset
+
+都是群
+\begin_inset Formula $G$
+\end_inset
+
+的子群，并且
+\begin_inset Formula $G\supseteq K\supseteq H$
+\end_inset
+
+，
+\begin_inset Newline newline
+\end_inset
+
+如果
+\begin_inset Formula $H$
+\end_inset
+
+是
+\begin_inset Formula $G$
+\end_inset
+
+的正规子群，则
+\begin_inset Formula $H$
+\end_inset
+
+也是
+\begin_inset Formula $K$
+\end_inset
+
+的正规子群，但
+\begin_inset Formula $K$
+\end_inset
+
+不一定是
+\begin_inset Formula $G$
+\end_inset
+
+的正规子群。
+\begin_inset Newline newline
+\end_inset
+
+假如
+\begin_inset Formula $H$
+\end_inset
+
+是
+\begin_inset Formula $K$
+\end_inset
+
+的正规子群，
+\begin_inset Formula $K$
+\end_inset
+
+是
+\begin_inset Formula $G$
+\end_inset
+
+的正规子群，
+\begin_inset Formula $H$
+\end_inset
+
+不一定是
+\begin_inset Formula $G$
+\end_inset
+
+的正规子群，即正规子群这个关系不适合传递律。譬如，
+\begin_inset Formula $S_{4},B_{4},\{(1),(12),(34),(12)(34)\}$
+\end_inset
+
+。
+\end_layout
+
+\begin_layout Standard
+两个子群的乘积不一定成群；一个子群与一个正规子群的乘积是一个子群；两个正规子群的乘积是正规子群；
+\end_layout
+
+\begin_layout Standard
+两个子群的交是一个子群；一个子群和一个正规子群的交是子群
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+为什么？
+\end_layout
+
+\end_inset
+
+；两个正规子群的交是正规子群。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $G$
+\end_inset
+
+中所有与它的子集
+\begin_inset Formula $H$
+\end_inset
+
+能够交换的元成为子群
+\begin_inset Note Comment
+status open
+
+\begin_layout Plain Layout
+\begin_inset Formula $ah=ha,bh=hb\Rightarrow abh=ahb=hab,ah=ha\Rightarrow ha^{-1}=a^{-1}h$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+，叫做
+\begin_inset Formula $G$
+\end_inset
+
+中
+\begin_inset Formula $H$
+\end_inset
+
+的
+\emph on
+正规化子，
+\emph default
+用
+\begin_inset Formula $N(H)$
+\end_inset
+
+表示，即
+\begin_inset Formula $N\text{(H)=\{x|x\in G,xH=Hx\}}$
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+譬如，
+\begin_inset Formula $A_{4}$
+\end_inset
+
+的子群
+\begin_inset Formula $\{(1),(234),(243)\}$
+\end_inset
+
+的正规化子就是它自身；子群
+\begin_inset Formula $H$
+\end_inset
+
+是
+\begin_inset Formula $N\text{(H)}$
+\end_inset
+
+的正规子群，并且
+\begin_inset Formula $H\subseteq N(H)\subseteq G$
+\end_inset
+
+；
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula $N(H)=G$
+\end_inset
+
+的充要条件是
+\bar under
+
+\begin_inset Formula $H\vartriangleleft G$
+\end_inset
+
+
+\bar default
+。
+\end_layout
+
+\begin_layout Standard
+一个群至少有两个正规子群：自身和单位元群；只有这两个的叫
+\series bold
+单纯群
+\series default
+，简称
+\series bold
+单群。
+\series default
+元数是质数的群是单群；
+\begin_inset Newline newline
+\end_inset
+
+交换群只在元数是1或者质数时才是单群。
+\begin_inset Newline newline
+\end_inset
+
+交代群
+\begin_inset Formula $A_{n}(n>4)$
+\end_inset
+
+是一个重要的单群
+\begin_inset Note Comment
+status open
+
+\begin_layout Plain Layout
+一个可能很复杂的问题，另外
+\begin_inset Formula $S_{n}$
+\end_inset
+
+是否可能是单群呢？
+\end_layout
+
+\end_inset
+
+。
+\begin_inset Newline newline
+\end_inset
+
+至于非交换群，元数不大于1000的只有元数是：60，168，360，504，660。
+\begin_inset Newline newline
+\end_inset
+
+非交换单群的元数都是偶数
+\begin_inset Note Comment
+status open
+
+\begin_layout Plain Layout
+这是群论中长期没有得到解决的问题，已于1963年被W.Feit和J.G.Thompson证明
+\end_layout
+
+\end_inset
+
+。
+\end_layout
+
+\begin_layout Subsection
+商群
+\end_layout
+
+\begin_layout Standard
+用正规子群
+\begin_inset Formula $H$
+\end_inset
+
+对
+\begin_inset Formula $G$
+\end_inset
+
+分类得到的陪集能成群，叫
+\begin_inset Formula $G$
+\end_inset
+
+关于
+\begin_inset Formula $H$
+\end_inset
+
+的商群。
+\begin_inset Newline newline
+\end_inset
+
+证明：
+\begin_inset Formula $aH\cdot bH=aHb\cdot H=ab\cdot HH=abH$
+\end_inset
+
+ ,如果用
+\begin_inset Formula $\overline{a}$
+\end_inset
+
+表示
+\begin_inset Formula $aH$
+\end_inset
+
+，那么有
+\begin_inset Formula $\overline{a}\cdot\overline{b}=\overline{ab}$
+\end_inset
+
+,
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula $H$
+\end_inset
+
+是单位元；
+\begin_inset Formula $\overline{a^{-1}}=(\overline{a})^{-1}$
+\end_inset
+
+;
+\begin_inset Newline newline
+\end_inset
+
+因为
+\begin_inset Formula $G$
+\end_inset
+
+中元
+\begin_inset Formula $a,b,c$
+\end_inset
+
+满足结合律，所以
+\begin_inset Formula $\overline{a},\overline{b},\overline{c}$
+\end_inset
+
+也满足结合律。
+\end_layout
+
+\begin_layout Standard
+商群用
+\begin_inset Formula $G/H$
+\end_inset
+
+表示，它的元数是
+\begin_inset Formula $|G:H|$
+\end_inset
+
+。
+\end_layout
+
+\begin_layout Standard
+当
+\begin_inset Formula $G$
+\end_inset
+
+是加群时，
+\begin_inset Formula $G$
+\end_inset
+
+中
+\begin_inset Formula $H$
+\end_inset
+
+的陪集又叫
+\begin_inset Formula $H$
+\end_inset
+
+的同余类；
+\begin_inset Formula $H$
+\end_inset
+
+的商群又叫：同余群、同余加群、差群，
+\begin_inset Formula $G-H$
+\end_inset
+
+，
+\begin_inset Newline newline
+\end_inset
+
+如果
+\begin_inset Formula $G$
+\end_inset
+
+中元
+\begin_inset Formula $a,b$
+\end_inset
+
+在
+\begin_inset Formula $H$
+\end_inset
+
+的一个同余类中，那么它们的差
+\begin_inset Formula $a-b\in H$
+\end_inset
+
+,用同余式表示：
+\begin_inset Formula $a\equiv b(mod\, H)$
+\end_inset
+
+,
+\begin_inset Formula $a\equiv0(H)$
+\end_inset
+
+则
+\begin_inset Formula $a\in H$
+\end_inset
+
+。
+\begin_inset Newline newline
+\end_inset
+
+整数加群
+\begin_inset Formula $Z$
+\end_inset
+
+关于
+\begin_inset Formula $(n)$
+\end_inset
+
+的同余加群
+\begin_inset Formula 
+\[
+\overline{Z_{n}}=Z-(n)=\{\overline{0},\overline{1},\ldots,\overline{n-1}\}
+\]
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+它的元数是
+\begin_inset Formula $n$
+\end_inset
+
+，结合法是：
+\begin_inset Formula $\text{\overline{a}+\overline{b}=\overline{a+b}}$
+\end_inset
+
+。
+\end_layout
+
+\begin_layout Subsection
+周期群（扭群）
+\end_layout
+
+\begin_layout Standard
+有穷群的任意元的阶数都是有穷的，但反过来不一定成立。一个群如果任意元的阶数都是有穷的，叫做周期群或者扭群。
+\begin_inset Newline newline
+\end_inset
+
+如果除单位元外任意元的阶数都是无穷的，叫做纯无穷群或者无扭群。比如无穷循环群。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{theo}
+\end_layout
+
+\end_inset
+
+假定
+\begin_inset Formula $G$
+\end_inset
+
+是交换群，
+\begin_inset Formula $H$
+\end_inset
+
+是
+\begin_inset Formula $G$
+\end_inset
+
+中所有阶数是有穷的元的集合，那么
+\begin_inset Formula $H$
+\end_inset
+
+是周期群，并且
+\begin_inset Formula $G/H$
+\end_inset
+
+是纯无穷群。
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{theo}
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+证明：只要
+\begin_inset Formula $H$
+\end_inset
+
+是群，则
+\begin_inset Formula $H$
+\end_inset
+
+是周期群，设
+\begin_inset Formula $h_{1},h_{2}\in H$
+\end_inset
+
+,并且
+\begin_inset Formula $h_{1}^{n_{1}}=e,h_{2}^{n_{2}}=e$
+\end_inset
+
+,则
+\begin_inset Formula $(h_{1}h_{2})^{[n_{1},n_{2}]}=e$
+\end_inset
+
+
+\begin_inset Note Comment
+status open
+
+\begin_layout Plain Layout
+最小公倍
+\end_layout
+
+\end_inset
+
+；另外逆元的阶数对应的元的阶数相等，所以
+\begin_inset Formula $H$
+\end_inset
+
+是群。
+\begin_inset Newline newline
+\end_inset
+
+设
+\begin_inset Formula $\text{\overline{a}\in G/H}$
+\end_inset
+
+ ,如果存在
+\begin_inset Formula $m$
+\end_inset
+
+使得
+\begin_inset Formula $(\overline{a}\text{)}^{m}=\overline{a^{m}}=\overline{e}$
+\end_inset
+
+ 成立,因为
+\begin_inset Formula $G$
+\end_inset
+
+中
+\begin_inset Formula $H$
+\end_inset
+
+外的元的阶都是无穷的，所以
+\begin_inset Formula $a^{m}\in H$
+\end_inset
+
+；因为
+\begin_inset Formula $H$
+\end_inset
+
+是有穷群，所以
+\begin_inset Formula $a\in H$
+\end_inset
+
+,因此
+\begin_inset Formula $\overline{a}=\overline{e}$
+\end_inset
+
+,
+\begin_inset Newline newline
+\end_inset
+
+即
+\begin_inset Formula $G/H$
+\end_inset
+
+中阶数是有穷的只有单位元，所以是纯无穷群。
+\end_layout
+
+\begin_layout Subsection
+换位子群
+\end_layout
+
+\begin_layout Standard
+设
+\begin_inset Formula $[a,b]=a^{-1}b^{-1}ab$
+\end_inset
+
+,即
+\begin_inset Formula $ab=ba\cdot[a,b]$
+\end_inset
+
+ 是
+\begin_inset Formula $a,b$
+\end_inset
+
+ 的换位子。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $a,b$
+\end_inset
+
+的换位子是
+\begin_inset Formula $b,a$
+\end_inset
+
+的换位子的逆。当
+\begin_inset Formula $G$
+\end_inset
+
+是交换群是只有单位元是它的换位子；反之，一个群的换位子如果只是单位元，则它是交换群。
+\begin_inset Newline newline
+\end_inset
+
+一个群的两个换位子的乘积一般不再是换位子，因此一个群的所有换位子不一定能成群。
+\begin_inset Newline newline
+\end_inset
+
+我们把
+\begin_inset Formula $G$
+\end_inset
+
+中所有换位子生成的群叫
+\begin_inset Formula $G$
+\end_inset
+
+的换位子群，用
+\begin_inset Formula $D(G)$
+\end_inset
+
+或者
+\begin_inset Formula $G^{'}$
+\end_inset
+
+表示。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{theo}
+\end_layout
+
+\end_inset
+
+群
+\begin_inset Formula $G$
+\end_inset
+
+的换位子群
+\begin_inset Formula $G^{'}$
+\end_inset
+
+是
+\begin_inset Formula $G$
+\end_inset
+
+的正规子群，并且商群
+\begin_inset Formula $G/G^{'}$
+\end_inset
+
+是交换群。
+\begin_inset Formula $G/H$
+\end_inset
+
+
+\begin_inset Note Comment
+status open
+
+\begin_layout Plain Layout
+\begin_inset Formula $H$
+\end_inset
+
+默认是正规子群？
+\end_layout
+
+\end_inset
+
+是交换群的充要条件是
+\begin_inset Formula $H$
+\end_inset
+
+ 包含
+\begin_inset Formula $G$
+\end_inset
+
+的换位子群
+\begin_inset Formula $G^{'}$
+\end_inset
+
+。
+\begin_inset Newline newline
+\end_inset
+
+证明：
+\begin_inset Formula $\text{设}a$
+\end_inset
+
+是
+\begin_inset Formula $G$
+\end_inset
+
+中任意元，
+\begin_inset Formula $a[a,b]a^{-1}=b^{-1}aba^{-1}=[b,a^{-1}]\in G^{'}$
+\end_inset
+
+,所以
+\begin_inset Formula $G^{'}$
+\end_inset
+
+是
+\begin_inset Formula $G$
+\end_inset
+
+的正规子群。
+\begin_inset Newline newline
+\end_inset
+
+商群
+\begin_inset Formula $G/G^{'}$
+\end_inset
+
+的单位元是换位子群
+\begin_inset Formula $G^{'}$
+\end_inset
+
+,
+\begin_inset Formula $ab=ba[a,b],[a,b]\in G^{'}$
+\end_inset
+
+,所以
+\begin_inset Formula $ab$
+\end_inset
+
+和
+\begin_inset Formula $ba$
+\end_inset
+
+属于同一个陪集，即
+\begin_inset Formula $\text{\overline{ab}}=\overline{ba}$
+\end_inset
+
+,所以
+\begin_inset Formula $\overline{a}\overline{b}=\overline{b}\overline{a}$
+\end_inset
+
+,即
+\begin_inset Formula $G/G^{'}$
+\end_inset
+
+是可交换的。
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+设任意
+\begin_inset Formula $aG^{'},bG^{'}\in G/G^{'}$
+\end_inset
+
+,因为
+\begin_inset Formula $G^{'}$
+\end_inset
+
+是
+\begin_inset Formula $G$
+\end_inset
+
+的正规子群，所以
+\begin_inset Formula $a$
+\end_inset
+
+和
+\begin_inset Formula $G^{'}$
+\end_inset
+
+是可交换的，所以
+\begin_inset Formula $aG^{'}bG^{'}=bG^{'}aG^{'}$
+\end_inset
+
+
+\begin_inset Note Comment
+status open
+
+\begin_layout Plain Layout
+a,b不一定是可交换的
+\end_layout
+
+\end_inset
+
+，即
+\begin_inset Formula $G/G^{'}$
+\end_inset
+
+是交换群。
+\end_layout
+
+\end_inset
+
+假如
+\begin_inset Formula $G/H$
+\end_inset
+
+是交换群，即
+\begin_inset Formula $\overline{a}\overline{b}=\overline{b}\overline{a}$
+\end_inset
+
+,则，
+\begin_inset Formula $\overline{ab}=\overline{ba}$
+\end_inset
+
+,所以
+\begin_inset Formula $ab=bah,h\in H$
+\end_inset
+
+,因此
+\begin_inset Formula $a^{-1}b^{-1}ab=h\in H$
+\end_inset
+
+,即
+\begin_inset Formula $H$
+\end_inset
+
+包含
+\begin_inset Formula $G^{'}$
+\end_inset
+
+；反之，假如
+\begin_inset Formula $H$
+\end_inset
+
+是包含
+\begin_inset Formula $G^{'}$
+\end_inset
+
+的正规子群，
+\begin_inset Newline newline
+\end_inset
+
+则
+\begin_inset Formula $ab=bah,h\in H$
+\end_inset
+
+, 
+\emph on
+未完
+\end_layout
+
+\begin_layout Standard
+习题
+\begin_inset Newline newline
+\end_inset
+
+1，试证：元数是质数的群是循环群
+\end_layout
+
+\begin_layout Standard
+根据柯西定理，群中有阶为
+\begin_inset Formula $p$
+\end_inset
+
+的元，设为
+\begin_inset Formula $a$
+\end_inset
+
+，即
+\begin_inset Formula $a^{p}=e$
+\end_inset
+
+；设任意
+\begin_inset Formula $0<m,n<p$
+\end_inset
+
+,则
+\begin_inset Formula $a^{m}\ne a^{n}$
+\end_inset
+
+,所以此群是循环群
+\begin_inset Formula $(a)$
+\end_inset
+
+。
+\begin_inset Newline newline
+\end_inset
+
+2，指标是2的子群是正规子群
+\end_layout
+
+\begin_layout Standard
+此时，左陪集和右陪集只能重合，所以
+\begin_inset Formula $aH=Ha$
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+3，假定
+\begin_inset Formula $H$
+\end_inset
+
+是
+\begin_inset Formula $G$
+\end_inset
+
+的子群，
+\begin_inset Formula $K$
+\end_inset
+
+是
+\begin_inset Formula $H$
+\end_inset
+
+的子群，求证：
+\begin_inset Formula $|G:K|=|G:H|\cdot|H:K|$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\frac{|G|}{|K|}=\frac{|G|}{|H|}\cdot\frac{|H|}{|K|}
+\]
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+4，假定
+\begin_inset Formula $G$
+\end_inset
+
+是循环群，
+\begin_inset Formula $H$
+\end_inset
+
+是指标为
+\begin_inset Formula $m$
+\end_inset
+
+的子群，那么
+\begin_inset Formula $G/H$
+\end_inset
+
+是元数为
+\begin_inset Formula $m$
+\end_inset
+
+的循环群。因此任意循环群
+\begin_inset Formula $G$
+\end_inset
+
+的子群
+\begin_inset Formula $H$
+\end_inset
+
+在
+\begin_inset Formula $G$
+\end_inset
+
+的指标
+\begin_inset Formula $|G:H|$
+\end_inset
+
+是有穷的。
+\end_layout
+
+\begin_layout Standard
+循环群是可交换的，所以
+\begin_inset Formula $H$
+\end_inset
+
+是正规子群，设
+\begin_inset Formula $G=(a)$
+\end_inset
+
+,
+\begin_inset Formula $H=G^{m}=(a^{m})$
+\end_inset
+
+,
+\begin_inset Formula $G=H\cup aH\cup\ldots\cup a^{m-1}H$
+\end_inset
+
+,
+\begin_inset Formula $G/H=\{H,aH,\dots a^{m-1}H\}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $|G:H|=\frac{|G|}{|H|}=\frac{(a)}{(a^{m})}=m$
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+5，群
+\begin_inset Formula $G$
+\end_inset
+
+中子群
+\begin_inset Formula $H$
+\end_inset
+
+是正规子群的充要条件是：
+\begin_inset Formula $H$
+\end_inset
+
+的任意两个左陪集的乘积仍然是
+\begin_inset Formula $H$
+\end_inset
+
+的一个左陪集。
+\end_layout
+
+\begin_layout Standard
+假设
+\begin_inset Formula $H$
+\end_inset
+
+是正规子群，
+\begin_inset Formula $aH\cdot bH=abH$
+\end_inset
+
+,即
+\begin_inset Formula $\text{\overline{a}\overline{b}=\overline{ab}}$
+\end_inset
+
+;
+\end_layout
+
+\begin_layout Standard
+反之，有
+\begin_inset Formula $aH\cdot bH=abH\Rightarrow ahb=abh^{'}\Rightarrow bh^{'}b^{-1}=h\in H$
+\end_inset
+
+,所以
+\begin_inset Formula $H$
+\end_inset
+
+是正规子群。
+\begin_inset Newline newline
+\end_inset
+
+6，假设
+\begin_inset Formula $H,K$
+\end_inset
+
+是群
+\begin_inset Formula $G$
+\end_inset
+
+ 的正规子群，
+\begin_inset Formula $H\cap K=E$
+\end_inset
+
+，那么
+\begin_inset Formula $hk=kh,k\in K,h\in H$
+\end_inset
+
+.
+\begin_inset Note Comment
+status open
+
+\begin_layout Plain Layout
+虽然
+\begin_inset Formula $kH=Hk$
+\end_inset
+
+，但不一定有
+\begin_inset Formula $hk=kh$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+证明换位子是单位元即可，
+\begin_inset Formula $[h,k]=h^{-1}k^{-1}hk=h^{-1}(k^{-1}hk)\in H$
+\end_inset
+
+,
+\begin_inset Formula $h^{-1}k^{-1}hk=(h^{-1}h^{-1}h)k\in K$
+\end_inset
+
+,所以
+\begin_inset Formula $[h,k]\in H\cap K)$
+\end_inset
+
+,因此
+\begin_inset Formula $[h,k]=e$
+\end_inset
+
+。
+\begin_inset Newline newline
+\end_inset
+
+7,假定
+\begin_inset Formula $a,b,c$
+\end_inset
+
+是群中元，试证：
+\begin_inset Formula $[ab,c]=[a,c][b,c]$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $[ab,c]=b^{-1}a^{-1}c^{-1}abc,[a,c]=a^{-1}c^{-1}ac,[b,c]=b^{-1}c^{-1}bc$
+\end_inset
+
+，如果等式成立有：
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $b^{-1}a^{-1}c^{-1}abc=a^{-1}c^{-1}acb^{-1}c^{-1}bc\Rightarrow b^{-1}a^{-1}c^{-1}a=a^{-1}c^{-1}acb^{-1}c^{-1}\Rightarrow a^{-1}c^{-1}ac=ba^{-1}c^{-1}acb^{-1}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $b^{-1}c^{-1}a^{-1}bca$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $cbc^{-1}a^{-1}ca[ab,c]=bc;$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+同构
+\end_layout
+
+\begin_layout Standard
+定义 假设
+\begin_inset Formula $M,M^{'}$
+\end_inset
+
+是两个乘集，也就是说，
+\begin_inset Formula $M,M^{'}$
+\end_inset
+
+是两个各具有一个闭合结合法的（写成乘法）的代数系，
+\begin_inset Formula $\sigma$
+\end_inset
+
+是
+\begin_inset Formula $M$
+\end_inset
+
+射到
+\begin_inset Formula $M^{'}$
+\end_inset
+
+的双射，并且任意两元的乘积的像是这两元的像的乘积，即对于
+\begin_inset Formula $M$
+\end_inset
+
+中任意两元
+\begin_inset Formula $a,b$
+\end_inset
+
+，
+\begin_inset Formula $\text{\sigma(a\cdot b)=\sigma(a)\cdot\sigma(b)}$
+\end_inset
+
+,也就是说，当
+\begin_inset Formula $a\rightarrow\sigma(a),b\rightarrow\sigma(b)$
+\end_inset
+
+时，
+\begin_inset Formula $ab\rightarrow\sigma(ab)$
+\end_inset
+
+，那么映射
+\begin_inset Formula $\sigma$
+\end_inset
+
+就叫
+\begin_inset Formula $M$
+\end_inset
+
+到
+\begin_inset Formula $M^{'}$
+\end_inset
+
+的同构，我们又叫
+\begin_inset Formula $M$
+\end_inset
+
+与
+\begin_inset Formula $M^{'}$
+\end_inset
+
+的同构，用
+\begin_inset Formula $M\simeq M^{'}$
+\end_inset
+
+。
+\begin_inset Newline newline
+\end_inset
+
+因为双射是等价关系，所以，同构也是等价关系。
+\end_layout
+
+\begin_layout Standard
+比如
+\begin_inset Formula $\{r,\frac{1}{r},1-r,\frac{1}{1-r},\frac{r-1}{r},\frac{r}{r-1}\}$
+\end_inset
+
+和
+\begin_inset Formula $S_{s}$
+\end_inset
+
+同构；
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula $G=\text{\{1,i,-1,-i\}}$
+\end_inset
+
+,
+\begin_inset Formula $G^{'}=\{\sigma_{0},\sigma_{90},\sigma_{180},\sigma_{270}\}$
+\end_inset
+
+,定义双射：
+\begin_inset Formula $1\rightarrow\sigma_{0},i\rightarrow\sigma_{90},-1\rightarrow\sigma_{180},-i\rightarrow\sigma_{270}$
+\end_inset
+
+,显然它们同构。
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula $M$
+\end_inset
+
+是所有实数组成的乘积，结合法是普通加法；
+\begin_inset Formula $M^{'}$
+\end_inset
+
+是所有正实数组成的乘集，结合法是普通乘法；那么映射：
+\begin_inset Formula $a\rightarrow\sigma(a)=10^{a}$
+\end_inset
+
+就是
+\begin_inset Formula $M$
+\end_inset
+
+射到
+\begin_inset Formula $M^{'}$
+\end_inset
+
+的同构。证明：对于任意
+\begin_inset Formula $a\in M$
+\end_inset
+
+,
+\begin_inset Formula $\sigma(a)=10^{a}$
+\end_inset
+
+,对于任意
+\begin_inset Formula $b\in M^{'}$
+\end_inset
+
+像源是
+\begin_inset Formula $\log_{10}b$
+\end_inset
+
+，当
+\begin_inset Formula $10^{a_{i}}=10^{a_{j}}$
+\end_inset
+
+时，
+\begin_inset Formula $a_{i}=a_{j}$
+\end_inset
+
+，所以
+\begin_inset Formula $\sigma$
+\end_inset
+
+是
+\begin_inset Formula $M$
+\end_inset
+
+射的双射。再因为
+\begin_inset Formula 
+\[
+\sigma(a_{i}+a_{j})=10^{a_{i}+a_{j}}=10^{a_{i}}\cdot10^{a_{j}}=\sigma(a_{i})\cdot\sigma(a_{j})
+\]
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+所以
+\begin_inset Formula $M\simeq M^{'}$
+\end_inset
+
+。
+\begin_inset Newline newline
+\end_inset
+
+无穷循环群和整数加群
+\begin_inset Formula $Z$
+\end_inset
+
+同构。因此任意两个无穷循环群都同构。
+\begin_inset Newline newline
+\end_inset
+
+元数为
+\begin_inset Formula $n$
+\end_inset
+
+的有穷循环群，和
+\begin_inset Formula $Z$
+\end_inset
+
+关于
+\begin_inset Formula $(n)$
+\end_inset
+
+的同余加群
+\begin_inset Formula $\overline{Z}=Z-(n)$
+\end_inset
+
+同构，同构映射是
+\begin_inset Formula $a_{i}\rightarrow\overline{i}$
+\end_inset
+
+。因此元数相等的有穷循环群也都同构。
+\end_layout
+
+\begin_layout Standard
+群
+\begin_inset Formula $G$
+\end_inset
+
+的所有变换
+\begin_inset Formula $\sigma_{a}(g)=ag,a\in G$
+\end_inset
+
+组成群
+\begin_inset Formula $G^{'}$
+\end_inset
+
+(2.1习题10)，命
+\begin_inset Formula $a$
+\end_inset
+
+与
+\begin_inset Formula $\sigma_{a}$
+\end_inset
+
+相对应，那么这个对应显然是
+\begin_inset Formula $G$
+\end_inset
+
+射到
+\begin_inset Formula $G^{'}$
+\end_inset
+
+的双射
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+\begin_inset Formula $G^{'}$
+\end_inset
+
+中任意元在
+\begin_inset Formula $G$
+\end_inset
+
+中都有像源，所以是满射；
+\begin_inset Formula $g_{1}\ne g_{2},\sigma_{a}(g_{1})\ne\sigma_{a}(g_{2})$
+\end_inset
+
+,所以是单射，单射加满射就是双射
+\end_layout
+
+\end_inset
+
+；又因为
+\begin_inset Formula $\sigma_{ab}=\sigma_{a}\sigma_{b}$
+\end_inset
+
+,所以它是
+\begin_inset Formula $G$
+\end_inset
+
+到
+\begin_inset Formula $G'$
+\end_inset
+
+的同构,因此
+\begin_inset Formula $G\simeq G^{'}$
+\end_inset
+
+,于是有下面的卡莱定理。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{theo}
+\end_layout
+
+\end_inset
+
+任意群与它的变换群的子群同构
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{theo}
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+当
+\begin_inset Formula $G$
+\end_inset
+
+是有穷群是，
+\begin_inset Formula $G$
+\end_inset
+
+就与对称群
+\begin_inset Formula $S_{n}$
+\end_inset
+
+的子群同构,也就是说任意群与对称群的子群同构
+\begin_inset Note Comment
+status open
+
+\begin_layout Plain Layout
+这个
+\begin_inset Formula $S_{n}$
+\end_inset
+
+的子群的元数是
+\begin_inset Formula $n$
+\end_inset
+
+，
+\begin_inset Formula $G$
+\end_inset
+
+的元数也是
+\begin_inset Formula $n$
+\end_inset
+
+，
+\begin_inset Formula $S_{n}$
+\end_inset
+
+的元数是
+\begin_inset Formula $n!$
+\end_inset
+
+;
+\begin_inset Formula $S_{n}$
+\end_inset
+
+一定有
+\begin_inset Formula $n$
+\end_inset
+
+元子群吗？，
+\begin_inset Formula $S_{3}$
+\end_inset
+
+的3元子群是{(1),(123),(132)},
+\begin_inset Formula $S_{4}$
+\end_inset
+
+的4元子群是{(1),(1234),(1243),(1324),(1342),(1423),(1432)
+\end_layout
+
 \end_inset
 
 

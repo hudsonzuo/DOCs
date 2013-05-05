@@ -1,0 +1,184 @@
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_amsmath 1
+\use_esint 1
+\use_mhchem 1
+\use_mathdots 1
+\cite_engine basic
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+西屋翻盖计划
+\end_layout
+
+\begin_layout Section
+过道（门口）
+\end_layout
+
+\begin_layout Standard
+绪论家过道南侧空闲大概2米，即使过道向南移动，仍然对着墙角，所以他很有可能不动过道。
+\end_layout
+
+\begin_layout Standard
+过道作用不大，浪费很大，不盖过道，可以节省；同时西屋南墙能留窗户，增加阳光；以后过汽车也方便，门口种上花卉，也美观。需要定做一个铁门。
+\end_layout
+
+\begin_layout Section
+西屋
+\end_layout
+
+\begin_layout Subsection
+边界位置
+\end_layout
+
+\begin_layout Standard
+南：到现在第一间房的门口和窗户之间的墙的位置，北：到北房房檐外一尺，东：老地基东挪一两尺。南北长约6米多，东西宽约4.5米。
+\end_layout
+
+\begin_layout Standard
+高度：需要加高到比北房略矮。
+\end_layout
+
+\begin_layout Subsection
+房屋结构
+\end_layout
+
+\begin_layout Standard
+将房顶和墙体做成一个整体，
+\end_layout
+
+\begin_layout Subsection
+门窗
+\end_layout
+
+\begin_layout Standard
+窗户：南墙一个，房顶一个（灶台上），东墙北侧一个
+\end_layout
+
+\begin_layout Standard
+门：东墙偏南一个（厨房门），北墙偏东一个（通道北房房檐下）
+\end_layout
+
+\begin_layout Subsection
+房间隔断
+\end_layout
+
+\begin_layout Standard
+将居住环境和厨房环境分开，隔断门在偏东位置，和炕错开。
+\end_layout
+
+\begin_layout Subsection
+炕
+\end_layout
+
+\begin_layout Standard
+靠西墙和隔断。
+\end_layout
+
+\begin_layout Standard
+炕结构：分两室，烟气进口在南西，出口在南东。
+\end_layout
+
+\begin_layout Subsection
+厨房
+\end_layout
+
+\begin_layout Standard
+灶台一个，位置在炕和隔断南。烟囱在灶台旁边，灶台有两个出烟口，一个通炕，一个直接通烟囱，用时堵住一个。灶台上方房顶有天窗。天窗大小2尺见方，如果不用天窗，可在西
+墙开小窗户，加排风扇。
+\end_layout
+
+\begin_layout Subsection
+洗澡
+\end_layout
+
+\begin_layout Standard
+在房间西南角，装淋浴头，着水地面比房间地面高5公分，以利污水流出。配防水布帘。
+\end_layout
+
+\begin_layout Subsection
+水
+\end_layout
+
+\begin_layout Standard
+水龙头一个，淋浴一个，水龙头装在南墙，
+\end_layout
+
+\begin_layout Standard
+脏水处理：南墙设置出水管，流到南墙外的
+\emph on
+脏水通
+\emph default
+。
+\end_layout
+
+\begin_layout Subsection
+电
+\end_layout
+
+\begin_layout Standard
+墙体埋管走线，插头设两处：西北角（电视），东南角（电锅）。
+\end_layout
+
+\begin_layout Subsection
+庭院
+\end_layout
+
+\begin_layout Standard
+西高东低，北高南低
+\end_layout
+
+\end_body
+\end_document
