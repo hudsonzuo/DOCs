@@ -14,8 +14,8 @@
 %\newfontfamily \zhfont="文鼎ＰＬ中楷"
 \usepackage{zhspacing}
 %\usepackage{zhfont}
-\usepackage{zhmath}
-%\zhspacing
+%\usepackage{zhmath}
+\zhspacing
 \usepackage{titlesec}
 \titleformat{\chapter}{\centering\huge}{第\thechapter{}章}{1em}{\textbf}
 %\renewcommand{\chaptername}{第{\thechapter}章}
@@ -1160,17 +1160,10 @@ end{theo}
 \end_layout
 
 \begin_layout Standard
-<<<<<<< HEAD
 \begin_inset Formula $A_{4}=\{(1),(12)(34),(13)(24),(14)(23),(123),(124),(134),(132),(142),(143),(234),(243)\}$
 \end_inset
 
 
-=======
-\begin_inset Formula $A_{4}=\{$
-\end_inset
-
-(1),(12)(34),(13)(24),(14)(23),(123),(124),(134),(132),(142),(143),(243)}
->>>>>>> 347f3838fb7693b77b061803a5df3c1d61b5ab23
 \end_layout
 
 \begin_layout Standard
@@ -1786,33 +1779,12 @@ j1i)=(1ij)
 \end_layout
 
 \begin_layout Standard
-<<<<<<< HEAD
 习题7，写出四个文字上的交代群
 \begin_inset Formula $A_{4}$
 \end_inset
 
 的群表。
 \begin_inset Formula $A_{4}=\{(1)\text{,}(12)(34),(13)(24),(14)(23),(123),(132),(124),(142),(134),(143),(234),(243)\}$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula $\begin{pmatrix} & (1) & (12)(34) & (13)(24) & (14)(23) & (123) & (132) & (124) & (142) & (134) & (143) & (234) & (243)\\
-(1) & (1)\\
-(12)(34) &  & (1)\\
-(13)(24) &  &  & (1)\\
-(14)(23) &  &  &  & (1)\\
-(123) &  &  &  &  & (132)\\
-(132) &  &  &  &  &  & (123)\\
-(124) &  &  &  &  &  &  & (142)\\
-(142) &  &  &  &  &  &  &  & (124)\\
-(134) &  &  &  &  &  &  &  &  & (143)\\
-(143) &  &  &  &  &  &  &  &  &  & (134)\\
-(234) &  &  &  &  &  &  &  &  &  &  & (243) & (1)\\
-(243) &  &  &  &  &  &  &  &  &  &  & (1) & (234)
-\end{pmatrix}$
 \end_inset
 
 
@@ -1844,9 +1816,6 @@ j1i)=(1ij)
 \end_inset
 
 可以用n-2个三项循环排列(123),(124),.....(12n)生成。
-=======
-
->>>>>>> 347f3838fb7693b77b061803a5df3c1d61b5ab23
 \end_layout
 
 \begin_layout Standard
@@ -1871,7 +1840,6 @@ status open
 阶是群中元的基本属性，任意群的元都有阶数
 \end_layout
 
-<<<<<<< HEAD
 \end_inset
 
 
@@ -2120,65 +2088,13 @@ end{theo}
 \end_inset
 
 ，用
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
-\lang english
-
 \begin_inset Formula $(H,K)$
 \end_inset
 
-
-\family default
-\series default
-\shape default
-\size default
-\emph default
-\bar default
-\strikeout default
-\uuline default
-\uwave default
-\noun default
-\color inherit
-\lang chinese-simplified
 表示和，是因为以后要用
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
-\lang english
-
 \begin_inset Formula $H+K$
 \end_inset
 
-
-\family default
-\series default
-\shape default
-\size default
-\emph default
-\bar default
-\strikeout default
-\uuline default
-\uwave default
-\noun default
-\color inherit
-\lang chinese-simplified
 表示直和。
 \end_layout
 
@@ -2621,10 +2537,9 @@ end{theo}
 \end_inset
 
 
-\begin_inset Newline newline
-\end_inset
+\end_layout
 
-
+\begin_layout Standard
 \begin_inset Formula $p^{n}$
 \end_inset
 
@@ -2805,9 +2720,9 @@ status open
 \end_inset
 
 
-\begin_inset Newline newline
-\end_inset
+\end_layout
 
+\begin_layout Standard
 证明：
 \end_layout
 
@@ -2846,9 +2761,9 @@ end{theo}
 \end_inset
 
 
-\begin_inset Newline newline
-\end_inset
+\end_layout
 
+\begin_layout Standard
 证明：假如
 \begin_inset Formula $G$
 \end_inset
@@ -3079,11 +2994,11 @@ status open
 \end_inset
 
 
-\begin_inset Formula $\left\langle (12),(14)(23)\right\rangle =\text{\{(1),(12),(14)(23),(1423),(1324),(12)(34), (34),(13)(24)\}}$
+\begin_inset Formula $\left\langle (12),(14)(23)\right\rangle =\{(1),(12),(14)(23),(1423),(1324),(12)(34),(34),(13)(24)\}$
 \end_inset
 
 的中心是
-\begin_inset Formula $\text{\{(1),(12)(34)\}}$
+\begin_inset Formula $\{(1),(12)(34)\}$
 \end_inset
 
 ；
@@ -3240,10 +3155,10 @@ status open
 \end_inset
 
 表示，即
-\begin_inset Formula $N\text{(H)=\{x|x\in G,xH=Hx\}}$
+\begin_inset Formula $N(H)=\{x|x\in G,xH=Hx\}$
 \end_inset
 
-
+。
 \begin_inset Newline newline
 \end_inset
 
@@ -3260,7 +3175,7 @@ status open
 \end_inset
 
 是
-\begin_inset Formula $N\text{(H)}$
+\begin_inset Formula $N(H)$
 \end_inset
 
 的正规子群，并且
@@ -3268,21 +3183,13 @@ status open
 \end_inset
 
 ；
-\begin_inset Newline newline
-\end_inset
-
-
 \begin_inset Formula $N(H)=G$
 \end_inset
 
 的充要条件是
-\bar under
-
 \begin_inset Formula $H\vartriangleleft G$
 \end_inset
 
-
-\bar default
 。
 \end_layout
 
@@ -3577,9 +3484,9 @@ end{theo}
 \end_inset
 
 
-\begin_inset Newline newline
-\end_inset
+\end_layout
 
+\begin_layout Standard
 证明：只要
 \begin_inset Formula $H$
 \end_inset
@@ -3783,9 +3690,22 @@ status open
 \end_inset
 
 。
-\begin_inset Newline newline
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{theo}
+\end_layout
+
 \end_inset
 
+
+\end_layout
+
+\begin_layout Standard
 证明：
 \begin_inset Formula $\text{设}a$
 \end_inset
@@ -4547,14 +4467,32 @@ end{theo}
 \end_inset
 
 
-\begin_inset Newline newline
-\end_inset
+\end_layout
 
+\begin_layout Standard
 当
 \begin_inset Formula $G$
 \end_inset
 
-是有穷群是，
+是有穷群是，命
+\begin_inset Formula $G=\{a_{1},a_{2},\ldots,a_{n}\}$
+\end_inset
+
+,
+\begin_inset Formula $\sigma_{a}$
+\end_inset
+
+就是排列
+\begin_inset Formula 
+\[
+\begin{pmatrix}a_{1} & a_{2} & \dots & a_{n}\\
+aa_{1} & aa_{2} & \dots & aa_{n}
+\end{pmatrix}
+\]
+
+\end_inset
+
+因此
 \begin_inset Formula $G$
 \end_inset
 
@@ -4575,15 +4513,11 @@ status open
 \begin_inset Formula $n$
 \end_inset
 
-，
+，等于
 \begin_inset Formula $G$
 \end_inset
 
-的元数也是
-\begin_inset Formula $n$
-\end_inset
-
-，
+的元数，
 \begin_inset Formula $S_{n}$
 \end_inset
 
@@ -4610,8 +4544,23 @@ status open
 的4元子群是{(1),(1234),(1243),(1324),(1342),(1423),(1432)
 \end_layout
 
-=======
->>>>>>> 347f3838fb7693b77b061803a5df3c1d61b5ab23
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+\begin_inset Formula $S_{4}=\{(1),(12),(13),(14),(23),(24),(34),(123),(132)$
+\end_inset
+
+
+\end_layout
+
 \end_inset
 
 
