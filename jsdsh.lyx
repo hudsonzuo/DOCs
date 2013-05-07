@@ -4352,6 +4352,30 @@ status open
 \end_layout
 
 \begin_layout Standard
+\begin_inset Formula $A_{4}=\{(1),(12)(34),(13)(24),(14)(23),(123),(124),(134),(132),(142),(143),(234),(243)\}$
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Standard
+求
+\begin_inset Formula $A_{4}$
+\end_inset
+
+的西洛子群,
+\begin_inset Formula $|A_{4}|=12=2^{2}\cdot3$
+\end_inset
+
+，
+\begin_inset Newline newline
+\end_inset
+
+它的3西洛子群有：
+\begin_inset Newline newline
+\end_inset
+
+
 \begin_inset Formula $((123))=\{(123),(132),(1)\},((124))=\{(124),(142),(1)\},((134)))=\{(134),(143),(1)\},(234)=\{(234),(243),(1)\}$
 \end_inset
 
@@ -4363,12 +4387,8 @@ status open
 \begin_inset Newline newline
 \end_inset
 
-
-\begin_inset Formula $\left\langle (123),(124)\right\rangle =\{(123),(132),(124),(142),(14)(23),(134),(143),working(1)\}$
-\end_inset
-
-
-\begin_inset Newline newline
+它的2西洛子群有：
+\begin_inset Formula $(1),(12)(34),(13)(24),(14)(23)$
 \end_inset
 
 
@@ -4376,7 +4396,8 @@ status open
 status open
 
 \begin_layout Plain Layout
-\begin_inset Formula $(123)(14)(23)=(134)$
+克莱因四元群
+\begin_inset Formula $B_{4}$
 \end_inset
 
 
@@ -4388,8 +4409,8 @@ status open
 \begin_inset Newline newline
 \end_inset
 
-
-\begin_inset Formula $((12)(34))=\{(12)(34),(1)\},((13)(24))=\{(13)(24),(1)\},((14)(23)=(14)(23),(1)\}$
+存在2元子群：
+\begin_inset Formula $\{(12)(34),(1)\},\{(13)(24),(1)\},(14)(23),(1)\}$
 \end_inset
 
 ，3个，
@@ -4400,11 +4421,65 @@ status open
 \begin_inset Newline newline
 \end_inset
 
-
-\begin_inset Formula $A_{4}$
+如果存在6元群，那么
+\begin_inset Formula ${(12)(34),(1)}\text{\cdot}{(123),(132),(1)}=\{(134),(234),(12)(34),(123),(132),(1)\}$
 \end_inset
 
-共12个元
+应该是群,但其中没有(134)和(234)的逆元，对于其它的2元群和3西洛子群的乘积也是这种情况。所以没有6元子群。
+\end_layout
+
+\begin_layout Standard
+求换位子群
+\begin_inset Formula $G^{'}$
+\end_inset
+
+，利用
+\begin_inset Formula $g=b^{-1}a^{-1}ba\in G^{'}$
+\end_inset
+
+,
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula $\begin{array}{cccccccccccc}
+ & (1) & (12)(34) & (13)(24) & (14)(23) & (123) & (124) & (134) & (132) & (142) & (143) & (234)\\
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+\\
+\end{array}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\begin{array}{ccccccccccccc}
+b^{-1}a^{-1}ba & (1) & (12)(34) & (13)(24) & (14)(23) & (123) & (124) & (134) & (132) & (142) & (143) & (234) & (243)\\
+(1) & (1) & (1) & (1) & (1) & (1) & (1) & (1) & (1) & (1) & (1) & (1) & (1)\\
+(12)(34) & (1) & (1)\\
+(13)(24) & (1) &  & (1)\\
+(14)(23) & (1) &  &  & (1)\\
+(123) & (1) &  &  &  & (1)\\
+(124) & (1) &  &  &  &  & (1)\\
+(134) & (1)\\
+(132) & (1)\\
+(142) & (1)\\
+(143) & (1)\\
+(234) & (1)\\
+(243) & (1)
+\end{array}$
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
