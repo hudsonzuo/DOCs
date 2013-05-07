@@ -4129,6 +4129,9 @@ status open
 \end_inset
 
 是群中元，试证：
+\end_layout
+
+\begin_layout Standard
 \begin_inset Formula $[ab,c]=[a,c][b,c]$
 \end_inset
 
@@ -4143,21 +4146,221 @@ status open
 \end_layout
 
 \begin_layout Standard
-\begin_inset Formula $b^{-1}a^{-1}c^{-1}abc=a^{-1}c^{-1}acb^{-1}c^{-1}bc\Rightarrow b^{-1}a^{-1}c^{-1}a=a^{-1}c^{-1}acb^{-1}c^{-1}\Rightarrow a^{-1}c^{-1}ac=ba^{-1}c^{-1}acb^{-1}$
+\begin_inset Formula $b^{-1}a^{-1}c^{-1}abc=a^{-1}c^{-1}acb^{-1}c^{-1}bc\Rightarrow b^{-1}a^{-1}c^{-1}a=a^{-1}c^{-1}acb^{-1}c^{-1}\Rightarrow a^{-1}c^{-1}ac=ba^{-1}c^{-1}acb^{-1}\Rightarrow[a,c]b=b[a,c]$
 \end_inset
 
 
 \end_layout
 
 \begin_layout Standard
-\begin_inset Formula $b^{-1}c^{-1}a^{-1}bca$
+\begin_inset Formula $[a,bc]=[a,c][a,b]$
 \end_inset
 
 
 \end_layout
 
 \begin_layout Standard
-\begin_inset Formula $cbc^{-1}a^{-1}ca[ab,c]=bc;$
+\begin_inset Formula $[a,bc]=a^{-1}c^{-1}b^{-1}abc,[a,c][a,b]=a^{-1}c^{-1}aca^{-1}b^{-1}ab$
+\end_inset
+
+,如果等式成立有：
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $b^{-1}abc=aca^{-1}b^{-1}ab\Rightarrow c^{-1}a^{-1}b^{-1}abc=a^{-1}b^{-1}ab\Rightarrow[a,b]c=c[a,b]$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+因为换位子群是正规子群,所以结果成立。
+\begin_inset Newline newline
+\end_inset
+
+8,具有关系
+\begin_inset Formula $i^{2}=j^{2}=k^{2}=-1,(-1)^{2}=1$
+\end_inset
+
+,
+\begin_inset Formula $ij=k=-ji,jk=i=-kj,ki=j=-ik$
+\end_inset
+
+的数
+\begin_inset Formula $i,j,k$
+\end_inset
+
+是
+\series bold
+\emph on
+基本四元数
+\series default
+\emph default
+($2.3),由
+\begin_inset Formula $\pm i,\pm j,\pm k,\pm1$
+\end_inset
+
+八个数组成的8元群，叫做四元数群。试证：四元数群的2元子群只有
+\begin_inset Formula $(-1)$
+\end_inset
+
+一个，4元子群有
+\begin_inset Formula $(i),(j),(k)$
+\end_inset
+
+三个，它们都是正规子群，于是四元数群是汉弥尔顿群。
+\end_layout
+
+\begin_layout Standard
+如果
+\begin_inset Formula $x^{2}=1$
+\end_inset
+
+必有
+\begin_inset Formula $x=\pm1$
+\end_inset
+
+，所以二元群只有
+\begin_inset Formula $(-1)$
+\end_inset
+
+。
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula $x^{4}=1$
+\end_inset
+
+的解是
+\begin_inset Formula $\pm1,\pm i,\pm j,\pm k$
+\end_inset
+
+，它的子群有
+\begin_inset Formula $(1),(-1),$
+\end_inset
+
+
+\begin_inset Formula $(i)$
+\end_inset
+
+,
+\begin_inset Formula $(j)$
+\end_inset
+
+,
+\begin_inset Formula $(k)$
+\end_inset
+
+,
+\begin_inset Formula $\left\langle i,j\right\rangle =\left\langle i,k\right\rangle =\left\langle j,k\right\rangle $
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula $j(i)j^{-1}\in(i),k(i)k^{-1}\in(i)$
+\end_inset
+
+,所以
+\begin_inset Formula $(i)$
+\end_inset
+
+是正规子群。
+\begin_inset Newline newline
+\end_inset
+
+9,试证四元数群可以写成：
+\begin_inset Formula $\left\langle a,b\right\rangle ,a^{4}=1,b^{2}=a^{2},ab=ba^{3}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+由
+\begin_inset Formula $b^{2}=a^{2}$
+\end_inset
+
+得
+\begin_inset Formula $a,b=i,j,k$
+\end_inset
+
+,同时满足
+\begin_inset Formula $a^{4}=1$
+\end_inset
+
+和
+\begin_inset Formula $ab=ba^{3}$
+\end_inset
+
+;另外
+\begin_inset Formula $\left\langle i,j\right\rangle =\left\langle i,k\right\rangle =\left\langle j,k\right\rangle =\text{四元数群}$
+\end_inset
+
+;所以结论成立。
+\begin_inset Newline newline
+\end_inset
+
+10,假如
+\begin_inset Formula $G$
+\end_inset
+
+是四元数群，试证：对于任意正整数
+\begin_inset Formula $m$
+\end_inset
+
+ 
+\begin_inset Formula $G^{m}$
+\end_inset
+
+是
+\begin_inset Formula $G$
+\end_inset
+
+的子群。
+\end_layout
+
+\begin_layout Standard
+当
+\begin_inset Formula $m$
+\end_inset
+
+是偶数时
+\begin_inset Formula $(i)^{m}=-1\in G$
+\end_inset
+
+，当m是奇数时
+\begin_inset Formula $i^{m}=-i\in G$
+\end_inset
+
+，同理，对于
+\begin_inset Formula $G$
+\end_inset
+
+中其它元也成立。所以结论成立。
+\begin_inset Newline newline
+\end_inset
+
+11,试求交代群
+\begin_inset Formula $A_{4}$
+\end_inset
+
+的子群,并指出其中的正规子群
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\text{((12))=\{(1),(12),(21)}$
+\end_inset
+
+,....
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula $\text{((123))=\{(123),(132),(1)\},((124))=\{(124),(142),(1)}$
 \end_inset
 
 
