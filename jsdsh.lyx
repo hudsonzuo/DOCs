@@ -4352,18 +4352,59 @@ status open
 \end_layout
 
 \begin_layout Standard
-\begin_inset Formula $\text{((12))=\{(1),(12),(21)}$
+\begin_inset Formula $((123))=\{(123),(132),(1)\},((124))=\{(124),(142),(1)\},((134)))=\{(134),(143),(1)\},(234)=\{(234),(243),(1)\}$
 \end_inset
 
-,....
+,4个，
+\begin_inset Formula $(124)(123)(142)=(134)\notin((123))$
+\end_inset
+
+,不是正规子群
 \begin_inset Newline newline
 \end_inset
 
 
-\begin_inset Formula $\text{((123))=\{(123),(132),(1)\},((124))=\{(124),(142),(1)}$
+\begin_inset Formula $\left\langle (123),(124)\right\rangle =\{(123),(132),(124),(142),(14)(23),(134),(143),working(1)\}$
 \end_inset
 
 
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+\begin_inset Formula $(123)(14)(23)=(134)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula $((12)(34))=\{(12)(34),(1)\},((13)(24))=\{(13)(24),(1)\},((14)(23)=(14)(23),(1)\}$
+\end_inset
+
+，3个，
+\begin_inset Formula $(123)(12)(34)(132)=(13)(24)$
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula $A_{4}$
+\end_inset
+
+共12个元
 \end_layout
 
 \begin_layout Section
