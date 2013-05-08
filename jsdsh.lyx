@@ -49,10 +49,10 @@ hanging
 \bibtex_command default
 \index_command default
 \paperfontsize default
-\spacing onehalf
+\spacing double
 \use_hyperref false
 \papersize a4paper
-\use_geometry false
+\use_geometry true
 \use_amsmath 1
 \use_esint 0
 \use_mhchem 0
@@ -1800,7 +1800,7 @@ j1i)=(1ij)
 
 \begin_layout Standard
 因为任意排列可以写成循环排列的乘积，任意循环排列可以写成对换的乘积，所以
-\begin_inset Formula $S_{n}\text{可以写成对换的乘积；对于任意对换}$
+\begin_inset Formula $S_{n}\text{中任意元可以写成对换的乘积；对于任意对换}$
 \end_inset
 
 有
@@ -4434,49 +4434,99 @@ status open
 \end_inset
 
 ，利用
-\begin_inset Formula $g=b^{-1}a^{-1}ba\in G^{'}$
+\begin_inset Formula $g=a^{-1}b^{-1}ab\in G^{'}$
 \end_inset
 
 ,
+\size scriptsize
+
 \begin_inset Newline newline
 \end_inset
 
 
-\begin_inset Formula $\begin{array}{cccccccccccc}
- & (1) & (12)(34) & (13)(24) & (14)(23) & (123) & (124) & (134) & (132) & (142) & (143) & (234)\\
-\\
-\\
-\\
-\\
-\\
-\\
-\\
-\\
-\\
-\\
-\\
+\begin_inset Formula $\begin{array}{c|cccccccccccc}
+a^{-1}b^{-1}ab & (1) & (12)(34) & (13)(24) & (14)(23) & (123) & (124) & (134) & (132) & (142) & (143) & (234) & (243)\\
+\hline (1) & (1) & (1) & (1) & (1) & (1) & (1) & (1) & (1) & (1) & (1) & (1) & (1)\\
+(12)(34) & (1) & (1) & (1) & (1) & (13)(24) & (14)(23) & (13)(24) & (14)(23) & (13)(24) & (14)(23) & (14)(23) & (13)(24)\\
+(13)(24) & (1) &  & (1) & (1) & (14)(23) & (12)(34) & (14)(23) & (12)(34) & (14)(23) & (12)(34) & (12)(34) & (14)(23)\\
+(14)(23) & (1) &  &  & (1) & (12)(34) & (13)(24) & (12)(34) & (13)(24) & (12)(34) & (13)(24) & (13)(24) & (12)(34)\\
+(123) & (1) &  &  &  & (1) & (12)(34) & (12)(34) & (1) & (14)(23) & (13)(24) & {\color{red}(14)(23)} & (13)(24)\\
+(124) & (1) &  &  &  &  & (1) & (14)(23) & (13)(24) & (1) & (12)(34) & (14)(23) & (13)(24)\\
+(134) & (1) &  &  &  &  &  & (1) & (13)(24) & (13)(24) & (1) & (12)(34) & (14)(23)\\
+(132) & (1) &  &  &  &  &  &  & (1) & (12)(34) & (14)(23) & (12)(34) & (14)(23)\\
+(142) & (1) &  &  &  &  &  &  &  & (1) & (14)(23) & (13)(24) & (12)(34)\\
+(143) & (1) &  &  &  &  &  &  &  &  & (1) & (13)(24) & (12)(34)\\
+(234) & (1) &  &  &  & {\color{red}(14)(23)} &  &  &  &  &  & (1) & (1)\\
+(243) & (1) &  &  &  &  &  &  &  &  &  &  & (1)
 \end{array}$
 \end_inset
 
 
+\begin_inset Note Comment
+status open
+
+\begin_layout Plain Layout
+省略下半部分，仅仅因为这里正好是对称的
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\size default
+
+\begin_inset Formula $G^{'}=\{(1),(12)(34),(13)(24),(14)(23)\}$
+\end_inset
+
+,显然
+\begin_inset Formula $G^{'}$
+\end_inset
+
+成群。
+\begin_inset Newline newline
+\end_inset
+
+12，试证：交代群
+\begin_inset Formula $A_{3}$
+\end_inset
+
+的换位子群是单位元群，
+\begin_inset Formula $A_{4}$
+\end_inset
+
+的换位子群是克莱因四元群
+\begin_inset Formula $B_{4}$
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+13，试证：对称群
+\begin_inset Formula $S_{n},n\geq3$
+\end_inset
+
+的中心是单位元群。
 \end_layout
 
 \begin_layout Standard
-\begin_inset Formula $\begin{array}{ccccccccccccc}
-b^{-1}a^{-1}ba & (1) & (12)(34) & (13)(24) & (14)(23) & (123) & (124) & (134) & (132) & (142) & (143) & (234) & (243)\\
-(1) & (1) & (1) & (1) & (1) & (1) & (1) & (1) & (1) & (1) & (1) & (1) & (1)\\
-(12)(34) & (1) & (1)\\
-(13)(24) & (1) &  & (1)\\
-(14)(23) & (1) &  &  & (1)\\
-(123) & (1) &  &  &  & (1)\\
-(124) & (1) &  &  &  &  & (1)\\
-(134) & (1)\\
-(132) & (1)\\
-(142) & (1)\\
-(143) & (1)\\
-(234) & (1)\\
-(243) & (1)
-\end{array}$
+设
+\begin_inset Formula $g\in S_{3}$
+\end_inset
+
+,
+\begin_inset Formula $g$
+\end_inset
+
+能与群中任意元
+\begin_inset Formula $a\in S_{3}a\ne g$
+\end_inset
+
+交换，即
+\begin_inset Formula $ag=ga,a^{-1}g^{-1}ag=e$
 \end_inset
 
 
