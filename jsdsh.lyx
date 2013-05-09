@@ -1819,6 +1819,42 @@ j1i)=(1ij)
 \end_layout
 
 \begin_layout Standard
+证明：同理与习题8,
+\begin_inset Formula $A_{n}$
+\end_inset
+
+也可以用
+\begin_inset Formula $n-1$
+\end_inset
+
+个对换
+\begin_inset Formula $(12),(13),...,(12n)$
+\end_inset
+
+生成，即
+\begin_inset Formula $A_{n}$
+\end_inset
+
+中的任意一个元
+\begin_inset Formula $\sigma$
+\end_inset
+
+，可以写成这些对换的乘积，并且对换乘积的个数是偶数，可以两两分组。因为
+\begin_inset Formula $(1i)(1j)=(1ij)$
+\end_inset
+
+,
+\begin_inset Formula $(1ij)=(12j)^{2}(12i)(12j)$
+\end_inset
+
+，所以，
+\begin_inset Formula $\sigma$
+\end_inset
+
+能写成用三项循环排列形成的乘积。
+\end_layout
+
+\begin_layout Standard
 \begin_inset Box Frameless
 position "t"
 hor_pos "c"
@@ -4513,20 +4549,101 @@ status open
 \end_layout
 
 \begin_layout Standard
+假定
+\begin_inset Formula $S_{n}$
+\end_inset
+
+的中心
+\begin_inset Formula $Z(S_{n})$
+\end_inset
+
+不等于单位元群，即存在
+\begin_inset Formula $\tau\in Z(S_{n})$
+\end_inset
+
+,当
+\begin_inset Formula $i\ne j$
+\end_inset
+
+时，
+\begin_inset Formula $\tau(i)=j$
+\end_inset
+
+，
+\begin_inset Formula $i,j$
+\end_inset
+
+是变换的对象;那么对于任意的
+\begin_inset Formula $\sigma\in S_{n}$
+\end_inset
+
+,有
+\begin_inset Formula $\sigma\tau=\tau\sigma$
+\end_inset
+
+即
+\begin_inset Formula $\sigma^{-1}\tau\sigma=\tau$
+\end_inset
+
+,也就是
+\begin_inset Formula $\sigma^{-1}\tau\sigma(i)=j$
+\end_inset
+
+。
+\begin_inset Newline newline
+\end_inset
+
 设
-\begin_inset Formula $g\in S_{3}$
+\begin_inset Formula $\text{\sigma=(j,k),k\ne i,j}$
 \end_inset
 
 ,
-\begin_inset Formula $g$
+\begin_inset Formula $\sigma^{-1}\tau\sigma(i)=k$
 \end_inset
 
-能与群中任意元
-\begin_inset Formula $a\in S_{3}a\ne g$
+，所以假设不成立，即
+\begin_inset Formula $Z(S_{n})$
 \end_inset
 
-交换，即
-\begin_inset Formula $ag=ga,a^{-1}g^{-1}ag=e$
+是单位元群。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+关于变换/排列的运算，设变换
+\begin_inset Formula $\sigma=(123)(231)$
+\end_inset
+
+,口算的方法是：1-2-3, 3-1-2,2-3-1,所以
+\begin_inset Formula $\sigma=(132)$
+\end_inset
+
+，其中的技巧是在得知1的像是3后，计算3的像。
+\begin_inset Newline newline
+\end_inset
+
+在上面的13题中，
+\begin_inset Formula $\sigma^{-1}\tau\sigma(i)$
+\end_inset
+
+，口算过程如下：
+\begin_inset Formula $\sigma(i)=i$
+\end_inset
+
+ ->
+\begin_inset Formula $\tau(\sigma(i))=j$
+\end_inset
+
+ -> 
+\begin_inset Formula $\sigma^{-1}(j)=k$
+\end_inset
+
+
+\end_layout
+
 \end_inset
 
 
@@ -4567,6 +4684,20 @@ status open
 
 ，
 \begin_inset Formula $\text{\sigma(a\cdot b)=\sigma(a)\cdot\sigma(b)}$
+\end_inset
+
+
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+注意：等号前面的点代表M的结合法，后面的点代表
+\begin_inset Formula $M^{'}$
+\end_inset
+
+的结合法，它们是不同的。
+\end_layout
+
 \end_inset
 
 ,也就是说，当
@@ -4851,17 +4982,7 @@ end{theo}
 \begin_inset Formula $\sigma_{a}$
 \end_inset
 
-就是排列
-\begin_inset Formula 
-\[
-\begin{pmatrix}a_{1} & a_{2} & \dots & a_{n}\\
-aa_{1} & aa_{2} & \dots & aa_{n}
-\end{pmatrix}
-\]
-
-\end_inset
-
-因此
+就是排列,因此
 \begin_inset Formula $G$
 \end_inset
 
@@ -4869,7 +4990,7 @@ aa_{1} & aa_{2} & \dots & aa_{n}
 \begin_inset Formula $S_{n}$
 \end_inset
 
-的子群同构,也就是说任意群与对称群的子群同构
+的子群同构,也就是说任意群与对称群的子群同构。
 \begin_inset Note Comment
 status open
 
@@ -4910,29 +5031,108 @@ status open
 \begin_inset Formula $S_{4}$
 \end_inset
 
-的4元子群是{(1),(1234),(1243),(1324),(1342),(1423),(1432)
+的4元子群是有
+\begin_inset Formula $B_{4}$
+\end_inset
+
+。
 \end_layout
 
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+假如
+\begin_inset Formula $G$
+\end_inset
+
+是群，
+\begin_inset Formula $u$
+\end_inset
+
+是其中任意元，对于
+\begin_inset Formula $G$
+\end_inset
+
+中任意元
+\begin_inset Formula $a,b$
+\end_inset
+
+，规定另一种结合法:
+\begin_inset Formula $a\cdot b=au^{-1}b$
+\end_inset
+
+,那么
+\begin_inset Formula $G$
+\end_inset
+
+中元关于这种结合法成群
+\begin_inset Formula $G^{'}$
+\end_inset
+
+，并且和
+\begin_inset Formula $G$
+\end_inset
+
+同构。
+\begin_inset Newline newline
+\end_inset
+
+对于新的结合法，
+\begin_inset Formula $G$
+\end_inset
+
+中的元满足成群的条件：闭合条件、结合法显然成立，单位元是
+\begin_inset Formula $u$
+\end_inset
+
+，
+\begin_inset Formula $a$
+\end_inset
+
+的逆元是
+\begin_inset Formula $a^{-1}u$
+\end_inset
+
+，所以
+\begin_inset Formula $G^{'}$
+\end_inset
+
+是群。
+\begin_inset Formula $G$
+\end_inset
+
+到
+\begin_inset Formula $G^{'}$
+\end_inset
+
+的映射是
+\begin_inset Formula $\sigma:a\rightarrow au$
+\end_inset
+
+,是双射。
 \begin_inset Newline newline
 \end_inset
 
 
-\begin_inset Note Note
-status open
+\begin_inset Formula $\sigma(ab)=abu$
+\end_inset
 
-\begin_layout Plain Layout
-\begin_inset Formula $S_{4}=\{(1),(12),(13),(14),(23),(24),(34),(123),(132)$
+，
+\begin_inset Formula $\sigma(a)\cdot\sigma(b)=auu^{-1}bu=abu$
+\end_inset
+
+,所以
+\begin_inset Formula $\sigma(ab)=\sigma(a)\cdot\sigma(b)$
 \end_inset
 
 
 \end_layout
 
-\end_inset
-
-
+\begin_layout Standard
+同构的群只用群的性质是无法区分的，所以可以看成相同的群。
 \end_layout
 
 \end_body
