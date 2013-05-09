@@ -5135,5 +5135,53 @@ status open
 同构的群只用群的性质是无法区分的，所以可以看成相同的群。
 \end_layout
 
+\begin_layout Standard
+研究一个群，通常把它分成若干不同构的类来讨论，比如4元群可以分成循环群和克莱因四元群两类，6元群可以分为循环群和对称群
+\begin_inset Formula $S_{3}$
+\end_inset
+
+两类，15元群只有循环群。
+\end_layout
+
+\begin_layout Standard
+理解同构的群不是相同的群---加群
+\begin_inset Formula $Z$
+\end_inset
+
+和所有偶数形成的群同构，但后者是前者的子群。假如
+\begin_inset Formula $H_{1},H_{2}$
+\end_inset
+
+是群
+\begin_inset Formula $G$
+\end_inset
+
+的这正规子群，如果
+\begin_inset Formula $H_{1}\simeq H_{2}$
+\end_inset
+
+,
+\begin_inset Formula $G/H_{1}$
+\end_inset
+
+和
+\begin_inset Formula $G/H_{2}$
+\end_inset
+
+不一定同构，譬如
+\begin_inset Formula $G=\left\langle a,b,c\right\rangle $
+\end_inset
+
+，其中
+\begin_inset Formula $a^{3}=b^{2}=c^{3}=[a,c]=[b,c]=1,a^{b}=a^{-1}$
+\end_inset
+
+，即
+\begin_inset Formula $b^{-1}ab=a^{-1}$
+\end_inset
+
+
+\end_layout
+
 \end_body
 \end_document
