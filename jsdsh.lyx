@@ -5180,6 +5180,44 @@ status open
 \begin_inset Formula $b^{-1}ab=a^{-1}$
 \end_inset
 
+;显然
+\begin_inset Formula $(a)\simeq(c)$
+\end_inset
+
+,但是
+\begin_inset Formula $G/(a)\simeq C_{6}$
+\end_inset
+
+,
+\begin_inset Formula $G/(c)\simeq S_{3}$
+\end_inset
+
+。
+\begin_inset Note Comment
+status open
+
+\begin_layout Plain Layout
+证明：
+\begin_inset Formula $a,c$
+\end_inset
+
+阶数相等
+\begin_inset Formula $(a)\text{和\ensuremath{(c)}}$
+\end_inset
+
+的元数相等，元数相等的有穷群循环群同构;
+\begin_inset Formula $\left\langle a,b,c\right\rangle =\{1,a,a^{2},b,c,c^{2},ab,ba^{2},ac,c^{2}a^{2},ac^{2},ca^{2},bc,c^{2}b,bc^{2},cb,c^{2}a,a^{2}c\}$
+\end_inset
+
+，
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
 
 \end_layout
 
