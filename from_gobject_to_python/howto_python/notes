@@ -1,2 +1,0 @@
-myfile = file("testit.txt", 'w')
-print >> myfile, dir(webkit)
