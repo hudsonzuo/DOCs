@@ -5206,19 +5206,111 @@ status open
 \end_inset
 
 的元数相等，元数相等的有穷群循环群同构;
-\begin_inset Formula $\left\langle a,b,c\right\rangle =\{1,a,a^{2},b,c,c^{2},ab,ba^{2},ac,c^{2}a^{2},ac^{2},ca^{2},bc,c^{2}b,bc^{2},cb,c^{2}a,a^{2}c\}$
+\begin_inset Formula $\left\langle a,b,c\right\rangle =\{1,a,a^{2},b,c,c^{2},ab,ac,ac^{2},a^{2}b,a^{2}c,a^{2}c^{2},bc,bc^{2},ba,cab,cba,c^{2}ab,c^{2}ba\}$
 \end_inset
 
 ，
-\begin_inset Newline newline
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+计算出配集以后就会发现里面元
+\begin_inset Formula $a^{2}b$
 \end_inset
 
+是多余的，实际上由
+\begin_inset Formula $b^{-1}ab=a^{-1}$
+\end_inset
 
+可得
+\begin_inset Formula $ab=ba^{2}$
+\end_inset
+
+,又因为
+\begin_inset Formula $b=b^{-1}$
+\end_inset
+
+可得
+\begin_inset Formula $a^{2}b=ba$
+\end_inset
+
+；求
+\begin_inset Formula $\left\langle a,b,c\right\rangle $
+\end_inset
+
+的时候这些计算既有可能不会被意识到。看来避免这种错误的最好方法是计算配集了。
 \end_layout
 
 \end_inset
 
 
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula $\text{(a)}$
+\end_inset
+
+的所有配集是：
+\begin_inset Formula $\{1,a,a^{2}\},\{b,ba,ab\},\{c,ca,ca^{2}\},\{c^{2},c^{2}a,c^{2}a^{2}\},\{bc,bca,cab\},\{bc^{2},c^{2}ab,c^{2}ba\}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Formula $\overline{bc^{2}}$
+\end_inset
+
+的乘方运算分别得到：
+\begin_inset Formula $\overline{bc^{2}}\rightarrow\overline{c}\rightarrow\overline{b}\rightarrow\overline{c^{2}}\rightarrow\overline{bc}\rightarrow\overline{1}$
+\end_inset
+
+,可见
+\begin_inset Formula $G/(a)$
+\end_inset
+
+和循环群
+\begin_inset Formula $C_{6}$
+\end_inset
+
+同构,
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Formula $(c)$
+\end_inset
+
+的所有配集是：
+\begin_inset Formula $\{1,c,c^{2}\},\{b,bc,bc^{2}\},\{a,ac,ac^{2}\},\{a^{2},a^{2}c,a^{2}c^{2}\},\{ab,abc,abc^{2}\},\{ba,bac,bac^{2}\}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+计算可知
+\begin_inset Formula $\overline{ba},\overline{ab},\overline{b}$
+\end_inset
+
+的阶数等于2，
+\begin_inset Formula $\overline{a},\overline{a^{2}}$
+\end_inset
+
+的阶数等于3,除去单位元，有两个3阶元，3个2阶元，和
+\begin_inset Formula $S_{3}$
+\end_inset
+
+同构。
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+自同构
 \end_layout
 
 \end_body
