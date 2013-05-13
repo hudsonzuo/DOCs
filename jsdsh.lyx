@@ -5313,5 +5313,184 @@ status open
 自同构
 \end_layout
 
+\begin_layout Standard
+\begin_inset Formula $M$
+\end_inset
+
+的自同构就是
+\begin_inset Formula $M$
+\end_inset
+
+到自己的双射。恒等映射是自同构;如果
+\begin_inset Formula $G$
+\end_inset
+
+是交换群，那么把
+\begin_inset Formula $a$
+\end_inset
+
+变成它的逆元
+\begin_inset Formula $a^{-1}$
+\end_inset
+
+的映射是它的自同构
+\begin_inset Note Comment
+status open
+
+\begin_layout Plain Layout
+\begin_inset Formula $\sigma(ab)=(ab)^{-1}=\sigma(a)\sigma(b)=a^{-1}b^{-1}$
+\end_inset
+
+,所以交换是必要条件。
+\end_layout
+
+\end_inset
+
+。
+\end_layout
+
+\begin_layout Standard
+自同构是变换。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{theo}
+\end_layout
+
+\end_inset
+
+乘集
+\begin_inset Formula $M$
+\end_inset
+
+的所有自同构形成为群，叫做
+\begin_inset Formula $M$
+\end_inset
+
+的自同构群。
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{theo}
+\end_layout
+
+\end_inset
+
+证明：1,由交换的性质可知自同构满足结合律;2,闭合：
+\begin_inset Formula $\sigma_{1}(ab)=\sigma_{1}(a)\sigma_{1}(b)$
+\end_inset
+
+,
+\begin_inset Formula $\sigma_{2}(ab)=\sigma_{2}(a)\sigma_{2}(b)$
+\end_inset
+
+,
+\begin_inset Formula $\sigma_{1}\sigma_{2}(ab)=\sigma_{1}(\sigma_{2}(a)\sigma_{2}(b))=\sigma_{1}\sigma_{2}(a)\sigma_{1}\sigma_{2}(b)$
+\end_inset
+
+; 3,单位元是恒等映射，
+\begin_inset Formula $\sigma I(a)=\sigma(a)$
+\end_inset
+
+， 4，因为是双射，所以变换
+\begin_inset Formula $\sigma$
+\end_inset
+
+的逆变换
+\begin_inset Formula $\sigma^{-1}$
+\end_inset
+
+存在;根据变换的性质，有：
+\begin_inset Formula $\sigma^{-1}(ab)=\sigma^{-1}(\sigma\sigma^{-1}(ab))=\sigma^{-1}(\sigma\sigma^{-1}(a)\sigma\sigma^{-1}(b))=\sigma^{-1}\sigma\sigma^{-1}(a)\sigma^{-1}\sigma\sigma^{-1}(b)=\sigma^{-1}(a)\sigma^{-1}(b)$
+\end_inset
+
+，所以
+\begin_inset Formula $\sigma^{-1}$
+\end_inset
+
+是同构。
+\end_layout
+
+\begin_layout Standard
+群的自同构是把生成元仍然变成生成元。
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+我的理解：这本书对循环群的生成元定义很明确，但是对其它群没有说清楚，特别是把
+\begin_inset Formula $M$
+\end_inset
+
+中元作为
+\begin_inset Formula $\left\langle M\right\rangle $
+\end_inset
+
+的生成元，我感觉是错误的，真实的情况是
+\begin_inset Formula $M$
+\end_inset
+
+ 包含生成元。
+\begin_inset Newline newline
+\end_inset
+
+任意群的子群首先是西洛子群，西洛子群由循环群组成。生成元的特殊性在于它的阶数是最大的。
+\begin_inset Newline newline
+\end_inset
+
+对于同构
+\begin_inset Formula $M\simeq M^{'}$
+\end_inset
+
+，单位元
+\begin_inset Formula $e$
+\end_inset
+
+的像还是单位元
+\begin_inset Formula $e^{'}$
+\end_inset
+
+。证明：
+\begin_inset Formula $\sigma(ae)=\sigma(a)\sigma(e)=\sigma(a)$
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+设
+\begin_inset Formula $g^{t}=e$
+\end_inset
+
+,则由
+\begin_inset Formula $\sigma(ab)=\sigma(a)\sigma(b)$
+\end_inset
+
+,得
+\begin_inset Formula $(\sigma(g))^{t}=\sigma(g^{t})=\sigma(e)$
+\end_inset
+
+，可见群中的元和它的同构映射后的像在各自的群中有相同的阶数。
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\end_layout
+
 \end_body
 \end_document
