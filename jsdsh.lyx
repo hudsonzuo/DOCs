@@ -5489,6 +5489,127 @@ status open
 \end_layout
 
 \begin_layout Standard
+自同构群
+\end_layout
+
+\begin_layout Standard
+无穷循环群的自同构群只有两个：一个把
+\begin_inset Formula $\text{a}$
+\end_inset
+
+变成
+\begin_inset Formula $a$
+\end_inset
+
+，即恒等同构;另一个是把
+\begin_inset Formula $a$
+\end_inset
+
+变成
+\begin_inset Formula $a^{-1}$
+\end_inset
+
+.
+\begin_inset Newline newline
+\end_inset
+
+加入
+\begin_inset Formula $(a)$
+\end_inset
+
+是
+\begin_inset Formula $n$
+\end_inset
+
+元循环群,因为它有
+\begin_inset Formula $\varphi(n)$
+\end_inset
+
+个生成元,所以它有
+\begin_inset Formula $\varphi(n)$
+\end_inset
+
+个自同构
+\begin_inset Formula $\sigma_{r}(a)=a^{r},(r,n)=1$
+\end_inset
+
+ .varp
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+这里研究41的余数群。余数群的元包括
+\begin_inset Formula $1,2,\ldots,n-1$
+\end_inset
+
+,
+\begin_inset Formula $n$
+\end_inset
+
+是个位不等于5的奇数;比同余加群的元数少一个。结合法是相乘并对
+\begin_inset Formula $n$
+\end_inset
+
+求余。
+\end_layout
+
+\begin_layout Plain Layout
+对于任意
+\begin_inset Formula $m$
+\end_inset
+
+,
+\begin_inset Formula $0<m<n$
+\end_inset
+
+,如果存在非负整数
+\begin_inset Formula $t$
+\end_inset
+
+，使得
+\begin_inset Formula $m\equiv10^{t}(n)$
+\end_inset
+
+成立，则称
+\begin_inset Formula $m$
+\end_inset
+
+是
+\begin_inset Formula $n$
+\end_inset
+
+的主余数，易证所有的主余数成为一个子群，称为主子群，它是余数群的正规子群，用
+\begin_inset Formula $\overline{1}$
+\end_inset
+
+表示。主子群的元数用
+\begin_inset Formula $\text{\overline{\text{九}}}$
+\end_inset
+
+表示。
+\end_layout
+
+\begin_layout Plain Layout
+余数群对
+\begin_inset Formula $\overline{1}$
+\end_inset
+
+的商群叫做余数商群（原来我叫它余环群）
+\end_layout
+
+\begin_layout Plain Layout
+41的余数商群有：
+\begin_inset Formula $\overline{1};\overline{4};\overline{2},\overline{5};\overline{6},\overline{12},\overline{3},\overline{15}$
+\end_inset
+
+,后四个元是生成元。
+\end_layout
+
+\end_inset
+
 
 \end_layout
 
