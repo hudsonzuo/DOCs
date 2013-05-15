@@ -5489,10 +5489,6 @@ status open
 \end_layout
 
 \begin_layout Standard
-自同构群
-\end_layout
-
-\begin_layout Standard
 无穷循环群的自同构群只有两个：一个把
 \begin_inset Formula $\text{a}$
 \end_inset
@@ -5513,7 +5509,7 @@ status open
 \begin_inset Newline newline
 \end_inset
 
-加入
+假如
 \begin_inset Formula $(a)$
 \end_inset
 
@@ -5521,19 +5517,132 @@ status open
 \begin_inset Formula $n$
 \end_inset
 
-元循环群,因为它有
+元循环群,定义映射关系：
+\begin_inset Formula $\sigma_{r}:a\rightarrow a^{r},(r,n)=1$
+\end_inset
+
+,因为
+\begin_inset Formula $\sigma_{r}(ab)=a^{r}b^{r},\sigma_{r}(a)\sigma_{r}(b)=a^{r}b^{r}$
+\end_inset
+
+,所以
+\begin_inset Formula $\sigma_{r}$
+\end_inset
+
+是同构。由
+\begin_inset Formula $(r,n)=1$
+\end_inset
+
+得这种自同构形成的群有
 \begin_inset Formula $\varphi(n)$
 \end_inset
 
-个生成元,所以它有
-\begin_inset Formula $\varphi(n)$
+个元。
+\begin_inset Newline newline
 \end_inset
 
-个自同构
-\begin_inset Formula $\sigma_{r}(a)=a^{r},(r,n)=1$
+用
+\begin_inset Formula $G_{1}$
 \end_inset
 
- .varp
+表示
+\begin_inset Formula $(a)$
+\end_inset
+
+的自同构群，
+\begin_inset Formula $G_{2}$
+\end_inset
+
+表示
+\begin_inset Formula $Z-(n)$
+\end_inset
+
+中所有
+\begin_inset Formula $r,(r,n)=1$
+\end_inset
+
+对于乘法形成的群，定义映射：
+\begin_inset Formula $\tau:\sigma_{r}\rightarrow r,\sigma_{r}\in G_{1},r\in G_{2}$
+\end_inset
+
+，因为
+\begin_inset Formula $\tau(\sigma_{r_{1}}\sigma_{r_{2}})=\tau(\sigma_{r_{1}r_{2}})=r_{1}r_{2},\tau(\sigma_{r_{1}})\tau(\sigma_{r_{2}})=r_{1}r_{2}$
+\end_inset
+
+，所以
+\begin_inset Formula $G_{1}\simeq G_{2}$
+\end_inset
+
+。
+\begin_inset Newline newline
+\end_inset
+
+循环群的自同构群只是交换群，但不一定是循环群。
+\begin_inset Note Comment
+status open
+
+\begin_layout Plain Layout
+\begin_inset Formula $G_{2}$
+\end_inset
+
+是交换群，同构的两个群要么都是交换群，要么都不是，因为同构是等价关系、以及交换是群的一个性质。
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+简化剩余系与欧拉函数
+\begin_inset Newline newline
+\end_inset
+
+如果
+\begin_inset Formula $m$
+\end_inset
+
+的剩余类里面的数与
+\begin_inset Formula $m$
+\end_inset
+
+互素,就把这个类叫做与
+\begin_inset Formula $m$
+\end_inset
+
+互素的剩余类,又叫简化剩余类.从每个简化剩余类中分别取一个数,组成的集合叫做模
+\begin_inset Formula $m$
+\end_inset
+
+的简化剩余系.
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Formula 
+\[
+\varphi(n)=n\prod_{p|n}(1-\frac{1}{p})
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\sum_{d|n}\varphi(d)=n
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -5606,6 +5715,130 @@ status open
 \end_inset
 
 ,后四个元是生成元。
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+当
+\begin_inset Formula $n$
+\end_inset
+
+不等于6时，
+\begin_inset Formula $S_{n}$
+\end_inset
+
+的自同构群与
+\begin_inset Formula $S_{n}$
+\end_inset
+
+自身同构。证明：任意群和它的变换群的子群同构
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Comment
+status open
+
+\begin_layout Plain Layout
+\begin_inset Formula $S_{3}$
+\end_inset
+
+={(1),(12),(13),(23),(123),(132)},
+\end_layout
+
+\begin_layout Plain Layout
+设任意自同构映射
+\begin_inset Formula $\sigma:g\rightarrow g^{'}$
+\end_inset
+
+,因为
+\begin_inset Formula $g^{'}\in S_{n}$
+\end_inset
+
+,存在
+\begin_inset Formula $x\in S_{n}$
+\end_inset
+
+,使得
+\begin_inset Formula $xgx^{-1}=g^{'}$
+\end_inset
+
+成立，所以任意自同构映射可以写成：
+\begin_inset Formula $x\in S_{n}$
+\end_inset
+
+,
+\begin_inset Formula $\sigma_{x}:g\rightarrow xg$
+\end_inset
+
+。
+\end_layout
+
+\begin_layout Plain Layout
+对于
+\begin_inset Formula $x\in S_{n},g_{1}\ne g_{2}$
+\end_inset
+
+,必有
+\begin_inset Formula $xg_{1}\ne xg_{2}$
+\end_inset
+
+,所以当
+\begin_inset Formula $g$
+\end_inset
+
+遍历
+\begin_inset Formula $S_{n}$
+\end_inset
+
+中的元时，
+\begin_inset Formula $xg$
+\end_inset
+
+也遍历
+\begin_inset Formula $S_{n}$
+\end_inset
+
+中元。因此映射
+\begin_inset Formula $\sigma:g\rightarrow xg$
+\end_inset
+
+是双射,并且有
+\begin_inset Formula $\sigma(g_{1}g_{2})=xg_{1}g_{2}=$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+因此，
+\begin_inset Formula $\sigma_{x},x\in S_{n}$
+\end_inset
+
+是
+\begin_inset Formula $S_{n}$
+\end_inset
+
+的自同构群中的元；元的数量等于
+\begin_inset Formula $S_{n}$
+\end_inset
+
+的元数。
+\end_layout
+
+\begin_layout Plain Layout
+定义
+\begin_inset Formula $S_{n}$
+\end_inset
+
+到它的自同构群的映射：
+\begin_inset Formula $\tau:x\rightarrow\sigma_{x}$
+\end_inset
+
+;
 \end_layout
 
 \end_inset
