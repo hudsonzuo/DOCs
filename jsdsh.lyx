@@ -5984,6 +5984,31 @@ end{theo}
 status open
 
 \begin_layout Plain Layout
+\begin_inset Formula $G^{m}$
+\end_inset
+
+是
+\begin_inset Formula $G$
+\end_inset
+
+的子群,
+\begin_inset Formula $\sigma(a^{m})=(\sigma(a))^{m}\in G^{m}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+。
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
 设任意
 \begin_inset Formula $a\in G$
 \end_inset
@@ -6005,23 +6030,55 @@ status open
 \end_inset
 
 的阶数相等。
-\begin_inset Formula $G^{m}$
-\end_inset
+\end_layout
 
-是
-\begin_inset Formula $G$
-\end_inset
-
-的子群,
-\begin_inset Formula $\sigma(a^{m})=(\sigma(a))^{m}\in G^{m}$
 \end_inset
 
 
 \end_layout
 
+\begin_layout Subsection
+共轭
+\end_layout
+
+\begin_layout Standard
+假如
+\begin_inset Formula $a$
 \end_inset
 
-。
+与它的所有共轭元相等，那么
+\begin_inset Formula $a$
+\end_inset
+
+在群的中心。相互共轭的元的阶数相等.
+\end_layout
+
+\begin_layout Standard
+群中与一个元共轭的所有元成为一个类，称之为共轭类。
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula $S_{3}$
+\end_inset
+
+的共轭类,
+\begin_inset Formula $a=(13)=a^{-1}$
+\end_inset
+
+,
+\begin_inset Formula $(13)(123)(13)=(132),(13)(132)(13)=(123),(13)(12)(13)=(32),(13)(23)(13)=(12)$
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula $a=(23),(23)(123)(23)=(213)=(132),(23)(132)(23)=(231)=(123),(23)(12)(23)=(31),(23)(13)(23)=(21)$
+\end_inset
+
+
 \end_layout
 
 \end_body
