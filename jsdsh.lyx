@@ -5374,7 +5374,11 @@ begin{theo}
 \begin_inset Formula $M$
 \end_inset
 
-的自同构群。
+的自同构群，用
+\begin_inset Formula $Aut\; G$
+\end_inset
+
+表示。
 \begin_inset ERT
 status open
 
@@ -5425,7 +5429,7 @@ end{theo}
 \begin_layout Standard
 群的自同构是把生成元仍然变成生成元。
 \begin_inset Note Note
-status open
+status collapsed
 
 \begin_layout Plain Layout
 我的理解：这本书对循环群的生成元定义很明确，但是对其它群没有说清楚，特别是把
@@ -5735,7 +5739,7 @@ status open
 \begin_inset Formula $S_{n}$
 \end_inset
 
-自身同构。证明：任意群和它的变换群的子群同构
+自身同构。
 \end_layout
 
 \begin_layout Standard
@@ -5743,10 +5747,31 @@ status open
 status open
 
 \begin_layout Plain Layout
-\begin_inset Formula $S_{3}$
+对于
+\begin_inset Formula $x\in S_{n},g_{1}\ne g_{2}$
 \end_inset
 
-={(1),(12),(13),(23),(123),(132)},
+,必有
+\begin_inset Formula $xg_{1}x^{-1}\ne xg_{2}x^{-1}$
+\end_inset
+
+,因此映射
+\begin_inset Formula $\sigma:g\rightarrow xgx^{-1}$
+\end_inset
+
+是单射加滿射即双射,并且有
+\begin_inset Formula $\sigma(g_{1}g_{2})=xg_{1}g_{2}x^{-1}=xg_{1}x^{-1}xg_{2}x^{-1}=\sigma(g_{1})\sigma(g_{2})$
+\end_inset
+
+,因此
+\begin_inset Formula $\sigma$
+\end_inset
+
+是
+\begin_inset Formula $S_{n}$
+\end_inset
+
+的自同构。
 \end_layout
 
 \begin_layout Plain Layout
@@ -5758,7 +5783,7 @@ status open
 \begin_inset Formula $g^{'}\in S_{n}$
 \end_inset
 
-,存在
+,如果存在
 \begin_inset Formula $x\in S_{n}$
 \end_inset
 
@@ -5766,84 +5791,237 @@ status open
 \begin_inset Formula $xgx^{-1}=g^{'}$
 \end_inset
 
-成立，所以任意自同构映射可以写成：
+成立，那么任意自同构映射可以写成：
 \begin_inset Formula $x\in S_{n}$
 \end_inset
 
 ,
-\begin_inset Formula $\sigma_{x}:g\rightarrow xg$
+\begin_inset Formula $\sigma_{x}:g\rightarrow xgx^{-1}$
 \end_inset
 
-。
+;我证明不出来！
 \end_layout
 
 \begin_layout Plain Layout
-对于
-\begin_inset Formula $x\in S_{n},g_{1}\ne g_{2}$
-\end_inset
+在http://www.doc88.com/p-989344181218.html有证明，用到共轭类。
+\end_layout
 
-,必有
-\begin_inset Formula $xg_{1}\ne xg_{2}$
-\end_inset
-
-,所以当
-\begin_inset Formula $g$
-\end_inset
-
-遍历
-\begin_inset Formula $S_{n}$
-\end_inset
-
-中的元时，
-\begin_inset Formula $xg$
-\end_inset
-
-也遍历
-\begin_inset Formula $S_{n}$
-\end_inset
-
-中元。因此映射
-\begin_inset Formula $\sigma:g\rightarrow xg$
-\end_inset
-
-是双射,并且有
-\begin_inset Formula $\sigma(g_{1}g_{2})=xg_{1}g_{2}=$
 \end_inset
 
 
 \end_layout
 
-\begin_layout Plain Layout
-因此，
-\begin_inset Formula $\sigma_{x},x\in S_{n}$
+\begin_layout Subsection
+内自同构
+\end_layout
+
+\begin_layout Standard
+假定
+\begin_inset Formula $a$
+\end_inset
+
+是群
+\begin_inset Formula $G$
+\end_inset
+
+中一元，那么映射
+\begin_inset Formula $\sigma_{a}:g\rightarrow g^{'}=aga^{-1},g\in G$
 \end_inset
 
 是
-\begin_inset Formula $S_{n}$
+\begin_inset Formula $G$
 \end_inset
 
-的自同构群中的元；元的数量等于
-\begin_inset Formula $S_{n}$
+的自同构。证明：
+\begin_inset Formula $g$
 \end_inset
 
-的元数。
+的像源是
+\begin_inset Formula $a^{-1}ga$
+\end_inset
+
+;另一方面如果
+\begin_inset Formula $aga^{-1}=aha^{-1}$
+\end_inset
+
+,则
+\begin_inset Formula $g=h$
+\end_inset
+
+;所以
+\begin_inset Formula $\sigma_{a}$
+\end_inset
+
+是
+\begin_inset Formula $G$
+\end_inset
+
+射到自己的单射，即双射。
+\begin_inset Formula $\sigma_{a}(g_{1}g_{2})=ag_{1}g_{2}a^{-1}=ag_{1}a^{-1}ag_{2}a^{-1}=\sigma_{a}(g_{1})\sigma_{a}(g_{2})$
+\end_inset
+
+。所以
+\begin_inset Formula $\sigma_{a}$
+\end_inset
+
+是自同构，称之为内自同构。
 \end_layout
 
-\begin_layout Plain Layout
-定义
-\begin_inset Formula $S_{n}$
+\begin_layout Standard
+\begin_inset Formula $aga^{-1}$
 \end_inset
 
-到它的自同构群的映射：
-\begin_inset Formula $\tau:x\rightarrow\sigma_{x}$
+叫做
+\begin_inset Formula $g$
+\end_inset
+
+的共轭。
+\end_layout
+
+\begin_layout Standard
+内自同构成群。证明：
+\begin_inset Formula $\sigma_{a}\sigma_{a}^{-1}(g)=g\Rightarrow\sigma_{a}^{-1}(g)=a^{-1}ga$
+\end_inset
+
+,因此内在同构的逆元是内自同构;
+\begin_inset Formula $\sigma_{a}\sigma_{b}(g)=abgb^{-1}a^{-1}=(ab)g(ab)^{-1}$
+\end_inset
+
+,因此内自同构的乘积也是内自同构。所以成群。用
+\begin_inset Formula $Inn\; G$
+\end_inset
+
+表示。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{theo}
+\end_layout
+
+\end_inset
+
+一个群的内自同构群是它的自同构群的正规子群
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{theo}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+证明：对于任意
+\begin_inset Formula $\sigma\in AutG,\tau\in InnG$
+\end_inset
+
+ ,
+\begin_inset Formula $g\in G$
+\end_inset
+
+ 
+\begin_inset Formula $\sigma\tau\sigma^{-1}(g)=\sigma(a(\sigma^{-1}(g))a^{-1})=\sigma(a)g\sigma(a^{-1})=\sigma(a)g(\sigma(a))^{-1}\in InnG$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+一个群没有中心，没有外同构群，叫做完全群。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\sigma$
+\end_inset
+
+是
+\begin_inset Formula $G$
+\end_inset
+
+的自同构，
+\begin_inset Formula $H$
+\end_inset
+
+是
+\begin_inset Formula $G$
+\end_inset
+
+的子群，如果
+\begin_inset Formula $\sigma(H)\subseteq H$
+\end_inset
+
+，我们就说
+\begin_inset Formula $H$
+\end_inset
+
+对
+\begin_inset Formula $\sigma$
+\end_inset
+
+不变。
+\begin_inset Newline newline
+\end_inset
+
+于是对所有内自同构不变的子群是正规子群，所以正规子群又叫不变子群。
+\begin_inset Newline newline
+\end_inset
+
+对所有自同构不变的子群叫特征子群。循环群的子群都是特征子群
+\begin_inset Note Comment
+status open
+
+\begin_layout Plain Layout
+设任意
+\begin_inset Formula $a\in G$
+\end_inset
+
+,
+\begin_inset Formula $a^{t}=e\Rightarrow(\sigma(a))^{t}=\sigma(a^{t})=e$
 \end_inset
 
 ;
+\begin_inset Formula $(\sigma(a))^{t}=e\Rightarrow a^{t}=e$
+\end_inset
+
+，所以
+\begin_inset Formula $a$
+\end_inset
+
+与
+\begin_inset Formula $\sigma(a)$
+\end_inset
+
+的阶数相等。
+\begin_inset Formula $G^{m}$
+\end_inset
+
+是
+\begin_inset Formula $G$
+\end_inset
+
+的子群,
+\begin_inset Formula $\sigma(a^{m})=(\sigma(a))^{m}\in G^{m}$
+\end_inset
+
+
 \end_layout
 
 \end_inset
 
-
+。
 \end_layout
 
 \end_body
