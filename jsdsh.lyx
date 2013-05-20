@@ -6394,6 +6394,16 @@ end{theo}
 \begin_inset Formula $|G:K|$
 \end_inset
 
+
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+正规化子的指标
+\end_layout
+
+\end_inset
+
 。
 \end_layout
 
@@ -6458,6 +6468,27 @@ end{theo}
 \end_inset
 
 。
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula $Z(H)=\{x|x\in G,xh=hx,h\in H\}$
+\end_inset
+
+
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+\begin_inset Formula $xhx^{-1}=h\in H\Rightarrow x\in Z(H)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -6502,7 +6533,65 @@ end{theo}
 \end_inset
 
 ,
-\begin_inset Formula $(xyx^{-1})(xhx^{-1})(xyx^{-1})=xyhy^{-1}x^{-1}=xhx^{-1}$
+\begin_inset Formula $(xyx^{-1})(xhx^{-1})(xyx^{-1})=xyhy^{-1}x^{-1}=xhx^{-1}\Rightarrow(xyx^{-1})\in Z(xHx^{-1})\Rightarrow xZ(H)x^{-1}\subseteq Z(xHx^{-1})$
+\end_inset
+
+
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+式子的关键是等号左边的中间有
+\begin_inset Formula $(xhx^{-1})$
+\end_inset
+
+,等号右边等于
+\begin_inset Formula $(xhx^{-1})$
+\end_inset
+
+,满足中心化子的定义式
+\end_layout
+
+\end_inset
+
+;
+\begin_inset Newline newline
+\end_inset
+
+再设
+\begin_inset Formula $z\in Z(xHx^{-1})$
+\end_inset
+
+,
+\begin_inset Formula $zxhx^{-1}=xhx^{-1}z\Rightarrow(x^{-1}zx)h=h(x^{-1}zx)$
+\end_inset
+
+,所以
+\begin_inset Formula $x^{-1}zx\in Z(H)$
+\end_inset
+
+,即
+\begin_inset Formula $z\in xZ(H)x^{-1}$
+\end_inset
+
+或
+\begin_inset Formula $Z(xHx^{-1})\subseteq xZ(H)x^{-1}$
+\end_inset
+
+。
+\begin_inset Newline newline
+\end_inset
+
+综上，得：
+\begin_inset Formula 
+\[
+xZ(H)x^{-1}=Z(xHx^{-1})
+\]
+
+\end_inset
+
+
+\begin_inset Newline newline
 \end_inset
 
 
