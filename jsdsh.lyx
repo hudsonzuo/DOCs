@@ -5447,7 +5447,7 @@ end{theo}
 \begin_layout Standard
 群的自同构是把生成元仍然变成生成元。
 \begin_inset Note Note
-status collapsed
+status open
 
 \begin_layout Plain Layout
 我的理解：这本书对循环群的生成元定义很明确，但是对其它群没有说清楚，特别是把
@@ -6954,6 +6954,108 @@ status open
 \end_inset
 
 元子群的假设矛盾。
+\end_layout
+
+\begin_layout Standard
+习题
+\end_layout
+
+\begin_layout Standard
+1,假定
+\begin_inset Formula $G=\{e,a,b,c\}$
+\end_inset
+
+的群表是
+\begin_inset Formula $\begin{array}{c|cccc}
+ & e & a & b & c\\
+\hline e & e & a & b & c\\
+a & a & e & c & b\\
+b & b & c & e & a\\
+c & c & b & a & e
+\end{array}$
+\end_inset
+
+ ，试证它除了恒等同构外，没有内同构，并且有5个外同构，即克莱因四元群的自同构群是对称群
+\begin_inset Formula $S_{3}$
+\end_inset
+
+,因此交换群的自同构群不一定是交换群。
+\end_layout
+
+\begin_layout Standard
+证明：
+\begin_inset Formula $G$
+\end_inset
+
+是交换群，没有恒等同构以外的内同构。5个外同构分别是：
+\begin_inset Formula $\sigma_{1}:a\rightarrow b,b\rightarrow a$
+\end_inset
+
+,
+\begin_inset Formula $\sigma_{2}:a\rightarrow c,c\rightarrow a$
+\end_inset
+
+,
+\begin_inset Formula $\sigma_{3}:b\rightarrow c,c\rightarrow b$
+\end_inset
+
+,
+\begin_inset Formula $\sigma_{4}:a\rightarrow b,b\rightarrow c,c\rightarrow a$
+\end_inset
+
+,
+\begin_inset Formula $\sigma_{5}:a\rightarrow c,c\rightarrow b,b\rightarrow a$
+\end_inset
+
+;现在证明
+\begin_inset Formula $\sigma_{1}$
+\end_inset
+
+,
+\begin_inset Formula $\sigma_{1}(a)\sigma_{1}(b)=ba=c,\sigma_{1}(ab)=\sigma_{1}(c)=c;\sigma_{1}(a)\sigma_{1}(c)=bc=a,\sigma_{1}(ac)=\sigma_{1}(b)=a,\sigma_{1}(b)\sigma_{1}(c)=ac=b,\sigma_{1}(bc)=\sigma_{1}(a)=b$
+\end_inset
+
+,所以
+\begin_inset Formula $\sigma_{1}$
+\end_inset
+
+是同构。现证明
+\begin_inset Formula $\sigma_{5}$
+\end_inset
+
+是同构，
+\begin_inset Formula $\sigma_{5}(a)\sigma_{5}(b)=ca=b,\sigma_{5}(ab)=b;\sigma_{5}(a)\sigma_{5}(c)=cb=a,\sigma_{5}(ac)=a,\sigma_{5}(b)\sigma_{5}(c)=ab=c,\sigma_{5}(bc)=c$
+\end_inset
+
+ ,所以
+\begin_inset Formula $\sigma_{5}$
+\end_inset
+
+是同构。同理可证其它外同构。显然这5个同构是属于
+\begin_inset Formula $S_{3}$
+\end_inset
+
+的变换。
+\end_layout
+
+\begin_layout Standard
+2,证明
+\begin_inset Formula $S_{3}$
+\end_inset
+
+没有外同构，但有6个内同构，并证明它的自同构群和它自身同构。
+\end_layout
+
+\begin_layout Standard
+证明：自同构把生成元仍然变成生成元，因此自同构群的元数和群的生成元的数量直接相关。
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula $S_{3}$
+\end_inset
+
+的生成元：
 \end_layout
 
 \end_body
