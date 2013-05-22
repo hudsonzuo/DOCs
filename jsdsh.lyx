@@ -1467,7 +1467,7 @@ status open
 \end_inset
 
 
-\begin_inset Note Note
+\begin_inset Note Greyedout
 status open
 
 \begin_layout Plain Layout
@@ -2738,7 +2738,7 @@ end{theo}
 \end_inset
 
 
-\begin_inset Note Note
+\begin_inset Note Greyedout
 status open
 
 \begin_layout Plain Layout
@@ -2821,7 +2821,7 @@ end{theo}
 \end_inset
 
 的幂（
-\begin_inset Note Note
+\begin_inset Note Greyedout
 status open
 
 \begin_layout Plain Layout
@@ -2851,7 +2851,7 @@ status open
 \end_inset
 
 的幂（
-\begin_inset Note Note
+\begin_inset Note Greyedout
 status open
 
 \begin_layout Plain Layout
@@ -3042,7 +3042,7 @@ status open
 \end_inset
 
 
-\begin_inset Note Note
+\begin_inset Note Greyedout
 status open
 
 \begin_layout Plain Layout
@@ -3141,7 +3141,7 @@ status open
 
 \begin_layout Standard
 两个子群的交是一个子群；一个子群和一个正规子群的交是子群
-\begin_inset Note Note
+\begin_inset Note Greyedout
 status open
 
 \begin_layout Plain Layout
@@ -3162,7 +3162,7 @@ status open
 \end_inset
 
 能够交换的元成为子群
-\begin_inset Note Comment
+\begin_inset Note Greyedout
 status open
 
 \begin_layout Plain Layout
@@ -3219,7 +3219,7 @@ status open
 \end_inset
 
 的正规子群
-\begin_inset Note Note
+\begin_inset Note Greyedout
 status open
 
 \begin_layout Plain Layout
@@ -3269,7 +3269,7 @@ status open
 \end_inset
 
 是一个重要的单群
-\begin_inset Note Comment
+\begin_inset Note Greyedout
 status open
 
 \begin_layout Plain Layout
@@ -3291,7 +3291,7 @@ status open
 \end_inset
 
 非交换单群的元数都是偶数
-\begin_inset Note Comment
+\begin_inset Note Greyedout
 status open
 
 \begin_layout Plain Layout
@@ -3821,7 +3821,7 @@ end{theo}
 \end_inset
 
 
-\begin_inset Note Note
+\begin_inset Note Greyedout
 status open
 
 \begin_layout Plain Layout
@@ -4446,7 +4446,7 @@ status open
 \end_inset
 
 
-\begin_inset Note Note
+\begin_inset Note Greyedout
 status open
 
 \begin_layout Plain Layout
@@ -4516,7 +4516,7 @@ a^{-1}b^{-1}ab & (1) & (12)(34) & (13)(24) & (14)(23) & (123) & (124) & (134) & 
 \end_inset
 
 
-\begin_inset Note Comment
+\begin_inset Note Greyedout
 status open
 
 \begin_layout Plain Layout
@@ -4627,7 +4627,7 @@ status open
 \end_layout
 
 \begin_layout Standard
-\begin_inset Note Note
+\begin_inset Note Greyedout
 status open
 
 \begin_layout Plain Layout
@@ -4705,7 +4705,7 @@ status open
 \end_inset
 
 
-\begin_inset Note Note
+\begin_inset Note Greyedout
 status open
 
 \begin_layout Plain Layout
@@ -4919,7 +4919,7 @@ status open
 \end_inset
 
 的双射
-\begin_inset Note Note
+\begin_inset Note Greyedout
 status open
 
 \begin_layout Plain Layout
@@ -5228,7 +5228,7 @@ status open
 \end_inset
 
 ，
-\begin_inset Note Note
+\begin_inset Note Greyedout
 status open
 
 \begin_layout Plain Layout
@@ -5446,7 +5446,7 @@ end{theo}
 
 \begin_layout Standard
 群的自同构是把生成元仍然变成生成元。
-\begin_inset Note Note
+\begin_inset Note Greyedout
 status open
 
 \begin_layout Plain Layout
@@ -5600,7 +5600,7 @@ status open
 \end_inset
 
 循环群的自同构群只是交换群，但不一定是循环群。
-\begin_inset Note Comment
+\begin_inset Note Greyedout
 status open
 
 \begin_layout Plain Layout
@@ -5616,7 +5616,7 @@ status open
 \end_layout
 
 \begin_layout Standard
-\begin_inset Note Note
+\begin_inset Note Greyedout
 status open
 
 \begin_layout Plain Layout
@@ -5668,7 +5668,7 @@ status open
 \end_layout
 
 \begin_layout Standard
-\begin_inset Note Note
+\begin_inset Note Greyedout
 status open
 
 \begin_layout Plain Layout
@@ -6027,7 +6027,7 @@ status open
 \end_inset
 
 
-\begin_inset Note Note
+\begin_inset Note Greyedout
 status open
 
 \begin_layout Plain Layout
@@ -6177,7 +6177,7 @@ status open
 \end_inset
 
 
-\begin_inset Note Note
+\begin_inset Note Greyedout
 status open
 
 \begin_layout Plain Layout
@@ -6330,7 +6330,7 @@ end{theo}
 \end_layout
 
 \begin_layout Standard
-\begin_inset Note Note
+\begin_inset Note Greyedout
 status open
 
 \begin_layout Plain Layout
@@ -6436,7 +6436,7 @@ status open
 \end_inset
 
 
-\begin_inset Note Note
+\begin_inset Note Greyedout
 status open
 
 \begin_layout Plain Layout
@@ -6517,7 +6517,7 @@ status open
 \end_inset
 
 
-\begin_inset Note Note
+\begin_inset Note Greyedout
 status open
 
 \begin_layout Plain Layout
@@ -6578,7 +6578,7 @@ status open
 \end_inset
 
 
-\begin_inset Note Note
+\begin_inset Note Greyedout
 status open
 
 \begin_layout Plain Layout
@@ -7047,15 +7047,359 @@ c & c & b & a & e
 \end_layout
 
 \begin_layout Standard
-证明：自同构把生成元仍然变成生成元，因此自同构群的元数和群的生成元的数量直接相关。
-\begin_inset Newline newline
+证明：假定
+\begin_inset Formula $a$
 \end_inset
 
+是群
+\begin_inset Formula $G$
+\end_inset
 
+中一元，那么映射
+\begin_inset Formula $\sigma_{a}:g\rightarrow g^{'}=aga^{-1},g\in G$
+\end_inset
+
+是
+\begin_inset Formula $G$
+\end_inset
+
+的内同构，当
+\begin_inset Formula $G$
+\end_inset
+
+的中心是单位元群时(
+\begin_inset Formula $G$
+\end_inset
+
+中不存在可以和其它任意元交换的元），对于
+\begin_inset Formula $a,b\in G\text{,任意}g\in G$
+\end_inset
+
+,
+\begin_inset Formula $aga^{-1}\ne bgb^{-1}\Rightarrow b^{-1}ag=gb^{-1}a\Rightarrow b^{-1}a=e\Rightarrow a=b$
+\end_inset
+
+，所以这时有
+\begin_inset Formula $\left|G\right|$
+\end_inset
+
+个内同构。对于
 \begin_inset Formula $S_{3}$
 \end_inset
 
-的生成元：
+，不存在能够和任意元交换的元,即它的中心是单位元群，所以
+\begin_inset Formula $S_{3}$
+\end_inset
+
+有6个内同构。
+\begin_inset Newline newline
+\end_inset
+
+自同构是把生成元变为生成元。
+\begin_inset Formula $S_{3}$
+\end_inset
+
+中的
+\begin_inset Formula $(123),(132)$
+\end_inset
+
+可以用
+\begin_inset Formula $(12),(13),(23)$
+\end_inset
+
+;同时它们之间不能相互表示，所以
+\begin_inset Formula $S_{3}$
+\end_inset
+
+的生成元有
+\begin_inset Formula $(12),(13),(23)$
+\end_inset
+
+三个。从而得自同构的个数是6个。
+\begin_inset Newline newline
+\end_inset
+
+所以外同构的数量是6-6=0。
+\end_layout
+
+\begin_layout Standard
+3,试证四元数群（$2.3习题8）与由矩阵
+\begin_inset Formula $\pm\begin{pmatrix}1 & 0\\
+0 & 1
+\end{pmatrix}$
+\end_inset
+
+,
+\begin_inset Formula $\pm\begin{pmatrix}i & 0\\
+0 & -i
+\end{pmatrix}$
+\end_inset
+
+,
+\begin_inset Formula $\pm\begin{pmatrix}0 & 1\\
+-1 & 0
+\end{pmatrix}$
+\end_inset
+
+,
+\begin_inset Formula $\pm\begin{pmatrix}0 & i\\
+i & 0
+\end{pmatrix}$
+\end_inset
+
+形成的8元群同构，这里
+\begin_inset Formula $i$
+\end_inset
+
+是虚数单位。
+\end_layout
+
+\begin_layout Standard
+证明：四元数群是
+\begin_inset Formula $\{\pm1,\pm i,\pm j,\pm k\}$
+\end_inset
+
+,
+\begin_inset Formula $i^{2}=j^{2}=k^{2}=-1$
+\end_inset
+
+,
+\begin_inset Formula $ij=k=-ji,ik=j=-ki,jk=i=-kj$
+\end_inset
+
+。将
+\begin_inset Formula $1=\begin{pmatrix}1 & 0\\
+0 & 1
+\end{pmatrix}$
+\end_inset
+
+,
+\begin_inset Formula $i=\begin{pmatrix}i & 0\\
+0 & -i
+\end{pmatrix}$
+\end_inset
+
+,
+\begin_inset Formula $j=\begin{pmatrix}0 & 1\\
+-1 & 0
+\end{pmatrix}$
+\end_inset
+
+,
+\begin_inset Formula $k=\begin{pmatrix}0 & i\\
+i & 0
+\end{pmatrix}$
+\end_inset
+
+代入上面的关系式
+\begin_inset Note Greyedout
+status open
+
+\begin_layout Plain Layout
+即建立了双射关系
+\end_layout
+
+\end_inset
+
+，经演算完全成立
+\begin_inset Note Greyedout
+status open
+
+\begin_layout Plain Layout
+即满足
+\begin_inset Formula $\sigma(ab)=\sigma(a)\sigma(b)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+，所以这个8元群和四元数群同构。
+\end_layout
+
+\begin_layout Standard
+4,假如
+\begin_inset Formula $H\triangleleft G$
+\end_inset
+
+,
+\begin_inset Formula $K$
+\end_inset
+
+是
+\begin_inset Formula $G$
+\end_inset
+
+的子群，试证
+\begin_inset Formula $(H\cap K)\triangleleft K$
+\end_inset
+
+。
+\end_layout
+
+\begin_layout Standard
+证明：对于任意
+\begin_inset Formula $k\in K$
+\end_inset
+
+ 有
+\begin_inset Formula $k\in G$
+\end_inset
+
+，又对于任意
+\begin_inset Formula $t\in H\cap K$
+\end_inset
+
+,有
+\begin_inset Formula $t\in H$
+\end_inset
+
+,所以
+\begin_inset Formula $ktk^{-1}\in H$
+\end_inset
+
+。
+\begin_inset Newline newline
+\end_inset
+
+同时
+\begin_inset Formula $k,t$
+\end_inset
+
+都属于子群
+\begin_inset Formula $K$
+\end_inset
+
+,所以
+\begin_inset Formula $ktk^{-1}\in K$
+\end_inset
+
+。所以
+\begin_inset Formula $ktk^{-1}\in H\cap K$
+\end_inset
+
+，即
+\begin_inset Formula $(H\cap K)\triangleleft K$
+\end_inset
+
+。
+\end_layout
+
+\begin_layout Standard
+5,假设
+\begin_inset Formula $H,K$
+\end_inset
+
+是群
+\begin_inset Formula $G$
+\end_inset
+
+的子群，
+\begin_inset Formula $G\supseteq K\supseteq H$
+\end_inset
+
+,
+\begin_inset Formula $H\triangleleft G$
+\end_inset
+
+,如果
+\begin_inset Formula $K/H\triangleleft G/H$
+\end_inset
+
+,试证
+\begin_inset Formula $K\triangleleft G$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+证明:
+\begin_inset Formula $\text{由}\overline{g}\cdot\overline{k}\cdot\overline{g}^{-1}\in K/H$
+\end_inset
+
+得
+\begin_inset Formula $gkg^{-1}\in K$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+6,假如
+\begin_inset Formula $H$
+\end_inset
+
+是群
+\begin_inset Formula $G$
+\end_inset
+
+的真子群，试证
+\begin_inset Formula $G$
+\end_inset
+
+有不属于
+\begin_inset Formula $H$
+\end_inset
+
+的任意共轭子群中的元。
+\end_layout
+
+\begin_layout Standard
+证明：
+\begin_inset Formula $H$
+\end_inset
+
+的共轭子群的个数等于
+\begin_inset Formula $|G:N(H)|\le|G:H|$
+\end_inset
+
+,所以
+\begin_inset Formula $|G|=|H|\cdot|G:H|\ge|H|\cdot|G:N(H)|$
+\end_inset
+
+;如果
+\begin_inset Formula $|G|>|H|\cdot|G:N(H)|$
+\end_inset
+
+,显然
+\begin_inset Formula $G$
+\end_inset
+
+有不属于
+\begin_inset Formula $H$
+\end_inset
+
+的任意共轭子群的元;当相等时，因为不同的共轭子群的单位元是相同的，所以这些共轭子群的并集的元数小于
+\begin_inset Formula $|G|$
+\end_inset
+
+，因此结论依然成立。
+\end_layout
+
+\begin_layout Standard
+7,试证
+\begin_inset Formula $p$
+\end_inset
+
+群的中心的元数大于1,也就是说，
+\begin_inset Formula $p$
+\end_inset
+
+群的中心仍然是
+\begin_inset Formula $p$
+\end_inset
+
+群，因此
+\begin_inset Formula $p^{n}(n\ne1)$
+\end_inset
+
+元群不是单群。
+\end_layout
+
+\begin_layout Standard
+证明：中心是群中和任意元能够交换的元组成的，
 \end_layout
 
 \end_body

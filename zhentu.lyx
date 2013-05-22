@@ -144,6 +144,18 @@ windows安装程序
 一个windows程序，从网络存储抓取系统源，复制到本地优盘或者硬盘。
 \end_layout
 
+\begin_layout Standard
+只能安装到优盘
+\end_layout
+
+\begin_layout Standard
+grub和分区表信息做成image文件，用dd.exe加载进去。
+\end_layout
+
+\begin_layout Standard
+从服务器抓取系统文件到本地后复制到分区中
+\end_layout
+
 \begin_layout Subsection
 云存储
 \end_layout
@@ -154,7 +166,22 @@ an
 \begin_inset Newline newline
 \end_inset
 
-优士网提供主页服务
+优士网提供主页服务。
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+下载不稳定
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+完美空间互联：http://item.taobao.com/item.htm?spm=a1z10.3.w17-7821936847.31.Bfv1pa&id=94683006
+02&。5G空间，2M带宽，每月30元，年负120
 \end_layout
 
 \end_body
