@@ -3658,7 +3658,7 @@ status open
 \begin_inset Formula $G$
 \end_inset
 
-是交换群是只有单位元是它的换位子；反之，一个群的换位子如果只是单位元，则它是交换群。
+是交换群时只有单位元是它的换位子；反之，一个群的换位子如果只是单位元，则它是交换群。
 \begin_inset Newline newline
 \end_inset
 
@@ -6068,6 +6068,10 @@ status open
 \end_layout
 
 \begin_layout Standard
+群中与一个元共轭的所有元成为一个类，称之为共轭类。
+\end_layout
+
+\begin_layout Standard
 假如
 \begin_inset Formula $a$
 \end_inset
@@ -6080,10 +6084,6 @@ status open
 \end_layout
 
 \begin_layout Standard
-群中与一个元共轭的所有元成为一个类，称之为共轭类。
-\begin_inset Newline newline
-\end_inset
-
 共轭是相互的，因此一个共轭类中的任意元的共轭还是在这个共轭类里面。
 \begin_inset Newline newline
 \end_inset
@@ -6174,16 +6174,6 @@ status open
 
 
 \begin_inset Newline newline
-\end_inset
-
-
-\begin_inset Note Greyedout
-status open
-
-\begin_layout Plain Layout
-共轭类和子群是什么关系呢？
-\end_layout
-
 \end_inset
 
 
@@ -6346,6 +6336,43 @@ status open
 
 \end_layout
 
+\begin_layout Standard
+\begin_inset Note Greyedout
+status open
+
+\begin_layout Plain Layout
+共轭类和子群是什么关系呢？
+\begin_inset Formula $h$
+\end_inset
+
+属于子群
+\begin_inset Formula $H$
+\end_inset
+
+，那么
+\begin_inset Formula $h$
+\end_inset
+
+的共轭类
+\begin_inset Formula $aha^{-1}$
+\end_inset
+
+属于
+\begin_inset Formula $H$
+\end_inset
+
+的共轭子群
+\begin_inset Formula $aHa^{-1}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Subsubsection
 共轭子群的个数
 \end_layout
@@ -6415,7 +6442,7 @@ status open
 \begin_inset Newline newline
 \end_inset
 
-综上，可知一个配集对应于一个共轭子群，所以
+综上，可知一个陪集对应于一个共轭子群，所以
 \begin_inset Formula $G$
 \end_inset
 
@@ -6453,31 +6480,122 @@ status open
 \end_layout
 
 \begin_layout Standard
-同样，可以证明
 \begin_inset Formula $G$
 \end_inset
 
 中任意一元
-\begin_inset Formula $a$
+\begin_inset Formula $g$
 \end_inset
 
 的共轭的个数等于
-\begin_inset Formula $|G:Z(a)|$
+\begin_inset Formula $|G:Z(g)|$
 \end_inset
 
 ,
-\begin_inset Formula $Z(a)$
+\begin_inset Formula $Z(g)$
 \end_inset
 
 是所有能和
-\begin_inset Formula $a$
+\begin_inset Formula $g$
 \end_inset
 
 交换的元组成的，叫
-\begin_inset Formula $a$
+\begin_inset Formula $g$
 \end_inset
 
 的中心化子。
+\begin_inset Newline newline
+\end_inset
+
+证明：
+\begin_inset Formula $a,g\in G$
+\end_inset
+
+,
+\begin_inset Formula $g$
+\end_inset
+
+的共轭等于
+\begin_inset Formula $aga^{-1}$
+\end_inset
+
+;如果
+\begin_inset Formula $g$
+\end_inset
+
+的两个共轭相等，
+\begin_inset Formula $aga^{-1}=bgb^{-1}\Rightarrow b^{-1}ag=gb^{-1}a\Rightarrow b^{-1}a\in Z(g)\Rightarrow a=b$
+\end_inset
+
+或者
+\begin_inset Formula $a,b\in Z(g)$
+\end_inset
+
+。
+\begin_inset Newline newline
+\end_inset
+
+和
+\begin_inset Formula $g$
+\end_inset
+
+能相互交换的两个元的乘积仍然是能交换的，所以
+\begin_inset Formula $g$
+\end_inset
+
+的中心化子是
+\begin_inset Formula $G$
+\end_inset
+
+的子群。
+\begin_inset Newline newline
+\end_inset
+
+如果
+\begin_inset Formula $a\text{，b}$
+\end_inset
+
+属于
+\begin_inset Formula $Z(g)$
+\end_inset
+
+的两个陪集，满足
+\begin_inset Formula $a\ne b,a,b\notin Z(g)$
+\end_inset
+
+,因此
+\begin_inset Formula $aga^{-1}\ne bgb^{-1}$
+\end_inset
+
+。故
+\begin_inset Formula $g$
+\end_inset
+
+的共轭的个数和
+\begin_inset Formula $Z(g)$
+\end_inset
+
+的陪集的数量相等，等于
+\begin_inset Formula $Z(g)$
+\end_inset
+
+的指标。
+\begin_inset Newline newline
+\end_inset
+
+同时，可知，群等式中的
+\begin_inset Formula $c_{i}$
+\end_inset
+
+是
+\begin_inset Formula $G$
+\end_inset
+
+的某个子群（也可以说某个元的中心）的指标。
+\begin_inset Newline newline
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -6859,16 +6977,6 @@ end{theo}
 
 的某个子群的指标
 \color inherit
-
-\begin_inset Note Comment
-status open
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-
 ,所以有
 \begin_inset Formula $p\mid c_{i}$
 \end_inset
@@ -7399,7 +7507,59 @@ status open
 \end_layout
 
 \begin_layout Standard
-证明：中心是群中和任意元能够交换的元组成的，
+证明：如果
+\begin_inset Formula $p$
+\end_inset
+
+群是交换群，显然结论成立。不是交换群时，群等式中的
+\begin_inset Formula $c_{i}$
+\end_inset
+
+大于0,因为
+\begin_inset Formula $c_{i}$
+\end_inset
+
+是某个子群的陪集的个数，因此
+\begin_inset Formula $p|c_{i}$
+\end_inset
+
+，所以有
+\begin_inset Formula $p|c_{0}$
+\end_inset
+
+，即群的中心还是
+\begin_inset Formula $p$
+\end_inset
+
+群。中心也是正规子群，所以
+\begin_inset Formula $p^{n}$
+\end_inset
+
+元群不是单群。
+\end_layout
+
+\begin_layout Standard
+8,假如
+\begin_inset Formula $p$
+\end_inset
+
+是质数，试证
+\begin_inset Formula $p^{2}$
+\end_inset
+
+元群是交换群。
+\end_layout
+
+\begin_layout Standard
+证明：
+\end_layout
+
+\begin_layout Standard
+9,试证：非交换单群与它的内同构群同构。
+\end_layout
+
+\begin_layout Standard
+证明：非交换单群
 \end_layout
 
 \end_body
