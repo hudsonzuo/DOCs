@@ -7560,6 +7560,266 @@ status open
 
 \begin_layout Standard
 证明：非交换单群
+\begin_inset Formula $G$
+\end_inset
+
+,
+\begin_inset Formula $g\in G$
+\end_inset
+
+,对于任意
+\begin_inset Formula $a,b\in G,a\ne b$
+\end_inset
+
+,
+\begin_inset Formula $aga^{-1}\ne bgb^{-1}$
+\end_inset
+
+,否则有
+\begin_inset Formula $b^{-1}ag=gb^{-1}a\Rightarrow b^{-1}a\in Z(G)$
+\end_inset
+
+。因此可以建立双射
+\begin_inset Formula $\sigma_{x}:g\rightarrow xgx^{-1},x\in G,g\in G$
+\end_inset
+
+;
+\begin_inset Formula $\sigma_{ab}(g)=abg(ab)^{-1}=\sigma_{a}(\sigma_{b}(g))=\sigma_{a}\sigma_{b}(g)$
+\end_inset
+
+,所以
+\begin_inset Formula $\sigma_{x}$
+\end_inset
+
+是同构。
+\end_layout
+
+\begin_layout Standard
+10，试证群的中心是特征子群，换位子群也是特征子群。
+\end_layout
+
+\begin_layout Standard
+证明：特征子群是对所有自同构不变的子群。设
+\begin_inset Formula $\text{\sigma}$
+\end_inset
+
+是
+\begin_inset Formula $G$
+\end_inset
+
+的自同构。
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula $Z(G)$
+\end_inset
+
+中的任意元
+\begin_inset Formula $t$
+\end_inset
+
+和
+\begin_inset Formula $G$
+\end_inset
+
+的任意元
+\begin_inset Formula $g$
+\end_inset
+
+可以交换，
+\begin_inset Formula $tg=gt\Rightarrow t=gtg^{-1}\Rightarrow\sigma(t)=\sigma(g)\sigma(t)\sigma(g^{-1})\in Z(G)$
+\end_inset
+
+,所以
+\begin_inset Formula $Z(G)$
+\end_inset
+
+是特征子群。
+\begin_inset Newline newline
+\end_inset
+
+换位子群是换位子元组成的子群
+\begin_inset Formula $[a,b]=a^{-1}b^{-1}ab\Rightarrow\sigma([a,b])=\sigma(a)^{-1}\sigma(b)^{-1}\sigma(a)\sigma(b)\in D(G)$
+\end_inset
+
+。
+\end_layout
+
+\begin_layout Standard
+11,试证特征子群这个关系是满足传递律的，也就是说，假如
+\begin_inset Formula $C$
+\end_inset
+
+是
+\begin_inset Formula $B$
+\end_inset
+
+ 的特征子群，
+\begin_inset Formula $B$
+\end_inset
+
+又是
+\begin_inset Formula $A$
+\end_inset
+
+的特征子群，那么
+\begin_inset Formula $C$
+\end_inset
+
+是
+\begin_inset Formula $A$
+\end_inset
+
+的特征子群。
+\end_layout
+
+\begin_layout Standard
+证明：设
+\begin_inset Formula $\sigma$
+\end_inset
+
+是
+\begin_inset Formula $A$
+\end_inset
+
+的自同构，则
+\begin_inset Formula $\sigma(B)=B$
+\end_inset
+
+,因此
+\begin_inset Formula $\sigma$
+\end_inset
+
+也是
+\begin_inset Formula $B$
+\end_inset
+
+的自同构，则
+\begin_inset Formula $\sigma(C)=C$
+\end_inset
+
+,所以
+\begin_inset Formula $C$
+\end_inset
+
+是
+\begin_inset Formula $A$
+\end_inset
+
+的特征子群。
+\end_layout
+
+\begin_layout Standard
+12,试证包含换位子群的子群是正规子群。
+\end_layout
+
+\begin_layout Standard
+证明，设
+\begin_inset Formula $H\supseteq Z(G)$
+\end_inset
+
+，
+\begin_inset Formula $ghg^{-1}=gg^{-1}h[h,g^{-1}]=h[h,g^{-1}]\in H$
+\end_inset
+
+,所以
+\begin_inset Formula $H$
+\end_inset
+
+是正规子群。
+\end_layout
+
+\begin_layout Standard
+13,假如
+\begin_inset Formula $H$
+\end_inset
+
+是群
+\begin_inset Formula $G$
+\end_inset
+
+的子群，
+\begin_inset Formula $K$
+\end_inset
+
+是
+\begin_inset Formula $H$
+\end_inset
+
+的正规化子，试证
+\begin_inset Formula $aKa^{-1}$
+\end_inset
+
+是
+\begin_inset Formula $aHa^{-1}$
+\end_inset
+
+的正规化子，这里
+\begin_inset Formula $a\in G$
+\end_inset
+
+。
+\end_layout
+
+\begin_layout Standard
+证明：
+\begin_inset Formula $H$
+\end_inset
+
+的正规化子中的任意元能和
+\begin_inset Formula $H$
+\end_inset
+
+交换;由
+\begin_inset Formula $kH=Hk,k\in K$
+\end_inset
+
+,
+\begin_inset Formula $aka^{-1}aHa^{-1}=akHa^{-1}=aHka^{-1}=aHa^{-1}aka^{-1}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+14,假定
+\begin_inset Formula $H$
+\end_inset
+
+是群
+\begin_inset Formula $G$
+\end_inset
+
+的子群，试证
+\begin_inset Formula $Z(H)\triangleleft N(H)$
+\end_inset
+
+。
+\end_layout
+
+\begin_layout Standard
+证明：要证明的是中心化子是正规化子的正规子群;
+\begin_inset Formula $t\in Z(H),k\in N(H)$
+\end_inset
+
+,
+\begin_inset Formula $th=ht$
+\end_inset
+
+,
+\begin_inset Formula $kH=Hk$
+\end_inset
+
+,
+\begin_inset Formula $ktk^{-1}h=kthk^{-1}[k^{-1},h]=khtk^{-1}[k^{-1},h]=hk[k,h]tk^{-1}[k^{-1},h]=hktk^{-1}h^{-1}khk^{-1}kh^{-1}k^{-1}h=hktk^{-1}\Rightarrow ktk^{-1}\in Z(H)\Rightarrow Z(H)\triangleleft N(H)$
+\end_inset
+
+。
+\end_layout
+
+\begin_layout Standard
+
 \end_layout
 
 \end_body
