@@ -7819,6 +7819,54 @@ status open
 \end_layout
 
 \begin_layout Standard
+15,试证4元群不同构的只有循环群及克莱因4元群，因此4元群是交换群。
+\end_layout
+
+\begin_layout Standard
+证明：
+\begin_inset Note Greyedout
+status open
+
+\begin_layout Plain Layout
+任意元数的群都有循环群？
+\end_layout
+
+\end_inset
+
+，总之，4元循环群是存在的，比如质数41的余环
+\begin_inset Note Greyedout
+status open
+
+\begin_layout Plain Layout
+有本书叫：
+\series bold
+Galois余环理论：http://book.dajianet.com/1210671/2800104/?validated=true，我的余环是不是需要改个名字？
+\end_layout
+
+\end_inset
+
+有8个，它有4元的循环子群。
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Note Greyedout
+status open
+
+\begin_layout Plain Layout
+原来我定义的余环一般是指质数的余数序列，余数的关系是对10同余。现在决定不再叫这种结构余环了。对于质数的所有余数
+\begin_inset Formula $1\sim p-1$
+\end_inset
+
+,组成的群，结合法是余数普通乘法结果对质数求余数。我们称这种群叫余数群;实质上，余环是余数群的商群
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
 
 \end_layout
 
