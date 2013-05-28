@@ -7858,16 +7858,313 @@ status open
 \begin_inset Formula $1\sim p-1$
 \end_inset
 
-,组成的群，结合法是余数普通乘法结果对质数求余数。我们称这种群叫余数群;实质上，余环是余数群的商群
+,组成的群，结合法是余数普通乘法结果对质数求余数。我们称这种群叫余数群;实质上，余环是余数群的商群。
 \end_layout
 
 \end_inset
 
 
+\end_layout
+
+\begin_layout Chapter
+环与体
+\end_layout
+
+\begin_layout Section
+环的概念
+\end_layout
+
+\begin_layout Standard
+定义，一个非空集合
+\begin_inset Formula $R$
+\end_inset
+
+，假如它有两种结合法，一种叫做加法（用记号
+\begin_inset Formula $+$
+\end_inset
+
+表示），一种叫做乘法（用*表示），并且还满足下面的条件，就叫做环：对于加法成为交换群，叫做
+\begin_inset Formula $R$
+\end_inset
+
+的加群;对于乘法成为半群;对于加法和乘法适合分配律，即对
+\begin_inset Formula $R$
+\end_inset
+
+中任意三元
+\begin_inset Formula $a,b,c$
+\end_inset
+
+有
+\begin_inset Formula $a(b+c)=ab+ac$
+\end_inset
+
+,
+\begin_inset Formula $(b+c)a=ba+ca$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+交换环：满足乘法的交换律。
+\begin_inset Formula $\overline{Z_{n}}$
+\end_inset
+
+是
+\begin_inset Formula $n$
+\end_inset
+
+元交换环。
+\end_layout
+
+\begin_layout Standard
+子环、扩张环。
+\end_layout
+
+\begin_layout Standard
+
+\size large
+零元
+\size default
+和乘法的关系：
+\begin_inset Formula $0\cdot a=a\cdot0=0$
+\end_inset
+
+; 负元和乘法的关系：
+\begin_inset Formula $(-a)\cdot b=a\cdot(-b)=-ab$
+\end_inset
+
+,
+\begin_inset Formula $(-a)(-b)=ab$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\size large
+零因子
+\size default
+和
+\size large
+正则元
+\size default
+——
+\begin_inset Formula $b\ne0$
+\end_inset
+
+,如果
+\begin_inset Formula $ab=0$
+\end_inset
+
+,
+\begin_inset Formula $a$
+\end_inset
+
+叫做
+\begin_inset Formula $R$
+\end_inset
+
+的左零因子（零化元）。不是零因子的元叫正则元。
+\end_layout
+
+\begin_layout Standard
+定义2,假定环
+\begin_inset Formula $R$
+\end_inset
+
+中除零元外既没有左零因子也没有右零因子，那么
+\begin_inset Formula $R$
+\end_inset
+
+叫做无零因子环，交换无零因子环又叫整环。
+\end_layout
+
+\begin_layout Standard
+环成为无零因子环的充要条件是它满足乘法的消去律。
+\end_layout
+
+\begin_layout Standard
+证明：假如
+\begin_inset Formula $R$
+\end_inset
+
+是无零因子环，即如果
+\begin_inset Formula $ab=0$
+\end_inset
+
+则
+\begin_inset Formula $a=0$
+\end_inset
+
+或者
+\begin_inset Formula $b=0$
+\end_inset
+
+;设
+\begin_inset Formula $a,b,c\in R,a\ne0$
+\end_inset
+
+
+\begin_inset Formula $ab=ac\Rightarrow ab-ac=a(b-c)=0\Rightarrow b-c=0\Rightarrow b=c$
+\end_inset
+
+,所以消去律成立。
+\begin_inset Newline newline
+\end_inset
+
+假如消去律成立，即当
+\begin_inset Formula $a\ne0$
+\end_inset
+
+时如果
+\begin_inset Formula $ab=0=a0\Rightarrow b=0$
+\end_inset
+
+,所以
+\begin_inset Formula $R$
+\end_inset
+
+是无零因子环。
+\end_layout
+
+\begin_layout Standard
+
+\size large
+幂零元
+\size default
+——满足
+\begin_inset Formula $a^{n}=0$
+\end_inset
+
+,
+\begin_inset Formula $n$
+\end_inset
+
+是正整数。非零的幂零元是零因子。
+\begin_inset Newline newline
+\end_inset
+
+在
+\begin_inset Formula $Z-(6)$
+\end_inset
+
+中，
+\begin_inset Formula $\overline{2},\overline{3},\overline{4}$
+\end_inset
+
+都不是幂零元，但都是零因子。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{theo}
+\end_layout
+
+\end_inset
+
+交换环
+\begin_inset Formula $R$
+\end_inset
+
+中所有幂零元形成一个幂零元环
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{theo}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+证明：设幂零元
+\begin_inset Formula $a^{n}=0,b^{m}=0$
+\end_inset
+
+,因为
+\begin_inset Formula $a,b$
+\end_inset
+
+可交换，因此
+\begin_inset Formula $(ab)^{m}=a^{m}b^{m}=0$
+\end_inset
+
+,所以对于乘法是闭合的。
 \begin_inset Newline newline
 \end_inset
 
 
+\begin_inset Formula $(a-b)^{m+n}=a^{m+n}-C_{1}^{m+n}a^{m+n-1}b+...+C_{n}^{m+n}a^{m}(-b)^{n}+C_{n+1}^{m+n}a^{m-1}(-b)^{n+1}+...+(-b)^{m+n}=0$
+\end_inset
+
+,所以对加法成群。
+\end_layout
+
+\begin_layout Standard
+环对乘法可能只成为半群，所以在环的定义中不要求对乘法有单位元，但是在许多环中有这种元存在。
+\end_layout
+
+\begin_layout Standard
+定义3,假如环
+\begin_inset Formula $R$
+\end_inset
+
+中有元
+\begin_inset Formula $e_{L}(e_{R})$
+\end_inset
+
+,它对
+\begin_inset Formula $R$
+\end_inset
+
+中任意元
+\begin_inset Formula $a$
+\end_inset
+
+有
+\begin_inset Formula $e_{L}a=a(ae_{R}=a)$
+\end_inset
+
+,那么
+\begin_inset Formula $e_{L}(e_{R})$
+\end_inset
+
+就叫左（右）单位元。
+\end_layout
+
+\begin_layout Standard
+整数环有单位元1,所以偶数形成的环没有单位元。
+\end_layout
+
+\begin_layout Standard
+假如环同时有左单位元和右单位元，那么它们相等;环可能有多个左单位元但没有右单位元，或者相反。
+\end_layout
+
+\begin_layout Standard
+
+\size large
+幂等元
+\size default
+——
+\begin_inset Formula $a^{2}=a$
+\end_inset
+
+，除去零元。有可能是零因子，有可能是单位元。
 \end_layout
 
 \end_body
