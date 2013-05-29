@@ -402,6 +402,10 @@ B),证：(AB)C=A(BC).
 \begin_layout Standard
 \align left
 定义：非空，满足4个条件，结合法、结合律，（左）单位元，（左）逆元。乘集，半群。
+\begin_inset Newline newline
+\end_inset
+
+“群公理”：也就是封闭性、结合律、单位元和逆元。
 \end_layout
 
 \begin_layout Standard
@@ -8164,7 +8168,430 @@ end{theo}
 \begin_inset Formula $a^{2}=a$
 \end_inset
 
-，除去零元。有可能是零因子，有可能是单位元。
+，除去零元。有可能是零因子，有可能是单位元。如果环中任意非零的元都是幂等元，这种环叫做布尔环，例如
+\begin_inset Formula $Z-(2)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+定义：假设环
+\begin_inset Formula $R$
+\end_inset
+
+有单位元
+\begin_inset Formula $e$
+\end_inset
+
+，
+\begin_inset Formula $a\in R$
+\end_inset
+
+，如果有元
+\begin_inset Formula $a_{L}^{-1}(a_{R}^{-1})$
+\end_inset
+
+存在，使得
+\begin_inset Formula $a_{L}^{-1}a=e(aa_{R}^{-1}=e)$
+\end_inset
+
+,那么
+\begin_inset Formula $a_{L}^{-1}(a_{R}^{-1})$
+\end_inset
+
+就叫做
+\begin_inset Formula $a$
+\end_inset
+
+的左（右）逆元。如果有
+\begin_inset Formula $a^{-1}$
+\end_inset
+
+存在，使得
+\begin_inset Formula $a^{-1}a=aa^{-1}=e$
+\end_inset
+
+,
+\begin_inset Formula $a^{-1}$
+\end_inset
+
+叫
+\begin_inset Formula $a$
+\end_inset
+
+的逆元。
+\end_layout
+
+\begin_layout Standard
+纵然环
+\begin_inset Formula $R$
+\end_inset
+
+有单位元，对于乘法，也不是每个元都一定有逆元。
+\size larger
+可逆元。
+\size default
+零因子没有逆元
+\begin_inset Note Greyedout
+status open
+
+\begin_layout Plain Layout
+设
+\begin_inset Formula $a$
+\end_inset
+
+是零因子，即
+\begin_inset Formula $ab=0,b\ne0$
+\end_inset
+
+,
+\begin_inset Formula $a^{-1}a=e\Rightarrow a^{-1}ab=eb=b=0$
+\end_inset
+
+与假设不符。
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+可逆元都是正则元。幂零元不是可逆元。如果
+\begin_inset Formula $1$
+\end_inset
+
+是
+\begin_inset Formula $R$
+\end_inset
+
+的单位元，
+\begin_inset Formula $a^{n}=0$
+\end_inset
+
+，则
+\begin_inset Formula $1-a$
+\end_inset
+
+是可逆元
+\begin_inset Note Greyedout
+status open
+
+\begin_layout Plain Layout
+\begin_inset Formula $(1-a)(1+a+...+a^{n-1})=1$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+。如果1是单位元，
+\begin_inset Formula $a$
+\end_inset
+
+是幂等元，那么
+\begin_inset Formula $1-a$
+\end_inset
+
+也是幂等元;如果
+\begin_inset Formula $a$
+\end_inset
+
+既是幂等元又是可逆元，那么
+\begin_inset Formula $a=1$
+\end_inset
+
+
+\begin_inset Note Greyedout
+status open
+
+\begin_layout Plain Layout
+\begin_inset Formula $a=aaa^{-1}=a^{2}a^{-1}=aa^{-1}=1$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+,因此
+\shape slanted
+幂等元如果又是可逆元，那么它是单位元
+\shape default
+。
+\end_layout
+
+\begin_layout Standard
+如果元
+\begin_inset Formula $a$
+\end_inset
+
+既有左逆元又有右逆元，那么两者相等;如果只有一个左逆元，那么此左逆元同时是右逆元，证明：
+\begin_inset Formula $(a_{L}^{-1}+aa_{L}^{-1}-e)a=e\Rightarrow a_{L}^{-1}+aa_{L}^{-1}-e=a_{L}^{-1}\Rightarrow aa_{L}^{-1}=e$
+\end_inset
+
+。
+\begin_inset Newline newline
+\end_inset
+
+假如
+\begin_inset Formula $a$
+\end_inset
+
+有多于一个的左（右）逆元，那么它有无穷多个左（右）逆元。
+\begin_inset Newline newline
+\end_inset
+
+在无零因子环中，如果
+\begin_inset Formula $a_{L}^{-1},a_{R}^{-1}$
+\end_inset
+
+有一个存在，那么另一个也存在。因为：
+\begin_inset Formula $a_{L}^{-1}a=e(aa_{L}^{-1}-e)=0$
+\end_inset
+
+,所以
+\begin_inset Formula $aa_{L}^{-1}=e$
+\end_inset
+
+.
+\begin_inset Note Greyedout
+status open
+
+\begin_layout Plain Layout
+看不懂啊！
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{theo}
+\end_layout
+
+\end_inset
+
+在有单位元的环
+\begin_inset Formula $R$
+\end_inset
+
+中，所有可逆元对乘法形成为群
+\begin_inset Formula $G$
+\end_inset
+
+。
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{theo}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+习题3.1
+\end_layout
+
+\begin_layout Standard
+1,假定
+\begin_inset Formula $R$
+\end_inset
+
+是实数，加法
+\begin_inset Formula $+$
+\end_inset
+
+是普通加法，但乘法
+\begin_inset Formula $\times$
+\end_inset
+
+是：
+\begin_inset Formula $a\times b=|a|b$
+\end_inset
+
+,这时
+\begin_inset Formula $R$
+\end_inset
+
+是否是环？
+\end_layout
+
+\begin_layout Standard
+对于加法成群，零元是实数0。对于乘法满足封闭性，
+\begin_inset Formula $a\times(b\times c)=|ab|c,(a\times b)\times c=(|a|b)\times c=|ab|c$
+\end_inset
+
+,所以满足集合律。因此
+\begin_inset Formula $R$
+\end_inset
+
+是环。
+\end_layout
+
+\begin_layout Standard
+2,假设
+\begin_inset Formula $R$
+\end_inset
+
+是所有有理数对
+\begin_inset Formula $(a_{1},a_{2})$
+\end_inset
+
+的集合，结合法：
+\begin_inset Formula $(a_{1},a_{2})+(b_{1},b_{2})=(a_{1}+b_{1},a_{2}+b_{2}),$
+\end_inset
+
+
+\begin_inset Formula $(a_{1},a_{2})\cdot(b_{1},b_{2})=(a_{1}b_{1},a_{2}b_{2})$
+\end_inset
+
+.那么
+\begin_inset Formula $R$
+\end_inset
+
+是否是环？有无零因子，单位元，哪些元有逆元？
+\end_layout
+
+\begin_layout Standard
+对于加法：满足封闭性、结合律、零元是
+\begin_inset Formula $(0,0)$
+\end_inset
+
+,
+\begin_inset Formula $(a_{1},a_{2})\text{的逆元是}\ensuremath{(-a_{1},-a_{2})}$
+\end_inset
+
+，成群;对于乘法，满足封闭性和结合律;所以
+\begin_inset Formula $R$
+\end_inset
+
+是环。
+\begin_inset Newline newline
+\end_inset
+
+零因子：
+\begin_inset Formula $(a,0)$
+\end_inset
+
+的零因子是
+\begin_inset Formula $(0,b)$
+\end_inset
+
+,单位元
+\begin_inset Formula $(1,1)$
+\end_inset
+
+;正则元
+\begin_inset Formula $(a,b),a\ne0,b\ne0$
+\end_inset
+
+都是可逆元。
+\end_layout
+
+\begin_layout Standard
+3,假定
+\begin_inset Formula $R$
+\end_inset
+
+是有单位元1的环。
+\begin_inset Formula $a\oplus b=a+b-1,a\odot b=a+b-ab$
+\end_inset
+
+,试证
+\begin_inset Formula $R$
+\end_inset
+
+对结合法
+\begin_inset Formula $\oplus,\odot$
+\end_inset
+
+也成为一个有单位元的交换环。
+\end_layout
+
+\begin_layout Standard
+证明：对于结合法
+\begin_inset Formula $\oplus$
+\end_inset
+
+:满足封闭性，满足结合律：
+\begin_inset Formula $a\oplus(b\oplus c)=a+(b+c-1)-1$
+\end_inset
+
+,
+\begin_inset Formula $(a\oplus)b\oplus c=(a+b-1)+c-1$
+\end_inset
+
+,零元等于1,逆元
+\begin_inset Formula $a^{-1}=1-a$
+\end_inset
+
+。
+\begin_inset Newline newline
+\end_inset
+
+对于乘法
+\begin_inset Formula $\odot$
+\end_inset
+
+,满足封闭性，满足结合律：
+\begin_inset Formula $a\odot(b\odot c)=a+(b+c-bc)-a(b+c-bc)=a+b+c-ab-ac-bc+abc,$
+\end_inset
+
+,
+\begin_inset Formula $(a\odot b)\odot c)=(a+b-ab)+c-(a+b-ab)c=a+b+c-ab-ac-bc+abc$
+\end_inset
+
+.
+\begin_inset Newline newline
+\end_inset
+
+所以
+\begin_inset Formula $(R,\oplus,\odot)$
+\end_inset
+
+是环。
+\begin_inset Formula $a\odot b=b\odot a$
+\end_inset
+
+,单位元是
+\begin_inset Formula $a\odot e=a+e-ae=a\Rightarrow(1-a)e=\Rightarrow e=0$
+\end_inset
+
+,即
+\begin_inset Formula $(R,\oplus,\odot)$
+\end_inset
+
+的单位元是
+\begin_inset Formula $R$
+\end_inset
+
+零元。
+\end_layout
+
+\begin_layout Standard
+4,试证在有单位元的环中加法的交换律可由其它条件推出，也就是说它们不是独立的。
+\end_layout
+
+\begin_layout Standard
+证明：有单位元时，幂零元没有逆元。
 \end_layout
 
 \end_body
