@@ -8340,7 +8340,17 @@ status open
 \begin_inset Formula $a$
 \end_inset
 
-有多于一个的左（右）逆元，那么它有无穷多个左（右）逆元。
+有多于一个的左（右）逆元，那么它有无穷多个左（右）逆元
+\begin_inset Note Greyedout
+status open
+
+\begin_layout Plain Layout
+前提应该是无穷环吧？后面的习题6的表述更准确
+\end_layout
+
+\end_inset
+
+。
 \begin_inset Newline newline
 \end_inset
 
@@ -8439,11 +8449,43 @@ end{theo}
 \begin_inset Formula $a\times(b\times c)=|ab|c,(a\times b)\times c=(|a|b)\times c=|ab|c$
 \end_inset
 
-,所以满足集合律。因此
+,所以满足集合律。
+\end_layout
+
+\begin_layout Standard
+分配律：
+\begin_inset Formula $a\times(b+c)=|a|(b+c)$
+\end_inset
+
+=
+\begin_inset Formula $a\times b+a\times c=|a|b+|a|c$
+\end_inset
+
+,
+\begin_inset Formula $(b+c)\times a=|b+c|a$
+\end_inset
+
+,
+\begin_inset Formula $b\times a+c\times a=|b|a+|c|a=(|b|+|c|)a$
+\end_inset
+
+,因为
+\begin_inset Formula $|b+c|$
+\end_inset
+
+和
+\begin_inset Formula $|b|+|c|$
+\end_inset
+
+不一定相等，所以分配律不满足。
+\end_layout
+
+\begin_layout Standard
+因此
 \begin_inset Formula $R$
 \end_inset
 
-是环。
+不是环。
 \end_layout
 
 \begin_layout Standard
@@ -8591,7 +8633,123 @@ end{theo}
 \end_layout
 
 \begin_layout Standard
-证明：有单位元时，幂零元没有逆元。
+证明：
+\begin_inset Formula $(a+b)(e+e)=a(e+e)+b(e+e)=a+a+b+b$
+\end_inset
+
+ ,根据分配律同时有
+\begin_inset Formula $=(a+b)e+(a+b)e=a+b+a+b$
+\end_inset
+
+,因此得
+\begin_inset Formula $a+a+b+b=a+b+a+b$
+\end_inset
+
+,即
+\begin_inset Formula $a+b=b+a$
+\end_inset
+
+。
+\end_layout
+
+\begin_layout Standard
+6,假如
+\begin_inset Formula $R$
+\end_inset
+
+不是零环，
+\begin_inset Formula $a$
+\end_inset
+
+是
+\begin_inset Formula $R$
+\end_inset
+
+的左（右）零因子，那么
+\begin_inset Formula $a$
+\end_inset
+
+或是没有右（左）逆元，或是至少有两个右（左）逆元。
+\end_layout
+
+\begin_layout Standard
+证明：零环是任意两元的乘积都是0的环。
+\begin_inset Formula $ab=0$
+\end_inset
+
+,假设有
+\begin_inset Formula $a_{R}^{-1}$
+\end_inset
+
+，
+\begin_inset Formula $aa_{R}^{-1}=e$
+\end_inset
+
+,则
+\begin_inset Formula $a(b+a_{R}^{-1})=e$
+\end_inset
+
+...
+\end_layout
+
+\begin_layout Standard
+7,试证在有穷环中正则元都是可逆元，也就是说，有穷环如果有正则元那它就有单位元。
+\end_layout
+
+\begin_layout Standard
+证明：设
+\begin_inset Formula $a$
+\end_inset
+
+是正则元，因此对于任意正整数
+\begin_inset Formula $n$
+\end_inset
+
+，
+\begin_inset Formula $a^{n}\ne0$
+\end_inset
+
+;因为环是有穷的，所以存在
+\begin_inset Formula $n>1$
+\end_inset
+
+使得
+\begin_inset Formula $a^{n}=a$
+\end_inset
+
+,即有
+\begin_inset Formula $a^{n-1}=e,a^{n-2}=a^{-1}$
+\end_inset
+
+。
+\end_layout
+
+\begin_layout Standard
+8,假如
+\begin_inset Formula $e$
+\end_inset
+
+是环
+\begin_inset Formula $R$
+\end_inset
+
+ 的左单位元，如果
+\begin_inset Formula $R$
+\end_inset
+
+没有零因子，那么
+\begin_inset Formula $e$
+\end_inset
+
+是
+\begin_inset Formula $R$
+\end_inset
+
+的单位元。
+\end_layout
+
+\begin_layout Standard
+证明：
 \end_layout
 
 \end_body
