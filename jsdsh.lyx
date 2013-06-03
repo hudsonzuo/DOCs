@@ -7987,7 +7987,11 @@ status open
 \end_layout
 
 \begin_layout Standard
-环成为无零因子环的充要条件是它满足乘法的消去律。
+
+\size large
+环成为无零因子环的充要条件是它满足乘法的消去律
+\size default
+。
 \end_layout
 
 \begin_layout Standard
@@ -8750,6 +8754,486 @@ end{theo}
 
 \begin_layout Standard
 证明：
+\begin_inset Formula $(a-ae)e=ae-ae=0$
+\end_inset
+
+,因为
+\begin_inset Formula $R$
+\end_inset
+
+没有零因子，所以
+\begin_inset Formula $a-ae=0$
+\end_inset
+
+即
+\begin_inset Formula $a=ae$
+\end_inset
+
+。
+\end_layout
+
+\begin_layout Standard
+9,假定环
+\begin_inset Formula $R$
+\end_inset
+
+有单位元，
+\begin_inset Formula $E$
+\end_inset
+
+是全矩阵环
+\begin_inset Formula $R_{n}$
+\end_inset
+
+的单位元，试证：
+\begin_inset Formula $R_{n}$
+\end_inset
+
+的中心
+\begin_inset Formula $Z(R_{n})=Z(R)E$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+证明：用
+\begin_inset Formula $R$
+\end_inset
+
+中元形成的n阶矩阵成为非交换环，叫做
+\begin_inset Formula $R$
+\end_inset
+
+上的n阶全矩阵环。
+\begin_inset Newline newline
+\end_inset
+
+设任意
+\begin_inset Formula $a\in Z(R)$
+\end_inset
+
+，任意
+\begin_inset Formula $B\in R_{n}$
+\end_inset
+
+,
+\begin_inset Formula $aEB=aB=Ba=BaE$
+\end_inset
+
+,因此
+\begin_inset Formula $Z(R)E\subseteq Z(R_{n})$
+\end_inset
+
+.
+ 
+\begin_inset Newline newline
+\end_inset
+
+对于任意
+\begin_inset Formula $A\in Z(R_{n})$
+\end_inset
+
+,
+\begin_inset Formula $AB=BA$
+\end_inset
+
+,矩阵
+\begin_inset Formula $B$
+\end_inset
+
+是任意的（不是对角线对称的），所以
+\begin_inset Formula $A$
+\end_inset
+
+的非对角线上的元是零元并且对角线上的元相等;即
+\begin_inset Formula $A=diag(a,a,...,a)$
+\end_inset
+
+,显然
+\begin_inset Formula $a\in Z(R)$
+\end_inset
+
+;因此
+\begin_inset Formula $A\in Z(R)E$
+\end_inset
+
+,即
+\begin_inset Formula $Z(R_{n})\subseteq Z(R)E$
+\end_inset
+
+。
+\end_layout
+
+\begin_layout Standard
+10，假定环
+\begin_inset Formula $R$
+\end_inset
+
+没有非零的幂零元，试证
+\begin_inset Formula $R$
+\end_inset
+
+的幂等元都在它的中心里面。
+\end_layout
+
+\begin_layout Standard
+证明：设
+\begin_inset Formula $a^{2}=a$
+\end_inset
+
+,
+\begin_inset Formula $r\in R$
+\end_inset
+
+,
+\begin_inset Formula $(ara-ar)^{2}=arara-arar-arara+arar=0$
+\end_inset
+
+,因此
+\begin_inset Formula $ara=ar$
+\end_inset
+
+;同样
+\begin_inset Formula $(ara-ra)^{2}=arara-arara-rara+rara=0$
+\end_inset
+
+,得
+\begin_inset Formula $ara=ra$
+\end_inset
+
+,所以
+\begin_inset Formula $ar=ra$
+\end_inset
+
+。
+\end_layout
+
+\begin_layout Standard
+11,试证布尔环是交换环。
+\end_layout
+
+\begin_layout Standard
+证明：环中任意非零的元都是幂等元，
+\begin_inset Formula $aabb=ab$
+\end_inset
+
+,
+\begin_inset Formula $(ab)^{2}=abab=ab$
+\end_inset
+
+,因此
+\begin_inset Formula $aabb=abab$
+\end_inset
+
+,
+\begin_inset Formula $ab=ba$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+12,求元数最小的非交换环。
+\end_layout
+
+\begin_layout Standard
+必须有零元0,非零元如果只有一个将成为布尔环，布尔环是交换环;设非零元有
+\begin_inset Formula $a,b$
+\end_inset
+
+,
+\begin_inset Formula $a^{2}=b,b^{2}=a$
+\end_inset
+
+,其组合有：
+\begin_inset Formula $a,b,ab$
+\end_inset
+
+，此时
+\begin_inset Formula $a,b$
+\end_inset
+
+对于乘法成为半群;因此得到4元环
+\begin_inset Formula $\{0,a,b,ab\},a^{2}=b,b^{2}=a$
+\end_inset
+
+ 。
+\end_layout
+
+\begin_layout Section
+体的概念
+\end_layout
+
+\begin_layout Standard
+定义 一个环
+\begin_inset Formula $F$
+\end_inset
+
+，假如含有非零的元，即至少包含两个元，并且所有非零的元对乘法成为群，就叫做体，有时又叫做可除环;对乘法形成的群又叫
+\begin_inset Formula $F$
+\end_inset
+
+的乘群;当
+\begin_inset Formula $F$
+\end_inset
+
+是交换时，叫做交换体或者域。
+\end_layout
+
+\begin_layout Standard
+有理数集
+\begin_inset Formula $Q$
+\end_inset
+
+成为有理数域，实数集和复数集成为实数域、复数域;所有有理复数
+\begin_inset Formula $a+bi(a,b\text{是有理数)}$
+\end_inset
+
+集合叫做高斯数域。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\overline{Z}=Z-(p)$
+\end_inset
+
+,
+\begin_inset Formula $p$
+\end_inset
+
+是质数，是元数为
+\begin_inset Formula $p$
+\end_inset
+
+的有穷域。当
+\begin_inset Formula $n$
+\end_inset
+
+不是质数时，
+\begin_inset Formula $Z-(n)$
+\end_inset
+
+有零因子，因此它不是体。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{theo}
+\end_layout
+
+\end_inset
+
+元数大于1的有穷无零因子环是体。
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{theo}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+证明：无零因子环满足消去律，另外，$2.1定理3,消去律和除法闭合等价。
+\end_layout
+
+\begin_layout Standard
+不是体的有穷环含有零因子;有穷环中不是零因子的元都是可逆的。
+\end_layout
+
+\begin_layout Standard
+假如有穷环没有非零的幂零元，并且只有一个幂等元，那么这环是体。证明：
+\end_layout
+
+\begin_layout Standard
+1964年根山给出了有穷环的元数与其所含有零因子个数之间的一些关系，但是有穷环的详细构造现在我们还不完全清楚。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{theo}
+\end_layout
+
+\end_inset
+
+环
+\begin_inset Formula $R$
+\end_inset
+
+成体的充要条件是：对于
+\begin_inset Formula $R$
+\end_inset
+
+中任意两元
+\begin_inset Formula $a\ne0,b$
+\end_inset
+
+,方程
+\begin_inset Formula $ax=b$
+\end_inset
+
+或
+\begin_inset Formula $xa=b$
+\end_inset
+
+在
+\begin_inset Formula $R$
+\end_inset
+
+中有解。
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{theo}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+证明：成体时，
+\begin_inset Formula $R$
+\end_inset
+
+的乘群对除法是闭合的，所以
+\begin_inset Formula $a\ne0,b\ne0,ax=b$
+\end_inset
+
+有解，如果
+\begin_inset Formula $b=0$
+\end_inset
+
+，解是
+\begin_inset Formula $x=0$
+\end_inset
+
+。
+\end_layout
+
+\begin_layout Standard
+现在证明充分性;根据体的定义，成体要求对于
+\begin_inset Formula $R$
+\end_inset
+
+的非零元对乘法成群。
+\begin_inset Newline newline
+\end_inset
+
+闭合性：即证明任意两个非零元的乘积还是非零元;设
+\begin_inset Formula $a,b$
+\end_inset
+
+是
+\begin_inset Formula $R$
+\end_inset
+
+中的任意非零的两个元，则
+\begin_inset Formula $ax=b,by=x$
+\end_inset
+
+对于
+\begin_inset Formula $x,y$
+\end_inset
+
+有解，等式成立;因此
+\begin_inset Formula $aby=b$
+\end_inset
+
+,所以
+\begin_inset Formula $ab\ne0$
+\end_inset
+
+。
+\begin_inset Formula $R$
+\end_inset
+
+是无零因子环。
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+和成环的闭合性要求
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+结合法：环对于乘法是半群，已经满足;
+\begin_inset Newline newline
+\end_inset
+
+单位元：
+\begin_inset Formula $a(e^{2}-e)=0\Rightarrow e^{2}=e$
+\end_inset
+
+,这就是说
+\begin_inset Formula $e$
+\end_inset
+
+是无零因子环
+\begin_inset Formula $R$
+\end_inset
+
+的幂等元，所以
+\begin_inset Formula $e$
+\end_inset
+
+是
+\begin_inset Formula $R$
+\end_inset
+
+的单位元;
+\begin_inset Newline newline
+\end_inset
+
+逆元：假如
+\begin_inset Formula $aa^{'}=e$
+\end_inset
+
+,因为
+\begin_inset Formula $R$
+\end_inset
+
+是无零因子环，所以
+\begin_inset Formula $a^{'}\ne0$
+\end_inset
+
+,因此
+\begin_inset Formula $a^{'}$
+\end_inset
+
+是
+\begin_inset Formula $a$
+\end_inset
+
+的逆元。
 \end_layout
 
 \end_body
