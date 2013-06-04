@@ -813,11 +813,33 @@ end{theo}
 \end_layout
 
 \begin_layout Standard
-习题1，假定M是某集合的所有子集的系，如果其中自己A、B的结合法
+
+\size larger
+习题2.1
+\end_layout
+
+\begin_layout Standard
+习题4，假定M是某集合的所有子集的系，如果其中自己A、B的结合法
 \begin_inset Formula $AB=(A\cup B)-(A\cap B)$
 \end_inset
 
 ,试证M成群。
+\end_layout
+
+\begin_layout Standard
+证明：闭合性：
+\begin_inset Formula $AB$
+\end_inset
+
+是
+\begin_inset Formula $M$
+\end_inset
+
+的子集;结合律：
+\begin_inset Formula $A(BC)=(A\cup((B\cup C)-(B\cap C)))-(A\cap((B\cup C)-(B\cap C)))=$
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -1605,14 +1627,20 @@ target "http://zh.wikipedia.org/wiki/%E4%BA%8C%E9%9D%A2%E9%AB%94%E7%BE%A4"
 \end_layout
 
 \begin_layout Standard
-习题1，试证下列各式：
+
+\size larger
+习题2.2
 \end_layout
 
-\begin_layout Enumerate
+\begin_layout Standard
+1，试证下列各式：
+\end_layout
+
+\begin_layout Standard
 (12)(34)(15)(23)(45)=(153)(24) 我的计算结果是:(135)(24)
 \end_layout
 
-\begin_layout Enumerate
+\begin_layout Standard
 \begin_inset Formula $(1ij)=(12j)^{2}(12i)(12j)$
 \end_inset
 
@@ -1627,7 +1655,7 @@ target "http://zh.wikipedia.org/wiki/%E4%BA%8C%E9%9D%A2%E9%AB%94%E7%BE%A4"
 j1i)=(1ij)
 \end_layout
 
-\begin_layout Enumerate
+\begin_layout Standard
 \begin_inset Formula $(ac)(bd)=(abd)(acd)$
 \end_inset
 
@@ -1635,7 +1663,7 @@ j1i)=(1ij)
 \end_layout
 
 \begin_layout Standard
-习题2，试求循环加群
+2，试求循环加群
 \begin_inset Formula $Z-(100)$
 \end_inset
 
@@ -1647,7 +1675,7 @@ j1i)=(1ij)
 \end_layout
 
 \begin_layout Standard
-习题3，元
+3，元
 \begin_inset Formula $a$
 \end_inset
 
@@ -1699,7 +1727,7 @@ j1i)=(1ij)
 \end_layout
 
 \begin_layout Standard
-习题4，假定
+4，假定
 \begin_inset Formula $a,b$
 \end_inset
 
@@ -1751,7 +1779,11 @@ j1i)=(1ij)
 \begin_inset Formula $mn$
 \end_inset
 
-。证明：
+。
+\end_layout
+
+\begin_layout Standard
+证明：
 \begin_inset Formula $(ab)^{k}=a^{k}b^{k}$
 \end_inset
 
@@ -1759,7 +1791,7 @@ j1i)=(1ij)
 \end_layout
 
 \begin_layout Standard
-习题5，假如交换群
+5，假如交换群
 \begin_inset Formula $G$
 \end_inset
 
@@ -1783,11 +1815,14 @@ j1i)=(1ij)
 \end_layout
 
 \begin_layout Standard
-习题7，写出四个文字上的交代群
+7，写出四个文字上的交代群
 \begin_inset Formula $A_{4}$
 \end_inset
 
 的群表。
+\end_layout
+
+\begin_layout Standard
 \begin_inset Formula $A_{4}=\{(1)\text{,}(12)(34),(13)(24),(14)(23),(123),(132),(124),(142),(134),(143),(234),(243)\}$
 \end_inset
 
@@ -1795,7 +1830,7 @@ j1i)=(1ij)
 \end_layout
 
 \begin_layout Standard
-习题8，证明
+8，证明
 \begin_inset Formula $S_{n}\text{可以用\ensuremath{n-1}个对换（12),(13),...,(1n)生成。}$
 \end_inset
 
@@ -1815,7 +1850,7 @@ j1i)=(1ij)
 \end_layout
 
 \begin_layout Standard
-习题9，证明
+9，证明
 \begin_inset Formula $A_{n}$
 \end_inset
 
@@ -3922,7 +3957,11 @@ a,b不一定是可交换的
 \end_layout
 
 \begin_layout Standard
-习题
+
+\size larger
+习题2.3
+\size default
+
 \begin_inset Newline newline
 \end_inset
 
@@ -6088,7 +6127,31 @@ status open
 \end_layout
 
 \begin_layout Standard
-共轭是相互的，因此一个共轭类中的任意元的共轭还是在这个共轭类里面。
+共轭是相互的，因此一个共轭类中的任意元的共轭还是在这个共轭类里面。证明：设
+\begin_inset Formula $g_{2}$
+\end_inset
+
+是
+\begin_inset Formula $g_{1}$
+\end_inset
+
+的共轭，即
+\begin_inset Formula $ag_{1}a^{-1}=g_{2}$
+\end_inset
+
+，则有
+\begin_inset Formula $a^{-1}g_{2}a=g_{1}$
+\end_inset
+
+,即
+\begin_inset Formula $g_{1}$
+\end_inset
+
+也是
+\begin_inset Formula $g_{2}$
+\end_inset
+
+的共轭。
 \begin_inset Newline newline
 \end_inset
 
@@ -7069,7 +7132,98 @@ end{theo}
 \end_layout
 
 \begin_layout Standard
-习题
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+总结：同构的概念要点是：两个乘集的映射关系
+\begin_inset Formula $\sigma$
+\end_inset
+
+满足：
+\begin_inset Formula $\sigma(a\cdot b)=\sigma(a)\cdot\sigma(b)$
+\end_inset
+
+。自同构的内同构和外同构，自同构的总数与生成元的数量决定,内同构是
+\begin_inset Formula $aga^{-1},g\in G$
+\end_inset
+
+。
+\end_layout
+
+\begin_layout Plain Layout
+共轭是元或者子群之间的一种关系，子群
+\begin_inset Formula $H$
+\end_inset
+
+的共轭子群的数量等于
+\begin_inset Formula $|G:N(H)|$
+\end_inset
+
+;元
+\begin_inset Formula $g$
+\end_inset
+
+的共轭元的个数等于
+\begin_inset Formula $|G:Z(g)|$
+\end_inset
+
+,
+\begin_inset Formula $Z(g)$
+\end_inset
+
+是
+\begin_inset Formula $g$
+\end_inset
+
+的中心化子。
+\end_layout
+
+\begin_layout Plain Layout
+元的共轭是相互的，所有相互共轭的元组成一个类，叫共轭类;
+\end_layout
+
+\begin_layout Plain Layout
+理解群等式：中心里面的元的共轭是它自身，
+\begin_inset Formula $c_{0}$
+\end_inset
+
+是中心的元数;
+\begin_inset Formula $c_{i}$
+\end_inset
+
+表示一个共轭类的元数，又等于共轭类的一个元的共轭元的个数
+\begin_inset Formula $|G:Z(g)|$
+\end_inset
+
+,
+\begin_inset Formula $Z(g)$
+\end_inset
+
+是一个子群，所以
+\begin_inset Formula $|G:Z(g)|$
+\end_inset
+
+又代表子群的指标。
+\end_layout
+
+\begin_layout Plain Layout
+中心化子
+\begin_inset Formula $Z(H)$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\size larger
+习题2.4
 \end_layout
 
 \begin_layout Standard
@@ -7099,7 +7253,11 @@ c & c & b & a & e
 \begin_inset Formula $G$
 \end_inset
 
-是交换群，没有恒等同构以外的内同构。5个外同构分别是：
+是交换群，没有恒等同构以外的内同构。
+\begin_inset Newline newline
+\end_inset
+
+5个外同构分别是：
 \begin_inset Formula $\sigma_{1}:a\rightarrow b,b\rightarrow a$
 \end_inset
 
@@ -7188,10 +7346,18 @@ c & c & b & a & e
 \end_inset
 
 ,
-\begin_inset Formula $aga^{-1}\ne bgb^{-1}\Rightarrow b^{-1}ag=gb^{-1}a\Rightarrow b^{-1}a=e\Rightarrow a=b$
+\begin_inset Formula $aga^{-1}=bgb^{-1}\Rightarrow b^{-1}ag=gb^{-1}a\Rightarrow b^{-1}a=e\Rightarrow a=b$
 \end_inset
 
-，所以这时有
+，如果
+\begin_inset Formula $a\ne b$
+\end_inset
+
+则
+\begin_inset Formula $aga^{-1}\ne bgb^{-1}$
+\end_inset
+
+,所以这时有
 \begin_inset Formula $\left|G\right|$
 \end_inset
 
@@ -8946,19 +9112,45 @@ end{theo}
 \begin_inset Formula $a^{2}=b,b^{2}=a$
 \end_inset
 
-,其组合有：
-\begin_inset Formula $a,b,ab$
+;
+\begin_inset Formula $abba=a^{3}=ba=ab,baab=b^{3}=ab=ba$
 \end_inset
 
-，此时
+。
+\begin_inset Formula $aab=a,aba=a$
+\end_inset
+
+,可见
+\begin_inset Formula $ab$
+\end_inset
+
+是单位元，
 \begin_inset Formula $a,b$
 \end_inset
 
-对于乘法成为半群;因此得到4元环
-\begin_inset Formula $\{0,a,b,ab\},a^{2}=b,b^{2}=a$
+互为逆元，是交换环。
+\begin_inset Note Greyedout
+status open
+
+\begin_layout Plain Layout
+这一段是错误的
+\end_layout
+
 \end_inset
 
- 。
+假设非零元有
+\begin_inset Formula $a,b,c$
+\end_inset
+
+,
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula $<a,b,c>,ab=$
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
