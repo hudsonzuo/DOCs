@@ -9331,7 +9331,19 @@ end{theo}
 \begin_inset Formula $R$
 \end_inset
 
-的非零元对乘法成群。
+的非零元对乘法成群。当
+\begin_inset Formula $b\ne0$
+\end_inset
+
+时，方程
+\begin_inset Formula $ax=b$
+\end_inset
+
+的解
+\begin_inset Formula $x\ne0$
+\end_inset
+
+.
 \begin_inset Newline newline
 \end_inset
 
@@ -9364,11 +9376,11 @@ end{theo}
 \end_inset
 
 是无零因子环。
-\begin_inset Note Note
+\begin_inset Note Greyedout
 status open
 
 \begin_layout Plain Layout
-和成环的闭合性要求
+环的闭合性允许零因子的存在，有零因子的半群是不能成群的。
 \end_layout
 
 \end_inset
@@ -9426,6 +9438,210 @@ status open
 \end_inset
 
 的逆元。
+\end_layout
+
+\begin_layout Standard
+子体，子体是域时叫子域;体
+\begin_inset Formula $K$
+\end_inset
+
+中所有与所有元能够交换的全部元形成的子域，叫做
+\begin_inset Formula $K$
+\end_inset
+
+的中心。体
+\begin_inset Formula $K$
+\end_inset
+
+中所有与子体
+\begin_inset Formula $F$
+\end_inset
+
+中任意元能够交换的元形成
+\begin_inset Formula $K$
+\end_inset
+
+的子体，叫做
+\begin_inset Formula $F$
+\end_inset
+
+的中心化子，
+\begin_inset Formula $Z(F)$
+\end_inset
+
+。
+\size larger
+极大子域
+\size default
+：任意体都有极大子域，它包含体的中心。
+\begin_inset Note Greyedout
+status open
+
+\begin_layout Plain Layout
+子域中的元能相互交换，中心内的元和体中的所有元能相互交换。
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{theo}
+\end_layout
+
+\end_inset
+
+假定
+\begin_inset Formula $F$
+\end_inset
+
+是体
+\begin_inset Formula $K$
+\end_inset
+
+的子域，那么
+\begin_inset Formula $F$
+\end_inset
+
+是极大子域的充要条件是
+\begin_inset Formula $F$
+\end_inset
+
+的中心化子是
+\begin_inset Formula $F$
+\end_inset
+
+自身，即
+\begin_inset Formula $F=Z(F)$
+\end_inset
+
+。
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{theo}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+证明：
+\end_layout
+
+\begin_layout Standard
+习题3.2
+\end_layout
+
+\begin_layout Standard
+1,试作由两个元组成的体。
+\begin_inset Formula $\{0,1\}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+2，假如
+\begin_inset Formula $n$
+\end_inset
+
+不是质数，那么
+\begin_inset Formula $Z-(n)$
+\end_inset
+
+就不是体，为什么？
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $n$
+\end_inset
+
+的因子是零因子。
+\end_layout
+
+\begin_layout Standard
+3,试证所有系数是复数的四元数只能成为环而不能成为体。
+\end_layout
+
+\begin_layout Standard
+4,试证体中任意有穷子环是子体。
+\end_layout
+
+\begin_layout Standard
+证明：有穷环是体的充要条件是不含零因子，体的子环没有零因子，所以子环是子体。
+\end_layout
+
+\begin_layout Standard
+5,假如
+\begin_inset Formula $K=Z-(2)$
+\end_inset
+
+,试证
+\begin_inset Formula $GL(2,K)=SL(2,K)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+证明：
+\begin_inset Formula $K=\{\overline{0},\overline{1}\}$
+\end_inset
+
+,
+\begin_inset Formula $GL(2,K)$
+\end_inset
+
+的元是2阶满秩矩阵，
+\begin_inset Formula $\begin{vmatrix}1 & 0\\
+0 & 1
+\end{vmatrix}$
+\end_inset
+
+，
+\begin_inset Formula $\begin{vmatrix}1 & 1\\
+0 & 1
+\end{vmatrix}$
+\end_inset
+
+，
+\begin_inset Formula $\begin{vmatrix}1 & 0\\
+1 & 1
+\end{vmatrix}$
+\end_inset
+
+，
+\begin_inset Formula $\begin{vmatrix}1 & 1\\
+1 & 1
+\end{vmatrix}$
+\end_inset
+
+，
+\begin_inset Formula $\begin{vmatrix}0 & 1\\
+1 & 0
+\end{vmatrix}$
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+特殊线性群的行列式等于1
 \end_layout
 
 \end_body
