@@ -358,7 +358,19 @@ B),证：(AB)C=A(BC).
 \end_layout
 
 \begin_layout Standard
-像，像源，满射，单射，双射(可逆映射)，
+像，像源，
+\begin_inset Newline newline
+\end_inset
+
+满射——陪域中的任意元，都有至少一个定义域的元素与之对应。
+\begin_inset Newline newline
+\end_inset
+
+单射——定义域的不同元映射到陪域中的不同元;
+\begin_inset Newline newline
+\end_inset
+
+双射(可逆映射)——等价于满射加单射。
 \end_layout
 
 \begin_layout Standard
@@ -9540,7 +9552,85 @@ end{theo}
 \end_layout
 
 \begin_layout Standard
-证明：
+证明：假设
+\begin_inset Formula $F=Z(F)$
+\end_inset
+
+成立，设子域
+\begin_inset Formula $L\supset F$
+\end_inset
+
+,那么有
+\begin_inset Formula $Z(F)\supset Z(L)\supset L\supset F$
+\end_inset
+
+成立，如果假设成立，那么
+\begin_inset Formula $F$
+\end_inset
+
+就是极大子域。
+\begin_inset Newline newline
+\end_inset
+
+假设
+\begin_inset Formula $F$
+\end_inset
+
+是极大子域，因为子域的中心化子也是子域
+\begin_inset Note Greyedout
+status open
+
+\begin_layout Plain Layout
+设
+\begin_inset Formula $a,b\in F$
+\end_inset
+
+,则
+\begin_inset Formula $a+b\in F$
+\end_inset
+
+,
+\begin_inset Formula $ab=ba\in F$
+\end_inset
+
+,设
+\begin_inset Formula $k\in K$
+\end_inset
+
+,
+\begin_inset Formula $ka=ak$
+\end_inset
+
+,
+\begin_inset Formula $k\in Z(F)$
+\end_inset
+
+,
+\begin_inset Formula $(k_{1}+k_{2})a=k_{1}a+k_{2}a=ak_{1}+ak_{2}=a(k_{1}+k_{2})\Rightarrow(k_{1}+k_{2})\in Z(F)$
+\end_inset
+
+,
+\begin_inset Formula $k_{1}k_{2}a=ak_{1}k_{2}\Rightarrow k_{1}k_{2}\in Z(F)$
+\end_inset
+
+,
+\end_layout
+
+\begin_layout Plain Layout
+正规子群的中心化子是正规子群。这么证明对吗？
+\end_layout
+
+\end_inset
+
+，又
+\begin_inset Formula $Z(F)\supseteq F$
+\end_inset
+
+,所以
+\begin_inset Formula $F=Z(F)$
+\end_inset
+
+。
 \end_layout
 
 \begin_layout Standard
@@ -9599,49 +9689,223 @@ end{theo}
 \end_layout
 
 \begin_layout Standard
-证明：
-\begin_inset Formula $K=\{\overline{0},\overline{1}\}$
+6，假定
+\begin_inset Formula $a,b,c$
+\end_inset
+
+是四元数中的任意元，试证
+\begin_inset Formula $(ab-ba)^{2}c=c(ab-ba)^{2}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+同态、同构
+\end_layout
+
+\begin_layout Standard
+定义 假定
+\begin_inset Formula $R,R^{'}$
+\end_inset
+
+是两个环，
+\begin_inset Formula $\sigma$
+\end_inset
+
+是
+\begin_inset Formula $R$
+\end_inset
+
+射到
+\begin_inset Formula $R^{'}$
+\end_inset
+
+的映射，如果对于
+\begin_inset Formula $R$
+\end_inset
+
+中任意元
+\begin_inset Formula $a,b$
+\end_inset
+
+，我们有
+\begin_inset Formula $\sigma(a+b)=\sigma(a)+\sigma(b)$
 \end_inset
 
 ,
-\begin_inset Formula $GL(2,K)$
+\begin_inset Formula $\sigma(ab)=\sigma(a)\sigma(b)$
 \end_inset
 
-的元是2阶满秩矩阵，
-\begin_inset Formula $\begin{vmatrix}1 & 0\\
-0 & 1
-\end{vmatrix}$
+,那么
+\begin_inset Formula $\text{\sigma}$
 \end_inset
 
-，
-\begin_inset Formula $\begin{vmatrix}1 & 1\\
-0 & 1
-\end{vmatrix}$
+叫做
+\begin_inset Formula $R$
 \end_inset
 
-，
-\begin_inset Formula $\begin{vmatrix}1 & 0\\
-1 & 1
-\end{vmatrix}$
+到
+\begin_inset Formula $R^{'}$
 \end_inset
 
-，
-\begin_inset Formula $\begin{vmatrix}1 & 1\\
-1 & 1
-\end{vmatrix}$
-\end_inset
-
-，
-\begin_inset Formula $\begin{vmatrix}0 & 1\\
-1 & 0
-\end{vmatrix}$
-\end_inset
-
-
+的同态;
 \begin_inset Newline newline
 \end_inset
 
-特殊线性群的行列式等于1
+如果
+\begin_inset Formula $\sigma$
+\end_inset
+
+是
+\begin_inset Formula $R$
+\end_inset
+
+到
+\begin_inset Formula $R^{'}$
+\end_inset
+
+上的同态，并且
+\begin_inset Formula $\sigma$
+\end_inset
+
+是单射，即是可逆的，它就是同构，记做
+\begin_inset Formula $R\simeq R^{'}$
+\end_inset
+
+。
+\begin_inset Newline newline
+\end_inset
+
+任意环都与由零元组成的零环同态;
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula $K$
+\end_inset
+
+是高斯数域，
+\begin_inset Formula $K^{'}$
+\end_inset
+
+是由形如
+\begin_inset Formula $\begin{pmatrix}a & b\\
+-b & a
+\end{pmatrix}$
+\end_inset
+
+的矩阵组成的体，其中
+\begin_inset Formula $a,b$
+\end_inset
+
+是有理数，命：
+\begin_inset Formula $a+bi\rightarrow\begin{pmatrix}a & b\\
+-b & a
+\end{pmatrix}$
+\end_inset
+
+ ，显然这对应是双射;容易验证满足同态条件，所以
+\begin_inset Formula $K\simeq K^{'}$
+\end_inset
+
+。
+\end_layout
+
+\begin_layout Standard
+两个有单位元的环，元数都是
+\begin_inset Formula $n$
+\end_inset
+
+，如果
+\begin_inset Formula $n$
+\end_inset
+
+没有平方数因子，那么这两个环同构。
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+证明：
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+同态把零元变为零元，一元的负元变为它的像的负元，两元的差变为它们的像的差，幂零元变为幂零元，单位元变为单位元，一元的逆变为它的像的逆。
+\end_layout
+
+\begin_layout Standard
+整数环及有理数域的自同构都只是恒等同构。
+\end_layout
+
+\begin_layout Standard
+内（自）同构，对任意内同构不变的子环叫不变子环.
+\end_layout
+
+\begin_layout Standard
+环
+\begin_inset Formula $R$
+\end_inset
+
+的自同态
+\begin_inset Formula $\sigma,\tau$
+\end_inset
+
+的乘积
+\begin_inset Formula $\sigma\tau(a)=\sigma(\tau(a))$
+\end_inset
+
+是
+\begin_inset Formula $R$
+\end_inset
+
+的自同态，但
+\begin_inset Formula $(\sigma+\tau)(a)=\sigma(a)+\tau(a)$
+\end_inset
+
+
+\begin_inset Note Greyedout
+status open
+
+\begin_layout Plain Layout
+这应该是对自同态元之间的加法定义
+\end_layout
+
+\end_inset
+
+不是
+\begin_inset Formula $R$
+\end_inset
+
+的自同态，因为
+\begin_inset Formula $(\sigma+\tau)(ab)\ne(\sigma+\tau)a\cdot(\sigma+\tau)b$
+\end_inset
+
+,所以
+\begin_inset Formula $R$
+\end_inset
+
+的自同态不能成为环，即不存在环的自同态环。 假定
+\begin_inset Formula $G$
+\end_inset
+
+是加群，
+\begin_inset Formula $\sigma,\tau$
+\end_inset
+
+是它的自同态，由$2.4可知
+\begin_inset Formula $\sigma\tau$
+\end_inset
+
+是
+\begin_inset Formula $G$
+\end_inset
+
+的自同态，
 \end_layout
 
 \end_body
