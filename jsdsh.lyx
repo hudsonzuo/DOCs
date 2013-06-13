@@ -9843,7 +9843,17 @@ status open
 \end_layout
 
 \begin_layout Standard
-内（自）同构，对任意内同构不变的子环叫不变子环.
+内（自）同构，对任意内同构不变的子环叫不变子环
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+对所有内同构不变的子群叫不变子群就是正规子群
+\end_layout
+
+\end_inset
+
+。在一个非交换体中，它自身以及包含在它的中心的子体都是不变子体；反过来也成立，即在一个非交换体中，不变子体只有它自身以及包含在中心的子体。
 \end_layout
 
 \begin_layout Standard
@@ -9897,7 +9907,21 @@ status open
 \begin_inset Formula $\sigma,\tau$
 \end_inset
 
-是它的自同态，由$2.4可知
+是它的自同态
+\begin_inset Note Greyedout
+status open
+
+\begin_layout Plain Layout
+即
+\begin_inset Formula $\sigma(a+b)=\sigma(a)+\sigma(b)$
+\end_inset
+
+成立
+\end_layout
+
+\end_inset
+
+，由$2.4可知
 \begin_inset Formula $\sigma\tau$
 \end_inset
 
@@ -9905,7 +9929,113 @@ status open
 \begin_inset Formula $G$
 \end_inset
 
-的自同态，
+的自同态.现在更规定
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula $(\sigma+\tau)(a)=\sigma(a)+\tau(a)$
+\end_inset
+
+,由
+\begin_inset Formula $(\sigma+\tau)(a+b)=\sigma(a+b)+\tau(a+b)=\sigma(a)+\tau(a)+\sigma(b)+\tau(b)=(\sigma+\tau)(a)+(\sigma+\tau)(b)$
+\end_inset
+
+,可知
+\begin_inset Formula $(\sigma+\tau)$
+\end_inset
+
+是自同态；并且容易证明加法的交换律、结合律和分配律都成立，又
+\begin_inset Formula $0(a)=0\text{，-\sigma(a)=\sigma(-a)}$
+\end_inset
+
+,因此加群
+\begin_inset Formula $G$
+\end_inset
+
+的所有自同态成为有单位元的环，叫
+\begin_inset Formula $G$
+\end_inset
+
+的自同态环。
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+自同态的乘法的含义是先后施加两个映射，自同态的加法的含义是?
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+单位元群
+\begin_inset Note Greyedout
+status open
+
+\begin_layout Plain Layout
+只有一个元的群，只有一个元的加群就是零
+\end_layout
+
+\end_inset
+
+的自同态环是零环。
+\end_layout
+
+\begin_layout Standard
+无穷循环群的自同态环和整数环同构
+\begin_inset Note Greyedout
+status open
+
+\begin_layout Plain Layout
+循环群的子群是元的
+\begin_inset Formula $m$
+\end_inset
+
+乘幂组成的，同态基本定理：同态像和正规子群对应的商群同构，所以自同态像就是正规子群对应的商群，自同态环的元和正规子群一一对应；所以可设自同态环
+\begin_inset Formula $R$
+\end_inset
+
+的元
+\begin_inset Formula $\sigma_{m}:a\rightarrow a^{m},a\in(a)$
+\end_inset
+
+,
+\begin_inset Formula $m$
+\end_inset
+
+是正整数；设自同态环到整数环的映射
+\begin_inset Formula $\tau:\sigma_{n}\rightarrow n$
+\end_inset
+
+,
+\begin_inset Formula $n$
+\end_inset
+
+是整数；
+\begin_inset Formula $\tau(\sigma_{m}\sigma_{n})=\tau(\sigma_{mn})=nm$
+\end_inset
+
+,
+\begin_inset Formula $\tau(\sigma_{m})\tau(\sigma_{n})=mn$
+\end_inset
+
+,
+\begin_inset Formula $\tau(\sigma_{m}+\sigma_{n})=\tau(\sigma_{m}\cdot\sigma_{n})=\tau(\sigma_{m+n})=m+n$
+\end_inset
+
+（需要注意的是循环群的加法是普通乘法），所以自同态环和整环同构。
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
 \end_layout
 
 \end_body
